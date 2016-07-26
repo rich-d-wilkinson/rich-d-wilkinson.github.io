@@ -1,0 +1,8 @@
+ftp sm1rw@staff.shef.ac.uk
+# end password
+
+cd public_html
+
+send index.html
+send consultancy.html 
+etc
