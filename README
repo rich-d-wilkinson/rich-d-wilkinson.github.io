@@ -4,5 +4,15 @@ ftp sm1rw@staff.shef.ac.uk
 cd public_html
 
 send index.html
-send consultancy.html 
+send consultancy.html
 etc
+
+
+##### To host on github
+Because of jekyll-scholar plug-in, need to push the precompiled site to github, not the source code.
+Easiest way to do this is to navigate to _site, create a new repo there,
+delete existing repo called rich-d-wilkinson.github.io
+and then do
+
+git remote add origin https://github.com/rich-d-wilkinson/rich-d-wilkinson.github.io.git
+git push -u origin master
