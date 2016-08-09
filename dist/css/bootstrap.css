@@ -33,7 +33,7 @@ template {
 }
 
 html {
-	font-family: 'Source Sans Pro', Helvetica, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
 }
@@ -7640,14 +7640,14 @@ video {
     padding-top: 0%;
     padding-bottom: 0;
 }
-    
+
 .logo img {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 85%;
 }
-    
+
 .logo2 img {
     display: block;
     margin-left: auto;
@@ -7686,11 +7686,6 @@ video {
         padding-bottom: 3%;
 }
 
-.welcomeOLD h3 {
-    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
-	padding-bottom: 7%;
-}
-
 .homepage-contact {
 	max-width: 75%;
 	margin-left: auto;
@@ -7700,7 +7695,7 @@ video {
 	border-color: #CCCCCC;
     padding-top: 4%;
 	margin-bottom: 15px;
-}  
+}
 
 .homepage-contact p {
     max-width: 75%;
