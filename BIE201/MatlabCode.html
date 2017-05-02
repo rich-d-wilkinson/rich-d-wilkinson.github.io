@@ -1,0 +1,339 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Matlab commands for linear models (Richard Wilkinson, University of Sheffield)</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-05-02"><meta name="DC.source" content="MatlabCode.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Matlab commands for linear models (Richard Wilkinson, University of Sheffield)</h1><!--introduction--><p>Here we will briefly illustrate the commands we can use to analyse linear models in Matlab. The aim here is only to give you a taste of what is possible. You should rely upon the help pages (type <i>help fitlm</i> for example) and google to find further information as required.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#5">Diagnostic Plots</a></li><li><a href="#6">Transformations</a></li><li><a href="#9">Goodness of fit</a></li><li><a href="#11">Hypothesis testing</a></li></ul></div><p>We will begin by loading the data and fitting a basic linear model, as you did in the Week 10 computer class. Notice that we have used the <i>tdfread</i> command here to load the data from a tab-delimited file, and then converted the object (which was of type <i>struct</i>) to a table, which is what is required by the fitlm command.</p><pre class="codeinput">clear <span class="string">all</span>;
+fib = tdfread(<span class="string">'fibrosis.txt'</span>);
+fibrosis = struct2table(fib);
+mdl1=fitlm(fibrosis, <span class="string">'PEmax~weight'</span>)
+</pre><pre class="codeoutput">
+mdl1 = 
+
+
+Linear regression model:
+    PEmax ~ 1 + weight
+
+Estimated Coefficients:
+                   Estimate      SE       tStat       pValue  
+                   ________    _______    ______    __________
+
+    (Intercept)    63.546       12.702     5.003    4.6303e-05
+    weight         1.1867      0.30086    3.9445    0.00064569
+
+
+Number of observations: 25, Error degrees of freedom: 23
+Root Mean Squared Error: 26.4
+R-squared: 0.404,  Adjusted R-Squared 0.378
+F-statistic vs. constant model: 15.6, p-value = 0.000646
+</pre><p>This gives much of the output we need. From here, we can read off the parameter estimates:</p><p><img src="MatlabCode_eq08470880306043362254.png" alt="$$\mbox{PEmax} = 63.54 + 1.1867\times\mbox{weight} + \epsilon$$" style="width:182px;height:10px;"></p><p>the standard error (standard deviation of those parameter estimates), e.g., our estimate of the gradient has standard error 0.30, and then the result of a hypothesis test of whether they are equal to zero or not. In this case, we find there is significant evidence that both the intercept and gradient term are significantly different to zero.</p><p>We are also told the estimated variance of the random errors, which is the root mean square error (so in this case we estimate that <img src="MatlabCode_eq06690638584762051636.png" alt="$Var(\epsilon) = 26.4^2$" style="width:71px;height:12px;">) and we are told the value of <img src="MatlabCode_eq02243227017317752302.png" alt="$R^2$" style="width:12px;height:10px;"> and the adjusted <img src="MatlabCode_eq02243227017317752302.png" alt="$R^2$" style="width:12px;height:10px;"> values (40.4% and 37.8% respectively). We are also given a value of the F-test statistic. This is the value we would find if we compared the model we have just fit to the null model, which is the model where we just fit a constant, i.e.,</p><p><img src="MatlabCode_eq10426770106712501370.png" alt="$$\mbox{PEmax} = a + \epsilon$$" style="width:74px;height:9px;"></p><p>Note that we can also use the  following command to fit linear models</p><pre class="codeinput">fit = LinearModel.fit(fibrosis.weight,fibrosis.PEmax);
+</pre><p>if you wish to avoid the use of tables and prefer to work directly with columns.</p><h2 id="5">Diagnostic Plots</h2><p>Matlab makes it very easy to produce all of the diagnostic plots we looked at in the videos. Try the following commands to see what they produce.</p><pre class="codeinput">plot(mdl1)
+figure(2);
+plotResiduals(mdl1, <span class="string">'fitted'</span>)
+figure(3)
+plotResiduals(mdl1, <span class="string">'probability'</span>)
+</pre><img vspace="5" hspace="5" src="MatlabCode_01.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="MatlabCode_02.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="MatlabCode_03.png" style="width:560px;height:420px;" alt=""> <h2 id="6">Transformations</h2><p>Some transformations are easy to apply using the <i>fitlm</i> command. For example, if we include a squared term, the linear term automatically gets included.</p><pre class="codeinput">mdl2=fitlm(fibrosis, <span class="string">'PEmax~weight^2'</span>);
+</pre><p>To include a log term is slightly harder. I find it easiest to use the variable names directly to specify the columns I want in the design matrix. For example, the command</p><pre class="codeinput">fitlm([fibrosis.weight, log(fibrosis.weight)], log(fibrosis.PEmax));
+</pre><p>would fit the model</p><p><img src="MatlabCode_eq00131531741384273203.png" alt="$$ \log(\mbox{PEmax}) = a + b\mbox{weight} + c\log(\mbox{weight}) +&#xA;\epsilon$$" style="width:220px;height:11px;"></p><h2 id="9">Goodness of fit</h2><p>To find the R-squared and adjusted-R-squared values we can simply type</p><pre class="codeinput">mdl1.Rsquared
+</pre><pre class="codeoutput">
+ans = 
+
+  struct with fields:
+
+    Ordinary: 0.4035
+    Adjusted: 0.3776
+
+</pre><p>Similarly, we can access the residual sum of squares (also known as the deviance), the fitted values, and the residuals (the first column gives the raw residuals) as follows:</p><pre class="codeinput">mdl1.SSE;
+mdl1.Fitted;
+mdl1.Residuals;
+</pre><h2 id="11">Hypothesis testing</h2><p>We will do all hypothesis testing with the <i>coefTest</i> command. The help page gives you all the information you need - I recommend you start by reading this. To give a brief example here, let's look at the dataset used in the video on the strength of alcoholic men.</p><pre class="codeinput">alcos= dlmread(<span class="string">'alcos.txt'</span>);
+alco = array2table(alcos, <span class="string">'VariableNames'</span>, {<span class="string">'height'</span>, <span class="string">'strength'</span>, <span class="string">'age'</span>});
+</pre><p>Let's begin by comparing the model that has just height as a covariate with the model that has age and height.</p><pre class="codeinput">fit1 = fitlm(alco, <span class="string">'strength~height'</span>);
+fit2 = fitlm(alco, <span class="string">'strength~height+age'</span>);
+</pre><p>To do that, we need to specify the matrix A and the vector r which correspond to the constrains we wish to apply. So for example, fo go from the model that has height and age to the model that only has height as a covariate, we must constrain the third parameter (the first parameter is the intercept, the second is the coefficient of height - as can be seen if you type <i>fit2</i>) to be zero. We can do this with</p><p><img src="MatlabCode_eq03601813699844735202.png" alt="$$ A = \left(0 \; 0 \; 1\right) \qquad r=0$$" style="width:103px;height:11px;"></p><pre class="codeinput">[P F R] = coefTest(fit2, [0, 0,1], [0])
+</pre><pre class="codeoutput">
+P =
+
+    0.0428
+
+
+F =
+
+    4.3927
+
+
+R =
+
+     1
+
+</pre><p>Here P is the p-value from the test, F is the computed value of the F-statistic, and R is the number of parameters we had to constrain. In this case, we found a p-value of 0.0428, which is just enough evidence at the 5% level to reject the null hypothesis and conclude that we do need to include <i>age</i> in the model.</p><p>If we want to test whether either the model that has neither <i>age</i> or <i>weight</i> in the model is sufficient (ie that the null model is sufficient) then we could use</p><pre class="codeinput">A = [0,1,0;0,0,1]
+r = [0;0]
+
+[P F R] =coefTest(fit2, A,r)
+</pre><pre class="codeoutput">
+A =
+
+     0     1     0
+     0     0     1
+
+
+r =
+
+     0
+     0
+
+
+P =
+
+    0.0032
+
+
+F =
+
+    6.7189
+
+
+R =
+
+     2
+
+</pre><p>Note that Matlab automatically carries out this test (it is called the test for the existence of regression) when it fits the model. If we look at the output from the fitting the model, you will see the last line gives the same F and p-value.</p><pre class="codeinput">fit2
+</pre><pre class="codeoutput">
+fit2 = 
+
+
+Linear regression model:
+    strength ~ 1 + height + age
+
+Estimated Coefficients:
+                   Estimate      SE       tStat      pValue 
+                   ________    ______    _______    ________
+
+    (Intercept)    -465.63     460.33    -1.0115     0.31818
+    height          5.3982      2.545     2.1211    0.040498
+    age            -3.0754     1.4674    -2.0959    0.042807
+
+
+Number of observations: 41, Error degrees of freedom: 38
+Root Mean Squared Error: 98.9
+R-squared: 0.261,  Adjusted R-Squared 0.222
+F-statistic vs. constant model: 6.72, p-value = 0.00317
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Matlab commands for linear models (Richard Wilkinson, University of Sheffield)
+% Here we will briefly illustrate the commands we can use to analyse linear
+% models in Matlab. The aim here is only to give you a taste of what is
+% possible. You should rely upon the help pages (type _help fitlm_ for example) and google to find further information as 
+% required.
+
+%%
+% We will begin by loading the data and fitting a basic linear model, as
+% you did in the Week 10 computer class. Notice that we have used the
+% _tdfread_ command here to load the data from a tab-delimited file, and
+% then converted the object (which was of type _struct_) to a table, which
+% is what is required by the fitlm command.
+
+clear all;
+fib = tdfread('fibrosis.txt');
+fibrosis = struct2table(fib);
+mdl1=fitlm(fibrosis, 'PEmax~weight')
+
+%%
+% This gives much of the output we need. From here, we can read off the
+% parameter estimates:
+% 
+% $$\mbox{PEmax} = 63.54 + 1.1867\times\mbox{weight} + \epsilon$$
+%
+% the standard error (standard deviation of those parameter estimates),
+% e.g., our estimate of the gradient has standard error 0.30, and then the
+% result of a hypothesis test of whether they are equal to zero or not. In
+% this case, we find there is significant evidence that both the intercept
+% and gradient term are significantly different to zero.
+%
+% We are also told the estimated variance of the random errors, which is
+% the root mean square error (so in this case we estimate that 
+% $Var(\epsilon) = 26.4^2$)
+% and we are told the value of $R^2$ and the adjusted $R^2$ values (40.4%
+% and 37.8% respectively).
+% We are also given a value of the F-test statistic. This is the value we
+% would find if we compared the model we have just fit to the null model,
+% which is the model where we just fit a constant, i.e., 
+%
+% $$\mbox{PEmax} = a + \epsilon$$
+%
+
+%%
+% Note that we can also use the  following command to fit linear models
+fit = LinearModel.fit(fibrosis.weight,fibrosis.PEmax);
+%%
+% if you wish to avoid the use of tables and prefer to work directly with
+% columns.
+
+
+%% Diagnostic Plots
+% Matlab makes it very easy to produce all of the diagnostic plots we
+% looked at in the videos. Try the following commands to see what they
+% produce.
+
+plot(mdl1)
+figure(2);
+plotResiduals(mdl1, 'fitted')
+figure(3)
+plotResiduals(mdl1, 'probability')
+
+
+%% Transformations 
+% Some transformations are easy to apply using the _fitlm_ command. For
+% example, if we include a squared term, the linear term automatically
+% gets included.
+
+mdl2=fitlm(fibrosis, 'PEmax~weight^2');
+
+%%
+% To include a log term is slightly harder. I find it easiest to use
+% the variable names directly to specify the columns I want in the design 
+% matrix. For example, the command
+fitlm([fibrosis.weight, log(fibrosis.weight)], log(fibrosis.PEmax));
+
+%%
+% would fit the model
+%
+% $$ \log(\mbox{PEmax}) = a + b\mbox{weight} + c\log(\mbox{weight}) +
+% \epsilon$$
+%
+
+%% Goodness of fit
+% To find the R-squared and adjusted-R-squared values we can simply type
+
+mdl1.Rsquared
+
+%%
+% Similarly, we can access the residual sum of squares (also known as the
+% deviance), the fitted values, and the residuals (the first column gives the raw residuals) as
+% follows:
+
+mdl1.SSE;
+mdl1.Fitted;
+mdl1.Residuals;
+
+
+%% Hypothesis testing
+%
+% We will do all hypothesis testing with the _coefTest_ command. The help
+% page gives you all the information you need - I recommend you start by 
+% reading this. To give a brief example
+% here, let's look at the dataset used in the video on the strength of
+% alcoholic men.
+
+alcos= dlmread('alcos.txt');
+alco = array2table(alcos, 'VariableNames', {'height', 'strength', 'age'});
+
+%%
+% Let's begin by comparing the model that has just height as a covariate
+% with the model that has age and height. 
+
+fit1 = fitlm(alco, 'strength~height');
+fit2 = fitlm(alco, 'strength~height+age');
+
+
+%%
+% To do that, we need to specify
+% the matrix A and the vector r which correspond to the constrains we wish
+% to apply. So for example, fo go from the model that has height and age to
+% the model that only has height as a covariate, we must constrain the
+% third parameter (the first parameter is the intercept, the second is the
+% coefficient of height - as can be seen if you type _fit2_) to be zero. We
+% can do this with
+%
+% $$ A = \left(0 \; 0 \; 1\right) \qquad r=0$$
+
+[P F R] = coefTest(fit2, [0, 0,1], [0])
+
+%% 
+% Here P is the p-value from the test, F is the computed value of the
+% F-statistic, and R is the number of parameters we had to constrain. In
+% this case, we found a p-value of 0.0428, which is just enough evidence at
+% the 5% level to reject the null hypothesis and conclude that we do need
+% to include _age_ in the model.
+
+%%
+% If we want to test whether either the model that has neither _age_ or
+% _weight_ in the model is sufficient (ie that the null model is
+% sufficient) then we could use
+A = [0,1,0;0,0,1]
+r = [0;0]
+
+[P F R] =coefTest(fit2, A,r)
+
+%%
+% Note that Matlab automatically carries out this test (it is called
+% the test for the existence of regression) when it fits the model. If we
+% look at the output from the fitting the model, you will see the last line
+% gives the same F and p-value.
+
+fit2
+##### SOURCE END #####
+--></body></html>
