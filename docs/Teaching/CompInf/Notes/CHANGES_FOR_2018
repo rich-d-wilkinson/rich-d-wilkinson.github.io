@@ -1,6 +1,0 @@
-
-Chapter 2:
-
-Far too much waffle. Remove everything after slide 14 - i.e., after the Monte Carlo properties have been described. Slides 22 and 23 are essentially repeated, with a slightly different example in p25-29.
-
-The \pause reveals don't work with annotations as the annotations then disappear as you move from one slide to the next.
