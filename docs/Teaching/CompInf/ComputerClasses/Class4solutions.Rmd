@@ -1,0 +1,139 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Solution 1
+
+\begin{align}
+F(x) = \int_{-\infty}^x \frac{1}{\pi (1+x'^2)} dx' & = \int_{-\frac{\pi}{2}}^{\tan^{-1}(x)} \frac{\sec^2(u)}{\pi (1+\tan^2(u)} du\\
+&=\int_{-\frac{\pi}{2}}^{\tan^{-1}(x)} \frac{1}{\pi} du\\
+&= \frac{1}{\pi} \tan^{-1}(x) +\frac{1}{2}
+\end{align}
+
+Thus, by rearranging $U = F(X)$ we get
+
+$$ X = \tan\left(\pi(U-\frac{1}{2})\right)$$
+
+To implement this, we can do the following:
+```{r}
+U <- runif(10^6)
+X <- tan(pi*(U-0.5))
+```
+
+
+To check this as requested 
+```{r}
+xx <- c(-10,-5,0,5,10)
+sapply(xx,  function(x) sum(X<=x)/length(X) )
+pcauchy(xx)
+```
+
+
+## Solution 2
+
+$$g(x) = \frac{1}{2} g_1(x) + \frac{1}{2} g_2(x)$$
+where 
+$$g_1(x) = \begin{cases}
+e^{-x} &\mbox{ if } x \geq 0 \\
+0 &\mbox{ otherwise.}
+\end{cases}
+$$
+and 
+$$g_2(x) = \begin{cases}
+e^{x} &\mbox{ if } x \leq 0 \\
+0 &\mbox{ otherwise.}
+\end{cases}
+$$
+
+
+So we can sample from $g(x)$ by sampling $Y \sim \operatorname{Exp}(1)$ and then setting 
+$$ X = \begin{cases} Y &\mbox{ with probability } \frac{1}{2}\\
+-Y &\mbox{ otherwise.}
+\end{cases}
+$$
+
+Let's start by creating a function to sample from g.
+```{r}
+rg <- function(n){
+  Y <- rexp(n,1)
+  U <- sample(c(-1,1), n, replace=TRUE)
+  return(Y*U)
+}
+```
+
+We can write another function to calculate the acceptance probability:
+```{r}
+acceptanceProb <- function(x){
+  exp(abs(x) - x^2/2 -1/2)
+}
+```
+
+We can then write a loop to do rejection sampling.
+```{r, cache=TRUE}
+nacc<-0
+X <- c()
+while(nacc < 10^5){
+  Y <- rg(1)
+  if(runif(1)< acceptanceProb(Y)){
+    nacc <- nacc+1
+    X[nacc] <-Y
+  }
+}
+hist(X, probability=TRUE)
+curve(dnorm, -3,3, col=2, add=TRUE)
+```
+
+This shows how slow R is at doing loops. In this case it is quicker to do the vectorized calculation, even if this means we simulate more than the $10^5$ random variables requested
+
+```{r}
+Y<- rg(10^6)
+p <- acceptanceProb(Y)
+accept <- runif(10^6)<=p
+X2 <- Y[accept]
+length(X2)
+```
+
+The accepance probability is 
+$$\frac{1}{M} = \sqrt{\frac{\pi}{2e}}$$
+which we can check with 
+```{r}
+sqrt(pi/(2*exp(1)))
+length(X2)/10^6
+```
+## Solution 3
+
+The prior is
+$$\pi(p) =  \begin{cases} 1 &\mbox{ if } p \in [0,1]\\
+0 &\mbox{ otherwise}\end{cases}$$
+and the likelihood is
+
+\begin{align*}\pi(X|p) &= \prod_{i=1}^{10} {n\choose{x_i}} p^{x_i} (1-p)^{n-x_i}\\
+&\propto p^{\sum x_i} (1-p)^{10n - \sum x_i}\end{align*}
+
+To do rejection sampling, we are told to use $g(x) =1$ on $[0,1]$. We need to calculate
+
+$$M = \sup \frac{f(p)}{g(p)}$$
+which obviously occurs at the MLE $\hat{p} = \frac{\sum x_i}{200}$ giving 
+$$M = \hat{p}^{50}(1-\hat{p})^{150}$$
+
+
+
+```{r}
+phat <- 50/200
+M <- phat^{50}*(1-phat)^{150}
+```
+
+```{r}
+Y <- runif(10^6)
+U <- runif(10^6)
+keep <- U <= Y^50*(1-Y)^150/M
+X <- Y[keep]
+```
+
+
+```{r}
+hist(X, probability=TRUE)
+xvals <- seq(0,1,0.001)
+lines(xvals, dbeta(xvals, shape1=51, shape2=151), col=2)
+```

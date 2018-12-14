@@ -1,0 +1,51 @@
+## Question 1
+
+
+The density of the standard Cauchy distribution is
+$$f(x)=\frac{1}{\pi (1+x^2)}.$$  
+
+By using the substitution $x = \tan(u)$ or otherwise show that 
+$$F(x) =  \frac{1}{\pi} \tan^{-1}(x) + \frac{1}{2}.$$
+
+Use the inversion method to derive an
+algorithm for generating a Cauchy random variable.
+
+Implement this in R and use it to generate $10^6$ random variables. Check your estimated values of 
+$$\mathbb{P}(X \leq -10), \mathbb{P}(X \leq -5),\mathbb{P}(X \leq 0), \mathbb{P}(X \leq 5), \mbox{ and }\mathbb{P}(X \leq 10)$$ against the true values using the built in CDF in R (`pcauchy`).   
+
+## Question 2
+
+Consider the density function
+\[
+g(x)=\tfrac{1}{2} {\rm e}^{-|x|}
+\]
+ for $-\infty < x < \infty$.  Show how $g(x)$ may be sampled from by considering it to be the mixture of two exponential distributions (hint: you may find point (d) on slide 17 useful).
+
+
+\begin{enumerate}
+\item[(a)]
+Derive a rejection sampling algorithm for sampling a  standard normal random variable  using  $g$ as the proposal distribution. Implement your method, and simulate $10^5$ N(0,1) rvs. Check your answer.
+
+\medskip
+
+\item[(b)]
+What is the  acceptance probability of a single random draw from $g(x)$ for your algorithm? Check this numerically using your code.
+\end{enumerate}
+
+
+## Question 3
+
+
+We will now consider using rejection sampling to solve a Bayesian inference problem. To begin with, we will consider a problem for which a conjugate analysis exists.
+
+Suppose that we want to learn about the unknown parameter $p$, to which we assign a U[0,1] distribution. We collect data $x_1, \ldots, x_{10}$ which are independent $Bin(20,p)$ random variables. Show that the likelihood times the prior for this problem is proportional to 
+
+$$f_1(p) = p^{\sum x_i} (1-p)^{200 - \sum_{i} x_i}$$
+
+We are told that $\sum_{i=1}^{10} x_i = 50$.  Describe a rejection sampling algorithm for sampling from the posterior distribution using  a $U[0,1]$ distribution as the proposal density $g$ and use it to draw a histogram of the posterior distribution.
+
+In this case, we can calculate  the posterior distribution analytically using a conjugate analysis. Show that the posterior distribution is 
+$$\pi(p| x_1, \ldots, x_{10}) = \operatorname{Beta}(51, 151).$$
+
+Check your code by plotting the pdf of this distribution on top of a histogram of samples you generated using the rejection algorithm. 
+

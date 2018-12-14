@@ -1,0 +1,31 @@
+Stan is an example of a probabilistic programming language. It allows us to do Bayesian inference for a particular model, without needing to think to hard about it.
+
+
+# Basics
+
+## Programmes
+
+## Compiling
+
+## Sampling
+Stan uses Hamiltonian Monte Carlo sampling, a form of Markov chain Monte Carlo (MCMC). Note that Stan cannot deal with discrete parameters (discrete random variables are fine though).
+
+## Variational inference?
+## Optimization?
+
+## Reproducibility
+Scripts are good documentation
+Seeds
+
+
+# Examples
+
+## Linear regression
+## GLM - logistic and probit regression
+## Mixed effect models or hierarchical models
+## Time series AR(p), ARMA, ARCH, GARCH?, MA, HMMs
+## Missing data? Censored data
+## Mixture models?
+## Clustering
+# GPs
+## ODEs

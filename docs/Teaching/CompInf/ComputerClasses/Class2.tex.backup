@@ -1,0 +1,73 @@
+
+\documentclass[12pt,a4paper]{article}
+
+\setlength{\topmargin}{-2cm} \setlength{\topskip}{0cm}
+\setlength{\headheight}{1.5cm} \setlength{\headsep}{1cm}
+\setlength{\textheight}{24.5cm} \setlength{\oddsidemargin}{.25cm}
+\setlength{\evensidemargin}{.25cm} \setlength{\textwidth}{17cm}
+%\setcounter{tocdepth}{1}
+\setlength{\unitlength}{1cm}
+%\input /home3/st/st1jeo/tex/epsf.tex
+
+\input{../epsf.tex}
+\newcommand{\balpha}{\mbox{\boldmath{$\alpha$}}\unboldmath}
+\newcommand{\bn}{\mbox{$\mathbf{n}$}}
+\newcommand{\ba}{\mbox{$\mathbf{a}$}}
+\newcommand{\bx}{\mbox{$\mathbf{x}$}}
+\newcommand{\xvec}{\mbox{$\bx_1,\ldots,\bx_n$}}
+\newcommand{\yxvec}{\mbox{$y_1=\eta(\bx_1),\ldots,y_n=\eta(\bx_n)$}}
+\newcommand{\by}{\mbox{$\mathbf{y}$}}
+\newcommand{\boldm}{\mbox{$\mathbf{m}$}}
+\newcommand{\bh}{\mbox{$\mathbf{h}$}}
+\newcommand{\bt}{\mbox{$\mathbf{t}$}}
+\newcommand{\bbeta}{\mbox{\boldmath{$\beta$}}\unboldmath}
+\newcommand{\bdelta}{\mbox{\boldmath{$\delta$}}\unboldmath}
+\newcommand{\btheta}{\mbox{\boldmath{$\theta$}}\unboldmath}
+\newcommand{\bo}[1]{\mbox{$\mathbf{#1}$}}
+\newcommand{\yxpvec}{\mbox{$y_1'=\eta(\bx_1'),\ldots,y_{n'}'=\eta(\bx_{n'}')$}}
+\newcommand{\xpvec}{\mbox{$\bx_1',\ldots,\bx_{n'}'$}}
+\newcommand{\ri}{\mbox{$^{131}I$} }
+\newcommand{\bX}{\bo{X}}
+\newcommand{\bY}{\bo{Y}}
+\newcommand{\betahat}{\mbox{$\hat{\bbeta}$}}
+\newcommand{\sighat}{\mbox{$\hat{\sigma} ^2$}}
+\newcommand{\gap}{ \\ \\ \\ \\ \\ }
+\newcommand{\vect}[1]{\mbox{{\boldmath $#1$}}}
+\renewcommand{\baselinestretch}{1.25}
+% Standardized forms for name of S-plus
+\renewcommand{\S}{R}
+\newcommand{\Shead}{R}
+
+\pagestyle{myheadings} \markboth{Programming exercises 2}{Programming exercises 2}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{graphicx}
+\newtheorem{definition}{Definition}
+
+\graphicspath{ {../Graphs/} }
+\begin{document}
+\section*{Programming exercises}
+
+I highly recommend that you use Rstudio as your R GUI. I also recommend that you learn to use R Markdown as a way to document your code and to write your coursework solutions. You can get started with R Markdown by clicking File $\rightarrow$ New File $\rightarrow$ R Markdown and following the instructions.
+
+%First get the R workspace \verb"MAS472.RData" from MOLE, and load it
+%into R. This contains data for questions 3 and 6, and example
+%solutions for question 1.
+\begin{enumerate}
+
+\item 
+
+Monte Carlo test
+
+\item Randomization test
+
+\item Bootstrapping
+
+\item Bootstrapping
+
+\end{enumerate}
+
+\end{document}
