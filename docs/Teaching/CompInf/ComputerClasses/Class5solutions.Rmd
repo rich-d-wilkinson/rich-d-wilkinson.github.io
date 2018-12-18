@@ -1,4 +1,43 @@
-## Question 1
+## Solution 1
+
+The prior is
+$$\pi(p) =  \begin{cases} 1 &\mbox{ if } p \in [0,1]\\
+0 &\mbox{ otherwise}\end{cases}$$
+and the likelihood is
+
+\begin{align*}\pi(X|p) &= \prod_{i=1}^{10} {n\choose{x_i}} p^{x_i} (1-p)^{n-x_i}\\
+&\propto p^{\sum x_i} (1-p)^{10n - \sum x_i}\end{align*}
+
+To do rejection sampling, we are told to use $g(x) =1$ on $[0,1]$. We need to calculate
+
+$$M = \sup \frac{f(p)}{g(p)}$$
+which obviously occurs at the MLE $\hat{p} = \frac{\sum x_i}{200}$ giving 
+$$M = \hat{p}^{50}(1-\hat{p})^{150}$$
+
+
+
+```{r}
+phat <- 50/200
+M <- phat^{50}*(1-phat)^{150}
+```
+
+```{r}
+Y <- runif(10^6)
+U <- runif(10^6)
+keep <- U <= Y^50*(1-Y)^150/M
+X <- Y[keep]
+```
+
+
+```{r}
+hist(X, probability=TRUE)
+xvals <- seq(0,1,0.001)
+lines(xvals, dbeta(xvals, shape1=51, shape2=151), col=2)
+```
+
+
+
+## Solution 2
 
 In the previous computer class, we considered a simple Bayesian inference problem where we wanted to learn about an unknown parameter $p$, to which we assigned a U[0,1] distribution. We were given data $x_1, \ldots, x_{10}$ which were independent $Bin(20,p)$ random variables, and we were told that $\sum_{i=1}^{10} x_i = 50$. Recall that the likelihood times the prior for this problem was proportional to
 
@@ -76,7 +115,7 @@ $$\pi(p| x_1, \ldots, x_{10}) = \operatorname{Beta}(51, 151).$$
 This would give an ESS=N, as each weight would be 1/N.
 
 
-## Question 2
+## Solution 3
 
 This problem is described in the notes. Here we will work through the details.
 

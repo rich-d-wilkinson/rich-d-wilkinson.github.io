@@ -1,4 +1,4 @@
-## Solution 0
+## Solution 1
 
 ```{r}
 X <- rnorm(100)
@@ -57,7 +57,7 @@ lines(epsilon, 2*exp(-2*100*epsilon^2), col=2, log="y")
 
 We can see that the inequality does look to be true (the red curve bounds the black points). Note that as we have estimated the probability of the maximum exceeding epsilon by sampling, this is itself a random estimator, and so there will be some noise here (meaning that we may find the inequality appears not to be true if we don't use enough samples).
 
-## Question 1
+## Solution 2
 
 Consider the `hills` dataset in the MASS package in R, which contains data on the record time for each of 35 Scottish hill races. 
 We want to build a model to predict the record time on the basis of the race distance and the total amount of height gained during the route. Because we are worried about outliers in the data, we will use a robust regression approach using M estimators.
@@ -153,7 +153,7 @@ So model 2 is slightly better than model 1.
 
 
 
-## Solution 2
+## Solution 3
 
 
 **Failure of the bootstrap:** Suppose $X_1, \ldots, X_n \sim U[0,\theta]$. 

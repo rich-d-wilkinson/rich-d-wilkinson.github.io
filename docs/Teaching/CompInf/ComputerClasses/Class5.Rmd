@@ -1,8 +1,26 @@
 ## Question 1
 
-In the previous computer class, we considered a simple Bayesian inference problem where we wanted to learn about an unknown parameter $p$, to which we assigned a U[0,1] distribution. We were given data $x_1, \ldots, x_{10}$ which were independent $Bin(20,p)$ random variables, and we were told that $\sum_{i=1}^{10} x_i = 50$. Recall that the likelihood times the prior for this problem was proportional to
 
-$$f_1(p) = p^{\sum x_i} (1-p)^{200 - \sum_{i} x_i}.$$
+In this question we will  use rejection sampling to solve a Bayesian inference problem. To begin with, we will consider a problem for which a conjugate analysis exists.
+
+Suppose that we want to learn about the unknown parameter $p$, to which we assign a U[0,1] distribution. We collect data $x_1, \ldots, x_{10}$ which are independent $Bin(20,p)$ random variables. Show that the likelihood times the prior for this problem is proportional to 
+
+$$f_1(p) = p^{\sum x_i} (1-p)^{200 - \sum_{i} x_i}$$
+
+We are told that $\sum_{i=1}^{10} x_i = 50$.  
+
+* Describe a rejection sampling algorithm for sampling from the posterior distribution using  a $U[0,1]$ distribution as the proposal density $g$ and use it to draw a histogram of the posterior distribution.
+
+ * In this case, we can calculate  the posterior distribution analytically using a conjugate analysis. Show that the posterior distribution is 
+$$\pi(p| x_1, \ldots, x_{10}) = \operatorname{Beta}(51, 151).$$
+
+* Check your code by plotting the pdf of this distribution on top of a histogram of samples you generated using the rejection algorithm. 
+
+
+## Question 2
+
+
+We will now tackle the same problem as in question 1 but using importance sampling instead.
 
 
 * Using a $U[0,1]$ distribution as the importance distribution, use importance sampling to generate a weighted sample $$\{p_i, w_i\}_{i=1}^{N}$$ of particles and weights that approximates the posterior distribution.
@@ -31,7 +49,7 @@ where the $W_i$ are the normalised weights ($\sum W_i =1$). If all the weights a
 * What choice of importance distribution would give the best possible ESS?
 
 
-## Question 2
+## Question 3
 
 This problem is described in the notes. Here we will work through the details.
 

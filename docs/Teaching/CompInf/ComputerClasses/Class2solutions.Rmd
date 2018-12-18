@@ -82,7 +82,7 @@ So there is strong evidence to reject $H_0$.
 Locations of 50 points are stored in the vector \verb"spatial". Check that you can plot the data with the command
 
 ```{r} 
-load(file = 'Class1data.Rdata')
+load(file = 'spatialdata.Rdata')
 plot(spatial)
 ```
 

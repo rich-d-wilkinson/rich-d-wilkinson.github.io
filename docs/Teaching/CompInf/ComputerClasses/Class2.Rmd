@@ -18,7 +18,7 @@ $$\{2.561, -0.328,  2.607,  3.466,  2.012,  1.293, -2.301,  1.914,  5.779,  1.36
 ## Question 2
 We will now consider the example from the lecture notes in which we  test for randomness in spatial patterns.
 
-Download the data from MOLE, and load the data using the command
+Download the data from the module webpage, and load the data using the command
 
 
 ```{r eval=F}

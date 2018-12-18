@@ -1,4 +1,4 @@
-## Question 0
+## Question 1
 
 - Generate 100 $N(0,1)$ random variables. Plot the CDF and overlay the true $N(0,1)$ CDF on top. 
 
@@ -13,7 +13,7 @@ Convince yourself empirically that this result is true.
 
 
 
-## Question 1
+## Question 2
 
 Consider the `hills` dataset in the MASS package in R, which contains data on the record time for each of 35 Scottish hill races. 
 We want to build a model to predict the record time on the basis of the race distance and the total amount of height gained during the route. Because we are worried about outliers in the data, we will use a robust regression approach using M estimators.
@@ -44,7 +44,7 @@ Note that there are built-in commands in R for doing bootstrapping and cross-val
 
 
 
-## Question 2
+## Question 3
 
 **Failure of the bootstrap:** Suppose $X_1, \ldots, X_n \sim U[0,\theta]$. 
 

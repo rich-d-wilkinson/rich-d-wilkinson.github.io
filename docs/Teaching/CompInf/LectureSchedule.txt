@@ -1,0 +1,42 @@
+# Largely based on what happened last year.
+
+Lecture 1: Ch 1 up to slide 14 'MC Integration V'
+Lecture 2: Ch 1 up to slide 21 on Monty Hall
+Lecture 3: Ch1 to end - finish. May finish before this.
+
+MAYBE CONDENSE THESE 3?
+ 
+Lecture 4: Computer lab 1 on Chapter 1
+
+Lecture 5: Monte Carlo tests
+Lecture 6: Randomisation tests
+Lecture 7: EDFs and plug-in principle.
+
+Lecture 8: Computer lab 2 on testing and EDFs
+
+Exercise 1 released
+
+Lecture 9: Intro to the bootstrap
+Lecture 10: Bootstrapping
+Lecture 11: Finish bootstrapping + Cross-validation
+
+Lecture 12: Computer lab 3 on bootstrapping - Glivenko-Cantelli and DKW inequalityT
++CV
+
+Exercise 2 released
+
+Lecture 13: Congruential generators and inversion.
+Lecture 14: Transformations + Rejection
+Lecture 15: Finish rejection + Multivariate generators + importance sampling example
+
+Lecture 16: Computer lab 4 on Rejection sampling and other basic approaches
+
+Lecture 17: Finish importance sampling
++ Bayes example
+Lecture 18: Likelihood basics
+
+Exercise 3 released
+
+Lecture 19: Profile likelihood
+
+Lecture 20: Computer lab 4 on importance sampling .
