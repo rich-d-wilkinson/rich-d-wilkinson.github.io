@@ -5,7 +5,7 @@ Lecture 2: Ch 1 up to slide 21 on Monty Hall
 Lecture 3: Ch1 to end - finish. May finish before this.
 
 MAYBE CONDENSE THESE 3?
- 
+
 Lecture 4: Computer lab 1 on Chapter 1
 
 Lecture 5: Monte Carlo tests
