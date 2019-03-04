@@ -1,0 +1,108 @@
+# sleepstudy dataset
+
+Lets now consider the sleepstudy dataset from the lme4 package. This is from a
+report on a study of the effects of sleep deprivation on reaction time for a
+number of subjects chosen from a population of long- distance truck drivers.
+These subjects were divided into groups that were allowed only a limited amount
+of sleep each night. We consider here the group of 18 subjects who were
+restricted to three hours of sleep per night for the first ten days of the
+trial. Each subject’s reaction time was measured several times on each day of
+the trial.
+
+```{r}
+library(lme4)
+str(sleepstudy)
+head(sleepstudy)
+```
+
+As always, we start by plotting the data
+
+```{r}
+library(ggplot2)
+qplot(Days, Reaction, facets=~Subject, data = sleepstudy)
+```
+
+qplot has an option to also draw on a fitted regression line to each person as
+well.
+
+```{r}
+c <- ggplot(sleepstudy, aes(Days, Reaction))+geom_point() + facet_wrap(~ Subject, nc=5)
+c+stat_smooth(method='lm')
+```
+
+## Model 1: Correlated random effects
+
+```{r}
+(fm06 <- lmer(Reaction ~ 1 + Days + (1 +Days | Subject), sleepstudy))
+```
+
++ What is the typical initial reaction time?
++ How much does reaction time typically increase per day?
++ What is typical subject-subject variation in the initial reaction time?
++ What is the typical subject-subject variation in the slope?
++ What would approximate 95% confidence intervals be for the slope and the
+intercept across all subjects?
++ What is the typical within subject variation?
++ Is there a strong relationship between a subjects initial reaction time and
+how strongly affected they are by sleep deprivation?
+
+This model has used correlated random effects for the same subject, i.e., there
+is a correlation between the random subject intercept and the subject specific
+gradient. Mathematically, we have fit the model
+
+$$ y_{ij} = \alpha + a_i + (\beta+ b_i)\mbox{Days}_j + \epsilon_{ij}$$
+
+where
+$$ \left(\begin{array}{c}a_i\\b_i\end{array}\right)\sim N(0, \Sigma) \mbox{ and
+} \epsilon_{ij} \sim N(0, \sigma^2)$$
+
+The output above gives us estimates of the fixed effects $(\alpha, \beta)$, and
+the random effect variances $\Sigma$ and $\sigma^2$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Model 2: Uncorrelated random effects
+
+```{r}
+(fm07 <- lmer(Reaction ~ 1 + (1 | Subject)+ Days + (Days-1|Subject), sleepstudy))
+```
+
+Note that we have explicitly ruled out the intercept term in the random effect
+part for Days. If we didn't do this, R would have fit an additional
+(unnecessary) intercept.
+
+Note that this has fit the model
+
+$$ y_{ij} = \alpha + a_i + (\beta+ b_i)\mbox{Days}_j + \epsilon_{ij}$$
+
+where
+$$ a_i\sim N(0, \sigma^2_a), \quad  b_i\sim N(0, \sigma^2_b) \mbox{ and }
+\epsilon_{ij} \sim N(0, \sigma^2)$$
+with all the random effects independent of each other.
+
+
+
+
+
+
+In the correlated random effects model, the correlation was estimated to be
+small. This suggests that the uncorrelated random effects model is a good
+choice. We will look later at how to formally test which model is better.
