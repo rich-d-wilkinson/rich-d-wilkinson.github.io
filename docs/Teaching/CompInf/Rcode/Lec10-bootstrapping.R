@@ -245,3 +245,4 @@ plot(1:8, log(RMSE), ylab='Root mean square prediction error', xlab = 'Degree of
 
 
 # Which model would you prefer?
+
