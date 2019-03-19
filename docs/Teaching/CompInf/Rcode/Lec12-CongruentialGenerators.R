@@ -24,7 +24,7 @@ cong<-function(x0,n){
   tmp<-c()
   tmp[1]<-x0
   for(i in 1:n){
-    tmp[i+1]<-a*tmp[i]%%M 
+    tmp[i+1]<-(a*tmp[i]+c)%%M 
   }
   return(tmp)
 }
@@ -35,5 +35,9 @@ n<-length(out)
 data<-cbind(out[-n], out[-1])
 plot(data,xlab="U_i", ylab="U_{i+1}", main="M=2^11, a=51, c=1")
 
+
+# Compare with
+data<-runif(1000)
+plot(data,xlab="U_i", ylab="U_{i+1}", main="R's built in random number generator")
 
 
