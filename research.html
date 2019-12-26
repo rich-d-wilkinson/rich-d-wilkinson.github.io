@@ -37,10 +37,6 @@
 		
 	
 		
-	    
-	      <li><a href="/aboutme.html">About me</a></li>
-	    
-		
 	
 		
 	
@@ -56,6 +52,8 @@
 	    
 	      <li><a href="/teaching.html">Teaching</a></li>
 	    
+		
+	
 		
 	
 		
@@ -157,6 +155,8 @@
 	
 		
 	
+		
+	
 	<li><a href="https://github.com/rich-d-wilkinson">Code</a></li>
 </ul>
 </div>
@@ -181,16 +181,28 @@
 
 
 
-			    <h1 id="statistical-inference-for-computer-experiments">Statistical inference for computer experiments</h1>
+			    <h2 id="statistical-inference-for-computer-experiments">Statistical inference for computer experiments</h2>
 
-<p>My main research interests lie in the field of Bayesian statistics and its application. In particular, I am interested in the statistical challenges posed by computer experiments.</p>
+<p>My main research interests lie in the field of Bayesian statistics and its application. In particular, I am interested in the statistical challenges posed by computer models.</p>
 
-<p>David Cox said in a recent <a href="http://www.statisticsviews.com/details/feature/5770651/I-would-like-to-think-of-myself-as-a-scientist-who-happens-largely-to-specialise.html">interview</a> that the <font color="red">
+<p>David Cox said in an <a href="http://www.statisticsviews.com/details/feature/5770651/I-would-like-to-think-of-myself-as-a-scientist-who-happens-largely-to-specialise.html">interview</a> that the <font color="red">
 'challenge [...] for an academic statistician, is to be involved in several fields of application in a non-trivial sense and combine the stimulus and the contribution you can make that way with theoretical contributions that those contacts will suggest'</font> and this captures perfectly  my research strategy: to be involved in several application areas and work on  interesting methodology as it arises.</p>
 
-<p> The main areas I am interested in are listed below. I would be happy to supervise PhD students in any of these areas and interested students should contact me  for details of potential projects.
+<p>I currently have research funding to work on the  following research projects:</p>
 
+<ul>
+  <li><a href="https://gow.epsrc.ukri.org/NGBOViewGrant.aspx?GrantRef=EP/T00343X/1">Physically-informed probabilistic modelling of air pollution in Kampala using a low cost sensor network</a>. A two-year EPSRC/GCRF funded project where we aim to build aspects of fluid behaviour into Gaussian processes to better make predictions about air pollution.</li>
+  <li><a href="https://gow.epsrc.ukri.org/NGBOViewGrant.aspx?GrantRef=EP/P010741/1">Uncertainty Quantification in Prospective and Predictive Patient Specific Cardiac Models</a>. A four-year EPSRC project that aims to predict, with uncertainty, which patients being treated for atrial fibrilation will go on to suffer atrial tachycardia</li>
+  <li><a href="https://gow.epsrc.ukri.org/NGBOViewGrant.aspx?GrantRef=EP/S014985/1">Enhancing Machine Learning with Physical Constraints for Predicting Microstructure Evolution</a>. A two-year EPSRC project that aims to combine the observation-based empiricism of machine learning with the fundamental-based conceptualism of physics.</li>
+  <li><a href="https://gow.epsrc.ukri.org/NGBOViewGrant.aspx?GrantRef=EP/S025278/1">Plastics: Redefining Single-Use</a>. An EPSRC project looking at ways we can move away from the use of single-use plastics.</li>
+  <li><strong>Mechanistic Model Misspecification</strong>. An EPSRC Industrial CASE award from Microsoft Cambridge UK funding the PhD project of Ines Krissane.</li>
+  <li><strong>Improving Gaussian process emulation using calibration-aware dimension reduction</strong>. Industrial funding from Total for the PhD project of Valentin Breaz.</li>
+</ul>
 
+<p><strong>Academic service:</strong>
+I am currently an associate editor of the <a href="https://www.siam.org/publications/journals/siam-asa-journal-on-uncertainty-quantification-juq">SIAM Journal of Uncertainty Quantification</a>, have been an area chair for <a href="http://www.nips.cc">NeurIPS</a> every other year since 2014, and am external examiner for the MSc in Statistical Science at the University of Oxford. I was previously Chair of the Environmental Statistics section of the Royal Statistical Society, and have co-organised the <a href="http://www.gpss.cc">Gaussian Process Summer School</a> since 2015.</p>
+
+<!--
 <li> <a href="#ABC">Approximate Bayesian computation (ABC)</a>   </li>
 <li> <a href="#CompExp">Analysis of computer experiments</a> </li>
 <li> <a href="#Climate">Statistical challenges in climate science</a></li>
@@ -201,22 +213,22 @@
 Please see my <a href="Publications.html">publication</a> page for more details.
 
 
-<p><a href="http://www.climathnet.org"><img class="imageStyle" alt="" src="images/CliMathNet.png" width="20%" /></a>
+<p><a href="http://www.climathnet.org"><img class ="imageStyle" alt="" src="images/CliMathNet.png" width="20%"/></a>
 
 
-<a href="http://panacea-co2.org"><img class="imageStyle" alt="" src="images/panacea.png" width="40%" /></a>
+<a href="http://panacea-co2.org"><img class ="imageStyle" alt="" src="images/panacea.png" width="40%"/></a>
 
 
-<a href="http://www.mucm.ac.uk/"><img class="imageStyle" alt="" src="images/MUCM.jpg" width="20%" /></a>
+<a href="http://www.mucm.ac.uk/"><img class ="imageStyle" alt="" src="images/MUCM.jpg" width="20%"/></a>
 
 <p>
 I'm also a member of the <a href="http://www.pastearth.net/">Past Earth Network</a>, group leader of the Model-Data Comparison group, and chair of the Environmental Statistics Section of the Royal Statistical Society.</p>
 
  <br />
  <br />
-            <hr />
+            <hr>
             <br />
-   <a name="ABC"></a>           <h2><font color="green">Approximate Bayesian computation (ABC)</font></h2>&lt;/a&gt;
+   <a name="ABC"></a>           <h2><font color="green">Approximate Bayesian computation (ABC)</font></h2></a>
 
 
 <p>ABC methods are a class on Monte Carlo method that arose out of genetics and has been extensively studied in the past decade. The methods can be used for doing Bayesian inference
@@ -230,7 +242,7 @@ of the data, then the basic
 ABC algorithm is as follows:
 
 
-<ol type="2">
+<ol type=2>
 <li> Choose &#952; from  the prior  </li>
 
 <li> Simulate  data x' from the model with  parameter  &#952;, and calculate
@@ -253,13 +265,13 @@ The key challenge for statisticians is developing algorithms that can be easily 
 
 <p> The focus of much of my current research is on trying to speed up ABC algorithms so that they can be used with more computationally expensive simulators.
 </p>
-<ol type="2">
+<ol type=2>
 
 
 
 <li> <b>Wilkinson</b>,
 <a href="http://arxiv.org/pdf/0811.3355.pdf"><em> Approximate Bayesian computation (ABC) gives exact results under the assumption of model error</em></a>.  Statistical Approaches in Genetics and Molecular Biology, <a href="http://www.degruyter.com/view/j/sagmb.2013.12.issue-2/sagmb-2013-0010/sagmb-2013-0010.xml?format=INT">12(2):129-141</a>, 2013.
-<a href="http://f1000.com/prime/718414656?bd=1&amp;ui=22071" target="_blank"><img src="http://cdn.f1000.com.s3.amazonaws.com/images/badges/badgef1000.gif" alt="Access the recommendation on F1000Prime" id="bg" /></a></li>
+<a href="http://f1000.com/prime/718414656?bd=1&ui=22071" target="_blank"><img src="http://cdn.f1000.com.s3.amazonaws.com/images/badges/badgef1000.gif" alt="Access the recommendation on F1000Prime" id="bg" /></a></li>
 <p> Answers the question about what distribution are we really sampling from when we do ABC?
 
 
@@ -279,27 +291,27 @@ The key challenge for statisticians is developing algorithms that can be easily 
 <li> I gave a two hour introductory tutorial on ABC at NIPS in 2013 (<a href="docs/NIPS2013.pdf">slides</a> and <a href="https://www.youtube.com/watch?v=sssbLkn2JjI">video</a>), and a shorter 45 minute introduction at CERN.
 </li>
 
-&lt;/ol&gt;
+</ol>
 
 <br /><br />
 
-<hr />
+<hr>
 <br />
-<a name="CompExp"></a><h2><font color="green">Analysis of Computer experiments</font></h2>&lt;/b&gt;
+<a name="CompExp"></a><h2><font color="green">Analysis of Computer experiments</font></h2></b>
 <br />
 Computer experiments are now commonplace  in nearly all areas of science. From a statistical point of view, the main question is,  how  we can  learn about a physical system from a  simulation of it?
 For deterministic simulators, if we run the model multiple times with the same input, we will get the same output each time. Because there is no natural variation we must introduce and account for uncertainty ourselves, in order to make predictions with sensible error bounds. An excellent source of information on some of the methods for dealing with computer experiments can be found in the <a href="http://mucm.aston.ac.uk/MUCM/MUCMToolkit/">MUCM toolkit</a>.
 
 <p>
 I am interested in two main problems:
-<ol type="I">
+<ol type=I>
 <li>Dealing with code uncertainty - if the simulator is expensive to run, we will have to conduct all inference using a small ensemble of model runs. One approach to dealing with this, is to build an <em>emulator</em> of the simulator. In other words, we build a cheap statistical model of the expensive computer model.</li>
 
 <li>Model error - if we accept that a model is imperfect, then it is natural to ask whether we can learn in what way the model goes wrong, and whether we can correct the error. Related to this is the question of whether we can learn the appropriate degree of uncertainty we must add to our inference in order to make sensible predictions.
 		This work has close links to some of my  <a href="#ABC">ABC</a> work.
 
 	</li>
-&lt;/p&gt;
+</p>
 </ol>
 
 <p> Gaussian processes are used to tackle both of these problems, as they provide a flexible non-parametric family of models that is easy to work with. Some papers:
@@ -307,10 +319,10 @@ I am interested in two main problems:
 <ol>
 <li> <b>Wilkinson</b>, M. Vrettas,
 D. Cornford, J. E. Oakley.
-<a href="docs/JABES.pdf"><em> Quantifying simulator discrepancy in  discrete-time  dynamical simulators&lt;/a&gt;</em>. Journal of Agricultural, Biological and
+<a href="docs/JABES.pdf"><em> Quantifying simulator discrepancy in  discrete-time  dynamical simulators</a></em>. Journal of Agricultural, Biological and
 Environmental Statistics (special issue on <i>"Computer models and spatial statistics  for environmental science"</i>) 16(4), 554-570, 2011. There is also some supplementary material available <a href="docs/JABES_supplementary.pdf">here</a>.
 <br /><br />
-&lt;/li&gt;
+</li>
 <li> <b> Wilkinson</b>,
 	<a href="Papers/InverseChapter.pdf"><em> Bayesian calibration of expensive multivariate computer experiments</em></a>. In <em>Large scale inverse problems and quantification of uncertainty</em>.
 	<p> We introduce the principal component emulator, which can be used to emulate models with high dimensional output. We also show how to calibrate the model using the PCA emulator.</p>
@@ -354,21 +366,21 @@ Environmental Statistics (special issue on <i>"Computer models and spatial stati
 
 
 
-&lt;/ol&gt;
+</ol>
 
-<p><br /></p>
+<p><br></p>
 
 
-<hr />
+<hr>
 <br />
 
 <b><a name="Climate"></a><h2><font color="green">Statistical challenges in climate science
 </font></h2></b>
-<br />
+<br/>
 
 
 <div class="logo">
-<img src="images/GIGcycle.jpg" alt="Glacial inter-glacial cycle" />
+<img src="images/GIGcycle.jpg" alt="Glacial inter-glacial cycle">
 </div>
 
 
@@ -377,17 +389,17 @@ Environmental Statistics (special issue on <i>"Computer models and spatial stati
 
 
 
-<p align="justify">
+<p align ="justify">
  I am interested in work which incorporates statistical modelling into the analysis in order to produce predictions/explanations that account for the various uncertainties we know to exist (code uncertainty, parametric uncertainty, model error, measurement errors). It is important to produce probabilistic predictions, as deterministic predictions (which scientists understand to be approximate) are often interpreted (by skeptics)  as undermining all of climate science if they do not occur exactly as promised. Some papers:
 
-<br />
+<br>
 <ol>
 
 <p></p>
 
 	<li> P.B. Holden, N.R. Edwards, K.I.C. Oliver, T.M. Lenton and  <b>Wilkinson</b>.
-	 <a href="docs/ProbCalib.pdf"><em> A probabilistic calibration of climate sensitivity in GENIE-1&lt;/a&gt;</em>. To appear, Climate Dynamics.
-	&lt;/li&gt;
+	 <a href="docs/ProbCalib.pdf"><em> A probabilistic calibration of climate sensitivity in GENIE-1</a></em>. To appear, Climate Dynamics.
+	</li>
 	<p></p>
 
 <li> J. Carson, M. Crucifix, S. Preston, <b>Wilkinson</b> <em> What drives the glacial-interglacial cycle? A Bayesian solution to a long standing problem</em>
@@ -420,40 +432,40 @@ Environmental Statistics (special issue on <i>"Computer models and spatial stati
 	<p></p>
 
 
-&lt;/ol&gt;
+</ol>
 
 
 I am a member of  the two EPSRC networks,
-<a href="http://www.climathnet.org"><img class="imageStyle" alt="" src="images/CliMathNet.png" width="20%" /></a>
+<a href="http://www.climathnet.org"><img class ="imageStyle" alt="" src="images/CliMathNet.png" width="20%"/></a>
 and the newly formed Past Earth Network.
 
 
-<hr />
+<hr>
 <br /><b><a name="Paleo"></a><h2><font color="green">Bayesian approaches in  palaeontology</font></h2></b><p>
 
 <p>		I am interested in stochastic modelling in palaeontological applications. These problems are often characterised by only having a limited amount of noisy data that we must exploit as best we can.
 </p>
 
-<div id="centralContent">
-<p><a href="docs/Integrated.pdf"><img src="images/PrimateDoubleDating.jpg" alt="Primate genetic and fossil posteriors" align="right" border="1" hspace="5" width="90%" /></a>
+<div id = "centralContent">
+<p><a href="docs/Integrated.pdf"><img src="images/PrimateDoubleDating.jpg" alt="Primate genetic and fossil posteriors" align="right" border="1" hspace="5" width="90%"></a>
 </p>
 </div>
 
 
-<ol type="2">
+<ol type=2>
 
 
 
 
 <p></p>
 	<li> Wilkinson,  M. Steiper, C. Soligo, R.D. Martin, Z. Yang,   and S. Tavar&eacute;.
-	 <a href="docs/Integrated.pdf"> <em>Dating primate divergences through an integrated analysis of palaeontological and molecular data&lt;/a&gt;</em>. Systematic Biology 60(1): 16-31, 2011.
+	 <a href="docs/Integrated.pdf"> <em>Dating primate divergences through an integrated analysis of palaeontological and molecular data</a></em>. Systematic Biology 60(1): 16-31, 2011.
 	<p> We combine the posteriors found in chapter 4 of my thesis with genetic data from extant primates to find estimates of the primate divergence time that incorporate both genetic and fossil data. The main findings are illustrated in the figure above. </p>
-	&lt;/li&gt;
+	</li>
 
 	<p></p>
 <li> Wilkinson and S. Tavar&eacute;.
-<a href="docs/EstimatingPrimates.pdf"><em> Estimating the primate divergence time using conditioned birth-and-death processes</em></a>. Theoretical Population Biology, 75 (2009), pp. 278-285. <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&amp;_udi=B6WXD-4VSB152-1&amp;_user=128590&amp;_rdoc=1&amp;_fmt=&amp;_orig=search&amp;_sort=d&amp;view=c&amp;_acct=C000010619&amp;_version=1&amp;_urlVersion=0&amp;_userid=128590&amp;md5=2769ab1ac78ef12001e344120a33818e">doi:10.1016/j.tpb.2009.02.003 </a>.
+<a href="docs/EstimatingPrimates.pdf"><em> Estimating the primate divergence time using conditioned birth-and-death processes</em></a>. Theoretical Population Biology, 75 (2009), pp. 278-285. <a href="http://www.sciencedirect.com/science?_ob=ArticleURL&_udi=B6WXD-4VSB152-1&_user=128590&_rdoc=1&_fmt=&_orig=search&_sort=d&view=c&_acct=C000010619&_version=1&_urlVersion=0&_userid=128590&md5=2769ab1ac78ef12001e344120a33818e">doi:10.1016/j.tpb.2009.02.003 </a>.
 <p> A paper based on chapters 7 and 8 of my PhD thesis.</p>
 </li>
 <p></p>
@@ -486,15 +498,15 @@ Chu, K.H.,
 <a href="docs/Thesis.pdf"><em>Bayesian Inference of Primate Divergence Times</em></a>. PhD Thesis. Department of Applied Probability and Theoretical Physics, University of Cambridge, (2007). </li>
 
 <p> My thesis contains most of the results in the above two papers, plus other cases that haven't been published. Chapters of particular interest might be chapters 4 and 6, where the basic primate model is extended in various directions.
-&lt;/ol&gt;
-&lt;/ol&gt;
+</ol>
+</ol>
 
-<p><br /></p>
-
-
+<p><br></p>
 
 
-<hr />
+
+
+<hr>
 <br /><b><a name="CCS"></a><h2><font color="green">Uncertainty quantification for carbon capture and storage</font></h2></b>
 <section class="main_content">
 
@@ -504,12 +516,12 @@ Carbon capture and storage (CCS) is the process of capturing the CO<sub>2</sub> 
 
 
 <p>The first, is through involvement in the
-<a href="http://panacea-co2.org"><img class="imageStyle" alt="" src="images/panacea.png" width="20%" /></a>
+<a href="http://panacea-co2.org"><img class ="imageStyle" alt="" src="images/panacea.png" width="20%"/></a>
 project, an EU funded consortium across 12 Universities. In Nottingham, we are responsible for the uncertainty quantification. The main question we wish to answer, is given that the geology of the underlying bedrock is unknown, what do we believe the likely distribution is for how the  buried CO<sub>2</sub> will permeate through the bedrock? This involves building Gaussian process emulators of complex ground water flow models. The dimension of the input and outputs to this simulator can be very high (d=10<sup>5</sup> is typical), and so we are investigating dimension reduction techniques for accurately capturing the simulator behaviour.
 
 
 <div class="logo">
-<a href="http://www.panacea-co2.org/"><img class="imageStyle" alt="" src="images/panacea_group2.jpg" width="70%" /></a>
+<a href="http://www.panacea-co2.org/"><img class ="imageStyle" alt="" src="images/panacea_group2.jpg" width="70%"/></a>
 </div>
 
 
@@ -522,7 +534,7 @@ project, an EU funded consortium across 12 Universities. In Nottingham, we are r
 We have been using Gaussian processes to feed information about the molecular interactions from techniques in computational chemistry calculations into the simulation. Ultimately, we hope this will lead to completely ab-initio computation of physical properties.
 
 
-&lt;/div&gt;
+</div>
 
 
 
@@ -534,9 +546,9 @@ We have been using Gaussian processes to feed information about the molecular in
 
 
 
-&lt;/body&gt;
-&lt;/html&gt;
-</p></section></p></p></a></li></ol></p></a></li></ol></p></a></li></ol></p></p></p></p></ol></p></p></p></p>
+</body>
+</html>
+-->
 
 
 
