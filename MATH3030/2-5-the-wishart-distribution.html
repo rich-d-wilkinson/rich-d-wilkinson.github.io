@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.5 The Wishart distribution | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.5 The Wishart distribution | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.5 The Wishart distribution | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="2-4-two-important-results-for-the-mvn.html"/>
+<link rel="next" href="2-6-hotellings-t2-distribution.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivartiate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-multivariate-data.html"><a href="1-1-multivariate-data.html"><i class="fa fa-check"></i><b>1.1</b> Multivariate data</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-summary-statistics.html"><a href="1-2-summary-statistics.html"><i class="fa fa-check"></i><b>1.2</b> Summary statistics</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-graphical-techniques.html"><a href="1-3-graphical-techniques.html"><i class="fa fa-check"></i><b>1.3</b> Graphical techniques</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-random-vectors-and-matrices.html"><a href="1-4-random-vectors-and-matrices.html"><i class="fa fa-check"></i><b>1.4</b> Random Vectors and Matrices</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-unbiased-estimators.html"><a href="1-5-unbiased-estimators.html"><i class="fa fa-check"></i><b>1.5</b> Unbiased Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iii-inference-using-the-mvn.html"><a href="part-iii-inference-using-the-mvn.html"><i class="fa fa-check"></i>Part III: Inference using the MVN</a></li>
+<li class="chapter" data-level="2" data-path="2-multinormal.html"><a href="2-multinormal.html"><i class="fa fa-check"></i><b>2</b> Multivariate Normal Distribution Theory</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-introduction-1.html"><a href="2-1-introduction-1.html"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-definition-and-properties-of-the-mvn.html"><a href="2-2-definition-and-properties-of-the-mvn.html"><i class="fa fa-check"></i><b>2.2</b> Definition and Properties of the MVN</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-transformations.html"><a href="2-3-transformations.html"><i class="fa fa-check"></i><b>2.3</b> Transformations</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-two-important-results-for-the-mvn.html"><a href="2-4-two-important-results-for-the-mvn.html"><i class="fa fa-check"></i><b>2.4</b> Two important results for the MVN</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-the-wishart-distribution.html"><a href="2-5-the-wishart-distribution.html"><i class="fa fa-check"></i><b>2.5</b> The Wishart distribution</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-hotellings-t2-distribution.html"><a href="2-6-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>2.6</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="the-wishart-distribution" class="section level2">
+<h2><span class="header-section-number">2.5</span> The Wishart distribution</h2>
+<p>The Wishart distribution is a multivariate generalisation of the univariate <span class="math inline">\(\chi^2\)</span> distribution. In univariate statistics the <span class="math inline">\(\chi^2\)</span> distribution plays an important role in inference related to the univariate normal, e.g. in the definition of Student’s <span class="math inline">\(t\)</span> distribution. An analogous role is played by the Wishart distribution in multivariate statistics.</p>
+
+<div class="definition">
+<span id="def:wishart" class="definition"><strong>Definition 2.1  </strong></span> Let <span class="math inline">\(\boldsymbol x_1, \ldots, \boldsymbol x_n\)</span> be an IID random sample from <span class="math inline">\(N_p (\boldsymbol 0, \boldsymbol \Sigma)\)</span>. Then <span class="math inline">\(\boldsymbol M= \sum_{i=1}^n \boldsymbol x_i \boldsymbol x_i^\top\)</span>
+is said to have a Wishart distribution with <span class="math inline">\(n\)</span> degrees of freedom and scale matrix <span class="math inline">\(\boldsymbol \Sigma\)</span>. We write this as <span class="math inline">\(\boldsymbol M\sim W_p(\boldsymbol \Sigma, n)\)</span>.
+</div>
+
+<p>Note that <span class="math inline">\(W_p(\boldsymbol \Sigma,n)\)</span> is a probability distribution on the set of <span class="math inline">\(p \times p\)</span> symmetric non-negative definite random matrices.</p>
+<p>We call <span class="math inline">\(W_p(\boldsymbol I_p,n)\)</span> a standard Wishart distribution.</p>
+<p>When <span class="math inline">\(p=1\)</span>, <span class="math inline">\(W_1(1,n)\)</span> is the <span class="math inline">\(\chi_n^2\)</span> distribution and <span class="math inline">\(W_1(\sigma^2,n)\)</span> is the <span class="math inline">\(\sigma^2 \chi_n^2\)</span> distribution. This claim follows from <a href="2-5-the-wishart-distribution.html#prp:six9">2.9</a> below.</p>
+<p>We now use the definition of <span class="math inline">\(W_p(\boldsymbol \Sigma, n)\)</span> to prove some important\
+results.</p>
+
+<div class="proposition">
+<span id="prp:six8" class="proposition"><strong>Proposition 2.8  </strong></span>If <span class="math inline">\(\boldsymbol M\sim W_p(\boldsymbol \Sigma,n)\)</span> and <span class="math inline">\(\boldsymbol A\)</span> is a fixed <span class="math inline">\(q \times p\)</span> matrix, then
+<span class="math display">\[ \boldsymbol A\boldsymbol M\boldsymbol A^\top \sim W_q \left(\boldsymbol A\boldsymbol \Sigma\boldsymbol A^\top, n \right).\]</span>
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> From the definition, let <span class="math inline">\(\boldsymbol M= \sum_{i=1}^n \boldsymbol x_i \boldsymbol x_i^\top\)</span>, where the <span class="math inline">\(\boldsymbol x_i\)</span> are
+IID <span class="math inline">\(N_p(\boldsymbol 0,\boldsymbol \Sigma)\)</span>. Then
+<span class="math display">\[\begin{align*}
+\boldsymbol A\boldsymbol M\boldsymbol A^\top &amp;= \boldsymbol A\left(\sum_{i=1}^n \boldsymbol x_i \boldsymbol x_i^\top \right)\boldsymbol A^\top\\
+ &amp;= \sum_{i=1}^n (\boldsymbol A\boldsymbol x_i)(\boldsymbol A\boldsymbol x_i)^\top = \sum_{i=1}^n \boldsymbol y_i \boldsymbol y_i^\top
+\end{align*}\]</span>
+where <span class="math inline">\(\boldsymbol y_i = \boldsymbol A\boldsymbol x_i \sim N_q(\boldsymbol 0,\boldsymbol A\boldsymbol \Sigma\boldsymbol A^\top)\)</span>, by Proposition <a href="2-3-transformations.html#prp:six2">2.2</a>. Now we apply the definition of the Wishart distribution to <span class="math inline">\(\boldsymbol y_1,\ldots,\boldsymbol y_n\)</span> and, hence, <span class="math inline">\(\sum_{i=1}^n \boldsymbol y_i \boldsymbol y_i^\top \sim W_q\left(\boldsymbol A\boldsymbol \Sigma\boldsymbol A^\top, n \right)\)</span>.
+</div>
+
+
+<div class="proposition">
+<span id="prp:six9" class="proposition"><strong>Proposition 2.9  </strong></span>If <span class="math inline">\(\boldsymbol M\sim W_p(\boldsymbol \Sigma,n)\)</span> and <span class="math inline">\(\boldsymbol a\)</span> is a fixed <span class="math inline">\(p \times 1\)</span> vector then
+<span class="math display">\[ \boldsymbol a^\top \boldsymbol M\boldsymbol a\sim \left(\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a\right)\chi_n^2.\]</span>
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> Apply Proposition <a href="2-5-the-wishart-distribution.html#prp:six8">2.8</a> with <span class="math inline">\(\boldsymbol A= \boldsymbol a^\top\)</span> then <span class="math inline">\(\boldsymbol a^\top \boldsymbol M\boldsymbol a\sim W_1( \boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a, n)\)</span>. But <span class="math inline">\(W_1(1,n)\)</span> is equal in distribution to <span class="math inline">\(\sum_{i=1}^n z_i^2\)</span> where the <span class="math inline">\(z_i\)</span> are IID <span class="math inline">\(N(0,1)\)</span>, and so has <span class="math inline">\(\chi_n^2\)</span> distribution. Moreover, using Proposition <a href="2-5-the-wishart-distribution.html#prp:six8">2.8</a> with <span class="math inline">\(p=q=1\)</span> and <span class="math inline">\(A=\sigma\)</span>, it is seen that <span class="math inline">\(W_1(\sigma^2,n)\)</span> is equal in distribution to <span class="math inline">\(\sigma^2 \chi_n^2\)</span>.
+</div>
+
+<p>Note that an alternative form of the above result is
+<span class="math display">\[\frac{ \boldsymbol a^\top \boldsymbol M\boldsymbol a}{ \boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a} \sim \chi_n^2.\]</span></p>
+
+<div class="corollary">
+<span id="cor:csix4" class="corollary"><strong>Corollary 2.4  </strong></span>Let <span class="math inline">\(m_{ii}\)</span> and <span class="math inline">\(\sigma_{ii}\)</span> be the <span class="math inline">\(i\)</span>th diagonal entry for <span class="math inline">\(\boldsymbol M\)</span> and <span class="math inline">\(\boldsymbol \Sigma\)</span> respectively, then <span class="math inline">\(m_{ii} \sim \sigma_{ii} \chi^2_n\)</span> for <span class="math inline">\(i=1,\ldots,p\)</span>.
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> Let <span class="math inline">\(\boldsymbol a= (a_1,\ldots,a_p)^\top\)</span> where <span class="math inline">\(a_j = 1\)</span> if <span class="math inline">\(j=i\)</span> and <span class="math inline">\(a_j = 0\)</span> otherwise. Then <span class="math inline">\(\boldsymbol a^\top \boldsymbol M\boldsymbol a= m_{ii}\)</span> and <span class="math inline">\(\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a= \sigma_{ii}\)</span>. Now apply Proposition <a href="2-5-the-wishart-distribution.html#prp:six9">2.9</a>
+</div>
+
+<p>Note, however, that the <span class="math inline">\(m_{ii}\)</span>, <span class="math inline">\(i=1,\ldots,p\)</span>, are not, in general, independent.</p>
+
+<div class="proposition">
+<span id="prp:six10" class="proposition"><strong>Proposition 2.10  </strong></span>If <span class="math inline">\(\boldsymbol M_1 \sim W_p(\boldsymbol \Sigma,n_1)\)</span> and <span class="math inline">\(\boldsymbol M_2 \sim W_p(\boldsymbol \Sigma,n_2)\)</span> are independent
+then
+<span class="math display">\[\boldsymbol M_1 + \boldsymbol M_2 \sim W_p(\boldsymbol \Sigma,n_1 + n_2).\]</span>
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> From the definition, let <span class="math inline">\(\boldsymbol M_1 = \sum_{i=1}^{n_1} \boldsymbol x_i \boldsymbol x_i^\top\)</span> and let <span class="math inline">\(\boldsymbol M_2 = \sum_{i=n_1+1}^{n_1+n_2} \boldsymbol x_i \boldsymbol x_i^\top\)</span>, where <span class="math inline">\(\boldsymbol x_i \sim N_p(\boldsymbol 0,\boldsymbol \Sigma)\)</span>, then <span class="math inline">\(\boldsymbol M_1+\boldsymbol M_2 = \sum_{i=1}^{n_1+n_2} \boldsymbol x_i \boldsymbol x_i^\top \sim W_p(\boldsymbol \Sigma,n_1 + n_2)\)</span> by the definition of the Wishart distribution.
+</div>
+
+<p>Our next result is known as Cochran’s theorem. Recall the definition of projection matrices at the end of 2.4.</p>
+
+<div class="theorem">
+<span id="thm:six11" class="theorem"><strong>Theorem 2.1  </strong></span><strong>(Cochran’s Theorem)</strong> Suppose <span class="math inline">\(\stackrel{n \times n}{\mathbf P}\)</span> is a projection matrix of rank <span class="math inline">\(r\)</span>. Assume that <span class="math inline">\(\boldsymbol X\)</span> is an <span class="math inline">\(n \times p\)</span> data matrix with IID rows that have a common <span class="math inline">\(N_p({\mathbf 0}_p, \boldsymbol \Sigma)\)</span> distribution, where <span class="math inline">\(\Sigma\)</span> has full rank <span class="math inline">\(p\)</span>, and note the identity
+<span class="math display">\[\begin{equation}
+\boldsymbol X^\top \boldsymbol X= \boldsymbol X^\top {\mathbf P} \boldsymbol X+ \boldsymbol X^\top ({\mathbf I}_n -{\mathbf P})\boldsymbol X.
+\label{Cochran1}
+\end{equation}\]</span>
+Then
+<span class="math display">\[\begin{equation}
+\boldsymbol X^\top {\mathbf P} \boldsymbol X\sim W_p(\boldsymbol \Sigma, r), \hskip 0.2truein \boldsymbol X^\top ({\mathbf I}_n -{\mathbf P})\boldsymbol X\sim W_p(\boldsymbol \Sigma, n-r),
+\label{Cochran2}
+\end{equation}\]</span>
+and <span class="math inline">\(\boldsymbol X^\top {\mathbf P} \boldsymbol X\)</span> and <span class="math inline">\(\boldsymbol X^\top ({\mathbf I}_n -{\mathbf P})\boldsymbol X\)</span>
+are independent.
+</div>
+
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> We first of all prove the result in the particular case <span class="math inline">\(\boldsymbol \Sigma= {\mathbf I}_p\)</span> and
+then consider the general case. Using the Spectral Decomposition Theorem <a href="#prp:spectraldecomp"><strong>??</strong></a> and noting Proposition <a href="#prp:two1"><strong>??</strong></a>, we may write
+<span class="math display">\[
+{\mathbf P}=\sum_{j=1}^r \boldsymbol q_j \boldsymbol q_j^\top \hskip 0.2truein \hbox{and} \hskip 0.2truein
+(\boldsymbol I_n-{\mathbf P})=\sum_{j=r+1}^n \boldsymbol q_j \boldsymbol q_j^\top
+\]</span>
+where <span class="math inline">\(\boldsymbol q_1, \ldots , \boldsymbol q_n\)</span> are mutually orthogonal unit vectors. Then
+<span class="math display">\[\begin{align}
+\boldsymbol X^\top \boldsymbol P\boldsymbol X&amp;=  \boldsymbol X^\top \left (\sum_{j=1}^r \boldsymbol q_j \boldsymbol q_j^\top \right) \boldsymbol X\nonumber \\
+&amp; =\sum_{j=1}^r \boldsymbol X^\top \boldsymbol q_j \boldsymbol q_j^\top \boldsymbol X=\sum_{j=1}^r \boldsymbol y_j \boldsymbol y_j^\top,
+\label{Prep}
+\end{align}\]</span>
+and similarly,
+<span class="math display">\[\begin{align}
+\boldsymbol X^\top (\boldsymbol I_n -\boldsymbol P) \boldsymbol X&amp;=  \boldsymbol X^\top \left (\sum_{j=r+1}^n \boldsymbol q_j \boldsymbol q_j^\top \right) \boldsymbol X\nonumber \\
+&amp; =\sum_{j=r+1}^n \boldsymbol X^\top \boldsymbol q_j \boldsymbol q_j^\top \boldsymbol X=\sum_{j=r+1}^n \boldsymbol y_j \boldsymbol y_j^\top,
+\label{I-Prep}
+\end{align}\]</span>
+where, for <span class="math inline">\(j=1, \ldots , n\)</span>, <span class="math inline">\(\boldsymbol y_j=\boldsymbol X^\top \boldsymbol q_j\)</span> is a <span class="math inline">\(p \times 1\)</span> vector. We shall now prove that the <span class="math inline">\(\boldsymbol y_j\)</span> are
+IID <span class="math inline">\(N_p({\mathbf 0}_p, \boldsymbol I_p)\)</span>. Write <span class="math inline">\(\boldsymbol X=[\boldsymbol x_{[1]}, \ldots , \boldsymbol x_{[p]}]\)</span>, where <span class="math inline">\(\boldsymbol x_{[u]}\)</span> is column <span class="math inline">\(u\)</span> of
+<span class="math inline">\(\boldsymbol X\)</span>. Then <span class="math inline">\(\boldsymbol x_{[1]}, \ldots , \boldsymbol x_{[p]}\)</span> are IID <span class="math inline">\(N_n({\mathbf 0}_n ,\boldsymbol I_n)\)</span>. Moreover,
+<span class="math display">\[
+\boldsymbol y_j=\boldsymbol X^\top \boldsymbol q_j = \left [  \begin{array}{c}
+\boldsymbol q_j^\top \boldsymbol x_{[1]}\\
+\boldsymbol q_j^\top \boldsymbol x_{[2]}\\
+..\\
+..\\
+..\\
+\boldsymbol q_j^\top \boldsymbol x_{[p]}
+\end{array} \right ].
+\]</span>
+But
+<span class="math display">\[\begin{align}
+E[\boldsymbol q_j^\top \boldsymbol x_{[u]} \boldsymbol q_k^\top \boldsymbol x_{[v]}] &amp;=E[\boldsymbol q_j^\top \boldsymbol x_{[u]} \boldsymbol x_{[v]}^\top \boldsymbol q_k]\nonumber \\
+&amp;=\boldsymbol q_j^\top E[\boldsymbol x_{[u]} \boldsymbol x_{[v]}^\top ]\boldsymbol q_k \nonumber\\
+&amp;=\boldsymbol q_j^\top \left (\delta_{uv}\boldsymbol I_n \right)\boldsymbol q_k \nonumber\\
+&amp;=\boldsymbol q_j^\top \boldsymbol q_k \delta_{uv}\nonumber\\
+&amp;=\delta_{jk}\delta_{uv},
+\label{jkuv}
+\end{align}\]</span>
+where <span class="math inline">\(\delta\)</span> is the Kronecker <span class="math inline">\(\delta\)</span> defined by
+<span class="math display">\[
+\delta_{ab}=\begin{cases} 0 &amp;\text{if} \hskip 0.1truein a \neq b\\
+1 &amp;\text{if} \hskip 0.1truein a=b \end{cases}.
+\]</span>
+If follows immediately from () that
+<span class="math display">\[
+\text{Var}(\boldsymbol y_j)=\boldsymbol I_p \hskip 0.2truein \text{Cov}(\boldsymbol y_j , \boldsymbol y_k)={\mathbf 0}_{pp} \hskip 0.1truein
+\text{if} \hskip 0.1truein j \neq k.
+\]</span>
+By Proposition <a href="2-3-transformations.html#prp:six4">2.4</a>, the <span class="math inline">\(\boldsymbol y_j\)</span>, <span class="math inline">\(j=1,\ldots , n\)</span>, are IID <span class="math inline">\(N_p({\mathbf 0}_p , \boldsymbol I_p)\)</span>, and therefore it follows from the
+definition of the Wishart distribution that, when <span class="math inline">\(\boldsymbol \Sigma=\boldsymbol I_p\)</span>, () has a Wishart <span class="math inline">\(W_p(\boldsymbol I_p,r)\)</span> distribiton, () has a Wishart <span class="math inline">\(W_p(\boldsymbol I_p, n-r)\)</span> distrubtion. Moreover, these random Wishart matrices are independent becasue the <span class="math inline">\(\boldsymbol y_j\)</span> are all independent.</p>
+Finally, we consider the case of a general covariance matrix <span class="math inline">\(\boldsymbol \Sigma\)</span>. We have proved that () holds
+when <span class="math inline">\(\boldsymbol \Sigma=\boldsymbol I_p\)</span>, so pre-multiply both sides by the matrix square root <span class="math inline">\(\boldsymbol \Sigma^{1/2}\)</span>, and post-multiply both sides by <span class="math inline">\(\boldsymbol \Sigma^{1/2}\)</span>. This corresponds to the case where the <span class="math inline">\(\boldsymbol x_i\)</span> are IID <span class="math inline">\(N_p({\mathbf 0}_p, \boldsymbol \Sigma)\)</span>. Then, using Proposition <a href="2-5-the-wishart-distribution.html#prp:six8">2.8</a>,
+<span class="math display">\[
+\boldsymbol \Sigma^{1/2} W_p(\boldsymbol I_p, t)\boldsymbol \Sigma^{1/2} \stackrel{d}{=} W_p(\boldsymbol \Sigma^{1/2} \boldsymbol \Sigma^{1/2}, t)
+\stackrel{d}{=}W_p(\boldsymbol \Sigma,t),
+\]</span>
+when <span class="math inline">\(t=r\)</span> and <span class="math inline">\(t=n-r\)</span>. Moreover, since <span class="math inline">\(\boldsymbol \Sigma^{1/2}\)</span> is a non-random matrix, independence is preserved
+when we pre- and post-multiply by <span class="math inline">\(\boldsymbol \Sigma^{1/2}\)</span>, and the result is proved.
+</div>
+
+
+<div class="proposition">
+<span id="prp:six12" class="proposition"><strong>Proposition 2.11  </strong></span>If <span class="math inline">\(\boldsymbol x_1,\ldots,\boldsymbol x_n\)</span> is an IID sample from <span class="math inline">\(N_p(\boldsymbol \mu,\boldsymbol \Sigma)\)</span>, then
+<span class="math display">\[ n \boldsymbol S= \sum_{i=1}^n (\boldsymbol x_i - \bar{\boldsymbol x})(\boldsymbol x_i - \bar{\boldsymbol x})^\top \sim W_p(\boldsymbol \Sigma,n-1).\]</span>
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span>  Define <span class="math inline">\(\boldsymbol P= {\mathbf H}\equiv \boldsymbol I_n - n^{-1}{\mathbf 1}_n {\mathbf 1}_n^\top\)</span> where <span class="math inline">\({\mathbf 1}_n\)</span> is the <span class="math inline">\(n \times 1\)</span> vector of ones. Note that <span class="math inline">\(\boldsymbol H\)</span> is the <span class="math inline">\(n \times n\)</span> centering matrix and, from Property (i) of 2.7, <span class="math inline">\(\boldsymbol H\)</span> is a projection matrix. Clearly, <span class="math inline">\(\boldsymbol I_n - \boldsymbol P=n^{-1} {\mathbf 1}_n {\mathbf 1}_n^\top\)</span> has rank <span class="math inline">\(1\)</span>, so <span class="math inline">\(\boldsymbol H\)</span> has rank <span class="math inline">\(n-1\)</span>. Therefore, using Theorem <a href="2-5-the-wishart-distribution.html#thm:six11">2.1</a> ,
+<span class="math display">\[
+\boldsymbol X^\top \boldsymbol H\boldsymbol X\sim W_p(\boldsymbol \Sigma, n-1).
+\]</span>
+But from Property (vi) in 2.7, <span class="math inline">\(\boldsymbol X^\top \boldsymbol H\boldsymbol X=n\boldsymbol S\)</span>,
+and consequently, <span class="math inline">\(n\boldsymbol S\sim W_p(\boldsymbol \Sigma, n-1)\)</span>, as required.
+</div>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2-4-two-important-results-for-the-mvn.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-6-hotellings-t2-distribution.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Applied Multivariate Statistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

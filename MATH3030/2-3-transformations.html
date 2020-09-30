@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.3 Transformations | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.3 Transformations | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.3 Transformations | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="2-2-definition-and-properties-of-the-mvn.html"/>
+<link rel="next" href="2-4-two-important-results-for-the-mvn.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivartiate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-multivariate-data.html"><a href="1-1-multivariate-data.html"><i class="fa fa-check"></i><b>1.1</b> Multivariate data</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-summary-statistics.html"><a href="1-2-summary-statistics.html"><i class="fa fa-check"></i><b>1.2</b> Summary statistics</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-graphical-techniques.html"><a href="1-3-graphical-techniques.html"><i class="fa fa-check"></i><b>1.3</b> Graphical techniques</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-random-vectors-and-matrices.html"><a href="1-4-random-vectors-and-matrices.html"><i class="fa fa-check"></i><b>1.4</b> Random Vectors and Matrices</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-unbiased-estimators.html"><a href="1-5-unbiased-estimators.html"><i class="fa fa-check"></i><b>1.5</b> Unbiased Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iii-inference-using-the-mvn.html"><a href="part-iii-inference-using-the-mvn.html"><i class="fa fa-check"></i>Part III: Inference using the MVN</a></li>
+<li class="chapter" data-level="2" data-path="2-multinormal.html"><a href="2-multinormal.html"><i class="fa fa-check"></i><b>2</b> Multivariate Normal Distribution Theory</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-introduction-1.html"><a href="2-1-introduction-1.html"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-definition-and-properties-of-the-mvn.html"><a href="2-2-definition-and-properties-of-the-mvn.html"><i class="fa fa-check"></i><b>2.2</b> Definition and Properties of the MVN</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-transformations.html"><a href="2-3-transformations.html"><i class="fa fa-check"></i><b>2.3</b> Transformations</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-two-important-results-for-the-mvn.html"><a href="2-4-two-important-results-for-the-mvn.html"><i class="fa fa-check"></i><b>2.4</b> Two important results for the MVN</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-the-wishart-distribution.html"><a href="2-5-the-wishart-distribution.html"><i class="fa fa-check"></i><b>2.5</b> The Wishart distribution</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-hotellings-t2-distribution.html"><a href="2-6-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>2.6</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="transformations" class="section level2">
+<h2><span class="header-section-number">2.3</span> Transformations</h2>
+
+<div class="proposition">
+<span id="prp:six2" class="proposition"><strong>Proposition 2.2  </strong></span> If <span class="math inline">\(\boldsymbol x\sim N_p(\boldsymbol \mu,\boldsymbol \Sigma)\)</span> and <span class="math inline">\(\boldsymbol y= \boldsymbol A\boldsymbol x+ \boldsymbol c\)</span>, where <span class="math inline">\(\boldsymbol A\)</span> (<span class="math inline">\(q \times p\)</span>) and <span class="math inline">\(\boldsymbol c\)</span> (<span class="math inline">\(q \times 1\)</span>) are constant, then
+<span class="math display">\[\boldsymbol y\sim N_q(\boldsymbol A\boldsymbol \mu+ \boldsymbol c, \boldsymbol A\boldsymbol \Sigma\boldsymbol A^\top).\]</span>
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> We know <span class="math inline">\(\boldsymbol y\)</span> is MVN by Proposition <a href="2-2-definition-and-properties-of-the-mvn.html#prp:six1">2.1</a>. We also know <span class="math inline">\(E(\boldsymbol y)\)</span> and <span class="math inline">\(\text{Var}(\boldsymbol y)\)</span> from results (1) and (3) of 1.4.
+</div>
+
+<p>The above result implies that a linear transformation of a MVN random variable is also MVN. We can use this result to prove two important corollaries. The first corollary is useful for simulating data from a general MVN distribution.</p>
+
+<div class="corollary">
+<span id="cor:csix2" class="corollary"><strong>Corollary 2.2  </strong></span> If <span class="math inline">\(\boldsymbol x\sim N_p(\boldsymbol 0,\boldsymbol I_p)\)</span> and <span class="math inline">\(\boldsymbol y= \boldsymbol \Sigma^{1/2} \boldsymbol x+ \boldsymbol \mu\)</span> then <span class="math inline">\(\boldsymbol y\sim N_p(\boldsymbol \mu,\boldsymbol \Sigma)\)</span>.
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> We apply <a href="2-3-transformations.html#prp:six2">2.2</a> with <span class="math inline">\(\boldsymbol A= \boldsymbol \Sigma^{1/2}\)</span> and <span class="math inline">\(\boldsymbol c= \boldsymbol \mu\)</span>. Therefore <span class="math inline">\(E(\boldsymbol y) = \boldsymbol \Sigma^{1/2} \boldsymbol 0_p + \boldsymbol \mu= \boldsymbol \mu\)</span> and <span class="math inline">\(\text{Var}(\boldsymbol y) = \boldsymbol \Sigma^{1/2} \boldsymbol I_p \boldsymbol \Sigma^{1/2} = \boldsymbol \Sigma\)</span>.
+</div>
+
+<p>The second corollary says that any MVN random variable can be transformed into standard form.</p>
+
+<div class="corollary">
+<span id="cor:csix3" class="corollary"><strong>Corollary 2.3  </strong></span>If <span class="math inline">\(\boldsymbol x\sim N_p(\boldsymbol \mu,\boldsymbol \Sigma)\)</span>, <span class="math inline">\(\boldsymbol \Sigma\)</span> has full rank and we define <span class="math inline">\(\boldsymbol y= \boldsymbol \Sigma^{-1/2}(\boldsymbol x- \boldsymbol \mu)\)</span> then <span class="math inline">\(\boldsymbol y\sim N_p(\boldsymbol 0,\boldsymbol I_p)\)</span>.
+</div>
+
+<p><code>{proof} Apply Proposition \@ref(prp:six2) with $\bA = \bSigma^{-1/2}$ and $\bc = - \bSigma^{-1/2} \bmu$.  Then $E(\by) = \bSigma^{-1/2} \bmu - \bSigma^{-1/2} \bmu = \bzero_p$ and $\text{Var}(\by) = \bSigma^{-1/2} \bSigma \bSigma^{-1/2} = \bI_p$.</code></p>
+<p>The moment generating function of a random vector <span class="math inline">\(\boldsymbol x\)</span> (<span class="math inline">\(p \times 1\)</span>) is given by
+<span class="math display">\[
+M({\mathbf t})=E[e^{{\mathbf t}^\top \boldsymbol x}],
+\]</span>
+and is defined for all <span class="math inline">\(t \in \mathbb{R}^p\)</span> for which <span class="math inline">\(M({\mathbf t})\)</span> is finite.</p>
+
+<div class="proposition">
+<span id="prp:six3" class="proposition"><strong>Proposition 2.3  </strong></span> The moment generating function of <span class="math inline">\(\boldsymbol x\sim N_p(\boldsymbol \mu, \boldsymbol \Sigma)\)</span> is given by
+<span class="math display">\[\begin{equation}
+M({\mathbf t})=\exp \left (\boldsymbol \mu^\top  {\mathbf t} + \frac{1}{2} {\mathbf t}^\top \boldsymbol \Sigma{\mathbf t} \right).
+\label{M(t)}
+\end{equation}\]</span>
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> For fixed <span class="math inline">\(\mathbf t\)</span>, define the random variable <span class="math inline">\(Y=\boldsymbol x^\top {\mathbf t}\)</span>. From Proposition <a href="2-3-transformations.html#prp:six2">2.2</a>, <span class="math inline">\(Y \sim N(\mu_{\mathbf t}, \sigma_{\mathbf t}^2)\)</span>, where <span class="math inline">\(\mu_{\mathbf t}=\boldsymbol \mu^\top {\mathbf t}\)</span> and <span class="math inline">\(\sigma_{\mathbf t}^2={\mathbf t}^\top \boldsymbol \Sigma{\mathbf t}\)</span>. If <span class="math inline">\(\sigma_{\mathbf t}\equiv {\mathbf t}^\top \boldsymbol \Sigma{\mathbf t}=0\)</span> then <span class="math inline">\(Y=\boldsymbol \mu^\top {\mathbf t}\)</span> with probability one, and then <span class="math inline">\(M({\mathbf t})=e^{\boldsymbol \mu^\top {\mathbf t}}\)</span> which agrees with (). So from now on we assume <span class="math inline">\(\sigma_{\mathbf t}&gt;0\)</span>. Then
+<span class="math display">\[\begin{align*}
+M({\mathbf t})&amp;=E[e^{\boldsymbol x^\top {\mathbf t}}]\\
+&amp;=E[e^{Y}]=\int_{-\infty}^\infty \exp(y) \frac{1}{\sqrt{2\pi \sigma_{\mathbf t}^2}}
+\exp\left (-\frac{1}{2}\frac{(y-\mu_{\mathbf t})^2}{\sigma_{\mathbf t}^2} \right )dy.
+\end{align*}\]</span>
+The integral above can be evaluated by completing the square in the exponent, using the identity
+<span class="math display">\[
+y-\frac{1}{2}\frac{(y-\mu_{\mathbf t})^2}{\sigma_{\mathbf t}^2}=\mu_{\mathbf t}
++\frac{1}{2}\sigma_{\mathbf t}^2-\frac{1}{2}\frac{(y-\mu_{\mathbf t}-\sigma_{\mathbf t}^2)^2}{\sigma_{\mathbf t}^2}.
+\]</span>
+Consequently
+<span class="math display">\[\begin{align*}
+M({\mathbf t})&amp;=\int_{-\infty}^\infty \exp \left \{\mu_{\mathbf t} +\frac{1}{2}\sigma_{\mathbf t}^2 \right \}
+\frac{1}{\sqrt{2 \pi \sigma_{\mathbf t}^2}}\exp \left \{ -\frac{1}{2} \frac{(y-\mu_{\mathbf t}-\sigma_{\mathbf t}^2)^2}
+{\sigma_{\mathbf t}^2}\right \}dy\\
+&amp;=\exp\left ( \mu_{\mathbf t} + \frac{1}{2}\sigma_{\mathbf t}^2  \right )\\
+&amp;=\exp\left (
+\boldsymbol \mu^\top {\mathbf t} + \frac{1}{2}{\mathbf t}^\top \boldsymbol \Sigma{\mathbf t}\right ),
+\end{align*}\]</span>
+as required.
+</div>
+
+
+<div class="proposition">
+<span id="prp:six4" class="proposition"><strong>Proposition 2.4  </strong></span>Two vectors <span class="math inline">\(\boldsymbol x\)</span> (<span class="math inline">\(p \times 1\)</span>) and <span class="math inline">\(\boldsymbol y\)</span> (<span class="math inline">\(q \times 1\)</span>) which are jointly multivariate normal are independent if and only if they are uncorrelated (i.e. <span class="math inline">\(\text{Cov}(\boldsymbol x,\boldsymbol y) = \boldsymbol 0_{p,q}\)</span>).
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> We prove this result using the factorisation theorem for moment generating functions (MGFs), which is now stated.
+Let <span class="math inline">\({\mathbf t}=({\mathbf t}_1^\top , {\mathbf t}_2^\top)^\top\)</span> where <span class="math inline">\({\mathbf t}_1 \in \mathbb{R}^p\)</span>, <span class="math inline">\({\mathbf t}_2 \in \mathbb{R}^q\)</span> and <span class="math inline">\({\mathbf t} \in \mathbb{R}^{p+q}\)</span>. The joint MGF of two arbitrary random vectors <span class="math inline">\(\stackrel{p \times 1}{\boldsymbol x}\)</span> and <span class="math inline">\(\stackrel{q \times 1}{\boldsymbol y}\)</span> is defined by
+<span class="math display">\[
+ M({\mathbf t}_1, {\mathbf t}_2)=E[e^{{\mathbf t}_1^\top \boldsymbol x+ {\mathbf t}_2^\top \boldsymbol y}],
+  \]</span>
+for all <span class="math inline">\({\mathbf t}=({\mathbf t}_1^\top , {\mathbf t}_2^\top )^\top\)</span> at which <span class="math inline">\(M({\mathbf t}_1, {\mathbf t}_2)\)</span> is finite.
+The factorisation theorem for MGFs states that
+<span class="math inline">\(\boldsymbol x\)</span> and <span class="math inline">\(\boldsymbol y\)</span> are independent if an only if <span class="math inline">\(M({\mathbf t}_1 , {\mathbf t}_2)\)</span> factorises, i.e.
+<span class="math display">\[
+M({\mathbf t}_1 , {\mathbf t}_2)=M_1({\mathbf t}_1)M_2({\mathbf t}_2)
+\]</span>
+for some functions <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span>, in which case <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> are the marginal MGFs of <span class="math inline">\(\boldsymbol x\)</span> and <span class="math inline">\(\boldsymbol y\)</span>. Now we focus on the MVN case. Suppose
+<span class="math display">\[\begin{equation}
+E[\boldsymbol x]=\boldsymbol \mu_{\boldsymbol x}, \hskip 0.2truein E[\boldsymbol y]=\boldsymbol \mu_{\boldsymbol y}, \hskip 0.1truein \text{Var}(\boldsymbol x)=\boldsymbol \Sigma_{\boldsymbol x\boldsymbol x},
+\hskip 0.1truein \text{Var}(\boldsymbol y)=\boldsymbol \Sigma_{\boldsymbol y\boldsymbol y},
+\label{def1}
+\end{equation}\]</span>
+and
+<span class="math display">\[\begin{equation}
+\text{Cov}(\boldsymbol x,\boldsymbol y)=\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}=\boldsymbol \Sigma_{\boldsymbol y\boldsymbol x}^\top = \text{Cov}(\boldsymbol y, \boldsymbol x)^\top.
+\label{def2}
+\end{equation}\]</span>
+Using Proposition <a href="2-3-transformations.html#prp:six3">2.3</a> and definitions () and (),
+<span class="math display">\[\begin{align*}
+M({\mathbf t}_1, {\mathbf t}_2)&amp;=\exp\left ( \boldsymbol \mu^\top {\mathbf t} + \frac{1}{2}{\mathbf t}^\top \boldsymbol \Sigma{\mathbf t} \right )\\
+&amp;=\exp\bigg (\boldsymbol \mu_{\boldsymbol x}^\top {\mathbf t}_1 +\boldsymbol \mu_{\boldsymbol y}^\top {\mathbf t}_2+\frac{1}{2}{\mathbf t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}{\mathbf t_1}\\
+&amp; \hskip 0.6 truein +\frac{1}{2}{\mathbf t}_2^\top  \boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}{\mathbf t}_2+\frac{1}{2} 2{\mathbf t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}{\mathbf t}_2 \bigg)\\
+&amp;=M_1({\mathbf t}_1)M_2({\mathbf t}_2)M_3({\mathbf t}_1, {\mathbf t}_2),
+\end{align*}\]</span>
+where <span class="math inline">\(M_1({\mathbf t}_1)\)</span> and <span class="math inline">\(M_2({\mathbf t}_2)\)</span> are the marginal MGFs of <span class="math inline">\(\boldsymbol x\)</span> and <span class="math inline">\(\boldsymbol y\)</span> respectively, and
+<span class="math display">\[
+M_3({\mathbf t}_1, {\mathbf t}_2)=\exp\left ({\mathbf t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}{\mathbf t}_2 \right ).
+\]</span>
+The factorisation theorem holds if an only if <span class="math inline">\(M_3({\mathbf t}_1, {\mathbf t}_2)\)</span> is constant with respect to
+<span class="math inline">\({\mathbf t}_1\)</span> and <span class="math inline">\({\mathbf t}_2\)</span>, which is the case if and only if <span class="math inline">\(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}={\mathbf 0}_{p,q}\)</span>.
+</div>
+
+<p>In words: Proposition <a href="2-3-transformations.html#prp:six4">2.4</a> means that zero correlation implies independence for the MVN distribution. This is not generally true for other distributions.</p>
+<p> that Propositions <a href="2-2-definition-and-properties-of-the-mvn.html#prp:six1">2.1</a> - <a href="2-3-transformations.html#prp:six4">2.4</a> each holds regardless of whether the covariance matrix <span class="math inline">\(\boldsymbol \Sigma\)</span> is positive definite or not.</p>
+<p>The term <span class="math inline">\((\boldsymbol x-\boldsymbol \mu)^\top \boldsymbol \Sigma^{-1} (\boldsymbol x-\boldsymbol \mu)\)</span> appears in the exponent of the pdf and we derive its distribution in Proposition <a href="2-3-transformations.html#prp:six5">2.5</a>.</p>
+
+<div class="proposition">
+<span id="prp:six5" class="proposition"><strong>Proposition 2.5  </strong></span>If <span class="math inline">\(\boldsymbol x\sim N_p(\boldsymbol \mu, \boldsymbol \Sigma)\)</span> and <span class="math inline">\(\boldsymbol \Sigma\)</span> is positive definite then
+<span class="math display">\[(\boldsymbol x-\boldsymbol \mu)^\top \boldsymbol \Sigma^{-1} (\boldsymbol x-\boldsymbol \mu) \sim \chi_p^2.\]</span>
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> Define <span class="math inline">\(\boldsymbol y= \boldsymbol \Sigma^{-1/2} (\boldsymbol x-\boldsymbol \mu)\)</span> so
+<span class="math display">\[\begin{align*}
+(\boldsymbol x-\boldsymbol \mu)^\top \boldsymbol \Sigma^{-1} (\boldsymbol x-\boldsymbol \mu) &amp;= \left(\boldsymbol \Sigma^{-1/2} (\boldsymbol x-\boldsymbol \mu) \right)^\top \left(\boldsymbol \Sigma^{-1/2} (\boldsymbol x-\boldsymbol \mu) \right)\\
+&amp;= \boldsymbol y^\top \boldsymbol y= \sum_{i=1}^p y_i^2
+\end{align*}\]</span>
+By Corollary <a href="2-3-transformations.html#cor:csix3">2.3</a>, <span class="math inline">\(\boldsymbol y\sim N_p (\boldsymbol 0, \boldsymbol I_p)\)</span>, and so the components of <span class="math inline">\(\boldsymbol y\)</span> have independent univariate normal distributions with mean 0 and variance 1. Recall from univariate statistics that if <span class="math inline">\(z \sim N(0,1)\)</span> then <span class="math inline">\(z^2 \sim \chi^2_1\)</span> and if <span class="math inline">\(z_1, \ldots, z_n\)</span> are iid <span class="math inline">\(N(0,1)\)</span> then <span class="math inline">\(\sum_{i=1}^n z_i^2 \sim \chi_n^2\)</span>. It therefore follows that <span class="math inline">\(\sum_{i=1}^p y_i^2 \sim \chi^2_p\)</span>.
+</div>
+
+<p>We saw earlier in this chapter that the MVN distribution in <span class="math inline">\(p\)</span> dimensions has constant density on ellipses or ellipsoids given by <span class="math inline">\(f(\boldsymbol x) = c\)</span> for some constant <span class="math inline">\(c &gt; 0\)</span>. We can rearrange this equation to be of the form
+<span class="math display">\[U(\boldsymbol x) = (\boldsymbol x-\boldsymbol \mu)^\top \boldsymbol \Sigma^{-1} (\boldsymbol x-\boldsymbol \mu) = k\]</span>
+where <span class="math inline">\(k = - 2 \log(c) - \log |2 \pi \boldsymbol \Sigma| &gt; 0\)</span> is a combination of the constant, <span class="math inline">\(c\)</span>, and the normalising constant in the pdf. Proposition <a href="2-3-transformations.html#prp:six5">2.5</a> means we can calculate the probability, <span class="math inline">\(P(U(\boldsymbol x)&lt;k)\)</span>, which is the probability of <span class="math inline">\(\boldsymbol x\)</span> lying within a particular ellipsoid.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2-2-definition-and-properties-of-the-mvn.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-4-two-important-results-for-the-mvn.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Applied Multivariate Statistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
