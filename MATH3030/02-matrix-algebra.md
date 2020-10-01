@@ -238,7 +238,7 @@ $\mathcal{Q}({\mathbf x})={\mathbf x}^\top {\mathbf A} {\mathbf x}$.
 
 \BeginKnitrBlock{proposition}
 <span class="proposition" id="prp:two8"><strong>(\#prp:two8) </strong></span>In the above notation,
-$$\displaystyle{\tmax_{{\mathbf x}:{\mathbf x}^\top {\mathbf x}=1}} \mathcal{Q}({\mathbf x})=\lambda_1, $$
+$$\displaystyle{\tmax_{{\mathbf x}:{\mathbf x}^\top {\mathbf x}=1}} \mathcal{Q}({\mathbf x})=\lambda_1,$$
 where the maximum occurs at $\bx=\pm \bq_1$.
 \EndKnitrBlock{proposition}
 
