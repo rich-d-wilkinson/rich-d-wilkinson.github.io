@@ -238,13 +238,13 @@ $\mathcal{Q}({\mathbf x})={\mathbf x}^\top {\mathbf A} {\mathbf x}$.
 
 \BeginKnitrBlock{proposition}
 <span class="proposition" id="prp:two8"><strong>(\#prp:two8) </strong></span>In the above notation,
-$$\displaystyle{\tmax_{{\mathbf x}:{\mathbf x}^\top {\mathbf x}=1}} \mathcal{Q}({\mathbf x})=\lambda_1,$$
+$$\max_{\bx: \bx^\top \bx =1} \mathcal{Q}({\mathbf x})=\lambda_1,$$        
 where the maximum occurs at $\bx=\pm \bq_1$.
 \EndKnitrBlock{proposition}
 
 \BeginKnitrBlock{proposition}
 <span class="proposition" id="prp:unnamed-chunk-6"><strong>(\#prp:unnamed-chunk-6) </strong></span>In the above notation,
-$$\displaystyle{\tmin_{{\mathbf x}:{\mathbf x}^\top {\mathbf x}=1}} \mathcal{Q}({\mathbf x})=\lambda_n,$$
+$$\min_{\bx: \bx^\top \bx =1} \mathcal{Q}({\mathbf x})=\lambda_n$$
 where the minimum occurs at $\bx = \pm \bq_n$.
 \EndKnitrBlock{proposition}
 
