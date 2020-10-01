@@ -196,6 +196,7 @@
 \newcommand{\bp}{\boldsymbol p}
 \newcommand{\bq}{\boldsymbol q}
 \newcommand{\br}{\boldsymbol r}
+\newcommand{\bt}{{\boldsymbol t}}
 \newcommand{\bu}{\boldsymbol u}
 \newcommand{\bv}{\boldsymbol v}
 \newcommand{\bzero}{\boldsymbol 0}
@@ -643,8 +644,6 @@ In this chapter blah blah
 \renewcommand{\ds}{\displaystyle}
 \renewcommand{\tdiag}{\text{diag}}
 \renewcommand{\ttr}{\text{tr}}
-\renewcommand{\tmin}{\text{min}}
-\renewcommand{\tmax}{\text{max}}
 \renewcommand{\tdet}{\text{det}}
 
 \renewcommand{\tcov}{\text{cov}}
@@ -2920,38 +2919,44 @@ The second corollary says that any MVN random variable can be transformed into s
 
 The moment generating function of a random vector \(\boldsymbol x\) (\(p \times 1\)) is given by
 \[
-M({\mathbf t})=E[e^{{\mathbf t}^\top \boldsymbol x}],
+M({\boldsymbol t})=E[e^{{\boldsymbol t}^\top \boldsymbol x}],
 \]
-and is defined for all \(t \in \mathbb{R}^p\) for which \(M({\mathbf t})\) is finite.
+and is defined for all \(t \in \mathbb{R}^p\) for which \(M({\boldsymbol t})\) is finite.
 
 \begin{proposition}
 \protect\hypertarget{prp:six3}{}{\label{prp:six3} } The moment generating function of \(\boldsymbol x\sim N_p(\boldsymbol \mu, \boldsymbol \Sigma)\) is given by
 \begin{equation}
-M({\mathbf t})=\exp \left (\boldsymbol \mu^\top  {\mathbf t} + \frac{1}{2} {\mathbf t}^\top \boldsymbol \Sigma{\mathbf t} \right).
+M({\boldsymbol t})=\exp \left (\boldsymbol \mu^\top  {\boldsymbol t}+ \frac{1}{2} {\boldsymbol t}^\top \boldsymbol \Sigma{\boldsymbol t}\right).
 \label{eq:Mt}
 \end{equation}
 \end{proposition}
 
 \begin{proof}
-\iffalse{} {Proof. } \fi{}For fixed \(\mathbf t\), define the random variable \(Y=\boldsymbol x^\top {\mathbf t}\). From Proposition \ref{prp:six2}, \(Y \sim N(\mu_{\mathbf t}, \sigma_{\mathbf t}^2)\), where \(\mu_{\mathbf t}=\boldsymbol \mu^\top {\mathbf t}\) and \(\sigma_{\mathbf t}^2={\mathbf t}^\top \boldsymbol \Sigma{\mathbf t}\). If \(\sigma_{\mathbf t}\equiv {\mathbf t}^\top \boldsymbol \Sigma{\mathbf t}=0\) then \(Y=\boldsymbol \mu^\top {\mathbf t}\) with probability one, and then \(M({\mathbf t})=e^{\boldsymbol \mu^\top {\mathbf t}}\) which agrees with \eqref{eq:Mt}. So from now on we assume \(\sigma_{\mathbf t}>0\). Then
+\iffalse{} {Proof. } \fi{}For fixed \({\boldsymbol t}\), define the random variable \(Y=\boldsymbol x^\top {\boldsymbol t}\). From Proposition \ref{prp:six2},
+\(Y \sim N(\mu_{{\boldsymbol t}}, {\sigma_{\boldsymbol t}}^2)\),
+where \(\mu_{\boldsymbol t}=\boldsymbol \mu^\top {\boldsymbol t}\) and \(\sigma^2_{\boldsymbol t}={\boldsymbol t}^\top \boldsymbol \Sigma{\boldsymbol t}\).
+
+If \(\sigma_{\boldsymbol t}\equiv {\boldsymbol t}^\top \boldsymbol \Sigma{\boldsymbol t}=0\) then \(Y=\boldsymbol \mu^\top {\boldsymbol t}\) with probability one, and then \(M({\boldsymbol t})=e^{\boldsymbol \mu^\top {\boldsymbol t}}\) which agrees with \eqref{eq:Mt}. So from now on we assume \(\sigma_{{\boldsymbol t}}>0\). Then
 \begin{align*}
-M({\mathbf t})&=E[e^{\boldsymbol x^\top {\mathbf t}}]\\
-&=E[e^{Y}]=\int_{-\infty}^\infty \exp(y) \frac{1}{\sqrt{2\pi \sigma_{\mathbf t}^2}}
-\exp\left (-\frac{1}{2}\frac{(y-\mu_{\mathbf t})^2}{\sigma_{\mathbf t}^2} \right )dy.
+M({\boldsymbol t})&=E[e^{\boldsymbol x^\top {\boldsymbol t}}]\\
+&=E[e^{Y}]=\int_{-\infty}^\infty \exp(y) \frac{1}{\sqrt{2\pi \sigma_{\boldsymbol t}^2}}
+\exp\left (-\frac{1}{2}\frac{(y-\mu_{\boldsymbol t})^2}{\sigma_{\boldsymbol t}^2} \right )dy.
 \end{align*}
+
 The integral above can be evaluated by completing the square in the exponent, using the identity
 \[
-y-\frac{1}{2}\frac{(y-\mu_{\mathbf t})^2}{\sigma_{\mathbf t}^2}=\mu_{\mathbf t}
-+\frac{1}{2}\sigma_{\mathbf t}^2-\frac{1}{2}\frac{(y-\mu_{\mathbf t}-\sigma_{\mathbf t}^2)^2}{\sigma_{\mathbf t}^2}.
+y-\frac{1}{2}\frac{(y-\mu_{\boldsymbol t})^2}{\sigma_{\boldsymbol t}^2}=\mu_{\boldsymbol t}
++\frac{1}{2}\sigma_{\boldsymbol t}^2-\frac{1}{2}\frac{(y-\mu_{\boldsymbol t}-\sigma_{\boldsymbol t}^2)^2}{\sigma_{\boldsymbol t}^2}.
 \]
+
 Consequently
 \begin{align*}
-M({\mathbf t})&=\int_{-\infty}^\infty \exp \left \{\mu_{\mathbf t} +\frac{1}{2}\sigma_{\mathbf t}^2 \right \}
-\frac{1}{\sqrt{2 \pi \sigma_{\mathbf t}^2}}\exp \left \{ -\frac{1}{2} \frac{(y-\mu_{\mathbf t}-\sigma_{\mathbf t}^2)^2}
-{\sigma_{\mathbf t}^2}\right \}dy\\
-&=\exp\left ( \mu_{\mathbf t} + \frac{1}{2}\sigma_{\mathbf t}^2  \right )\\
-&=\exp\left (
-\boldsymbol \mu^\top {\mathbf t} + \frac{1}{2}{\mathbf t}^\top \boldsymbol \Sigma{\mathbf t}\right ),
+M({\boldsymbol t})&=\int_{-\infty}^\infty \exp \left\{\mu_{\boldsymbol t}+\frac{1}{2}\sigma_{\boldsymbol t}^2 \right\}
+\frac{1}{\sqrt{2 \pi \sigma_{\boldsymbol t}^2}}\exp \left\{ -\frac{1}{2} \frac{(y-\mu_{\boldsymbol t}-\sigma_{\boldsymbol t}^2)^2}
+{\sigma_{\boldsymbol t}^2}\right\}dy\\
+&=\exp\left( \mu_{\boldsymbol t}+ \frac{1}{2}\sigma_{\boldsymbol t}^2  \right)\\
+&=\exp\left(
+\boldsymbol \mu^\top {\boldsymbol t}+ \frac{1}{2}{\boldsymbol t}^\top \boldsymbol \Sigma{\boldsymbol t}\right),
 \end{align*}
 as required.
 \end{proof}
@@ -2962,15 +2967,15 @@ as required.
 
 \begin{proof}
 \iffalse{} {Proof. } \fi{}We prove this result using the factorisation theorem for moment generating functions (MGFs), which is now stated.
-Let \({\mathbf t}=({\mathbf t}_1^\top , {\mathbf t}_2^\top)^\top\) where \({\mathbf t}_1 \in \mathbb{R}^p\), \({\mathbf t}_2 \in \mathbb{R}^q\) and \({\mathbf t} \in \mathbb{R}^{p+q}\). The joint MGF of two arbitrary random vectors \(\stackrel{p \times 1}{\boldsymbol x}\) and \(\stackrel{q \times 1}{\boldsymbol y}\) is defined by
+Let \({\boldsymbol t}=({\boldsymbol t}_1^\top , {\boldsymbol t}_2^\top)^\top\) where \({\boldsymbol t}_1 \in \mathbb{R}^p\), \({\boldsymbol t}_2 \in \mathbb{R}^q\) and \({\boldsymbol t}\in \mathbb{R}^{p+q}\). The joint MGF of two arbitrary random vectors \(\stackrel{p \times 1}{\boldsymbol x}\) and \(\stackrel{q \times 1}{\boldsymbol y}\) is defined by
 \[
- M({\mathbf t}_1, {\mathbf t}_2)=E[e^{{\mathbf t}_1^\top \boldsymbol x+ {\mathbf t}_2^\top \boldsymbol y}],
+ M({\boldsymbol t}_1, {\boldsymbol t}_2)=E[e^{{\boldsymbol t}_1^\top \boldsymbol x+ {\boldsymbol t}_2^\top \boldsymbol y}],
   \]
-for all \({\mathbf t}=({\mathbf t}_1^\top , {\mathbf t}_2^\top )^\top\) at which \(M({\mathbf t}_1, {\mathbf t}_2)\) is finite.
+for all \({\boldsymbol t}=({\boldsymbol t}_1^\top , {\boldsymbol t}_2^\top )^\top\) at which \(M({\boldsymbol t}_1, {\boldsymbol t}_2)\) is finite.
 The factorisation theorem for MGFs states that
-\(\boldsymbol x\) and \(\boldsymbol y\) are independent if an only if \(M({\mathbf t}_1 , {\mathbf t}_2)\) factorises, i.e.
+\(\boldsymbol x\) and \(\boldsymbol y\) are independent if an only if \(M({\boldsymbol t}_1 , {\boldsymbol t}_2)\) factorises, i.e.
 \[
-M({\mathbf t}_1 , {\mathbf t}_2)=M_1({\mathbf t}_1)M_2({\mathbf t}_2)
+M({\boldsymbol t}_1 , {\boldsymbol t}_2)=M_1({\boldsymbol t}_1)M_2({\boldsymbol t}_2)
 \]
 for some functions \(M_1\) and \(M_2\), in which case \(M_1\) and \(M_2\) are the marginal MGFs of \(\boldsymbol x\) and \(\boldsymbol y\). Now we focus on the MVN case. Suppose
 \begin{equation}
@@ -2985,17 +2990,17 @@ and
 \end{equation}
 Using Proposition \ref{prp:six3} and definitions \eqref{eq:def1} and \eqref{eq:def2},
 \begin{align*}
-M({\mathbf t}_1, {\mathbf t}_2)&=\exp\left ( \boldsymbol \mu^\top {\mathbf t} + \frac{1}{2}{\mathbf t}^\top \boldsymbol \Sigma{\mathbf t} \right )\\
-&=\exp\bigg (\boldsymbol \mu_{\boldsymbol x}^\top {\mathbf t}_1 +\boldsymbol \mu_{\boldsymbol y}^\top {\mathbf t}_2+\frac{1}{2}{\mathbf t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}{\mathbf t_1}\\
-& \qquad \qquad +\frac{1}{2}{\mathbf t}_2^\top  \boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}{\mathbf t}_2+\frac{1}{2} 2{\mathbf t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}{\mathbf t}_2 \bigg)\\
-&=M_1({\mathbf t}_1)M_2({\mathbf t}_2)M_3({\mathbf t}_1, {\mathbf t}_2),
+M({\boldsymbol t}_1, {\boldsymbol t}_2)&=\exp\left ( \boldsymbol \mu^\top {\boldsymbol t}+ \frac{1}{2}{\boldsymbol t}^\top \boldsymbol \Sigma{\boldsymbol t}\right )\\
+&=\exp\bigg (\boldsymbol \mu_{\boldsymbol x}^\top {\boldsymbol t}_1 +\boldsymbol \mu_{\boldsymbol y}^\top {\boldsymbol t}_2+\frac{1}{2}{\boldsymbol t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}{{\boldsymbol t}_1}\\
+& \qquad \qquad +\frac{1}{2}{\boldsymbol t}_2^\top  \boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}{\boldsymbol t}_2+\frac{1}{2} 2{\boldsymbol t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}{\boldsymbol t}_2 \bigg)\\
+&=M_1({\boldsymbol t}_1)M_2({\boldsymbol t}_2)M_3({\boldsymbol t}_1, {\boldsymbol t}_2),
 \end{align*}
-where \(M_1({\mathbf t}_1)\) and \(M_2({\mathbf t}_2)\) are the marginal MGFs of \(\boldsymbol x\) and \(\boldsymbol y\) respectively, and
+where \(M_1({\boldsymbol t}_1)\) and \(M_2({\boldsymbol t}_2)\) are the marginal MGFs of \(\boldsymbol x\) and \(\boldsymbol y\) respectively, and
 \[
-M_3({\mathbf t}_1, {\mathbf t}_2)=\exp\left ({\mathbf t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}{\mathbf t}_2 \right ).
+M_3({\boldsymbol t}_1, {\boldsymbol t}_2)=\exp\left ({\boldsymbol t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}{\boldsymbol t}_2 \right ).
 \]
-The factorisation theorem holds if an only if \(M_3({\mathbf t}_1, {\mathbf t}_2)\) is constant with respect to
-\({\mathbf t}_1\) and \({\mathbf t}_2\), which is the case if and only if \(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}={\mathbf 0}_{p,q}\).
+The factorisation theorem holds if an only if \(M_3({\boldsymbol t}_1, {\boldsymbol t}_2)\) is constant with respect to
+\({\boldsymbol t}_1\) and \({\boldsymbol t}_2\), which is the case if and only if \(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}={\mathbf 0}_{p,q}\).
 \end{proof}
 
 In words: Proposition \ref{prp:six4} means that zero correlation implies independence for the MVN distribution. This is not generally true for other distributions.

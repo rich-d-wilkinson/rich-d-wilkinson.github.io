@@ -263,39 +263,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <p>The moment generating function of a random vector <span class="math inline">\(\boldsymbol x\)</span> (<span class="math inline">\(p \times 1\)</span>) is given by
 <span class="math display">\[
-M({\mathbf t})=E[e^{{\mathbf t}^\top \boldsymbol x}],
+M({\boldsymbol t})=E[e^{{\boldsymbol t}^\top \boldsymbol x}],
 \]</span>
-and is defined for all <span class="math inline">\(t \in \mathbb{R}^p\)</span> for which <span class="math inline">\(M({\mathbf t})\)</span> is finite.</p>
+and is defined for all <span class="math inline">\(t \in \mathbb{R}^p\)</span> for which <span class="math inline">\(M({\boldsymbol t})\)</span> is finite.</p>
 
 <div class="proposition">
 <span id="prp:six3" class="proposition"><strong>Proposition 6.3  </strong></span> The moment generating function of <span class="math inline">\(\boldsymbol x\sim N_p(\boldsymbol \mu, \boldsymbol \Sigma)\)</span> is given by
 <span class="math display" id="eq:Mt">\[\begin{equation}
-M({\mathbf t})=\exp \left (\boldsymbol \mu^\top  {\mathbf t} + \frac{1}{2} {\mathbf t}^\top \boldsymbol \Sigma{\mathbf t} \right).
+M({\boldsymbol t})=\exp \left (\boldsymbol \mu^\top  {\boldsymbol t}+ \frac{1}{2} {\boldsymbol t}^\top \boldsymbol \Sigma{\boldsymbol t}\right).
 \tag{6.1}
 \end{equation}\]</span>
 </div>
 
 
 <div class="proof">
- <span class="proof"><em>Proof. </em></span> For fixed <span class="math inline">\(\mathbf t\)</span>, define the random variable <span class="math inline">\(Y=\boldsymbol x^\top {\mathbf t}\)</span>. From Proposition <a href="6-2-transformations.html#prp:six2">6.2</a>, <span class="math inline">\(Y \sim N(\mu_{\mathbf t}, \sigma_{\mathbf t}^2)\)</span>, where <span class="math inline">\(\mu_{\mathbf t}=\boldsymbol \mu^\top {\mathbf t}\)</span> and <span class="math inline">\(\sigma_{\mathbf t}^2={\mathbf t}^\top \boldsymbol \Sigma{\mathbf t}\)</span>. If <span class="math inline">\(\sigma_{\mathbf t}\equiv {\mathbf t}^\top \boldsymbol \Sigma{\mathbf t}=0\)</span> then <span class="math inline">\(Y=\boldsymbol \mu^\top {\mathbf t}\)</span> with probability one, and then <span class="math inline">\(M({\mathbf t})=e^{\boldsymbol \mu^\top {\mathbf t}}\)</span> which agrees with <a href="6-2-transformations.html#eq:Mt">(6.1)</a>. So from now on we assume <span class="math inline">\(\sigma_{\mathbf t}&gt;0\)</span>. Then
+<p> <span class="proof"><em>Proof. </em></span> For fixed <span class="math inline">\({\boldsymbol t}\)</span>, define the random variable <span class="math inline">\(Y=\boldsymbol x^\top {\boldsymbol t}\)</span>. From Proposition <a href="6-2-transformations.html#prp:six2">6.2</a>,
+<span class="math inline">\(Y \sim N(\mu_{{\boldsymbol t}}, {\sigma_{\boldsymbol t}}^2)\)</span>,
+where <span class="math inline">\(\mu_{\boldsymbol t}=\boldsymbol \mu^\top {\boldsymbol t}\)</span> and <span class="math inline">\(\sigma^2_{\boldsymbol t}={\boldsymbol t}^\top \boldsymbol \Sigma{\boldsymbol t}\)</span>.</p>
+<p>If <span class="math inline">\(\sigma_{\boldsymbol t}\equiv {\boldsymbol t}^\top \boldsymbol \Sigma{\boldsymbol t}=0\)</span> then <span class="math inline">\(Y=\boldsymbol \mu^\top {\boldsymbol t}\)</span> with probability one, and then <span class="math inline">\(M({\boldsymbol t})=e^{\boldsymbol \mu^\top {\boldsymbol t}}\)</span> which agrees with <a href="6-2-transformations.html#eq:Mt">(6.1)</a>. So from now on we assume <span class="math inline">\(\sigma_{{\boldsymbol t}}&gt;0\)</span>. Then
 <span class="math display">\[\begin{align*}
-M({\mathbf t})&amp;=E[e^{\boldsymbol x^\top {\mathbf t}}]\\
-&amp;=E[e^{Y}]=\int_{-\infty}^\infty \exp(y) \frac{1}{\sqrt{2\pi \sigma_{\mathbf t}^2}}
-\exp\left (-\frac{1}{2}\frac{(y-\mu_{\mathbf t})^2}{\sigma_{\mathbf t}^2} \right )dy.
-\end{align*}\]</span>
-The integral above can be evaluated by completing the square in the exponent, using the identity
+M({\boldsymbol t})&amp;=E[e^{\boldsymbol x^\top {\boldsymbol t}}]\\
+&amp;=E[e^{Y}]=\int_{-\infty}^\infty \exp(y) \frac{1}{\sqrt{2\pi \sigma_{\boldsymbol t}^2}}
+\exp\left (-\frac{1}{2}\frac{(y-\mu_{\boldsymbol t})^2}{\sigma_{\boldsymbol t}^2} \right )dy.
+\end{align*}\]</span></p>
+<p>The integral above can be evaluated by completing the square in the exponent, using the identity
 <span class="math display">\[
-y-\frac{1}{2}\frac{(y-\mu_{\mathbf t})^2}{\sigma_{\mathbf t}^2}=\mu_{\mathbf t}
-+\frac{1}{2}\sigma_{\mathbf t}^2-\frac{1}{2}\frac{(y-\mu_{\mathbf t}-\sigma_{\mathbf t}^2)^2}{\sigma_{\mathbf t}^2}.
-\]</span>
+y-\frac{1}{2}\frac{(y-\mu_{\boldsymbol t})^2}{\sigma_{\boldsymbol t}^2}=\mu_{\boldsymbol t}
++\frac{1}{2}\sigma_{\boldsymbol t}^2-\frac{1}{2}\frac{(y-\mu_{\boldsymbol t}-\sigma_{\boldsymbol t}^2)^2}{\sigma_{\boldsymbol t}^2}.
+\]</span></p>
 Consequently
 <span class="math display">\[\begin{align*}
-M({\mathbf t})&amp;=\int_{-\infty}^\infty \exp \left \{\mu_{\mathbf t} +\frac{1}{2}\sigma_{\mathbf t}^2 \right \}
-\frac{1}{\sqrt{2 \pi \sigma_{\mathbf t}^2}}\exp \left \{ -\frac{1}{2} \frac{(y-\mu_{\mathbf t}-\sigma_{\mathbf t}^2)^2}
-{\sigma_{\mathbf t}^2}\right \}dy\\
-&amp;=\exp\left ( \mu_{\mathbf t} + \frac{1}{2}\sigma_{\mathbf t}^2  \right )\\
-&amp;=\exp\left (
-\boldsymbol \mu^\top {\mathbf t} + \frac{1}{2}{\mathbf t}^\top \boldsymbol \Sigma{\mathbf t}\right ),
+M({\boldsymbol t})&amp;=\int_{-\infty}^\infty \exp \left\{\mu_{\boldsymbol t}+\frac{1}{2}\sigma_{\boldsymbol t}^2 \right\}
+\frac{1}{\sqrt{2 \pi \sigma_{\boldsymbol t}^2}}\exp \left\{ -\frac{1}{2} \frac{(y-\mu_{\boldsymbol t}-\sigma_{\boldsymbol t}^2)^2}
+{\sigma_{\boldsymbol t}^2}\right\}dy\\
+&amp;=\exp\left( \mu_{\boldsymbol t}+ \frac{1}{2}\sigma_{\boldsymbol t}^2  \right)\\
+&amp;=\exp\left(
+\boldsymbol \mu^\top {\boldsymbol t}+ \frac{1}{2}{\boldsymbol t}^\top \boldsymbol \Sigma{\boldsymbol t}\right),
 \end{align*}\]</span>
 as required.
 </div>
@@ -308,15 +311,15 @@ as required.
 
 <div class="proof">
  <span class="proof"><em>Proof. </em></span> We prove this result using the factorisation theorem for moment generating functions (MGFs), which is now stated.
-Let <span class="math inline">\({\mathbf t}=({\mathbf t}_1^\top , {\mathbf t}_2^\top)^\top\)</span> where <span class="math inline">\({\mathbf t}_1 \in \mathbb{R}^p\)</span>, <span class="math inline">\({\mathbf t}_2 \in \mathbb{R}^q\)</span> and <span class="math inline">\({\mathbf t} \in \mathbb{R}^{p+q}\)</span>. The joint MGF of two arbitrary random vectors <span class="math inline">\(\stackrel{p \times 1}{\boldsymbol x}\)</span> and <span class="math inline">\(\stackrel{q \times 1}{\boldsymbol y}\)</span> is defined by
+Let <span class="math inline">\({\boldsymbol t}=({\boldsymbol t}_1^\top , {\boldsymbol t}_2^\top)^\top\)</span> where <span class="math inline">\({\boldsymbol t}_1 \in \mathbb{R}^p\)</span>, <span class="math inline">\({\boldsymbol t}_2 \in \mathbb{R}^q\)</span> and <span class="math inline">\({\boldsymbol t}\in \mathbb{R}^{p+q}\)</span>. The joint MGF of two arbitrary random vectors <span class="math inline">\(\stackrel{p \times 1}{\boldsymbol x}\)</span> and <span class="math inline">\(\stackrel{q \times 1}{\boldsymbol y}\)</span> is defined by
 <span class="math display">\[
- M({\mathbf t}_1, {\mathbf t}_2)=E[e^{{\mathbf t}_1^\top \boldsymbol x+ {\mathbf t}_2^\top \boldsymbol y}],
+ M({\boldsymbol t}_1, {\boldsymbol t}_2)=E[e^{{\boldsymbol t}_1^\top \boldsymbol x+ {\boldsymbol t}_2^\top \boldsymbol y}],
   \]</span>
-for all <span class="math inline">\({\mathbf t}=({\mathbf t}_1^\top , {\mathbf t}_2^\top )^\top\)</span> at which <span class="math inline">\(M({\mathbf t}_1, {\mathbf t}_2)\)</span> is finite.
+for all <span class="math inline">\({\boldsymbol t}=({\boldsymbol t}_1^\top , {\boldsymbol t}_2^\top )^\top\)</span> at which <span class="math inline">\(M({\boldsymbol t}_1, {\boldsymbol t}_2)\)</span> is finite.
 The factorisation theorem for MGFs states that
-<span class="math inline">\(\boldsymbol x\)</span> and <span class="math inline">\(\boldsymbol y\)</span> are independent if an only if <span class="math inline">\(M({\mathbf t}_1 , {\mathbf t}_2)\)</span> factorises, i.e.
+<span class="math inline">\(\boldsymbol x\)</span> and <span class="math inline">\(\boldsymbol y\)</span> are independent if an only if <span class="math inline">\(M({\boldsymbol t}_1 , {\boldsymbol t}_2)\)</span> factorises, i.e.
 <span class="math display">\[
-M({\mathbf t}_1 , {\mathbf t}_2)=M_1({\mathbf t}_1)M_2({\mathbf t}_2)
+M({\boldsymbol t}_1 , {\boldsymbol t}_2)=M_1({\boldsymbol t}_1)M_2({\boldsymbol t}_2)
 \]</span>
 for some functions <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span>, in which case <span class="math inline">\(M_1\)</span> and <span class="math inline">\(M_2\)</span> are the marginal MGFs of <span class="math inline">\(\boldsymbol x\)</span> and <span class="math inline">\(\boldsymbol y\)</span>. Now we focus on the MVN case. Suppose
 <span class="math display" id="eq:def1">\[\begin{equation}
@@ -331,17 +334,17 @@ and
 \end{equation}\]</span>
 Using Proposition <a href="6-2-transformations.html#prp:six3">6.3</a> and definitions <a href="6-2-transformations.html#eq:def1">(6.2)</a> and <a href="6-2-transformations.html#eq:def2">(6.3)</a>,
 <span class="math display">\[\begin{align*}
-M({\mathbf t}_1, {\mathbf t}_2)&amp;=\exp\left ( \boldsymbol \mu^\top {\mathbf t} + \frac{1}{2}{\mathbf t}^\top \boldsymbol \Sigma{\mathbf t} \right )\\
-&amp;=\exp\bigg (\boldsymbol \mu_{\boldsymbol x}^\top {\mathbf t}_1 +\boldsymbol \mu_{\boldsymbol y}^\top {\mathbf t}_2+\frac{1}{2}{\mathbf t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}{\mathbf t_1}\\
-&amp; \qquad \qquad +\frac{1}{2}{\mathbf t}_2^\top  \boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}{\mathbf t}_2+\frac{1}{2} 2{\mathbf t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}{\mathbf t}_2 \bigg)\\
-&amp;=M_1({\mathbf t}_1)M_2({\mathbf t}_2)M_3({\mathbf t}_1, {\mathbf t}_2),
+M({\boldsymbol t}_1, {\boldsymbol t}_2)&amp;=\exp\left ( \boldsymbol \mu^\top {\boldsymbol t}+ \frac{1}{2}{\boldsymbol t}^\top \boldsymbol \Sigma{\boldsymbol t}\right )\\
+&amp;=\exp\bigg (\boldsymbol \mu_{\boldsymbol x}^\top {\boldsymbol t}_1 +\boldsymbol \mu_{\boldsymbol y}^\top {\boldsymbol t}_2+\frac{1}{2}{\boldsymbol t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}{{\boldsymbol t}_1}\\
+&amp; \qquad \qquad +\frac{1}{2}{\boldsymbol t}_2^\top  \boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}{\boldsymbol t}_2+\frac{1}{2} 2{\boldsymbol t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}{\boldsymbol t}_2 \bigg)\\
+&amp;=M_1({\boldsymbol t}_1)M_2({\boldsymbol t}_2)M_3({\boldsymbol t}_1, {\boldsymbol t}_2),
 \end{align*}\]</span>
-where <span class="math inline">\(M_1({\mathbf t}_1)\)</span> and <span class="math inline">\(M_2({\mathbf t}_2)\)</span> are the marginal MGFs of <span class="math inline">\(\boldsymbol x\)</span> and <span class="math inline">\(\boldsymbol y\)</span> respectively, and
+where <span class="math inline">\(M_1({\boldsymbol t}_1)\)</span> and <span class="math inline">\(M_2({\boldsymbol t}_2)\)</span> are the marginal MGFs of <span class="math inline">\(\boldsymbol x\)</span> and <span class="math inline">\(\boldsymbol y\)</span> respectively, and
 <span class="math display">\[
-M_3({\mathbf t}_1, {\mathbf t}_2)=\exp\left ({\mathbf t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}{\mathbf t}_2 \right ).
+M_3({\boldsymbol t}_1, {\boldsymbol t}_2)=\exp\left ({\boldsymbol t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}{\boldsymbol t}_2 \right ).
 \]</span>
-The factorisation theorem holds if an only if <span class="math inline">\(M_3({\mathbf t}_1, {\mathbf t}_2)\)</span> is constant with respect to
-<span class="math inline">\({\mathbf t}_1\)</span> and <span class="math inline">\({\mathbf t}_2\)</span>, which is the case if and only if <span class="math inline">\(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}={\mathbf 0}_{p,q}\)</span>.
+The factorisation theorem holds if an only if <span class="math inline">\(M_3({\boldsymbol t}_1, {\boldsymbol t}_2)\)</span> is constant with respect to
+<span class="math inline">\({\boldsymbol t}_1\)</span> and <span class="math inline">\({\boldsymbol t}_2\)</span>, which is the case if and only if <span class="math inline">\(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}={\mathbf 0}_{p,q}\)</span>.
 </div>
 
 <p>In words: Proposition <a href="6-2-transformations.html#prp:six4">6.4</a> means that zero correlation implies independence for the MVN distribution. This is not generally true for other distributions.</p>

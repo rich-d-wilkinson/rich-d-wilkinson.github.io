@@ -144,38 +144,44 @@ The second corollary says that any MVN random variable can be transformed into s
 
 The moment generating function of a random vector $\bx$ ($p \times 1$) is given by
 $$
-M({\mathbf t})=E[e^{{\mathbf t}^\top \bx}],
+M(\bt)=E[e^{\bt^\top \bx}],
 $$
-and is defined for all $t \in \mathbb{R}^p$ for which $M({\mathbf t})$ is finite.
+and is defined for all $t \in \mathbb{R}^p$ for which $M(\bt)$ is finite.
 
 \BeginKnitrBlock{proposition}
 <span class="proposition" id="prp:six3"><strong>(\#prp:six3) </strong></span> The moment generating function of $\bx \sim N_p(\bmu , \bSigma)$ is given by
 \begin{equation}
-M({\mathbf t})=\exp \left (\bmu^\top  {\mathbf t} + \frac{1}{2} {\mathbf t}^\top \bSigma {\mathbf t} \right).
+M(\bt)=\exp \left (\bmu^\top  \bt + \frac{1}{2} \bt^\top \bSigma \bt \right).
 (\#eq:Mt)
 \end{equation}
 \EndKnitrBlock{proposition}
 
 \BeginKnitrBlock{proof}
-\iffalse{} <span class="proof"><em>Proof. </em></span>  \fi{}For fixed $\mathbf t$, define the random variable $Y=\bx^\top {\mathbf t}$.  From Proposition \@ref(prp:six2), $Y \sim N(\mu_{\mathbf t}, \sigma_{\mathbf t}^2)$, where $\mu_{\mathbf t}=\bmu^\top {\mathbf t}$ and $\sigma_{\mathbf t}^2={\mathbf t}^\top \bSigma {\mathbf t}$.  If $\sigma_{\mathbf t}\equiv {\mathbf t}^\top \bSigma {\mathbf t}=0$ then $Y=\bmu^\top {\mathbf t}$ with probability one, and then $M({\mathbf t})=e^{\bmu^\top {\mathbf t}}$ which agrees with \@ref(eq:Mt).  So from now on we assume $\sigma_{\mathbf t}>0$.   Then
+\iffalse{} <span class="proof"><em>Proof. </em></span>  \fi{}For fixed $\bt$, define the random variable $Y=\bx^\top \bt$.  From Proposition \@ref(prp:six2), 
+$Y \sim N(\mu_{\bt}, {\sigma_\bt}^2)$, 
+where $\mu_\bt=\bmu^\top \bt$ and $\sigma^2_\bt =\bt^\top \bSigma \bt$.  
+
+If $\sigma_\bt\equiv \bt^\top \bSigma \bt=0$ then $Y=\bmu^\top \bt$ with probability one, and then $M(\bt)=e^{\bmu^\top \bt}$ which agrees with \@ref(eq:Mt).  So from now on we assume $\sigma_{\bt}>0$.   Then
 \begin{align*}
-M({\mathbf t})&=E[e^{\bx^\top {\mathbf t}}]\\
-&=E[e^{Y}]=\int_{-\infty}^\infty \exp(y) \frac{1}{\sqrt{2\pi \sigma_{\mathbf t}^2}}
-\exp\left (-\frac{1}{2}\frac{(y-\mu_{\mathbf t})^2}{\sigma_{\mathbf t}^2} \right )dy.
+M(\bt)&=E[e^{\bx^\top \bt}]\\
+&=E[e^{Y}]=\int_{-\infty}^\infty \exp(y) \frac{1}{\sqrt{2\pi \sigma_\bt^2}}
+\exp\left (-\frac{1}{2}\frac{(y-\mu_\bt)^2}{\sigma_\bt^2} \right )dy.
 \end{align*}
+
 The integral above can be evaluated by completing the square in the exponent, using the identity
 $$
-y-\frac{1}{2}\frac{(y-\mu_{\mathbf t})^2}{\sigma_{\mathbf t}^2}=\mu_{\mathbf t}
-+\frac{1}{2}\sigma_{\mathbf t}^2-\frac{1}{2}\frac{(y-\mu_{\mathbf t}-\sigma_{\mathbf t}^2)^2}{\sigma_{\mathbf t}^2}.
+y-\frac{1}{2}\frac{(y-\mu_\bt)^2}{\sigma_\bt^2}=\mu_\bt
++\frac{1}{2}\sigma_\bt^2-\frac{1}{2}\frac{(y-\mu_\bt-\sigma_\bt^2)^2}{\sigma_\bt^2}.
 $$
+
 Consequently
 \begin{align*}
-M({\mathbf t})&=\int_{-\infty}^\infty \exp \left \{\mu_{\mathbf t} +\frac{1}{2}\sigma_{\mathbf t}^2 \right \}
-\frac{1}{\sqrt{2 \pi \sigma_{\mathbf t}^2}}\exp \left \{ -\frac{1}{2} \frac{(y-\mu_{\mathbf t}-\sigma_{\mathbf t}^2)^2}
-{\sigma_{\mathbf t}^2}\right \}dy\\
-&=\exp\left ( \mu_{\mathbf t} + \frac{1}{2}\sigma_{\mathbf t}^2  \right )\\
-&=\exp\left (
-\bmu^\top {\mathbf t} + \frac{1}{2}{\mathbf t}^\top \bSigma {\mathbf t}\right ),
+M(\bt)&=\int_{-\infty}^\infty \exp \left\{\mu_\bt +\frac{1}{2}\sigma_\bt^2 \right\}
+\frac{1}{\sqrt{2 \pi \sigma_\bt^2}}\exp \left\{ -\frac{1}{2} \frac{(y-\mu_\bt-\sigma_\bt^2)^2}
+{\sigma_\bt^2}\right\}dy\\
+&=\exp\left( \mu_\bt + \frac{1}{2}\sigma_\bt^2  \right)\\
+&=\exp\left(
+\bmu^\top \bt + \frac{1}{2}\bt^\top \bSigma \bt\right),
 \end{align*}
 as required.
 \EndKnitrBlock{proof}
@@ -186,15 +192,15 @@ as required.
 
 \BeginKnitrBlock{proof}
 \iffalse{} <span class="proof"><em>Proof. </em></span>  \fi{}We prove this result using the factorisation theorem for moment generating functions (MGFs), which is now stated.
-Let ${\mathbf t}=({\mathbf t}_1^\top , {\mathbf t}_2^\top)^\top$ where ${\mathbf t}_1 \in \mathbb{R}^p$, ${\mathbf t}_2 \in \mathbb{R}^q$ and ${\mathbf t} \in \mathbb{R}^{p+q}$.  The joint MGF of two arbitrary random vectors $\stackrel{p \times 1}{\bx}$ and $\stackrel{q \times 1}{\by}$ is defined by
+Let $\bt=(\bt_1^\top , \bt_2^\top)^\top$ where $\bt_1 \in \mathbb{R}^p$, $\bt_2 \in \mathbb{R}^q$ and $\bt \in \mathbb{R}^{p+q}$.  The joint MGF of two arbitrary random vectors $\stackrel{p \times 1}{\bx}$ and $\stackrel{q \times 1}{\by}$ is defined by
   $$
- M({\mathbf t}_1, {\mathbf t}_2)=E[e^{{\mathbf t}_1^\top \bx + {\mathbf t}_2^\top \by}],
+ M(\bt_1, \bt_2)=E[e^{\bt_1^\top \bx + \bt_2^\top \by}],
   $$
-  for all ${\mathbf t}=({\mathbf t}_1^\top , {\mathbf t}_2^\top )^\top$ at which $M({\mathbf t}_1, {\mathbf t}_2)$ is finite.
+  for all $\bt=(\bt_1^\top , \bt_2^\top )^\top$ at which $M(\bt_1, \bt_2)$ is finite.
 The factorisation theorem for MGFs states that
-$\bx$ and $\by$ are independent if an only if $M({\mathbf t}_1 , {\mathbf t}_2)$ factorises, i.e.
+$\bx$ and $\by$ are independent if an only if $M(\bt_1 , \bt_2)$ factorises, i.e.
 $$
-M({\mathbf t}_1 , {\mathbf t}_2)=M_1({\mathbf t}_1)M_2({\mathbf t}_2)
+M(\bt_1 , \bt_2)=M_1(\bt_1)M_2(\bt_2)
 $$
 for some functions $M_1$ and $M_2$, in which case $M_1$ and $M_2$ are the marginal MGFs of $\bx$ and $\by$.  Now we focus on the MVN case.  Suppose
 \begin{equation}
@@ -209,17 +215,17 @@ E[\bx]=\bmu_{\bx}, \qquad \qquad E[\by]=\bmu_{\by}, \quad  \text{Var}(\bx)=\bSig
 \end{equation}
 Using Proposition \@ref(prp:six3) and definitions \@ref(eq:def1) and \@ref(eq:def2),
 \begin{align*}
-M({\mathbf t}_1, {\mathbf t}_2)&=\exp\left ( \bmu^\top {\mathbf t} + \frac{1}{2}{\mathbf t}^\top \bSigma {\mathbf t} \right )\\
-&=\exp\bigg (\bmu_{\bx}^\top {\mathbf t}_1 +\bmu_{\by}^\top {\mathbf t}_2+\frac{1}{2}{\mathbf t}_1^\top \bSigma_{\bx \bx}{\mathbf t_1}\\
-& \qquad \qquad +\frac{1}{2}{\mathbf t}_2^\top  \bSigma_{\by \by}{\mathbf t}_2+\frac{1}{2} 2{\mathbf t}_1^\top \bSigma_{\bx \by}{\mathbf t}_2 \bigg)\\
-&=M_1({\mathbf t}_1)M_2({\mathbf t}_2)M_3({\mathbf t}_1, {\mathbf t}_2),
+M(\bt_1, \bt_2)&=\exp\left ( \bmu^\top \bt + \frac{1}{2}\bt^\top \bSigma \bt \right )\\
+&=\exp\bigg (\bmu_{\bx}^\top \bt_1 +\bmu_{\by}^\top \bt_2+\frac{1}{2}\bt_1^\top \bSigma_{\bx \bx}{\bt_1}\\
+& \qquad \qquad +\frac{1}{2}\bt_2^\top  \bSigma_{\by \by}\bt_2+\frac{1}{2} 2\bt_1^\top \bSigma_{\bx \by}\bt_2 \bigg)\\
+&=M_1(\bt_1)M_2(\bt_2)M_3(\bt_1, \bt_2),
 \end{align*}
-where $M_1({\mathbf t}_1)$ and $M_2({\mathbf t}_2)$ are the marginal MGFs of $\bx$ and $\by$ respectively, and
+where $M_1(\bt_1)$ and $M_2(\bt_2)$ are the marginal MGFs of $\bx$ and $\by$ respectively, and
 $$
-M_3({\mathbf t}_1, {\mathbf t}_2)=\exp\left ({\mathbf t}_1^\top \bSigma_{\bx \by}{\mathbf t}_2 \right ).
+M_3(\bt_1, \bt_2)=\exp\left (\bt_1^\top \bSigma_{\bx \by}\bt_2 \right ).
 $$
-The factorisation theorem holds if an only if $M_3({\mathbf t}_1, {\mathbf t}_2)$ is constant with respect to
-${\mathbf t}_1$ and ${\mathbf t}_2$, which is the case if and only if $\bSigma_{\bx \by}={\mathbf 0}_{p,q}$. 
+The factorisation theorem holds if an only if $M_3(\bt_1, \bt_2)$ is constant with respect to
+$\bt_1$ and $\bt_2$, which is the case if and only if $\bSigma_{\bx \by}={\mathbf 0}_{p,q}$. 
 \EndKnitrBlock{proof}
  
  In words: Proposition \@ref(prp:six4) means that zero correlation implies independence for the MVN distribution.  This is not generally true for other distributions.

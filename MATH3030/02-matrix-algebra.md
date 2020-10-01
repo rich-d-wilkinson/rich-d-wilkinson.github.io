@@ -41,8 +41,6 @@ In this chapter blah blah
 \renewcommand{\ds}{\displaystyle}
 \renewcommand{\tdiag}{\text{diag}}
 \renewcommand{\ttr}{\text{tr}}
-\renewcommand{\tmin}{\text{min}}
-\renewcommand{\tmax}{\text{max}}
 \renewcommand{\tdet}{\text{det}}
 
 \renewcommand{\tcov}{\text{cov}}
