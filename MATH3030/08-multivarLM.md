@@ -3,9 +3,9 @@
 
 In the standard linear model, the response variable, $y$, is univariate and the mean of $y$, $\mu=E[y]$, is modelled as a linear function of the elements of a covariate vector $\bx=(x_1, \ldots , x_q)^\top \in \mathbb{R}^q$, i.e. it is assumed that
 $$
-\mu = {\pmb \beta}^\top \bx,
+\mu = \bbeta^\top \bx,
 $$
-where ${\pmb \beta} \in \mathbb{R}^q$ is an unknown parameter vector to be estimated.  In this chapter we consider a generalisation of the standard linear model in which the response, $\by$, is now a $p \times 1$ vector.  In this setting, the linear model takes the form
+where $\bbeta \in \mathbb{R}^q$ is an unknown parameter vector to be estimated.  In this chapter we consider a generalisation of the standard linear model in which the response, $\by$, is now a $p \times 1$ vector.  In this setting, the linear model takes the form
 $$
 {\pmb \mu}=\bB^\top \bx,
 $$
@@ -17,12 +17,12 @@ In this section we give a brief review of the standard linear model in which the
 
 Consider the univariate linear model in which
 \begin{equation}
-y_i = \bx_i^\top {\pmb \beta}+\epsilon_i, \qquad i=1, \ldots , n,
+y_i = \bx_i^\top \bbeta+\epsilon_i, \qquad i=1, \ldots , n,
 (\#eq:slm1)
 \end{equation}
-where $\stackrel{q \times 1}{\pmb \beta}$ is a parameter vector and $\bx_i$ is a $q \times 1$  covariate vector for experimental unit $i$.  We can also write \@ref(eq:slm1) in equivalent vector-matrix form
+where $\stackrel{q \times 1}{\bbeta}$ is a parameter vector and $\bx_i$ is a $q \times 1$  covariate vector for experimental unit $i$.  We can also write \@ref(eq:slm1) in equivalent vector-matrix form
 \begin{equation}
-\by=\bX {\pmb \beta} +{\pmb \epsilon},
+\by=\bX \bbeta +{\pmb \epsilon},
 (\#eq:slm2)
 \end{equation}
 where $\stackrel{n \times q}{\bX}=[\bx_1 , \ldots , \bx_n]^\top$ is the matrix of covariates,
@@ -40,28 +40,28 @@ where $\stackrel{n \times q}{\bX}=[\bx_1 , \ldots , \bx_n]^\top$ is the matrix o
 3. The $\epsilon_i$ have constant variance, i.e. $\text{Var}(\epsilon_i)=\sigma^2$, i.e. $\sigma^2$ does not depend on $i$.
 4. The $\epsilon_i$ are IID $N(0, \sigma^2)$.
  
- It is clear that assumption 4. implies each of assumptions 1-3.  However, note that the least squares approach to be discussed below makes sense under assumptions 1-3 alone.  The attraction of assumption 4. is that it enables us to perform exact inference since the relevant distributions are known exactly, and the estimators of ${\pmb \beta}$ and $\sigma^2$ are maximum likelihood estimators (MLEs).  We shall assume 4. and its multivariate analogue, see \@ref(eq:MVNassumption) below, throughout this chapter.
+ It is clear that assumption 4. implies each of assumptions 1-3.  However, note that the least squares approach to be discussed below makes sense under assumptions 1-3 alone.  The attraction of assumption 4. is that it enables us to perform exact inference since the relevant distributions are known exactly, and the estimators of $\bbeta$ and $\sigma^2$ are maximum likelihood estimators (MLEs).  We shall assume 4. and its multivariate analogue, see \@ref(eq:MVNassumption) below, throughout this chapter.
 
 The log-likelihood for models \@ref(eq:slm1) and \@ref(eq:slm2) under the Gaussian assumption 4.  is given by
 \begin{align*}
-\ell({\pmb \beta}, \sigma^2)&=-\frac{n}{2}\log (\sigma^2)--\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} \sum_{i=1}^n (y_i-\bx_i^\top {\pmb \beta})^2\\
-& \qquad = -\frac{n}{2}\log (\sigma^2)-\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} (\by - \bX {\pmb \beta})^\top (\by - \bX {\pmb \beta}).
+\ell(\bbeta, \sigma^2)&=-\frac{n}{2}\log (\sigma^2)--\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} \sum_{i=1}^n (y_i-\bx_i^\top \bbeta)^2\\
+& \qquad = -\frac{n}{2}\log (\sigma^2)-\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} (\by - \bX \bbeta)^\top (\by - \bX \bbeta).
 \end{align*}
 Applying the results in \S 2.10 to the second expression above,
 $$
-\frac{\partial \ell}{\partial {\pmb \beta}}({\pmb \beta}, \sigma^2)=\frac{1}{\sigma^2}\bX^\top (\by - \bX {\pmb \beta})
+\frac{\partial \ell}{\partial \bbeta}(\bbeta, \sigma^2)=\frac{1}{\sigma^2}\bX^\top (\by - \bX \bbeta)
 $$
 and
 $$
-\frac{\partial \ell}{\partial \sigma^2}({\pmb \beta}, \sigma^2)=-\frac{n}{2}\frac{1}{\sigma^2}+\frac{1}{2\sigma^4}
- (\by - \bX {\pmb \beta})^\top (\by - \bX {\pmb \beta}).
+\frac{\partial \ell}{\partial \sigma^2}(\bbeta, \sigma^2)=-\frac{n}{2}\frac{1}{\sigma^2}+\frac{1}{2\sigma^4}
+ (\by - \bX \bbeta)^\top (\by - \bX \bbeta).
 $$
-Setting $\partial \ell(\hat{\pmb \beta}, \hat{\sigma}^2))/\partial {\pmb \beta}={\mathbf 0}_q$, the zero vector, and assuming that $\bX^\top \bX$ is invertible, implies that
+Setting $\partial \ell(\hat{\bbeta}, \hat{\sigma}^2))/\partial \bbeta={\mathbf 0}_q$, the zero vector, and assuming that $\bX^\top \bX$ is invertible, implies that
 \begin{equation}
-\hat{\pmb \beta}=\left (\bX^\top \bX \right )^{-1}\bX^\top \by.
+\hat{\bbeta}=\left (\bX^\top \bX \right )^{-1}\bX^\top \by.
 (\#eq:uni1)
 \end{equation}
-Also,  setting $\partial \ell(\hat{\pmb \beta}, \hat{\sigma}^2))/\partial \sigma^2=0$ gives
+Also,  setting $\partial \ell(\hat{\bbeta}, \hat{\sigma}^2))/\partial \sigma^2=0$ gives
 \begin{equation}
 \hat{\sigma}^2 = \frac{1}{n}\by^\top \bP \by,
 (\#eq:uni2)
@@ -73,14 +73,14 @@ where
 \end{equation}
 is a projection matrix.  The maximised log-likelihood is given by
 \begin{align*}
-\ell(\hat{\pmb \beta}, \hat{\sigma}^2)&= -\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi) -\frac{1}{2\hat{\sigma}^2}(\by - \bX \hat{\pmb \beta})^\top (\by - \bX \hat{\pmb \beta})\\
+\ell(\hat{\bbeta}, \hat{\sigma}^2)&= -\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi) -\frac{1}{2\hat{\sigma}^2}(\by - \bX \hat{\bbeta})^\top (\by - \bX \hat{\bbeta})\\
 &= -\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi)-\frac{n}{2\by^\top \bP \by}\by ^\top \bP \by\\
 &=-\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi)-\frac{n}{2}.
 \end{align*}
 
 Under the IID Gaussian assumption for the $\epsilon_i$,
 $$
-\hat{\pmb \beta} \sim N_q\left \{{\pmb \beta}, \sigma^2 (\bX^\top \bX)^{-1}\right\},
+\hat{\bbeta} \sim N_q\left \{\bbeta, \sigma^2 (\bX^\top \bX)^{-1}\right\},
 $$
 and
 $$

@@ -174,6 +174,7 @@
 \newcommand{\bgamma}{\boldsymbol \gamma}
 \newcommand{\btheta}{\boldsymbol \theta}
 \newcommand{\bdelta}{\boldsymbol \delta}
+\newcommand{\bbeta}{\boldsymbol \beta}
 \newcommand{\blambda}{\boldsymbol \lambda}
 \newcommand{\bA}{\boldsymbol A}
 \newcommand{\bB}{\boldsymbol B}
@@ -3499,9 +3500,9 @@ Therefore \(\delta^2 > F_{p,n+m-p-1}\), so we reject the null hypothesis at the 
 
 In the standard linear model, the response variable, \(y\), is univariate and the mean of \(y\), \(\mu=E[y]\), is modelled as a linear function of the elements of a covariate vector \(\boldsymbol x=(x_1, \ldots , x_q)^\top \in \mathbb{R}^q\), i.e.~it is assumed that
 \[
-\mu = {\pmb \beta}^\top \boldsymbol x,
+\mu = \boldsymbol \beta^\top \boldsymbol x,
 \]
-where \({\pmb \beta} \in \mathbb{R}^q\) is an unknown parameter vector to be estimated. In this chapter we consider a generalisation of the standard linear model in which the response, \(\boldsymbol y\), is now a \(p \times 1\) vector. In this setting, the linear model takes the form
+where \(\boldsymbol \beta\in \mathbb{R}^q\) is an unknown parameter vector to be estimated. In this chapter we consider a generalisation of the standard linear model in which the response, \(\boldsymbol y\), is now a \(p \times 1\) vector. In this setting, the linear model takes the form
 \[
 {\pmb \mu}=\boldsymbol B^\top \boldsymbol x,
 \]
@@ -3514,12 +3515,12 @@ In this section we give a brief review of the standard linear model in which the
 
 Consider the univariate linear model in which
 \begin{equation}
-y_i = \boldsymbol x_i^\top {\pmb \beta}+\epsilon_i, \qquad i=1, \ldots , n,
+y_i = \boldsymbol x_i^\top \boldsymbol \beta+\epsilon_i, \qquad i=1, \ldots , n,
 \label{eq:slm1}
 \end{equation}
-where \(\stackrel{q \times 1}{\pmb \beta}\) is a parameter vector and \(\boldsymbol x_i\) is a \(q \times 1\) covariate vector for experimental unit \(i\). We can also write \eqref{eq:slm1} in equivalent vector-matrix form
+where \(\stackrel{q \times 1}{\boldsymbol \beta}\) is a parameter vector and \(\boldsymbol x_i\) is a \(q \times 1\) covariate vector for experimental unit \(i\). We can also write \eqref{eq:slm1} in equivalent vector-matrix form
 \begin{equation}
-\boldsymbol y=\boldsymbol X{\pmb \beta} +{\pmb \epsilon},
+\boldsymbol y=\boldsymbol X\boldsymbol \beta+{\pmb \epsilon},
 \label{eq:slm2}
 \end{equation}
 where \(\stackrel{n \times q}{\boldsymbol X}=[\boldsymbol x_1 , \ldots , \boldsymbol x_n]^\top\) is the matrix of covariates,
@@ -3541,28 +3542,28 @@ Most or all of the following assumptions are usually made in the standard linear
   The \(\epsilon_i\) are IID \(N(0, \sigma^2)\).
 \end{enumerate}
 
-It is clear that assumption 4. implies each of assumptions 1-3. However, note that the least squares approach to be discussed below makes sense under assumptions 1-3 alone. The attraction of assumption 4. is that it enables us to perform exact inference since the relevant distributions are known exactly, and the estimators of \({\pmb \beta}\) and \(\sigma^2\) are maximum likelihood estimators (MLEs). We shall assume 4. and its multivariate analogue, see \eqref{eq:MVNassumption} below, throughout this chapter.
+It is clear that assumption 4. implies each of assumptions 1-3. However, note that the least squares approach to be discussed below makes sense under assumptions 1-3 alone. The attraction of assumption 4. is that it enables us to perform exact inference since the relevant distributions are known exactly, and the estimators of \(\boldsymbol \beta\) and \(\sigma^2\) are maximum likelihood estimators (MLEs). We shall assume 4. and its multivariate analogue, see \eqref{eq:MVNassumption} below, throughout this chapter.
 
 The log-likelihood for models \eqref{eq:slm1} and \eqref{eq:slm2} under the Gaussian assumption 4. is given by
 \begin{align*}
-\ell({\pmb \beta}, \sigma^2)&=-\frac{n}{2}\log (\sigma^2)--\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} \sum_{i=1}^n (y_i-\boldsymbol x_i^\top {\pmb \beta})^2\\
-& \qquad = -\frac{n}{2}\log (\sigma^2)-\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} (\boldsymbol y- \boldsymbol X{\pmb \beta})^\top (\boldsymbol y- \boldsymbol X{\pmb \beta}).
+\ell(\boldsymbol \beta, \sigma^2)&=-\frac{n}{2}\log (\sigma^2)--\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} \sum_{i=1}^n (y_i-\boldsymbol x_i^\top \boldsymbol \beta)^2\\
+& \qquad = -\frac{n}{2}\log (\sigma^2)-\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} (\boldsymbol y- \boldsymbol X\boldsymbol \beta)^\top (\boldsymbol y- \boldsymbol X\boldsymbol \beta).
 \end{align*}
 Applying the results in \S 2.10 to the second expression above,
 \[
-\frac{\partial \ell}{\partial {\pmb \beta}}({\pmb \beta}, \sigma^2)=\frac{1}{\sigma^2}\boldsymbol X^\top (\boldsymbol y- \boldsymbol X{\pmb \beta})
+\frac{\partial \ell}{\partial \boldsymbol \beta}(\boldsymbol \beta, \sigma^2)=\frac{1}{\sigma^2}\boldsymbol X^\top (\boldsymbol y- \boldsymbol X\boldsymbol \beta)
 \]
 and
 \[
-\frac{\partial \ell}{\partial \sigma^2}({\pmb \beta}, \sigma^2)=-\frac{n}{2}\frac{1}{\sigma^2}+\frac{1}{2\sigma^4}
- (\boldsymbol y- \boldsymbol X{\pmb \beta})^\top (\boldsymbol y- \boldsymbol X{\pmb \beta}).
+\frac{\partial \ell}{\partial \sigma^2}(\boldsymbol \beta, \sigma^2)=-\frac{n}{2}\frac{1}{\sigma^2}+\frac{1}{2\sigma^4}
+ (\boldsymbol y- \boldsymbol X\boldsymbol \beta)^\top (\boldsymbol y- \boldsymbol X\boldsymbol \beta).
 \]
-Setting \(\partial \ell(\hat{\pmb \beta}, \hat{\sigma}^2))/\partial {\pmb \beta}={\mathbf 0}_q\), the zero vector, and assuming that \(\boldsymbol X^\top \boldsymbol X\) is invertible, implies that
+Setting \(\partial \ell(\hat{\boldsymbol \beta}, \hat{\sigma}^2))/\partial \boldsymbol \beta={\mathbf 0}_q\), the zero vector, and assuming that \(\boldsymbol X^\top \boldsymbol X\) is invertible, implies that
 \begin{equation}
-\hat{\pmb \beta}=\left (\boldsymbol X^\top \boldsymbol X\right )^{-1}\boldsymbol X^\top \boldsymbol y.
+\hat{\boldsymbol \beta}=\left (\boldsymbol X^\top \boldsymbol X\right )^{-1}\boldsymbol X^\top \boldsymbol y.
 \label{eq:uni1}
 \end{equation}
-Also, setting \(\partial \ell(\hat{\pmb \beta}, \hat{\sigma}^2))/\partial \sigma^2=0\) gives
+Also, setting \(\partial \ell(\hat{\boldsymbol \beta}, \hat{\sigma}^2))/\partial \sigma^2=0\) gives
 \begin{equation}
 \hat{\sigma}^2 = \frac{1}{n}\boldsymbol y^\top \boldsymbol P\boldsymbol y,
 \label{eq:uni2}
@@ -3574,14 +3575,14 @@ where
 \end{equation}
 is a projection matrix. The maximised log-likelihood is given by
 \begin{align*}
-\ell(\hat{\pmb \beta}, \hat{\sigma}^2)&= -\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi) -\frac{1}{2\hat{\sigma}^2}(\boldsymbol y- \boldsymbol X\hat{\pmb \beta})^\top (\boldsymbol y- \boldsymbol X\hat{\pmb \beta})\\
+\ell(\hat{\boldsymbol \beta}, \hat{\sigma}^2)&= -\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi) -\frac{1}{2\hat{\sigma}^2}(\boldsymbol y- \boldsymbol X\hat{\boldsymbol \beta})^\top (\boldsymbol y- \boldsymbol X\hat{\boldsymbol \beta})\\
 &= -\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi)-\frac{n}{2\boldsymbol y^\top \boldsymbol P\boldsymbol y}\boldsymbol y^\top \boldsymbol P\boldsymbol y\\
 &=-\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi)-\frac{n}{2}.
 \end{align*}
 
 Under the IID Gaussian assumption for the \(\epsilon_i\),
 \[
-\hat{\pmb \beta} \sim N_q\left \{{\pmb \beta}, \sigma^2 (\boldsymbol X^\top \boldsymbol X)^{-1}\right\},
+\hat{\boldsymbol \beta} \sim N_q\left \{\boldsymbol \beta, \sigma^2 (\boldsymbol X^\top \boldsymbol X)^{-1}\right\},
 \]
 and
 \[

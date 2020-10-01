@@ -231,12 +231,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this section we give a brief review of the standard linear model in which the response is univariate. Then, in subsequent sections, we discuss the multivariate linear model, i.e. multiple regression with a vector response which has a general covariance matrix.</p>
 <p>Consider the univariate linear model in which
 <span class="math display" id="eq:slm1">\[\begin{equation}
-y_i = \boldsymbol x_i^\top {\pmb \beta}+\epsilon_i, \qquad i=1, \ldots , n,
+y_i = \boldsymbol x_i^\top \boldsymbol \beta+\epsilon_i, \qquad i=1, \ldots , n,
 \tag{8.1}
 \end{equation}\]</span>
-where <span class="math inline">\(\stackrel{q \times 1}{\pmb \beta}\)</span> is a parameter vector and <span class="math inline">\(\boldsymbol x_i\)</span> is a <span class="math inline">\(q \times 1\)</span> covariate vector for experimental unit <span class="math inline">\(i\)</span>. We can also write <a href="8-1-the-standard-univariate-linear-model.html#eq:slm1">(8.1)</a> in equivalent vector-matrix form
+where <span class="math inline">\(\stackrel{q \times 1}{\boldsymbol \beta}\)</span> is a parameter vector and <span class="math inline">\(\boldsymbol x_i\)</span> is a <span class="math inline">\(q \times 1\)</span> covariate vector for experimental unit <span class="math inline">\(i\)</span>. We can also write <a href="8-1-the-standard-univariate-linear-model.html#eq:slm1">(8.1)</a> in equivalent vector-matrix form
 <span class="math display" id="eq:slm2">\[\begin{equation}
-\boldsymbol y=\boldsymbol X{\pmb \beta} +{\pmb \epsilon},
+\boldsymbol y=\boldsymbol X\boldsymbol \beta+{\pmb \epsilon},
 \tag{8.2}
 \end{equation}\]</span>
 where <span class="math inline">\(\stackrel{n \times q}{\boldsymbol X}=[\boldsymbol x_1 , \ldots , \boldsymbol x_n]^\top\)</span> is the matrix of covariates,
@@ -249,27 +249,27 @@ where <span class="math inline">\(\stackrel{n \times q}{\boldsymbol X}=[\boldsym
 <li>The <span class="math inline">\(\epsilon_i\)</span> have constant variance, i.e. <span class="math inline">\(\text{Var}(\epsilon_i)=\sigma^2\)</span>, i.e. <span class="math inline">\(\sigma^2\)</span> does not depend on <span class="math inline">\(i\)</span>.</li>
 <li><p>The <span class="math inline">\(\epsilon_i\)</span> are IID <span class="math inline">\(N(0, \sigma^2)\)</span>.</p></li>
 </ol>
-<p>It is clear that assumption 4. implies each of assumptions 1-3. However, note that the least squares approach to be discussed below makes sense under assumptions 1-3 alone. The attraction of assumption 4. is that it enables us to perform exact inference since the relevant distributions are known exactly, and the estimators of <span class="math inline">\({\pmb \beta}\)</span> and <span class="math inline">\(\sigma^2\)</span> are maximum likelihood estimators (MLEs). We shall assume 4. and its multivariate analogue, see <a href="8-2-multivariate-linear-model.html#eq:MVNassumption">(8.11)</a> below, throughout this chapter.</p>
+<p>It is clear that assumption 4. implies each of assumptions 1-3. However, note that the least squares approach to be discussed below makes sense under assumptions 1-3 alone. The attraction of assumption 4. is that it enables us to perform exact inference since the relevant distributions are known exactly, and the estimators of <span class="math inline">\(\boldsymbol \beta\)</span> and <span class="math inline">\(\sigma^2\)</span> are maximum likelihood estimators (MLEs). We shall assume 4. and its multivariate analogue, see <a href="8-2-multivariate-linear-model.html#eq:MVNassumption">(8.11)</a> below, throughout this chapter.</p>
 <p>The log-likelihood for models <a href="8-1-the-standard-univariate-linear-model.html#eq:slm1">(8.1)</a> and <a href="8-1-the-standard-univariate-linear-model.html#eq:slm2">(8.2)</a> under the Gaussian assumption 4. is given by
 <span class="math display">\[\begin{align*}
-\ell({\pmb \beta}, \sigma^2)&amp;=-\frac{n}{2}\log (\sigma^2)--\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} \sum_{i=1}^n (y_i-\boldsymbol x_i^\top {\pmb \beta})^2\\
-&amp; \qquad = -\frac{n}{2}\log (\sigma^2)-\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} (\boldsymbol y- \boldsymbol X{\pmb \beta})^\top (\boldsymbol y- \boldsymbol X{\pmb \beta}).
+\ell(\boldsymbol \beta, \sigma^2)&amp;=-\frac{n}{2}\log (\sigma^2)--\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} \sum_{i=1}^n (y_i-\boldsymbol x_i^\top \boldsymbol \beta)^2\\
+&amp; \qquad = -\frac{n}{2}\log (\sigma^2)-\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} (\boldsymbol y- \boldsymbol X\boldsymbol \beta)^\top (\boldsymbol y- \boldsymbol X\boldsymbol \beta).
 \end{align*}\]</span>
 Applying the results in 2.10 to the second expression above,
 <span class="math display">\[
-\frac{\partial \ell}{\partial {\pmb \beta}}({\pmb \beta}, \sigma^2)=\frac{1}{\sigma^2}\boldsymbol X^\top (\boldsymbol y- \boldsymbol X{\pmb \beta})
+\frac{\partial \ell}{\partial \boldsymbol \beta}(\boldsymbol \beta, \sigma^2)=\frac{1}{\sigma^2}\boldsymbol X^\top (\boldsymbol y- \boldsymbol X\boldsymbol \beta)
 \]</span>
 and
 <span class="math display">\[
-\frac{\partial \ell}{\partial \sigma^2}({\pmb \beta}, \sigma^2)=-\frac{n}{2}\frac{1}{\sigma^2}+\frac{1}{2\sigma^4}
- (\boldsymbol y- \boldsymbol X{\pmb \beta})^\top (\boldsymbol y- \boldsymbol X{\pmb \beta}).
+\frac{\partial \ell}{\partial \sigma^2}(\boldsymbol \beta, \sigma^2)=-\frac{n}{2}\frac{1}{\sigma^2}+\frac{1}{2\sigma^4}
+ (\boldsymbol y- \boldsymbol X\boldsymbol \beta)^\top (\boldsymbol y- \boldsymbol X\boldsymbol \beta).
 \]</span>
-Setting <span class="math inline">\(\partial \ell(\hat{\pmb \beta}, \hat{\sigma}^2))/\partial {\pmb \beta}={\mathbf 0}_q\)</span>, the zero vector, and assuming that <span class="math inline">\(\boldsymbol X^\top \boldsymbol X\)</span> is invertible, implies that
+Setting <span class="math inline">\(\partial \ell(\hat{\boldsymbol \beta}, \hat{\sigma}^2))/\partial \boldsymbol \beta={\mathbf 0}_q\)</span>, the zero vector, and assuming that <span class="math inline">\(\boldsymbol X^\top \boldsymbol X\)</span> is invertible, implies that
 <span class="math display" id="eq:uni1">\[\begin{equation}
-\hat{\pmb \beta}=\left (\boldsymbol X^\top \boldsymbol X\right )^{-1}\boldsymbol X^\top \boldsymbol y.
+\hat{\boldsymbol \beta}=\left (\boldsymbol X^\top \boldsymbol X\right )^{-1}\boldsymbol X^\top \boldsymbol y.
 \tag{8.3}
 \end{equation}\]</span>
-Also, setting <span class="math inline">\(\partial \ell(\hat{\pmb \beta}, \hat{\sigma}^2))/\partial \sigma^2=0\)</span> gives
+Also, setting <span class="math inline">\(\partial \ell(\hat{\boldsymbol \beta}, \hat{\sigma}^2))/\partial \sigma^2=0\)</span> gives
 <span class="math display" id="eq:uni2">\[\begin{equation}
 \hat{\sigma}^2 = \frac{1}{n}\boldsymbol y^\top \boldsymbol P\boldsymbol y,
 \tag{8.4}
@@ -281,13 +281,13 @@ where
 \end{equation}\]</span>
 is a projection matrix. The maximised log-likelihood is given by
 <span class="math display">\[\begin{align*}
-\ell(\hat{\pmb \beta}, \hat{\sigma}^2)&amp;= -\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi) -\frac{1}{2\hat{\sigma}^2}(\boldsymbol y- \boldsymbol X\hat{\pmb \beta})^\top (\boldsymbol y- \boldsymbol X\hat{\pmb \beta})\\
+\ell(\hat{\boldsymbol \beta}, \hat{\sigma}^2)&amp;= -\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi) -\frac{1}{2\hat{\sigma}^2}(\boldsymbol y- \boldsymbol X\hat{\boldsymbol \beta})^\top (\boldsymbol y- \boldsymbol X\hat{\boldsymbol \beta})\\
 &amp;= -\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi)-\frac{n}{2\boldsymbol y^\top \boldsymbol P\boldsymbol y}\boldsymbol y^\top \boldsymbol P\boldsymbol y\\
 &amp;=-\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi)-\frac{n}{2}.
 \end{align*}\]</span></p>
 <p>Under the IID Gaussian assumption for the <span class="math inline">\(\epsilon_i\)</span>,
 <span class="math display">\[
-\hat{\pmb \beta} \sim N_q\left \{{\pmb \beta}, \sigma^2 (\boldsymbol X^\top \boldsymbol X)^{-1}\right\},
+\hat{\boldsymbol \beta} \sim N_q\left \{\boldsymbol \beta, \sigma^2 (\boldsymbol X^\top \boldsymbol X)^{-1}\right\},
 \]</span>
 and
 <span class="math display">\[
