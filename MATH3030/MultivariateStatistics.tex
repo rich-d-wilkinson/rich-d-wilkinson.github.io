@@ -313,6 +313,8 @@ In Chapter \ref{linalg-decomp} we recap the eigen or spectral decomposition of s
 
 In this chapter we will define some notation, and recap some basic statistical properties and results.
 
+NOT YET FILMED VIDEOS.
+
 \hypertarget{multivariate-data}{%
 \section{Multivariate data}\label{multivariate-data}}
 
@@ -2204,6 +2206,1708 @@ You can see that for \(k=30\) we have a reasonable approximation, but with some 
 You can see further demonstrations of image compression with the SVD \href{http://timbaumann.info/svd-image-compression-demo/}{here}.
 
 We will see much more of the SVD in later chapters.
+
+\hypertarget{part-ii-dimension-reduction-methods}{%
+\chapter*{PART II: Dimension reduction methods}\label{part-ii-dimension-reduction-methods}}
+\addcontentsline{toc}{chapter}{PART II: Dimension reduction methods}
+
+In many applications, a large number of variables are recorded for each experimental unit under study. For example, if we think of individual people as the \emph{experimental units}, then in a health check-up we might collect data on age, blood pressure, cholesterol level, blood test results, lung function, weight, height, BMI, etc. If you use websites such as Amazon, Facebook, and Google, they store thousands (possibly millions) of pieces of information about you (\href{https://www.theguardian.com/commentisfree/2018/mar/28/all-the-data-facebook-google-has-on-you-privacy}{this article} shows you how to download the information Google stores about you, including all the locations you've visited, every search, youtube video, or app you've used and more). They process this data to create an individual profile for each user, which they can then use to create targetted adverts.
+
+When analysing data of moderate or high dimension, it is often desirable to seeks ways to restructure the data and reduce its dimension whilst \textbf{retaining the most important information within the data}. There a variety of reasons we might want to do this.
+
+\begin{itemize}
+\tightlist
+\item
+  In reduced dimensions, it is often much easier to understand and appreciate the most important features of a dataset.
+\item
+  If there is a lot of reduncancy in the data, we might want to reduce the dimension to lower the memory requirements in storing it (e.g.~with sound and image compression).
+\item
+  In high dimensions, it can be difficult to analyse data (e.g.~with statistical methods), and so reducing the dimension can be a way to make a dataset amenable to analysis.
+\end{itemize}
+
+In this part of the module we investigate three different methods for dimension reduction: Principal Component Analysis (PCA) in Chapter \ref{pca}; Canonical Correlation Analysis (CCA) in Chapter \ref{cca}; and Multidimensional Scaling (MDS) in Chapter \ref{mds}. Matrix algebra (Chapters \ref{linalg-prelim} and \ref{linalg-decomp}) plays a key role in all three of these techniques.
+
+\hypertarget{a-warning}{%
+\subsection*{A warning}\label{a-warning}}
+\addcontentsline{toc}{subsection}{A warning}
+
+Beware that high-dimensional data can behave qualitatively differently to low-dimensional data. As an example, lets consider 1000 points uniformly distributed in \([0,1]^d\), and think about how close together or spread out the points are. A simple way to do this is to consider the ratio of the maximum and minimum distance between any two points in our sample.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{N<-}\DecValTok{1000}
+\NormalTok{averatio <-}\KeywordTok{c}\NormalTok{()}
+\NormalTok{ii<-}\DecValTok{1}
+\ControlFlowTok{for}\NormalTok{(d }\ControlFlowTok{in} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{30}\NormalTok{,}\DecValTok{40}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{60}\NormalTok{,}\DecValTok{80}\NormalTok{,}\DecValTok{100}\NormalTok{, }\DecValTok{200}\NormalTok{, }\DecValTok{350}\NormalTok{, }\DecValTok{500}\NormalTok{, }\DecValTok{750}\NormalTok{, }\DecValTok{1000}\NormalTok{))\{}
+\NormalTok{  averatio[ii] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{replicate}\NormalTok{(}\DecValTok{10}\NormalTok{, \{}
+\NormalTok{  X<-}\KeywordTok{matrix}\NormalTok{(}\KeywordTok{runif}\NormalTok{(N}\OperatorTok{*}\NormalTok{d), }\DataTypeTok{nc=}\NormalTok{d)}
+\NormalTok{  d <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{dist}\NormalTok{(X)) }
+  \CommentTok{# this gives a N x N matrix of the Euclidean distances between the data points.}
+\NormalTok{  maxdist <-}\StringTok{ }\KeywordTok{max}\NormalTok{(d) }
+\NormalTok{  mindist <-}\StringTok{ }\KeywordTok{min}\NormalTok{(d}\OperatorTok{+}\KeywordTok{diag}\NormalTok{(}\DecValTok{10}\OperatorTok{^}\DecValTok{5}\NormalTok{, }\DataTypeTok{nrow=}\NormalTok{N)) }
+  \CommentTok{# The diagonal elements of the distance matrix are zero,}
+  \CommentTok{# so I've added a big number to the diagonal }
+  \CommentTok{# so that we get the minimum distance between different points}
+\NormalTok{  maxdist}\OperatorTok{/}\NormalTok{mindist\}))}
+\NormalTok{  ii <-}\StringTok{ }\NormalTok{ii}\OperatorTok{+}\DecValTok{1}
+\NormalTok{\}}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{30}\NormalTok{,}\DecValTok{40}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{60}\NormalTok{,}\DecValTok{80}\NormalTok{,}\DecValTok{100}\NormalTok{, }\DecValTok{200}\NormalTok{, }\DecValTok{350}\NormalTok{, }\DecValTok{500}\NormalTok{, }\DecValTok{750}\NormalTok{, }\DecValTok{1000}\NormalTok{), }
+\NormalTok{     averatio, }\DataTypeTok{ylab=}\StringTok{'Max. dist. / min. dist.'}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{'Dimension d'}\NormalTok{, }\DataTypeTok{log=}\StringTok{'xy'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{04-pca_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+So we can see that as the dimension increases, the ratio of the maximum and minimum distance between any two random points in our sample tends to 1. In other words, all points are the same distance apart!
+
+\hypertarget{why-reduce-dimension}{%
+\subsection{Why reduce dimension?}\label{why-reduce-dimension}}
+
+\hypertarget{pca}{%
+\chapter{Principal component analysis}\label{pca}}
+
+With multivariate data, it is common to want to reduce the dimension of such data \emph{in a sensible way}.
+
+For example, exam marks across different modules are
+averaged to produce a single overall mark for each
+student. Similarly, in a football league table we convert the
+numbers of wins, draws and losses to a single measure of
+points.
+
+Mathematically, we can express these examples of
+dimension reduction as a linear combination of the
+original variables, \(y = \boldsymbol u^\top \boldsymbol x\). For the exam mark
+example, suppose each student sits \(p=4\) modules
+with marks, \(x_1,x_2,x_3,x_4\). Then, writing \(\boldsymbol x=(x_1, x_2 , x_3, x_4)^\top\) and choosing \(\boldsymbol u= \left(\frac{1}{4}, \frac{1}{4}, \frac{1}{4}, \frac{1}{4} \right)^\top\)
+gives an overall average,
+\[ y =\boldsymbol u^\top \boldsymbol x= \begin{pmatrix} \frac{1}{4} & \frac{1}{4} & \frac{1}{4} & \frac{1}{4} \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \frac{x_1}{4} + \frac{x_2}{4} + \frac{x_3}{4} + \frac{x_4}{4}.\]
+For the football league table, if \(w\) is the number of wins, \(d\) is the number of draws and \(l\) is the number of losses then, writing
+\({\mathbf r}=(w,d,l)^\top\), we choose \(\boldsymbol u= \left(3,1,0 \right)^\top\) to get the points score
+\[ y = \boldsymbol u^\top {\mathbf r}=\begin{pmatrix} 3 & 1 & 0 \end{pmatrix} \begin{pmatrix} w \\ d \\ l \end{pmatrix} = 3w + 1d + 0l=3w+d.\]
+
+In these examples we use \(\boldsymbol u\) to convert our original variables, the components of \(\boldsymbol x\), to a new variable, \(y\). These choices of \(\boldsymbol u\) are fairly standard for these types of data. However,we should ask whether we can do better. In a more general setting, how should we choose \(\boldsymbol u\)?
+
+A key objective of principal component analysis (PCA): to find the linear combination of the original variables that \textbf{maximises the variability} in the new variable. Intuitively, this seems sensible for the exam mark data because a large variance in \(y\) would separate out the better students from the weaker students, making it easier to rank them.
+
+\hypertarget{principal-component-vectors-and-scores}{%
+\section{Principal component vectors and scores}\label{principal-component-vectors-and-scores}}
+
+Let \(\boldsymbol x_1,\ldots,\boldsymbol x_n\) be \(p \times 1\) vectors of measurements on \(n\) experimental units with sample mean \(\bar{\boldsymbol x} = \frac{1}{n} \sum_{i=1}^n \boldsymbol x_i\) and sample covariance matrix\textbackslash{}
+\(\boldsymbol S= \frac{1}{n} \sum_{i=1}^n (\boldsymbol x_i - \bar{\boldsymbol x}) (\boldsymbol x_i - \bar{\boldsymbol x})^\top\).
+
+We wish to project the data onto a lower-dimensional subspace in which the data
+displays \emph{maximal variation}, using appropriate scalar products of the observation
+vectors.
+
+Let \(\boldsymbol u\) be a unit vector (i.e. \(\| \boldsymbol u\| = 1\) or \(\boldsymbol u^\top \boldsymbol u=1\)) and define
+\[y_i= \boldsymbol u^\top (\boldsymbol x_i - \bar{\boldsymbol x})\]
+for \(i=1,\ldots,n\).
+
+Now
+\[ \sum_{i=1}^n y_i = \sum_{i=1}^n \boldsymbol u^\top (\boldsymbol x_i - \bar{\boldsymbol x})
+= \boldsymbol u^\top \sum_{i=1}^n (\boldsymbol x_i - \bar{\boldsymbol x})
+= \boldsymbol u^\top (n \bar{\boldsymbol x} - n \bar{\boldsymbol x}) = 0,\]
+by the definition of \(\bar{\boldsymbol x}\), so \(\bar{y} = \frac{1}{n} \sum_{i=1}^n y_i = 0\).
+
+The sample variance of the \(y_i\)'s is
+\begin{eqnarray*}
+s^2[\boldsymbol u] &=& \frac{1}{n} \sum_{i=1}^n (y_i - \bar{y})^2 = \frac{1}{n} \sum_{i=1}^n y_i^2 \\
+&=& \frac{1}{n} \sum_{i=1}^n \left[\boldsymbol u^\top (\boldsymbol x_i - \bar{\boldsymbol x}) \right]\left[(\boldsymbol x_i - \bar{\boldsymbol x})^\top \boldsymbol u\right]\\
+&=& \boldsymbol u^\top \left[\frac{1}{n} \sum_{i=1}^n (\boldsymbol x_i - \bar{\boldsymbol x})(\boldsymbol x_i - \bar{\boldsymbol x})^\top \right]\boldsymbol u\\
+&=& \boldsymbol u^\top \boldsymbol S\boldsymbol u.
+\end{eqnarray*}
+
+We would like to find the \(\boldsymbol u\) which maximises the sample variance, \(s^2[\boldsymbol u] = \boldsymbol u^\top \boldsymbol S\boldsymbol u\) over unit vectors \(\boldsymbol u\).
+
+Since \(\boldsymbol S\) is symmetric, then by the spectral decomposition theorem we can write
+\[\boldsymbol S= \boldsymbol Q\boldsymbol \Lambda\boldsymbol Q^\top = \sum_{j=1}^p \lambda_j \boldsymbol q_j \boldsymbol q_j^\top \]
+with \(\boldsymbol Q= [ \boldsymbol q_1, \ldots , \boldsymbol q_p ]\) an orthogonal matrix (so \(\boldsymbol Q\boldsymbol Q^\top = \boldsymbol Q^\top \boldsymbol Q= \mathbf I_p\)) and \(\boldsymbol \Lambda= \text{diag}\{ \lambda_1, \ldots, \lambda_p \}\) where we may assume \(\lambda_1 \geq \cdots \geq \lambda_p\) and, since \(\boldsymbol S\) is a covariance matrix and therefore non-negative definite, \(\lambda_p \geq 0\). Note that \(\lambda_j\) and \(\boldsymbol q_j\), \(j=1,\ldots,p\), are eigenvalues and eigenvectors, respectively, of \(\boldsymbol S\).
+
+Then,
+\begin{eqnarray*}
+s^2[\boldsymbol u] &=& \boldsymbol u^\top \boldsymbol S\boldsymbol u= \boldsymbol u^\top \boldsymbol Q\boldsymbol \Lambda\boldsymbol Q^\top \boldsymbol u
+= \boldsymbol u^\top \left(\sum_{j=1}^p \lambda_j \boldsymbol q_j \boldsymbol q_j^\top \right)\boldsymbol u\\
+&=& \sum_{j=1}^p \lambda_j (\boldsymbol u^\top \boldsymbol q_j) (\boldsymbol q_j^\top \boldsymbol u)
+= \sum_{j=1}^p \lambda_j (\boldsymbol u^\top \boldsymbol q_j)^2 \\
+&\leq& \sum_{j=1}^p \lambda_1 (\boldsymbol u^\top \boldsymbol q_j)^2
+\end{eqnarray*}
+since \(\lambda_1 \geq \lambda_j, j=1,\ldots,p\). Therefore, using Proposition \ref{prp:two1},
+\[ s^2[\boldsymbol u] \leq \lambda_1 \sum_{j=1}^p (\boldsymbol u^\top \boldsymbol q_j)^2
+= \lambda_1 \boldsymbol u^\top \left ( \sum_{j=1}^p \boldsymbol q_j \boldsymbol q_j^\top  \right) \boldsymbol u
+= \lambda_1 \boldsymbol u^\top \boldsymbol u=\lambda_1,\]
+since, by assumption, \(\| \boldsymbol u\| = 1\).
+
+Therefore, the maximum \(s^2[\boldsymbol u]\) is at most \(\lambda_1\), where \(\lambda_1\) is the largest eigenvalue of \(\boldsymbol S\).
+
+Recall that
+\[ \boldsymbol q_i^\top \boldsymbol q_j = \left\{ \begin{array}{ll} 0 & \text{if } j \neq i,\\ 1 & \text{if } j=i. \end{array} \right.\]
+because eigenvectors are orthogonal to each other, so if we take \(\boldsymbol u= \boldsymbol q_1\) then
+\begin{eqnarray*}
+\boldsymbol q_1^\top \boldsymbol S\boldsymbol q_1 &=& \boldsymbol q_1^\top \left(\sum_{j=1}^p \lambda_j \boldsymbol q_j \boldsymbol q_j^\top \right)\boldsymbol q_1
+= \sum_{j=1}^p \lambda_j (\boldsymbol q_1^\top \boldsymbol q_j) (\boldsymbol q_j^\top \boldsymbol q_1) \\
+&=& \sum_{j=1}^p \lambda_j (\boldsymbol q_1^\top \boldsymbol q_j)^2
+= \lambda_1 (\boldsymbol q_1^\top \boldsymbol q_1)^2
+= \lambda_1
+\end{eqnarray*}
+
+So \(s^2[\boldsymbol u] = \boldsymbol u^\top \boldsymbol S\boldsymbol u\) is maximised over unit vectors \(\boldsymbol u\) when \(\boldsymbol u= \boldsymbol q_1\) where \(\boldsymbol q_1\) is the unit eigenvector corresponding to the largest eigenvalue, \(\lambda_1\). By maximising \(\boldsymbol u^\top \boldsymbol S\boldsymbol u\) over unit vectors \(\boldsymbol u\), we are in effect choosing a projection onto a 1-dimensional subspace which captures as much of the sample variation as possible.
+
+We can repeat this procedure and look for the largest sample variance of the \(y_i\)'s, when
+\(\boldsymbol u\) is chosen to be orthogonal to \(\boldsymbol q_1\) (i.e.~restrict attention to those \(\boldsymbol u\) such that \(\boldsymbol u^\top \boldsymbol q_1 = 0\)). Similar reasoning shows that this constrained maximum occurs when \(\boldsymbol u= \boldsymbol q_2\), where \(\boldsymbol q_2\) is
+the eigenvector corresponding to the second largest eigenvalue, \(\lambda_2\); and the corresponding maximum of \(\boldsymbol u^\top \boldsymbol S\boldsymbol u\) is \(\lambda_2\).
+
+We can repeat the process for \(j=1,\ldots,p\) to define \(p\) new variables. In general, to find PC \(j\), we solve the following optimisation problem:
+\begin{equation}
+\max_{\boldsymbol u: \, \vert \vert \boldsymbol u\vert \vert =1}\boldsymbol u^\top \boldsymbol S\boldsymbol u
+\label{eq:pcmaxgen}
+\end{equation}
+subject to
+\begin{equation}
+\boldsymbol q_k^\top \boldsymbol u=0, \qquad k=1, \ldots , j-1.
+\label{eq:pccongen}
+\end{equation}
+It turns out that the maximum of \eqref{eq:pcmaxgen}
+subject to \eqref{eq:pccongen} is equal to \(\lambda_j\) and is obtained when \(\boldsymbol u=\boldsymbol q_j\).
+
+The 1st PC scores are \(y_{i1} = \boldsymbol q_1^\top (\boldsymbol x_i - \bar{\boldsymbol x}), \quad i=1,\ldots,n\). \textbackslash{}
+The 2nd PC scores are \(y_{i2} = \boldsymbol q_2^\top (\boldsymbol x_i - \bar{\boldsymbol x}), \quad i=1,\ldots,n\).
+\[ \vdots \]
+The \(p\)th PC scores are \(y_{ip} = \boldsymbol q_p^\top (\boldsymbol x_i - \bar{\boldsymbol x}), \quad i=1,\ldots,n\).
+
+We summarise these findings in the following result.
+
+\begin{proposition}
+\protect\hypertarget{prp:pca1}{}{\label{prp:pca1} }Let \(\boldsymbol x_1, \ldots , \boldsymbol x_n\) denote a sample of vectors in \(\mathbb{R}^p\) with sample mean vector \(\bar{\boldsymbol x}\) and sample covariance matrix \(\boldsymbol S\). Suppose \(\boldsymbol S\) has spectral decomposition (see Proposition \ref{prp:spectraldecomp})
+\[
+\boldsymbol S=\boldsymbol Q\boldsymbol \Lambda\boldsymbol Q^\top = \sum_{j=1}^p  \lambda_j \boldsymbol q_j \boldsymbol q_j^\top,
+\]
+where \(\boldsymbol Q\) is orthogonal, \(\boldsymbol \Lambda=\text{diag}\{\lambda_1, \ldots, \lambda_p\}\) and \(\lambda_1 \geq \lambda_2 \geq \lambda_p \geq 0\). Then the following holds:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The maximum of \eqref{eq:pcmaxgen}
+  subject to \eqref{eq:pccongen} is equal to \(\lambda_j\) and is obtained when \(\boldsymbol u=\boldsymbol q_j\).
+\item
+  For \(j=1, \ldots , p\), the scores of the \(j\)th principal component (PC) are given by
+  \[
+  y_{ij}=\boldsymbol q_j^\top(\boldsymbol x_i - \bar{\boldsymbol x}), \qquad i=1, \ldots , n,
+  \]
+  where \(\boldsymbol q_j\) is the vector of \emph{loadings} for the \(j\)th PC. Moreover,
+  \[
+  \boldsymbol y_i=( y_{i1}, y_{i2}, \ldots , y_{ip})^\top = \boldsymbol Q^\top (\boldsymbol x_i -\bar{\boldsymbol x}), \qquad i=1, \ldots ,n.
+  \]
+\item
+  In matrix form, the full set of PC scores is given in the matrix
+  \[
+  \boldsymbol Y= [\boldsymbol y_1 , \ldots , \boldsymbol y_n]^\top =\boldsymbol H\boldsymbol X\boldsymbol Q,
+  \]
+  where \(\stackrel{n \times n}{\boldsymbol H}\) is the centering matrix and \(\boldsymbol X=[\boldsymbol x_1, \ldots , \boldsymbol x_n]^\top\) is the original data matrix.
+\item
+  The sample mean vector of \(\boldsymbol y_1, \ldots , \boldsymbol y_n\) is the zero vector \({\mathbf 0}_p\) and the sample covariance matrix is \(\boldsymbol \Lambda\).
+\end{enumerate}
+\end{proposition}
+
+\begin{example}
+\protect\hypertarget{exm:unnamed-chunk-2}{}{\label{exm:unnamed-chunk-2} }We consider the marks of \(n=10\) students who studied G11PRB and G11STA.
+\end{example}
+
+\begin{verbatim}
+## Warning: package 'kableExtra' was built under R version 3.6.2
+\end{verbatim}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{rrr}
+\toprule
+student & PRB & SMM\\
+\midrule
+1 & 81 & 75\\
+2 & 79 & 73\\
+3 & 66 & 79\\
+4 & 53 & 55\\
+5 & 43 & 53\\
+\addlinespace
+6 & 59 & 49\\
+7 & 62 & 72\\
+8 & 79 & 92\\
+9 & 49 & 58\\
+10 & 55 & 56\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The sample mean vector and sample covariance matrix are
+\[
+\bar{\boldsymbol x} = \begin{pmatrix} 62.6 \\ 66.2 \end{pmatrix}\qquad \text{and} \qquad \boldsymbol S= \begin{pmatrix} 162.04 & 135.38 \\ 135.38 & 175.36 \end{pmatrix}.
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 3.6.2
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:kableExtra':
+## 
+##     group_rows
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{secondyr }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\NormalTok{colMeans ->}\StringTok{ }\NormalTok{xbar}
+\NormalTok{secondyr }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(}\DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{cov}\NormalTok{(}\DataTypeTok{use=}\StringTok{"everything"}\NormalTok{)}\OperatorTok{*}\DecValTok{9}\OperatorTok{/}\DecValTok{10}\NormalTok{ ->}\StringTok{ }\NormalTok{S}
+\NormalTok{eigs =}\StringTok{ }\KeywordTok{eigen}\NormalTok{(S)}
+\end{Highlighting}
+\end{Shaded}
+
+DELETE THIS - ASSUME THEY CAN DO IT, OR DO ON A COMPUTER.
+
+To find the eigenvalues we need to solve \(|\boldsymbol S- \lambda \mathbf I| = 0\), where
+\begin{eqnarray*}
+|\boldsymbol S- \lambda \mathbf I_2| &=& (162.04-\lambda)(175.36-\lambda) - 135.38^2 \\
+&=& \lambda^2 - 337.4 \lambda + 10887.59.
+\end{eqnarray*}
+
+Using the quadratic equation formula we find,
+\[ \lambda = \frac{337.4 \pm \sqrt{337.4^2 - 4(10087.59)}}{2} = \frac{337.4 \pm \sqrt{73488.4}}{2}. \]
+So \(\lambda_1 = 304.24\) and \(\lambda_2 = 33.16\).
+
+To find the first eigenvector we solve \((\boldsymbol S- \lambda_1 \mathbf I_2) \boldsymbol q_1 = \boldsymbol 0\). To simplify, we use row operations:
+\begin{eqnarray*}
+\boldsymbol S- \lambda_1 \mathbf I_2 = \begin{pmatrix} -142.20 & 135.38 \\ 135.38 & -128.88 \end{pmatrix} &\rightarrow& \begin{pmatrix} 1 & -0.952 \\ 135.38 & -128.88 \end{pmatrix} \\
+&\rightarrow& \begin{pmatrix} 1 & -0.952 \\ 0 & 0 \end{pmatrix}.
+\end{eqnarray*}
+If we let \(\boldsymbol q_1 = (q_{11}, q_{21})^\top\) then solving \((\boldsymbol S- \lambda_1 \mathbf I_2) \boldsymbol q_1 = \boldsymbol 0\) is equivalent to solving
+\[ \begin{pmatrix} 1 & -0.952 \\ 0 & 0 \end{pmatrix} \begin{pmatrix} q_{11} \\ q_{21} \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}. \]
+So \(q_{11} = 0.952 q_{21}\) and the eigenvectors are of the form \(t\begin{pmatrix} 0.952 \\ 1 \end{pmatrix}\) where \(t \ne 0\) is a constant. We choose \(t\) such that \(\| \boldsymbol q\| = 1\), so
+\[
+{\displaystyle t = \pm \frac{1}{\sqrt{0.952^2 + 1^2}} = \pm 0.724}.
+\]
+Therefore,
+\[ \boldsymbol q_1 = 0.724 \begin{pmatrix} 0.952 \\ 1 \end{pmatrix} = \begin{pmatrix} 0.690 \\ 0.724 \end{pmatrix}.\]
+
+To find the second eigenvector we use the same method to solve \((\boldsymbol S- \lambda_2 \mathbf I_2) \boldsymbol q_2 = \boldsymbol 0\) and find that \(\boldsymbol q_2 = \begin{pmatrix} -0.724 \\ 0.690 \end{pmatrix}\).
+
+The plot below shows the original data. The two lines, centred on \(\bar{\boldsymbol x}\), have the direction of the eigenvectors, and their lengths are \(2 \sqrt{\lambda_j}\), \(j=1,2\).
+
+\includegraphics{04-pca_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+We can now compute the PC scores using
+\begin{eqnarray*}
+y_{i1} &=& \boldsymbol q_1^\top (\boldsymbol x_i - \bar{\boldsymbol x}) = 0.690 (x_{1i} - \bar{x}_1) + 0.724 (x_{2i} - \bar{x}_2) \\
+y_{i2} &=& \boldsymbol q_2^\top (\boldsymbol x_i - \bar{\boldsymbol x}) = -0.724 (x_{1i} - \bar{x}_1) + 0.690 (x_{2i} - \bar{x}_2),
+\end{eqnarray*}
+which gives
+
+FIX FIX
+
+\begin{tabular}{l|rrrrrrrrrr}
+Student & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \hline
+$y_{[1]}^\top$ & 19.1 & 16.2 & 11.6 & -14.7 & -23.1 & -14.9 & 3.8 & 30.0 & -15.3 & -12.6 \\
+$y_{[2]}^\top$ & -7.3 & -7.2 & 6.4 & -0.8 & 5.1 & -9.3 & 4.4 & 5.9 & 4.2 & -1.5
+\end{tabular}
+
+Note that these new variables have sample mean \(\bar{\boldsymbol y}=\boldsymbol 0\) and sample covariance matrix (see part 4. of Proposition \ref{prp:pca1})
+\[
+\boldsymbol \Lambda= \text{diag}(\lambda_1,\lambda_2) =  \begin{pmatrix} 304.24 & 0 \\ 0 & 33.16 \end{pmatrix}.
+\]
+The plot below shows the PC scores \((y_{i1},y_{i2})^\top\). The two lines shown have lengths \(2\sqrt{\lambda_j}\), \(j=1,2\). Note that \(\sqrt{\lambda_j}\) is the standard deviation of the \(j\)th PC.
+
+\begin{center}
+\includegraphics[width=12cm,angle=0]{figs/prbsta_pca2.pdf}
+\end{center}
+
+Sometimes the new variables have an obvious interpretation. Note that the first PC gives positive, roughly equal, weight to PRB and STA and thus represents some form of ``average'' mark. For example, a student that has a high mark on PRB and STA will have a high value for \(y_1\). The second PC, meanwhile, represents a contrast between PRB and STA. For example, a large positive value for \(y_2\) implies the student did much better on STA than PRB, and a large negative value implies the opposite.
+
+Note that we could have chosen \(t=-0.724\) instead of \(t=+0.724\). The only difference would be that the first eigenvector was \(\boldsymbol q_1^\ast = -\boldsymbol q_1\). In this case, a student who scored a high mark on PRB and STA would have a low value for \(y_1\). This is perfectly legitimate but makes the interpretation less intuitive. One can always change the sign of the eigenvectors if it makes interpretation easier.
+```
+
+\hypertarget{properties-of-principal-components}{%
+\section{Properties of principal components}\label{properties-of-principal-components}}
+
+Let \(\boldsymbol x_1, \ldots, \boldsymbol x_n\) have sample mean \(\bar{\boldsymbol x}\) and sample covariance matrix \(\boldsymbol S\), with spectral decomposition \(\boldsymbol S=\boldsymbol Q\boldsymbol \Lambda\boldsymbol Q^\top\) where
+\(\boldsymbol Q=[\boldsymbol q_1, \ldots , \boldsymbol q_p]\) is orthogonal and \(\boldsymbol \Lambda=\text{diag}\{\lambda_1, \ldots , \lambda_p\}\). The transformed variables have some important properties.
+\vskip 0.2truein
+
+\begin{proposition}
+\protect\hypertarget{prp:pca2}{}{\label{prp:pca2} }For \(j,k=1, \ldots , p\), the following results hold.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(\bar{y}_{+j} = n^{-1} \sum_{i=1}^n y_{ij}=n^{-1}\sum_{i=1}^n \boldsymbol q_j^\top (\boldsymbol x_i-\bar{\boldsymbol x})=0\);
+\item
+  \(\boldsymbol q_j^\top \boldsymbol S\boldsymbol q_j = \lambda_j\);
+\item
+  \(\boldsymbol q_j^\top \boldsymbol S\boldsymbol q_k = 0\) for \(j \neq k\);
+\item
+  \(\boldsymbol q_1^\top \boldsymbol S\boldsymbol q_1 \geq \boldsymbol q_2^\top \boldsymbol S\boldsymbol q_2 \geq \ldots \geq \boldsymbol q_p^\top \boldsymbol S\boldsymbol q_p\geq 0\);
+\item
+  \(\sum_{j=1}^p \boldsymbol q_j^\top \boldsymbol S\boldsymbol q_j = \sum_{j=1}^p \lambda_j = \text{tr}(\boldsymbol S)\);
+\item
+  \(\prod_{j=1}^p \boldsymbol q_j^\top \boldsymbol S\boldsymbol q_j = \prod_{j=1}^p \lambda_j = |\boldsymbol S|\).
+\end{enumerate}
+\end{proposition}
+
+In words:
+
+\begin{itemize}
+\item
+  part 1. tells us that the sample mean of \(y_{1j}, \ldots , y_{nj}\) for each fixed \(j\) is \(0\);
+\item
+  part 2. tells us that, for each fixed \(j\), the sample variance of
+  the \(y_{ij},\, i=1, \ldots , n\) is \(\lambda_j\);
+\item
+  part 3. states that the sample covariance of the pairs \((y_{ij}, y_{ik})\), \(i=1, \ldots , n\), is \(0\) if \(j \neq k\);
+\item
+  part 4. states that the sample variance of \(y_{ij}, \, i=1, \ldots , n\), is not less than the sample variance of \(y_{ik}, \, i=1, \ldots , n\), if \(j\leq k\);
+\item
+  part 5. states that the sum of the sample variances is equal to the trace of \(\boldsymbol S\);
+\item
+  and part 6. states that the product of the sample variances is equal to the determinant of \(\boldsymbol S\).
+\end{itemize}
+
+From these properties we say that a proportion
+\[\frac{\lambda_j}{\lambda_1 + \ldots + \lambda_p}\]
+of the variability in the sample is `explained' by the \(j\)th PC.
+
+For the G11PRB and G11STA data above,
+\[\frac{\lambda_1}{\lambda_1 + \lambda_2} = \frac{304.24}{304.24+33.16} = 0.90,\]
+so 90\% of the variability in the sample is explained by the 1st PC.
+
+```\{Example\} We can apply PCA to a football league table where \(W\), \(D\), \(L\) are the number of matches won, drawn and lost and \(F\) and \(A\) are the goals scored for and against. An extract of the table for a recent Premiership season is:
+FIX FIX
+
+\begin{tabular}{lrrrrr}
+\toprule
+Team & W & D & L & F & A\\
+\midrule
+Chelsea & 27 & 5 & 6 & 103 & 32\\
+Manchester United & 27 & 4 & 7 & 86 & 28\\
+Arsenal & 23 & 6 & 9 & 83 & 41\\
+Tottenham Hotspur & 21 & 7 & 10 & 67 & 41\\
+Manchester City & 18 & 13 & 7 & 73 & 45\\
+\bottomrule
+\end{tabular}
+
+The sample mean vector is
+
+\[\bar{\boldsymbol x} =\begin{pmatrix}14.2 \\9.6 \\14.2 \\52.6 \\52.6 \\\end{pmatrix}\]
+
+and the sample covariance matrix is
+
+\begin{equation}
+\boldsymbol S= \begin{pmatrix}39.4&-8.27&-31.1&116&-81.9 \\-8.27&8.14&0.13&-29.4&6.01 \\-31.1&0.13&31&-86.3&75.9 \\116&-29.4&-86.3&392&-209 \\-81.9&6.01&75.9&-209&231 \\\end{pmatrix}
+\label{eq:PLES}
+\end{equation}
+
+The eigenvalues of \(\boldsymbol S\) are
+\[\boldsymbol \Lambda= \text{diag}\begin{pmatrix}631&96.7&8.83&2.44&-4.97e-14 \\\end{pmatrix}\]
+
+Note that we have a zero eigenvalue because one of our variables is a linear combination of the other variables, \(L = 38 - W - D\). The corresponding eigenvectors are
+\[\boldsymbol Q= [\boldsymbol q_1 \ldots \boldsymbol q_5] =\begin{pmatrix}0.251&-0.0133&-0.116&0.768&0.577 \\-0.0477&-0.146&0.74&-0.309&0.577 \\-0.204&0.16&-0.624&-0.459&0.577 \\0.776&0.582&0.0674&-0.234&-2e-15 \\-0.539&0.784&0.213&0.222&1.83e-15 \\\end{pmatrix}\]
+
+The proportion of variability explained by each of the PCs is:
+\[
+\begin{pmatrix}0.854&0.131&0.012&0.0033&-6.73e-17 \\\end{pmatrix}
+\]
+
+There is no point computing the scores for PC 5 because PC5 does not explain any of the variability in the data. Similarly, there is little value in computing the scores for PCs 3 \& 4 because they only account for 1.5\% of the variability in the data.
+
+We can, therefore, choose to compute only the first two PC scores. We are reducing the dimension of our data set from \(p=5\) to \(p=2\) while still retaining 98.5\% of the variability. The first PC is given by:
+\begin{align*}
+y_{i1} &= 0.25(W_i-\bar{W}) +-0.05(D_i-\bar{D}) +-0.2(L_i-\bar{L})\\
+& \qquad +0.78(F_i-\bar{F}) +-0.54(A_i-\bar{A}),
+\end{align*}
+and similarly for PC 2.
+
+The first five rows of our revised ``league table'' are now
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lrr}
+\toprule
+Team & PC1 & PC2\\
+\midrule
+Chelsea & 55.3 & 12.3\\
+Manchester United & 44.1 & -0.4\\
+Arsenal & 33.3 & 8.1\\
+Tottenham Hotspur & 20.1 & -1.2\\
+Manchester City & 22.2 & 4.1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Now that we have reduced the dimension to \(p=2\), we can visualise the differences between the teams.
+
+\includegraphics{04-pca_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+We might interpret the PCs as follows. The first PC seems to measure overall performance. It rewards teams with 0.78 for every goal they score and 0.25 for every match they win, while penalising them by 0.54 for every goal they concede, 0.2 for every match they lose and 0.05 for every match they draw.
+
+We could, therefore, rank teams by PC 1 and compare this with the rankings using 3 points for a win and 1 point for a draw. The rankings are the same for the top three teams but differ below that. Under our system Wigan would be relegated in place of Portsmouth.
+
+The second PC has a strong negative loading for both goals for and against. A team with a large negative PC 2 score was, therefore, involved in matches with lots of goals. We could, therefore, interpret PC 2 as an ``entertainment'' measure, ranking teams according to their involvement in high-scoring games.
+
+The above example raises the question of how many PCs should we use in practice. If we reduce the dimension to \(p=1\) then we can rank observations and analyse our new variable with univariate statistics. If we reduce the dimension to \(p=2\) then it is still easy to visualise the data. However, reducing the dimension to \(p=1\) or \(p=2\) may involve losing lots of information and a sensible answer should depend on the objectives of the analysis and the data itself.
+
+One tool for looking at the contributions of each PC is to look at the \textbf{scree graph} which plots the percentage of variance explained by PC \(j\) against \(j\). The scree graph for the football example is:
+
+\includegraphics{04-pca_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+Possible methods for choosing the number of PCs include:
+
+\begin{itemize}
+\tightlist
+\item
+  retain enough PCs to explain, say, 90\% of the total variation;
+\item
+  retain PCs where the eigenvalue is above the average.
+\end{itemize}
+
+For the football example, the first method would retain 2 PCs whereas the second method would only retain 1 PC.
+
+```
+
+\hypertarget{population-pca}{%
+\section{Population PCA}\label{population-pca}}
+
+So far we have considered sample PCA based on the sample covariance matrix
+\[
+\boldsymbol S=\frac{1}{n}\sum_{i=1}^n (\boldsymbol x_i-\bar{\boldsymbol x})(\boldsymbol x_i-\bar{\boldsymbol x})^\top.
+\]
+
+We note now that there is a \emph{population} analogue of PCA based on the population
+covariance matrix \(\boldsymbol \Sigma\). Although the population version of PCA is not of as much direct practical
+relevance as sample PCA, it is nevertheless of conceptual importance.
+
+Let \(\boldsymbol x\) denote a \(p \times 1\) random vector with \(E(\boldsymbol x)={\pmb \mu}\) and \(\text{Var}(\boldsymbol x)={\pmb \Sigma}\). As defined,
+\(\pmb \mu\) is the population mean vector and \(\pmb \Sigma\) is the population covariance matrix.
+
+Since \(\pmb \Sigma\) is symmetric, the spectral decomposition theorem tells us that
+\[
+{\pmb \Sigma}=\sum_{j=1}^p \check{\lambda}_j \check{\boldsymbol q}_j \check{\boldsymbol q}_j^\top=\check{\boldsymbol Q} \check{\boldsymbol \Lambda}\check{\boldsymbol Q}^\top
+\]
+where the `check' symbol \(\quad \check{} \quad\) is used to distinguish population quantities from their sample analogues.
+
+Then:
+
+\begin{itemize}
+\tightlist
+\item
+  the first population PC is defined by \(Y_1=\check{\boldsymbol q}_1^\top (\boldsymbol x-{\pmb \mu})\);
+  -the second population PC is defined by \(Y_2=\check{\boldsymbol q}_2^\top (\boldsymbol x-{\pmb \mu})\);
+\item
+  \$ldots\$
+\item
+  the \(p\)th population PC is defined by \(Y_p=\check{\boldsymbol q}_p^\top (\boldsymbol x-{\pmb \mu})\).
+\end{itemize}
+
+The \(Y_1, \ldots , Y_p\) are random variables, unlike the sample PCA case, where the \(y_{ij}\) are observed quantities.
+In the sample PCA case, the \(y_{ij}\) can often be regarded as the observed values of random variables.
+
+In matrix form, the above definitions can be summarised by writing
+\[
+\boldsymbol y=\begin{pmatrix} Y_1 \\ Y_2 \\ ... \\...\\Y_p   \end{pmatrix} = \check{\boldsymbol Q}^\top (\boldsymbol x-{\pmb \mu}).
+\]
+
+The population PCA analogues of the 6 sample PCA properties listed in Proposition \ref{prp:pca2} are now given. Note that the
+\(Y_j\)'s are random variables as opposed to observed values of random variables.
+
+\begin{proposition}
+\protect\hypertarget{prp:pca3}{}{\label{prp:pca3} }The following results hold for the random variables \(Y_1, \ldots , Y_p\) defined above.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(E(Y_j)=0\) for \(j=1, \ldots , p\);\textbackslash{}
+\item
+  \(\text{Var}(Y_j)=\check{\lambda}_j\) for \(j=1,\ldots, p\);\textbackslash{}
+\item
+  \(\text{Cov}(Y_j,Y_k)=0\) if \(j \neq k\);\textbackslash{}
+\item
+  \(\text{Var}(Y_1) \geq \text{Var}(Y_2) \geq \cdots \geq \text{Var}(Y_p) \geq 0\);\textbackslash{}
+\item
+  \(\sum_{j=1}^p \text{Var}(Y_j)=\sum_{j=1}^p \check{\lambda}_j=\text{tr}(\boldsymbol \Sigma)\);\textbackslash{}
+\item
+  \(\prod_{j=1}^p \text{Var}(Y_j)=\prod_{j=1}^p \check{\lambda}_j=\vert \boldsymbol \Sigma\vert\).
+\end{enumerate}
+\end{proposition}
+
+Note that, defining \(\boldsymbol y=(Y_1, \ldots , Y_p)^\top\) as before, part 1. implies that \(E(\boldsymbol y)={\mathbf 0}_p\) and parts 2. and 3. together imply that
+\[
+\text{Var}(\boldsymbol y)=\boldsymbol \Lambda\equiv \text{diag}(\check{\lambda}_1, \ldots , \check{\lambda}_p).
+\]
+
+\begin{example}
+\protect\hypertarget{exm:unnamed-chunk-11}{}{\label{exm:unnamed-chunk-11} }Suppose
+\[
+\boldsymbol \Sigma=\mathbf I_p+ \delta {\mathbf 1}_p {\mathbf 1}_p^\top,
+\]
+where \(\delta>0\). What is the proportion of variability explained by the first PC? Since \(\delta>0\), the largest eigenvalue is \(\lambda_1=1+p\delta\) which is achieved when \(\check{\boldsymbol q}_1\) is the unit vector \(p^{-1/2}{\mathbf 1 }_p\). This and related examples are dealt with in more detail in the example sheets.
+\end{example}
+
+Consider now a repeated sampling framework in which we assume that \(\boldsymbol x_1, \ldots , \boldsymbol x_n\) are IID random vectors from a population
+with mean vector \(\pmb \mu\) and covariance matrix \(\boldsymbol \Sigma\).
+
+What is the relationship between the sample PCA based on the sample of observed vectors \(\boldsymbol x_1, \ldots , \boldsymbol x_n\), and the population PCA based on the unobserved random vector \(\boldsymbol x\),
+from the same population?
+
+Assuming \(n\) is large, and the elements of \(\boldsymbol \Sigma\) are all finite, the elements of the sample covariance matrix \(\boldsymbol S\) will be close with high probability to the corresponding elements
+of the population covariance matrix \(\boldsymbol \Sigma\). Justification of this statement comes from the weak law of large numbers applied to the components of \(\Sigma\) (details omitted).
+
+Consequently, when \(n\) is large, sample PCA and the corresponding population PCA may be expected to give similar results.
+
+\hypertarget{an-alternative-derivation-of-pca}{%
+\section{An Alternative Derivation of PCA}\label{an-alternative-derivation-of-pca}}
+
+Consider a sample \(\boldsymbol x_1, \ldots , \boldsymbol x_n \in \mathbb{R}^p\).
+
+Recall from \S2.8 that any line in \(\mathbb{R}^p\) may be written in the form
+\(\{\boldsymbol a+u \boldsymbol b: \, u \in \mathbb{R}\}\) where \(\boldsymbol a, \boldsymbol b\in \mathbb{R}^p\) are
+fixed.
+
+Here we consider the following problem: \emph{find the best-fitting line to the sample}
+\(\boldsymbol x_1, \ldots , \boldsymbol x_n\).
+
+We first formulate this problem more precisely. Define the function
+\begin{align*}
+F(\boldsymbol a, \boldsymbol b; u_1, \ldots , u_n)&=\sum_{i=1}^n \vert \vert \boldsymbol x_i - \boldsymbol a- u_i \boldsymbol b\vert \vert^2\\
+& =\sum_{i=1}^n (\boldsymbol x_i - \boldsymbol a-u_i \boldsymbol b)^\top (\boldsymbol x_i - \boldsymbol a-u_i \boldsymbol b).
+\end{align*}
+
+We wish to solve the following problem:
+\begin{align}
+&\textit{minimise $F(\boldsymbol a, \boldsymbol b; u_1, \ldots , u_n)$ subject to the}\nonumber \\
+&\textit{constraints that $\boldsymbol a$ and $\boldsymbol b$ are orthogonal, i.e. $\boldsymbol a^\top \boldsymbol b=0$,}\label{eq:linemanager}\\
+&\textit{and $\boldsymbol b$ is a unit vector, i.e. $\vert \vert \boldsymbol b\vert \vert =1$.} \nonumber
+\end{align}
+
+\begin{theorem}
+\protect\hypertarget{thm:unnamed-chunk-12}{}{\label{thm:unnamed-chunk-12} }The solution to optimisation problem \eqref{eq:linemanager}
+is given by
+\begin{equation}
+\hat{\boldsymbol a}=\left ({\mathbf I}_p-\boldsymbol q_1 \boldsymbol q_1^\top\right)\bar{\boldsymbol x}, \quad \hat{\boldsymbol b}= \boldsymbol q_1 \quad
+\hbox{and} \quad \hat{u}_i=\boldsymbol x_i^\top \boldsymbol q_1, \quad i=1,\ldots , n,
+\label{eq:hatitems}
+\end{equation}
+where \(\bar{\boldsymbol x}=n^{-1}\sum_{i=1}^n \boldsymbol x_i\) is the sample mean and the unit vector \(\boldsymbol q_1\) is the direction of the first sample PC.
+\end{theorem}
+
+Note that the quantities \(u_i -\bar{u}=\boldsymbol q_1^\top (\boldsymbol x_i-\bar{\boldsymbol x})\) are the PC scores associated with the first PC.
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}The proof is broken into two steps.
+
+\textbf{Step 1}. In Step 1, we want to minimise \(F(\boldsymbol a, \boldsymbol b; u_1,\ldots, u_n)\) subject to the constraint \(\boldsymbol a^\top \boldsymbol b=0\), with \(\boldsymbol b\) an arbitrary \emph{fixed} unit vector in \(\mathbb{R}^p\). So we introduce a Lagrangian term for the constraint \(\boldsymbol a^\top \boldsymbol b=0\) and minimise
+\[
+\bar{F}(\boldsymbol a; u_1,\ldots ,  u_n; \gamma)
+ \equiv \left \{\sum_{i=1}^n (\boldsymbol x_i -\boldsymbol a-u_i\boldsymbol b)^\top
+(\boldsymbol x_i-\boldsymbol a-u_i\boldsymbol b)\right \}+ \gamma \boldsymbol a^\top \boldsymbol b
+\]
+over \(\boldsymbol a\), \(u_1, \ldots , u_n\) and \(\gamma\). Then, for \(i=1, \ldots , n\),
+\begin{equation}
+\frac{\partial \bar{F}}{\partial u_i}=-2\boldsymbol b^\top (\boldsymbol x_i-\boldsymbol a-u_i\boldsymbol b);
+\label{eq:barF1}
+\end{equation}
+\begin{align}
+\frac{\partial \bar{F}}{\partial \boldsymbol a}&=-2\left \{\sum_{i=1}^n (\boldsymbol x_i -\boldsymbol a-u_i\boldsymbol b)\right \}+\gamma \boldsymbol b\nonumber\\
+&=-2n\{\bar{\boldsymbol x}-\boldsymbol a-(\bar{u}+\gamma/(2n))\boldsymbol b\},
+\label{eq:barF2}
+\end{align}
+where \(\bar{u}=n^{-1}\sum_{i=1}^n u_i\); and
+\begin{equation}
+\frac{\partial \bar{F}}{\partial \gamma}=\boldsymbol a^\top \boldsymbol b.
+\label{eq:barF3}
+\end{equation}
+Setting the partial derivatives \eqref{eq:barF1}, \eqref{eq:barF2} and @ref(eq:barF3\}) to zero,
+\[
+\frac{\partial \bar{F}}{\partial \gamma} =0 \implies \hat{\boldsymbol a}^\top \boldsymbol b=0;
+\]
+\begin{equation}
+\frac{\partial \bar{F}}{\partial u_i}=0 \implies \hat{u}_i=\boldsymbol b^\top \boldsymbol x_i,
+\label{eq:uhat}
+\end{equation}
+and therefore
+\begin{equation}
+\bar{\hat{u}}\equiv n^{-1} \sum_{i=1}^n \hat{u}_i=\boldsymbol b^\top \bar{\boldsymbol x};
+\label{eq:barlambda}
+\end{equation}
+and
+\[
+\frac{\partial \bar{F}}{\partial \boldsymbol a}={\mathbf 0}_p \implies \hat{\boldsymbol a}=\bar{\boldsymbol x}-\{\bar{\hat{u}}+\hat{\gamma}/(2n)\}\boldsymbol b.
+\]
+Using \eqref{eq:barlambda} and the fact that \(\boldsymbol b^\top \hat{\boldsymbol a}=0\), it follows that
+\[
+0=\boldsymbol b^\top \hat{\boldsymbol a} =\boldsymbol b^\top [\bar{\boldsymbol x}-\{\hat{\bar{u}}+\hat{\gamma}/(2n)\}\boldsymbol b]=\boldsymbol b^\top \bar{\boldsymbol x}-\boldsymbol b^\top \bar{\boldsymbol x}
++\hat{\gamma}/(2n),
+\]
+which implies that \(\hat{\gamma}=0\). Consequently,
+\begin{equation}
+\hat{\boldsymbol a}=\bar{\boldsymbol x}-\bar{\hat{u}}\boldsymbol b=\bar{\boldsymbol x}-\boldsymbol b\boldsymbol b^\top \bar{\boldsymbol x}=\left ( \mathbf I_p-\boldsymbol b\boldsymbol b^\top \right ) \bar{\boldsymbol x};
+\label{eq:bahat}
+\end{equation}
+and so
+\begin{align}
+&\bar{F}(\hat{\boldsymbol a}; \hat{u}_1, \ldots, \hat{u}_n; \hat{\gamma})\\
+&=\sum_{i=1}^n (\boldsymbol x_i-\hat{\boldsymbol a}-\hat{u_i} \boldsymbol b)^\top (\boldsymbol x_i -\hat{\boldsymbol a}-\hat{u}_i\boldsymbol b)\nonumber \\
+&=\sum_{i=1}^n \left \{\boldsymbol x_i-({\mathbf I}_p-\boldsymbol b\boldsymbol b^\top)\bar{\boldsymbol x}- \boldsymbol b\boldsymbol b^\top \boldsymbol x_i \right \}^\top \left \{\boldsymbol x_i -({\mathbf I}_p-\boldsymbol b\boldsymbol b^\top)\bar{\boldsymbol x} -\boldsymbol b\boldsymbol b^\top \boldsymbol x_i\right \}\nonumber \\
+&\sum_{i=1}^n (\boldsymbol x_i -\bar{\boldsymbol x})^\top ({\mathbf I}_p -\boldsymbol b\boldsymbol b^\top)^2 (\boldsymbol x_i -\bar{\boldsymbol x})\nonumber \\
+&= n \text{tr}\left \{ ({\mathbf I}_p-\boldsymbol b\boldsymbol b^\top )\boldsymbol S\right \} \nonumber \\
+&=n\left \{\text{tr}(\boldsymbol S)-\boldsymbol b^\top \boldsymbol S\boldsymbol b\right\},
+\label{eq:object37}
+\end{align}
+where \(\boldsymbol S\) is the sample covariance of the \(\boldsymbol x_i\).
+
+\textbf{Step 2.} We now minimise \eqref{eq:object37} over unit vectors \(\boldsymbol b\in \mathbb{R}^p\). But minimising \eqref{eq:object37} is equivalent to maximising \(\boldsymbol b^\top \boldsymbol S\boldsymbol b\), so
+from Proposition \ref{prp:two8}, \(\hat{\boldsymbol b}= \boldsymbol q_1\), and so \(\hat{\boldsymbol a}=(\mathbf I_p-\boldsymbol q_1 \boldsymbol q_1^\top)\bar{\boldsymbol x}\) from \eqref{eq:bahat}, and
+from \eqref{eq:uhat}, \(\hat{u}_i=\boldsymbol q_1^\top \boldsymbol x_i\), \(i=1,\ldots , n\), all of which agrees with the expressions in \eqref{eq:hatitems}.\\
+\end{proof}
+
+\hypertarget{pca-under-transformations-of-variables}{%
+\section{PCA under transformations of variables}\label{pca-under-transformations-of-variables}}
+
+Let us return to the example of \(n=10\) students who studied G11PRB and G11STA. Earlier, we calculated the sample mean, sample variance matrix and the eigenvalues/vectors of \(\boldsymbol S\),
+\begin{eqnarray*}
+\bar{\boldsymbol x} = \begin{pmatrix} 62.6 \\ 66.2 \end{pmatrix}, &\quad&
+\boldsymbol S= \begin{pmatrix} 162.04 & 135.38 \\ 135.38 & 175.36 \end{pmatrix} \\
+\boldsymbol \Lambda= \begin{pmatrix} 304.24 & 0 \\ 0 & 33.16 \end{pmatrix}, &\quad&
+\boldsymbol Q= \begin{pmatrix} 0.690 & -0.724 \\ 0.724 & 0.690 \end{pmatrix}
+\end{eqnarray*}
+with PC 1 scores
+\[y_i = \boldsymbol q_1^\top (\boldsymbol x_i - \bar{\boldsymbol x}) = 0.690 (x_{1i} - \bar{x}_1) + 0.724 (x_{2i} - \bar{x}_2).\]
+
+We now consider what happens to the above quantities under various transformations of the \(\boldsymbol x_i\), the \(2 \times 1\)
+response vectors.
+
+\textbf{Addition transformation}
+
+Firstly, we consider the transformation of addition where, for example, the G11PRB lecturer decides to add 5 marks for all the students. We can write this transformation as \(\boldsymbol z_i = \boldsymbol x_i + \boldsymbol c\), where \(\boldsymbol c\) is a fixed vector. Under this transformation the sample mean changes, \(\bar{\boldsymbol z} = \bar{\boldsymbol x} + \boldsymbol c\), but the sample variance remains \(\boldsymbol S\). Consequently, the eigenvalues and eigenvectors of \(\boldsymbol S\) remain the same and, therefore, so does the PC 1 score,
+\[y_i = \boldsymbol q_1^\top (\boldsymbol z_i - \bar{\boldsymbol z}) = \boldsymbol q_1^\top(\boldsymbol x_i + \boldsymbol c- (\bar{\boldsymbol x} + \boldsymbol c)) = \boldsymbol q_1^\top (\boldsymbol x_i - \bar{\boldsymbol x}).\]
+We say that the principal components are \textbf{invariant} under the addition transformation. An important special case is to choose \(\boldsymbol c= -\bar{\boldsymbol x}\) so that the PC 1 score is simply \(y_i = \boldsymbol q_1^\top \boldsymbol z_i\).
+
+\textbf{Scale transformation}
+
+Secondly, we consider the scale transformation where, for example, the G11PRB lecturer decides to double the marks for all students. A scale transformation occurs more naturally when we convert units of measurement from, say, metres to kilometres. We can write this transformation as \(\boldsymbol z_i = \boldsymbol D\boldsymbol x_i\), where \(\boldsymbol D\) is a diagonal matrix with positive elements. Under this transformation the sample mean changes from \(\bar{\boldsymbol x}\) to \(\bar{\boldsymbol z} = \boldsymbol D\bar{\boldsymbol x}\), and the sample covariance matrix changes from \(\boldsymbol S\) to \(\boldsymbol D\boldsymbol S\boldsymbol D\). Consequently, the principal components also change.
+
+This lack of scale-invariance is undesirable. One solution is to choose
+\[
+\boldsymbol D= \text{diag}(s_{11}^{-1/2}, \ldots , s_{pp}^{-1/2}),
+ \]
+where \(s_{ii}\) is the \(i\)th diagonal element of \(\boldsymbol S\). In effect, we have standardised all the new variables to have variance 1. In this case the sample covariance matrix of the \(\boldsymbol z_i\)'s is simply the sample correlation matrix of the original variables, \(\boldsymbol x_i\). Therefore, we can carry out PCA on the sample correlation matrix, \(\boldsymbol R\), which is invariant to changes of scale.
+
+In summary: \(\boldsymbol R\) is scale-invariant while \(\boldsymbol S\) is not.
+
+\begin{example}
+\protect\hypertarget{exm:unnamed-chunk-14}{}{\label{exm:unnamed-chunk-14} }For the G11PRB/G11STA data, we choose
+\[
+\boldsymbol D= \text{diag}(162.04,175.36)^{-1/2} = \text{diag}(0.079,0.076)
+\]
+so that \(\boldsymbol z_i = \boldsymbol D\boldsymbol x_i\).
+The sample correlation matrix is then
+\begin{align*}
+\boldsymbol R&= \boldsymbol D\boldsymbol S\boldsymbol D\\
+ &= \begin{pmatrix} 0.079 & 0 \\ 0 & 0.076 \end{pmatrix}
+\begin{pmatrix} 162.04 & 135.38 \\ 135.38 & 175.36 \end{pmatrix}
+\begin{pmatrix} 0.079 & 0 \\ 0 & 0.076 \end{pmatrix} \\
+&= \begin{pmatrix} 1.000 & 0.803 \\ 0.803 & 1.000 \end{pmatrix}.
+\end{align*}
+The eigenvalues and eigenvectors of \(\boldsymbol R\) are then
+\[\boldsymbol \Lambda= \begin{pmatrix} 1.803 & 0 \\ 0 & 0.197 \end{pmatrix}, \qquad
+\boldsymbol Q= \begin{pmatrix} 0.707 & 0.707 \\ 0.707 & -0.707 \end{pmatrix},\]
+and the PC 1 score is
+\begin{eqnarray*}
+y_i &=& \boldsymbol q_1^\top (\boldsymbol z_i - \bar{\boldsymbol z}) = \boldsymbol q_1^\top \boldsymbol D(\boldsymbol x_i - \bar{\boldsymbol x}) \\
+&=& 0.707 \times 0.079 (x_{1i} - \bar{x}_1) + 0.707 \times 0.076 (x_{2i} - \bar{x}_2).
+\end{eqnarray*}
+
+In the example above, there is little difference between using \(\boldsymbol S\) and \(\boldsymbol R\) for the PCA because the variances for G11PRB and G11STA are similar. In other cases, particularly when the variables are measured on wildly different scales, the difference will be notable. For example, in the football data the sample variances of \(F\) and \(A\) are much larger than the sample variances of \(W\), \(D\) and \(L\).
+\end{example}
+
+\textbf{Orthogonal transformation}
+
+Thirdly, we consider a transformation by an orthogonal matrix, \(\stackrel{p \times p}{\boldsymbol A}\), such that \(\boldsymbol A\boldsymbol A^\top = \boldsymbol A^\top \boldsymbol A= \mathbf I_p\), and write \(\boldsymbol z_i = \boldsymbol A\boldsymbol x_i\). This is equivalent to rotating and/or reflecting the original data.
+
+Let \(\boldsymbol S\) be the sample covariance matrix of the \(\boldsymbol x_i\) and let \(\boldsymbol T\) be the sample covariance matrix of the \(\boldsymbol z_i\). Under this transformation the sample mean changes from \(\bar{\boldsymbol x}\) to \(\bar{\boldsymbol z} = \boldsymbol A\bar{\boldsymbol x}\), and the sample covariance matrix \(\boldsymbol S\) changes from \(\boldsymbol S\) to \(\boldsymbol T= \boldsymbol A\boldsymbol S\boldsymbol A^\top\).
+
+However, if we write \(\boldsymbol S\) in terms of its spectral decomposition \(\boldsymbol S= \boldsymbol Q\boldsymbol \Lambda\boldsymbol Q^\top\), then \(\boldsymbol T= \boldsymbol A\boldsymbol Q\boldsymbol \Lambda\boldsymbol Q^\top \boldsymbol A^\top = \boldsymbol B\boldsymbol \Lambda\boldsymbol B^\top\) where \(\boldsymbol B= \boldsymbol A\boldsymbol Q\) is also orthogonal. It is therefore apparent that the eigenvalues of \(\boldsymbol T\) are the same as those of \(\boldsymbol S\); and the eigenvectors of \(\boldsymbol T\) are given by \(\boldsymbol b_j\) where \(\boldsymbol b_j = \boldsymbol A\boldsymbol q_j\), \(j=1,\ldots,p\). The PC 1 scores of the transformed variables are
+\[ y_i = \boldsymbol b_1^\top (\boldsymbol z_i - \bar{\boldsymbol z}) = \boldsymbol q_1^\top \boldsymbol A^\top \boldsymbol A(\boldsymbol x_i - \bar{\boldsymbol x}) = \boldsymbol q_1^\top (\boldsymbol x_i - \bar{\boldsymbol x}),\]
+and so they are identical to the PC 1 scores of the original variables.
+
+Therefore, under an orthogonal transformation the eigenvalues and PC scores are unchanged and the PCs are orthogonal transformations of the original PCs. We say that the principal components are \textbf{equivariant} with respect to orthogonal transformations.
+
+\begin{example}
+\protect\hypertarget{exm:unnamed-chunk-15}{}{\label{exm:unnamed-chunk-15} }Suppose we rotate the G11PRB/G11STA data by the matrix \(\boldsymbol A= \begin{pmatrix} 0.866 & -0.500 \\ 0.500 & 0.866 \end{pmatrix}\). The sample covariance matrix of the rotated data is
+\begin{align*}
+\boldsymbol T&= \boldsymbol A\boldsymbol S\boldsymbol A^\top\\
+&= \begin{pmatrix} 0.866 & -0.500 \\ 0.500 & 0.866 \end{pmatrix}
+\begin{pmatrix} 162.04 & 135.38 \\ 135.38 & 175.36 \end{pmatrix}
+\begin{pmatrix} 0.866 & 0.500 \\ -0.500 & 0.866 \end{pmatrix} \\
+&= \begin{pmatrix} 48.13 & 61.92 \\ 61.92 & 289.27 \end{pmatrix}.
+\end{align*}
+The eigenvalues of \(\boldsymbol T\) are \(304.24\) and \(33.16\) (same as for \(\boldsymbol S\)). The eigenvectors of \(\boldsymbol T\) are then
+\begin{eqnarray*}
+\boldsymbol B&=& \boldsymbol A\boldsymbol Q= \begin{pmatrix} 0.866 & -0.500 \\ 0.500 & 0.866 \end{pmatrix} \begin{pmatrix} 0.690 & -0.724 \\ 0.724 & 0.690 \end{pmatrix} \\
+&=& \begin{pmatrix} 0.235 & -0.972 \\ 0.972 & 0.235 \end{pmatrix}
+\end{eqnarray*}
+and the PC 1 scores are unchanged.
+\end{example}
+
+\hypertarget{pca-based-on-boldsymbol-s-versus-pca-based-on-boldsymbol-r}{%
+\section{\texorpdfstring{PCA based on \(\boldsymbol S\) versus PCA based on \(\boldsymbol R\)}{PCA based on \textbackslash{}boldsymbol S versus PCA based on \textbackslash{}boldsymbol R}}\label{pca-based-on-boldsymbol-s-versus-pca-based-on-boldsymbol-r}}
+
+Recall the distinction between the sample covariance matrix \(\boldsymbol S\) and the sample correlation matrix \(\boldsymbol R\).
+
+Note that all correlation matrices are also covariance matrices, but not all covariance matrices are correlation matrices.
+
+So in practice we have a choice of using \(\boldsymbol S\) or \(\boldsymbol R\) for PCA. As we have seen, PCA based on \(\boldsymbol R\) is scale invariant, but PCA based on \(\boldsymbol S\) is not; while PCA based on \(\boldsymbol S\) is invariant (eigenvalues and PC scores) and equivariant (eigenvectors) under orthogonal transformation, whereas \(\boldsymbol R\) is not.
+
+This raises the important practical question: for a given dataset, should we use PCA based on \(\boldsymbol S\) or \(\boldsymbol R\)?
+
+If the \(p\) variables represent very different types of quantity or show marked differences in variances, then it will usually be better to use \(\boldsymbol R\) rather than \(\boldsymbol S\). However, in some circumstances, we may wish to use \(\boldsymbol S\), such as when the \(p\) variables are measuring similar entities and the sample variances are not too different.
+
+Bearing in mind that the required numerical calculations are so easy to perform in R, we might wish to do it both ways and see if it makes much difference.
+
+\hypertarget{cca}{%
+\chapter{Canonical Correlation Analysis}\label{cca}}
+
+Suppose we observe a random sample of \(n\) bivariate observations
+\[
+\boldsymbol z_1=(x_1,y_1)^\top , \ldots , \boldsymbol z_n=(x_n,y_n)^\top.
+\]
+If we are interested in exploring possible dependence between the \(x_i\)'s and \(y_i\)'s then among the first things we would do would be to obtain a scatterplot of the \(x_i\)'s against the \(y_i\)'s and calculate the correlation coefficient. Recall that the sample correlation coefficient is defined by
+\begin{equation}
+r=r[x,y]=\frac{n^{-1}\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{\left ( n^{-1}\sum_{i=1}^n (x_i-\bar{x})^2  \right )^{1/2}  \left ( n^{-1}\sum_{i=1}^n (y_i-\bar{y})^2 \right )^{1/2}}
+\label{eq:scr}
+\end{equation}
+where \(\bar{x}=n^{-1}\sum_{i=1}^n x_i\) and \(\bar{y}=n^{-1}\sum_{i=1}^n y_i\) are the sample means. Note that the sample correlation is a \textbf{scale-free measure} of the strength of \textbf{linear dependence} between the \(x_i\)'s and the \(y_i\)'s.
+
+In this chapter we investigate the multivariate analogue of this question. Suppose
+\[
+\boldsymbol z_i =(\boldsymbol x_i^\top,\boldsymbol y_i^\top)^\top, \qquad i=1,\ldots, n,
+\]
+is a random sample of vectors. What is a sensible way to assess and describe the strength of the linear dependence between the \(\boldsymbol x_i\) vectors and the \(\boldsymbol y_i\) vectors? That is what this chapter is about. A key role is played by the singular valued decomposition (SVD) introduced in Result 2.13 in Chapter 2.
+
+\begin{example}
+\protect\hypertarget{exm:prem}{}{\label{exm:prem} }From time to time we will return to the Premier League example in this chapter. We shall treat \(W\) and \(D\), the number of wins and draws, respectively, as the \(x\)-variables; and \(F\) and \(A\), the number of goals for and against, will be treated as the \(y\)-variables. The number of losses, \(L\), is omitted as it provides no additional information when we know \(W\) and \(D\). A question we shall consider is: how strongly associated are the match outcome variables, \(W\) and \(D\), with the goals for and against variables, \(F\) and \(A\)?
+\end{example}
+
+\hypertarget{canonical-correlation-analysis}{%
+\section{Canonical Correlation Analysis}\label{canonical-correlation-analysis}}
+
+Assume we are given a random sample of vectors
+\[
+\boldsymbol z_i=(\boldsymbol x_i^\top , \boldsymbol y_i^\top )^\top: \, i=1,\ldots, n,
+\]
+where
+the \(\boldsymbol x_i\) are \(p \times 1\), the \(\boldsymbol y_i\) are \(q \times 1\) and, consequently, the \(\boldsymbol z_i\) are \((p+q)\times 1\). We are interested in determining the strength of linear association between the \(\boldsymbol x_i\) vectors and the \(\boldsymbol y_i\) vectors.
+
+Write
+\[
+\bar{\boldsymbol z}=n^{-1}\sum_{i=1}^n \boldsymbol z_i, \qquad \bar{\boldsymbol x}=n^{-1} \sum_{i=1}^n \boldsymbol x_i \qquad \text{and} \qquad \bar{\boldsymbol y}=n^{-1}\sum_{i=1}^n \boldsymbol y_i
+\]
+for the sample mean vectors of the \(\boldsymbol z_i\), \(\boldsymbol x_i\) and \(\boldsymbol y_i\) respectively.
+
+We formulate this task as an optimisation problem (cf.~PCA). First, we introduce some notation. Let \(\boldsymbol S_{\boldsymbol z\boldsymbol z}\) denote the sample covariance matrix of the \(\boldsymbol z_i\), \(i=1,\ldots, n\). Then \(\boldsymbol S_{\boldsymbol z\boldsymbol z}\) can be written in block matrix form
+\[
+\boldsymbol S_{\boldsymbol z\boldsymbol z}=\left [\begin{array}{cc}
+\boldsymbol S_{\boldsymbol x\boldsymbol x} & \boldsymbol S_{\boldsymbol x\boldsymbol y}\\
+\boldsymbol S_{\boldsymbol y\boldsymbol x} & \boldsymbol S_{\boldsymbol y\boldsymbol y} \end{array} \right ],
+\]
+where \(\boldsymbol S_{\boldsymbol x\boldsymbol x}\) (\(p \times p\)) is the sample covariance matrix of the \(\boldsymbol x_i\), \(\boldsymbol S_{\boldsymbol y\boldsymbol y}\) (\(q \times q\)) is the sample covariance of the \(\boldsymbol y_i\), and the cross-covariance matrices are given by
+\[
+\stackrel{p \times q}{\boldsymbol S}_{\boldsymbol x\boldsymbol y}=n^{-1} \sum_{i=1}^n (\boldsymbol x_i -\bar{\boldsymbol x})(\boldsymbol y_i-\bar{\boldsymbol y})^\top
+\qquad \text{and} \qquad \stackrel{q \times p}{\boldsymbol S}_{\boldsymbol y\boldsymbol x}=\boldsymbol S_{\boldsymbol x\boldsymbol y}^\top.
+\]
+
+\textbf{Example \ref{exm:prem} (continued)}. The relevant covariance matrix here is given in \eqref{eq:PLES},
+but we need to delete the middle row and middle column because this relates to the variable \(L\), the number of losses,
+which we are omitting. So we are left with
+\begin{equation}
+\boldsymbol S_{\boldsymbol x\boldsymbol x}=\begin{pmatrix} 39.4 & -8.3\\ -8.3 & 8.1   \end{pmatrix} , \qquad
+\boldsymbol S_{\boldsymbol y\boldsymbol y}=\begin{pmatrix} 392.2 & -208.7\\ -208.7 & 230.9   \end{pmatrix}
+\label{eq:bSxy1}
+\end{equation}
+and
+\begin{equation}
+\boldsymbol S_{\boldsymbol x\boldsymbol y}=\boldsymbol S_{\boldsymbol y\boldsymbol x}^\top =
+\begin{pmatrix} 115.7  & -81.9\\ -29.4 & 6.0   \end{pmatrix}.
+\label{eq:bSxy2}
+\end{equation}
+We shall return to this example in a little while.
+
+We want to find the linear combination of the \(x\)-variables and the linear combination of the \(y\)-variables which is most highly correlated.
+
+One version of the optimisation problem we want to solve is: find non-zero vectors \(\stackrel{p \times 1}{\boldsymbol a}\) and \(\stackrel{q \times 1}{\boldsymbol b}\) which maximise the correlation coefficient
+\[
+r[\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y]=\frac{\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b}{(\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a)^{1/2}(\boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b)^{1/2}}.
+\]
+In other words:
+\begin{align}
+  &\mbox{Find non-zero vectors }\quad  \boldsymbol a\;\; (p \times 1)\mbox{ and  } \boldsymbol b\;\; (q \times 1) \nonumber\\
+  &\mbox{to maximise} \qquad  r[\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y],
+\label{eq:opt26}
+\end{align}
+
+where \(r[.,.]\) is defined in \eqref{eq:scr}.
+Intuitively, this makes sense, because we want to find the linear combination of the \(x\)-variables and the linear combination of the \(y\)-variables which are most highly correlated.
+
+However, note that for any \(\gamma>0\) and \(\delta>0\),
+\begin{equation}
+  r[\gamma\boldsymbol a^\top \boldsymbol x, \delta \boldsymbol b^\top \boldsymbol y]= \frac{\gamma \delta}{\sqrt{\gamma^2 \delta^2}}r[\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y]=r[\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y],
+  \label{eq:invar}
+  \end{equation}
+i.e. \(r[\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y]\) is invariant with respect to positive scalar multiplication of \(\boldsymbol a\) and \(\boldsymbol b\). Consequently there will be an infinite number of solutions to this optimisation problem, because if \(\boldsymbol a\) and \(\boldsymbol b\) are solutions to optimization problem \eqref{eq:opt26}, then so are \(\gamma \boldsymbol a\) and \(\delta \boldsymbol b\), for any \(\gamma>0\) and \(\delta>0\).
+
+A more useful way to formulate this optimisation problem is the following: find
+\begin{equation}
+\max_{\boldsymbol a, \boldsymbol b} \boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b
+\label{eq:opt27a}
+\end{equation}
+subject to the constraints
+\begin{equation}
+\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a=1 \qquad \text{and} \qquad \boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=1.
+\label{eq:opt27b}
+\end{equation}
+
+\begin{proposition}
+\protect\hypertarget{prp:unnamed-chunk-1}{}{\label{prp:unnamed-chunk-1} }Assume that \(\boldsymbol S_{\boldsymbol x\boldsymbol x}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}\) both are non-singular. Then the following holds.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  If \(\boldsymbol a=\hat{\boldsymbol a}\) and \(\boldsymbol b=\hat{\boldsymbol b}\) maximise \eqref{eq:opt26}, then
+  \[
+  \boldsymbol a=\check{\boldsymbol a}\equiv\hat{\boldsymbol a}/(\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\boldsymbol a})^{1/2} \qquad \text{and} \qquad
+  \boldsymbol b=\check{\boldsymbol b}\equiv \hat{\boldsymbol b}/(\hat{\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\hat{\boldsymbol b})^{1/2}
+  \]
+  maximise \eqref{eq:opt27a} subject to the constraints \eqref{eq:opt27b}. Moreover, if \(\boldsymbol a=\check{\boldsymbol a}\) and \(\boldsymbol b=\check{\boldsymbol b}\) maximise \eqref{eq:opt27a} subject to constraints
+  \eqref{eq:opt27b} then, for any \(\gamma>0\) and \(\delta>0\), \(\boldsymbol a=\gamma \check{\boldsymbol a}\) and \(\boldsymbol b=\delta \check{\boldsymbol b}\) maximise \eqref{eq:opt26}.
+\item
+  The optimum solution to \eqref{eq:opt27a} and \eqref{eq:opt27b} is obtained when \(\boldsymbol a=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf q}_1\) and \(\boldsymbol b=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2} {\mathbf r}_1\), where \(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\) has SVD
+  \begin{equation}
+  \boldsymbol A\equiv \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}= \sum_{j=1}^t \xi_j {\mathbf q}_j {\mathbf r}_j^\top \equiv {\mathbf Q}{\pmb \Xi} {\mathbf R}^\top,
+  \label{eq:svdcca}
+  \end{equation}
+  where \(\boldsymbol A\) has rank \(t\) and \(\xi_1 \geq \cdots \geq \xi_t >0\).
+\item
+  The maximum value of the correlation coefficient is given by the largest singular value \(\xi_1\).
+\end{enumerate}
+\end{proposition}
+
+Note: the matrix square roots \(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\) of \(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1}\), respectively, are defined using the definition of matrix square roots of symmetric non-negative definite matrices given in Chapter 2.
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}(i) In \eqref{eq:invar} it was noted that, for \(\boldsymbol a\neq {\mathbf 0}_p\) and \(\boldsymbol b\neq {\mathbf 0}_q\), the expression for \(r[\boldsymbol a^\top \boldsymbol x, \boldsymbol b^\top \boldsymbol y]\) is invariant when we change \(\boldsymbol a\) to \(\gamma \boldsymbol a\) and change \(\boldsymbol b\) to \(\delta \boldsymbol b\), where \(\gamma>0\) and \(\delta>0\) are scalars, so the second statement in Result 4.1(i) follows imnmdeiately. Suppose now a solution to problem \eqref{eq:opt26} is achieved when \(\boldsymbol a= \hat{\boldsymbol a}\) and \(\boldsymbol b=\hat{\boldsymbol b}\). Then, due to the invariance with respect to rescaling, the optimum is also achieved when \(\boldsymbol a=\check{\boldsymbol a}\equiv\hat{\boldsymbol a}/(\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \hat{\boldsymbol a})^{1/2}\) and \(\boldsymbol b=\check{\boldsymbol b}\equiv \hat{\boldsymbol b}/(\hat{\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y} \hat{\boldsymbol b})^{1/2}\). But by definition of \(\check{\boldsymbol a}\) and \(\check{\boldsymbol b}\), they satisfy the constraints \eqref{eq:opt27b} because
+\[
+\check{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \check{\boldsymbol a}=\frac{\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\boldsymbol a}}{\left \{ \left (\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\boldsymbol a}\right )^{1/2}\right \}^2}
+=\frac{\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\boldsymbol a}}{\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\boldsymbol a}}=1
+\]
+and, similarly,
+\[
+\check{\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y} \check{\boldsymbol b}=\frac{\hat{\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\hat{\boldsymbol b}}{\hat{\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\hat{\boldsymbol b}}=1.
+\]
+So \(\boldsymbol a=\check{\boldsymbol a}\) and \(\boldsymbol b=\check{\boldsymbol b}\) maximises \eqref{eq:opt27a} subject to the constraints \eqref{eq:opt27b}.
+
+\noindent (ii) \& (iii) We may write the constraints \eqref{eq:opt27b} as
+\[
+\tilde{\boldsymbol a}^\top \tilde{\boldsymbol a}=1 \qquad \text{and} \qquad \tilde{\boldsymbol b}^\top \tilde{\boldsymbol b}=1
+\]
+where
+\[
+\tilde{\boldsymbol a}=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2} \boldsymbol a\qquad \text{and} \qquad \tilde{\boldsymbol b}=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2}\boldsymbol b.
+\]
+
+Recall that \(\boldsymbol S_{\boldsymbol x\boldsymbol x}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}\) are assumed to be non-singular. Then, using results from Chapter 2, \(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2}\) will also be non-singular, and so
+\[
+(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2})^{-1}=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \qquad \text{and} \qquad (\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2})^{-1}=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}
+\]
+both exist and so we may write
+\[
+\boldsymbol a=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\tilde{\boldsymbol a} \qquad \text{and} \qquad \boldsymbol b=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2} \tilde{\boldsymbol b},
+\]
+and optimisation problem \eqref{eq:opt27a} subject to \eqref{eq:opt27b} becomes
+\[
+\max_{\tilde{\boldsymbol a}, \tilde{\boldsymbol b}}
+\tilde{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2} \tilde{\boldsymbol b}
+\]
+subject to
+\[
+\vert \vert \tilde{\boldsymbol a} \vert \vert =1 \qquad \text{and} \qquad \vert \vert \tilde{\boldsymbol b}\vert \vert=1.
+\]
+From the properties of the SVD, and in particular Result 2.15 in Chapter 2, we know that the maximum correlation is \(\xi_1\). Moreover, using the SVD again, this is achieved when \(\tilde{\boldsymbol a}={\mathbf q}_1\) and \(\tilde{\boldsymbol b}={\mathbf r}_1\) or, equivalently, \(\boldsymbol a=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf q}_1\) and \(\boldsymbol b=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf r}_1\).\\
+\end{proof}
+
+\textbf{Example \ref{exm:prem} (continued)}
+We now want to calculate the matrix \(\boldsymbol A\) in \eqref{eq:svdcca} and then find its singular valued decomposition. We first need to find \(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\).
+Using R to do the calculations, we obtain the following:
+\begin{align*}
+\boldsymbol S_{\boldsymbol x\boldsymbol x}&=\boldsymbol Q_{\boldsymbol x} \boldsymbol \Lambda_{\boldsymbol x} \boldsymbol Q_{\boldsymbol x}^\top\\
+&= \begin{pmatrix}  -0.970 & -0.241\\ 0.241 & -0.970 \end{pmatrix} \begin{pmatrix} 41.46 & 0 \\
+ 0 & 6.04\end{pmatrix} \begin{pmatrix} -0.970 & -0.241\\ 0.241 & -0.970  \end{pmatrix}^\top,
+\end{align*}
+and so
+\begin{align*}
+\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}&=\boldsymbol Q_{\boldsymbol x} \boldsymbol \Lambda_{\boldsymbol x}^{-1/2} \boldsymbol Q_{\boldsymbol x}^\top\\
+&= \begin{pmatrix}  -0.970 & -0.241\\ 0.241 & -0.970 \end{pmatrix} \begin{pmatrix} 41.46^{-1/2} & 0 \\
+ 0 & 6.04^{-1/2}\end{pmatrix} \begin{pmatrix} -0.970 & -0.241\\ 0.241 & -0.970  \end{pmatrix}^\top\\
+ &=\begin{pmatrix} 0.170 & 0.059\\0.059  &  0.392 \end{pmatrix};
+\end{align*}
+and, omitting details of the calculations this time,
+\[
+\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}=\boldsymbol Q_{\boldsymbol y} \boldsymbol \Lambda_{\boldsymbol y}^{-1/2} \boldsymbol Q_{\boldsymbol y}^\top=\begin{pmatrix} 0.064 & 0.030\\0.030 &  0.086 \end{pmatrix}.
+\]
+Consequently,
+\begin{align*}
+\boldsymbol A&=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\\
+&=\begin{pmatrix} 0.170 & 0.059\\0.059  &  0.392 \end{pmatrix}
+\begin{pmatrix} 115.7  & -81.9\\ -29.4 & 6.0   \end{pmatrix}
+\begin{pmatrix} 0.064 & 0.030\\0.030 &  0.086 \end{pmatrix}\\
+&=\begin{pmatrix} 0.741 & -0.628\\-0.374 &  -0.351\end{pmatrix}.
+\end{align*}
+The SVD of \(\boldsymbol A\) is given by
+\begin{align}
+\boldsymbol A&=\boldsymbol Q{\pmb \Xi} \boldsymbol R^\top \nonumber \\
+&=\begin{pmatrix} -0.997 & 0.082\\ 0.082 & 0.997   \end{pmatrix}
+\begin{pmatrix}  0.974 & 0 \\0 & 0.508 \end{pmatrix}
+\begin{pmatrix} -0.790 & -0.613\\ 0.613 & -0.790 \end{pmatrix}^\top.
+\label{eq:SVDanalysis}
+\end{align}
+So the 1st CC coefficient is \(0.974\), which is close to its maximum value of \(1\). The 1st CC weight vectors are
+given by
+\begin{align*}
+\boldsymbol a_1&=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol q_1\\
+&=\begin{pmatrix} 0.170 & 0.059\\0.059  &  0.392 \end{pmatrix} \begin{pmatrix} -0.997 \\ 0.082\end{pmatrix}\\
+&=\begin{pmatrix}  -0.165, \\ - 0.027 \end{pmatrix}.
+\end{align*}
+Similar calculations show that
+\[
+\boldsymbol b_1=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol r_1=\begin{pmatrix}  -0.032 \\ 0.029\end{pmatrix}.
+\]
+
+In order to make interpretation easier:
+
+\begin{itemize}
+\tightlist
+\item
+  We change \(\boldsymbol a_1\) to \(-\boldsymbol a_1\) and \(\boldsymbol b_1\) to \(-\boldsymbol b_1\). {[}This entails changing \(\boldsymbol q_1\) to \(-\boldsymbol q_1\) and \(\boldsymbol r_1\) to \(-\boldsymbol r_1\); note that, provided we change the sign of \textbf{both} \(\boldsymbol q_1\) and \(\boldsymbol r_1\), we do not change the matrix \(\boldsymbol A\).{]}
+\item
+  We rescale \(\boldsymbol a_1\) and \(\boldsymbol b_1\) so that they are unit vectors.
+\end{itemize}
+
+This leads to the standardised 1st CC weight vectors
+\[
+\boldsymbol a_1=\begin{pmatrix} 0.987\\0.160  \end{pmatrix} \qquad \text{and} \qquad
+\begin{pmatrix} 0.743\\ -0.670\end{pmatrix}
+\]
+and the 1st CC variables, obtained by using these weights, are
+\[
+\eta_1 =0.987*(W-\bar{W}) +0.160*(D -\bar{D})
+\]
+and
+\[
+ \psi_1 = 0.743*(F-\bar{F}) - 0.670*(A-\bar{A}),
+\]
+where the bars are used to denote sample means.
+
+We can see that \(\psi_1\) is measuring something similar to goal difference \(F-A\), as usually defined, but it gives slightly higher weight to goals scored than goals conceded (\(0.743\) versus \(0.670\)).
+
+It is also seen that \(\eta_1\) is measuring something similar to number of points \(3*W+D\), as usually defined, but the ratio of points for a win to points for a draw is somewhat higher, at around 6:1, as opposed to the usual ratio 3:1.
+
+\hypertarget{the-full-set-of-canonical-correlations}{%
+\section{The full set of canonical correlations}\label{the-full-set-of-canonical-correlations}}
+
+Let us first recap what we did in the previous section: we found the choices linear combinations of the \(x\)-variables and linear combinations of \(y\)-variables which
+maximise the correlation, and expressed the answer in terms of quantities which arise in the SVD of \(\boldsymbol A\), where
+\[
+\boldsymbol A\equiv \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}=\boldsymbol Q{\pmb \Xi} \boldsymbol R^\top=\sum_{j=1}^t \xi_j \boldsymbol q_j \boldsymbol r_j^\top,
+\]
+with \(t\) the rank of \(\boldsymbol A\), which in most examples is given by \(t=\min(p,q)\), and singular values \(\xi_1 \geq \xi_2 \geq \cdots \geq \xi_t>0\).
+Specifically, the maximum value of the correlation is \(\xi_1\), the optimal weights for the \(x\)-variables are given by \(\boldsymbol a=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol q_1=\boldsymbol a_1\), say, and
+the optimal weights for the \(y\)-varables are given by \(\boldsymbol b=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol r_1 = \boldsymbol b_1\), say.
+
+Can we repeat this process, as we did with PCA? Yes, we can. To obtain the second canonical correlation coefficient, plus the associated sets of weights, we need to solve the following optimisation problem:
+\begin{equation}
+\max_{\boldsymbol a,\, \boldsymbol b} \boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b
+\label{eq:cc2}
+\end{equation}
+subject to the constraints
+\begin{equation}
+\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a= 1, \qquad \boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=1,
+\label{eq:conny21}
+\end{equation}
+\begin{equation}
+\boldsymbol a_1^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \boldsymbol a=0 \qquad \text{and} \qquad \boldsymbol b_1^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=0.
+\label{eq:conny22}
+\end{equation}
+Note that maximising \eqref{eq:cc2} subject to \eqref{eq:conny21} is very similar to the optimisation problem \eqref{eq:opt27a} and \eqref{eq:opt27b} considered in the previous section. What is
+new are the constraints \eqref{eq:conny22}, which take into account that we have already found the first canonical correlation. If for \(j=1,2\) we write \(\tilde{\boldsymbol a}_j =\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2} \boldsymbol a_j\) and \(\tilde{\boldsymbol b}_j=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2} \boldsymbol b_j\), then it is seen from \eqref{eq:conny22} that
+\[
+\tilde{\boldsymbol a}_1^\top \tilde{\boldsymbol a}_2=0 \qquad \text{and} \qquad \tilde{\boldsymbol b}_1^\top \tilde{\boldsymbol b}_2=0.
+\]
+Consequently, we may view constraints \eqref{eq:conny22} as corresponding to orthogonality constraints (cf.~PCA) in modified coordinate systems.
+
+We now discuss the optimisation of \eqref{eq:cc2}, \eqref{eq:conny21} and \eqref{eq:conny22}. At first glance it looks complex. However, using arguments very similar to those used to prove
+Result 2.15 in Chapter 2, we may deduce the following:
+
+\begin{itemize}
+\tightlist
+\item
+  The maximum of \eqref{eq:cc2} subject to constraints \eqref{eq:conny21} and \eqref{eq:conny22} is equal to \(\xi_2\), the second largest singular value of \(\boldsymbol A\).
+\item
+  The optimal weights for the \(x\)-variables for the second canonical correlation are given by \(\boldsymbol a_2=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol q_2\).
+\item
+  The optimal weights for the \(y\)-variables for the second canonical correlation are given by \(\boldsymbol b_2=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol r_2\).
+\end{itemize}
+
+Consider now the general case of the \(k\)th canonical correlation where \(2 \leq k \leq t\). In this case we replace \eqref{eq:conny21} and \eqref{eq:conny22} by, respectively,
+\eqref{eq:connyk1} and \eqref{eq:connyk2} below, where
+\begin{equation}
+\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a= 1, \qquad \boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=1,
+\label{eq:connyk1}
+\end{equation}
+\begin{equation}
+\boldsymbol a_j^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \boldsymbol a=0 \qquad \text{and} \qquad \boldsymbol b_j^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=0, \qquad j=1, \ldots , k-1.
+\label{eq:connyk2}
+\end{equation}
+Then the optimisation problem is
+\begin{equation}
+\max_{\boldsymbol a, \, \boldsymbol b} \boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b
+\label{eq:cck}
+\end{equation}
+subject to constraints \eqref{eq:connyk1} and \eqref{eq:connyk2}. The solution in the general case is as follows.
+
+\begin{itemize}
+\tightlist
+\item
+  The maximum of \eqref{eq:cck} subject to constraints \eqref{eq:connyk1} and \eqref{eq:connyk2} is equal to \(\xi_k\), the \(k\)th largest singular value of \(\boldsymbol A\).
+\item
+  The optimal weights for the \(x\)-variables for the \(k\)th canonical correlation are given by \(\boldsymbol a_k=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol q_k\).
+\item
+  The optimal weights for the \(y\)-variables for the \(k\)th canonical correlation are given by \(\boldsymbol b_k=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol r_k\).
+\end{itemize}
+
+Terminology: we call \(\boldsymbol a_k\) and \(\boldsymbol b_k\) the \(k\)th cc (weight) vectors for the \(x\)-variables and \(y\) variables, respectively.
+
+We call \(\eta_{ik}=\boldsymbol a_k^\top (\boldsymbol x_i - \bar{\boldsymbol x})\) and \(\psi_{ik}=\boldsymbol b_k^\top (\boldsymbol y_i -\bar{\boldsymbol y})\), \(i=1, \ldots , n\), the \(k\)th cc scores for the \(x\)-variables and the \(y\)-variables, respectively.
+
+Define the CC score vectors \({\pmb \eta}_k=(\eta_{1k}, \ldots , \eta_{nk})^\top\) and \({\pmb \psi}_{k}=(\psi_{1k}, \ldots , \psi_{nk})^\top\). Then we have the following result.
+
+\begin{proposition}
+\protect\hypertarget{prp:unnamed-chunk-3}{}{\label{prp:unnamed-chunk-3} }Assume that \(\boldsymbol S_{\boldsymbol x\boldsymbol x}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}\) both have full rank. Then for \(1 \leq k,\ell \leq t\),
+\[
+r[\eta_k,  \psi_{\ell}]=\begin{cases} \xi_k &\text{if} \quad k=\ell\\
+0 & \text{if} \quad k \neq \ell, \end{cases}
+\]
+where \(t\) is the rank of \(\boldsymbol A=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y} \boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\) and \(\xi_1 \geq \xi_2 \geq \cdots \xi_t > 0\) are the strictly positive singular values of \(\boldsymbol A\).
+\end{proposition}
+
+\textbf{Example \ref{exm:prem} (continued)} From \eqref{eq:SVDanalysis}, it is seen that the 2nd CC coefficient is given by \(\xi_2=0.508\). So the correlation between the second pair of CC variables is a lot smaller than the 1st CC coefficient, though still appreciably different from \(0\). We now calculate the 2nd CC weight vectors:
+\[
+\boldsymbol a_2=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol q_2 = \begin{pmatrix} 0.073 \\ 0.396 \end{pmatrix}
+\qquad \text{and} \qquad
+\boldsymbol b_2=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol r_2=-\begin{pmatrix}0.062\\ 0.086  \end{pmatrix},
+\]
+with standardised version (without the sign changes this time)
+\[
+\boldsymbol a_2=\begin{pmatrix}0.181 \\ 0.984  \end{pmatrix}
+\qquad \text{and} \qquad
+\boldsymbol b_2=-\begin{pmatrix}0.589 \\ 0.808  \end{pmatrix},
+\]
+and new variables
+\[
+\eta_2=0.181*(W-\bar{W}) +0.984*(D -\bar{D})
+\]
+and
+\[
+\psi_2=-\{0.589*(F-\bar{F})+0.808*(A-\bar{A})\}.
+\]
+Note that, to a good approximation, \(\eta_2\) is measuring something similar to the number of draws and, approximately, \(\psi_2\) is something related to the negative of total number of goals in a team's games. So large \(\psi_2\) means relatively few goals in a team's games, and small (i.e.~large negative) \(\psi_2\) means a relatively large number of goals in a team's games.
+
+Interpretation of the 2nd CC: teams that have a lot of draws tend to be in low-scoring games and/or teams that have few draws tend to be in high-scoring games.
+
+\hypertarget{connection-with-linear-regression-when-q1}{%
+\section{\texorpdfstring{Connection with linear regression when \(q=1\)}{Connection with linear regression when q=1}}\label{connection-with-linear-regression-when-q1}}
+
+Although CCA analysis is clearly a different technique to linear regression, it turns out that when either \(p=1\) or \(q=1\), there is a close connection between the two approaches.
+
+Without loss of generality we assume that \(q=1\) and \(p>1\). Hence there is only a single \(y\)-variable but we still have \(p>1\) \(x\)-variables.
+
+We also make the following assumptions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The \(\boldsymbol x_i\) have been centred so that \(\bar{\boldsymbol x}={\mathbf 0}_p\), the zero vector.
+\item
+  The covariance matrix for the \(x\)-variables, \(\boldsymbol S_{\boldsymbol x\boldsymbol x}\), has full rank \(p\).
+\end{enumerate}
+
+Both of these are weak assumptions in the multiple linear regression context.
+
+Since \(q=1\),
+\[
+\boldsymbol A=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol S_{\boldsymbol xy}\boldsymbol S_{yy}^{-1/2}
+\]
+is a \(p \times 1\) vector. Consequently, in this rather special case,
+the SVD tells us that
+\[
+\boldsymbol A=\xi_1 \boldsymbol q_1,
+\]
+where
+\[
+\xi_1=\vert \vert \boldsymbol A\vert \vert \qquad \text{and} \qquad \boldsymbol q_1=\boldsymbol A/\vert \vert \boldsymbol A\vert \vert=\tilde{\boldsymbol a},
+\]
+and \(\tilde{\boldsymbol a}=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2} \boldsymbol a\).
+
+Consequently,
+\begin{align*}
+\boldsymbol a&=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol q_1\\
+&=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \frac{1}{\vert \vert \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol xy}S_{yy}^{-1/2}\vert \vert}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}S_{yy}^{-1/2}\\
+&=\frac{1}{\vert \vert \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol xy}\vert \vert}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol xy}\\
+&=\frac{1}{\vert \vert \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol xy}\vert \vert}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1}\boldsymbol S_{\boldsymbol xy}.
+\end{align*}
+But since \(\bar{\boldsymbol x}={\mathbf 0}_p\) and \(\boldsymbol S\) has full rank by the assumptions above, it follows that
+\[
+n\boldsymbol S_{\boldsymbol x\boldsymbol x} =\sum_{i=1}^n \boldsymbol x_i \boldsymbol x_i^\top =\boldsymbol X^\top \boldsymbol X
+\]
+and
+\[
+ n\boldsymbol S_{\boldsymbol x\boldsymbol y}=\sum_{i=1}^n y_i \boldsymbol x_i=\boldsymbol X^\top \boldsymbol y,
+\]
+where \(\boldsymbol y=(y_1, \ldots ,y_n)^\top\) is the \(n \times 1\) data matrix for the \(y\)-variable and \(\boldsymbol X=[\boldsymbol x_1, \ldots , \boldsymbol x_n]^\top\) is the data matrix for the \(x\)-variables.
+Consequently, the optimal \(\boldsymbol a\) is a scalar multiple of
+\[
+\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1}\boldsymbol S_{\boldsymbol xy}=\left ( \boldsymbol X^\top \boldsymbol X\right )^{-1} \boldsymbol X^\top \boldsymbol y=\hat{\pmb \beta},
+\]
+say, which is the classical expression for least squares estimator. Therefore the least squares estimator \(\hat{\pmb \beta}\) solves \eqref{eq:opt26}. However, it does not usually solve the optimisation problem defined by problems \eqref{eq:opt27a} and \eqref{eq:opt27b} because typically it will not be the case that \(\hat{\pmb \beta}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\pmb \beta}=1\), so that \eqref{eq:opt27b} will not be satisfied.
+
+\hypertarget{population-cca}{%
+\section{Population CCA}\label{population-cca}}
+
+So far in this chapter we have based CCA on the sample covariance matrix
+\[
+\boldsymbol S_{\boldsymbol z\boldsymbol z}=\left [\begin{array}{cc}
+\boldsymbol S_{\boldsymbol x\boldsymbol x} & \boldsymbol S_{\boldsymbol x\boldsymbol y}\\
+\boldsymbol S_{\boldsymbol y\boldsymbol x} & \boldsymbol S_{\boldsymbol y\boldsymbol y} \end{array} \right ],
+\]
+However, just as there is a population analogue of PCA, so there is a population analogue of CCA.
+
+Given random vectors \(\stackrel{p \times 1}{\boldsymbol x}\) and \(\stackrel{q \times 1}{\boldsymbol y}\), define the random vector \(\boldsymbol z=(\boldsymbol x^\top, \boldsymbol y^\top)^\top\) with population covariance matrix
+\[
+\text{Var}(\boldsymbol z)=\boldsymbol \Sigma_{\boldsymbol z\boldsymbol z}=\left [\begin{array}{cc}
+\boldsymbol \Sigma_{\boldsymbol x\boldsymbol x} & \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}\\
+\boldsymbol \Sigma_{\boldsymbol y\boldsymbol x} & \boldsymbol \Sigma_{\boldsymbol y\boldsymbol y} \end{array} \right ].
+\]
+Then, by analogy with what we have seen in the sample CCA, the population CCA is based on the
+matrix
+\[
+\check{\boldsymbol A}=\boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}\boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}^{-1/2},
+\]
+where, as in \S 3.4, the check symbol has been used above and below to indicate population quantities.
+If \(\check{\boldsymbol A}\) has SVD
+\[
+\check{\boldsymbol A}=\sum_{j=1}^t \check{\xi}_j\check {\mathbf q}_j \check{\mathbf r}_j^\top \equiv \check{\mathbf Q}\check{\pmb \Xi} \check{\mathbf R}^\top,
+\]
+where \(\check{\xi}_1 \geq \cdots \geq \check{\xi}_t \geq 0\) and \(t=\min(p,q)\), and the \(\check{\boldsymbol q}_j\) and \(\check{\mathbf r}_j\) are unit vectors, then the first population CC coefficient is given by \(\check{\xi}_1\),
+and the associated weights are given by
+\[
+\check{\boldsymbol a}=\boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}^{-1/2}\check{\boldsymbol q}_1=\check{\boldsymbol a}_1 \qquad \text{and} \qquad \check{\boldsymbol b}=\boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}^{-1/2}\check{\mathbf r}_1=\check{\boldsymbol b}_1.
+\]
+The full set of population CC weight vectors is given by
+\[
+\check{\boldsymbol a}_j =\boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}^{-1/2}\check{\boldsymbol q}_j \qquad \text{and} \qquad
+\check{\boldsymbol b}_j=\boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}^{-1/2}\check{\mathbf r}_1, \qquad , j=1, \ldots , t,
+\]
+and the \(j\)th population CC coefficient is given by \(\check{\xi}_j\).
+
+\hypertarget{invarianceequivariance-properties-of-cca}{%
+\section{Invariance/equivariance properties of CCA}\label{invarianceequivariance-properties-of-cca}}
+
+Suppose we apply orthogonal transformations and translations to the \(\boldsymbol x_i\) and the \(\boldsymbol y_i\) of the form
+\begin{equation}
+{\mathbf h}_i={\mathbf T}\boldsymbol x_i + {\pmb \mu} \qquad \text{and} \qquad {\mathbf k}_i={\mathbf V}\boldsymbol y_i +{\pmb \eta},
+\qquad i=1,\ldots , n,
+\label{eq:transformations}
+\end{equation}
+where \(\mathbf T\) (\(p \times p\)) and \(\mathbf V\) (\(q \times q\)) are orthogonal matrices, and \(\pmb \mu\) (\(p \times 1\)) and
+\(\pmb \eta\) (\(q \times 1\)) are fixed vectors.
+
+How do these transformations affect the CC analysis?
+
+First of all, since the CCA depends only on sample covariance matrices, it follows that the translation vectors \(\pmb \mu\) and \(\pmb \eta\) have no effect on the analysis, so we can ignore \(\pmb \mu\) and \(\pmb \eta\), and without loss of generality we shall set each to be the zero vector.
+
+As seen in the previous section, the CCA in the original coordinates depends on
+\begin{equation}
+\boldsymbol A\equiv \boldsymbol A_{\boldsymbol x\boldsymbol y}=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}.
+\label{eq:Axy}
+\end{equation}
+In the new coordinates we have
+\[
+\tilde{\boldsymbol S}_{\mathbf h h}={\mathbf T} \boldsymbol S_{\boldsymbol x\boldsymbol x}{\mathbf T}^\top, \qquad \tilde{\boldsymbol S}_{\mathbf kk}={\mathbf V}\boldsymbol S_{\boldsymbol y\boldsymbol y}{\mathbf V}^\top,
+\]
+\[
+\tilde{\boldsymbol S}_{\mathbf hk}={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol y}{\mathbf V}^\top \qquad \text{and} \qquad
+\tilde{\boldsymbol S}_{\mathbf kh}={\mathbf V}\boldsymbol S_{\boldsymbol y\boldsymbol x}{\mathbf T}^\top=\boldsymbol S_{\mathbf h k}^\top,
+\]
+where here and below, a tilde above a symbol is used to indicate that the corresponding term is defined in terms of the new \(\boldsymbol h\), \(\boldsymbol k\) coordinates, rather
+than the old \(\boldsymbol x\), \(\boldsymbol y\) coordinates.
+Moreover, due to the fact that \(\mathbf T\) and \(\mathbf V\) are orthogonal,
+\[
+\tilde{\boldsymbol S}_{\mathbf hh}^{ 1/2}={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{ 1/2}{\mathbf T}^\top, \qquad
+\tilde{\boldsymbol S}_{\mathbf hh}^{ -1/2}={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{ -1/2}{\mathbf T}^\top
+\]
+\[
+\tilde{\boldsymbol S}_{\mathbf kk}^{ 1/2}={\mathbf V}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{ 1/2}{\mathbf V}^\top \qquad \text{and} \qquad
+\tilde{\boldsymbol S}_{\mathbf kk}^{ -1/2}={\mathbf V}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{- 1/2}{\mathbf V}^\top.
+\]
+The analogue of \eqref{eq:Axy} in the new coordinates is given by
+\begin{align*}
+\tilde{\boldsymbol A}_{\mathbf h k}&=\tilde{\boldsymbol S}_{\mathbf hh}^{-1/2}\tilde{\boldsymbol S}_{\mathbf h k}\tilde{\boldsymbol S}_{\mathbf kk}^{-1/2}\\
+&={\mathbf T} \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf T}^\top {\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol y}{\mathbf V}^\top {\mathbf V}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf V}^\top\\
+&={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf V}^\top\\
+&={\mathbf T} \boldsymbol A_{\boldsymbol x\boldsymbol y}{\mathbf V}^\top.
+\end{align*}
+So, again using the fact that \(\mathbf T\) and \(\mathbf V\) are orthogonal matrices, if \(\boldsymbol A_{\boldsymbol x\boldsymbol y}\) has SVD \(\sum_{j=1}^t \xi_j {\mathbf q}_j {\mathbf r}_j^\top\), then \(\tilde{\boldsymbol A}_{\mathbf hk}\) has SVD
+\begin{align*}
+\tilde{\boldsymbol A}_{\mathbf hk}&={\mathbf T }\boldsymbol A_{\boldsymbol x\boldsymbol y}{\mathbf V}^\top
+={\mathbf T} \left ( \sum_{j=1}^t \xi_j {\mathbf q}_j {\mathbf r}_j^\top \right){\mathbf V}^\top\\
+&=\sum_{j=1}^t \xi_j {\mathbf T}{\mathbf q}_j {\mathbf r}_j^\top {\mathbf V}^\top
+=\sum_{j=1}^t \xi_j \left ( {\mathbf T} {\mathbf q}_j \right )\left ({\mathbf V}{\mathbf r}_j  \right )^\top
+=\sum_{j=1}^t \xi_j \tilde{\boldsymbol q}_j \tilde{\mathbf r}_j^\top,
+\end{align*}
+where, for \(j=1, \ldots,t\), the \(\tilde{\boldsymbol q}_j={\mathbf T}\boldsymbol q_j\) are mutually orthogonal unit vectors,
+and the \(\tilde{\mathbf r}_j={\mathbf V}{\mathbf r}_j\) are also mutually orthogonal unit vectors.
+
+Consequently, \(\tilde{\boldsymbol A}_{\mathbf h k}\) has the same singular values as \(\boldsymbol A_{\boldsymbol x\boldsymbol y}\), namely \(\xi_1, \ldots , \xi_t\) in both cases, and so the canonical correlation coefficients are invariant with respect to the transformations \eqref{eq:transformations}. Moreover, since the optimal linear combinations for the \(j\)th CC in the original coordinates are given by \(\boldsymbol a_j =\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf q}_j\) and \(\boldsymbol b_j=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf r}_j\), the optimal linear combinations in the new coordinates are given by
+\begin{align*}
+\tilde{\boldsymbol a}_{j}&=\boldsymbol S_{\mathbf hh}^{-1/2}{\mathbf T}{\mathbf q}_j\\
+&={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf T}^\top {\mathbf T}{\mathbf q}_j\\
+&={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf q}_j \\
+&={\mathbf T}\boldsymbol a_{j},
+\end{align*}
+and a similar argument shows that \(\tilde{\boldsymbol b}_{j}={\mathbf V}\boldsymbol b_{j}\). So under transformations \eqref{eq:transformations},
+the optimal vectors \(\boldsymbol a_{j}\) and \(\boldsymbol b_{j}\) transform in an equivariant manner to \(\tilde{\boldsymbol a}_{j}\) and \(\tilde{\boldsymbol b}_{j}\), respectively, \(j=1, \ldots , t\).
+
+If either of \(\mathbf T\) or \(\mathbf V\) in \eqref{eq:transformations} is not an orthogonal matrix then the singular values are not invariant and the cc vectors do not transform in an equivariant manner.
+
+\hypertarget{testing-for-zero-canonical-correlation-coefficients}{%
+\section{Testing for zero canonical correlation coefficients}\label{testing-for-zero-canonical-correlation-coefficients}}
+
+So far in Part II of this module we have not considered formal statistical inference (e.g.~hypothesis testing, construction of confidence regions). Inference in various multivariate settings is considered in Part III. However, before moving on, we briefly explain how to perform tests for zero correlations in the CCA setting, under the assumption that the \(\boldsymbol z_i = (\boldsymbol x_i^\top , \boldsymbol y_i^\top)^\top\) are IID multivariate normal.
+
+As previously, suppose that the \(\boldsymbol x_i\) are \(p \times 1\) vectors and the \(\boldsymbol y_i\) are \(q \times 1\) vectors and the sample size, i.e.~the number of \(\boldsymbol z_i\) vectors, is \(n\). Let \(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y} =\text{Cov}(\boldsymbol x,\boldsymbol y)\) denote the population cross-covariance matrix as before and consider the null hypothesis
+\[
+H_0: \, \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}={\mathbf 0}_{p,q},
+\]
+i.e. \(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}\) is the \(p \times q\) matrix of zeros. Let \(H_A\) denote the general alternative
+\[
+H_A:\, \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y} \quad *unrestricted*.
+\]
+
+Then the large-sample log-likelihood ratio test statistic for testing \(H_0\) versus \(H_A\) is as follows:
+\[
+W_0=-\left \{n-\frac{1}{2}(p+q+3)  \right \}\sum_{j=1}^{\min(p,q)} \log (1-\xi_j^2),
+\]
+where \(\xi_1\geq \xi_2 \cdots \geq \xi_{\min(p,q)} \geq 0\) are the sample canonical correlations.
+Moreover, when \(n\) is large, \(W_0\) is approximately \(\chi_{pq}^2\) under \(H_0\), and \(H_0\) should be rejected
+when \(W_0\) is sufficiently large.
+
+We now consider a test concerning the rank of \(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}\). For \(0 \leq t <\min(p,q)\), consider the hypothesis:
+\[
+H_t: \,   \text{at most $t$ of the CC coefficients are non-zero}.
+\]
+It turns out there is a similar statistic to \(W_0\) above, for testing \(H_t\) against \(H_A\), defined by
+\[
+W_t=-\left \{n-\frac{1}{2}(p+q+3)  \right \}\sum_{j=t+1}^{\min(p,q)} \log (1-\xi_j^2),
+\]
+where, under \(H_t\) with \(n\) large, \(W_t\) is approximately \(\chi_{(p-t)(q-t)}^2\). Also, we reject
+\(H_t\) when \(W_t\) is sufficiently large.
+
+\textbf{Example \ref{exm:prem} (continued)}.
+Here \(p=q=2\), \(n=20\) and \(\xi_1=0.974\) and \(\xi_2=0.508\).
+So we should refer \(W_0\) to \(\chi_4^2\) and refer \(W_1\) to \(\chi_1^2\). Here, \(W_0=53.92\) and \(W_1=4.92\). So hypothesis \(H_0\) is strongly rejected, with \(p\)-value \(<\,<0.001\). In contrast, \(H_1\) is rejected at the \(0.05\) level but is not rejected at the \(0.01\) level. So there is only moderate evidence that the 2nd CC coefficient is non-zero.
+
+\hypertarget{mds}{%
+\chapter{Multidimensional Scaling}\label{mds}}
+
+In this chapter our starting point is somewhat different. Suppose we have a sample of \(n\) experimental units
+and we have a way to measure \texttt{distance\textquotesingle{}\ or}dissimilarity' between any pair of experimental units \(i\) and \(j\), leading to a measure of distance or dissimilarity \(d_{ij}\), \(i,j=1, \ldots , n\). The starting point for Multidimensional Scaling (MDS) is a distance matrix \(\boldsymbol D=(d_{ij}: \, i,j=1, \ldots , n)\). A key goal in MDS is to determine coordinates of a set of points in a low-dimensional Euclidean space, e.g. \(\mathbb{R}\) or \(\mathbb{R}^2\), whose inter-point distances (or dissimilarities) are approximately equal to the \(d_{ij}\). Using this approximate approach we are able to perform a statistical study of the original experimental units in a lower-dimensional space than the original one. We shall also see that there is a close connection between MDS and PCA.
+
+\hypertarget{multidimensional-scaling}{%
+\section{Multidimensional Scaling}\label{multidimensional-scaling}}
+
+We call an \(n \times n\) matrix \(\boldsymbol D=(d_{ij})_{i,j=1}^n\) a \textbf{distance matrix} or, equivalently, a \textbf{dissimilarity matrix}, if the following properties are satisfied:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  For \(i=1, \ldots , n\), \(d_{ii}=0\).
+\item
+  Symmetry: \(d_{ij}=d_{ji} \geq 0\) for all \(i,j=1,\ldots, n\).
+\item
+  Definiteness: \(d_{ij}=0\) implies \(i=j\).
+\end{enumerate}
+
+A comment on our terminology. We do not require distances necessarily to satisfy the triangle inequality
+\begin{equation}
+d_{ik} \leq d_{ij}+d_{jk}.
+\label{eq:triangle}
+\end{equation}
+A distance function which always satisfies the triangle inequality is called a \textbf{metric distance}
+or just a \textbf{metric}, and a distance function which does not always satisfy the triangle inequality is called
+\textbf{non-metric} distance.
+
+Suppose \(\boldsymbol x_1,\ldots , \boldsymbol x_n\) are points in \(\mathbb{R}^p\). If the \(d_{ij}\) are of the form
+\[
+d_{ij}=\vert \vert \boldsymbol x_i -\boldsymbol x_j \vert \vert =\sqrt{(\boldsymbol x_i-\boldsymbol x_j)^\top (\boldsymbol x_i-\boldsymbol x_j)}.
+\]
+Then each \(d_{ij}\) is called a \textbf{Euclidean distance} and, in this case, \(\boldsymbol D\) is called a \textbf{Euclidean distance matrix}. Since Euclidean distances satisfy the triangle
+inequality \eqref{eq:triangle}, it follows that Euclidean distance is a metric distance.
+
+Given a distance matrix \({\mathbf D}=\{d_{ij}\}_{i,j=1}^n\), define the matrix
+\begin{equation}
+\boldsymbol A=\{a_{ij}\}_{i,j=1}^n,  \quad \text{where} \qquad a_{ij}=-\frac{1}{2}d_{ij}^2.
+\label{eq:defA}
+\end{equation}
+Note that, for \(i=1,\ldots , n\), \(a_{ii}=-d_{ii}^2/2=0\).
+
+Now define the matrix
+\begin{equation}
+{\mathbf B}={\mathbf H} \boldsymbol A{\mathbf H},
+\label{eq:defB}
+\end{equation}
+where
+\begin{equation}
+{\mathbf H}={\mathbf I}_n -n^{-1}{\mathbf 1}_n {\mathbf 1}_n^\top
+\label{eq:defH}
+\end{equation}
+is the \(n \times n\) \textbf{centering matrix}; see \S 2.7. For reasons that will soon become clear, \(\boldsymbol B\) defined by \eqref{eq:defB} is known as a centred inner-product matrix.
+
+Let \(\boldsymbol x_1, \ldots , \boldsymbol x_n\) denote \(n\) points in \(\mathbb{R}^p\). Then the \(n \times p\) matrix
+\(\mathbf X=[\boldsymbol x_1, \ldots , \boldsymbol x_n]^\top\) is the data matrix, as before.
+
+We now present the key result for classical MDS.
+
+\begin{proposition}
+\protect\hypertarget{prp:five1}{}{\label{prp:five1} }Let \(\boldsymbol D\) denote an \(n \times n\) distance matrix and suppose \(\boldsymbol A\), \(\boldsymbol B\) and \(\mathbf H\) be as defined in \eqref{eq:defA}, \eqref{eq:defB} and \eqref{eq:defH}, respectively.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The matrix \(\boldsymbol D\) is a Euclidean distance matrix if and only if \(\boldsymbol B\) is a non-negative definite matrix.
+\item
+  If \(\boldsymbol D\) is a Euclidean distance matrix for the sample of \(n\) vectors \(\boldsymbol x_1,\ldots , \boldsymbol x_n\), then
+  \begin{equation}
+  b_{ij}=(\boldsymbol x_i-\bar{\boldsymbol x})^\top (\boldsymbol x_j - \bar{\boldsymbol x}), \qquad i,j=1,\ldots , n,
+  \label{eq:bijB}
+  \end{equation}
+  where \(\bar{\mathbf x}=n^{-1}\sum_{i=1}^n \boldsymbol x_i\) is the sample mean vector. Equivalently, we may write
+  \[
+  \boldsymbol B= ({\mathbf H} {\mathbf X})({\mathbf H} {\mathbf X})^\top,
+  \]
+  where \({\mathbf X}=[\boldsymbol x_1,\ldots , \boldsymbol x_n]^\top\) is the data matrix, and \(\boldsymbol H\) is the \(n \times n\) centering matrix. Consequently,
+  \(\boldsymbol B\) is non-negative definite.
+\item
+  Suppose \(\boldsymbol B\) is non-negative definite with positive eigenvalues \(\lambda_1 \geq \lambda_2 \cdots \geq \lambda_k\) and spectral decomposition \(\boldsymbol B={\mathbf Q} {\pmb \Lambda}{\mathbf Q}^\top\), where \({\pmb \Lambda}=\text{diag}\{\lambda_1 \ldots \lambda_k\}\) and \(\mathbf Q\) is \(n \times k\) and satisfies \({\mathbf Q}^\top {\mathbf Q}={\mathbf I}_k\). Then \({\mathbf X}=[\boldsymbol x_1, \ldots , \boldsymbol x_n]^\top={\mathbf Q}{\pmb \Lambda}^{1/2}\) is an \(n \times k\) data matrix for points \(\boldsymbol x_1, \ldots , \boldsymbol x_n\) in \(\mathbb{R}^k\), which have inter-point distances given by \(\boldsymbol D=(d_{ij})\). Moreover, for this data matrix \(\bar{\boldsymbol x}={\mathbf 0}_k\) and \(\boldsymbol B\) represents the inner product matrix with elements given by \eqref{eq:bijB}.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}Part 1. is a direct consequence of parts 2. and 3. Parts 2. and 3. are proved in the example sheets.
+\end{proof}
+
+\textbf{Important Point}: Proposition \ref{prp:five1} may be useful even if \({\mathbf D}\) is not a Euclidean distance matrix, in which case \(\boldsymbol B\) has some negative eigenvalues. What we can do is to replace \(\boldsymbol B\) by its positive part. If \(\boldsymbol B\) has spectral decomposition \(\sum_{j=1}^p \lambda_j \boldsymbol q_j \boldsymbol q_j^\top\), then its positive definite part is defined by
+\[
+\boldsymbol B_{\text{pos}}=\sum_{j: \, \lambda_j>0} \lambda_j \boldsymbol q_j \boldsymbol q_j^\top.
+\]
+In other words, we sum over those \(j\) such that \(\lambda_j\) is positive.
+Then \(\boldsymbol B_{\text{pos}}\) is non-negative definite and so we can use Theorem 5.1(iii) to determine a Euclidean configuration which has centred inner-product matrix \(\boldsymbol B_{\text{pos}}\). Then, provided the negative eigenvalues are small in absolute value relative to the positive eigenvalues, the inter-point distances of the new points in Euclidean space should provide a good approximation to the original inter-point distances \((d_{ij})\).
+
+\begin{example}
+\protect\hypertarget{exm:mdsm1}{}{\label{exm:mdsm1} }Consider the five point in \(\mathbb{R}^2\):
+\[
+\boldsymbol x_1=(0,0)^\top,  \boldsymbol x_2 =(1,0)^\top, \quad \boldsymbol x_3 =(0,1)^\top
+\]
+\[
+\boldsymbol x_4 =(-1,0)^\top \quad \text{and} \quad \boldsymbol x_5=(0,-1)^\top.
+\]
+The resulting distance matrix is
+\[
+\boldsymbol D=\left [ \begin{array}{ccccc}
+0&1&1&1&1\\
+1&0&\sqrt{2}&2&\sqrt{2}\\
+1&\sqrt{2}&0&\sqrt{2}&2\\
+1&2&\sqrt{2}&0&\sqrt{2}\\
+1&\sqrt{2}&2&\sqrt{2}&0
+\end{array} \right ].
+\]
+Using \eqref{eq:defA} first to calculate \(\boldsymbol A\), and then using \eqref{eq:defB} to calculate \(\boldsymbol B\), we find that
+\[
+\boldsymbol A=-\left [ \begin{array}{ccccc}
+0&0.5&0.5&0.5&0.5\\
+0.5&0&1&2&1\\
+0.5&1&0&1&2\\
+0.5&2&1&0&1\\
+0.5&1&2&1&0
+\end{array} \right ]
+\]
+and
+\[
+\boldsymbol B=\left [ \begin{array}{ccccc}
+ 0& 0&0&0&0\\
+0&1&0&-1&0\\
+0&0&1&0&-1\\
+0&-1&0&1&0\\
+0&0&-1&0&1
+\end{array} \right ].
+\]
+Further numerical calculations using R show that the eigenvalues of \(\boldsymbol B\) are
+\[
+\lambda_1=\lambda_2=2 \qquad \text{and} \qquad \lambda_3=\lambda_4=\lambda_5=0.
+\]
+Note that, as expected from Proposition \ref{prp:five1}, \(\boldsymbol B\) is non-negative definite because it is a Euclidean
+distance matrix.
+
+The following mutually orthogonal unit eigenvectors corresponding to the repeated eigenvalue \(2\)
+are produced by R:
+\[
+\boldsymbol q_1= \begin{pmatrix}0 \\ -0.439 \\ -0.554 \\ 0.439 \\ 0.554 \end{pmatrix} \qquad
+\text{and} \qquad \boldsymbol q_2 =\begin{pmatrix}0 \\ 0.554 \\ -0.439 \\ -0.554\\ 0.439 \end{pmatrix}.
+\]
+So the coordinates of five points in \(\mathbb{R}^2\) which have the same inter-point distance matrix, \(\boldsymbol D\), as the original five points in \(\mathbb{R}^2\), are given by the rows of the matrix
+\[
+\boldsymbol Q\boldsymbol \Lambda^{1/2}=\sqrt{2}[\boldsymbol q_1 , \boldsymbol q_2]=
+\begin{pmatrix}
+0&0\\
+-0.621 & 0.784\\
+-0.784 & -0.621\\
+0.621 & -0.784\\
+0.784 & 0.621
+\end{pmatrix}.
+\]
+In the example sheets you asked to verify that there is an orthogonal transformation which maps the original five points onto the new five points.
+\end{example}
+
+\hypertarget{principal-coordinates}{%
+\section{Principal Coordinates}\label{principal-coordinates}}
+
+Starting with a distance matrix \(\boldsymbol D\), and using the matrix \(\boldsymbol B\), we now show how to calculate exact or approximate Euclidean coordinates for the \(n\) objects under study. We already know from Proposition \ref{prp:five1} how to do this when the distance matrix \(\boldsymbol D\) is Euclidean, but we will see now that this construction works more generally. Moreover, there is a very close connection with principal components analysis.
+
+\begin{itemize}
+\item
+  \textbf{Step 1}: Given a distance matrix \(\stackrel{n \times n}{\boldsymbol D}\), calculate \(\boldsymbol A\) according to \eqref{eq:defA}.
+\item
+  \textbf{Step 2}: Calculate \(\boldsymbol B=(b_{ij})_{i,j=1}^n\) in \eqref{eq:defB} using
+  \[
+  b_{ij}=a_{ij}-\bar{a}_{i+}-\bar{a}_{+j}+\bar{a}_{++}, \qquad i,j=1, \ldots ,n,
+  \]
+  where
+  \[
+  \bar{a}_{i+}=n^{-1}\sum_{j=1}^n a_{ij}, \quad \bar{a}_{+j}=n^{-1}\sum_{i=1}^n a_{ij}\quad
+  \text{and} \quad \bar{a}_{++}=n^{-2}\sum_{i,j=1}^n a_{ij}.
+  \]
+\item
+  \textbf{Step 3}: Assume that the \(k\) largest eigenvalues of \(\boldsymbol B=(b_{ij})_{i,j=1}^n\), \(\lambda_1 > \lambda_2 > \cdots > \lambda_k\) are all positive and have associated unit eigenvectors \(\boldsymbol v_1, \ldots , \boldsymbol v_k\).
+\item
+  \textbf{Step 4}: Define \(\boldsymbol V=[\boldsymbol v_1 , \ldots , \boldsymbol v_k]\) and
+  \[
+  \boldsymbol X\equiv [\boldsymbol x_1, \ldots , \boldsymbol x_n]^\top = \boldsymbol V\boldsymbol \Lambda^{1/2}=[\sqrt{\lambda_1}\boldsymbol v_1, \ldots, \sqrt{\lambda_k}\boldsymbol v_k].
+  \]
+\end{itemize}
+
+Then \(\boldsymbol x_i \in \mathbb{R}^k\), \(i=1, \ldots, n\), are the principal coordinates of the \(n\) points in \(k\) dimensions.
+
+It turns out that there is a very close connection between principal coordinate and principal components.
+
+\begin{proposition}
+\protect\hypertarget{prp:mds0}{}{\label{prp:mds0} } Let \(\boldsymbol X\) be an \(n \times p\) data matrix with associated Euclidean distance matrix
+\[
+d_{ij}^2 = (\boldsymbol x_i -\boldsymbol x_j)^\top(\boldsymbol x_i -\boldsymbol x_j),
+\]
+where \(\boldsymbol x_1^\top, \ldots , \boldsymbol x_n^\top\) are the rows of \(\boldsymbol X\). Then the centred PC scores based on the first \(k\) principal components are principal coordinates of the \(n\) points in \(k\) dimensions based on the distance matrix \(\boldsymbol D\).
+\end{proposition}
+
+\hypertarget{similarity-measures}{%
+\section{Similarity measures}\label{similarity-measures}}
+
+Recap: so far in this chapter we have considered distances matrices \(\boldsymbol D=(d_{ij})_{i,j=1}^n\) with distances \(d_{ij}\). In this setting, the larger \(d_{ij}\) is, the more distant, or dissimilar, object \(i\) is from object \(j\).
+
+Recall that we have distinguished between metric distances (``metrics''), which satisfy the triangle inequality \eqref{eq:triangle}, and non-metric distances, or dissimilarities, which need not satisfy \eqref{eq:triangle}.
+
+In this section, we now consider the analysis of measures of \emph{similarity} as opposed to measures of dissimilarity.
+
+A \emph{similarity} matrix is defined to be an \(n \times n\) matrix \(\mathbf=(f_{ij})_{i,j=1}^n\) with the following properties:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Symmetry, i.e. \(f_{ij} =f_{ji}\), \(i,j=1, \ldots , n\).
+\item
+  For all \(i,j=1, \ldots , n\), \(f_{ij} \leq f_{ii}\).
+\end{enumerate}
+
+Note that when working with similarities \(f_{ij}\), the larger \(f_{ij}\) is, the more similar objects \(i\) and \(j\) are.
+
+Condition 1. implies that object \(i\) is as similar to object \(j\) as object \(j\) is to object \(i\) (symmetry).
+
+Condition 2. implies that an object is at least as similar to itself as it is to any other object.
+
+One important class of problems is when the similarity between any two objects is measured by the number of common attributes. We illustrate this through two examples.
+
+\begin{example}
+\protect\hypertarget{exm:unnamed-chunk-2}{}{\label{exm:unnamed-chunk-2} }Suppose there are 4 attributes we wish to consider.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Attribute 1: Carnivore? If yes, put \(a_1=1\); if no, put \(a_1=0\).
+\item
+  Attribute 2: Mammal? If yes, put \(a_2=1\); if no, put \(a_2=0\).
+\item
+  Attribute 3: Natural habitat in Africa? If yes, put \(a_3=1\); if no, put \(a_3=0\).
+\item
+  Attribute 4: Can climb trees? If yes, put \(a_4=1\); if no, put \(a_4=0\).
+\end{enumerate}
+
+Consider a lion. Each of the attributes is present so \(a_1=a_2=a_3=a_4=1\).
+
+A tiger? In this case, 3 of the attributes are present (1, 2 and 4) but 3 is absent.
+So for a tiger, \(a_1=a_2=a_4=1\) and \(a_3=0\).
+
+How might we measure the similarity of lions and tigers based on the presence or absence of these four attributes?
+
+First form a \(2 \times 2\) table as follows.
+\[
+\begin{array}{cccc}
+ &1 &0\\
+1& a & b\\
+0& c & d
+\end{array}
+\]
+Here \(a\) counts the number of attributes common to both lion and tiger; \(b\) counts the number of attributes the lion has but the tiger does not have; \(c\) counts the number of attributes the tigher has that the lion does not have; and \(d\) counts the number of attributes which neither the lion nor the tiger has.
+
+In the above, \(a=3\), \(b=1\) and \(c=d=0\).
+
+How might we make use of the information in the \(2 \times 2\) table to construct a measure of similarity?
+
+The simplest measure of similarity is the proportion of the attributes which are shared.
+\[
+\frac{a}{a+b+c+d},
+\]
+which gives \(0.75\) in this example.
+A second similarity measure, which gives the same value in this example but not in general, is known as the \emph{similarity matching coefficient} and is given by
+\begin{equation}
+\frac{a+d}{a+b+c+d}.
+\label{eq:smc}
+\end{equation}
+There are many other possibilities, e.g.~we could consider weighted versions of the above if we wish to weight different attributes differently.
+\end{example}
+
+\begin{example}
+\protect\hypertarget{exm:mds1}{}{\label{exm:mds1} }Let us now consider a similar but more complex example with 6 unspecified attributes (not the same attributes as in Example 1) and 5 types of living creature, with the following data matrix, consisting of zeros and ones.
+\[
+\begin{array}{lcccccc}
+&1&2&3&4&5&6\\
+Lion&1&1&0&0&1&1\\
+Giraffe&1&1&1&0&0&1\\
+Cow&1&0&0&1&0&1\\
+Sheep&1&0&0&1&0&1\\
+Human&0&0&0&0&1&0
+\end{array}
+\]
+Suppose we decide to use the similarity matching coefficient \eqref{eq:smc} to measure similarity. Then the following similarity matrix is obtained.
+\[
+\boldsymbol F=\begin{array}{lccccc}
+&\text{Lion}&\text{Giraffe}&\text{Cow}&\text{Sheep}&\text{Human}\\
+Lion&1&2/3&1/2&1/2&1/2\\
+Giraffe&2/3&1&1/2&1/2&1/6\\
+Cow&1/2&1/2&1&1&1/3\\
+Sheep&1/2&1/2&1&1&1/3\\
+Human&1/2&1/6&1/3&1/3&1
+\end{array}
+\]
+It is easily checked from the definition that \(\mathbf=(f_{ij})_{i,j=1}^5\) is a similarity matrix.
+\vskip 0.2truein
+We now return to the general case. What should we do once we have calculated a similarity matrix? It turns out there is a nice transformation from a similarity
+matrix to a distance matrix \(\boldsymbol D=(d_{ij})_{i,j=1}^n\) defined by
+\begin{equation}
+d_{ij}=\left ( f_{ii}+f_{jj} -2f_{ij} \right )^{1/2}, \qquad i,j=1, \ldots , n.
+\label{eq:defD}
+\end{equation}
+Note that, provided \(\boldsymbol F\) is a similarity matrix, the \(d_{ij}\) are well-defined (i.e.~real, not imaginary) because
+\(f_{ii}+f_{jj}-2f_{ij}\geq 0\) by condition 2., so the bracket is non-negative.
+\end{example}
+
+We have the following result.
+
+\begin{proposition}
+\protect\hypertarget{prp:mds2}{}{\label{prp:mds2} }Suppose that \(\boldsymbol F\) is a similarity matrix. If, in addition, \(\boldsymbol F\) is non-negative definite, then \(\boldsymbol D\) defined in \eqref{eq:defD} is Euclidean with centred inner product matrix
+\begin{equation}
+\boldsymbol B=\boldsymbol H\boldsymbol F\boldsymbol H,
+\label{eq:BHFH}
+\end{equation}
+where \(\boldsymbol H=\mathbf I_n - n^{-1}{\mathbf 1}_n {\mathbf 1}_n^\top\) is the centering matrix.
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}Since \(\boldsymbol F\) is non-negative definite by assumption, and \(\boldsymbol H^\top =\boldsymbol H\) by definition of \(\boldsymbol H\), it follows that \(\boldsymbol H\boldsymbol F\boldsymbol H\) must also be non-negative definite. So by Result 5.1, we just need to show that \eqref{eq:BHFH} holds, where \(\boldsymbol B\) is given by \(\boldsymbol B=\boldsymbol H\boldsymbol A\boldsymbol H\) and \(\boldsymbol A\) is defined as in \eqref{eq:defA}, and the \(d_{ij}\) are defined by \eqref{eq:defD}. Then
+\[
+a_{ij}=-\frac{1}{2}d_{ij}^2 =f_{ij}-\frac{1}{2}(f_{ii}+f_{jj}).
+\]
+Define
+\[
+t=n^{-1}\sum_{i=1}^n f_{ii}.
+\]
+Then, summing over \(j=1, \ldots , n\) for fixed \(i\),
+\[
+\bar{a}_{i+}=n^{-1}\sum_{j=1}^n a_{ij} = \bar{f}_{i+}-\frac{1}{2}(f_{ii}+t);
+\]
+similarly,
+\[
+\bar{a}_{+j}=n^{-1}\sum_{i=1}^n a_{ij}=\bar{f}_{+j}-\frac{1}{2}(f_{jj}+t),
+\]
+and also
+\[
+\bar{a}_{++}=n^{-2}\sum_{i,j=1}^n a_{ij}=\bar{f}_{++}-\frac{1}{2}(t+t).
+\]
+So, using part (vii) of section 7 of Chapter 2 (FIX FIX),
+\begin{align*} 
+b_{ij}&=a_{ij}-\bar{a}_{i+}-\bar{a}_{+j}+\bar{a}_{++}\\
+&=f_{ij}-\frac{1}{2}(f_{ii}+f_{jj})-\bar{f}_{i+}+\frac{1}{2}(f_{ii}+t)\\
+& \qquad -\bar{f}_{+j}+\frac{1}{2}(f_{jj}+t) +\bar{f}_{++}-t\\
+& =\qquad f_{ij}-\bar{f}_{i+}-\bar{f}_{+j}+\bar{f}_{++}.
+\end{align*}
+Consequently, \(\boldsymbol B=\boldsymbol H\boldsymbol F\boldsymbol H\), using part (vii) of \S 2.7 again, and the result is proved.
+\hfill\(\square\)
+\end{proof}
 
 \bibliography{book.bib,packages.bib}
 
