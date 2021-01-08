@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.3 Spectral/eigen decomposition | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.3 Spectral/eigen decomposition | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.3 Spectral/eigen decomposition | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="3-2-eigenvalues-and-eigenvectors.html"/>
+<link rel="next" href="3-4-linalg-SVD.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivartiate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-multivariate-data.html"><a href="1-1-multivariate-data.html"><i class="fa fa-check"></i><b>1.1</b> Multivariate data</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-summary-statistics.html"><a href="1-2-summary-statistics.html"><i class="fa fa-check"></i><b>1.2</b> Summary statistics</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-graphical-techniques.html"><a href="1-3-graphical-techniques.html"><i class="fa fa-check"></i><b>1.3</b> Graphical techniques</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-random-vectors-and-matrices.html"><a href="1-4-random-vectors-and-matrices.html"><i class="fa fa-check"></i><b>1.4</b> Random Vectors and Matrices</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-unbiased-estimators.html"><a href="1-5-unbiased-estimators.html"><i class="fa fa-check"></i><b>1.5</b> Unbiased Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-linalg-prelim.html"><a href="2-linalg-prelim.html"><i class="fa fa-check"></i><b>2</b> Review of linear algebra</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html"><i class="fa fa-check"></i><b>2.1</b> Basics</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#notation"><i class="fa fa-check"></i><b>2.1.1</b> Notation</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#elementary-matrix-operations"><i class="fa fa-check"></i><b>2.1.2</b> Elementary matrix operations</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#special-matrices"><i class="fa fa-check"></i><b>2.1.3</b> Special matrices</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#vector-differentiation"><i class="fa fa-check"></i><b>2.1.4</b> Vector Differentiation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html"><i class="fa fa-check"></i><b>2.2</b> Vector spaces</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#linear-independence"><i class="fa fa-check"></i><b>2.2.1</b> Linear independence</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#colsspace"><i class="fa fa-check"></i><b>2.2.2</b> Row and column spaces</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#linear-transformations"><i class="fa fa-check"></i><b>2.2.3</b> Linear transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html"><i class="fa fa-check"></i><b>2.3</b> Inner product spaces</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#normed"><i class="fa fa-check"></i><b>2.3.1</b> Distances, and angles</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#orthogonal-matrices"><i class="fa fa-check"></i><b>2.3.2</b> Orthogonal matrices</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#projections"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-4-linalg-misc.html"><a href="2-4-linalg-misc.html"><i class="fa fa-check"></i><b>2.4</b> Miscellaneous topics</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-4-linalg-misc.html"><a href="2-4-linalg-misc.html#the-centering-matrix"><i class="fa fa-check"></i><b>2.4.1</b> The Centering Matrix</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-4-linalg-misc.html"><a href="2-4-linalg-misc.html#quadratic-forms-and-ellipses"><i class="fa fa-check"></i><b>2.4.2</b> Quadratic forms and ellipses</a></li>
+<li class="chapter" data-level="2.4.3" data-path="2-4-linalg-misc.html"><a href="2-4-linalg-misc.html#lines-and-hyperplanes-in-mathbbrp"><i class="fa fa-check"></i><b>2.4.3</b> Lines and Hyperplanes in <span class="math inline">\(\mathbb{R}^p\)</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-linalg-decomp.html"><a href="3-linalg-decomp.html"><i class="fa fa-check"></i><b>3</b> Matrix decompositions</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-matrix-matrix.html"><a href="3-1-matrix-matrix.html"><i class="fa fa-check"></i><b>3.1</b> Matrix-matrix products</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-eigenvalues-and-eigenvectors.html"><a href="3-2-eigenvalues-and-eigenvectors.html"><i class="fa fa-check"></i><b>3.2</b> Eigenvalues and eigenvectors</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-spectraleigen-decomposition.html"><a href="3-3-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>3.3</b> Spectral/eigen decomposition</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-spectraleigen-decomposition.html"><a href="3-3-spectraleigen-decomposition.html#matrix-square-roots"><i class="fa fa-check"></i><b>3.3.1</b> Matrix square roots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-linalg-SVD.html"><a href="3-4-linalg-SVD.html"><i class="fa fa-check"></i><b>3.4</b> Singular Value Decomposition (SVD)</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="3-4-linalg-SVD.html"><a href="3-4-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.4.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="3-5-optimization-results.html"><a href="3-5-optimization-results.html"><i class="fa fa-check"></i><b>3.5</b> Optimization results</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-best-approximating-matrices.html"><a href="3-6-best-approximating-matrices.html"><i class="fa fa-check"></i><b>3.6</b> Best approximating matrices</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="3-6-best-approximating-matrices.html"><a href="3-6-best-approximating-matrices.html#matrix-norms"><i class="fa fa-check"></i><b>3.6.1</b> Matrix norms</a></li>
+<li class="chapter" data-level="3.6.2" data-path="3-6-best-approximating-matrices.html"><a href="3-6-best-approximating-matrices.html#eckart-young-mirsky-theorem"><i class="fa fa-check"></i><b>3.6.2</b> Eckart-Young-Mirsky Theorem</a></li>
+<li class="chapter" data-level="3.6.3" data-path="3-6-best-approximating-matrices.html"><a href="3-6-best-approximating-matrices.html#example-image-compression"><i class="fa fa-check"></i><b>3.6.3</b> Example: image compression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html"><i class="fa fa-check"></i>PART II: Dimension reduction methods</a><ul>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#a-warning"><i class="fa fa-check"></i>A warning</a></li>
+<li class="chapter" data-level="3.6.4" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#why-reduce-dimension"><i class="fa fa-check"></i><b>3.6.4</b> Why reduce dimension?</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-pca.html"><a href="4-pca.html"><i class="fa fa-check"></i><b>4</b> Principal component analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-principal-component-vectors-and-scores.html"><a href="4-1-principal-component-vectors-and-scores.html"><i class="fa fa-check"></i><b>4.1</b> Principal component vectors and scores</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-properties-of-principal-components.html"><a href="4-2-properties-of-principal-components.html"><i class="fa fa-check"></i><b>4.2</b> Properties of principal components</a></li>
+<li class="chapter" data-level="4.3" data-path="4-3-population-pca.html"><a href="4-3-population-pca.html"><i class="fa fa-check"></i><b>4.3</b> Population PCA</a></li>
+<li class="chapter" data-level="4.4" data-path="4-4-an-alternative-derivation-of-pca.html"><a href="4-4-an-alternative-derivation-of-pca.html"><i class="fa fa-check"></i><b>4.4</b> An Alternative Derivation of PCA</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-pca-under-transformations-of-variables.html"><a href="4-5-pca-under-transformations-of-variables.html"><i class="fa fa-check"></i><b>4.5</b> PCA under transformations of variables</a></li>
+<li class="chapter" data-level="4.6" data-path="4-6-pca-based-on-boldsymbol-s-versus-pca-based-on-boldsymbol-r.html"><a href="4-6-pca-based-on-boldsymbol-s-versus-pca-based-on-boldsymbol-r.html"><i class="fa fa-check"></i><b>4.6</b> PCA based on <span class="math inline">\(\boldsymbol S\)</span> versus PCA based on <span class="math inline">\(\boldsymbol R\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-canonical-correlation-analysis.html"><a href="5-1-canonical-correlation-analysis.html"><i class="fa fa-check"></i><b>5.1</b> Canonical Correlation Analysis</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a></li>
+<li class="chapter" data-level="5.3" data-path="5-3-connection-with-linear-regression-when-q1.html"><a href="5-3-connection-with-linear-regression-when-q1.html"><i class="fa fa-check"></i><b>5.3</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-population-cca.html"><a href="5-4-population-cca.html"><i class="fa fa-check"></i><b>5.4</b> Population CCA</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-invarianceequivariance-properties-of-cca.html"><a href="5-5-invarianceequivariance-properties-of-cca.html"><i class="fa fa-check"></i><b>5.5</b> Invariance/equivariance properties of CCA</a></li>
+<li class="chapter" data-level="5.6" data-path="5-6-testing-for-zero-canonical-correlation-coefficients.html"><a href="5-6-testing-for-zero-canonical-correlation-coefficients.html"><i class="fa fa-check"></i><b>5.6</b> Testing for zero canonical correlation coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-multidimensional-scaling.html"><a href="6-1-multidimensional-scaling.html"><i class="fa fa-check"></i><b>6.1</b> Multidimensional Scaling</a></li>
+<li class="chapter" data-level="6.2" data-path="6-2-principal-coordinates.html"><a href="6-2-principal-coordinates.html"><i class="fa fa-check"></i><b>6.2</b> Principal Coordinates</a></li>
+<li class="chapter" data-level="6.3" data-path="6-3-similarity-measures.html"><a href="6-3-similarity-measures.html"><i class="fa fa-check"></i><b>6.3</b> Similarity measures</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="spectraleigen-decomposition" class="section level2">
+<h2><span class="header-section-number">3.3</span> Spectral/eigen decomposition</h2>
+<p>The key to much of dimension reduction is finding matrix decompositions. The first decomposition we will consider is the <strong>spectral decomposition</strong> (also called an <strong>eigen-decomposition</strong>).</p>
+
+<div class="proposition">
+<span id="prp:spectraldecomp" class="proposition"><strong>Proposition 3.3  </strong></span><strong>(Spectral decomposition)</strong>. Any symmetric matrix <span class="math inline">\(\stackrel{n\times n}{\mathbf A}\)</span> can
+be written as
+<span class="math display">\[ {\mathbf A}={\mathbf Q} {\mathbf\Lambda} \boldsymbol Q^\top = \sum _{i=1}^{n} \lambda _i {\mathbf q}_i {\mathbf q}_i^\top ,\]</span>
+where <span class="math inline">\(\stackrel{n\times n}{\mathbf \Lambda}=\text{diag}\{ \lambda _1, \dots , \lambda _n \}\)</span> is
+a diagonal matrix consisting of the eigenvalues of <span class="math inline">\(\mathbf A\)</span> and <span class="math inline">\(\stackrel{n\times n}{\mathbf Q}\)</span> is
+an orthogonal matrix (<span class="math inline">\(\boldsymbol Q\boldsymbol Q^\top=\boldsymbol Q^\top \boldsymbol Q=\mathbf I_n\)</span>) whose columns are unit eigenvectors
+<span class="math inline">\({\mathbf q}_1, \dots , {\mathbf q}_n\)</span> of <span class="math inline">\(\mathbf A\)</span>.
+</div>
+
+<p>Because <span class="math inline">\(\boldsymbol \Lambda\)</span> is a diagonal matrix, we sometimes refer to the spectral decomposition as <strong>diagonalizing</strong> the matrix <span class="math inline">\(\boldsymbol A\)</span> as <span class="math inline">\(\boldsymbol Q^\top\boldsymbol A\boldsymbol Q=\boldsymbol \Lambda\)</span> is a diagonal matrix.</p>
+<p>This will be useful at various points throughout the module. Note that it relies upon the fact that the eigenvectors of <span class="math inline">\(\boldsymbol A\)</span> can be chosen to be mutually orthogonal, and as there are <span class="math inline">\(n\)</span> of them, they form an orthonormal basis for <span class="math inline">\(\mathbb{R}^n\)</span>.</p>
+
+<div class="corollary">
+<span id="cor:nonzeroeigen" class="corollary"><strong>Corollary 3.1  </strong></span>The rank of a symmetric matrix is equal to the number of non-zero eigenvalues (counting according to their multiplicities).
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> If <span class="math inline">\(r\)</span> is the number of non-zero eigenvalues of <span class="math inline">\(\boldsymbol A\)</span>, then we have (after possibly reordering the <span class="math inline">\(\lambda_i\)</span>)
+<span class="math display">\[{\mathbf A}= \sum _{i=1}^{r} \lambda _i {\mathbf q}_i {\mathbf q}_i^\top. \]</span>
+Each <span class="math inline">\({\mathbf q}_i {\mathbf q}_i^\top\)</span> is a rank 1 matrix, with column space equal to the span of <span class="math inline">\(\boldsymbol q_i\)</span>. As the <span class="math inline">\(\boldsymbol q_i\)</span> are orthogonal, the columns spaces <span class="math inline">\(\mathcal{C}(\boldsymbol q_i \boldsymbol q_i^\top)\)</span> are orthogonal, and their union
+is a vector space of dimension <span class="math inline">\(r\)</span>. Hence the rank of <span class="math inline">\(\boldsymbol A\)</span> is <span class="math inline">\(r\)</span>.
+</div>
+
+
+<div class="lemma">
+<span id="lem:eigposdef" class="lemma"><strong>Lemma 3.1  </strong></span>Let <span class="math inline">\(\stackrel{n\times n}{\mathbf A}\)</span> be a symmetric matrix
+with (necessarily real) eigenvalues <span class="math inline">\(\lambda _1 \geq \lambda _2 \geq \dots \geq \lambda _n\)</span>. Then <span class="math inline">\(\mathbf A\)</span> is <em>positive definite</em>
+if and only if <span class="math inline">\(\lambda _n &gt;0\)</span>. It is positive semi-definite if and only if <span class="math inline">\(\lambda_n \geq 0\)</span>.
+</div>
+
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> If <span class="math inline">\(\boldsymbol A\)</span> is positive definite, and if <span class="math inline">\(\boldsymbol x\)</span> is a unit-eigenvalue of <span class="math inline">\(\boldsymbol A\)</span> corresponding to <span class="math inline">\(\lambda_n\)</span>, then
+<span class="math display">\[0\leq \boldsymbol x^\top \boldsymbol A\boldsymbol x= \lambda_n \boldsymbol x^\top \boldsymbol x= \lambda_n.\]</span></p>
+Conversely, suppose <span class="math inline">\(\boldsymbol A\)</span> has positive eigenvalues. Because <span class="math inline">\(\boldsymbol A\)</span> is real and symmetric, we can write it as <span class="math inline">\(\boldsymbol A=\boldsymbol Q{\mathbf\Lambda} \boldsymbol Q^\top\)</span>. Now if <span class="math inline">\(\boldsymbol x\)</span> is a non-zero vector, then <span class="math inline">\(\boldsymbol y= \boldsymbol Q^\top \boldsymbol x\not= \boldsymbol 0\)</span>, (as <span class="math inline">\(\boldsymbol Q^\top\)</span> has inverse <span class="math inline">\(\boldsymbol Q\)</span> and hence <span class="math inline">\(\dim \operatorname{Ker}(\boldsymbol Q)=0\)</span>). Thus
+<span class="math display">\[\boldsymbol x^\top \boldsymbol A\boldsymbol x= \boldsymbol y^\top {\mathbf\Lambda}\boldsymbol y= \sum_{i=1}^n \lambda_i y_i^2 &gt;0\]</span> and thus <span class="math inline">\(\boldsymbol A\)</span> is positive definite.
+</div>
+
+<p><strong>Note:</strong> A covariance matrix <span class="math inline">\(\boldsymbol \Sigma\)</span> is always positive semi-
+definite (and thus always has non-negative eigenvalues). To see this, recall that if <span class="math inline">\(\boldsymbol x\)</span> is a random vector with <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\boldsymbol x)=\boldsymbol \Sigma\)</span>, then for any constant vector <span class="math inline">\(\boldsymbol a\)</span>, the random variable <span class="math inline">\(\boldsymbol a^\top \boldsymbol x\)</span> has variance <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\boldsymbol a^\top \boldsymbol x)=\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a\)</span>. Because variances are positive, we must have
+<span class="math display">\[\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a\geq 0 \;\forall \;\boldsymbol a.\]</span></p>
+<p>Moreover, if <span class="math inline">\(\boldsymbol \Sigma\)</span> is positive definite (so that its eigenvalues are positive), then its
+determinant will be positive (so that <span class="math inline">\(\boldsymbol \Sigma\)</span> is <strong>non-singular</strong>) and we can find an inverse <span class="math inline">\(\boldsymbol \Sigma^{-1}\)</span> matrix, which is called the <strong>precision</strong> matrix.</p>
+
+<div class="proposition">
+<span id="prp:unnamed-chunk-5" class="proposition"><strong>Proposition 3.4  </strong></span>The eigenvalues of a projection matrix <span class="math inline">\(\boldsymbol P\)</span> are all <span class="math inline">\(0\)</span> or <span class="math inline">\(1\)</span>.
+</div>
+
+<div id="matrix-square-roots" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Matrix square roots</h3>
+<p>From the spectral decomposition theorem, we can see that if <span class="math inline">\(\boldsymbol A\)</span> is a symmetric positive semi-definite matrix, then for any integer <span class="math inline">\(p\)</span></p>
+<p><span class="math display">\[\boldsymbol A^p = \boldsymbol Q{\mathbf\Lambda}^p \boldsymbol Q^\top.\]</span>
+If in addition <span class="math inline">\(\boldsymbol A\)</span> is positive definite (rather than just semi-definite), then
+<span class="math display">\[\boldsymbol A^{-1} = \boldsymbol Q{\mathbf\Lambda}^{-1} \boldsymbol Q^\top\]</span>
+where <span class="math inline">\({\mathbf\Lambda}^{-1} = \text{diag}\{ \frac{1}{\lambda _1}, \dots , \frac{1}{\lambda _n} \}\)</span>.</p>
+<p>The spectral decomposition also gives us a way to define a matrix square root. If we assume <span class="math inline">\(\boldsymbol A\)</span> is positive semi-definite, then its eigenvalues are non-negative, and the diagonal elements of <span class="math inline">\(\mathbf \Lambda\)</span> are all non-negative.</p>
+<p>We then define <span class="math inline">\({\boldsymbol A}^{1/2}\)</span>, a matrix square root of <span class="math inline">\(\boldsymbol A\)</span>, to be <span class="math inline">\({\boldsymbol A}^{1/2}=\boldsymbol Q\boldsymbol \Lambda^{1/2} \boldsymbol Q^\top\)</span> where <span class="math inline">\(\boldsymbol \Lambda^{1/2}=\text{diag}\{\lambda_1^{1/2}, \ldots , \lambda_n^{1/2}\}\)</span>. This definition makes sense because
+<span class="math display">\[\begin{align*}
+\boldsymbol A^{1/2}\boldsymbol A^{1/2}&amp;=\boldsymbol Q\boldsymbol \Lambda^{1/2}\boldsymbol Q^\top \boldsymbol Q\boldsymbol \Lambda^{1/2} \boldsymbol Q^\top\\
+&amp;=\boldsymbol Q\boldsymbol \Lambda^{1/2}\boldsymbol \Lambda^{1/2}\boldsymbol Q^\top\\
+&amp;=\boldsymbol Q\boldsymbol \Lambda\boldsymbol Q^\top\\
+&amp;=\boldsymbol A,
+\end{align*}\]</span>
+where <span class="math inline">\(\boldsymbol Q^\top \boldsymbol Q=\mathbf I_n\)</span> and <span class="math inline">\(\boldsymbol \Lambda^{1/2}\boldsymbol \Lambda^{1/2}=\boldsymbol \Lambda\)</span>. The matrix <span class="math inline">\(\boldsymbol A^{1/2}\)</span> is not the only matrix square root of <span class="math inline">\(\boldsymbol A\)</span>, but it <em>is</em> the only symmetric, positive semi-definite square root of <span class="math inline">\(\boldsymbol A\)</span>.</p>
+<p>If <span class="math inline">\(\boldsymbol A\)</span> is positive definite (as opposed to just positive semi-definite), then all the <span class="math inline">\(\lambda_i\)</span> are positive and so we can also define <span class="math inline">\(\boldsymbol A^{-1/2}=\boldsymbol Q\boldsymbol \Lambda^{-1/2}\boldsymbol Q^\top\)</span> where <span class="math inline">\(\boldsymbol \Lambda^{-1/2}=\text{diag}\{\lambda_1^{-1/2},\ldots , \lambda_n^{-1/2}\}\)</span>. Note that
+<span class="math display">\[
+\boldsymbol A^{-1/2}\boldsymbol A^{-1/2}=\boldsymbol Q\boldsymbol \Lambda^{-1/2}\boldsymbol Q^\top \boldsymbol Q\boldsymbol \Lambda^{-1/2}\boldsymbol Q^\top =\boldsymbol Q\boldsymbol \Lambda^{-1}\boldsymbol Q^\top=\boldsymbol A^{-1},
+\]</span>
+so that, as defined above, <span class="math inline">\(\boldsymbol A^{-1/2}\)</span> is the matrix square root of <span class="math inline">\(\boldsymbol A^{-1}\)</span>. Furthermore, similar calculations show that
+<span class="math display">\[
+\boldsymbol A^{1/2}\boldsymbol A^{-1/2}=\boldsymbol A^{-1/2}\boldsymbol A^{1/2}=\mathbf I_n,
+\]</span>
+so that <span class="math inline">\(\boldsymbol A^{-1/2}\)</span> is the matrix inverse of <span class="math inline">\(\boldsymbol A^{1/2}\)</span>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="3-2-eigenvalues-and-eigenvectors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3-4-linalg-SVD.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MATH3030.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

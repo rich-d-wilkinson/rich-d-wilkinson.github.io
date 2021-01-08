@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.3 Inner product spaces | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.3 Inner product spaces | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.3 Inner product spaces | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="2-2-linalg-vecspaces.html"/>
+<link rel="next" href="2-4-linalg-misc.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivartiate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-multivariate-data.html"><a href="1-1-multivariate-data.html"><i class="fa fa-check"></i><b>1.1</b> Multivariate data</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-summary-statistics.html"><a href="1-2-summary-statistics.html"><i class="fa fa-check"></i><b>1.2</b> Summary statistics</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-graphical-techniques.html"><a href="1-3-graphical-techniques.html"><i class="fa fa-check"></i><b>1.3</b> Graphical techniques</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-random-vectors-and-matrices.html"><a href="1-4-random-vectors-and-matrices.html"><i class="fa fa-check"></i><b>1.4</b> Random Vectors and Matrices</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-unbiased-estimators.html"><a href="1-5-unbiased-estimators.html"><i class="fa fa-check"></i><b>1.5</b> Unbiased Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-linalg-prelim.html"><a href="2-linalg-prelim.html"><i class="fa fa-check"></i><b>2</b> Review of linear algebra</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html"><i class="fa fa-check"></i><b>2.1</b> Basics</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#notation"><i class="fa fa-check"></i><b>2.1.1</b> Notation</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#elementary-matrix-operations"><i class="fa fa-check"></i><b>2.1.2</b> Elementary matrix operations</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#special-matrices"><i class="fa fa-check"></i><b>2.1.3</b> Special matrices</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#vector-differentiation"><i class="fa fa-check"></i><b>2.1.4</b> Vector Differentiation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html"><i class="fa fa-check"></i><b>2.2</b> Vector spaces</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#linear-independence"><i class="fa fa-check"></i><b>2.2.1</b> Linear independence</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#colsspace"><i class="fa fa-check"></i><b>2.2.2</b> Row and column spaces</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#linear-transformations"><i class="fa fa-check"></i><b>2.2.3</b> Linear transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html"><i class="fa fa-check"></i><b>2.3</b> Inner product spaces</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#normed"><i class="fa fa-check"></i><b>2.3.1</b> Distances, and angles</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#orthogonal-matrices"><i class="fa fa-check"></i><b>2.3.2</b> Orthogonal matrices</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#projections"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-4-linalg-misc.html"><a href="2-4-linalg-misc.html"><i class="fa fa-check"></i><b>2.4</b> Miscellaneous topics</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-4-linalg-misc.html"><a href="2-4-linalg-misc.html#the-centering-matrix"><i class="fa fa-check"></i><b>2.4.1</b> The Centering Matrix</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-4-linalg-misc.html"><a href="2-4-linalg-misc.html#quadratic-forms-and-ellipses"><i class="fa fa-check"></i><b>2.4.2</b> Quadratic forms and ellipses</a></li>
+<li class="chapter" data-level="2.4.3" data-path="2-4-linalg-misc.html"><a href="2-4-linalg-misc.html#lines-and-hyperplanes-in-mathbbrp"><i class="fa fa-check"></i><b>2.4.3</b> Lines and Hyperplanes in <span class="math inline">\(\mathbb{R}^p\)</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-linalg-decomp.html"><a href="3-linalg-decomp.html"><i class="fa fa-check"></i><b>3</b> Matrix decompositions</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-matrix-matrix.html"><a href="3-1-matrix-matrix.html"><i class="fa fa-check"></i><b>3.1</b> Matrix-matrix products</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-eigenvalues-and-eigenvectors.html"><a href="3-2-eigenvalues-and-eigenvectors.html"><i class="fa fa-check"></i><b>3.2</b> Eigenvalues and eigenvectors</a></li>
+<li class="chapter" data-level="3.3" data-path="3-3-spectraleigen-decomposition.html"><a href="3-3-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>3.3</b> Spectral/eigen decomposition</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-spectraleigen-decomposition.html"><a href="3-3-spectraleigen-decomposition.html#matrix-square-roots"><i class="fa fa-check"></i><b>3.3.1</b> Matrix square roots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-linalg-SVD.html"><a href="3-4-linalg-SVD.html"><i class="fa fa-check"></i><b>3.4</b> Singular Value Decomposition (SVD)</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="3-4-linalg-SVD.html"><a href="3-4-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.4.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="3-5-optimization-results.html"><a href="3-5-optimization-results.html"><i class="fa fa-check"></i><b>3.5</b> Optimization results</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-best-approximating-matrices.html"><a href="3-6-best-approximating-matrices.html"><i class="fa fa-check"></i><b>3.6</b> Best approximating matrices</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="3-6-best-approximating-matrices.html"><a href="3-6-best-approximating-matrices.html#matrix-norms"><i class="fa fa-check"></i><b>3.6.1</b> Matrix norms</a></li>
+<li class="chapter" data-level="3.6.2" data-path="3-6-best-approximating-matrices.html"><a href="3-6-best-approximating-matrices.html#eckart-young-mirsky-theorem"><i class="fa fa-check"></i><b>3.6.2</b> Eckart-Young-Mirsky Theorem</a></li>
+<li class="chapter" data-level="3.6.3" data-path="3-6-best-approximating-matrices.html"><a href="3-6-best-approximating-matrices.html#example-image-compression"><i class="fa fa-check"></i><b>3.6.3</b> Example: image compression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html"><i class="fa fa-check"></i>PART II: Dimension reduction methods</a><ul>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#a-warning"><i class="fa fa-check"></i>A warning</a></li>
+<li class="chapter" data-level="3.6.4" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#why-reduce-dimension"><i class="fa fa-check"></i><b>3.6.4</b> Why reduce dimension?</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-pca.html"><a href="4-pca.html"><i class="fa fa-check"></i><b>4</b> Principal component analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-principal-component-vectors-and-scores.html"><a href="4-1-principal-component-vectors-and-scores.html"><i class="fa fa-check"></i><b>4.1</b> Principal component vectors and scores</a></li>
+<li class="chapter" data-level="4.2" data-path="4-2-properties-of-principal-components.html"><a href="4-2-properties-of-principal-components.html"><i class="fa fa-check"></i><b>4.2</b> Properties of principal components</a></li>
+<li class="chapter" data-level="4.3" data-path="4-3-population-pca.html"><a href="4-3-population-pca.html"><i class="fa fa-check"></i><b>4.3</b> Population PCA</a></li>
+<li class="chapter" data-level="4.4" data-path="4-4-an-alternative-derivation-of-pca.html"><a href="4-4-an-alternative-derivation-of-pca.html"><i class="fa fa-check"></i><b>4.4</b> An Alternative Derivation of PCA</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-pca-under-transformations-of-variables.html"><a href="4-5-pca-under-transformations-of-variables.html"><i class="fa fa-check"></i><b>4.5</b> PCA under transformations of variables</a></li>
+<li class="chapter" data-level="4.6" data-path="4-6-pca-based-on-boldsymbol-s-versus-pca-based-on-boldsymbol-r.html"><a href="4-6-pca-based-on-boldsymbol-s-versus-pca-based-on-boldsymbol-r.html"><i class="fa fa-check"></i><b>4.6</b> PCA based on <span class="math inline">\(\boldsymbol S\)</span> versus PCA based on <span class="math inline">\(\boldsymbol R\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-canonical-correlation-analysis.html"><a href="5-1-canonical-correlation-analysis.html"><i class="fa fa-check"></i><b>5.1</b> Canonical Correlation Analysis</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a></li>
+<li class="chapter" data-level="5.3" data-path="5-3-connection-with-linear-regression-when-q1.html"><a href="5-3-connection-with-linear-regression-when-q1.html"><i class="fa fa-check"></i><b>5.3</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-population-cca.html"><a href="5-4-population-cca.html"><i class="fa fa-check"></i><b>5.4</b> Population CCA</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-invarianceequivariance-properties-of-cca.html"><a href="5-5-invarianceequivariance-properties-of-cca.html"><i class="fa fa-check"></i><b>5.5</b> Invariance/equivariance properties of CCA</a></li>
+<li class="chapter" data-level="5.6" data-path="5-6-testing-for-zero-canonical-correlation-coefficients.html"><a href="5-6-testing-for-zero-canonical-correlation-coefficients.html"><i class="fa fa-check"></i><b>5.6</b> Testing for zero canonical correlation coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-multidimensional-scaling.html"><a href="6-1-multidimensional-scaling.html"><i class="fa fa-check"></i><b>6.1</b> Multidimensional Scaling</a></li>
+<li class="chapter" data-level="6.2" data-path="6-2-principal-coordinates.html"><a href="6-2-principal-coordinates.html"><i class="fa fa-check"></i><b>6.2</b> Principal Coordinates</a></li>
+<li class="chapter" data-level="6.3" data-path="6-3-similarity-measures.html"><a href="6-3-similarity-measures.html"><i class="fa fa-check"></i><b>6.3</b> Similarity measures</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linalg-innerprod" class="section level2">
+<h2><span class="header-section-number">2.3</span> Inner product spaces</h2>
+<div id="normed" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Distances, and angles</h3>
+<p>Vector spaces are not particularly interesting from a statistical point of view until we equip them with a sense of geometry, i.e. distance and angle.</p>
+
+<div class="definition">
+<span id="def:innerprod" class="definition"><strong>Definition 2.8  </strong></span>A real <strong>inner product space</strong> <span class="math inline">\((V, \langle\cdot,\cdot\rangle)\)</span> is a real vector space <span class="math inline">\(V\)</span> equipped with a map
+<span class="math display">\[ \langle\cdot,\cdot\rangle : V \times V \rightarrow \mathbb{R}\]</span>
+such that
+</div>
+
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\langle\cdot,\cdot\rangle\)</span> is a linear map in both arguments:
+<span class="math display">\[\langle \alpha \boldsymbol v_1+\beta \boldsymbol v_2, \boldsymbol u\rangle = \alpha \langle \boldsymbol v_1, \boldsymbol u\rangle + \beta \langle \boldsymbol v_2, \boldsymbol u\rangle\]</span>
+for all <span class="math inline">\(\boldsymbol v_1, \boldsymbol v_2, \boldsymbol u\in V\)</span> and <span class="math inline">\(\alpha, \beta \in \mathbb{R}\)</span>.</li>
+<li><span class="math inline">\(\langle\cdot,\cdot\rangle\)</span> is symmetric in its arguments: <span class="math inline">\(\langle \boldsymbol v, \boldsymbol u\rangle = \langle \boldsymbol u, \boldsymbol v\rangle\)</span> for all <span class="math inline">\(\boldsymbol u,\boldsymbol v\in V\)</span></li>
+<li><span class="math inline">\(\langle\cdot,\cdot\rangle\)</span> is positive definite: <span class="math inline">\(\langle \boldsymbol v, \boldsymbol v\rangle \geq 0\)</span> for all <span class="math inline">\(\boldsymbol v\in V\)</span> with equality if and only if <span class="math inline">\(\boldsymbol v={\mathbf 0}\)</span>.</li>
+</ol>
+<p>An inner product provides a vector space with the concepts of</p>
+<ul>
+<li><p><strong>distance</strong>: for all <span class="math inline">\(v\in V\)</span> define the <strong>norm</strong> of <span class="math inline">\(v\)</span> to be <span class="math display">\[||\boldsymbol v|| = \langle \boldsymbol v, \boldsymbol v\rangle ^{\frac{1}{2}}\]</span>
+Thus any inner-product space <span class="math inline">\((V, \langle\cdot,\cdot\rangle)\)</span> is also a normed space <span class="math inline">\((V, ||\cdot||)\)</span>, and a metric space <span class="math inline">\((V, d(\boldsymbol x,\boldsymbol y)=||\boldsymbol x-\boldsymbol y||)\)</span>.</p></li>
+<li><p><strong>angle</strong>: for <span class="math inline">\(\boldsymbol u, \boldsymbol v\in V\)</span> we define the angle between <span class="math inline">\(\boldsymbol u\)</span> and <span class="math inline">\(\boldsymbol v\)</span> to be <span class="math inline">\(\theta\)</span> where
+<span class="math display">\[\begin{align*}
+\langle \boldsymbol u,\boldsymbol v\rangle &amp;= ||\boldsymbol u||.||\boldsymbol v||\cos \theta\\
+\implies \theta &amp;= \cos^{-1}\left( \frac{\langle \boldsymbol u, \boldsymbol v\rangle}{||\boldsymbol u|| \;||\boldsymbol v||}\right)
+\end{align*}\]</span>
+We will primarily be interested in the concept of <strong>orthogonality</strong>. We say <span class="math inline">\(\boldsymbol u, \boldsymbol v\in V\)</span> are orthogonal if
+<span class="math display">\[\langle \boldsymbol u, \boldsymbol v\rangle =0\]</span>
+i.e., the <em>angle</em> between them is <span class="math inline">\(\frac{\pi}{2}\)</span>.</p></li>
+</ul>
+<p>If you have done any functional analysis, you may recall that a Hilbert space is a <em>complete</em> inner-product space, and a Banach space is a complete normed space. This is an applied module, so we will skirt much of the technical detail, but note that some of the proofs formally require us to be working in a Banach or Hilbert space. We will not concern ourselves with such detail.</p>
+
+<div class="example">
+<p><span id="exm:Rp3" class="example"><strong>Example 2.11  </strong></span>We will mostly be working with the Euclidean vector spaces <span class="math inline">\(V=\mathbb{R}^n\)</span>, in which we use the <em>Euclidean</em> inner product
+<span class="math display">\[\langle \boldsymbol u, \boldsymbol v\rangle = \boldsymbol u^\top \boldsymbol v\]</span>
+sometimes called the <strong>scalar</strong> or <strong>dot product</strong> of <span class="math inline">\(\boldsymbol u\)</span> and <span class="math inline">\(\boldsymbol v\)</span>. Sometimes this gets weighted by a matrix so that
+<span class="math display">\[\langle \boldsymbol u, \boldsymbol v\rangle_Q = \boldsymbol u^\top \boldsymbol Q\boldsymbol v.\]</span></p>
+<p>The norm associated with the dot product is the square root of the sum of squared errors, denoted by <span class="math inline">\(|| \cdot ||_2\)</span>.
+The <strong>length</strong> of <span class="math inline">\(\boldsymbol u\)</span> is then
+<span class="math display">\[||\boldsymbol u||_2=\sqrt{\boldsymbol u^\top \boldsymbol u} =\left( \sum_{i=1}^n u_i^2\right)^\frac{1}{2}\geq 0.\]</span>
+Note that <span class="math inline">\(||\boldsymbol u||_2=0\)</span> if and only if <span class="math inline">\(\boldsymbol u={\mathbf 0}_n\)</span> where <span class="math inline">\(\stackrel{n\times 1}{\mathbf 0}_n=(0,0,\dots ,0)^\top\)</span>.</p>
+We say <span class="math inline">\(\boldsymbol u\)</span> is orthogonal to <span class="math inline">\(\boldsymbol v\)</span> if <span class="math inline">\(\boldsymbol u^\top \boldsymbol v=0\)</span>.
+For example, if
+<span class="math display">\[\boldsymbol u=\left(\begin{array}{c}1\\2\end{array}\right) \mbox{ and } \boldsymbol v=\left(\begin{array}{c}-2\\1\end{array}\right)\]</span>
+then
+<span class="math display">\[||\boldsymbol u||_2 = \sqrt{5}\mbox{ and } \boldsymbol u^\top \boldsymbol v=0.\]</span>
+We will write <span class="math inline">\(\boldsymbol u\perp \boldsymbol v\)</span> if <span class="math inline">\(\boldsymbol u\)</span> is orthogonal to <span class="math inline">\(\boldsymbol v\)</span>.
+</div>
+
+
+<div class="definition">
+<span id="def:pnorms" class="definition"><strong>Definition 2.9  </strong></span><strong>p-norm:</strong> The subscript <span class="math inline">\(2\)</span> hints at a wider family of norms. We define the <span class="math inline">\(L_p\)</span> norm to be
+<span class="math display">\[|| \boldsymbol v||_p = \left(\sum_{i=1}^n |v_i|^p\right)^\frac{1}{p}.\]</span>
+</div>
+
+<!-- OKAY TO HERE-->
+</div>
+<div id="orthogonal-matrices" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Orthogonal matrices</h3>
+
+<div class="definition">
+<p><span id="def:orthogonal" class="definition"><strong>Definition 2.10  </strong></span>A <strong>unit vector</strong> <span class="math inline">\(\mathbf v\)</span> is a vector satisfying <span class="math inline">\(||{\mathbf v}||=1\)</span>, i.e., it is a vector of length <span class="math inline">\(1\)</span>. Vectors <span class="math inline">\(\boldsymbol u\)</span> and <span class="math inline">\(\boldsymbol v\)</span> are orthonormal if
+<span class="math display">\[||\boldsymbol u||=||\boldsymbol v|| = 1 \mbox{ and } \langle \boldsymbol u, \boldsymbol v\rangle =0.\]</span></p>
+<p>An <span class="math inline">\(n\times n\)</span> matrix <span class="math inline">\({\mathbf Q}\)</span> is an <strong>orthogonal matrix</strong> if <span class="math display">\[{\mathbf Q}\boldsymbol Q^\top = {\mathbf Q}^\top {\mathbf Q}={\mathbf I}_n.\]</span></p>
+<p>Equivalently, a matrix <span class="math inline">\(\mathbf Q\)</span> is orthogonal if <span class="math inline">\({\mathbf Q}^{-1}={\mathbf Q}^\top.\)</span></p>
+If <span class="math inline">\({\mathbf Q}=[\boldsymbol q_1,\ldots, \boldsymbol q_n]\)</span> is an orthogonal matrix, then the columns <span class="math inline">\(\boldsymbol q_1, \ldots, \boldsymbol q_n\)</span> are mutually <strong>orthonormal</strong> vectors, i.e.
+<span class="math display">\[
+\boldsymbol q_j^\top \boldsymbol q_k=\begin{cases} 1 &amp;\hbox{ if }  j=k\\
+0 &amp;\hbox{ if }   j \neq k. \\
+\end{cases}
+\]</span>
+</div>
+
+<p><br></p>
+
+<div class="lemma">
+<span id="lem:lemorthog" class="lemma"><strong>Lemma 2.2  </strong></span>Let <span class="math inline">\(\boldsymbol Q\)</span> be a <span class="math inline">\(n\times p\)</span> matrix and suppose <span class="math inline">\(\boldsymbol Q^\top \boldsymbol Q=\mathbf I_p\)</span>, where <span class="math inline">\(\mathbf I_p\)</span> is the <span class="math inline">\(p \times p\)</span> identity matrix. If <span class="math inline">\(\boldsymbol Q\)</span> is a square matrix (<span class="math inline">\(n=p\)</span>), then <span class="math inline">\(\boldsymbol Q\boldsymbol Q^\top = \mathbf I_p\)</span>. If <span class="math inline">\(\boldsymbol Q\)</span> is not square (<span class="math inline">\(n\not =p\)</span>), then <span class="math inline">\(\boldsymbol Q\boldsymbol Q^\top \not = I_n\)</span>.
+</div>
+
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> Suppose <span class="math inline">\(n=p\)</span>, and think of <span class="math inline">\(\boldsymbol Q\)</span> as a linear map&quot;&quot;
+<span class="math display">\[\begin{align*}
+\boldsymbol Q: &amp;\mathbb{R}^n \rightarrow \mathbb{R}^n\\
+&amp;\boldsymbol v\mapsto \boldsymbol Q\boldsymbol v
+\end{align*}\]</span>
+By the rank-nullity theorem,
+<span class="math display">\[\dim \operatorname{Ker}(\boldsymbol Q) + \dim \operatorname{Im}(\boldsymbol Q) =n\]</span>
+and because <span class="math inline">\(\boldsymbol Q\)</span> has a left-inverse, we must have <span class="math inline">\(\dim \operatorname{Ker}(\boldsymbol Q)=0\)</span>, as otherwise <span class="math inline">\(\boldsymbol Q^\top\)</span> would have to map from a vector space of dimension less than <span class="math inline">\(n\)</span> to <span class="math inline">\(\mathbb{R}^n\)</span>. So <span class="math inline">\(\boldsymbol Q\)</span> is of full rank, and thus must also have a right inverse, <span class="math inline">\(\boldsymbol B\)</span> say, with <span class="math inline">\(\boldsymbol Q\boldsymbol B=\mathbf I_n\)</span>. If we left multiply by <span class="math inline">\(\boldsymbol Q^\top\)</span> we get
+<span class="math display">\[\begin{align*}
+\boldsymbol Q\boldsymbol B&amp;=\mathbf I_n\\
+\boldsymbol Q^\top\boldsymbol Q\boldsymbol B&amp;=\boldsymbol Q^\top\\
+\mathbf I_n \boldsymbol B&amp;= \boldsymbol Q^\top\\
+\boldsymbol B&amp;= \boldsymbol Q^\top\\
+\end{align*}\]</span>
+and so we have that <span class="math inline">\(\boldsymbol Q^{-1}=\boldsymbol Q^\top\)</span>.</p>
+Now suppose <span class="math inline">\(\boldsymbol Q\)</span> is <span class="math inline">\(n \times p\)</span> with <span class="math inline">\(n\not = p\)</span>. Then as
+<span class="math inline">\(\boldsymbol Q^\top \boldsymbol Q=\mathbf I_{p\times p}\)</span>, we must have <span class="math inline">\(\operatorname{tr}(\boldsymbol Q^\top \boldsymbol Q)=p\)</span>. This implies that
+<span class="math display">\[\operatorname{tr}(\boldsymbol Q\boldsymbol Q^\top)=\operatorname{tr}(\boldsymbol Q^\top \boldsymbol Q)=m\]</span> and so
+we cannot have <span class="math inline">\(\boldsymbol Q\boldsymbol Q^\top=\mathbf I_{n}\)</span> as <span class="math inline">\(\operatorname{tr}{\mathbf I_{n}}=n\)</span>.
+</div>
+
+<p><br></p>
+
+<div class="corollary">
+<span id="cor:two1" class="corollary"><strong>Corollary 2.2  </strong></span>If <span class="math inline">\(\boldsymbol q_1, \ldots , \boldsymbol q_n\)</span> are mutually orthogonal <span class="math inline">\(n \times 1\)</span> unit vectors then
+<span class="math display">\[
+\sum_{i=1}^n \boldsymbol q_i \boldsymbol q_i^\top = {\mathbf I}_n.
+\]</span>
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> Let <span class="math inline">\(\boldsymbol Q\)</span> be the matrix with <span class="math inline">\(i^{th}\)</span> column <span class="math inline">\(\boldsymbol q_i\)</span>
+<span class="math display">\[\boldsymbol Q=\left(
+    \begin{array}{ccc}
+    | &amp;&amp;|\\
+    \boldsymbol q_1&amp; \ldots&amp; \boldsymbol q_n\\
+    | &amp;&amp;|
+      \end{array}\right).\]</span>
+Then <span class="math inline">\(\boldsymbol Q^\top \boldsymbol Q=\mathbf I_n\)</span>, and <span class="math inline">\(\boldsymbol Q\)</span> is <span class="math inline">\(n\times n\)</span>. Thus by Lemma <a href="2-3-linalg-innerprod.html#lem:lemorthog">2.2</a>, we must also have <span class="math inline">\(\boldsymbol Q\boldsymbol Q^\top=\mathbf I_n\)</span> and if we think about matrix-matrix multiplication as columns times rows (c.f. section <a href="3-1-matrix-matrix.html#matrix-matrix">3.1</a>), we get
+<span class="math display">\[\mathbf I_n=\boldsymbol Q\boldsymbol Q^\top=\left(
+    \begin{array}{ccc}
+    | &amp;&amp;|\\
+    \boldsymbol q_1&amp; \ldots&amp; \boldsymbol q_n\\
+    | &amp;&amp;|
+      \end{array}\right) \left(
+    \begin{array}{ccc}
+    - &amp;\boldsymbol q_1^\top&amp;-\\
+    &amp; \vdots&amp; \\
+    - &amp;\boldsymbol q_n^\top&amp;-
+      \end{array}\right) = \sum_{i=1}^n \boldsymbol q_i \boldsymbol q_i^\top\]</span>
+as required.
+</div>
+
+<!-- OKAY TO HERE -->
+</div>
+<div id="projections" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Projections</h3>
+
+<div class="definition">
+<span id="def:projection" class="definition"><strong>Definition 2.11  </strong></span><span class="math inline">\(\stackrel{n \times n}{\boldsymbol P}\)</span> is a <em>projection</em>
+matrix if
+<span class="math display">\[\boldsymbol P^2 =\boldsymbol P\]</span>
+i.e., if it is idempotent.
+</div>
+
+<p>View <span class="math inline">\(\boldsymbol P\)</span> as a map from a vector space <span class="math inline">\(W\)</span> to itself. Let <span class="math inline">\(U=\operatorname{Im}(\boldsymbol P)\)</span> and <span class="math inline">\(V=\operatorname{Ker}(\boldsymbol P)\)</span> be the image and kernel of <span class="math inline">\(\boldsymbol P\)</span>.</p>
+
+<div class="proposition">
+<span id="prp:projec1" class="proposition"><strong>Proposition 2.3  </strong></span>We can write <span class="math inline">\(\boldsymbol w\in W\)</span> as the sum of <span class="math inline">\(\boldsymbol u\in U\)</span> and <span class="math inline">\(\boldsymbol v\in V\)</span>.
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> Let <span class="math inline">\(\boldsymbol w\in W\)</span>. Then
+<span class="math display">\[\boldsymbol w= \mathbf I_n \boldsymbol w=(\mathbf I-\boldsymbol P)\boldsymbol w+ \boldsymbol P\boldsymbol w\]</span>
+Now <span class="math inline">\(\boldsymbol P\boldsymbol w\in \operatorname{Im}(\boldsymbol P)\)</span> and <span class="math inline">\((\mathbf I-\boldsymbol P)\boldsymbol w\in \operatorname{Ker}(\boldsymbol P)\)</span> as
+<span class="math display">\[\boldsymbol P(\mathbf I-\boldsymbol P)\boldsymbol w= (\boldsymbol P-\boldsymbol P^2)\boldsymbol w=\boldsymbol 0.\]</span>
+</div>
+
+
+<div class="proposition">
+<span id="prp:unnamed-chunk-7" class="proposition"><strong>Proposition 2.4  </strong></span>If <span class="math inline">\(\stackrel{n \times n}{\boldsymbol P}\)</span> is a projection matrix then <span class="math inline">\({\mathbf I}_n - \boldsymbol P\)</span> is also
+a projection matrix.
+</div>
+
+<p>The kernel and image of <span class="math inline">\(\mathbf I-\boldsymbol P\)</span> are the image and kernel (respectively) of <span class="math inline">\(\boldsymbol P\)</span>:
+<span class="math display">\[\begin{align*}
+\operatorname{Ker}(\mathbf I-\boldsymbol P) &amp;= U=\operatorname{Im}(\boldsymbol P)\\
+\operatorname{Im}(\mathbf I-\boldsymbol P) &amp;= V=\operatorname{Ker}(\boldsymbol P).
+\end{align*}\]</span></p>
+<!-- OKAY TO HERE -->
+<div id="orthogonal-projection" class="section level4">
+<h4><span class="header-section-number">2.3.3.1</span> Orthogonal projection</h4>
+<p>We are mostly interested in <strong>orthogonal</strong> projections.</p>
+
+<div class="definition">
+<span id="def:orthogproj" class="definition"><strong>Definition 2.12  </strong></span>If <span class="math inline">\(W\)</span> is an inner product space, and <span class="math inline">\(U\)</span> is a subspace of <span class="math inline">\(W\)</span>, then the orthogonal projection of <span class="math inline">\(\boldsymbol w\in W\)</span> onto <span class="math inline">\(U\)</span> is the unique element <span class="math inline">\(\boldsymbol u\in U\)</span> that minimizes
+<span class="math display">\[||\boldsymbol w-\boldsymbol u||.\]</span>
+</div>
+
+<p>In other words, the orthogonal projection of <span class="math inline">\(\boldsymbol w\)</span> onto <span class="math inline">\(U\)</span> is the <em>best possible approximation</em> of <span class="math inline">\(\boldsymbol w\)</span> in <span class="math inline">\(U\)</span>.</p>
+<p>As above, we can split <span class="math inline">\(W\)</span> into <span class="math inline">\(U\)</span> and its orthogonal compliment
+<span class="math display">\[U^\perp = \{\boldsymbol x\in W: \langle \boldsymbol x,\boldsymbol u\rangle = 0\}\]</span>
+i.e., <span class="math inline">\(W=U \oplus U^\perp\)</span> so that any <span class="math inline">\(\boldsymbol w\in W\)</span> can be written as
+<span class="math inline">\(\boldsymbol w=\boldsymbol u+\boldsymbol v\)</span> with <span class="math inline">\(\boldsymbol u\in U\)</span> and <span class="math inline">\(\boldsymbol v\in U^\perp\)</span>.</p>
+
+<div class="proposition">
+<span id="prp:orthogprojection" class="proposition"><strong>Proposition 2.5  </strong></span>If <span class="math inline">\(\{\boldsymbol u_1, \ldots, \boldsymbol u_k\}\)</span> is a basis for <span class="math inline">\(U\)</span>, then the orthogonal projection matrix (i.e., the matrix that projects <span class="math inline">\(\boldsymbol w\in W\)</span> onto <span class="math inline">\(U\)</span>) is
+<span class="math display">\[\boldsymbol P_U = \boldsymbol A(\boldsymbol A^\top \boldsymbol A)^{-1}\boldsymbol A^\top\]</span> where
+<span class="math inline">\(\boldsymbol A=[\boldsymbol u_1\; \ldots\; \boldsymbol u_k]\)</span> is the matrix with columns given by the basis vectors.
+</div>
+
+<!-- OKAY TO HERE-->
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> We need to find <span class="math inline">\(\boldsymbol u= \sum \lambda_i \boldsymbol u_i = \boldsymbol A\boldsymbol \lambda\)</span> that minimizes <span class="math inline">\(||\boldsymbol w-\boldsymbol u||\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+||\boldsymbol w-\boldsymbol u||^2 &amp;= \langle \boldsymbol w-\boldsymbol u, \boldsymbol w-\boldsymbol u\rangle\\
+&amp;= \boldsymbol w^\top \boldsymbol w- 2\boldsymbol u^\top \boldsymbol w+ \boldsymbol u^\top \boldsymbol u\\
+&amp;= \boldsymbol w^\top \boldsymbol w-2\boldsymbol \lambda^\top \boldsymbol A^\top \boldsymbol w+ \boldsymbol \lambda^\top \boldsymbol A^\top \boldsymbol A\boldsymbol \lambda.
+\end{align*}\]</span></p>
+Differentiating with respect to <span class="math inline">\(\boldsymbol \lambda\)</span> and setting equal to zero gives
+<span class="math display">\[\boldsymbol 0=-2 \boldsymbol A^\top \boldsymbol w+2 \boldsymbol A^\top \boldsymbol A\boldsymbol \lambda\]</span>
+and hence
+<span class="math display">\[ \boldsymbol \lambda= (\boldsymbol A^\top \boldsymbol A)^{-1}\boldsymbol A^\top \boldsymbol w.\]</span>
+The orthogonal projection of <span class="math inline">\(\boldsymbol w\)</span> is hence
+<span class="math display">\[ \boldsymbol A\boldsymbol \lambda= \boldsymbol A(\boldsymbol A^\top \boldsymbol A)^{-1}\boldsymbol A^\top \boldsymbol w\]</span>
+and the projection matrix is
+<span class="math display">\[\boldsymbol P_U = \boldsymbol A(\boldsymbol A^\top \boldsymbol A)^{-1}\boldsymbol A^\top. \]</span>
+</div>
+
+<p><strong>Notes:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>If <span class="math inline">\(\{\boldsymbol u_1, \ldots, \boldsymbol u_k\}\)</span> is an orthonormal basis for <span class="math inline">\(U\)</span> then <span class="math inline">\(\boldsymbol A^\top \boldsymbol A= \mathbf I\)</span> and <span class="math inline">\(\boldsymbol P_U = \boldsymbol A\boldsymbol A^\top\)</span>. We can then write
+<span class="math display">\[\boldsymbol P_U\boldsymbol w= \sum_i (\boldsymbol u_i^\top \boldsymbol w) \boldsymbol u_i\]</span>
+and
+<span class="math display">\[\boldsymbol P_U = \sum_{i=1}^k \boldsymbol u_i\boldsymbol u_i^\top.\]</span>
+Note that if <span class="math inline">\(U=W\)</span> (so that <span class="math inline">\(\boldsymbol P_U\)</span> is a projection from <span class="math inline">\(W\)</span> onto <span class="math inline">\(W\)</span>, i.e., the identity), then <span class="math inline">\(\boldsymbol A\)</span> is a square matrix (<span class="math inline">\(n\times n\)</span>) and thus <span class="math inline">\(\boldsymbol A^\top\boldsymbol A=\mathbf I_n \implies \boldsymbol A\boldsymbol A^\top\)</span> and thus <span class="math inline">\(\boldsymbol P_U=\mathbf I_n\)</span> as required. The coordinates (with respect to the orthonormal basis <span class="math inline">\(\{\boldsymbol u_1, \ldots, \boldsymbol u_k\}\)</span>) of a point <span class="math inline">\(\boldsymbol w\)</span> projected onto <span class="math inline">\(U\)</span> are <span class="math inline">\(\boldsymbol A^\top \boldsymbol w\)</span>.</p></li>
+<li><p><span class="math inline">\(\boldsymbol P_U^2=\boldsymbol P_U\)</span>, so <span class="math inline">\(\boldsymbol P_U\)</span> is a projection matrix in the sense of definition <a href="2-3-linalg-innerprod.html#def:projection">2.11</a>.</p></li>
+<li><p><span class="math inline">\(\boldsymbol P_U\)</span> is symmetric (<span class="math inline">\(\boldsymbol P_U^\top=\boldsymbol P_U\)</span>). This is true for orthogonal projection matrices, but not in general for projection matrices.</p></li>
+</ol>
+
+<div class="example">
+<span id="exm:proj2" class="example"><strong>Example 2.12  </strong></span>Consider the vector space <span class="math inline">\(\mathbb{R}^2\)</span> and let <span class="math inline">\(\boldsymbol u=\frac{1}{\sqrt{2}}\left(\begin{array}{c}1\\1\end{array}\right)\)</span>. The projection of <span class="math inline">\(\boldsymbol v\in \mathbb{R}^2\)</span> onto <span class="math inline">\(\boldsymbol u\)</span> is given by <span class="math inline">\((\boldsymbol v^\top \boldsymbol u) \boldsymbol u\)</span>. So for example, if <span class="math inline">\(\boldsymbol v= (2, \; 1)^\top\)</span>, then its projection onto <span class="math inline">\(\boldsymbol u\)</span> is
+<span class="math display">\[\boldsymbol P_U \boldsymbol v= \frac{3}{\sqrt{2}}\left(\begin{array}{c}1\\1\end{array}\right).\]</span>
+Alternatively, if we treat <span class="math inline">\(\boldsymbol u\)</span> as a basis for <span class="math inline">\(U\)</span>, then the coordinate of <span class="math inline">\(\boldsymbol P_U \boldsymbol v\)</span> with respect to the basis is <span class="math inline">\(3\)</span>.
+To check this, draw a picture!
+</div>
+
+<!-- OKAY TO HERE -->
+</div>
+<div id="geometric-interpretation-of-linear-regresssion" class="section level4">
+<h4><span class="header-section-number">2.3.3.2</span> Geometric interpretation of linear regresssion</h4>
+<p>Consider the linear regression model
+<span class="math display">\[\boldsymbol y= \boldsymbol X\boldsymbol \beta+\boldsymbol e\]</span>
+where <span class="math inline">\(\boldsymbol y\in\mathbb{R}^n\)</span> is the vector of observations, <span class="math inline">\(\boldsymbol X\)</span> is the <span class="math inline">\(n\times p\)</span> design matrix, <span class="math inline">\(\boldsymbol \beta\)</span> is the <span class="math inline">\(p\times 1\)</span> vector of parameters that we wish to estimate, and <span class="math inline">\(\boldsymbol e\)</span> is a <span class="math inline">\(n\times 1\)</span> vector of zero-mean errors.</p>
+<p>Least-squares regression tries to find the value of <span class="math inline">\(\boldsymbol \beta\in \mathbb{R}^p\)</span> that minimizes the sum of squared errors, i.e., we try to find <span class="math inline">\(\boldsymbol \beta\)</span> to minimize
+<span class="math display">\[||\boldsymbol y- \boldsymbol X\boldsymbol \beta||_2\]</span></p>
+<p>We know that <span class="math inline">\(\boldsymbol X\boldsymbol \beta\)</span> is in the column space of <span class="math inline">\(\boldsymbol X\)</span>, and so we can see that linear regression aims to find the <em>orthogonal projection</em> onto <span class="math inline">\(\mathcal{C}(X)\)</span>.
+<span class="math display">\[\boldsymbol P_U\boldsymbol y=\arg \min_{\boldsymbol y&#39;: \boldsymbol y&#39; \in \mathcal{C}(X)} ||\boldsymbol y-\boldsymbol y&#39;||_2.\]</span></p>
+<p>By Proposition <a href="2-3-linalg-innerprod.html#prp:orthogprojection">2.5</a> this is
+<span class="math display">\[\boldsymbol P_U\boldsymbol y= \boldsymbol X(\boldsymbol X^\top \boldsymbol X)^{-1}\boldsymbol X^\top \boldsymbol y=\hat{\boldsymbol y}\]</span>
+which equals the usual prediction obtained in linear regression (<span class="math inline">\(\hat{\boldsymbol y}\)</span> are often called the fitted values). We can also see that the choice of <span class="math inline">\(\boldsymbol \beta\)</span> that specifies this point in <span class="math inline">\(\mathcal{C}(X)\)</span> is
+<span class="math display">\[\hat{\boldsymbol \beta}=(\boldsymbol X^\top \boldsymbol X)^{-1}\boldsymbol X^\top \boldsymbol y\]</span>
+which is the usual least-squares estimator.</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2-2-linalg-vecspaces.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-4-linalg-misc.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MATH3030.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
