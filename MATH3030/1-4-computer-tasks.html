@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.5 Optimization results | Multivariate Statistics</title>
+  <title>1.4 Computer tasks | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.5 Optimization results | Multivariate Statistics" />
+  <meta property="og:title" content="1.4 Computer tasks | Multivariate Statistics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.5 Optimization results | Multivariate Statistics" />
+  <meta name="twitter:title" content="1.4 Computer tasks | Multivariate Statistics" />
   
   <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="3-4-linalg-SVD.html"/>
-<link rel="next" href="3-6-best-approximating-matrices.html"/>
+<link rel="prev" href="1-3-random-vectors-and-matrices.html"/>
+<link rel="next" href="1-5-exercises.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -233,86 +233,207 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="optimization-results" class="section level2">
-<h2><span class="header-section-number">3.5</span> Optimization results</h2>
-<p>Why are eigenvalues and singular values useful in statistics? It is because they appear as the result of some important optimization problems. We’ll see more about this in later chapters, but we’ll prove a few preliminary results here.</p>
-<p>For example, suppose <span class="math inline">\(\boldsymbol x\in\mathbb{R}^n\)</span> is a random variable with <span class="math inline">\({\mathbb{C}\operatorname{ov}}(\boldsymbol x)=\boldsymbol \Sigma\)</span> (an <span class="math inline">\(n \times n\)</span> matrix), then can we find a projection of <span class="math inline">\(\boldsymbol x\)</span> that has either maximum or minimum variance? I.e., can we find <span class="math inline">\(\boldsymbol a\)</span> such that <span class="math display">\[{\mathbb{V}\operatorname{ar}}(\boldsymbol a^\top\boldsymbol x)=\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a\]</span> is maximized or minimized?
-To make the question interesting we need to constrain the length of <span class="math inline">\(\boldsymbol a\)</span> so lets assume that <span class="math inline">\(||\boldsymbol a||_2 = \sqrt{\boldsymbol a^\top \boldsymbol a}=1\)</span>, otherwise we could just take <span class="math inline">\(\boldsymbol a=\boldsymbol 0\)</span> to obtain a projection with variance zero. So we want to solve the optimization problems involving the quadratic form <span class="math inline">\(\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a\)</span>:</p>
-<p><span class="math display" id="eq:eigenopt">\[\begin{equation}
-\max_{\boldsymbol a: \;\boldsymbol a^\top \boldsymbol a=1}{\mathbf a}^\top {\mathbf \Sigma} {\mathbf a}, \quad \mbox{and}\quad
-\min_{\boldsymbol a: \;\boldsymbol a^\top \boldsymbol a=1}{\mathbf a}^\top {\mathbf \Sigma} {\mathbf a}.
-\tag{3.2}
-\end{equation}\]</span></p>
-<p>Given that <span class="math inline">\(\boldsymbol \Sigma\)</span> is symmetric, we can write it as
-<span class="math display">\[\boldsymbol \Sigma= \boldsymbol V\boldsymbol \Lambda\boldsymbol V^\top \]</span>
-where <span class="math inline">\(\boldsymbol \Lambda\)</span> is the diagonal matrix of eigenvalues of <span class="math inline">\(\boldsymbol \Sigma\)</span>, and <span class="math inline">\(\boldsymbol V\)</span> is an orthogonal matrix of eigenvectors. If we let <span class="math inline">\(\boldsymbol b=\boldsymbol V^\top \boldsymbol a\)</span> then
-<span class="math display">\[\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a= \boldsymbol b^\top \boldsymbol \Lambda\boldsymbol b= \sum_{i=1}^n \lambda_i b_i^2\]</span>
-and given that the eigenvalues are ordered <span class="math inline">\(\lambda_1\geq \lambda_2 \geq \ldots\)</span> and that <span class="math display">\[\sum_{i=1}^n b_i^2=\boldsymbol b^\top\boldsymbol b=\boldsymbol a^\top \boldsymbol V\boldsymbol V^\top\boldsymbol a=\boldsymbol a^\top\boldsymbol a=1,\]</span>
-we can see that the maximumn is <span class="math inline">\(\lambda_1\)</span> obtained by setting <span class="math inline">\(\boldsymbol b=(1\;0\;0 \ldots)^\top\)</span>. Then
+<div id="computer-tasks" class="section level2">
+<h2><span class="header-section-number">1.4</span> Computer tasks</h2>
+<p>DUMPED HERE.</p>
+
+<div class="example">
+<span id="exm:unnamed-chunk-8" class="example"><strong>Example 1.5  </strong></span>The table below shows the module marks for 5 students on the modules G11PRB (<span class="math inline">\(P\)</span>) and G11STA (<span class="math inline">\(S\)</span>).
+</div>
+
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Student
+</th>
+<th style="text-align:right;">
+P
+</th>
+<th style="text-align:right;">
+S
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+63
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:right;">
+82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:right;">
+77
+</td>
+<td style="text-align:right;">
+57
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E
+</td>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:right;">
+85
+</td>
+</tr>
+</tbody>
+</table>
+<p>As an exercise, calculate the sample mean, sample covariance, sample correlation and total variation by hand.</p>
+<p>The sample mean is <span class="math inline">\(\bar{\boldsymbol x} = \begin{pmatrix} 59 \\ 65 \end{pmatrix}\)</span>.</p>
+<p>The sample covariance matrix is <span class="math inline">\(\boldsymbol S= \begin{pmatrix} 197.2 &amp; 92.8 \\ 92.8 &amp; 297.2 \end{pmatrix}\)</span>.</p>
+<p>The sample correlation matrix is
 <span class="math display">\[\begin{align*}
-\boldsymbol V^\top \boldsymbol a&amp;= \boldsymbol b\\
-\boldsymbol V\boldsymbol V^\top \boldsymbol a&amp;=\boldsymbol V\boldsymbol b\\
-\boldsymbol a&amp;= \boldsymbol v_1
-\end{align*}\]</span>
-so we can see that the maximum is obtained when <span class="math inline">\(\boldsymbol a=\boldsymbol v_1\)</span>, the eigenvector of <span class="math inline">\(\boldsymbol \Sigma\)</span> corresponding to the largest eigenvalue <span class="math inline">\(\lambda_1\)</span>.</p>
-<p>Similarly, the minimum is <span class="math inline">\(\lambda_n\)</span>, which obtained by setting <span class="math inline">\(\boldsymbol b=(\;0\;0 \ldots\;0\;1)^\top\)</span> which corresponds to <span class="math inline">\(\boldsymbol a=\boldsymbol v_n\)</span>.</p>
-
-<div class="proposition">
-<span id="prp:two8" class="proposition"><strong>Proposition 3.7  </strong></span>For any symmetric <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\boldsymbol \Sigma\)</span>,
-<span class="math display">\[\max_{\boldsymbol a: \boldsymbol a^\top \boldsymbol a=1} \boldsymbol a^\top\boldsymbol \Sigma\boldsymbol a=\lambda_1,\]</span><br />
-where the maximum occurs at <span class="math inline">\(\boldsymbol a=\pm \boldsymbol v_1\)</span>, and
-<span class="math display">\[\min_{\boldsymbol a: \boldsymbol a^\top \boldsymbol a=1} \boldsymbol a^\top\boldsymbol \Sigma\boldsymbol a=\lambda_n\]</span>
-where the minimum occurs at <span class="math inline">\(\boldsymbol a= \pm \boldsymbol v_n\)</span>, where <span class="math inline">\(\lambda_i, \boldsymbol v_i\)</span> are the ordered eigenpairs of <span class="math inline">\(\boldsymbol \Sigma\)</span>.
-</div>
-
-<p>Note that <span class="math display">\[\frac{\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a}{\boldsymbol a^\top\boldsymbol a}=\frac{\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a}{||\boldsymbol a||^\top} = (\frac{\boldsymbol a}{||\boldsymbol a||})^\top \boldsymbol \Sigma(\frac{\boldsymbol a}{||\boldsymbol a||})\]</span>
-and so another way to write the maximization problems <a href="3-5-optimization-results.html#eq:eigenopt">(3.2)</a> is as unconstrained optimization problems:</p>
-<p><span class="math display">\[\max_{\boldsymbol a}\frac{\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a}{\boldsymbol a^\top\boldsymbol a}\quad \mbox{ and } \quad \min_{\boldsymbol a}\frac{\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a}{\boldsymbol a^\top\boldsymbol a}.\]</span></p>
-<p>We obtain a similar result for non-square matrices using the singular value decomposition.</p>
-
-<div class="proposition">
-<span id="prp:svdmax1" class="proposition"><strong>Proposition 3.8  </strong></span>For any matrix <span class="math inline">\(\boldsymbol A\)</span>
-<span class="math display">\[\max_{\boldsymbol x: ||\boldsymbol x||_2=1}||\boldsymbol A\boldsymbol x||_2=\max_{\boldsymbol x}\frac{||\boldsymbol A\boldsymbol x||_2}{||\boldsymbol x||_2}=\sigma_1\]</span>
-the first singular value of <span class="math inline">\(\boldsymbol A\)</span>, with the maximum achieved at <span class="math inline">\(\boldsymbol x=\boldsymbol v_1\)</span> (the first right singular vector).
-</div>
-
-
-<div class="proof">
- <span class="proof"><em>Proof. </em></span> This is follows from <a href="3-5-optimization-results.html#prp:two8">3.7</a> as
-<span class="math display">\[||\boldsymbol A\boldsymbol x||_2^2=\boldsymbol x^\top \boldsymbol A^\top\boldsymbol A\boldsymbol x.\]</span>
-</div>
-
-<p><br></p>
-<p>Finally, we will need the following result when we study canonical correlation analysis:</p>
-
-<div class="proposition">
-<span id="prp:svdmax2" class="proposition"><strong>Proposition 3.9  </strong></span>For any matrix <span class="math inline">\(\boldsymbol A\)</span>, we have
-<span class="math display">\[
-\max_{\boldsymbol a, \boldsymbol b:\, \vert \vert \boldsymbol a\vert \vert=\vert \vert \boldsymbol b\vert \vert =1} \boldsymbol a^\top \boldsymbol A\boldsymbol b=\sigma_1.
-\]</span>
-with the maximum obtained at <span class="math inline">\(\boldsymbol a=\boldsymbol u_1\)</span> and <span class="math inline">\(\boldsymbol b=\boldsymbol v_1\)</span>, the first left and right singular vectors of <span class="math inline">\(\boldsymbol A\)</span>.
-</div>
-
-
-<div class="proof">
- <span class="proof"><em>Proof. </em></span> 
-</div>
-
-<!--
-So for example, if $\bx\in \mathbb{R}^n$ and $\by\in \mathbb{R}^p$ are random variables with 
-$$\cov(\bx, \by)=\bA$$
-then this result tells us the one dimensional projections that maximise $\cov(\ba^\top\bx, \bb^\top\by)=\ba^\top \bA \bb$. 
--->
-<p>We’ll see much more of this kind of thing in Chapters <a href="4-pca.html#pca">4</a> and <a href="5-cca.html#cca">5</a>.</p>
-<!--DO I NEED RAYLEIGH QUOTIENTS?-->
+\boldsymbol R&amp;= \boldsymbol D^{-1} \boldsymbol S\boldsymbol D^{-1}\\
+&amp;= \begin{pmatrix} 14.0 &amp; 0 \\ 0 &amp; 17.2 \end{pmatrix}^{-1} \begin{pmatrix} 197.2 &amp; 92.8 \\ 92.8 &amp; 297.2 \end{pmatrix} \begin{pmatrix} 14.0 &amp; 0 \\ 0 &amp; 17.2 \end{pmatrix}^{-1} \\
+&amp;= \begin{pmatrix} 0.071 &amp; 0 \\ 0 &amp; 0.058 \end{pmatrix} \begin{pmatrix} 197.2 &amp; 92.8 \\ 92.8 &amp; 297.2 \end{pmatrix} \begin{pmatrix} 0.071 &amp; 0 \\ 0 &amp; 0.058 \end{pmatrix} \\
+&amp;= \begin{pmatrix} 1.000 &amp; 0.383 \\ 0.383 &amp; 1.000 \end{pmatrix}.
+\end{align*}\]</span></p>
+<p>The total variation is <span class="math inline">\(\text{tr}(\boldsymbol S) = 197.2 + 297.2 = 494.4\)</span>.</p>
+<p>To calculate these in R use, ‘colMeans’, ‘cov’, and ‘cor’. These assume each column is a different variable, and each row a different observation.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">Ex1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">  <span class="dt">Student=</span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>],</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">P =</span> <span class="kw">c</span>(<span class="dv">41</span>,<span class="dv">72</span>,<span class="dv">46</span>,<span class="dv">77</span>,<span class="dv">59</span>),</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">S =</span> <span class="kw">c</span>(<span class="dv">63</span>,<span class="dv">82</span>,<span class="dv">38</span>,<span class="dv">57</span>,<span class="dv">85</span>)</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  )</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">Ex1 <span class="op">%&gt;%</span><span class="st"> </span>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="dt">booktabs =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable_styling</span>(<span class="dt">full_width =</span> F)</a></code></pre></div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Student
+</th>
+<th style="text-align:right;">
+P
+</th>
+<th style="text-align:right;">
+S
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+63
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:right;">
+82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:right;">
+77
+</td>
+<td style="text-align:right;">
+57
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+E
+</td>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:right;">
+85
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">Ex1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span><span class="st"> </span>colMeans</a></code></pre></div>
+<pre><code>##  P  S 
+## 59 65</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">Ex1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span><span class="st"> </span>cov</a></code></pre></div>
+<pre><code>##       P     S
+## P 246.5 116.0
+## S 116.0 371.5</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">Ex1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span><span class="st"> </span>cov<span class="op">*</span><span class="dv">4</span><span class="op">/</span><span class="dv">5</span></a></code></pre></div>
+<pre><code>##       P     S
+## P 197.2  92.8
+## S  92.8 297.2</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">Ex1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span><span class="st"> </span>cor</a></code></pre></div>
+<pre><code>##           P         S
+## P 1.0000000 0.3833276
+## S 0.3833276 1.0000000</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">Ex1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span><span class="st"> </span>cov <span class="op">%&gt;%</span><span class="st"> </span>diag <span class="op">%&gt;%</span><span class="st"> </span>sum<span class="op">*</span><span class="dv">4</span><span class="op">/</span><span class="dv">5</span></a></code></pre></div>
+<pre><code>## [1] 494.4</code></pre>
+<p>Note that by default R uses <span class="math inline">\(n-1\)</span> in the denominator, whereas we used <span class="math inline">\(n\)</span> in our calculation, hence the multiple of $4/5=(n-1)/n introduced in the covariance calculations above.</p>
+<p>We will be using the <code>dplyr</code> R package to perform basic data manipulation in R.
+If you are unfamiliar with <code>dplyr</code>, you can read about it at <a href="https://dplyr.tidyverse.org/">https://dplyr.tidyverse.org/</a>.
+The pipe command <code>%&gt;%</code> is particularly useful for chaining together multiple commands.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="3-4-linalg-SVD.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="3-6-best-approximating-matrices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="1-3-random-vectors-and-matrices.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-5-exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

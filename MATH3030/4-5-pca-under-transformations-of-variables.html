@@ -135,15 +135,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
 <li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-multivariate-data.html"><a href="1-1-multivariate-data.html"><i class="fa fa-check"></i><b>1.1</b> Multivariate data</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-summary-statistics.html"><a href="1-2-summary-statistics.html"><i class="fa fa-check"></i><b>1.2</b> Summary statistics</a></li>
-<li class="chapter" data-level="1.3" data-path="1-3-graphical-techniques.html"><a href="1-3-graphical-techniques.html"><i class="fa fa-check"></i><b>1.3</b> Graphical techniques</a></li>
-<li class="chapter" data-level="1.4" data-path="1-4-random-vectors-and-matrices.html"><a href="1-4-random-vectors-and-matrices.html"><i class="fa fa-check"></i><b>1.4</b> Random Vectors and Matrices</a></li>
-<li class="chapter" data-level="1.5" data-path="1-5-unbiased-estimators.html"><a href="1-5-unbiased-estimators.html"><i class="fa fa-check"></i><b>1.5</b> Unbiased Estimators</a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-notation.html"><a href="1-1-notation.html"><i class="fa fa-check"></i><b>1.1</b> Notation</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-notation.html"><a href="1-1-notation.html#example-datasets"><i class="fa fa-check"></i><b>1.1.1</b> Example datasets</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-notation.html"><a href="1-1-notation.html#aims-of-nultivariate-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Aims of nultivariate data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>1.2</b> Exploratory data analysis (EDA)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#data-visualization"><i class="fa fa-check"></i><b>1.2.1</b> Data visualization</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#summary-statistics"><i class="fa fa-check"></i><b>1.2.2</b> Summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-random-vectors-and-matrices.html"><a href="1-3-random-vectors-and-matrices.html"><i class="fa fa-check"></i><b>1.3</b> Random vectors and matrices</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-random-vectors-and-matrices.html"><a href="1-3-random-vectors-and-matrices.html#estimators"><i class="fa fa-check"></i><b>1.3.1</b> Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-computer-tasks.html"><a href="1-4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-linalg-prelim.html"><a href="2-linalg-prelim.html"><i class="fa fa-check"></i><b>2</b> Review of linear algebra</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html"><i class="fa fa-check"></i><b>2.1</b> Basics</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#notation"><i class="fa fa-check"></i><b>2.1.1</b> Notation</a></li>
+<li class="chapter" data-level="2.1.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#notation-1"><i class="fa fa-check"></i><b>2.1.1</b> Notation</a></li>
 <li class="chapter" data-level="2.1.2" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#elementary-matrix-operations"><i class="fa fa-check"></i><b>2.1.2</b> Elementary matrix operations</a></li>
 <li class="chapter" data-level="2.1.3" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#special-matrices"><i class="fa fa-check"></i><b>2.1.3</b> Special matrices</a></li>
 <li class="chapter" data-level="2.1.4" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#vector-differentiation"><i class="fa fa-check"></i><b>2.1.4</b> Vector Differentiation</a></li>
@@ -252,7 +260,7 @@ where <span class="math inline">\(s_{ii}\)</span> is the <span class="math inlin
 <p>In summary: <span class="math inline">\(\boldsymbol R\)</span> is scale-invariant while <span class="math inline">\(\boldsymbol S\)</span> is not.</p>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-14" class="example"><strong>Example 4.2  </strong></span>For the G11PRB/G11STA data, we choose
+<p><span id="exm:unnamed-chunk-14" class="example"><strong>Example 4.3  </strong></span>For the G11PRB/G11STA data, we choose
 <span class="math display">\[
 \boldsymbol D= \text{diag}(162.04,175.36)^{-1/2} = \text{diag}(0.079,0.076)
 \]</span>
@@ -285,7 +293,7 @@ and so they are identical to the PC 1 scores of the original variables.</p>
 <p>Therefore, under an orthogonal transformation the eigenvalues and PC scores are unchanged and the PCs are orthogonal transformations of the original PCs. We say that the principal components are <strong>equivariant</strong> with respect to orthogonal transformations.</p>
 
 <div class="example">
-<span id="exm:unnamed-chunk-15" class="example"><strong>Example 4.3  </strong></span>Suppose we rotate the G11PRB/G11STA data by the matrix <span class="math inline">\(\boldsymbol A= \begin{pmatrix} 0.866 &amp; -0.500 \\ 0.500 &amp; 0.866 \end{pmatrix}\)</span>. The sample covariance matrix of the rotated data is
+<span id="exm:unnamed-chunk-15" class="example"><strong>Example 4.4  </strong></span>Suppose we rotate the G11PRB/G11STA data by the matrix <span class="math inline">\(\boldsymbol A= \begin{pmatrix} 0.866 &amp; -0.500 \\ 0.500 &amp; 0.866 \end{pmatrix}\)</span>. The sample covariance matrix of the rotated data is
 <span class="math display">\[\begin{align*}
 \boldsymbol T&amp;= \boldsymbol A\boldsymbol S\boldsymbol A^\top\\
 &amp;= \begin{pmatrix} 0.866 &amp; -0.500 \\ 0.500 &amp; 0.866 \end{pmatrix}

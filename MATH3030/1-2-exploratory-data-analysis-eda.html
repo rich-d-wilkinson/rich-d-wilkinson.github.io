@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.5 Optimization results | Multivariate Statistics</title>
+  <title>1.2 Exploratory data analysis (EDA) | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.5 Optimization results | Multivariate Statistics" />
+  <meta property="og:title" content="1.2 Exploratory data analysis (EDA) | Multivariate Statistics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.5 Optimization results | Multivariate Statistics" />
+  <meta name="twitter:title" content="1.2 Exploratory data analysis (EDA) | Multivariate Statistics" />
   
   <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="3-4-linalg-SVD.html"/>
-<link rel="next" href="3-6-best-approximating-matrices.html"/>
+<link rel="prev" href="1-1-notation.html"/>
+<link rel="next" href="1-3-random-vectors-and-matrices.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -233,86 +233,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="optimization-results" class="section level2">
-<h2><span class="header-section-number">3.5</span> Optimization results</h2>
-<p>Why are eigenvalues and singular values useful in statistics? It is because they appear as the result of some important optimization problems. We’ll see more about this in later chapters, but we’ll prove a few preliminary results here.</p>
-<p>For example, suppose <span class="math inline">\(\boldsymbol x\in\mathbb{R}^n\)</span> is a random variable with <span class="math inline">\({\mathbb{C}\operatorname{ov}}(\boldsymbol x)=\boldsymbol \Sigma\)</span> (an <span class="math inline">\(n \times n\)</span> matrix), then can we find a projection of <span class="math inline">\(\boldsymbol x\)</span> that has either maximum or minimum variance? I.e., can we find <span class="math inline">\(\boldsymbol a\)</span> such that <span class="math display">\[{\mathbb{V}\operatorname{ar}}(\boldsymbol a^\top\boldsymbol x)=\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a\]</span> is maximized or minimized?
-To make the question interesting we need to constrain the length of <span class="math inline">\(\boldsymbol a\)</span> so lets assume that <span class="math inline">\(||\boldsymbol a||_2 = \sqrt{\boldsymbol a^\top \boldsymbol a}=1\)</span>, otherwise we could just take <span class="math inline">\(\boldsymbol a=\boldsymbol 0\)</span> to obtain a projection with variance zero. So we want to solve the optimization problems involving the quadratic form <span class="math inline">\(\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a\)</span>:</p>
-<p><span class="math display" id="eq:eigenopt">\[\begin{equation}
-\max_{\boldsymbol a: \;\boldsymbol a^\top \boldsymbol a=1}{\mathbf a}^\top {\mathbf \Sigma} {\mathbf a}, \quad \mbox{and}\quad
-\min_{\boldsymbol a: \;\boldsymbol a^\top \boldsymbol a=1}{\mathbf a}^\top {\mathbf \Sigma} {\mathbf a}.
-\tag{3.2}
-\end{equation}\]</span></p>
-<p>Given that <span class="math inline">\(\boldsymbol \Sigma\)</span> is symmetric, we can write it as
-<span class="math display">\[\boldsymbol \Sigma= \boldsymbol V\boldsymbol \Lambda\boldsymbol V^\top \]</span>
-where <span class="math inline">\(\boldsymbol \Lambda\)</span> is the diagonal matrix of eigenvalues of <span class="math inline">\(\boldsymbol \Sigma\)</span>, and <span class="math inline">\(\boldsymbol V\)</span> is an orthogonal matrix of eigenvectors. If we let <span class="math inline">\(\boldsymbol b=\boldsymbol V^\top \boldsymbol a\)</span> then
-<span class="math display">\[\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a= \boldsymbol b^\top \boldsymbol \Lambda\boldsymbol b= \sum_{i=1}^n \lambda_i b_i^2\]</span>
-and given that the eigenvalues are ordered <span class="math inline">\(\lambda_1\geq \lambda_2 \geq \ldots\)</span> and that <span class="math display">\[\sum_{i=1}^n b_i^2=\boldsymbol b^\top\boldsymbol b=\boldsymbol a^\top \boldsymbol V\boldsymbol V^\top\boldsymbol a=\boldsymbol a^\top\boldsymbol a=1,\]</span>
-we can see that the maximumn is <span class="math inline">\(\lambda_1\)</span> obtained by setting <span class="math inline">\(\boldsymbol b=(1\;0\;0 \ldots)^\top\)</span>. Then
-<span class="math display">\[\begin{align*}
-\boldsymbol V^\top \boldsymbol a&amp;= \boldsymbol b\\
-\boldsymbol V\boldsymbol V^\top \boldsymbol a&amp;=\boldsymbol V\boldsymbol b\\
-\boldsymbol a&amp;= \boldsymbol v_1
-\end{align*}\]</span>
-so we can see that the maximum is obtained when <span class="math inline">\(\boldsymbol a=\boldsymbol v_1\)</span>, the eigenvector of <span class="math inline">\(\boldsymbol \Sigma\)</span> corresponding to the largest eigenvalue <span class="math inline">\(\lambda_1\)</span>.</p>
-<p>Similarly, the minimum is <span class="math inline">\(\lambda_n\)</span>, which obtained by setting <span class="math inline">\(\boldsymbol b=(\;0\;0 \ldots\;0\;1)^\top\)</span> which corresponds to <span class="math inline">\(\boldsymbol a=\boldsymbol v_n\)</span>.</p>
+<div id="exploratory-data-analysis-eda" class="section level2">
+<h2><span class="header-section-number">1.2</span> Exploratory data analysis (EDA)</h2>
+<!--http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/-->
+<blockquote>
+<p>A picture is worth a thousand words</p>
+</blockquote>
+<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<img src="figs/Minard.jpg" alt="Charles Joseph Minard's famous map of Napoleon's 1812 invasion of Russian. It displays [six types of data in two dimensions](https://en.wikipedia.org/wiki/Charles_Joseph_Minard#The_map_of_Napoleon's_Russian_campaign)."  />
+<p class="caption">
+Figure 1.1: Charles Joseph Minard’s famous map of Napoleon’s 1812 invasion of Russian. It displays <a href="https://en.wikipedia.org/wiki/Charles_Joseph_Minard#The_map_of_Napoleon&#39;s_Russian_campaign">six types of data in two dimensions</a>.
+</p>
+</div>
+<p>Before trying any form of statistical analysis, it is always a good idea to do some form of exploratory data analysis to understand the challenges presented by the data. As a minimum, this usually involves finding out whether each variable is continuous, discrete, or categorical, doing some basic visualization (plots), and perhaps computing a few summary statistics such as the mean and variance.</p>
+<div id="data-visualization" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Data visualization</h3>
+<p>Visualising datasets before fitting any models can be extremely useful. It allows us to see obvious patterns and relationships,and may suggest a sensible form of analysis.
+With multivariate data, finding the right kind of plot is not always simple, and many different approaches have been proposed.</p>
+<p>When <span class="math inline">\(p=1\)</span> or <span class="math inline">\(p=2\)</span> we can simply draw histograms and scatter plots (respectively) to view the distribution. For <span class="math inline">\(p \geq 3\)</span> the task is harder. One solution is a matrix of pair-wise scatter plots using the <code>pairs</code> command in R. The graph below shows the relationship between goals scored (F), goals against (A) and points (PT) for 20 teams during a recent Premiership season.</p>
+<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<img src="figs/pairs.png" alt="Scatter plots of goals for (F), goals against (A) and points (PT) for a recent Premier League Season"  />
+<p class="caption">
+Figure 1.2: Scatter plots of goals for (F), goals against (A) and points (PT) for a recent Premier League Season
+</p>
+</div>
+<p>We can instantly see that points and goals scored are positively correlated, and that points and goals conceded (A) are negatively correlated (this is not a surprise of course).</p>
+<p>R has a good basic plotting functionality. However, we will sometimes use packages that provide additional functionality. The first time you use a package you may need to install it. We can use <code>ggplot2</code> and <code>GGally</code> (which adds functionality to ggplot2) to add colour and detail to pairs plots. For example</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">data</span>(iris)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(GGally)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># pairs(iris) # - try the pairs command for comparison</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">ggpairs</span>(iris, <span class="dt">columns=</span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,  <span class="dt">mapping=</span>ggplot2<span class="op">::</span><span class="kw">aes</span>(<span class="dt">colour =</span> Species),</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">        <span class="dt">upper =</span> <span class="kw">list</span>(<span class="dt">continuous =</span> <span class="kw">wrap</span>(<span class="st">&quot;cor&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>)))  <span class="co"># fix the font size</span></a></code></pre></div>
+<p><img src="01-statistical-prelim_files/figure-html/unnamed-chunk-6-1.png" width="100%" /></p>
+<p>This plot allows us to instantly see that there are clear differences between the three species of iris, at least when we look at the pairs plots. The benefit of adding colour in this case is that we can see the differences between the different species. Note how the sepal length and width are (weakly) negatively correlated across the entire dataset, but are positively correlated when we look at a single species at a time. We would have missed this information if we only used the <code>pairs</code> command (try it!).</p>
+<p>Note that it is possible to miss key relationships when looking at <em>marginals</em> plots such as these, as they only show two variables at a time. More complex relationships between three or more variables will not be visible. It is difficult visualize data in three or more dimensions. Many different types of plot have been proposed (e.g. Google Chernoff faces). One approach is to use a <em>parallel line</em> plot</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">ggparcoord</span>(iris, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">groupColumn=</span><span class="dv">5</span>)</a></code></pre></div>
+<p><img src="01-statistical-prelim_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Each case is represented by a single line, and here we have the information shown for the four continuous variables. The fifth variable <code>Species</code> is a discrete factor, and is shown by colouring the lines.</p>
+<p>If you not familiar with <code>ggplot2</code>, a nice introduction can be found <a href="https://ggplot2.tidyverse.org/">here</a>. Details about `GGally can be found <a href="https://ggobi.github.io/ggally/">here</a>. A good way to see the variety of plots that are possible, and to find code to create them, is to browse plot galleries such as those available
+<a href="https://www.r-graph-gallery.com/ggplot2-package.html">here</a>
+and <a href="https://www.data-to-viz.com">here</a>.</p>
+<!--You can also use the `plot3d` command in the `rgl` library to create an interactive 3D plot of the data.  The difficulty of displaying multivariate data is further motivation for developing a method for reducing the number of dimensions in the data.-->
+</div>
+<div id="summary-statistics" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Summary statistics</h3>
+<p>It is often useful to report a small number of numerical summaries of the data.
+In univariate statistics we define the sample mean and sample variance of samples <span class="math inline">\(x_1, \ldots, x_n\)</span> to be
+<span class="math display">\[ \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \quad \text{and} \quad s_{xx} = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2 \]</span>
+and for two samples, <span class="math inline">\(x_1, \ldots, x_n\)</span> and <span class="math inline">\(y_1, \ldots, y_n\)</span>, we define the sample covariance to be
+<span class="math display">\[s_{xy}=\frac{1}{n}\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y}).\]</span></p>
+<p>Analogous multivariate quantities can be defined as follows:</p>
 
-<div class="proposition">
-<span id="prp:two8" class="proposition"><strong>Proposition 3.7  </strong></span>For any symmetric <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\boldsymbol \Sigma\)</span>,
-<span class="math display">\[\max_{\boldsymbol a: \boldsymbol a^\top \boldsymbol a=1} \boldsymbol a^\top\boldsymbol \Sigma\boldsymbol a=\lambda_1,\]</span><br />
-where the maximum occurs at <span class="math inline">\(\boldsymbol a=\pm \boldsymbol v_1\)</span>, and
-<span class="math display">\[\min_{\boldsymbol a: \boldsymbol a^\top \boldsymbol a=1} \boldsymbol a^\top\boldsymbol \Sigma\boldsymbol a=\lambda_n\]</span>
-where the minimum occurs at <span class="math inline">\(\boldsymbol a= \pm \boldsymbol v_n\)</span>, where <span class="math inline">\(\lambda_i, \boldsymbol v_i\)</span> are the ordered eigenpairs of <span class="math inline">\(\boldsymbol \Sigma\)</span>.
+<div class="definition">
+<span id="def:samplemean" class="definition"><strong>Definition 1.1  </strong></span>For a sample of <span class="math inline">\(n\)</span> points, each containing <span class="math inline">\(p\)</span> variables, <span class="math inline">\(\boldsymbol x_1, \boldsymbol x_2, \ldots, \boldsymbol x_n \in \mathbb{R}^p\)</span>, the <strong>sample mean</strong> and <strong>sample covariance matrix</strong> are
+<span class="math display" id="eq:samplecov" id="eq:samplemean">\[\begin{align}
+ \bar{\boldsymbol x} &amp;= \frac{1}{n} \sum_{i=1}^n \boldsymbol x_i \tag{1.1}\\
+ \boldsymbol S&amp;= \frac{1}{n} \sum_{i=1}^n (\boldsymbol x_i - \bar{\boldsymbol x}) (\boldsymbol x_i - \bar{\boldsymbol x})^\top 
+\tag{1.2}
+\end{align}\]</span>
+where <span class="math inline">\(\boldsymbol x_i\in \mathbb{R}^p\)</span> denotes the <span class="math inline">\(p\)</span> variables observed on the <span class="math inline">\(i\)</span>th subject.
 </div>
 
-<p>Note that <span class="math display">\[\frac{\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a}{\boldsymbol a^\top\boldsymbol a}=\frac{\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a}{||\boldsymbol a||^\top} = (\frac{\boldsymbol a}{||\boldsymbol a||})^\top \boldsymbol \Sigma(\frac{\boldsymbol a}{||\boldsymbol a||})\]</span>
-and so another way to write the maximization problems <a href="3-5-optimization-results.html#eq:eigenopt">(3.2)</a> is as unconstrained optimization problems:</p>
-<p><span class="math display">\[\max_{\boldsymbol a}\frac{\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a}{\boldsymbol a^\top\boldsymbol a}\quad \mbox{ and } \quad \min_{\boldsymbol a}\frac{\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a}{\boldsymbol a^\top\boldsymbol a}.\]</span></p>
-<p>We obtain a similar result for non-square matrices using the singular value decomposition.</p>
+<p>Note that</p>
+<ul>
+<li><span class="math inline">\(\bar{\boldsymbol x} \in \mathbb{R}^p\)</span>. The <span class="math inline">\(j\)</span>th entry in <span class="math inline">\(\bar{\boldsymbol x}\)</span> is simply the (univariate) sample mean of the <span class="math inline">\(j\)</span>th variable.</li>
+<li><span class="math inline">\(\boldsymbol S\in \mathbb{R}^{p\times p}\)</span>. Note that the <span class="math inline">\(ij^{th}\)</span> entry of <span class="math inline">\(\boldsymbol S\)</span> is <span class="math inline">\(s_{ij}\)</span>, the sample covariance between variable <span class="math inline">\(i\)</span> and variable <span class="math inline">\(j\)</span>. The <span class="math inline">\(i^{th}\)</span> diagonal element is the (univariate) sample variance of the <span class="math inline">\(i\)</span>th variable.<br />
+</li>
+<li><span class="math inline">\(\boldsymbol S\)</span> is symmetric since <span class="math inline">\(s_{ij}=s_{ji}\)</span>.</li>
+<li>an alternative formula for <span class="math inline">\(\boldsymbol S\)</span> is
+<span class="math display">\[\boldsymbol S= \frac{1}{n} \left(\sum_{i=1}^n \boldsymbol x_i \boldsymbol x_i^\top \right)- \bar{\boldsymbol x} \bar{\boldsymbol x}^\top.\]</span></li>
+<li>We have divided by <span class="math inline">\(n\)</span> rather than <span class="math inline">\(n-1\)</span> here, which gives the maximum likelihood estimator of the variance, rather than the unbiased variance estimator that is often used.</li>
+</ul>
 
-<div class="proposition">
-<span id="prp:svdmax1" class="proposition"><strong>Proposition 3.8  </strong></span>For any matrix <span class="math inline">\(\boldsymbol A\)</span>
-<span class="math display">\[\max_{\boldsymbol x: ||\boldsymbol x||_2=1}||\boldsymbol A\boldsymbol x||_2=\max_{\boldsymbol x}\frac{||\boldsymbol A\boldsymbol x||_2}{||\boldsymbol x||_2}=\sigma_1\]</span>
-the first singular value of <span class="math inline">\(\boldsymbol A\)</span>, with the maximum achieved at <span class="math inline">\(\boldsymbol x=\boldsymbol v_1\)</span> (the first right singular vector).
+<div class="definition">
+<span id="def:samplecor" class="definition"><strong>Definition 1.2  </strong></span>The <strong>sample correlation matrix</strong>, <span class="math inline">\(\boldsymbol R\)</span>, is the matrix with <span class="math inline">\(ij^{th}\)</span> entry <span class="math inline">\(r_{ij}\)</span> equal to the sample correlation between variables <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, that is
+<span class="math display">\[ r_{ij} = \frac{s_{ij}}{\sqrt{s_{ii}s_{jj}}}. \]</span>
 </div>
 
+<p>Note that</p>
+<ul>
+<li>If <span class="math inline">\(\boldsymbol D= \text{diag}(\sqrt{s_{11}}, \dots, \sqrt{s_{pp}})\)</span>, then<br />
+<span class="math display">\[ \boldsymbol R= \boldsymbol D^{-1} \boldsymbol S\boldsymbol D^{-1} \]</span></li>
+<li><span class="math inline">\(\boldsymbol R\)</span> is symmetric</li>
+<li>the diagonal entries of <span class="math inline">\(\boldsymbol R\)</span> are exactly 1 (each variable is perfectly correlated with itself)</li>
+<li><span class="math inline">\(|r_{ij}| \leq 1\)</span> for all <span class="math inline">\(i, j\)</span></li>
+</ul>
+<p>Note that if we change the unit of measurement for the <span class="math inline">\(\boldsymbol x_i\)</span>’s then <span class="math inline">\(\boldsymbol S\)</span> will change but <span class="math inline">\(\boldsymbol R\)</span> will not.</p>
 
-<div class="proof">
- <span class="proof"><em>Proof. </em></span> This is follows from <a href="3-5-optimization-results.html#prp:two8">3.7</a> as
-<span class="math display">\[||\boldsymbol A\boldsymbol x||_2^2=\boldsymbol x^\top \boldsymbol A^\top\boldsymbol A\boldsymbol x.\]</span>
+<div class="definition">
+<span id="def:totalvar" class="definition"><strong>Definition 1.3  </strong></span>The <strong>total variation</strong> in a data set is usually measured by <span class="math inline">\(\text{tr}(\boldsymbol S)\)</span> where <span class="math inline">\(\text{tr}()\)</span> is the trace function that sums the diagonal elements of the matrix. That is,
+<span class="math display">\[\text{tr}(\boldsymbol S) = s_{11} + s_{22} + \ldots + s_{pp}.\]</span>
+In other words, it is the sum of the univariate variances of each of the <span class="math inline">\(p\)</span> variables.
 </div>
 
-<p><br></p>
-<p>Finally, we will need the following result when we study canonical correlation analysis:</p>
-
-<div class="proposition">
-<span id="prp:svdmax2" class="proposition"><strong>Proposition 3.9  </strong></span>For any matrix <span class="math inline">\(\boldsymbol A\)</span>, we have
-<span class="math display">\[
-\max_{\boldsymbol a, \boldsymbol b:\, \vert \vert \boldsymbol a\vert \vert=\vert \vert \boldsymbol b\vert \vert =1} \boldsymbol a^\top \boldsymbol A\boldsymbol b=\sigma_1.
-\]</span>
-with the maximum obtained at <span class="math inline">\(\boldsymbol a=\boldsymbol u_1\)</span> and <span class="math inline">\(\boldsymbol b=\boldsymbol v_1\)</span>, the first left and right singular vectors of <span class="math inline">\(\boldsymbol A\)</span>.
 </div>
-
-
-<div class="proof">
- <span class="proof"><em>Proof. </em></span> 
-</div>
-
-<!--
-So for example, if $\bx\in \mathbb{R}^n$ and $\by\in \mathbb{R}^p$ are random variables with 
-$$\cov(\bx, \by)=\bA$$
-then this result tells us the one dimensional projections that maximise $\cov(\ba^\top\bx, \bb^\top\by)=\ba^\top \bA \bb$. 
--->
-<p>We’ll see much more of this kind of thing in Chapters <a href="4-pca.html#pca">4</a> and <a href="5-cca.html#cca">5</a>.</p>
-<!--DO I NEED RAYLEIGH QUOTIENTS?-->
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="3-4-linalg-SVD.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="3-6-best-approximating-matrices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="1-1-notation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-3-random-vectors-and-matrices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -391,6 +391,21 @@ n & $x_{n1}$ & $x_{n2}$\\
 \end{tabular}
 \end{table}
 
+\begin{example}
+\protect\hypertarget{exm:mnist}{}{\label{exm:mnist} }The MNIST dataset is a collection of handwritten digits that is widely used in statistics and machine learning to test algorithms.
+It contains 60,000 images of hand-written digits.
+
+\includegraphics{MNIST.png}
+
+Each digit has been converted to a grid of \(28\times 28\) pixels, with a grayscale intensity level specified for each pixel. When we store these on a computer, we flatten each grid to a vector of length 784
+\end{example}
+
+\begin{verbatim}
+##  [1] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+\end{verbatim}
+
+```
+
 In MVA we attempt to answer questions such as:
 
 \begin{itemize}
@@ -408,6 +423,17 @@ In MVA we attempt to answer questions such as:
 We could just apply standard univariate techniques to each variable in turn but this ignores possible dependencies between the variables which we must represent to draw valid conclusions.
 
 Finally, before moving on, we ask the question: what is the difference between MVA and standard linear regression? Answer: in standard linear regression we have a scalar response variable, \(y\) say, and a vector of covariates, \(\boldsymbol x\), say. The focus of interest is on how knowledge of \(\boldsymbol x\) influences the distribution of \(y\) (in particular, the mean of \(y\)). In contrast, with MVA the focus of interest is a response vector \(\boldsymbol y\), in which all the components of \(\boldsymbol y\) are viewed as responses rather than covariates. However, there are also situations where the response is a vector \(\boldsymbol y\) but we also have covariate information \(\boldsymbol x\). This leads to study of the multivariate linear model, which we will investigate later on in Chapter \ref{lm}.
+
+\hypertarget{graphical-techniques}{%
+\subsection{Graphical techniques}\label{graphical-techniques}}
+
+It is always a good idea to plot your data before analysing it. With multivariate data, this is not always simple, and many different approaches have been proposed.
+
+When \(p=1\) or \(p=2\) we can simply draw histograms and scatter plots (respectively) to view the distribution. For \(p \geq 3\) the task is much harder. One solution is a matrix of pair-wise scatter plots using the \texttt{pairs} command in R. The graph below shows the relationship between goals scored (F), goals against (A) and points (PT) for 20 teams during a recent Premiership season. Note that it is possible to miss key relationships when looking at \emph{marginals} plots such as these: for example, relationships between three variables will not be visible.
+
+\includegraphics{figs/pairs.png}
+
+You can also use the \texttt{plot3d} command in the \texttt{rgl} library to create an interactive 3D plot of the data. The difficulty of displaying multivariate data is further motivation for developing a method for reducing the number of dimensions in the data.
 
 \hypertarget{summary-statistics}{%
 \section{Summary statistics}\label{summary-statistics}}
@@ -598,15 +624,6 @@ We will be using the \texttt{dplyr} R package to perform basic data manipulation
 If you are unfamiliar with \texttt{dplyr}, you can read about it at \url{https://dplyr.tidyverse.org/}.
 The pipe command \texttt{\%\textgreater{}\%} is particularly useful for chaining together multiple commands.
 
-\hypertarget{graphical-techniques}{%
-\section{Graphical techniques}\label{graphical-techniques}}
-
-We can draw histograms and scatter plots to view the distribution when \(p=1\) and \(p=2\) respectively. For \(p \geq 3\) the task is much harder. One solution is a matrix of pair-wise scatter plots using the \texttt{pairs} command in R. The graph below shows the relationship between goals scored (F), goals against (A) and points (PT) for 20 teams during a recent Premiership season.
-
-\includegraphics{figs/pairs.png}
-
-You can also use the \texttt{plot3d} command in the \texttt{rgl} library to create an interactive 3D plot of the data. The difficulty of displaying multivariate data is further motivation for developing a method for reducing the number of dimensions in the data.
-
 \hypertarget{random-vectors-and-matrices}{%
 \section{Random Vectors and Matrices}\label{random-vectors-and-matrices}}
 
@@ -650,72 +667,6 @@ The following properties follow:
 \end{itemize}
 
 Finally, note that if \(\boldsymbol x\) and \(\boldsymbol y\) are independent (in which case I will write \(\boldsymbol x\perp \!\!\! \perp\boldsymbol y\)) then \({\mathbb{C}\operatorname{ov}}(\boldsymbol x,\boldsymbol y) = {\mathbf 0}_{p,q}\), i.e., a \(p\times q\) matrix of zeros.
-
-\hypertarget{unbiased-estimators}{%
-\section{Unbiased Estimators}\label{unbiased-estimators}}
-
-\begin{definition}
-\protect\hypertarget{def:unnamed-chunk-11}{}{\label{def:unnamed-chunk-11} }For a staistical model \(p(x\mid \theta)\), a statistic \(\hat{\theta}\equiv\hat{\theta}(X)\) is said to be an \textbf{unbiased estimator} of \(\theta\) if \({\mathbb{E}}_{x\mid \theta}(\hat{\theta}(X)) = \theta\) for all \(\theta\).
-\end{definition}
-
-I.e., if data are generated with parameter value \(\theta\), then an estimator \(\hat{\theta}\) is an unbiased estimator of \(\theta\) if its expected value matches the true value (the value used to generate the data).
-This concept readily transfers to the multivariate context.
-
-\begin{proposition}
-\protect\hypertarget{prp:unnamed-chunk-12}{}{\label{prp:unnamed-chunk-12} }Let \(\boldsymbol x_1, \ldots \boldsymbol x_n\) be independent and identically distributed (i.i.d.), sampled from a population with mean \(\boldsymbol \mu\) and covariance matrix \(\boldsymbol \Sigma\). If \(\bar{\boldsymbol x}\) and \(\boldsymbol S\) are the sample mean and covariance matrix respectively, then
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \({\mathbb{E}}(\bar{\boldsymbol x}) = \boldsymbol \mu\).
-\item
-  \({\mathbb{V}\operatorname{ar}}(\bar{\boldsymbol x}) = {\displaystyle\frac{1}{n}} \boldsymbol \Sigma\).
-\item
-  \({\mathbb{E}}(\boldsymbol S) = {\displaystyle\frac{n-1}{n}} \boldsymbol \Sigma\).
-\end{enumerate}
-\end{proposition}
-
-\begin{proof}
-\iffalse{} {Proof. } \fi{}\textbf{Part 1} By the linearity of expectation,
-\[{\mathbb{E}}(\bar{\boldsymbol x}) = {\mathbb{E}}\left(\frac{1}{n} \sum_{i=1}^n \boldsymbol x_i \right)= \frac{1}{n} \sum_{i=1}^n {\mathbb{E}}(\boldsymbol x_i) = \frac{1}{n} n \boldsymbol \mu= \boldsymbol \mu.\]
-\textbf{Part 2}
-We have
-\begin{eqnarray*}
-{\mathbb{V}\operatorname{ar}}(\bar{\boldsymbol x}) &=& {\mathbb{V}\operatorname{ar}}\left(\frac{1}{n} \sum_{i=1}^n \boldsymbol x_i \right)\\
-&=& \sum_{i,j=1}^n {\mathbb{C}\operatorname{ov}}\left (\frac{1}{n}\boldsymbol x_i, \frac{1}{n}\boldsymbol x_j \right)\\
-&=& \sum_{i=1}^n {\mathbb{V}\operatorname{ar}}\left(\frac{1}{n} \boldsymbol x_i \right)+ \sum_{i \neq j} {\mathbb{C}\operatorname{ov}}\left(\frac{1}{n} \boldsymbol x_i, \frac{1}{n} \boldsymbol x_j \right)\\
-&=& \frac{1}{n^2} \left(\sum_{i=1}^n {\mathbb{V}\operatorname{ar}}(\boldsymbol x_i) + \sum_{i \neq j} {\mathbb{C}\operatorname{ov}}(\boldsymbol x_i,\boldsymbol x_j) \right)\\
-&=& \frac{1}{n^2} \left(\sum_{i=1}^n {\mathbb{V}\operatorname{ar}}(\boldsymbol x_i) \right)\mbox{ as } \boldsymbol x_i \perp \!\!\! \perp\boldsymbol x_j \mbox{ for } i\not = j\\
-&=& \frac{1}{n^2} n \boldsymbol \Sigma\\
-&=& \frac{1}{n} \boldsymbol \Sigma.
-\end{eqnarray*}
-
-\textbf{Part 3} From the definition of the sample covariance,
-\begin{eqnarray*}
-\boldsymbol S&=& \frac{1}{n} \sum_{i=1}^n  (\boldsymbol x_i -\bar{\boldsymbol x})( \boldsymbol x_i - \bar{\boldsymbol x})^\top \\
-&=& \frac{1}{n} \sum_{i=1}^n (\boldsymbol x_i - \boldsymbol \mu+ \boldsymbol \mu-\bar{\boldsymbol x})(\boldsymbol x_i - \boldsymbol \mu+\boldsymbol \mu-\bar{\boldsymbol x})^\top  \\
-&=& \frac{1}{n} \sum_{i=1}^n \bigg \{(\boldsymbol x_i - \boldsymbol \mu)(\boldsymbol x_i - \boldsymbol \mu)^\top +(\bar{\boldsymbol x}-\boldsymbol \mu)(\bar{\boldsymbol x}-\boldsymbol \mu)^\top \\
-&&  \qquad -(\boldsymbol x_i-\boldsymbol \mu)(\bar{\boldsymbol x}-\boldsymbol \mu)^\top -(\bar{\boldsymbol x}-\boldsymbol \mu)(\boldsymbol x_i-\boldsymbol \mu)^\top \bigg \}\\
-&=& \frac{1}{n} \left \{\sum_{i=1}^n (\boldsymbol x_i - \boldsymbol \mu)(\boldsymbol x_i - \boldsymbol \mu)^\top \right \}- (\bar{\boldsymbol x}-\boldsymbol \mu)(\bar{\boldsymbol x}-\boldsymbol \mu)^\top
-\end{eqnarray*}
-as \(\frac{1}{n}\sum (\bar{\boldsymbol x}-\boldsymbol \mu)(\boldsymbol x_i-\boldsymbol \mu)^\top = \sum (\bar{\boldsymbol x}-\boldsymbol \mu)(\bar{\boldsymbol x} -\boldsymbol \mu)^\top\).
-Since \({\mathbb{E}}(\bar{\boldsymbol x})=\boldsymbol \mu\) and \({\mathbb{V}\operatorname{ar}}(\bar{\boldsymbol x})=n^{-1}\boldsymbol \Sigma\), it follows that
-
-\begin{eqnarray*}
-{\mathbb{E}}(\boldsymbol S)&=&\left \{\frac{1}{n}\sum_{i=1}^n {\mathbb{E}}\left [(\boldsymbol x_i - \boldsymbol \mu)(\boldsymbol x_i - \boldsymbol \mu)^\top \right ]\right \} -{\mathbb{V}\operatorname{ar}}(\bar{\boldsymbol x})\\
-&=&{\mathbb{E}}\left \{(\boldsymbol x_1 - \boldsymbol \mu)(\boldsymbol x_1  - \boldsymbol \mu)^\top \right \} -{\mathbb{V}\operatorname{ar}}(\bar{\boldsymbol x})\\
-&=& {\mathbb{V}\operatorname{ar}}(\boldsymbol x_1)-{\mathbb{V}\operatorname{ar}}(\bar{\boldsymbol x}) \\
-&=& \boldsymbol \Sigma- \frac{1}{n}\boldsymbol \Sigma\\
-&=& \frac{n-1}{n}  \boldsymbol \Sigma,
-\end{eqnarray*}
-
-which completes the proof.\\
-\end{proof}
-
-An implication of this theorem is that \(\bar{\boldsymbol x}\) is an unbiased estimator for \(\boldsymbol \mu\) but that \(\boldsymbol S\) is a biased estimator of \(\boldsymbol \Sigma\). Note, however, that \({\displaystyle\frac{n}{n-1}} \boldsymbol S\) is an unbiased estimator of \(\boldsymbol \Sigma\), i.e.
-\[
- \frac{n}{n-1}{\mathbb{E}}[\boldsymbol S]=\boldsymbol \Sigma.
- \]
 
 \hypertarget{linalg-prelim}{%
 \chapter{Review of linear algebra}\label{linalg-prelim}}

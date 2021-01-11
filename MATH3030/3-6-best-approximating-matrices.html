@@ -135,15 +135,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
 <li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-multivariate-data.html"><a href="1-1-multivariate-data.html"><i class="fa fa-check"></i><b>1.1</b> Multivariate data</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-summary-statistics.html"><a href="1-2-summary-statistics.html"><i class="fa fa-check"></i><b>1.2</b> Summary statistics</a></li>
-<li class="chapter" data-level="1.3" data-path="1-3-graphical-techniques.html"><a href="1-3-graphical-techniques.html"><i class="fa fa-check"></i><b>1.3</b> Graphical techniques</a></li>
-<li class="chapter" data-level="1.4" data-path="1-4-random-vectors-and-matrices.html"><a href="1-4-random-vectors-and-matrices.html"><i class="fa fa-check"></i><b>1.4</b> Random Vectors and Matrices</a></li>
-<li class="chapter" data-level="1.5" data-path="1-5-unbiased-estimators.html"><a href="1-5-unbiased-estimators.html"><i class="fa fa-check"></i><b>1.5</b> Unbiased Estimators</a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-notation.html"><a href="1-1-notation.html"><i class="fa fa-check"></i><b>1.1</b> Notation</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-notation.html"><a href="1-1-notation.html#example-datasets"><i class="fa fa-check"></i><b>1.1.1</b> Example datasets</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-notation.html"><a href="1-1-notation.html#aims-of-nultivariate-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Aims of nultivariate data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>1.2</b> Exploratory data analysis (EDA)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#data-visualization"><i class="fa fa-check"></i><b>1.2.1</b> Data visualization</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#summary-statistics"><i class="fa fa-check"></i><b>1.2.2</b> Summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-random-vectors-and-matrices.html"><a href="1-3-random-vectors-and-matrices.html"><i class="fa fa-check"></i><b>1.3</b> Random vectors and matrices</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-random-vectors-and-matrices.html"><a href="1-3-random-vectors-and-matrices.html#estimators"><i class="fa fa-check"></i><b>1.3.1</b> Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-computer-tasks.html"><a href="1-4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-linalg-prelim.html"><a href="2-linalg-prelim.html"><i class="fa fa-check"></i><b>2</b> Review of linear algebra</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html"><i class="fa fa-check"></i><b>2.1</b> Basics</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#notation"><i class="fa fa-check"></i><b>2.1.1</b> Notation</a></li>
+<li class="chapter" data-level="2.1.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#notation-1"><i class="fa fa-check"></i><b>2.1.1</b> Notation</a></li>
 <li class="chapter" data-level="2.1.2" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#elementary-matrix-operations"><i class="fa fa-check"></i><b>2.1.2</b> Elementary matrix operations</a></li>
 <li class="chapter" data-level="2.1.3" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#special-matrices"><i class="fa fa-check"></i><b>2.1.3</b> Special matrices</a></li>
 <li class="chapter" data-level="2.1.4" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#vector-differentiation"><i class="fa fa-check"></i><b>2.1.4</b> Vector Differentiation</a></li>
@@ -331,37 +339,37 @@ as required
 <div id="example-image-compression" class="section level3">
 <h3><span class="header-section-number">3.6.3</span> Example: image compression</h3>
 <p>As an example, lets consider the image of some peppers from the <a href="http://sipi.usc.edu/database/">USC-SIPI image database</a>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">library</span>(tiff)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="kw">library</span>(rasterImage)</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">peppers&lt;-<span class="kw">readTIFF</span>(<span class="st">&quot;figs/Peppers.tiff&quot;</span>)</a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="kw">plot</span>(<span class="kw">as.raster</span>(peppers))</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">library</span>(tiff)</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">library</span>(rasterImage)</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">peppers&lt;-<span class="kw">readTIFF</span>(<span class="st">&quot;figs/Peppers.tiff&quot;</span>)</a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="kw">plot</span>(<span class="kw">as.raster</span>(peppers))</a></code></pre></div>
 <p><img src="03-matrix-decompositions_files/figure-html/unnamed-chunk-13-1.png" width="100%" /></p>
 <p>This is a <span class="math inline">\(512 \times 512\)</span> colour image, meaning that there are three matrices <span class="math inline">\(\boldsymbol R, \boldsymbol B,\boldsymbol G\)</span> of dimension <span class="math inline">\(512\times 512\)</span>) giving the intensity of red, green, and blue for each pixel.
 Naively storing this matrix requires 5.7Mb.</p>
 <p>We can compute the SVD of the three colour intensity matrices, and the view the image that results from using reduced rank versions <span class="math inline">\(\boldsymbol B_k, \boldsymbol G_k, \boldsymbol R_k\)</span> instead (as in Equation <a href="3-6-best-approximating-matrices.html#eq:svdreduced">(3.3)</a>). The image below is formed using <span class="math inline">\(k=5, 30, 100\)</span>, and <span class="math inline">\(300\)</span> basis vectors.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">svd_image &lt;-<span class="st"> </span><span class="cf">function</span>(im,k){</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">  s &lt;-<span class="st"> </span><span class="kw">svd</span>(im)</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3">  Sigma_k &lt;-<span class="st"> </span><span class="kw">diag</span>(s<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span>k])</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4">  U_k &lt;-<span class="st"> </span>s<span class="op">$</span>u[,<span class="dv">1</span><span class="op">:</span>k]</a>
-<a class="sourceLine" id="cb15-5" data-line-number="5">  V_k &lt;-<span class="st"> </span>s<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span>k]</a>
-<a class="sourceLine" id="cb15-6" data-line-number="6">  im_k &lt;-<span class="st"> </span>U_k <span class="op">%*%</span><span class="st"> </span>Sigma_k <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(V_k)</a>
-<a class="sourceLine" id="cb15-7" data-line-number="7">   <span class="co">## the reduced rank SVD produces some intensities &lt;0 and &gt;1. </span></a>
-<a class="sourceLine" id="cb15-8" data-line-number="8">  <span class="co"># Let&#39;s truncate these</span></a>
-<a class="sourceLine" id="cb15-9" data-line-number="9">  im_k[im_k<span class="op">&gt;</span><span class="dv">1</span>]=<span class="dv">1</span></a>
-<a class="sourceLine" id="cb15-10" data-line-number="10">  im_k[im_k<span class="op">&lt;</span><span class="dv">0</span>]=<span class="dv">0</span></a>
-<a class="sourceLine" id="cb15-11" data-line-number="11">  <span class="kw">return</span>(im_k)</a>
-<a class="sourceLine" id="cb15-12" data-line-number="12">}</a>
-<a class="sourceLine" id="cb15-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb15-14" data-line-number="14"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb15-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb15-16" data-line-number="16">pepprssvd&lt;-<span class="st"> </span>peppers</a>
-<a class="sourceLine" id="cb15-17" data-line-number="17"><span class="cf">for</span>(k <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">30</span>,<span class="dv">100</span>,<span class="dv">300</span>)){</a>
-<a class="sourceLine" id="cb15-18" data-line-number="18">  svds&lt;-<span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb15-19" data-line-number="19">  <span class="cf">for</span>(ii <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {</a>
-<a class="sourceLine" id="cb15-20" data-line-number="20">    pepprssvd[,,ii]&lt;-<span class="kw">svd_image</span>(peppers[,,ii],k)</a>
-<a class="sourceLine" id="cb15-21" data-line-number="21">  }</a>
-<a class="sourceLine" id="cb15-22" data-line-number="22">  <span class="kw">plot</span>(<span class="kw">as.raster</span>(pepprssvd))</a>
-<a class="sourceLine" id="cb15-23" data-line-number="23">}</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">svd_image &lt;-<span class="st"> </span><span class="cf">function</span>(im,k){</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">  s &lt;-<span class="st"> </span><span class="kw">svd</span>(im)</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">  Sigma_k &lt;-<span class="st"> </span><span class="kw">diag</span>(s<span class="op">$</span>d[<span class="dv">1</span><span class="op">:</span>k])</a>
+<a class="sourceLine" id="cb17-4" data-line-number="4">  U_k &lt;-<span class="st"> </span>s<span class="op">$</span>u[,<span class="dv">1</span><span class="op">:</span>k]</a>
+<a class="sourceLine" id="cb17-5" data-line-number="5">  V_k &lt;-<span class="st"> </span>s<span class="op">$</span>v[,<span class="dv">1</span><span class="op">:</span>k]</a>
+<a class="sourceLine" id="cb17-6" data-line-number="6">  im_k &lt;-<span class="st"> </span>U_k <span class="op">%*%</span><span class="st"> </span>Sigma_k <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(V_k)</a>
+<a class="sourceLine" id="cb17-7" data-line-number="7">   <span class="co">## the reduced rank SVD produces some intensities &lt;0 and &gt;1. </span></a>
+<a class="sourceLine" id="cb17-8" data-line-number="8">  <span class="co"># Let&#39;s truncate these</span></a>
+<a class="sourceLine" id="cb17-9" data-line-number="9">  im_k[im_k<span class="op">&gt;</span><span class="dv">1</span>]=<span class="dv">1</span></a>
+<a class="sourceLine" id="cb17-10" data-line-number="10">  im_k[im_k<span class="op">&lt;</span><span class="dv">0</span>]=<span class="dv">0</span></a>
+<a class="sourceLine" id="cb17-11" data-line-number="11">  <span class="kw">return</span>(im_k)</a>
+<a class="sourceLine" id="cb17-12" data-line-number="12">}</a>
+<a class="sourceLine" id="cb17-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb17-14" data-line-number="14"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb17-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb17-16" data-line-number="16">pepprssvd&lt;-<span class="st"> </span>peppers</a>
+<a class="sourceLine" id="cb17-17" data-line-number="17"><span class="cf">for</span>(k <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">30</span>,<span class="dv">100</span>,<span class="dv">300</span>)){</a>
+<a class="sourceLine" id="cb17-18" data-line-number="18">  svds&lt;-<span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb17-19" data-line-number="19">  <span class="cf">for</span>(ii <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {</a>
+<a class="sourceLine" id="cb17-20" data-line-number="20">    pepprssvd[,,ii]&lt;-<span class="kw">svd_image</span>(peppers[,,ii],k)</a>
+<a class="sourceLine" id="cb17-21" data-line-number="21">  }</a>
+<a class="sourceLine" id="cb17-22" data-line-number="22">  <span class="kw">plot</span>(<span class="kw">as.raster</span>(pepprssvd))</a>
+<a class="sourceLine" id="cb17-23" data-line-number="23">}</a></code></pre></div>
 <p><img src="03-matrix-decompositions_files/figure-html/unnamed-chunk-14-1.png" width="100%" /></p>
 <p>You can see that for <span class="math inline">\(k=30\)</span> we have a reasonable approximation, but with some errors. With <span class="math inline">\(k=100\)</span> it is hard to spot the difference with the original. The size of the four compressed images is 45Kb, 345Kb, 1.1Mb and 3.4Mb.</p>
 <p>You can see further demonstrations of image compression with the SVD <a href="http://timbaumann.info/svd-image-compression-demo/">here</a>.</p>

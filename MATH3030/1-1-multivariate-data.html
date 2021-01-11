@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="1-stat-prelim.html"/>
-<link rel="next" href="1-2-summary-statistics.html"/>
+<link rel="next" href="1-2-exploratory-data-analysis-eda.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -136,10 +136,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
 <li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-multivariate-data.html"><a href="1-1-multivariate-data.html"><i class="fa fa-check"></i><b>1.1</b> Multivariate data</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-summary-statistics.html"><a href="1-2-summary-statistics.html"><i class="fa fa-check"></i><b>1.2</b> Summary statistics</a></li>
-<li class="chapter" data-level="1.3" data-path="1-3-graphical-techniques.html"><a href="1-3-graphical-techniques.html"><i class="fa fa-check"></i><b>1.3</b> Graphical techniques</a></li>
-<li class="chapter" data-level="1.4" data-path="1-4-random-vectors-and-matrices.html"><a href="1-4-random-vectors-and-matrices.html"><i class="fa fa-check"></i><b>1.4</b> Random Vectors and Matrices</a></li>
-<li class="chapter" data-level="1.5" data-path="1-5-unbiased-estimators.html"><a href="1-5-unbiased-estimators.html"><i class="fa fa-check"></i><b>1.5</b> Unbiased Estimators</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>1.2</b> Exploratory data analysis (EDA)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#data-visualization"><i class="fa fa-check"></i><b>1.2.1</b> Data visualization</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#summary-statistics"><i class="fa fa-check"></i><b>1.2.2</b> Summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-random-vectors-and-matrices.html"><a href="1-3-random-vectors-and-matrices.html"><i class="fa fa-check"></i><b>1.3</b> Random vectors and matrices</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-random-vectors-and-matrices.html"><a href="1-3-random-vectors-and-matrices.html#estimators"><i class="fa fa-check"></i><b>1.3.1</b> Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-computer-tasks.html"><a href="1-4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-linalg-prelim.html"><a href="2-linalg-prelim.html"><i class="fa fa-check"></i><b>2</b> Review of linear algebra</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html"><i class="fa fa-check"></i><b>2.1</b> Basics</a><ul>
@@ -227,8 +232,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="multivariate-data" class="section level2">
 <h2><span class="header-section-number">1.1</span> Multivariate data</h2>
-<p>We will think of datasets as consisting of measurements of <span class="math inline">\(p\)</span> different <strong>variables</strong> for <span class="math inline">\(n\)</span> different <strong>cases/subjects</strong>. We organise the data into a <span class="math inline">\(n \times p\)</span> <strong>data matrix</strong>.</p>
-<p><strong>Multivariate analysis</strong> (MVA) refers data analysis methods where there are two or more <strong>response</strong> variables for each case (you are familiar with situations where there is more than one explanatory variable, e.g., multiple linear regression).</p>
+<p>We will think of datasets as consisting of measurements of <span class="math inline">\(p\)</span> different <strong>variables</strong> for <span class="math inline">\(n\)</span> different <strong>cases/subjects</strong>. We organise the data into an <span class="math inline">\(n \times p\)</span> <strong>data matrix</strong>.</p>
+<p><strong>Multivariate analysis</strong> (MVA) refers to data analysis methods where there are two or more <strong>response</strong> variables for each case (you are familiar with situations where there is more than one explanatory variable, e.g., multiple linear regression).</p>
 <p>We shall often write the data matrix as <span class="math inline">\(\mathbf X\)</span> (<span class="math inline">\(n \times p\)</span>) where
 <span class="math display">\[
 {\mathbf X}=\left[ \begin{array}{c}
@@ -238,24 +243,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ..\\
 ..\\
 \boldsymbol x_n^\top
-\end{array}\right ].
-\]</span></p>
-<p>In words: the <em>rows</em> of <span class="math inline">\(\mathbf X\)</span> are <span class="math inline">\(\boldsymbol x_1^\top, \ldots , \boldsymbol x_n^\top\)</span>.</p>
-<p>We will often consider <span class="math inline">\({\mathbf X}^\top\)</span>
-<span class="math display">\[{\mathbf X}^\top= [ \boldsymbol x_1, \ldots , \boldsymbol x_n]\]</span>
-i.e., the <em>columns</em> of <span class="math inline">\(\boldsymbol X^\top\)</span> are
-<span class="math inline">\(\boldsymbol x_1, \ldots , \boldsymbol x_n\)</span>.</p>
-<p>In this setup, we think of <span class="math inline">\(\boldsymbol x_1, \ldots , \boldsymbol x_n \in \mathbb{R}^p\)</span> as being the observation vectors, and the <span class="math inline">\(p\)</span> columns of <span class="math inline">\(\mathbf X\)</span>
-correspond to the <span class="math inline">\(p\)</span> variables being measured.</p>
-<p><strong>Important remark on notation:</strong> Throughout the module we shall use non-bold letters, whether upper or lower case, to indicate scalar (i.e. real-valued) quantities; lower-case letters in bold to signify column vectors; and upper case letters in bold to signify matrices. This convention for bold letters will also apply to random quantities. So, in particular, for a random vector we always use (bold) lower case, and for a random matrix we always use bold upper-case, regardless of whether we are referring to (i) the unobserved random quantity or (ii) its observed value. It should always be clear from the context which of these two interpretations (i) or (ii) is appropriate.</p>
+\end{array}\right ]
+\]</span>
+The vectors <span class="math inline">\(\boldsymbol x_1, \ldots , \boldsymbol x_n \in \mathbb{R}^p\)</span> are the observation vectors for each of the <span class="math inline">\(n\)</span> subjects.</p>
+<ul>
+<li>The <span class="math inline">\(n\)</span> <em>rows</em> of <span class="math inline">\(\mathbf X\)</span> are <span class="math inline">\(\boldsymbol x_1^\top, \ldots , \boldsymbol x_n^\top\)</span> - each row contains the <span class="math inline">\(p\)</span> observations on a single subject.</li>
+<li>The <span class="math inline">\(p\)</span> columns of <span class="math inline">\(\mathbf X\)</span> correspond to the <span class="math inline">\(p\)</span> variables being measured, i.e., they contain the measurements of the same variable across all <span class="math inline">\(n\)</span> subjects.</li>
+</ul>
+<!--We will sometimes consider 
+$${\mathbf X}^\top= [ \bx_1, \ldots , \bx_n]$$
+which has the individual observations on each subject ($\bx_1, \ldots , \bx_n$) as the *columns*.
+-->
+<p><strong>Important remark on notation:</strong> Throughout the module we shall use</p>
+<ul>
+<li>non-bold letters, whether upper or lower case, to indicate scalar (i.e. real-valued) quantities, e.g., <span class="math inline">\(x, y\)</span></li>
+<li>lower-case letters in bold to signify column vectors, e.g., <span class="math inline">\(\boldsymbol x, \boldsymbol y\)</span></li>
+<li>upper case letters in bold to signify matrices, e.g., <span class="math inline">\(\boldsymbol X, \boldsymbol Y\)</span>.</li>
+</ul>
+<p>This convention for bold letters will also apply to random quantities. So, in particular, for a random vector we always use (bold) lower case, and for a random matrix we always use bold upper-case, regardless of whether we are referring to (i) the unobserved random quantity or (ii) its observed value. It should always be clear from the context which of these two interpretations (i) or (ii) is appropriate.</p>
+<div id="example-datasets" class="section level4 unnumbered">
+<h4>Example datasets</h4>
 
 <div class="example">
-<p><span id="exm:unnamed-chunk-1" class="example"><strong>Example 1.1  </strong></span>The <code>iris</code> dataset in R contains data on the length and width petal and sepal</p>
-</div>
-
-
-<div class="example">
-<span id="exm:unnamed-chunk-2" class="example"><strong>Example 1.2  </strong></span>Football league table where <span class="math inline">\(W =\)</span> number of wins, <span class="math inline">\(D =\)</span> number of draws, <span class="math inline">\(F =\)</span> number of goals scored and <span class="math inline">\(A =\)</span> number of goals conceded for four teams.
+<span id="exm:football" class="example"><strong>Example 1.1  </strong></span>The football league table is an example of multivariate data. Here <span class="math inline">\(W =\)</span> number of wins, <span class="math inline">\(D =\)</span> number of draws, <span class="math inline">\(F =\)</span> number of goals scored and <span class="math inline">\(A =\)</span> number of goals conceded for four teams.
 In this example we have <span class="math inline">\(p=4\)</span> variables <span class="math inline">\((W, D, F, A)^\top\)</span> measured on <span class="math inline">\(n=4\)</span> cases (teams).
 </div>
 
@@ -354,8 +364,8 @@ Algeria
 <span class="math display">\[x_1=(1,2,4,3)\]</span></p>
 
 <div class="example">
-<span id="exm:unnamed-chunk-4" class="example"><strong>Example 1.3  </strong></span>Exam marks for a set of <span class="math inline">\(n\)</span> students where <span class="math inline">\(P =\)</span> mark in probability and <span class="math inline">\(S =\)</span> mark in statistics.
-Note that <span class="math inline">\(x_{ij}\)</span> denotes the <span class="math inline">\(j\)</span>th variable measured on the <span class="math inline">\(i\)</span>th subject.
+<span id="exm:exam" class="example"><strong>Example 1.2  </strong></span>Exam marks for a set of <span class="math inline">\(n\)</span> students where <span class="math inline">\(P =\)</span> mark in probability and <span class="math inline">\(S =\)</span> mark in statistics.
+Let <span class="math inline">\(x_{ij}\)</span> denote the <span class="math inline">\(j\)</span>th variable measured on the <span class="math inline">\(i\)</span>th subject.
 </div>
 
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -419,32 +429,220 @@ n
 </tr>
 </tbody>
 </table>
-<!--
-\BeginKnitrBlock{example}<div class="example"><span class="example" id="exm:mnist"><strong>(\#exm:mnist) </strong></span>The MNIST dataset is a collection of handwritten digits that is widely used in statistics and machine learning to test algorithms. 
-It contains 60,000 images of hand-written digits. 
 
+<div class="example">
+<span id="exm:iris" class="example"><strong>Example 1.3  </strong></span>The <code>iris</code> dataset is a famous set of measurements collected on the sepal length and width, and the petal length and width, of 50 flowers for each of 3 species of iris (setosa, versicolor, and virginica). The dataset is built into R (try typing <code>iris</code> in R) and is often used to demonstrate multivariate statistical methods. For these data, <span class="math inline">\(p=5\)</span>, and <span class="math inline">\(n=150\)</span>.
+</div>
 
-![](MNIST.png)
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Sepal.Length
+</th>
+<th style="text-align:right;">
+Sepal.Width
+</th>
+<th style="text-align:right;">
+Petal.Length
+</th>
+<th style="text-align:right;">
+Petal.Width
+</th>
+<th style="text-align:left;">
+Species
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+3.5
+</td>
+<td style="text-align:right;">
+1.4
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+1.4
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4.7
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+1.3
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:left;">
+setosa
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.0
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+4.7
+</td>
+<td style="text-align:right;">
+1.4
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+4.5
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.9
+</td>
+<td style="text-align:right;">
+3.1
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:left;">
+versicolor
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+3.3
+</td>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+2.7
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+1.9
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7.1
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+5.9
+</td>
+<td style="text-align:right;">
+2.1
+</td>
+<td style="text-align:left;">
+virginica
+</td>
+</tr>
+</tbody>
+</table>
 
-Each digit has been converted to a grid of $28\times 28$ pixels, with a grayscale intensity level specified for each pixel. When we store these on a computer, we flatten each grid to a vector of length 784
-</div>\EndKnitrBlock{example}
+<div class="example">
+<p><span id="exm:mnist" class="example"><strong>Example 1.4  </strong></span>The MNIST dataset is a collection of handwritten digits that is widely used in statistics and machine learning to test algorithms.
+It contains 60,000 images of hand-written digits.
+Each digit has been converted to a grid of <span class="math inline">\(28\times 28\)</span> pixels, with a grayscale intensity level specified for each pixel. When we store these on a computer, we flatten each grid to a vector of length 784.
+So for this dataset, <span class="math inline">\(n=60,000\)</span> and <span class="math inline">\(p=784\)</span>.</p>
+<p><img src="MNIST.png" /></p>
+<!--```{r, echo=FALSE}
+load(file="mnist.rda")
+round(mnist$train$x[1,],2)[1:20]
+```-->
+</div>
 
-```
-##  [1] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-```
+<!--REWRITE AND EXPAND THIS SECTION BY GIVING EXAMPLES. Do a computer task sheet. Perhaps define bias in that.
 
-```
-
+https://towardsdatascience.com/the-art-of-effective-visualization-of-multi-dimensional-data-6c7202990c57
 -->
-<p>In MVA we attempt to answer questions such as:</p>
+<p>The aim of multivariate statistical analysis is to answer questions such as:</p>
 <ul>
 <li>How can we visualise the data?</li>
 <li>What is the joint distribution of marks?</li>
 <li>Can we simplify the data? For example, we rank football teams using <span class="math inline">\(3W+D\)</span> and we rank students by their average module mark. Is this fair? Can we reduce the dimension in a better way?</li>
 <li>Can we use the data to discriminate, for example, between male and female students?</li>
+<li>Are the different iris species different shapes?</li>
+<li>Can we build a model to predict the intended digit from an image of someones handwriting? Or predict the species of iris from measurements of its sepal and petal?</li>
 </ul>
-<p>We could just apply standard univariate techniques to each variable in turn but this ignores possible dependencies between the variables which we must represent to draw valid conclusions.</p>
-<p>Finally, before moving on, we ask the question: what is the difference between MVA and standard linear regression? Answer: in standard linear regression we have a scalar response variable, <span class="math inline">\(y\)</span> say, and a vector of covariates, <span class="math inline">\(\boldsymbol x\)</span>, say. The focus of interest is on how knowledge of <span class="math inline">\(\boldsymbol x\)</span> influences the distribution of <span class="math inline">\(y\)</span> (in particular, the mean of <span class="math inline">\(y\)</span>). In contrast, with MVA the focus of interest is a response vector <span class="math inline">\(\boldsymbol y\)</span>, in which all the components of <span class="math inline">\(\boldsymbol y\)</span> are viewed as responses rather than covariates. However, there are also situations where the response is a vector <span class="math inline">\(\boldsymbol y\)</span> but we also have covariate information <span class="math inline">\(\boldsymbol x\)</span>. This leads to study of the multivariate linear model, which we will investigate later on in Chapter <a href="#lm"><strong>??</strong></a>.</p>
+<p>We could just apply standard univariate techniques to each variable in turn, but this ignores possible dependencies between the variables which we must represent to draw valid conclusions.</p>
+<p>Finally, before moving on, we ask the question:</p>
+<ul>
+<li>what is the difference between MVA and standard linear regression?</li>
+</ul>
+<p><strong>Answer</strong>: in standard linear regression we have a scalar response variable, <span class="math inline">\(y\)</span> say, and a vector of covariates, <span class="math inline">\(\boldsymbol x\)</span>, say. The focus of interest is on how knowledge of <span class="math inline">\(\boldsymbol x\)</span> influences the distribution of <span class="math inline">\(y\)</span> (in particular, the mean of <span class="math inline">\(y\)</span>). In contrast, in MVA the focus is a vector <span class="math inline">\(\boldsymbol y\)</span>, in which all the components of <span class="math inline">\(\boldsymbol y\)</span> are viewed as responses rather than covariates, possibly with additional covariate information <span class="math inline">\(\boldsymbol x\)</span>. We will discuss this further in Chapter <a href="#lm"><strong>??</strong></a>.</p>
+</div>
 </div>
             </section>
 
@@ -452,7 +650,7 @@ Each digit has been converted to a grid of $28\times 28$ pixels, with a grayscal
         </div>
       </div>
 <a href="1-stat-prelim.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="1-2-summary-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="1-2-exploratory-data-analysis-eda.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
