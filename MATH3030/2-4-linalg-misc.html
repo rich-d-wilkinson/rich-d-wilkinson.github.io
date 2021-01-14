@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="2-3-linalg-innerprod.html"/>
-<link rel="next" href="3-linalg-decomp.html"/>
+<link rel="next" href="2-5-computer-tasks-1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-notation.html"><a href="1-1-notation.html"><i class="fa fa-check"></i><b>1.1</b> Notation</a><ul>
 <li class="chapter" data-level="1.1.1" data-path="1-1-notation.html"><a href="1-1-notation.html#example-datasets"><i class="fa fa-check"></i><b>1.1.1</b> Example datasets</a></li>
-<li class="chapter" data-level="1.1.2" data-path="1-1-notation.html"><a href="1-1-notation.html#aims-of-nultivariate-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Aims of nultivariate data analysis</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-notation.html"><a href="1-1-notation.html#aims-of-multivariate-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Aims of multivariate data analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>1.2</b> Exploratory data analysis (EDA)</a><ul>
 <li class="chapter" data-level="1.2.1" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#data-visualization"><i class="fa fa-check"></i><b>1.2.1</b> Data visualization</a></li>
@@ -167,10 +167,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#projections"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="2-4-linalg-misc.html"><a href="2-4-linalg-misc.html"><i class="fa fa-check"></i><b>2.4</b> Miscellaneous topics</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="2-4-linalg-misc.html"><a href="2-4-linalg-misc.html#the-centering-matrix"><i class="fa fa-check"></i><b>2.4.1</b> The Centering Matrix</a></li>
-<li class="chapter" data-level="2.4.2" data-path="2-4-linalg-misc.html"><a href="2-4-linalg-misc.html#quadratic-forms-and-ellipses"><i class="fa fa-check"></i><b>2.4.2</b> Quadratic forms and ellipses</a></li>
-<li class="chapter" data-level="2.4.3" data-path="2-4-linalg-misc.html"><a href="2-4-linalg-misc.html#lines-and-hyperplanes-in-mathbbrp"><i class="fa fa-check"></i><b>2.4.3</b> Lines and Hyperplanes in <span class="math inline">\(\mathbb{R}^p\)</span></a></li>
+<li class="chapter" data-level="2.4.1" data-path="2-4-linalg-misc.html"><a href="2-4-linalg-misc.html#centering-matrix"><i class="fa fa-check"></i><b>2.4.1</b> The Centering Matrix</a></li>
 </ul></li>
+<li class="chapter" data-level="2.5" data-path="2-5-computer-tasks-1.html"><a href="2-5-computer-tasks-1.html"><i class="fa fa-check"></i><b>2.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-exercises-1.html"><a href="2-6-exercises-1.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="3-linalg-decomp.html"><a href="3-linalg-decomp.html"><i class="fa fa-check"></i><b>3</b> Matrix decompositions</a><ul>
 <li class="chapter" data-level="3.1" data-path="3-1-matrix-matrix.html"><a href="3-1-matrix-matrix.html"><i class="fa fa-check"></i><b>3.1</b> Matrix-matrix products</a></li>
@@ -235,16 +235,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="linalg-misc" class="section level2">
 <h2><span class="header-section-number">2.4</span> Miscellaneous topics</h2>
-<div id="the-centering-matrix" class="section level3">
+<div id="centering-matrix" class="section level3">
 <h3><span class="header-section-number">2.4.1</span> The Centering Matrix</h3>
-<p>The centering matrix will be play an important role in this module, as we will use it to remove the column means from a matrix (so that each column has mean zero), <em>centering</em> the matrix.</p>
+<p>The <strong>centering matrix</strong> will be play an important role in this module, as we will use it to remove the column means from a matrix (so that each column has mean zero), <em>centering</em> the matrix.</p>
 
 <div class="definition">
-<span id="def:centeringmatrix" class="definition"><strong>Definition 2.13  </strong></span>The <strong>centering matrix</strong> is
+<span id="def:unnamed-chunk-9" class="definition"><strong>Definition 2.13  </strong></span>The <strong>centering matrix</strong> is
 <span class="math display" id="eq:Hcentre">\[\begin{equation}
-\boldsymbol H=\mathbf I_n - \frac{1}{n} {\mathbf 1}_n {\mathbf 1}_n^\top.
-\tag{2.2}
-\end{equation}\]</span>
+    \boldsymbol H=\mathbf I_n - \frac{1}{n} {\mathbf 1}_n {\mathbf 1}_n^\top.
+    \tag{2.2}
+    \end{equation}\]</span>
 where <span class="math inline">\(\mathbf I_n\)</span> is the <span class="math inline">\(n \times n\)</span> identity matrix, and <span class="math inline">\({\mathbf 1}_n\)</span> is an <span class="math inline">\(n \times 1\)</span> column vector of ones.
 </div>
 
@@ -299,88 +299,14 @@ where
 <p>Note that Property 3. is a special case of Property 5., and Property 4. is a special case of Property 6.
 However, it is useful to see these results in the simpler scalar case before moving onto the general matrix case.</p>
 </div>
-<div id="quadratic-forms-and-ellipses" class="section level3">
-<h3><span class="header-section-number">2.4.2</span> Quadratic forms and ellipses</h3>
-<p>POSSIBLY MOVE OR ADD PICTURES - DECIDE ONCE I KNOW WHERE It IS USED.</p>
-<p>A standard ellipse in <span class="math inline">\(\mathbb{R}^2\)</span> is given by the equation
-<span class="math display">\[
-\frac{x^2}{a^2}+\frac{y^2}{b^2}=1 \quad (a&gt;b&gt;0).
-\]</span>
-The interior (the shaded region) is given by
-<span class="math display" id="eq:ellipse">\[\begin{equation}
-\frac{x^2}{a^2}+\frac{y^2}{b^2}\leq 1.   \tag{2.3}
-\end{equation}\]</span>
-Note that a standard ellipse has axes of symmetry given by the <span class="math inline">\(x\)</span>-axis and <span class="math inline">\(y\)</span>-axis
-(if <span class="math inline">\(a&gt;b\)</span>, the former is the major axis and the latter the minor axis).</p>
-<p>If we define
-<span class="math inline">\({\mathbf A}=\left[ \begin{array}{cc} a^2&amp;0\\ 0&amp;b^2 \end{array} \right]\)</span>
-then Equation <a href="2-4-linalg-misc.html#eq:ellipse">(2.3)</a> can be written in the form
-<span class="math display">\[ \binom{x}{y}^\top {\mathbf A}^{-1} \binom{x}{y}\leq 1. \]</span>
-If we write <span class="math inline">\({\mathbf x}=\binom{x_1}{x_2}\)</span> and generalise to an arbitrary symmetric
-positive definite matrix <span class="math inline">\(\stackrel{2 \times 2}{\mathbf A}\)</span>, what is the set
-<span class="math display">\[ \{ {\mathbf x} \in \mathbb{R}^2 : {\mathbf x}^\top {\mathbf A}^{-1} {\mathbf x} \leq 1\} ? \]</span>
-We get a rotated ellipse with axes of symmetry given by the eigenvectors of <span class="math inline">\(\mathbf A\)</span>,
-with the major axis determined by the eigenvector corresponding to the larger
-eigenvalue of <span class="math inline">\(\mathbf A\)</span>, and the minor axis determined by the eigenvector corresponding
-to the smaller eigenvalue of <span class="math inline">\(\mathbf A\)</span>.</p>
-<p>Note that, for <span class="math inline">\(c&gt;0\)</span>,
-<span class="math display">\[{\mathbf x}^\top {\mathbf A}^{-1} {\mathbf x}\leq c \qquad \Leftrightarrow \qquad {\mathbf x}^\top (c{\mathbf A})^{-1}{\mathbf x}\leq 1 ,\]</span>
-where <span class="math inline">\(c{\mathbf A}\)</span> is a scalar multiple of <span class="math inline">\(\mathbf A\)</span>.</p>
-<p>If <span class="math inline">\({\mathbf m}\)</span> is a fixed 2-vector, then what is the set
-<span class="math display">\[
-\{ {\mathbf x} \in \mathbb{R}^2 : ({\mathbf x}-{\mathbf m})^\top {\mathbf A}^{-1}({\mathbf x}-{\mathbf m})\leq 1\} ?
-\]</span>
-Since
-<span class="math display">\[
-\{ {\mathbf x} : ({\mathbf x}-{\mathbf m})^\top {\mathbf A}^{-1}({\mathbf x}-{\mathbf m})\leq 1 \}=\{ {\mathbf z}+
-{\mathbf m} : {\mathbf z}^\top {\mathbf A}^{-1} {\mathbf z}\leq 1 \} ,
-\]</span>
-it follows that
-<span class="math display">\[
-\{ {\mathbf x} : ({\mathbf x}-{\mathbf m})^\top {\mathbf A}^{-1}({\mathbf x}-{\mathbf m})\leq 1\}
-\]</span>
-is just the ellipse <span class="math inline">\(\{ {\mathbf z}:{\mathbf z}^\top {\mathbf A}^{-1}{\mathbf z}\leq 1\}\)</span> translated by
-<span class="math inline">\({\mathbf m}\)</span>.</p>
-<p>Analogous results for ellipsoids and quadratic forms hold in three and higher dimensions.</p>
 </div>
-<div id="lines-and-hyperplanes-in-mathbbrp" class="section level3">
-<h3><span class="header-section-number">2.4.3</span> Lines and Hyperplanes in <span class="math inline">\(\mathbb{R}^p\)</span></h3>
-<p>For any <span class="math inline">\(\boldsymbol a, \boldsymbol b\in \mathbb{R}^p\)</span>, the set
-<span class="math display" id="eq:straightl">\[\begin{equation}
-\mathcal{L}=\mathcal{L}(\boldsymbol a, \boldsymbol b)=\{\boldsymbol a+\gamma \boldsymbol b: \gamma \in \mathbb{R}\}
-\tag{2.4} 
-\end{equation}\]</span>
-is a <em>straight line</em> in <span class="math inline">\(\mathbb{R}^p\)</span>.</p>
-<p>If <span class="math inline">\(\boldsymbol a^\top \boldsymbol b=0\)</span>, i.e. <span class="math inline">\(\boldsymbol a\)</span> and <span class="math inline">\(\boldsymbol b\)</span> are orthogonal, then <span class="math inline">\(\boldsymbol a\)</span> is the perpendicular from the origin <span class="math inline">\({\mathbf 0}_p\)</span>
-to the line <span class="math inline">\(\mathcal{L}(\boldsymbol a,\boldsymbol b).\)</span></p>
-<p>PICTURE??</p>
-<p>For fixed <span class="math inline">\(\boldsymbol a\in \mathbb{R}^p\)</span> and <span class="math inline">\(\gamma \in \mathbb{R}\)</span>,
-<span class="math display">\[
-\mathcal{H}=\mathcal{H}(\boldsymbol a, \gamma) =\{\boldsymbol x\in \mathbb{R}^p:\, \boldsymbol a^\top \boldsymbol x=\gamma\}
-\]</span>
-is a hyperplane of dimension <span class="math inline">\(p-1\)</span> in <span class="math inline">\(\mathbb{R}^p\)</span>. The vector <span class="math inline">\(\boldsymbol a\)</span> is the perpendicular from the origin <span class="math inline">\({\mathbf 0}_p\)</span> to the hyperplane <span class="math inline">\(\mathcal{H}(\boldsymbol a, \gamma)\)</span>.</p>
-<p>I DON&quot;T KNOW WHY THIS IS HERE? THINK ABOUT</p>
-<p>There is an alternative way to define hyperplanes in <span class="math inline">\(\mathbb{R}^P\)</span>. Suppose that, for <span class="math inline">\(1 \leq r &lt;p\)</span>, <span class="math inline">\(\stackrel{p \times 1}{\boldsymbol a}_1, \ldots , \stackrel{p \times 1}{\boldsymbol a}_r, \stackrel{p \times 1}{\boldsymbol a}_{r+1}\)</span> are linearly independent. Then
-<span class="math display">\[
-\mathcal{H}=\left \{ \sum_{j=1}^{r+1} \gamma_j \boldsymbol a_j: \, \sum_{j=1}^{r+1}\gamma_j =1  \right \}
-\]</span>
-is an <span class="math inline">\(r\)</span>-dimensional hyperplane in <span class="math inline">\(\mathbb{R}^p\)</span>.</p>
-<p>When <span class="math inline">\(r=1\)</span>, using the fact that <span class="math inline">\(\gamma_1+\gamma_2=1\)</span>, we may write
-<span class="math display">\[
-\gamma_1 \boldsymbol a_1 + \gamma_2 \boldsymbol a_2=(1-\gamma_2)\boldsymbol a_1 + \gamma_2 \boldsymbol a_2 = \boldsymbol a_1 +\gamma_2(\boldsymbol a_2-\boldsymbol a_1),
-\]</span>
-which agrees with <span class="math inline">\(\boldsymbol a+\gamma \boldsymbol b\)</span> in <a href="2-4-linalg-misc.html#eq:straightl">(2.4)</a> when <span class="math inline">\(\boldsymbol a= \boldsymbol a_1\)</span>, <span class="math inline">\(\boldsymbol b= \boldsymbol a_2 -\boldsymbol a_1\)</span> and <span class="math inline">\(\gamma=\gamma_2\)</span>. So we have shown that the two definitions agree in the case of a straight line.</p>
-
-</div>
-</div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="2-3-linalg-innerprod.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="3-linalg-decomp.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2-5-computer-tasks-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
