@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="3-2-spectraleigen-decomposition.html"/>
-<link rel="next" href="3-4-svd-optimization-results.html"/>
+<link rel="next" href="3-4-svdopt.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -154,7 +154,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#notation-1"><i class="fa fa-check"></i><b>2.1.1</b> Notation</a></li>
 <li class="chapter" data-level="2.1.2" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#elementary-matrix-operations"><i class="fa fa-check"></i><b>2.1.2</b> Elementary matrix operations</a></li>
 <li class="chapter" data-level="2.1.3" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#special-matrices"><i class="fa fa-check"></i><b>2.1.3</b> Special matrices</a></li>
-<li class="chapter" data-level="2.1.4" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#vector-differentiation"><i class="fa fa-check"></i><b>2.1.4</b> Vector Differentiation</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#vectordiff"><i class="fa fa-check"></i><b>2.1.4</b> Vector Differentiation</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html"><i class="fa fa-check"></i><b>2.2</b> Vector spaces</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#linear-independence"><i class="fa fa-check"></i><b>2.2.1</b> Linear independence</a></li>
@@ -180,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html"><i class="fa fa-check"></i><b>3.3</b> Singular Value Decomposition (SVD)</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.3.1</b> Examples</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="3-4-svd-optimization-results.html"><a href="3-4-svd-optimization-results.html"><i class="fa fa-check"></i><b>3.4</b> SVD optimization results</a></li>
+<li class="chapter" data-level="3.4" data-path="3-4-svdopt.html"><a href="3-4-svdopt.html"><i class="fa fa-check"></i><b>3.4</b> SVD optimization results</a></li>
 <li class="chapter" data-level="3.5" data-path="3-5-low-rank-approximation.html"><a href="3-5-low-rank-approximation.html"><i class="fa fa-check"></i><b>3.5</b> Low-rank approximation</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="3-5-low-rank-approximation.html"><a href="3-5-low-rank-approximation.html#matrix-norms"><i class="fa fa-check"></i><b>3.5.1</b> Matrix norms</a></li>
 <li class="chapter" data-level="3.5.2" data-path="3-5-low-rank-approximation.html"><a href="3-5-low-rank-approximation.html#eckart-young-mirsky-theorem"><i class="fa fa-check"></i><b>3.5.2</b> Eckart-Young-Mirsky Theorem</a></li>
@@ -191,15 +191,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html"><i class="fa fa-check"></i>PART II: Dimension reduction methods</a><ul>
 <li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#a-warning"><i class="fa fa-check"></i>A warning</a></li>
-<li class="chapter" data-level="3.7.1" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#why-reduce-dimension"><i class="fa fa-check"></i><b>3.7.1</b> Why reduce dimension?</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="4-pca.html"><a href="4-pca.html"><i class="fa fa-check"></i><b>4</b> Principal component analysis</a><ul>
-<li class="chapter" data-level="4.1" data-path="4-1-principal-component-vectors-and-scores.html"><a href="4-1-principal-component-vectors-and-scores.html"><i class="fa fa-check"></i><b>4.1</b> Principal component vectors and scores</a></li>
-<li class="chapter" data-level="4.2" data-path="4-2-properties-of-principal-components.html"><a href="4-2-properties-of-principal-components.html"><i class="fa fa-check"></i><b>4.2</b> Properties of principal components</a></li>
-<li class="chapter" data-level="4.3" data-path="4-3-population-pca.html"><a href="4-3-population-pca.html"><i class="fa fa-check"></i><b>4.3</b> Population PCA</a></li>
-<li class="chapter" data-level="4.4" data-path="4-4-an-alternative-derivation-of-pca.html"><a href="4-4-an-alternative-derivation-of-pca.html"><i class="fa fa-check"></i><b>4.4</b> An Alternative Derivation of PCA</a></li>
-<li class="chapter" data-level="4.5" data-path="4-5-pca-under-transformations-of-variables.html"><a href="4-5-pca-under-transformations-of-variables.html"><i class="fa fa-check"></i><b>4.5</b> PCA under transformations of variables</a></li>
-<li class="chapter" data-level="4.6" data-path="4-6-pca-based-on-boldsymbol-s-versus-pca-based-on-boldsymbol-r.html"><a href="4-6-pca-based-on-boldsymbol-s-versus-pca-based-on-boldsymbol-r.html"><i class="fa fa-check"></i><b>4.6</b> PCA based on <span class="math inline">\(\boldsymbol S\)</span> versus PCA based on <span class="math inline">\(\boldsymbol R\)</span></a></li>
+<li class="chapter" data-level="4" data-path="4-pca.html"><a href="4-pca.html"><i class="fa fa-check"></i><b>4</b> Principal component analysis (PCA)</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html"><i class="fa fa-check"></i><b>4.1</b> PCA: an informal introduction</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#notation-recap"><i class="fa fa-check"></i><b>4.1.1</b> Notation recap</a></li>
+<li class="chapter" data-level="4.1.2" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#first-principal-component"><i class="fa fa-check"></i><b>4.1.2</b> First principal component</a></li>
+<li class="chapter" data-level="4.1.3" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#second-principal-component"><i class="fa fa-check"></i><b>4.1.3</b> Second principal component</a></li>
+<li class="chapter" data-level="4.1.4" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#geometric-interpretation-1"><i class="fa fa-check"></i><b>4.1.4</b> Geometric interpretation</a></li>
+<li class="chapter" data-level="4.1.5" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#example"><i class="fa fa-check"></i><b>4.1.5</b> Example</a></li>
+<li class="chapter" data-level="4.1.6" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#example-iris"><i class="fa fa-check"></i><b>4.1.6</b> Example: Iris</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>4.2</b> PCA: a formal description with proofs</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>4.2.1</b> Properties of principal components</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#example-football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>4.2.3</b> PCA based on <span class="math inline">\(\boldsymbol R\)</span> versus PCA based on <span class="math inline">\(\boldsymbol S\)</span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>4.2.4</b> Population PCA</a></li>
+<li class="chapter" data-level="4.2.5" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>4.2.5</b> PCA under transformations of variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-an-alternative-view-of-pca.html"><a href="4-3-an-alternative-view-of-pca.html"><i class="fa fa-check"></i><b>4.3</b> An alternative view of PCA</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-an-alternative-view-of-pca.html"><a href="4-3-an-alternative-view-of-pca.html#example-mnist-handwritten-digits"><i class="fa fa-check"></i><b>4.3.1</b> Example: MNIST handwritten digits</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-4-computer-tasks-1.html"><a href="4-4-computer-tasks-1.html"><i class="fa fa-check"></i><b>4.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-exercises-1.html"><a href="4-5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis</a><ul>
 <li class="chapter" data-level="5.1" data-path="5-1-canonical-correlation-analysis.html"><a href="5-1-canonical-correlation-analysis.html"><i class="fa fa-check"></i><b>5.1</b> Canonical Correlation Analysis</a></li>
@@ -401,7 +414,7 @@ Let’s check our answer in R.
         </div>
       </div>
 <a href="3-2-spectraleigen-decomposition.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="3-4-svd-optimization-results.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="3-4-svdopt.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

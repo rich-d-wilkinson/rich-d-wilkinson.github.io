@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Principal component analysis (PCA) | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Principal component analysis (PCA) | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Principal component analysis (PCA) | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="part-ii-dimension-reduction-methods.html"/>
+<link rel="next" href="1-1-pca-an-informal-introduction.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html"><i class="fa fa-check"></i>PART II: Dimension reduction methods</a><ul>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#a-warning"><i class="fa fa-check"></i>A warning</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="1-pca.html"><a href="1-pca.html"><i class="fa fa-check"></i><b>1</b> Principal component analysis (PCA)</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html"><i class="fa fa-check"></i><b>1.1</b> PCA: an informal introduction</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#notation-recap"><i class="fa fa-check"></i><b>1.1.1</b> Notation recap</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#first-principal-component"><i class="fa fa-check"></i><b>1.1.2</b> First principal component</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#second-principal-component"><i class="fa fa-check"></i><b>1.1.3</b> Second principal component</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#geometric-interpretation-1"><i class="fa fa-check"></i><b>1.1.4</b> Geometric interpretation</a></li>
+<li class="chapter" data-level="1.1.5" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#example"><i class="fa fa-check"></i><b>1.1.5</b> Example</a></li>
+<li class="chapter" data-level="1.1.6" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#example-iris"><i class="fa fa-check"></i><b>1.1.6</b> Example: Iris</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>1.2</b> PCA: a formal description with proofs</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>1.2.1</b> Properties of principal components</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#example-football"><i class="fa fa-check"></i><b>1.2.2</b> Example: Football</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>1.2.3</b> PCA based on <span class="math inline">\(\boldsymbol R\)</span> versus PCA based on <span class="math inline">\(\boldsymbol S\)</span></a></li>
+<li class="chapter" data-level="1.2.4" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>1.2.4</b> Population PCA</a></li>
+<li class="chapter" data-level="1.2.5" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>1.2.5</b> PCA under transformations of variables</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-an-alternative-view-of-pca.html"><a href="1-3-an-alternative-view-of-pca.html"><i class="fa fa-check"></i><b>1.3</b> An alternative view of PCA</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-an-alternative-view-of-pca.html"><a href="1-3-an-alternative-view-of-pca.html#example-mnist-handwritten-digits"><i class="fa fa-check"></i><b>1.3.1</b> Example: MNIST handwritten digits</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-computer-tasks.html"><a href="1-4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="pca" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Principal component analysis (PCA)</h1>
+<p>With multivariate data, it is common to want to reduce the dimension of the data <em>in a sensible way</em>. For example</p>
+<ul>
+<li><p>exam marks across different modules are
+averaged to produce a single overall mark for each
+student</p></li>
+<li><p>a football league table converts the
+numbers of wins, draws and losses to a single measure of
+points.</p></li>
+</ul>
+<p>Mathematically, these summaries
+are both linear combinations of the
+original variables of the form
+<span class="math display">\[y = \boldsymbol u^\top \boldsymbol x.\]</span><br />
+for some choice of <span class="math inline">\(\boldsymbol u\)</span>.</p>
+<p>For the exam marks example, suppose each student sits <span class="math inline">\(p=4\)</span> modules
+with marks, <span class="math inline">\(x_1,x_2,x_3,x_4\)</span>. Then, writing <span class="math inline">\(\boldsymbol x=(x_1, x_2 , x_3, x_4)^\top\)</span> and choosing <span class="math inline">\(\boldsymbol u= \left(\frac{1}{4}, \frac{1}{4}, \frac{1}{4}, \frac{1}{4} \right)^\top\)</span>
+gives an overall average,
+<span class="math display">\[ y =\boldsymbol u^\top \boldsymbol x= \begin{pmatrix} \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{4} \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \frac{x_1}{4} + \frac{x_2}{4} + \frac{x_3}{4} + \frac{x_4}{4}.\]</span></p>
+<p>For the football league table, if <span class="math inline">\(w\)</span> is the number of wins, <span class="math inline">\(d\)</span> is the number of draws and <span class="math inline">\(l\)</span> is the number of losses then, writing
+<span class="math inline">\({\mathbf r}=(w,d,l)^\top\)</span>, we choose <span class="math inline">\(\boldsymbol u= \left(3,1,0 \right)^\top\)</span> to get the points score
+<span class="math display">\[ y = \boldsymbol u^\top {\mathbf r}=\begin{pmatrix} 3 &amp; 1 &amp; 0 \end{pmatrix} \begin{pmatrix} w \\ d \\ l \end{pmatrix} = 3w + 1d + 0l=3w+d.\]</span></p>
+<div id="geometric-interpretation" class="section level4 unnumbered">
+<h4>Geometric interpretation</h4>
+<p>In the two examples above, we used the vector <span class="math inline">\(\boldsymbol u\)</span> to convert our original variables, <span class="math inline">\(\boldsymbol x\)</span>,
+to a new variable, <span class="math inline">\(y\)</span>, by projecting <span class="math inline">\(\boldsymbol x\)</span> onto <span class="math inline">\(\boldsymbol u\)</span>.
+We can think of this as a projection onto the subspace defined by <span class="math inline">\(\boldsymbol u\)</span></p>
+<p><span class="math display">\[U = \operatorname{span}\{\boldsymbol u\} = \{\lambda \boldsymbol u: \lambda \in \mathbb{R}\}\subset \mathbb{R}^p,\]</span></p>
+<p>For the exam data, each data point <span class="math inline">\(\boldsymbol x= \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix}\)</span>
+is a vector in <span class="math inline">\(\mathbb{R}^4\)</span>, and we’ve expressed <span class="math inline">\(\boldsymbol x\)</span> in terms of its coordinates with respsect to the standard basis, <span class="math inline">\(\boldsymbol e_1^\top = (1\; 0\; 0 \; 0)\)</span> etc:
+<span class="math display">\[\boldsymbol x=x_1 \boldsymbol e_1 + x_2 \boldsymbol e_2 +x_3 \boldsymbol e_3 +x_4 \boldsymbol e_4.\]</span>
+The vector subspace <span class="math inline">\(U\)</span> is a line in <span class="math inline">\(\mathbb{R}^4\)</span> along the direction <span class="math inline">\(\boldsymbol u= \begin{pmatrix} \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{4} \end{pmatrix}^\top\)</span>.</p>
+<p>How do we project onto subspace <span class="math inline">\(U\)</span>?</p>
+<ul>
+<li>If <span class="math inline">\(||\boldsymbol u||_2=1\)</span> then the orthogonal projection of <span class="math inline">\(\boldsymbol x\)</span> onto <span class="math inline">\(U\)</span> is<br />
+<span class="math display">\[\boldsymbol u\boldsymbol u^\top\boldsymbol x.\]</span>
+Or in other words, the projection of <span class="math inline">\(\boldsymbol x\)</span> onto subspace <span class="math inline">\(U\)</span> has coordinate <span class="math inline">\(\boldsymbol u^\top \boldsymbol x\)</span> with respect to basis <span class="math inline">\(\{\boldsymbol u\}\)</span>.</li>
+</ul>
+<p>If you prefer to think in terms of projection matrices (see Chapter <a href="#orthogproj"><strong>??</strong></a>), then the matrix for projecting onto <span class="math inline">\(U\)</span> is
+<span class="math display">\[\boldsymbol P_U = \boldsymbol u(\boldsymbol u^\top \boldsymbol u)^{-1}\boldsymbol u^\top\]</span>
+which simplifies to
+<span class="math display">\[\boldsymbol P_U = \boldsymbol u\boldsymbol u^\top\]</span>
+when <span class="math inline">\(||\boldsymbol u||=\sqrt{\boldsymbol u^\top\boldsymbol u}=1\)</span> so that we again see the projection of <span class="math inline">\(\boldsymbol x\)</span> onto <span class="math inline">\(U\)</span> is <span class="math inline">\(y=\boldsymbol P_u \boldsymbol x= \boldsymbol u\boldsymbol u^\top\boldsymbol x\)</span>.</p>
+<p><strong>How should we choose <span class="math inline">\(\boldsymbol u\)</span>?</strong></p>
+<p>The answer to that question depends upon the goal of the analysis. For the exam and football league examples, the choice of <span class="math inline">\(\boldsymbol u\)</span> is an arbitrary decision taken in order to reduce a multidimensional dataset to a single variable (average mark, or points).</p>
+<p>A single <span class="math inline">\(\boldsymbol u\)</span> gives a <strong>snapshot</strong> or summary of the data. If <span class="math inline">\(\boldsymbol u\)</span> is chosen well that snapshot may tell us much of what we want to know about the data, e.g.,</p>
+<ul>
+<li>Liverpool won the league,</li>
+<li>student <span class="math inline">\(X\)</span>’s exam performance was first class etc.</li>
+</ul>
+<p>In many cases we will want to use multiple snapshots: instead of using a single <span class="math inline">\(\boldsymbol u\)</span>, we will use a collection <span class="math inline">\(\boldsymbol u_1, \boldsymbol u_2, \ldots, \boldsymbol u_r\)</span> and consider the derived variables</p>
+<p><span class="math display">\[\boldsymbol y= \begin{pmatrix} y_1\\y_2 \\ \vdots \\ y_r\end{pmatrix} = \begin{pmatrix}
+\boldsymbol u_1^\top \boldsymbol x\\  \boldsymbol u_2^\top \boldsymbol x\\\vdots\\  \boldsymbol u_r^\top \boldsymbol x\end{pmatrix}\]</span></p>
+<p>In matrix notation, if we set
+<span class="math display">\[\boldsymbol U= \begin{pmatrix} 
+|&amp;&amp;|\\
+\boldsymbol u_1 &amp; \ldots &amp; \boldsymbol u_r\\
+|&amp;&amp;|\end{pmatrix}\]</span>
+then the new derived variable is
+<span class="math display">\[\boldsymbol y= \boldsymbol U^\top \boldsymbol x.\]</span></p>
+<p>If <span class="math inline">\(\dim(\boldsymbol y)=r&lt;p=\dim(\boldsymbol x)\)</span> then we have reduced the dimension of the data. If <span class="math inline">\(\boldsymbol y\)</span> tells us all we need to know about the data, then we can work (plot, analyse, model) with <span class="math inline">\(\boldsymbol y\)</span> instead of <span class="math inline">\(\boldsymbol x\)</span>. If <span class="math inline">\(r\ll p\)</span> this can make working with the data significantly easier, as we can more easily visulise and understand low dimensional problems.</p>
+<p>We will study a variety of methods for choosing <span class="math inline">\(\boldsymbol U\)</span>. The methods can all be expressed as constrained optimization problems:</p>
+<p><span class="math display" id="eq:dimredopt">\[\begin{align}
+\mbox{minimize} f_{\boldsymbol X}(\boldsymbol U) \tag{1.1} \\
+\mbox{ subject to } \boldsymbol U\in \mathcal{U} 
+\end{align}\]</span></p>
+<p>The objective <span class="math inline">\(f_{\boldsymbol X}(\boldsymbol U)\)</span> varies between methods: principal component analysis (PCA) maximizes variance or minimizes reconstruction error; canonical correlation analysis (CCA) maximizes correlation; multidimensional scaling (MDS) maximizes spread etc.</p>
+<p>The contstraint on the search space <span class="math inline">\(\mathcal{U}\)</span>, is usually that <span class="math inline">\(\boldsymbol U\)</span> must be (partially) orthogonal, but in other methods other constraints are used</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="part-ii-dimension-reduction-methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-1-pca-an-informal-introduction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
