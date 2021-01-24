@@ -229,6 +229,8 @@
 \newcommand{\cov}{{\mathbb{C}\operatorname{ov}}}
 \newcommand{\var}{{\mathbb{V}\operatorname{ar}}}
 
+\textbf{Warning:} these lecture notes are still in preparation. Chapters 1-4 have been finished. Chapters 5-6 are being worked on. Later chapters will appear once a reasonable draft is available.
+
 This module is concerned with the analysis of multivariate data, in which the response is a vector of random variables rather than a single random variable.
 
 Part I of the module describes some basic concepts in Multivariate Analysis and then recaps and introduces some key ideas needed from linear algebra.
@@ -430,11 +432,14 @@ Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
 
 \begin{example}
 \protect\hypertarget{exm:mnist}{}{\label{exm:mnist} }The MNIST dataset is a collection of handwritten digits that is widely used in statistics and machine learning to test algorithms.
-It contains 60,000 images of hand-written digits.
-Each digit has been converted to a grid of \(28\times 28\) pixels, with a grayscale intensity level specified for each pixel. When we store these on a computer, we flatten each grid to a vector of length 784.
-So for this dataset, \(n=60,000\) and \(p=784\).
+It contains 60,000 images of hand-written digits. Here are the first 12 images:
 
-\includegraphics{MNIST.png}
+\includegraphics{MNIST2.png}
+
+Each digit has been converted to a grid of \(28\times 28\) pixels, with a grayscale intensity level specified for each pixel. When we store these on a computer, we flatten each grid to a vector of length 784.
+So for this dataset, \(n=60,000\) and \(p=784\). As an example of what the data look like, the intensities (times 100) for the first image above are shown in the plot below:
+
+\includegraphics{MNIST3.png}
 \end{example}
 
 \hypertarget{aims-of-multivariate-data-analysis}{%
@@ -478,7 +483,7 @@ A picture is worth a thousand words
 \begin{figure}
 \centering
 \includegraphics{figs/Minard.jpg}
-\caption{\label{fig:unnamed-chunk-4}Charles Joseph Minard's famous map of Napoleon's 1812 invasion of Russian. It displays \href{https://en.wikipedia.org/wiki/Charles_Joseph_Minard\#The_map_of_Napoleon's_Russian_campaign}{six types of data in two dimensions}.}
+\caption{\label{fig:unnamed-chunk-5}Charles Joseph Minard's famous map of Napoleon's 1812 invasion of Russian. It displays \href{https://en.wikipedia.org/wiki/Charles_Joseph_Minard\#The_map_of_Napoleon's_Russian_campaign}{six types of data in two dimensions}.}
 \end{figure}
 
 Before trying any form of statistical analysis, it is always a good idea to do some form of exploratory data analysis to understand the challenges presented by the data. As a minimum, this usually involves finding out whether each variable is continuous, discrete, or categorical, doing some basic visualization (plots), and perhaps computing a few summary statistics such as the mean and variance.
@@ -494,7 +499,7 @@ When \(p=1\) or \(p=2\) we can simply draw histograms and scatter plots (respect
 \begin{figure}
 \centering
 \includegraphics{figs/pairs.png}
-\caption{\label{fig:unnamed-chunk-5}Scatter plots of goals for (F), goals against (A) and points (PT) for a recent Premier League Season}
+\caption{\label{fig:unnamed-chunk-6}Scatter plots of goals for (F), goals against (A) and points (PT) for a recent Premier League Season}
 \end{figure}
 
 We can instantly see that points and goals scored are positively correlated, and that points and goals conceded (A) are negatively correlated (this is not a surprise of course).
@@ -512,7 +517,7 @@ R has a good basic plotting functionality. However, we will sometimes use packag
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics[width=1\linewidth]{01-statistical-prelim_files/figure-latex/unnamed-chunk-6-1}
+\includegraphics[width=1\linewidth]{01-statistical-prelim_files/figure-latex/unnamed-chunk-7-1}
 
 This plot allows us to instantly see that there are clear differences between the three species of iris, at least when we look at the pairs plots. The benefit of adding colour in this case is that we can see the differences between the different species. Note how the sepal length and width are (weakly) negatively correlated across the entire dataset, but are positively correlated when we look at a single species at a time. We would have missed this information if we only used the \texttt{pairs} command (try it!).
 
@@ -524,7 +529,7 @@ Note that it is possible to miss key relationships when looking at \emph{margina
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{01-statistical-prelim_files/figure-latex/unnamed-chunk-7-1.pdf}
+\includegraphics{01-statistical-prelim_files/figure-latex/unnamed-chunk-8-1.pdf}
 
 Each case is represented by a single line, and here we have the information shown for the four continuous variables. The fifth variable \texttt{Species} is a discrete factor, and is shown by colouring the lines.
 
@@ -661,7 +666,7 @@ Equation \eqref{eq:samplemean} gives an unbiased estimator of the sample mean. T
 \section{Computer tasks}\label{computer-tasks}}
 
 \begin{example}[Task 1]
-\protect\hypertarget{exm:unnamed-chunk-8}{}{\label{exm:unnamed-chunk-8} \iffalse (Task 1) \fi{} }The table below shows the module marks for 5 students on the modules G11PRB (\(P\)) and G11STA (\(S\)).
+\protect\hypertarget{exm:unnamed-chunk-9}{}{\label{exm:unnamed-chunk-9} \iffalse (Task 1) \fi{} }The table below shows the module marks for 5 students on the modules G11PRB (\(P\)) and G11STA (\(S\)).
 \end{example}
 
 \begin{table}[H]
@@ -774,7 +779,7 @@ You could compute the same quantities using more familiar commands by selecting 
 \end{verbatim}
 
 \begin{example}[Task 2]
-\protect\hypertarget{exm:unnamed-chunk-13}{}{\label{exm:unnamed-chunk-13} \iffalse (Task 2) \fi{} }
+\protect\hypertarget{exm:unnamed-chunk-14}{}{\label{exm:unnamed-chunk-14} \iffalse (Task 2) \fi{} }
 The \texttt{mtcars} dataset is another built-in dataset in R. You can read about it by typing \texttt{?mtcars} in R. Note that some of the variables are factors. You can ensure R treats them as factors by using the following command to create a dataset where they are listed as factors:
 \end{example}
 
@@ -805,7 +810,7 @@ Work with the \texttt{mtcars2} dataframe when you use \texttt{ggplot2}.
 \end{itemize}
 
 \begin{example}[Task 3]
-\protect\hypertarget{exm:unnamed-chunk-15}{}{\label{exm:unnamed-chunk-15} \iffalse (Task 3) \fi{} }We can 100 generate samples from the multivariate normal distribution with mean vector
+\protect\hypertarget{exm:unnamed-chunk-16}{}{\label{exm:unnamed-chunk-16} \iffalse (Task 3) \fi{} }We can 100 generate samples from the multivariate normal distribution with mean vector
 \[\boldsymbol \mu= \left(\begin{array}{c}1\\0\end{array}\right)\]
 and covariance matrix
 \[\boldsymbol \Sigma= \left(\begin{array}{cc}2&1\\1&2\end{array}\right)\]
@@ -4198,7 +4203,7 @@ We can visualise the range of 3s by looking at a scatter plot of the first two p
 \includegraphics{04-pca_files/figure-latex/unnamed-chunk-44-1.pdf}
 
 We can then finding images that differ according to these two PC scores. The first plot below is the 3 with the smallest PC1 score, and the second has the largest PC1 score. The third plot has the smallest PC2 score, and the fourth plot the largest PC2 score.
-These four different 3s differ in more than just the first two principal components, but you can see the effect of the PC1 score is to slot the image forward or backward, whereas PC2 changes the thickness of the line.
+These four different 3s differ in more than just the first two principal components, but you can see the effect of the PC1 score is to slant the image forward or backward, whereas PC2 changes the thickness of the line.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4209,7 +4214,7 @@ These four different 3s differ in more than just the first two principal compone
 
 \includegraphics{04-pca_files/figure-latex/unnamed-chunk-45-1.pdf}
 
-Finally, let's do PCA on a selection of the 60,000 images (not just the 3s). You can do compute the SVD (which is what \texttt{prcomp} uses to do PCA) on a \(60,000 \times 784\) matrix, but it takes a long time on most computers, so here I've just computed the first two components on a random selection of 5,000 images using the option \texttt{rank=2} which significantly speeds up the computation time.
+Finally, let's do PCA on a selection of the 60,000 images (not just the 3s). You can compute the SVD (which is what \texttt{prcomp} uses to do PCA) on a \(60,000 \times 784\) matrix, but it takes a long time on most computers, so here I've just computed the first two components on a random selection of 5,000 images using the option \texttt{rank=2} which significantly speeds up the computation time.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4356,12 +4361,6 @@ Some questions:
 \item
   A covariance matrix has the following eigenvalues:
 \end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
- \KeywordTok{c}\NormalTok{(}\FloatTok{4.22}\NormalTok{ , }\FloatTok{2.38}\NormalTok{ , }\FloatTok{1.88}\NormalTok{ , }\FloatTok{1.11}\NormalTok{ , }\FloatTok{0.91}\NormalTok{ , }\FloatTok{0.82}\NormalTok{ , }\FloatTok{0.58}\NormalTok{, }\FloatTok{0.44}\NormalTok{ , }\FloatTok{0.35}\NormalTok{ , }\FloatTok{0.19}\NormalTok{ , }\FloatTok{0.05}\NormalTok{ , }\FloatTok{0.04}\NormalTok{ , }\FloatTok{0.04}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ##  [1] 4.22 2.38 1.88 1.11 0.91 0.82 0.58 0.44 0.35 0.19 0.05 0.04 0.04

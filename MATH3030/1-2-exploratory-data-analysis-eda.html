@@ -253,7 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>A picture is worth a thousand words</p>
 </blockquote>
-<div class="figure"><span id="fig:unnamed-chunk-4"></span>
+<div class="figure"><span id="fig:unnamed-chunk-5"></span>
 <img src="figs/Minard.jpg" alt="Charles Joseph Minard's famous map of Napoleon's 1812 invasion of Russian. It displays [six types of data in two dimensions](https://en.wikipedia.org/wiki/Charles_Joseph_Minard#The_map_of_Napoleon's_Russian_campaign)."  />
 <p class="caption">
 Figure 1.1: Charles Joseph Minard’s famous map of Napoleon’s 1812 invasion of Russian. It displays <a href="https://en.wikipedia.org/wiki/Charles_Joseph_Minard#The_map_of_Napoleon&#39;s_Russian_campaign">six types of data in two dimensions</a>.
@@ -265,7 +265,7 @@ Figure 1.1: Charles Joseph Minard’s famous map of Napoleon’s 1812 invasion o
 <p>Visualising datasets before fitting any models can be extremely useful. It allows us to see obvious patterns and relationships,and may suggest a sensible form of analysis.
 With multivariate data, finding the right kind of plot is not always simple, and many different approaches have been proposed.</p>
 <p>When <span class="math inline">\(p=1\)</span> or <span class="math inline">\(p=2\)</span> we can simply draw histograms and scatter plots (respectively) to view the distribution. For <span class="math inline">\(p \geq 3\)</span> the task is harder. One solution is a matrix of pair-wise scatter plots using the <code>pairs</code> command in R. The graph below shows the relationship between goals scored (F), goals against (A) and points (PT) for 20 teams during a recent Premiership season.</p>
-<div class="figure"><span id="fig:unnamed-chunk-5"></span>
+<div class="figure"><span id="fig:unnamed-chunk-6"></span>
 <img src="figs/pairs.png" alt="Scatter plots of goals for (F), goals against (A) and points (PT) for a recent Premier League Season"  />
 <p class="caption">
 Figure 1.2: Scatter plots of goals for (F), goals against (A) and points (PT) for a recent Premier League Season
@@ -279,11 +279,11 @@ Figure 1.2: Scatter plots of goals for (F), goals against (A) and points (PT) fo
 <a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># pairs(iris) # - try the pairs command for comparison</span></a>
 <a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">ggpairs</span>(iris, <span class="dt">columns=</span><span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,  <span class="dt">mapping=</span>ggplot2<span class="op">::</span><span class="kw">aes</span>(<span class="dt">colour =</span> Species),</a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">        <span class="dt">upper =</span> <span class="kw">list</span>(<span class="dt">continuous =</span> <span class="kw">wrap</span>(<span class="st">&quot;cor&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>)))  <span class="co"># fix the font size</span></a></code></pre></div>
-<p><img src="01-statistical-prelim_files/figure-html/unnamed-chunk-6-1.png" width="100%" /></p>
+<p><img src="01-statistical-prelim_files/figure-html/unnamed-chunk-7-1.png" width="100%" /></p>
 <p>This plot allows us to instantly see that there are clear differences between the three species of iris, at least when we look at the pairs plots. The benefit of adding colour in this case is that we can see the differences between the different species. Note how the sepal length and width are (weakly) negatively correlated across the entire dataset, but are positively correlated when we look at a single species at a time. We would have missed this information if we only used the <code>pairs</code> command (try it!).</p>
 <p>Note that it is possible to miss key relationships when looking at <em>marginals</em> plots such as these, as they only show two variables at a time. More complex relationships between three or more variables will not be visible. It is difficult visualize data in three or more dimensions. Many different types of plot have been proposed (e.g. Google Chernoff faces). One approach is to use a <em>parallel line</em> plot</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">ggparcoord</span>(iris, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">groupColumn=</span><span class="dv">5</span>)</a></code></pre></div>
-<p><img src="01-statistical-prelim_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="01-statistical-prelim_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Each case is represented by a single line, and here we have the information shown for the four continuous variables. The fifth variable <code>Species</code> is a discrete factor, and is shown by colouring the lines.</p>
 <p>If you not familiar with <code>ggplot2</code>, a nice introduction can be found <a href="https://ggplot2.tidyverse.org/">here</a>. Details about `GGally can be found <a href="https://ggobi.github.io/ggally/">here</a>. A good way to see the variety of plots that are possible, and to find code to create them, is to browse plot galleries such as those available
 <a href="https://www.r-graph-gallery.com/ggplot2-package.html">here</a>
@@ -391,7 +391,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["MultivariateStatistics.pdf"],
+"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
 "toc": {
 "collapse": "section"
 },

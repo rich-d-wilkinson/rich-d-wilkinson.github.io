@@ -364,11 +364,11 @@ We need 80 components to explain 90% of the variance, and 138 components to expl
 <a class="sourceLine" id="cb104-2" data-line-number="2"><span class="kw">qplot</span>(mnist3.pca<span class="op">$</span>x[,<span class="dv">1</span>], mnist3.pca<span class="op">$</span>x[,<span class="dv">2</span>])</a></code></pre></div>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 <p>We can then finding images that differ according to these two PC scores. The first plot below is the 3 with the smallest PC1 score, and the second has the largest PC1 score. The third plot has the smallest PC2 score, and the fourth plot the largest PC2 score.
-These four different 3s differ in more than just the first two principal components, but you can see the effect of the PC1 score is to slot the image forward or backward, whereas PC2 changes the thickness of the line.</p>
+These four different 3s differ in more than just the first two principal components, but you can see the effect of the PC1 score is to slant the image forward or backward, whereas PC2 changes the thickness of the line.</p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">image_list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">which.min</span>(mnist3.pca<span class="op">$</span>x[,<span class="dv">1</span>]), <span class="kw">which.max</span>(mnist3.pca<span class="op">$</span>x[,<span class="dv">1</span>]), <span class="kw">which.min</span>(mnist3.pca<span class="op">$</span>x[,<span class="dv">2</span>]), <span class="kw">which.max</span>(mnist3.pca<span class="op">$</span>x[,<span class="dv">2</span>]))</a>
 <a class="sourceLine" id="cb105-2" data-line-number="2"><span class="kw">plot.mnist</span>(mnist3[image_list,]) <span class="co"># plot the first 12 images</span></a></code></pre></div>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
-<p>Finally, let’s do PCA on a selection of the 60,000 images (not just the 3s). You can do compute the SVD (which is what <code>prcomp</code> uses to do PCA) on a <span class="math inline">\(60,000 \times 784\)</span> matrix, but it takes a long time on most computers, so here I’ve just computed the first two components on a random selection of 5,000 images using the option <code>rank=2</code> which significantly speeds up the computation time.</p>
+<p>Finally, let’s do PCA on a selection of the 60,000 images (not just the 3s). You can compute the SVD (which is what <code>prcomp</code> uses to do PCA) on a <span class="math inline">\(60,000 \times 784\)</span> matrix, but it takes a long time on most computers, so here I’ve just computed the first two components on a random selection of 5,000 images using the option <code>rank=2</code> which significantly speeds up the computation time.</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="co"># Note this is slow to compute!</span></a>
 <a class="sourceLine" id="cb106-2" data-line-number="2">image_index &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">60000</span>, <span class="dt">size=</span><span class="dv">5000</span>) <span class="co"># select a random sample of images</span></a>
 <a class="sourceLine" id="cb106-3" data-line-number="3">mnist.pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(mnist<span class="op">$</span>train<span class="op">$</span>x[image_index,], <span class="dt">rank=</span><span class="dv">2</span>)</a>
@@ -434,7 +434,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["MultivariateStatistics.pdf"],
+"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
 "toc": {
 "collapse": "section"
 },

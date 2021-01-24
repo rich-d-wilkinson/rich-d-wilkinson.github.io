@@ -628,14 +628,16 @@ virginica
 
 <div class="example">
 <p><span id="exm:mnist" class="example"><strong>Example 1.4  </strong></span>The MNIST dataset is a collection of handwritten digits that is widely used in statistics and machine learning to test algorithms.
-It contains 60,000 images of hand-written digits.
-Each digit has been converted to a grid of <span class="math inline">\(28\times 28\)</span> pixels, with a grayscale intensity level specified for each pixel. When we store these on a computer, we flatten each grid to a vector of length 784.
-So for this dataset, <span class="math inline">\(n=60,000\)</span> and <span class="math inline">\(p=784\)</span>.</p>
-<p><img src="MNIST.png" /></p>
-<!--```{r, echo=FALSE}
+It contains 60,000 images of hand-written digits. Here are the first 12 images:</p>
+<!--```{r, echo=FALSE, eval=FALSE}
 load(file="mnist.rda")
-round(mnist$train$x[1,],2)[1:20]
+source('mnisttools.R')
+plot.mnist(mnist$train$x[1:12,])
 ```-->
+<p><img src="MNIST2.png" /></p>
+<p>Each digit has been converted to a grid of <span class="math inline">\(28\times 28\)</span> pixels, with a grayscale intensity level specified for each pixel. When we store these on a computer, we flatten each grid to a vector of length 784.
+So for this dataset, <span class="math inline">\(n=60,000\)</span> and <span class="math inline">\(p=784\)</span>. As an example of what the data look like, the intensities (times 100) for the first image above are shown in the plot below:</p>
+<p><img src="MNIST3.png" /></p>
 </div>
 
 <!--REWRITE AND EXPAND THIS SECTION BY GIVING EXAMPLES. Do a computer task sheet. Perhaps define bias in that.
@@ -709,7 +711,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["MultivariateStatistics.pdf"],
+"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
 "toc": {
 "collapse": "section"
 },
