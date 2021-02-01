@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="5-5-invarianceequivariance-properties-of-cca.html"/>
-<link rel="next" href="6-mds.html"/>
+<link rel="next" href="5-7-exercises-2.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -175,7 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>3.2</b> Spectral/eigen decomposition</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>3.2.1</b> Eigenvalues and eigenvectors</a></li>
 <li class="chapter" data-level="3.2.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>3.2.2</b> Spectral decomposition</a></li>
-<li class="chapter" data-level="3.2.3" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#matrix-square-roots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html"><i class="fa fa-check"></i><b>3.3</b> Singular Value Decomposition (SVD)</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.3.1</b> Examples</a></li>
@@ -215,12 +215,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="4-5-exercises-1.html"><a href="4-5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis</a><ul>
-<li class="chapter" data-level="5.1" data-path="5-1-canonical-correlation-analysis.html"><a href="5-1-canonical-correlation-analysis.html"><i class="fa fa-check"></i><b>5.1</b> Canonical Correlation Analysis</a></li>
+<li class="chapter" data-level="5.1" data-path="5-1-the-first-pair-of-canonical-variables.html"><a href="5-1-the-first-pair-of-canonical-variables.html"><i class="fa fa-check"></i><b>5.1</b> The first pair of canonical variables</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="5-1-the-first-pair-of-canonical-variables.html"><a href="5-1-the-first-pair-of-canonical-variables.html#example-premier-league-football"><i class="fa fa-check"></i><b>5.1.1</b> Example: Premier league football</a></li>
+</ul></li>
 <li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a></li>
 <li class="chapter" data-level="5.3" data-path="5-3-connection-with-linear-regression-when-q1.html"><a href="5-3-connection-with-linear-regression-when-q1.html"><i class="fa fa-check"></i><b>5.3</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
 <li class="chapter" data-level="5.4" data-path="5-4-population-cca.html"><a href="5-4-population-cca.html"><i class="fa fa-check"></i><b>5.4</b> Population CCA</a></li>
 <li class="chapter" data-level="5.5" data-path="5-5-invarianceequivariance-properties-of-cca.html"><a href="5-5-invarianceequivariance-properties-of-cca.html"><i class="fa fa-check"></i><b>5.5</b> Invariance/equivariance properties of CCA</a></li>
 <li class="chapter" data-level="5.6" data-path="5-6-testing-for-zero-canonical-correlation-coefficients.html"><a href="5-6-testing-for-zero-canonical-correlation-coefficients.html"><i class="fa fa-check"></i><b>5.6</b> Testing for zero canonical correlation coefficients</a></li>
+<li class="chapter" data-level="5.7" data-path="5-7-exercises-2.html"><a href="5-7-exercises-2.html"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
+<li class="chapter" data-level="5.8" data-path="5-8-computer-tasks-2.html"><a href="5-8-computer-tasks-2.html"><i class="fa fa-check"></i><b>5.8</b> Computer tasks</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling</a><ul>
 <li class="chapter" data-level="6.1" data-path="6-1-multidimensional-scaling.html"><a href="6-1-multidimensional-scaling.html"><i class="fa fa-check"></i><b>6.1</b> Multidimensional Scaling</a></li>
@@ -260,9 +264,9 @@ H_A:\, \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y} \quad *unrestricted*.
 \]</span></p>
 <p>Then the large-sample log-likelihood ratio test statistic for testing <span class="math inline">\(H_0\)</span> versus <span class="math inline">\(H_A\)</span> is as follows:
 <span class="math display">\[
-W_0=-\left \{n-\frac{1}{2}(p+q+3)  \right \}\sum_{j=1}^{\min(p,q)} \log (1-\xi_j^2),
+W_0=-\left \{n-\frac{1}{2}(p+q+3)  \right \}\sum_{j=1}^{\min(p,q)} \log (1-\sigma_j^2),
 \]</span>
-where <span class="math inline">\(\xi_1\geq \xi_2 \cdots \geq \xi_{\min(p,q)} \geq 0\)</span> are the sample canonical correlations.
+where <span class="math inline">\(\sigma_1\geq \sigma_2 \cdots \geq \sigma_{\min(p,q)} \geq 0\)</span> are the sample canonical correlations.
 Moreover, when <span class="math inline">\(n\)</span> is large, <span class="math inline">\(W_0\)</span> is approximately <span class="math inline">\(\chi_{pq}^2\)</span> under <span class="math inline">\(H_0\)</span>, and <span class="math inline">\(H_0\)</span> should be rejected
 when <span class="math inline">\(W_0\)</span> is sufficiently large.</p>
 <p>We now consider a test concerning the rank of <span class="math inline">\(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}\)</span>. For <span class="math inline">\(0 \leq t &lt;\min(p,q)\)</span>, consider the hypothesis:
@@ -271,23 +275,21 @@ H_t: \,   \text{at most $t$ of the CC coefficients are non-zero}.
 \]</span>
 It turns out there is a similar statistic to <span class="math inline">\(W_0\)</span> above, for testing <span class="math inline">\(H_t\)</span> against <span class="math inline">\(H_A\)</span>, defined by
 <span class="math display">\[
-W_t=-\left \{n-\frac{1}{2}(p+q+3)  \right \}\sum_{j=t+1}^{\min(p,q)} \log (1-\xi_j^2),
+W_t=-\left \{n-\frac{1}{2}(p+q+3)  \right \}\sum_{j=t+1}^{\min(p,q)} \log (1-\sigma_j^2),
 \]</span>
 where, under <span class="math inline">\(H_t\)</span> with <span class="math inline">\(n\)</span> large, <span class="math inline">\(W_t\)</span> is approximately <span class="math inline">\(\chi_{(p-t)(q-t)}^2\)</span>. Also, we reject
 <span class="math inline">\(H_t\)</span> when <span class="math inline">\(W_t\)</span> is sufficiently large.</p>
-<p><strong>Example <a href="5-cca.html#exm:prem">5.1</a> (continued)</strong>.
-Here <span class="math inline">\(p=q=2\)</span>, <span class="math inline">\(n=20\)</span> and <span class="math inline">\(\xi_1=0.974\)</span> and <span class="math inline">\(\xi_2=0.508\)</span>.
+<p><strong>Example <a href="#exm:prem"><strong>??</strong></a> (continued)</strong>.
+Here <span class="math inline">\(p=q=2\)</span>, <span class="math inline">\(n=20\)</span> and <span class="math inline">\(\sigma_1=0.974\)</span> and <span class="math inline">\(\sigma_2=0.508\)</span>.
 So we should refer <span class="math inline">\(W_0\)</span> to <span class="math inline">\(\chi_4^2\)</span> and refer <span class="math inline">\(W_1\)</span> to <span class="math inline">\(\chi_1^2\)</span>. Here, <span class="math inline">\(W_0=53.92\)</span> and <span class="math inline">\(W_1=4.92\)</span>. So hypothesis <span class="math inline">\(H_0\)</span> is strongly rejected, with <span class="math inline">\(p\)</span>-value <span class="math inline">\(&lt;\,&lt;0.001\)</span>. In contrast, <span class="math inline">\(H_1\)</span> is rejected at the <span class="math inline">\(0.05\)</span> level but is not rejected at the <span class="math inline">\(0.01\)</span> level. So there is only moderate evidence that the 2nd CC coefficient is non-zero.</p>
-
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="5-5-invarianceequivariance-properties-of-cca.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="6-mds.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="5-7-exercises-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -329,7 +331,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
+"download": ["MultivariateStatistics.pdf"],
 "toc": {
 "collapse": "section"
 },

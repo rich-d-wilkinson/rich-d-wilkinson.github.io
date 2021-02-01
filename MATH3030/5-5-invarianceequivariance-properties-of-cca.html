@@ -175,7 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>3.2</b> Spectral/eigen decomposition</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>3.2.1</b> Eigenvalues and eigenvectors</a></li>
 <li class="chapter" data-level="3.2.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>3.2.2</b> Spectral decomposition</a></li>
-<li class="chapter" data-level="3.2.3" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#matrix-square-roots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html"><i class="fa fa-check"></i><b>3.3</b> Singular Value Decomposition (SVD)</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.3.1</b> Examples</a></li>
@@ -215,12 +215,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="4-5-exercises-1.html"><a href="4-5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis</a><ul>
-<li class="chapter" data-level="5.1" data-path="5-1-canonical-correlation-analysis.html"><a href="5-1-canonical-correlation-analysis.html"><i class="fa fa-check"></i><b>5.1</b> Canonical Correlation Analysis</a></li>
+<li class="chapter" data-level="5.1" data-path="5-1-the-first-pair-of-canonical-variables.html"><a href="5-1-the-first-pair-of-canonical-variables.html"><i class="fa fa-check"></i><b>5.1</b> The first pair of canonical variables</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="5-1-the-first-pair-of-canonical-variables.html"><a href="5-1-the-first-pair-of-canonical-variables.html#example-premier-league-football"><i class="fa fa-check"></i><b>5.1.1</b> Example: Premier league football</a></li>
+</ul></li>
 <li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a></li>
 <li class="chapter" data-level="5.3" data-path="5-3-connection-with-linear-regression-when-q1.html"><a href="5-3-connection-with-linear-regression-when-q1.html"><i class="fa fa-check"></i><b>5.3</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
 <li class="chapter" data-level="5.4" data-path="5-4-population-cca.html"><a href="5-4-population-cca.html"><i class="fa fa-check"></i><b>5.4</b> Population CCA</a></li>
 <li class="chapter" data-level="5.5" data-path="5-5-invarianceequivariance-properties-of-cca.html"><a href="5-5-invarianceequivariance-properties-of-cca.html"><i class="fa fa-check"></i><b>5.5</b> Invariance/equivariance properties of CCA</a></li>
 <li class="chapter" data-level="5.6" data-path="5-6-testing-for-zero-canonical-correlation-coefficients.html"><a href="5-6-testing-for-zero-canonical-correlation-coefficients.html"><i class="fa fa-check"></i><b>5.6</b> Testing for zero canonical correlation coefficients</a></li>
+<li class="chapter" data-level="5.7" data-path="5-7-exercises-2.html"><a href="5-7-exercises-2.html"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
+<li class="chapter" data-level="5.8" data-path="5-8-computer-tasks-2.html"><a href="5-8-computer-tasks-2.html"><i class="fa fa-check"></i><b>5.8</b> Computer tasks</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling</a><ul>
 <li class="chapter" data-level="6.1" data-path="6-1-multidimensional-scaling.html"><a href="6-1-multidimensional-scaling.html"><i class="fa fa-check"></i><b>6.1</b> Multidimensional Scaling</a></li>
@@ -253,16 +257,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span class="math display" id="eq:transformations">\[\begin{equation}
 {\mathbf h}_i={\mathbf T}\boldsymbol x_i + {\pmb \mu} \qquad \text{and} \qquad {\mathbf k}_i={\mathbf V}\boldsymbol y_i +{\pmb \eta},
 \qquad i=1,\ldots , n,
-\tag{5.16}
+\tag{5.15}
 \end{equation}\]</span>
 where <span class="math inline">\(\mathbf T\)</span> (<span class="math inline">\(p \times p\)</span>) and <span class="math inline">\(\mathbf V\)</span> (<span class="math inline">\(q \times q\)</span>) are orthogonal matrices, and <span class="math inline">\(\pmb \mu\)</span> (<span class="math inline">\(p \times 1\)</span>) and
 <span class="math inline">\(\pmb \eta\)</span> (<span class="math inline">\(q \times 1\)</span>) are fixed vectors.</p>
 <p>How do these transformations affect the CC analysis?</p>
-<p>First of all, since the CCA depends only on sample covariance matrices, it follows that the translation vectors <span class="math inline">\(\pmb \mu\)</span> and <span class="math inline">\(\pmb \eta\)</span> have no effect on the analysis, so we can ignore <span class="math inline">\(\pmb \mu\)</span> and <span class="math inline">\(\pmb \eta\)</span>, and without loss of generality we shall set each to be the zero vector.</p>
+<p>First of all, since the CCA depends only on sample covariance matrices, it follows that the translation vectors <span class="math inline">\(\pmb \mu\)</span> and <span class="math inline">\(\pmb \eta\)</span> have no effect on the analysis.</p>
 <p>As seen in the previous section, the CCA in the original coordinates depends on
 <span class="math display" id="eq:Axy">\[\begin{equation}
 \boldsymbol A\equiv \boldsymbol A_{\boldsymbol x\boldsymbol y}=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}.
-\tag{5.17}
+\tag{5.16}
 \end{equation}\]</span>
 In the new coordinates we have
 <span class="math display">\[
@@ -283,33 +287,33 @@ Moreover, due to the fact that <span class="math inline">\(\mathbf T\)</span> an
 \tilde{\boldsymbol S}_{\mathbf kk}^{ 1/2}={\mathbf V}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{ 1/2}{\mathbf V}^\top \qquad \text{and} \qquad
 \tilde{\boldsymbol S}_{\mathbf kk}^{ -1/2}={\mathbf V}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{- 1/2}{\mathbf V}^\top.
 \]</span>
-The analogue of <a href="5-5-invarianceequivariance-properties-of-cca.html#eq:Axy">(5.17)</a> in the new coordinates is given by
+The analogue of <a href="5-5-invarianceequivariance-properties-of-cca.html#eq:Axy">(5.16)</a> in the new coordinates is given by
 <span class="math display">\[\begin{align*}
 \tilde{\boldsymbol A}_{\mathbf h k}&amp;=\tilde{\boldsymbol S}_{\mathbf hh}^{-1/2}\tilde{\boldsymbol S}_{\mathbf h k}\tilde{\boldsymbol S}_{\mathbf kk}^{-1/2}\\
 &amp;={\mathbf T} \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf T}^\top {\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol y}{\mathbf V}^\top {\mathbf V}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf V}^\top\\
 &amp;={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf V}^\top\\
 &amp;={\mathbf T} \boldsymbol A_{\boldsymbol x\boldsymbol y}{\mathbf V}^\top.
 \end{align*}\]</span>
-So, again using the fact that <span class="math inline">\(\mathbf T\)</span> and <span class="math inline">\(\mathbf V\)</span> are orthogonal matrices, if <span class="math inline">\(\boldsymbol A_{\boldsymbol x\boldsymbol y}\)</span> has SVD <span class="math inline">\(\sum_{j=1}^t \xi_j {\mathbf q}_j {\mathbf r}_j^\top\)</span>, then <span class="math inline">\(\tilde{\boldsymbol A}_{\mathbf hk}\)</span> has SVD
+So, again using the fact that <span class="math inline">\(\mathbf T\)</span> and <span class="math inline">\(\mathbf V\)</span> are orthogonal matrices, if <span class="math inline">\(\boldsymbol A_{\boldsymbol x\boldsymbol y}\)</span> has SVD <span class="math inline">\(\sum_{j=1}^t \sigma_j {\mathbf q}_j {\mathbf r}_j^\top\)</span>, then <span class="math inline">\(\tilde{\boldsymbol A}_{\mathbf hk}\)</span> has SVD
 <span class="math display">\[\begin{align*}
 \tilde{\boldsymbol A}_{\mathbf hk}&amp;={\mathbf T }\boldsymbol A_{\boldsymbol x\boldsymbol y}{\mathbf V}^\top
-={\mathbf T} \left ( \sum_{j=1}^t \xi_j {\mathbf q}_j {\mathbf r}_j^\top \right){\mathbf V}^\top\\
-&amp;=\sum_{j=1}^t \xi_j {\mathbf T}{\mathbf q}_j {\mathbf r}_j^\top {\mathbf V}^\top
-=\sum_{j=1}^t \xi_j \left ( {\mathbf T} {\mathbf q}_j \right )\left ({\mathbf V}{\mathbf r}_j  \right )^\top
-=\sum_{j=1}^t \xi_j \tilde{\boldsymbol q}_j \tilde{\mathbf r}_j^\top,
+={\mathbf T} \left ( \sum_{j=1}^t \sigma_j {\mathbf q}_j {\mathbf r}_j^\top \right){\mathbf V}^\top\\
+&amp;=\sum_{j=1}^t \sigma_j {\mathbf T}{\mathbf q}_j {\mathbf r}_j^\top {\mathbf V}^\top
+=\sum_{j=1}^t \sigma_j \left ( {\mathbf T} {\mathbf q}_j \right )\left ({\mathbf V}{\mathbf r}_j  \right )^\top
+=\sum_{j=1}^t \sigma_j \tilde{\boldsymbol q}_j \tilde{\mathbf r}_j^\top,
 \end{align*}\]</span>
 where, for <span class="math inline">\(j=1, \ldots,t\)</span>, the <span class="math inline">\(\tilde{\boldsymbol q}_j={\mathbf T}\boldsymbol q_j\)</span> are mutually orthogonal unit vectors,
 and the <span class="math inline">\(\tilde{\mathbf r}_j={\mathbf V}{\mathbf r}_j\)</span> are also mutually orthogonal unit vectors.</p>
-<p>Consequently, <span class="math inline">\(\tilde{\boldsymbol A}_{\mathbf h k}\)</span> has the same singular values as <span class="math inline">\(\boldsymbol A_{\boldsymbol x\boldsymbol y}\)</span>, namely <span class="math inline">\(\xi_1, \ldots , \xi_t\)</span> in both cases, and so the canonical correlation coefficients are invariant with respect to the transformations <a href="5-5-invarianceequivariance-properties-of-cca.html#eq:transformations">(5.16)</a>. Moreover, since the optimal linear combinations for the <span class="math inline">\(j\)</span>th CC in the original coordinates are given by <span class="math inline">\(\boldsymbol a_j =\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf q}_j\)</span> and <span class="math inline">\(\boldsymbol b_j=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf r}_j\)</span>, the optimal linear combinations in the new coordinates are given by
+<p>Consequently, <span class="math inline">\(\tilde{\boldsymbol A}_{\mathbf h k}\)</span> has the same singular values as <span class="math inline">\(\boldsymbol A_{\boldsymbol x\boldsymbol y}\)</span>, namely <span class="math inline">\(\sigma_1, \ldots , \sigma_t\)</span> in both cases, and so the canonical correlation coefficients are invariant with respect to the transformations <a href="5-5-invarianceequivariance-properties-of-cca.html#eq:transformations">(5.15)</a>. Moreover, since the optimal linear combinations for the <span class="math inline">\(j\)</span>th CC in the original coordinates are given by <span class="math inline">\(\boldsymbol a_j =\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf q}_j\)</span> and <span class="math inline">\(\boldsymbol b_j=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf r}_j\)</span>, the optimal linear combinations in the new coordinates are given by
 <span class="math display">\[\begin{align*}
 \tilde{\boldsymbol a}_{j}&amp;=\boldsymbol S_{\mathbf hh}^{-1/2}{\mathbf T}{\mathbf q}_j\\
 &amp;={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf T}^\top {\mathbf T}{\mathbf q}_j\\
 &amp;={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf q}_j \\
 &amp;={\mathbf T}\boldsymbol a_{j},
 \end{align*}\]</span>
-and a similar argument shows that <span class="math inline">\(\tilde{\boldsymbol b}_{j}={\mathbf V}\boldsymbol b_{j}\)</span>. So under transformations <a href="5-5-invarianceequivariance-properties-of-cca.html#eq:transformations">(5.16)</a>,
+and a similar argument shows that <span class="math inline">\(\tilde{\boldsymbol b}_{j}={\mathbf V}\boldsymbol b_{j}\)</span>. So under transformations <a href="5-5-invarianceequivariance-properties-of-cca.html#eq:transformations">(5.15)</a>,
 the optimal vectors <span class="math inline">\(\boldsymbol a_{j}\)</span> and <span class="math inline">\(\boldsymbol b_{j}\)</span> transform in an equivariant manner to <span class="math inline">\(\tilde{\boldsymbol a}_{j}\)</span> and <span class="math inline">\(\tilde{\boldsymbol b}_{j}\)</span>, respectively, <span class="math inline">\(j=1, \ldots , t\)</span>.</p>
-<p>If either of <span class="math inline">\(\mathbf T\)</span> or <span class="math inline">\(\mathbf V\)</span> in <a href="5-5-invarianceequivariance-properties-of-cca.html#eq:transformations">(5.16)</a> is not an orthogonal matrix then the singular values are not invariant and the cc vectors do not transform in an equivariant manner.</p>
+<p>If either of <span class="math inline">\(\mathbf T\)</span> or <span class="math inline">\(\mathbf V\)</span> in <a href="5-5-invarianceequivariance-properties-of-cca.html#eq:transformations">(5.15)</a> is not an orthogonal matrix then the singular values are not invariant and the cc vectors do not transform in an equivariant manner.</p>
 </div>
             </section>
 
@@ -359,7 +363,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
+"download": ["MultivariateStatistics.pdf"],
 "toc": {
 "collapse": "section"
 },

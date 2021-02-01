@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="5-1-canonical-correlation-analysis.html"/>
-<link rel="next" href="5-3-connection-with-linear-regression-when-q1.html"/>
+<link rel="prev" href="5-1-cca1.html"/>
+<link rel="next" href="5-3-properties.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -164,7 +164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html"><i class="fa fa-check"></i><b>2.3</b> Inner product spaces</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#normed"><i class="fa fa-check"></i><b>2.3.1</b> Distances, and angles</a></li>
 <li class="chapter" data-level="2.3.2" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#orthogonal-matrices"><i class="fa fa-check"></i><b>2.3.2</b> Orthogonal matrices</a></li>
-<li class="chapter" data-level="2.3.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#projections"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#projection-matrix"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="2-4-centering-matrix.html"><a href="2-4-centering-matrix.html"><i class="fa fa-check"></i><b>2.4</b> The Centering Matrix</a></li>
 <li class="chapter" data-level="2.5" data-path="2-5-tasks-ch2.html"><a href="2-5-tasks-ch2.html"><i class="fa fa-check"></i><b>2.5</b> Computer tasks</a></li>
@@ -175,7 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>3.2</b> Spectral/eigen decomposition</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>3.2.1</b> Eigenvalues and eigenvectors</a></li>
 <li class="chapter" data-level="3.2.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>3.2.2</b> Spectral decomposition</a></li>
-<li class="chapter" data-level="3.2.3" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#matrix-square-roots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html"><i class="fa fa-check"></i><b>3.3</b> Singular Value Decomposition (SVD)</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.3.1</b> Examples</a></li>
@@ -211,21 +211,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="4-3-an-alternative-view-of-pca.html"><a href="4-3-an-alternative-view-of-pca.html"><i class="fa fa-check"></i><b>4.3</b> An alternative view of PCA</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="4-3-an-alternative-view-of-pca.html"><a href="4-3-an-alternative-view-of-pca.html#example-mnist-handwritten-digits"><i class="fa fa-check"></i><b>4.3.1</b> Example: MNIST handwritten digits</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="4-4-computer-tasks-1.html"><a href="4-4-computer-tasks-1.html"><i class="fa fa-check"></i><b>4.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="4.4" data-path="4-4-pca-comptask.html"><a href="4-4-pca-comptask.html"><i class="fa fa-check"></i><b>4.4</b> Computer tasks</a></li>
 <li class="chapter" data-level="4.5" data-path="4-5-exercises-1.html"><a href="4-5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis</a><ul>
-<li class="chapter" data-level="5.1" data-path="5-1-canonical-correlation-analysis.html"><a href="5-1-canonical-correlation-analysis.html"><i class="fa fa-check"></i><b>5.1</b> Canonical Correlation Analysis</a></li>
+<li class="chapter" data-level="5.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html"><i class="fa fa-check"></i><b>5.1</b> The first pair of canonical variables</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html#example-premier-league-football"><i class="fa fa-check"></i><b>5.1.1</b> Example: Premier league football</a></li>
+</ul></li>
 <li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a></li>
-<li class="chapter" data-level="5.3" data-path="5-3-connection-with-linear-regression-when-q1.html"><a href="5-3-connection-with-linear-regression-when-q1.html"><i class="fa fa-check"></i><b>5.3</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
-<li class="chapter" data-level="5.4" data-path="5-4-population-cca.html"><a href="5-4-population-cca.html"><i class="fa fa-check"></i><b>5.4</b> Population CCA</a></li>
-<li class="chapter" data-level="5.5" data-path="5-5-invarianceequivariance-properties-of-cca.html"><a href="5-5-invarianceequivariance-properties-of-cca.html"><i class="fa fa-check"></i><b>5.5</b> Invariance/equivariance properties of CCA</a></li>
-<li class="chapter" data-level="5.6" data-path="5-6-testing-for-zero-canonical-correlation-coefficients.html"><a href="5-6-testing-for-zero-canonical-correlation-coefficients.html"><i class="fa fa-check"></i><b>5.6</b> Testing for zero canonical correlation coefficients</a></li>
+<li class="chapter" data-level="5.3" data-path="5-3-properties.html"><a href="5-3-properties.html"><i class="fa fa-check"></i><b>5.3</b> Properties</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="5-3-properties.html"><a href="5-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>5.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="5-3-properties.html"><a href="5-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>5.3.2</b> Invariance/equivariance properties of CCA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5-4-example-1.html"><a href="5-4-example-1.html"><i class="fa fa-check"></i><b>5.4</b> Example?</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-exercises-2.html"><a href="5-5-exercises-2.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+<li class="chapter" data-level="5.6" data-path="5-6-computer-tasks-1.html"><a href="5-6-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.6</b> Computer tasks</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling</a><ul>
-<li class="chapter" data-level="6.1" data-path="6-1-multidimensional-scaling.html"><a href="6-1-multidimensional-scaling.html"><i class="fa fa-check"></i><b>6.1</b> Multidimensional Scaling</a></li>
+<li class="chapter" data-level="6.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html"><i class="fa fa-check"></i><b>6.1</b> Classical Multidimensional Scaling</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html#example-2"><i class="fa fa-check"></i><b>6.1.1</b> Example</a></li>
+</ul></li>
 <li class="chapter" data-level="6.2" data-path="6-2-principal-coordinates.html"><a href="6-2-principal-coordinates.html"><i class="fa fa-check"></i><b>6.2</b> Principal Coordinates</a></li>
 <li class="chapter" data-level="6.3" data-path="6-3-similarity-measures.html"><a href="6-3-similarity-measures.html"><i class="fa fa-check"></i><b>6.3</b> Similarity measures</a></li>
+<li class="chapter" data-level="6.4" data-path="6-4-exercises-3.html"><a href="6-4-exercises-3.html"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
+<li class="chapter" data-level="6.5" data-path="6-5-computer-tasks-2.html"><a href="6-5-computer-tasks-2.html"><i class="fa fa-check"></i><b>6.5</b> Computer Tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><a href="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><i class="fa fa-check"></i>Part III: Inference using the Multivariate Normal Distribution (MVN)</a></li>
+<li class="chapter" data-level="7" data-path="7-multinormal.html"><a href="7-multinormal.html"><i class="fa fa-check"></i><b>7</b> The Multivariate Normal Distribution</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html"><i class="fa fa-check"></i><b>7.1</b> Definition and Properties of the MVN</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#transformations"><i class="fa fa-check"></i><b>7.1.1</b> Transformations</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#moment-generating-functions"><i class="fa fa-check"></i><b>7.1.2</b> Moment Generating Functions</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#sampling-results-for-the-mvn"><i class="fa fa-check"></i><b>7.1.3</b> Sampling results for the MVN</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html"><i class="fa fa-check"></i><b>7.2</b> The Wishart distribution</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html#properties-1"><i class="fa fa-check"></i><b>7.2.1</b> Properties</a></li>
+<li class="chapter" data-level="7.2.2" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html#cochrans-theorem"><i class="fa fa-check"></i><b>7.2.2</b> Cochran’s theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7-3-hotellings-t2-distribution.html"><a href="7-3-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>7.3</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
+<li class="chapter" data-level="7.4" data-path="7-4-exercises-4.html"><a href="7-4-exercises-4.html"><i class="fa fa-check"></i><b>7.4</b> Exercises</a></li>
+<li class="chapter" data-level="7.5" data-path="7-5-computer-tasks-3.html"><a href="7-5-computer-tasks-3.html"><i class="fa fa-check"></i><b>7.5</b> Computer tasks</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -249,76 +273,99 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="the-full-set-of-canonical-correlations" class="section level2">
 <h2><span class="header-section-number">5.2</span> The full set of canonical correlations</h2>
-<p>Let us first recap what we did in the previous section: we found the choices linear combinations of the <span class="math inline">\(x\)</span>-variables and linear combinations of <span class="math inline">\(y\)</span>-variables which
-maximise the correlation, and expressed the answer in terms of quantities which arise in the SVD of <span class="math inline">\(\boldsymbol A\)</span>, where
+<p>Let us first recap what we did in the previous section: we found a linear combination of the <span class="math inline">\(x\)</span>-variables and a linear combination of the <span class="math inline">\(y\)</span>-variables which
+maximised the correlation, and expressed the answer in terms of quantities which arise in the SVD of <span class="math inline">\(\boldsymbol Q\)</span>, where
 <span class="math display">\[
-\boldsymbol A\equiv \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}=\boldsymbol Q{\pmb \Xi} \boldsymbol R^\top=\sum_{j=1}^t \xi_j \boldsymbol q_j \boldsymbol r_j^\top,
-\]</span>
-with <span class="math inline">\(t\)</span> the rank of <span class="math inline">\(\boldsymbol A\)</span>, which in most examples is given by <span class="math inline">\(t=\min(p,q)\)</span>, and singular values <span class="math inline">\(\xi_1 \geq \xi_2 \geq \cdots \geq \xi_t&gt;0\)</span>.
-Specifically, the maximum value of the correlation is <span class="math inline">\(\xi_1\)</span>, the optimal weights for the <span class="math inline">\(x\)</span>-variables are given by <span class="math inline">\(\boldsymbol a=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol q_1=\boldsymbol a_1\)</span>, say, and
-the optimal weights for the <span class="math inline">\(y\)</span>-varables are given by <span class="math inline">\(\boldsymbol b=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol r_1 = \boldsymbol b_1\)</span>, say.</p>
-<p>Can we repeat this process, as we did with PCA? Yes, we can. To obtain the second canonical correlation coefficient, plus the associated sets of weights, we need to solve the following optimisation problem:
+\boldsymbol Q\equiv \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}=\boldsymbol U{\pmb \Sigma} \boldsymbol V^\top=\sum_{j=1}^t \sigma_j \boldsymbol u_j \boldsymbol v_j^\top.
+\]</span></p>
+<p>We found the maximum value of the correlation <span class="math inline">\({\mathbb{C}\operatorname{or}}(\boldsymbol a^\top\boldsymbol x, \boldsymbol b^\top\boldsymbol y)\)</span> to be <span class="math inline">\(\sigma_1\)</span>, achieved using the linear combinations <span class="math inline">\(\eta_1=\boldsymbol a_1^\top \boldsymbol x\)</span> and <span class="math inline">\(\psi_1=\boldsymbol b_1^\top \boldsymbol y\)</span> with</p>
+<p><span class="math display">\[\boldsymbol a_1=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol u_1 \quad\mbox{ and } \boldsymbol b_1=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol v_1.\]</span></p>
+<p>We now repeat this process to find the next most important linear combination, subject to being uncorrelated with the first linear combination, as we did with PCA. For <span class="math inline">\(\boldsymbol a^\top \boldsymbol x\)</span> to be uncorrelated with <span class="math inline">\(\eta_1 = \boldsymbol a_1^\top \boldsymbol x\)</span> we require
+<span class="math display">\[0 = {\mathbb{C}\operatorname{ov}}(\boldsymbol a_1^\top \boldsymbol x, \boldsymbol a^\top \boldsymbol x) = \boldsymbol a_1^\top \boldsymbol S_{xx}\boldsymbol a,\]</span>
+and similarly we require the condition <span class="math inline">\(\boldsymbol b_1^\top \boldsymbol S_{yy} \boldsymbol b=0\)</span> for <span class="math inline">\(\boldsymbol b\)</span>.</p>
+<p>Thus, to obtain the second canonical correlation coefficient, plus the associated sets of canonical correlation vectors and variables, we need to solve the following optimisation problem:
 <span class="math display" id="eq:cc2">\[\begin{equation}
 \max_{\boldsymbol a,\, \boldsymbol b} \boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b
-\tag{5.10}
+\tag{5.9}
 \end{equation}\]</span>
 subject to the constraints
 <span class="math display" id="eq:conny21">\[\begin{equation}
-\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a= 1, \qquad \boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=1,
-\tag{5.11}
+\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a= \boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=1,
+\tag{5.10}
 \end{equation}\]</span>
 <span class="math display" id="eq:conny22">\[\begin{equation}
-\boldsymbol a_1^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \boldsymbol a=0 \qquad \text{and} \qquad \boldsymbol b_1^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=0.
-\tag{5.12}
+\boldsymbol a_1^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \boldsymbol a= \boldsymbol b_1^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=0.
+\tag{5.11}
 \end{equation}\]</span>
-Note that maximising <a href="5-2-the-full-set-of-canonical-correlations.html#eq:cc2">(5.10)</a> subject to <a href="5-2-the-full-set-of-canonical-correlations.html#eq:conny21">(5.11)</a> is very similar to the optimisation problem <a href="5-1-canonical-correlation-analysis.html#eq:opt27a">(5.6)</a> and <a href="5-1-canonical-correlation-analysis.html#eq:opt27b">(5.7)</a> considered in the previous section. What is
-new are the constraints <a href="5-2-the-full-set-of-canonical-correlations.html#eq:conny22">(5.12)</a>, which take into account that we have already found the first canonical correlation. If for <span class="math inline">\(j=1,2\)</span> we write <span class="math inline">\(\tilde{\boldsymbol a}_j =\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2} \boldsymbol a_j\)</span> and <span class="math inline">\(\tilde{\boldsymbol b}_j=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2} \boldsymbol b_j\)</span>, then it is seen from <a href="5-2-the-full-set-of-canonical-correlations.html#eq:conny22">(5.12)</a> that
-<span class="math display">\[
-\tilde{\boldsymbol a}_1^\top \tilde{\boldsymbol a}_2=0 \qquad \text{and} \qquad \tilde{\boldsymbol b}_1^\top \tilde{\boldsymbol b}_2=0.
-\]</span>
-Consequently, we may view constraints <a href="5-2-the-full-set-of-canonical-correlations.html#eq:conny22">(5.12)</a> as corresponding to orthogonality constraints (cf. PCA) in modified coordinate systems.</p>
-<p>We now discuss the optimisation of <a href="5-2-the-full-set-of-canonical-correlations.html#eq:cc2">(5.10)</a>, <a href="5-2-the-full-set-of-canonical-correlations.html#eq:conny21">(5.11)</a> and <a href="5-2-the-full-set-of-canonical-correlations.html#eq:conny22">(5.12)</a>. At first glance it looks complex. However, using arguments very similar to those used to prove
-Result 2.15 in Chapter 2, we may deduce the following:</p>
-<ul>
-<li>The maximum of <a href="5-2-the-full-set-of-canonical-correlations.html#eq:cc2">(5.10)</a> subject to constraints <a href="5-2-the-full-set-of-canonical-correlations.html#eq:conny21">(5.11)</a> and <a href="5-2-the-full-set-of-canonical-correlations.html#eq:conny22">(5.12)</a> is equal to <span class="math inline">\(\xi_2\)</span>, the second largest singular value of <span class="math inline">\(\boldsymbol A\)</span>.</li>
-<li>The optimal weights for the <span class="math inline">\(x\)</span>-variables for the second canonical correlation are given by <span class="math inline">\(\boldsymbol a_2=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol q_2\)</span>.</li>
-<li>The optimal weights for the <span class="math inline">\(y\)</span>-variables for the second canonical correlation are given by <span class="math inline">\(\boldsymbol b_2=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol r_2\)</span>.</li>
-</ul>
-<p>Consider now the general case of the <span class="math inline">\(k\)</span>th canonical correlation where <span class="math inline">\(2 \leq k \leq t\)</span>. In this case we replace <a href="5-2-the-full-set-of-canonical-correlations.html#eq:conny21">(5.11)</a> and <a href="5-2-the-full-set-of-canonical-correlations.html#eq:conny22">(5.12)</a> by, respectively,
-<a href="5-2-the-full-set-of-canonical-correlations.html#eq:connyk1">(5.13)</a> and <a href="5-2-the-full-set-of-canonical-correlations.html#eq:connyk2">(5.14)</a> below, where
-<span class="math display" id="eq:connyk1">\[\begin{equation}
-\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a= 1, \qquad \boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=1,
-\tag{5.13}
-\end{equation}\]</span>
-<span class="math display" id="eq:connyk2">\[\begin{equation}
-\boldsymbol a_j^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \boldsymbol a=0 \qquad \text{and} \qquad \boldsymbol b_j^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=0, \qquad j=1, \ldots , k-1.
-\tag{5.14}
-\end{equation}\]</span>
-Then the optimisation problem is
-<span class="math display" id="eq:cck">\[\begin{equation}
-\max_{\boldsymbol a, \, \boldsymbol b} \boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b
-\tag{5.15}
-\end{equation}\]</span>
-subject to constraints <a href="5-2-the-full-set-of-canonical-correlations.html#eq:connyk1">(5.13)</a> and <a href="5-2-the-full-set-of-canonical-correlations.html#eq:connyk2">(5.14)</a>. The solution in the general case is as follows.</p>
-<ul>
-<li>The maximum of <a href="5-2-the-full-set-of-canonical-correlations.html#eq:cck">(5.15)</a> subject to constraints <a href="5-2-the-full-set-of-canonical-correlations.html#eq:connyk1">(5.13)</a> and <a href="5-2-the-full-set-of-canonical-correlations.html#eq:connyk2">(5.14)</a> is equal to <span class="math inline">\(\xi_k\)</span>, the <span class="math inline">\(k\)</span>th largest singular value of <span class="math inline">\(\boldsymbol A\)</span>.</li>
-<li>The optimal weights for the <span class="math inline">\(x\)</span>-variables for the <span class="math inline">\(k\)</span>th canonical correlation are given by <span class="math inline">\(\boldsymbol a_k=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol q_k\)</span>.</li>
-<li>The optimal weights for the <span class="math inline">\(y\)</span>-variables for the <span class="math inline">\(k\)</span>th canonical correlation are given by <span class="math inline">\(\boldsymbol b_k=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol r_k\)</span>.</li>
-</ul>
-<p>Terminology: we call <span class="math inline">\(\boldsymbol a_k\)</span> and <span class="math inline">\(\boldsymbol b_k\)</span> the <span class="math inline">\(k\)</span>th cc (weight) vectors for the <span class="math inline">\(x\)</span>-variables and <span class="math inline">\(y\)</span> variables, respectively.</p>
-<p>We call <span class="math inline">\(\eta_{ik}=\boldsymbol a_k^\top (\boldsymbol x_i - \bar{\boldsymbol x})\)</span> and <span class="math inline">\(\psi_{ik}=\boldsymbol b_k^\top (\boldsymbol y_i -\bar{\boldsymbol y})\)</span>, <span class="math inline">\(i=1, \ldots , n\)</span>, the <span class="math inline">\(k\)</span>th cc scores for the <span class="math inline">\(x\)</span>-variables and the <span class="math inline">\(y\)</span>-variables, respectively.</p>
-<p>Define the CC score vectors <span class="math inline">\({\pmb \eta}_k=(\eta_{1k}, \ldots , \eta_{nk})^\top\)</span> and <span class="math inline">\({\pmb \psi}_{k}=(\psi_{1k}, \ldots , \psi_{nk})^\top\)</span>. Then we have the following result.</p>
+Note that maximising <a href="5-2-the-full-set-of-canonical-correlations.html#eq:cc2">(5.9)</a> subject to <a href="5-2-the-full-set-of-canonical-correlations.html#eq:conny21">(5.10)</a> is very similar to the optimisation problem <a href="5-1-cca1.html#eq:opt27a">(5.4)</a> considered in the previous section.
+What is
+new are the constraints <a href="5-2-the-full-set-of-canonical-correlations.html#eq:conny22">(5.11)</a>, which take into account that we have already found the first canonical correlation.</p>
+<p>It will probably not surprise you to find that the solution is
+<span class="math display">\[\boldsymbol a^\top \boldsymbol S_{xy}\boldsymbol b= \sigma_2\quad\mbox{ achieved at} \quad \boldsymbol a=\boldsymbol a_2 := S_{xx}^{-1/2}\boldsymbol u_2 \mbox{ and } \boldsymbol b=\boldsymbol b_2 := S_{yy}^{-1/2}\boldsymbol v_2\]</span>
+where <span class="math inline">\(\sigma_2\)</span> is the second largest singular value of <span class="math inline">\(\boldsymbol Q\)</span>, and <span class="math inline">\(\boldsymbol u_2\)</span> and <span class="math inline">\(\boldsymbol v_2\)</span> are the corresponding left and right singular vectors.</p>
+<p>We now state the result in its full generality.</p>
 
 <div class="proposition">
-<span id="prp:unnamed-chunk-3" class="proposition"><strong>Proposition 5.2  </strong></span>Assume that <span class="math inline">\(\boldsymbol S_{\boldsymbol x\boldsymbol x}\)</span> and <span class="math inline">\(\boldsymbol S_{\boldsymbol y\boldsymbol y}\)</span> both have full rank. Then for <span class="math inline">\(1 \leq k,\ell \leq t\)</span>,
-<span class="math display">\[
-r[\eta_k,  \psi_{\ell}]=\begin{cases} \xi_k &amp;\text{if} \quad k=\ell\\
-0 &amp; \text{if} \quad k \neq \ell, \end{cases}
-\]</span>
-where <span class="math inline">\(t\)</span> is the rank of <span class="math inline">\(\boldsymbol A=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y} \boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\)</span> and <span class="math inline">\(\xi_1 \geq \xi_2 \geq \cdots \xi_t &gt; 0\)</span> are the strictly positive singular values of <span class="math inline">\(\boldsymbol A\)</span>.
+<span id="prp:ccafull" class="proposition"><strong>Proposition 5.3  </strong></span>For <span class="math inline">\(k=1, \ldots, r = \operatorname{rank}(\boldsymbol S_{xy})\)</span>, the solution to sequence of optimization problems
+<span class="math display">\[\begin{align}
+\mbox{Maximize} \quad &amp;\boldsymbol a^\top \boldsymbol S_{xy}\boldsymbol b\\
+\mbox{subject to }  \;\;&amp;\boldsymbol a^\top \boldsymbol S_{xx}\boldsymbol a=\boldsymbol b^\top\boldsymbol S_{yy} \boldsymbol b=1\\
+\mbox{ and }\;\;\;&amp;\boldsymbol a_i^\top \boldsymbol S_{xx}\boldsymbol a=\boldsymbol b_i^\top \boldsymbol S_{yy}\boldsymbol b= 0 \mbox{ for }i=1, \ldots, k
+\end{align}\]</span>
+is achieved at <span class="math inline">\(\boldsymbol a_k = \boldsymbol S_{xx}^{-1/2}\boldsymbol u_k\)</span> and <span class="math inline">\(\boldsymbol b_k=\boldsymbol S_{yy}^{-1/2}\boldsymbol v_k\)</span> with <span class="math inline">\(\boldsymbol a_k \boldsymbol S_{xy}\boldsymbol b_k = \sigma_k\)</span>.
 </div>
 
-<p><strong>Example <a href="5-cca.html#exm:prem">5.1</a> (continued)</strong> From <a href="5-1-canonical-correlation-analysis.html#eq:SVDanalysis">(5.9)</a>, it is seen that the 2nd CC coefficient is given by <span class="math inline">\(\xi_2=0.508\)</span>. So the correlation between the second pair of CC variables is a lot smaller than the 1st CC coefficient, though still appreciably different from <span class="math inline">\(0\)</span>. We now calculate the 2nd CC weight vectors:
+<p><br></br>
+Note that an equivalent way of writing down the problem is as
+<span class="math display">\[\begin{align*}
+\mbox{Maximize } \quad \operatorname{tr}(\boldsymbol A^\top \boldsymbol S_{xy}\boldsymbol B) &amp;= \sum_{i=1}^k \boldsymbol a_i^\top \boldsymbol S_{xy}\boldsymbol b_i\\
+\mbox{ subject to} \quad \boldsymbol A^\top \boldsymbol S_{xx}\boldsymbol A&amp;=\mathbf I\\
+\mbox{ and }\quad \boldsymbol B^\top S_{yy}\boldsymbol B&amp;= \mathbf I
+\end{align*}\]</span>
+which is in the form of the general problem given in Equation <a href="4-pca.html#eq:dimredopt">(4.1)</a> if <span class="math display">\[\boldsymbol A= \begin{pmatrix}\boldsymbol a_1&amp;\ldots &amp;\boldsymbol a_k\end{pmatrix}, \quad \boldsymbol B= \begin{pmatrix}\boldsymbol b_1&amp;\ldots &amp;\boldsymbol b_k\end{pmatrix}\]</span>
+are matrices containing the canonical correlation vectors as columns.</p>
+<p><br></br>
+Before we prove this result, we first give an extension of Proposition <a href="3-4-svdopt.html#prp:svdmax2">3.9</a>.</p>
+
+<div class="proposition">
+<span id="prp:svdopt3" class="proposition"><strong>Proposition 5.4  </strong></span>Let <span class="math inline">\(\boldsymbol Q\)</span> be an arbitrary matrix with SVD <span class="math inline">\(\boldsymbol Q= \sum_{k=1}^r \sigma_i \boldsymbol u_i \boldsymbol v^\top_i\)</span>.
+For <span class="math inline">\(k=1, \ldots, r\)</span> the solution to the optimization problem
+<span class="math display">\[\begin{align}
+\mbox{Maximize}\quad  &amp;\boldsymbol a^\top \boldsymbol Q\boldsymbol b\\
+\mbox{subject to} \quad &amp;\boldsymbol a^\top \boldsymbol a= \boldsymbol b^\top \boldsymbol b=1\\
+&amp;\boldsymbol a_i^\top\boldsymbol a= \boldsymbol b_i^\top\boldsymbol b= 0 \mbox{ for } i = 1, \ldots, k-1
+  \end{align}\]</span>
+is achieved at
+<span class="math display">\[\boldsymbol a_k=\boldsymbol u_k, \qquad \boldsymbol b_k = \boldsymbol v_k\]</span>
+with
+<span class="math display">\[\boldsymbol a_k^\top \boldsymbol Q\boldsymbol b_k = \sigma_k.\]</span>
+</div>
+
+<p>We will work through the proof of this proposition in the Exercises.</p>
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> To prove Proposition <a href="5-2-the-full-set-of-canonical-correlations.html#prp:ccafull">5.3</a> given Proposition <a href="5-2-the-full-set-of-canonical-correlations.html#prp:svdopt3">5.4</a>, we note as before that if we write <span class="math inline">\(\tilde{\boldsymbol a}_j =\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2} \boldsymbol a_j\)</span> and <span class="math inline">\(\tilde{\boldsymbol b}_j=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2} \boldsymbol b_j\)</span>, then the constraints become
+$$<sup>=</sup>=1 ;;_i^=_i^ = 0 i=1, , k.
+\end{align*}
+Consequently, we may view constraints <a href="5-2-the-full-set-of-canonical-correlations.html#eq:conny22">(5.11)</a> as corresponding to orthogonality constraints (cf. PCA) in modified coordinate systems.</p>
+The objective <span class="math inline">\(\boldsymbol a^\top \boldsymbol S_{xy}\boldsymbol b\)</span> becomes
+<span class="math inline">\(\tilde{\boldsymbol a}^\top \boldsymbol Q\tilde{\boldsymbol b}\)</span>
+with
+<span class="math display">\[\boldsymbol Q= \boldsymbol S_{xx}^{-1/2} \boldsymbol S_{xy}\boldsymbol S_{yy}^{-1/2}.\]</span>
+Thus applying Proposition <a href="5-2-the-full-set-of-canonical-correlations.html#prp:svdopt3">5.4</a> gives the desired result.
+</div>
+
+<p><br></br></p>
+<p>To summarize:</p>
+<ul>
+<li><p>The <span class="math inline">\(k^{th}\)</span> <strong>canonical correlation</strong> is <span class="math inline">\(\sigma_k\)</span>, the <span class="math inline">\(k^{th}\)</span> largest singular value of <span class="math inline">\(\boldsymbol Q\)</span>.</p></li>
+<li><p>The <span class="math inline">\(k^{th}\)</span> <strong>canonical correlation vectors</strong> (sometimes called the <strong>weights</strong> for the <span class="math inline">\(\boldsymbol x\)</span> and <span class="math inline">\(\boldsymbol y\)</span> variables) are <span class="math display">\[\boldsymbol a_k = \boldsymbol S_{xx}^{-1/2} \boldsymbol u_k, \qquad \boldsymbol b_k = \boldsymbol S_{yy}^{-1/2} \boldsymbol v_k\]</span></p></li>
+<li><p>The <span class="math inline">\(k^{th}\)</span> <strong>canonical correlation variables</strong> (or <strong>canonical correlation scores</strong>) are
+<span class="math display">\[\eta_{ik} = \boldsymbol a_k^\top (\boldsymbol x_i-\bar{\boldsymbol x}), \qquad \psi_{ik} = \boldsymbol b_k^\top (\boldsymbol y_i-\bar{\boldsymbol y}).\]</span></p></li>
+</ul>
+<p>We define the CC variable/score vectors to be
+<span class="math display">\[{\pmb \eta}_k=(\eta_{1k}, \ldots , \eta_{nk})^\top \mbox{ and }{\pmb \psi}_{k}=(\psi_{1k}, \ldots , \psi_{nk})^\top.\]</span></p>
+<p><strong>Example <a href="#exm:prem"><strong>??</strong></a> (continued)</strong> From <a href="5-1-cca1.html#eq:SVDanalysis">(5.8)</a>, it is seen that the 2nd CC coefficient is given by <span class="math inline">\(\sigma_2=0.508\)</span>. So the correlation between the second pair of CC variables is a lot smaller than the 1st CC coefficient, though still appreciably different from <span class="math inline">\(0\)</span>. We now calculate the 2nd CC weight vectors:
 <span class="math display">\[
 \boldsymbol a_2=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol q_2 = \begin{pmatrix} 0.073 \\ 0.396 \end{pmatrix}
 \qquad \text{and} \qquad
@@ -340,14 +387,53 @@ and
 \]</span>
 Note that, to a good approximation, <span class="math inline">\(\eta_2\)</span> is measuring something similar to the number of draws and, approximately, <span class="math inline">\(\psi_2\)</span> is something related to the negative of total number of goals in a team’s games. So large <span class="math inline">\(\psi_2\)</span> means relatively few goals in a team’s games, and small (i.e. large negative) <span class="math inline">\(\psi_2\)</span> means a relatively large number of goals in a team’s games.</p>
 <p>Interpretation of the 2nd CC: teams that have a lot of draws tend to be in low-scoring games and/or teams that have few draws tend to be in high-scoring games.</p>
+<!--## Population CCA
+
+So far in this chapter we have based CCA on the sample covariance matrix
+$$
+\bS_{\bz\bz}=\left [\begin{array}{cc}
+\bS_{\bx \bx} & \bS_{\bx\by}\\
+\bS_{\by \bx} & \bS_{\by \by} \end{array} \right ],
+$$
+However, just as there is a population analogue of PCA, so there is a population analogue of CCA.
+
+Given random vectors $\stackrel{p \times 1}{\bx}$ and $\stackrel{q \times 1}{\by}$, define the random vector $\bz=(\bx^\top, \by^\top)^\top$ with population covariance matrix
+$$
+\text{Var}(\bz)=\bSigma_{\bz\bz}=\left [\begin{array}{cc}
+\bSigma_{\bx \bx} & \bSigma_{\bx\by}\\
+\bSigma_{\by \bx} & \bSigma_{\by \by} \end{array} \right ].
+$$
+Then, by analogy with what we have seen in the sample CCA, the population CCA is based on the
+matrix
+$$
+\check{\bQ}=\bSigma_{\bx \bx}^{-1/2}\bSigma_{\bx \by}\bSigma_{\by \by}^{-1/2},
+$$
+where, as in \S 3.4,  the check symbol has been used above and below to indicate population quantities.
+If $\check{\bQ}$ has SVD
+$$
+\check{\bQ}=\sum_{j=1}^t \check{\sigma}_j\check {\mathbf q}_j \check{\mathbf r}_j^\top \equiv \check{\mathbf Q}\check{\pmb \sigma} \check{\mathbf R}^\top,
+$$
+where $\check{\sigma}_1 \geq \cdots \geq \check{\sigma}_t \geq 0$ and $t=\min(p,q)$, and the $\check{\bq}_j$ and $\check{\mathbf r}_j$ are unit vectors, then the first population CC coefficient is given by $\check{\sigma}_1$,
+and the associated weights are given by
+$$
+\check{\ba}=\bSigma_{\bx \bx}^{-1/2}\check{\bq}_1=\check{\ba}_1 \qquad \text{and} \qquad \check{\bb}=\bSigma_{\by \by}^{-1/2}\check{\mathbf r}_1=\check{\bb}_1.
+$$
+The full set of population CC weight vectors is given by
+$$
+\check{\ba}_j =\bSigma_{\bx \bx}^{-1/2}\check{\bq}_j \qquad \text{and} \qquad
+\check{\bb}_j=\bSigma_{\by \by}^{-1/2}\check{\mathbf r}_1, \qquad , j=1, \ldots , t,
+$$
+and the $j$th population CC coefficient is given by $\check{\sigma}_j$.
+
+-->
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="5-1-canonical-correlation-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="5-3-connection-with-linear-regression-when-q1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="5-1-cca1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-3-properties.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -389,7 +475,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
+"download": ["MultivariateStatistics.pdf"],
 "toc": {
 "collapse": "section"
 },

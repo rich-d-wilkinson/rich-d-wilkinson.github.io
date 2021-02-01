@@ -175,7 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>3.2</b> Spectral/eigen decomposition</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>3.2.1</b> Eigenvalues and eigenvectors</a></li>
 <li class="chapter" data-level="3.2.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>3.2.2</b> Spectral decomposition</a></li>
-<li class="chapter" data-level="3.2.3" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#matrix-square-roots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html"><i class="fa fa-check"></i><b>3.3</b> Singular Value Decomposition (SVD)</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.3.1</b> Examples</a></li>
@@ -215,12 +215,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="4-5-exercises-1.html"><a href="4-5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis</a><ul>
-<li class="chapter" data-level="5.1" data-path="5-1-canonical-correlation-analysis.html"><a href="5-1-canonical-correlation-analysis.html"><i class="fa fa-check"></i><b>5.1</b> Canonical Correlation Analysis</a></li>
+<li class="chapter" data-level="5.1" data-path="5-1-the-first-pair-of-canonical-variables.html"><a href="5-1-the-first-pair-of-canonical-variables.html"><i class="fa fa-check"></i><b>5.1</b> The first pair of canonical variables</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="5-1-the-first-pair-of-canonical-variables.html"><a href="5-1-the-first-pair-of-canonical-variables.html#example-premier-league-football"><i class="fa fa-check"></i><b>5.1.1</b> Example: Premier league football</a></li>
+</ul></li>
 <li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a></li>
 <li class="chapter" data-level="5.3" data-path="5-3-connection-with-linear-regression-when-q1.html"><a href="5-3-connection-with-linear-regression-when-q1.html"><i class="fa fa-check"></i><b>5.3</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
 <li class="chapter" data-level="5.4" data-path="5-4-population-cca.html"><a href="5-4-population-cca.html"><i class="fa fa-check"></i><b>5.4</b> Population CCA</a></li>
 <li class="chapter" data-level="5.5" data-path="5-5-invarianceequivariance-properties-of-cca.html"><a href="5-5-invarianceequivariance-properties-of-cca.html"><i class="fa fa-check"></i><b>5.5</b> Invariance/equivariance properties of CCA</a></li>
 <li class="chapter" data-level="5.6" data-path="5-6-testing-for-zero-canonical-correlation-coefficients.html"><a href="5-6-testing-for-zero-canonical-correlation-coefficients.html"><i class="fa fa-check"></i><b>5.6</b> Testing for zero canonical correlation coefficients</a></li>
+<li class="chapter" data-level="5.7" data-path="5-7-exercises-2.html"><a href="5-7-exercises-2.html"><i class="fa fa-check"></i><b>5.7</b> Exercises</a></li>
+<li class="chapter" data-level="5.8" data-path="5-8-computer-tasks-2.html"><a href="5-8-computer-tasks-2.html"><i class="fa fa-check"></i><b>5.8</b> Computer tasks</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling</a><ul>
 <li class="chapter" data-level="6.1" data-path="6-1-multidimensional-scaling.html"><a href="6-1-multidimensional-scaling.html"><i class="fa fa-check"></i><b>6.1</b> Multidimensional Scaling</a></li>
@@ -270,9 +274,9 @@ matrix
 where, as in 3.4, the check symbol has been used above and below to indicate population quantities.
 If <span class="math inline">\(\check{\boldsymbol A}\)</span> has SVD
 <span class="math display">\[
-\check{\boldsymbol A}=\sum_{j=1}^t \check{\xi}_j\check {\mathbf q}_j \check{\mathbf r}_j^\top \equiv \check{\mathbf Q}\check{\pmb \Xi} \check{\mathbf R}^\top,
+\check{\boldsymbol A}=\sum_{j=1}^t \check{\sigma}_j\check {\mathbf q}_j \check{\mathbf r}_j^\top \equiv \check{\mathbf Q}\check{\pmb \sigma} \check{\mathbf R}^\top,
 \]</span>
-where <span class="math inline">\(\check{\xi}_1 \geq \cdots \geq \check{\xi}_t \geq 0\)</span> and <span class="math inline">\(t=\min(p,q)\)</span>, and the <span class="math inline">\(\check{\boldsymbol q}_j\)</span> and <span class="math inline">\(\check{\mathbf r}_j\)</span> are unit vectors, then the first population CC coefficient is given by <span class="math inline">\(\check{\xi}_1\)</span>,
+where <span class="math inline">\(\check{\sigma}_1 \geq \cdots \geq \check{\sigma}_t \geq 0\)</span> and <span class="math inline">\(t=\min(p,q)\)</span>, and the <span class="math inline">\(\check{\boldsymbol q}_j\)</span> and <span class="math inline">\(\check{\mathbf r}_j\)</span> are unit vectors, then the first population CC coefficient is given by <span class="math inline">\(\check{\sigma}_1\)</span>,
 and the associated weights are given by
 <span class="math display">\[
 \check{\boldsymbol a}=\boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}^{-1/2}\check{\boldsymbol q}_1=\check{\boldsymbol a}_1 \qquad \text{and} \qquad \check{\boldsymbol b}=\boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}^{-1/2}\check{\mathbf r}_1=\check{\boldsymbol b}_1.
@@ -282,7 +286,7 @@ The full set of population CC weight vectors is given by
 \check{\boldsymbol a}_j =\boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}^{-1/2}\check{\boldsymbol q}_j \qquad \text{and} \qquad
 \check{\boldsymbol b}_j=\boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}^{-1/2}\check{\mathbf r}_1, \qquad , j=1, \ldots , t,
 \]</span>
-and the <span class="math inline">\(j\)</span>th population CC coefficient is given by <span class="math inline">\(\check{\xi}_j\)</span>.</p>
+and the <span class="math inline">\(j\)</span>th population CC coefficient is given by <span class="math inline">\(\check{\sigma}_j\)</span>.</p>
 </div>
             </section>
 
@@ -332,7 +336,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
+"download": ["MultivariateStatistics.pdf"],
 "toc": {
 "collapse": "section"
 },

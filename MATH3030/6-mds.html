@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="5-6-testing-for-zero-canonical-correlation-coefficients.html"/>
-<link rel="next" href="6-1-multidimensional-scaling.html"/>
+<link rel="prev" href="5-6-computer-tasks-1.html"/>
+<link rel="next" href="6-1-classical-multidimensional-scaling.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -164,7 +164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html"><i class="fa fa-check"></i><b>2.3</b> Inner product spaces</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#normed"><i class="fa fa-check"></i><b>2.3.1</b> Distances, and angles</a></li>
 <li class="chapter" data-level="2.3.2" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#orthogonal-matrices"><i class="fa fa-check"></i><b>2.3.2</b> Orthogonal matrices</a></li>
-<li class="chapter" data-level="2.3.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#projections"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#projection-matrix"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="2-4-centering-matrix.html"><a href="2-4-centering-matrix.html"><i class="fa fa-check"></i><b>2.4</b> The Centering Matrix</a></li>
 <li class="chapter" data-level="2.5" data-path="2-5-tasks-ch2.html"><a href="2-5-tasks-ch2.html"><i class="fa fa-check"></i><b>2.5</b> Computer tasks</a></li>
@@ -175,7 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>3.2</b> Spectral/eigen decomposition</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>3.2.1</b> Eigenvalues and eigenvectors</a></li>
 <li class="chapter" data-level="3.2.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>3.2.2</b> Spectral decomposition</a></li>
-<li class="chapter" data-level="3.2.3" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#matrix-square-roots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html"><i class="fa fa-check"></i><b>3.3</b> Singular Value Decomposition (SVD)</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.3.1</b> Examples</a></li>
@@ -211,21 +211,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="4-3-an-alternative-view-of-pca.html"><a href="4-3-an-alternative-view-of-pca.html"><i class="fa fa-check"></i><b>4.3</b> An alternative view of PCA</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="4-3-an-alternative-view-of-pca.html"><a href="4-3-an-alternative-view-of-pca.html#example-mnist-handwritten-digits"><i class="fa fa-check"></i><b>4.3.1</b> Example: MNIST handwritten digits</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="4-4-computer-tasks-1.html"><a href="4-4-computer-tasks-1.html"><i class="fa fa-check"></i><b>4.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="4.4" data-path="4-4-pca-comptask.html"><a href="4-4-pca-comptask.html"><i class="fa fa-check"></i><b>4.4</b> Computer tasks</a></li>
 <li class="chapter" data-level="4.5" data-path="4-5-exercises-1.html"><a href="4-5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis</a><ul>
-<li class="chapter" data-level="5.1" data-path="5-1-canonical-correlation-analysis.html"><a href="5-1-canonical-correlation-analysis.html"><i class="fa fa-check"></i><b>5.1</b> Canonical Correlation Analysis</a></li>
+<li class="chapter" data-level="5.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html"><i class="fa fa-check"></i><b>5.1</b> The first pair of canonical variables</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html#example-premier-league-football"><i class="fa fa-check"></i><b>5.1.1</b> Example: Premier league football</a></li>
+</ul></li>
 <li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a></li>
-<li class="chapter" data-level="5.3" data-path="5-3-connection-with-linear-regression-when-q1.html"><a href="5-3-connection-with-linear-regression-when-q1.html"><i class="fa fa-check"></i><b>5.3</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
-<li class="chapter" data-level="5.4" data-path="5-4-population-cca.html"><a href="5-4-population-cca.html"><i class="fa fa-check"></i><b>5.4</b> Population CCA</a></li>
-<li class="chapter" data-level="5.5" data-path="5-5-invarianceequivariance-properties-of-cca.html"><a href="5-5-invarianceequivariance-properties-of-cca.html"><i class="fa fa-check"></i><b>5.5</b> Invariance/equivariance properties of CCA</a></li>
-<li class="chapter" data-level="5.6" data-path="5-6-testing-for-zero-canonical-correlation-coefficients.html"><a href="5-6-testing-for-zero-canonical-correlation-coefficients.html"><i class="fa fa-check"></i><b>5.6</b> Testing for zero canonical correlation coefficients</a></li>
+<li class="chapter" data-level="5.3" data-path="5-3-properties.html"><a href="5-3-properties.html"><i class="fa fa-check"></i><b>5.3</b> Properties</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="5-3-properties.html"><a href="5-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>5.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="5-3-properties.html"><a href="5-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>5.3.2</b> Invariance/equivariance properties of CCA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5-4-example-1.html"><a href="5-4-example-1.html"><i class="fa fa-check"></i><b>5.4</b> Example?</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-exercises-2.html"><a href="5-5-exercises-2.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+<li class="chapter" data-level="5.6" data-path="5-6-computer-tasks-1.html"><a href="5-6-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.6</b> Computer tasks</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling</a><ul>
-<li class="chapter" data-level="6.1" data-path="6-1-multidimensional-scaling.html"><a href="6-1-multidimensional-scaling.html"><i class="fa fa-check"></i><b>6.1</b> Multidimensional Scaling</a></li>
+<li class="chapter" data-level="6.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html"><i class="fa fa-check"></i><b>6.1</b> Classical Multidimensional Scaling</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html#example-2"><i class="fa fa-check"></i><b>6.1.1</b> Example</a></li>
+</ul></li>
 <li class="chapter" data-level="6.2" data-path="6-2-principal-coordinates.html"><a href="6-2-principal-coordinates.html"><i class="fa fa-check"></i><b>6.2</b> Principal Coordinates</a></li>
 <li class="chapter" data-level="6.3" data-path="6-3-similarity-measures.html"><a href="6-3-similarity-measures.html"><i class="fa fa-check"></i><b>6.3</b> Similarity measures</a></li>
+<li class="chapter" data-level="6.4" data-path="6-4-exercises-3.html"><a href="6-4-exercises-3.html"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
+<li class="chapter" data-level="6.5" data-path="6-5-computer-tasks-2.html"><a href="6-5-computer-tasks-2.html"><i class="fa fa-check"></i><b>6.5</b> Computer Tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><a href="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><i class="fa fa-check"></i>Part III: Inference using the Multivariate Normal Distribution (MVN)</a></li>
+<li class="chapter" data-level="7" data-path="7-multinormal.html"><a href="7-multinormal.html"><i class="fa fa-check"></i><b>7</b> The Multivariate Normal Distribution</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html"><i class="fa fa-check"></i><b>7.1</b> Definition and Properties of the MVN</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#transformations"><i class="fa fa-check"></i><b>7.1.1</b> Transformations</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#moment-generating-functions"><i class="fa fa-check"></i><b>7.1.2</b> Moment Generating Functions</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#sampling-results-for-the-mvn"><i class="fa fa-check"></i><b>7.1.3</b> Sampling results for the MVN</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html"><i class="fa fa-check"></i><b>7.2</b> The Wishart distribution</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html#properties-1"><i class="fa fa-check"></i><b>7.2.1</b> Properties</a></li>
+<li class="chapter" data-level="7.2.2" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html#cochrans-theorem"><i class="fa fa-check"></i><b>7.2.2</b> Cochran’s theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7-3-hotellings-t2-distribution.html"><a href="7-3-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>7.3</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
+<li class="chapter" data-level="7.4" data-path="7-4-exercises-4.html"><a href="7-4-exercises-4.html"><i class="fa fa-check"></i><b>7.4</b> Exercises</a></li>
+<li class="chapter" data-level="7.5" data-path="7-5-computer-tasks-3.html"><a href="7-5-computer-tasks-3.html"><i class="fa fa-check"></i><b>7.5</b> Computer tasks</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -249,16 +273,486 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="mds" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Multidimensional Scaling</h1>
-<p>In this chapter our starting point is somewhat different. Suppose we have a sample of <span class="math inline">\(n\)</span> experimental units
-and we have a way to measure <code>distance' or</code>dissimilarity’ between any pair of experimental units <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, leading to a measure of distance or dissimilarity <span class="math inline">\(d_{ij}\)</span>, <span class="math inline">\(i,j=1, \ldots , n\)</span>. The starting point for Multidimensional Scaling (MDS) is a distance matrix <span class="math inline">\(\boldsymbol D=(d_{ij}: \, i,j=1, \ldots , n)\)</span>. A key goal in MDS is to determine coordinates of a set of points in a low-dimensional Euclidean space, e.g. <span class="math inline">\(\mathbb{R}\)</span> or <span class="math inline">\(\mathbb{R}^2\)</span>, whose inter-point distances (or dissimilarities) are approximately equal to the <span class="math inline">\(d_{ij}\)</span>. Using this approximate approach we are able to perform a statistical study of the original experimental units in a lower-dimensional space than the original one. We shall also see that there is a close connection between MDS and PCA.</p>
+<p>In PCA, we start with <span class="math inline">\(n\)</span> data points <span class="math inline">\(\boldsymbol x_i \in \mathbb{R}^p\)</span>, and then try to find a low dimensional projection of these points, e.g., <span class="math inline">\(\boldsymbol y_1, \ldots, \boldsymbol y_n \in \mathbb{R}^r\)</span> with <span class="math inline">\(r&lt;p\)</span>, in such a way that they minimize the reconstruction error (or maximize the variance).</p>
+<p>The focus in <strong>Multidimensional Scaling (MDS)</strong> is somewhat different. Instead of being given the data <span class="math inline">\(\boldsymbol X\)</span>, our starting point is a matrix of <strong>distances</strong> or <strong>dissimilarities</strong> between the data points, <span class="math inline">\(\boldsymbol D\)</span>. For example, if we have data on <span class="math inline">\(n\)</span> different experimental units, then we would be given the distances <span class="math inline">\(d_{ij}\)</span> between any pair of experimental units <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>. We compile these into a <span class="math inline">\(n\times n\)</span> <strong>distance matrix</strong> <span class="math inline">\(\boldsymbol D=(d_{ij}: \, i,j=1, \ldots , n)\)</span>.</p>
+<p>The goal of MDS is to find a set of points in a low-dimensional Euclidean space, e.g. <span class="math inline">\(\mathbb{R}\)</span> or <span class="math inline">\(\mathbb{R}^2\)</span>, whose inter-point distances (or dissimilarities) are approximately equal to the <span class="math inline">\(d_{ij}\)</span>. We may or may not have access to the original data <span class="math inline">\(\boldsymbol X\)</span>, and we may not even know the dimension of the original data points <span class="math inline">\(\boldsymbol x_i\)</span>. The aim is simply to find a set of points <span class="math inline">\(\boldsymbol y_1, \ldots, \boldsymbol y_n\)</span> whose distance matrix is approximately <span class="math inline">\(\boldsymbol D\)</span>, i.e., for which
+<span class="math display">\[\operatorname{distance}(\boldsymbol y_i, \boldsymbol y_j) \approx d_{ij}.\]</span></p>
+<p>As an illustrative example, consider the location of some of England’s cities.</p>
+<p><img src="06-mda_files/figure-html/unnamed-chunk-1-1.png" width="576" /></p>
+If we are told their latitude and longitude, it is easy to calculate the distances between the cities.
+<table class="table" style="font-size: 7px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+London
+</th>
+<th style="text-align:right;">
+Birmingham
+</th>
+<th style="text-align:right;">
+Manchester
+</th>
+<th style="text-align:right;">
+Leeds
+</th>
+<th style="text-align:right;">
+Newcastle
+</th>
+<th style="text-align:right;">
+Liverpool
+</th>
+<th style="text-align:right;">
+Portsmouth
+</th>
+<th style="text-align:right;">
+Southampton
+</th>
+<th style="text-align:right;">
+Nottingham
+</th>
+<th style="text-align:right;">
+Bristol
+</th>
+<th style="text-align:right;">
+Sheffield
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+London
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+163
+</td>
+<td style="text-align:right;">
+262
+</td>
+<td style="text-align:right;">
+273
+</td>
+<td style="text-align:right;">
+403
+</td>
+<td style="text-align:right;">
+286
+</td>
+<td style="text-align:right;">
+103
+</td>
+<td style="text-align:right;">
+112
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+228
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Birmingham
+</td>
+<td style="text-align:right;">
+163
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+114
+</td>
+<td style="text-align:right;">
+149
+</td>
+<td style="text-align:right;">
+282
+</td>
+<td style="text-align:right;">
+125
+</td>
+<td style="text-align:right;">
+195
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:right;">
+124
+</td>
+<td style="text-align:right;">
+105
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Manchester
+</td>
+<td style="text-align:right;">
+262
+</td>
+<td style="text-align:right;">
+114
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:right;">
+174
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+308
+</td>
+<td style="text-align:right;">
+293
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+227
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Leeds
+</td>
+<td style="text-align:right;">
+273
+</td>
+<td style="text-align:right;">
+149
+</td>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+135
+</td>
+<td style="text-align:right;">
+105
+</td>
+<td style="text-align:right;">
+335
+</td>
+<td style="text-align:right;">
+323
+</td>
+<td style="text-align:right;">
+98
+</td>
+<td style="text-align:right;">
+271
+</td>
+<td style="text-align:right;">
+47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Newcastle
+</td>
+<td style="text-align:right;">
+403
+</td>
+<td style="text-align:right;">
+282
+</td>
+<td style="text-align:right;">
+174
+</td>
+<td style="text-align:right;">
+135
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+199
+</td>
+<td style="text-align:right;">
+469
+</td>
+<td style="text-align:right;">
+458
+</td>
+<td style="text-align:right;">
+231
+</td>
+<td style="text-align:right;">
+401
+</td>
+<td style="text-align:right;">
+181
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Liverpool
+</td>
+<td style="text-align:right;">
+286
+</td>
+<td style="text-align:right;">
+125
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+105
+</td>
+<td style="text-align:right;">
+199
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+317
+</td>
+<td style="text-align:right;">
+299
+</td>
+<td style="text-align:right;">
+132
+</td>
+<td style="text-align:right;">
+219
+</td>
+<td style="text-align:right;">
+101
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Portsmouth
+</td>
+<td style="text-align:right;">
+103
+</td>
+<td style="text-align:right;">
+195
+</td>
+<td style="text-align:right;">
+308
+</td>
+<td style="text-align:right;">
+335
+</td>
+<td style="text-align:right;">
+469
+</td>
+<td style="text-align:right;">
+317
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+239
+</td>
+<td style="text-align:right;">
+127
+</td>
+<td style="text-align:right;">
+288
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Southampton
+</td>
+<td style="text-align:right;">
+112
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+293
+</td>
+<td style="text-align:right;">
+323
+</td>
+<td style="text-align:right;">
+458
+</td>
+<td style="text-align:right;">
+299
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+229
+</td>
+<td style="text-align:right;">
+103
+</td>
+<td style="text-align:right;">
+276
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Nottingham
+</td>
+<td style="text-align:right;">
+175
+</td>
+<td style="text-align:right;">
+73
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+98
+</td>
+<td style="text-align:right;">
+231
+</td>
+<td style="text-align:right;">
+132
+</td>
+<td style="text-align:right;">
+239
+</td>
+<td style="text-align:right;">
+229
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+193
+</td>
+<td style="text-align:right;">
+53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bristol
+</td>
+<td style="text-align:right;">
+170
+</td>
+<td style="text-align:right;">
+124
+</td>
+<td style="text-align:right;">
+227
+</td>
+<td style="text-align:right;">
+271
+</td>
+<td style="text-align:right;">
+401
+</td>
+<td style="text-align:right;">
+219
+</td>
+<td style="text-align:right;">
+127
+</td>
+<td style="text-align:right;">
+103
+</td>
+<td style="text-align:right;">
+193
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+228
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sheffield
+</td>
+<td style="text-align:right;">
+228
+</td>
+<td style="text-align:right;">
+105
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+181
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+288
+</td>
+<td style="text-align:right;">
+276
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+228
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<p>But can we reconstruct the map from the distance matrix? This is the aim of multidimensional scaling.
+MDS constructs a set of points that have distances between them given by the distance matrix <span class="math inline">\(\boldsymbol D\)</span>. In other words, it creates a map with a set of coordinates for which the distances between points are approximately the same as in the real data.</p>
+<p>Of course, this illustrative example is not very interesting, as the original data (the city locations) are only two-dimensional, but in problems with high dimensional data, finding a way to
+represent the points in a low-0dimensional space will make visualization and statistical analysis easier. As we shall see, there is a close connection between MDS and PCA.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="5-6-testing-for-zero-canonical-correlation-coefficients.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="6-1-multidimensional-scaling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="5-6-computer-tasks-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="6-1-classical-multidimensional-scaling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -300,7 +794,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
+"download": ["MultivariateStatistics.pdf"],
 "toc": {
 "collapse": "section"
 },

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5.1 Canonical Correlation Analysis (CCA) | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5.1 Canonical Correlation Analysis (CCA) | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5.1 Canonical Correlation Analysis (CCA) | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="5-cca.html"/>
+<link rel="next" href="5-2-the-full-set-of-canonical-correlations.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-notation.html"><a href="1-1-notation.html"><i class="fa fa-check"></i><b>1.1</b> Notation</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-notation.html"><a href="1-1-notation.html#example-datasets"><i class="fa fa-check"></i><b>1.1.1</b> Example datasets</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-notation.html"><a href="1-1-notation.html#aims-of-multivariate-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Aims of multivariate data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>1.2</b> Exploratory data analysis (EDA)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#data-visualization"><i class="fa fa-check"></i><b>1.2.1</b> Data visualization</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#summary-statistics"><i class="fa fa-check"></i><b>1.2.2</b> Summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-random-vectors-and-matrices.html"><a href="1-3-random-vectors-and-matrices.html"><i class="fa fa-check"></i><b>1.3</b> Random vectors and matrices</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-random-vectors-and-matrices.html"><a href="1-3-random-vectors-and-matrices.html#estimators"><i class="fa fa-check"></i><b>1.3.1</b> Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-computer-tasks.html"><a href="1-4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-linalg-prelim.html"><a href="2-linalg-prelim.html"><i class="fa fa-check"></i><b>2</b> Review of linear algebra</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html"><i class="fa fa-check"></i><b>2.1</b> Basics</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#notation-1"><i class="fa fa-check"></i><b>2.1.1</b> Notation</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#elementary-matrix-operations"><i class="fa fa-check"></i><b>2.1.2</b> Elementary matrix operations</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#special-matrices"><i class="fa fa-check"></i><b>2.1.3</b> Special matrices</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#vectordiff"><i class="fa fa-check"></i><b>2.1.4</b> Vector Differentiation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html"><i class="fa fa-check"></i><b>2.2</b> Vector spaces</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#linear-independence"><i class="fa fa-check"></i><b>2.2.1</b> Linear independence</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#colsspace"><i class="fa fa-check"></i><b>2.2.2</b> Row and column spaces</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#linear-transformations"><i class="fa fa-check"></i><b>2.2.3</b> Linear transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html"><i class="fa fa-check"></i><b>2.3</b> Inner product spaces</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#normed"><i class="fa fa-check"></i><b>2.3.1</b> Distances, and angles</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#orthogonal-matrices"><i class="fa fa-check"></i><b>2.3.2</b> Orthogonal matrices</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#projections"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-4-centering-matrix.html"><a href="2-4-centering-matrix.html"><i class="fa fa-check"></i><b>2.4</b> The Centering Matrix</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-tasks-ch2.html"><a href="2-5-tasks-ch2.html"><i class="fa fa-check"></i><b>2.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-exercises-ch2.html"><a href="2-6-exercises-ch2.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-linalg-decomp.html"><a href="3-linalg-decomp.html"><i class="fa fa-check"></i><b>3</b> Matrix decompositions</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-matrix-matrix.html"><a href="3-1-matrix-matrix.html"><i class="fa fa-check"></i><b>3.1</b> Matrix-matrix products</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>3.2</b> Spectral/eigen decomposition</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>3.2.1</b> Eigenvalues and eigenvectors</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>3.2.2</b> Spectral decomposition</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#matrix-square-roots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html"><i class="fa fa-check"></i><b>3.3</b> Singular Value Decomposition (SVD)</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.3.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-svdopt.html"><a href="3-4-svdopt.html"><i class="fa fa-check"></i><b>3.4</b> SVD optimization results</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-low-rank-approximation.html"><a href="3-5-low-rank-approximation.html"><i class="fa fa-check"></i><b>3.5</b> Low-rank approximation</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="3-5-low-rank-approximation.html"><a href="3-5-low-rank-approximation.html#matrix-norms"><i class="fa fa-check"></i><b>3.5.1</b> Matrix norms</a></li>
+<li class="chapter" data-level="3.5.2" data-path="3-5-low-rank-approximation.html"><a href="3-5-low-rank-approximation.html#eckart-young-mirsky-theorem"><i class="fa fa-check"></i><b>3.5.2</b> Eckart-Young-Mirsky Theorem</a></li>
+<li class="chapter" data-level="3.5.3" data-path="3-5-low-rank-approximation.html"><a href="3-5-low-rank-approximation.html#example-image-compression"><i class="fa fa-check"></i><b>3.5.3</b> Example: image compression</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="3-6-tasks-ch3.html"><a href="3-6-tasks-ch3.html"><i class="fa fa-check"></i><b>3.6</b> Computer tasks</a></li>
+<li class="chapter" data-level="3.7" data-path="3-7-exercises-ch3.html"><a href="3-7-exercises-ch3.html"><i class="fa fa-check"></i><b>3.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html"><i class="fa fa-check"></i>PART II: Dimension reduction methods</a><ul>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#a-warning"><i class="fa fa-check"></i>A warning</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-pca.html"><a href="4-pca.html"><i class="fa fa-check"></i><b>4</b> Principal component analysis (PCA)</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html"><i class="fa fa-check"></i><b>4.1</b> PCA: an informal introduction</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#notation-recap"><i class="fa fa-check"></i><b>4.1.1</b> Notation recap</a></li>
+<li class="chapter" data-level="4.1.2" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#first-principal-component"><i class="fa fa-check"></i><b>4.1.2</b> First principal component</a></li>
+<li class="chapter" data-level="4.1.3" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#second-principal-component"><i class="fa fa-check"></i><b>4.1.3</b> Second principal component</a></li>
+<li class="chapter" data-level="4.1.4" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#geometric-interpretation-1"><i class="fa fa-check"></i><b>4.1.4</b> Geometric interpretation</a></li>
+<li class="chapter" data-level="4.1.5" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#example"><i class="fa fa-check"></i><b>4.1.5</b> Example</a></li>
+<li class="chapter" data-level="4.1.6" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#example-iris"><i class="fa fa-check"></i><b>4.1.6</b> Example: Iris</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>4.2</b> PCA: a formal description with proofs</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>4.2.1</b> Properties of principal components</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#example-football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>4.2.3</b> PCA based on <span class="math inline">\(\boldsymbol R\)</span> versus PCA based on <span class="math inline">\(\boldsymbol S\)</span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>4.2.4</b> Population PCA</a></li>
+<li class="chapter" data-level="4.2.5" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>4.2.5</b> PCA under transformations of variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-an-alternative-view-of-pca.html"><a href="4-3-an-alternative-view-of-pca.html"><i class="fa fa-check"></i><b>4.3</b> An alternative view of PCA</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-an-alternative-view-of-pca.html"><a href="4-3-an-alternative-view-of-pca.html#example-mnist-handwritten-digits"><i class="fa fa-check"></i><b>4.3.1</b> Example: MNIST handwritten digits</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-4-computer-tasks-1.html"><a href="4-4-computer-tasks-1.html"><i class="fa fa-check"></i><b>4.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-exercises-1.html"><a href="4-5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-canonical-correlation-analysis-cca.html"><a href="5-1-canonical-correlation-analysis-cca.html"><i class="fa fa-check"></i><b>5.1</b> Canonical Correlation Analysis (CCA)</a></li>
+<li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a></li>
+<li class="chapter" data-level="5.3" data-path="5-3-connection-with-linear-regression-when-q1.html"><a href="5-3-connection-with-linear-regression-when-q1.html"><i class="fa fa-check"></i><b>5.3</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-population-cca.html"><a href="5-4-population-cca.html"><i class="fa fa-check"></i><b>5.4</b> Population CCA</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-invarianceequivariance-properties-of-cca.html"><a href="5-5-invarianceequivariance-properties-of-cca.html"><i class="fa fa-check"></i><b>5.5</b> Invariance/equivariance properties of CCA</a></li>
+<li class="chapter" data-level="5.6" data-path="5-6-testing-for-zero-canonical-correlation-coefficients.html"><a href="5-6-testing-for-zero-canonical-correlation-coefficients.html"><i class="fa fa-check"></i><b>5.6</b> Testing for zero canonical correlation coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-multidimensional-scaling.html"><a href="6-1-multidimensional-scaling.html"><i class="fa fa-check"></i><b>6.1</b> Multidimensional Scaling</a></li>
+<li class="chapter" data-level="6.2" data-path="6-2-principal-coordinates.html"><a href="6-2-principal-coordinates.html"><i class="fa fa-check"></i><b>6.2</b> Principal Coordinates</a></li>
+<li class="chapter" data-level="6.3" data-path="6-3-similarity-measures.html"><a href="6-3-similarity-measures.html"><i class="fa fa-check"></i><b>6.3</b> Similarity measures</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="canonical-correlation-analysis-cca" class="section level2">
+<h2><span class="header-section-number">5.1</span> Canonical Correlation Analysis (CCA)</h2>
+<p>Assume we are given a random sample of vectors <span class="math inline">\(\boldsymbol x_i, \boldsymbol y_i\)</span>, and that we stack these into a vector <span class="math inline">\(\boldsymbol z_i\)</span>
+<span class="math display">\[
+\boldsymbol z_i=\left(\begin{array}{c}
+|\\
+\boldsymbol x_i\\
+|\\
+\boldsymbol y_i\\
+|\end{array}\right)=(\boldsymbol x_i^\top , \boldsymbol y_i^\top )^\top: \, i=1,\ldots, n,
+\]</span>
+where
+the <span class="math inline">\(\boldsymbol x_i\)</span> are <span class="math inline">\(p \times 1\)</span>, the <span class="math inline">\(\boldsymbol y_i\)</span> are <span class="math inline">\(q \times 1\)</span> and, consequently, the <span class="math inline">\(\boldsymbol z_i\)</span> are <span class="math inline">\((p+q)\times 1\)</span>. We are interested in determining the strength of linear association between the <span class="math inline">\(\boldsymbol x_i\)</span> vectors and the <span class="math inline">\(\boldsymbol y_i\)</span> vectors.</p>
+<p>We formulate this task as an optimisation problem (cf. PCA). First, we introduce some notation.</p>
+<ul>
+<li><p>Let <span class="math inline">\(\bar{\boldsymbol x}\)</span>, <span class="math inline">\(\bar{\boldsymbol y}\)</span>, and <span class="math inline">\(\bar{\boldsymbol z}\)</span> denote the sample mean vectors of the <span class="math inline">\(\boldsymbol z_i\)</span>, <span class="math inline">\(\boldsymbol x_i\)</span> and <span class="math inline">\(\boldsymbol y_i\)</span> respectively.</p></li>
+<li><p>Let <span class="math inline">\(\boldsymbol S_{\boldsymbol z\boldsymbol z}\)</span> denote the sample covariance matrix of the <span class="math inline">\(\boldsymbol z_i\)</span>, <span class="math inline">\(i=1,\ldots, n\)</span>. Then <span class="math inline">\(\boldsymbol S_{\boldsymbol z\boldsymbol z}\)</span> can be written in block matrix form
+<span class="math display">\[
+\boldsymbol S_{\boldsymbol z\boldsymbol z}=\left [\begin{array}{cc}
+\boldsymbol S_{\boldsymbol x\boldsymbol x} &amp; \boldsymbol S_{\boldsymbol x\boldsymbol y}\\
+\boldsymbol S_{\boldsymbol y\boldsymbol x} &amp; \boldsymbol S_{\boldsymbol y\boldsymbol y} \end{array} \right ],
+\]</span>
+where <span class="math inline">\(\boldsymbol S_{\boldsymbol x\boldsymbol x}\)</span> (<span class="math inline">\(p \times p\)</span>) is the sample covariance matrix of the <span class="math inline">\(\boldsymbol x_i\)</span>, <span class="math inline">\(\boldsymbol S_{\boldsymbol y\boldsymbol y}\)</span> (<span class="math inline">\(q \times q\)</span>) is the sample covariance of the <span class="math inline">\(\boldsymbol y_i\)</span>, and the cross-covariance matrices are given by
+<span class="math display">\[
+\stackrel{p \times q}{\boldsymbol S}_{\boldsymbol x\boldsymbol y}=n^{-1} \sum_{i=1}^n (\boldsymbol x_i -\bar{\boldsymbol x})(\boldsymbol y_i-\bar{\boldsymbol y})^\top
+\qquad \text{and} \qquad \stackrel{q \times p}{\boldsymbol S}_{\boldsymbol y\boldsymbol x}=\boldsymbol S_{\boldsymbol x\boldsymbol y}^\top.
+\]</span></p></li>
+</ul>
+<p>We want to find the linear combination of the <span class="math inline">\(x\)</span>-variables and the linear combination of the <span class="math inline">\(y\)</span>-variables which is most highly correlated.</p>
+<p>One version of the optimisation problem we want to solve is: find non-zero vectors <span class="math inline">\(\stackrel{p \times 1}{\boldsymbol a}\)</span> and <span class="math inline">\(\stackrel{q \times 1}{\boldsymbol b}\)</span> which maximise the correlation coefficient
+<span class="math display">\[
+r[\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y]=\frac{\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b}{(\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a)^{1/2}(\boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b)^{1/2}}.
+\]</span>
+In other words:
+<span class="math display" id="eq:opt26">\[\begin{align}
+  &amp;\mbox{Find non-zero vectors }\quad  \boldsymbol a\;\; (p \times 1)\mbox{ and  } \boldsymbol b\;\; (q \times 1) \nonumber\\
+  &amp;\mbox{to maximise} \qquad  r[\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y],
+\tag{5.2}
+\end{align}\]</span></p>
+<p>where <span class="math inline">\(r[.,.]\)</span> is defined in <a href="5-cca.html#eq:scr">(5.1)</a>.
+Intuitively, this makes sense, because we want to find the linear combination of the <span class="math inline">\(x\)</span>-variables and the linear combination of the <span class="math inline">\(y\)</span>-variables which are most highly correlated.</p>
+<p>However, note that for any <span class="math inline">\(\gamma&gt;0\)</span> and <span class="math inline">\(\delta&gt;0\)</span>,
+<span class="math display" id="eq:invar">\[\begin{equation}
+  r[\gamma\boldsymbol a^\top \boldsymbol x, \delta \boldsymbol b^\top \boldsymbol y]= \frac{\gamma \delta}{\sqrt{\gamma^2 \delta^2}}r[\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y]=r[\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y],
+  \tag{5.3}
+  \end{equation}\]</span>
+i.e. <span class="math inline">\(r[\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y]\)</span> is invariant with respect to positive scalar multiplication of <span class="math inline">\(\boldsymbol a\)</span> and <span class="math inline">\(\boldsymbol b\)</span>. Consequently there will be an infinite number of solutions to this optimisation problem, because if <span class="math inline">\(\boldsymbol a\)</span> and <span class="math inline">\(\boldsymbol b\)</span> are solutions to optimization problem <a href="5-1-canonical-correlation-analysis-cca.html#eq:opt26">(5.2)</a>, then so are <span class="math inline">\(\gamma \boldsymbol a\)</span> and <span class="math inline">\(\delta \boldsymbol b\)</span>, for any <span class="math inline">\(\gamma&gt;0\)</span> and <span class="math inline">\(\delta&gt;0\)</span>.</p>
+<p>A more useful way to formulate this optimisation problem is the following: find
+<span class="math display" id="eq:opt27a">\[\begin{equation}
+\max_{\boldsymbol a, \boldsymbol b} \boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b
+\tag{5.4}
+\end{equation}\]</span>
+subject to the constraints
+<span class="math display" id="eq:opt27b">\[\begin{equation}
+\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a=1 \qquad \text{and} \qquad \boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=1.
+\tag{5.5}
+\end{equation}\]</span></p>
+
+<div class="proposition">
+<p><span id="prp:unnamed-chunk-1" class="proposition"><strong>Proposition 5.1  </strong></span>Assume that <span class="math inline">\(\boldsymbol S_{\boldsymbol x\boldsymbol x}\)</span> and <span class="math inline">\(\boldsymbol S_{\boldsymbol y\boldsymbol y}\)</span> both are non-singular. Then the following holds.</p>
+<ol style="list-style-type: decimal">
+<li><p>If <span class="math inline">\(\boldsymbol a=\hat{\boldsymbol a}\)</span> and <span class="math inline">\(\boldsymbol b=\hat{\boldsymbol b}\)</span> maximise <a href="5-1-canonical-correlation-analysis-cca.html#eq:opt26">(5.2)</a>, then
+<span class="math display">\[
+\boldsymbol a=\check{\boldsymbol a}\equiv\hat{\boldsymbol a}/(\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\boldsymbol a})^{1/2} \qquad \text{and} \qquad
+\boldsymbol b=\check{\boldsymbol b}\equiv \hat{\boldsymbol b}/(\hat{\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\hat{\boldsymbol b})^{1/2}
+\]</span>
+maximise <a href="5-1-canonical-correlation-analysis-cca.html#eq:opt27a">(5.4)</a> subject to the constraints <a href="5-1-canonical-correlation-analysis-cca.html#eq:opt27b">(5.5)</a>. Moreover, if <span class="math inline">\(\boldsymbol a=\check{\boldsymbol a}\)</span> and <span class="math inline">\(\boldsymbol b=\check{\boldsymbol b}\)</span> maximise <a href="5-1-canonical-correlation-analysis-cca.html#eq:opt27a">(5.4)</a> subject to constraints
+<a href="5-1-canonical-correlation-analysis-cca.html#eq:opt27b">(5.5)</a> then, for any <span class="math inline">\(\gamma&gt;0\)</span> and <span class="math inline">\(\delta&gt;0\)</span>, <span class="math inline">\(\boldsymbol a=\gamma \check{\boldsymbol a}\)</span> and <span class="math inline">\(\boldsymbol b=\delta \check{\boldsymbol b}\)</span> maximise <a href="5-1-canonical-correlation-analysis-cca.html#eq:opt26">(5.2)</a>.</p></li>
+<li><p>The optimum solution to <a href="5-1-canonical-correlation-analysis-cca.html#eq:opt27a">(5.4)</a> and <a href="5-1-canonical-correlation-analysis-cca.html#eq:opt27b">(5.5)</a> is obtained when <span class="math inline">\(\boldsymbol a=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf q}_1\)</span> and <span class="math inline">\(\boldsymbol b=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2} {\mathbf r}_1\)</span>, where <span class="math inline">\(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\)</span> has SVD
+<span class="math display" id="eq:svdcca">\[\begin{equation}
+\boldsymbol A\equiv \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}= \sum_{j=1}^t \xi_j {\mathbf q}_j {\mathbf r}_j^\top \equiv {\mathbf Q}{\pmb \Xi} {\mathbf R}^\top,
+\tag{5.6}
+\end{equation}\]</span>
+where <span class="math inline">\(\boldsymbol A\)</span> has rank <span class="math inline">\(t\)</span> and <span class="math inline">\(\xi_1 \geq \cdots \geq \xi_t &gt;0\)</span>.</p></li>
+<li>The maximum value of the correlation coefficient is given by the largest singular value <span class="math inline">\(\xi_1\)</span>.</li>
+</ol>
+</div>
+
+<p>Note: the matrix square roots <span class="math inline">\(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\)</span> and <span class="math inline">\(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\)</span> of <span class="math inline">\(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1}\)</span> and <span class="math inline">\(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1}\)</span>, respectively, are defined using the definition of matrix square roots of symmetric non-negative definite matrices given in Chapter 2.</p>
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> (i) In <a href="5-1-canonical-correlation-analysis-cca.html#eq:invar">(5.3)</a> it was noted that, for <span class="math inline">\(\boldsymbol a\neq {\mathbf 0}_p\)</span> and <span class="math inline">\(\boldsymbol b\neq {\mathbf 0}_q\)</span>, the expression for <span class="math inline">\(r[\boldsymbol a^\top \boldsymbol x, \boldsymbol b^\top \boldsymbol y]\)</span> is invariant when we change <span class="math inline">\(\boldsymbol a\)</span> to <span class="math inline">\(\gamma \boldsymbol a\)</span> and change <span class="math inline">\(\boldsymbol b\)</span> to <span class="math inline">\(\delta \boldsymbol b\)</span>, where <span class="math inline">\(\gamma&gt;0\)</span> and <span class="math inline">\(\delta&gt;0\)</span> are scalars, so the second statement in Result 4.1(i) follows imnmdeiately. Suppose now a solution to problem <a href="5-1-canonical-correlation-analysis-cca.html#eq:opt26">(5.2)</a> is achieved when <span class="math inline">\(\boldsymbol a= \hat{\boldsymbol a}\)</span> and <span class="math inline">\(\boldsymbol b=\hat{\boldsymbol b}\)</span>. Then, due to the invariance with respect to rescaling, the optimum is also achieved when <span class="math inline">\(\boldsymbol a=\check{\boldsymbol a}\equiv\hat{\boldsymbol a}/(\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \hat{\boldsymbol a})^{1/2}\)</span> and <span class="math inline">\(\boldsymbol b=\check{\boldsymbol b}\equiv \hat{\boldsymbol b}/(\hat{\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y} \hat{\boldsymbol b})^{1/2}\)</span>. But by definition of <span class="math inline">\(\check{\boldsymbol a}\)</span> and <span class="math inline">\(\check{\boldsymbol b}\)</span>, they satisfy the constraints <a href="5-1-canonical-correlation-analysis-cca.html#eq:opt27b">(5.5)</a> because
+<span class="math display">\[
+\check{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \check{\boldsymbol a}=\frac{\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\boldsymbol a}}{\left \{ \left (\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\boldsymbol a}\right )^{1/2}\right \}^2}
+=\frac{\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\boldsymbol a}}{\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\boldsymbol a}}=1
+\]</span>
+and, similarly,
+<span class="math display">\[
+\check{\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y} \check{\boldsymbol b}=\frac{\hat{\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\hat{\boldsymbol b}}{\hat{\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\hat{\boldsymbol b}}=1.
+\]</span>
+So <span class="math inline">\(\boldsymbol a=\check{\boldsymbol a}\)</span> and <span class="math inline">\(\boldsymbol b=\check{\boldsymbol b}\)</span> maximises <a href="5-1-canonical-correlation-analysis-cca.html#eq:opt27a">(5.4)</a> subject to the constraints <a href="5-1-canonical-correlation-analysis-cca.html#eq:opt27b">(5.5)</a>.</p>
+<p>(ii) &amp; (iii) We may write the constraints <a href="5-1-canonical-correlation-analysis-cca.html#eq:opt27b">(5.5)</a> as
+<span class="math display">\[
+\tilde{\boldsymbol a}^\top \tilde{\boldsymbol a}=1 \qquad \text{and} \qquad \tilde{\boldsymbol b}^\top \tilde{\boldsymbol b}=1
+\]</span>
+where
+<span class="math display">\[
+\tilde{\boldsymbol a}=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2} \boldsymbol a\qquad \text{and} \qquad \tilde{\boldsymbol b}=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2}\boldsymbol b.
+\]</span></p>
+Recall that <span class="math inline">\(\boldsymbol S_{\boldsymbol x\boldsymbol x}\)</span> and <span class="math inline">\(\boldsymbol S_{\boldsymbol y\boldsymbol y}\)</span> are assumed to be non-singular. Then, using results from Chapter 2, <span class="math inline">\(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2}\)</span> and <span class="math inline">\(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2}\)</span> will also be non-singular, and so
+<span class="math display">\[
+(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2})^{-1}=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \qquad \text{and} \qquad (\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2})^{-1}=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}
+\]</span>
+both exist and so we may write
+<span class="math display">\[
+\boldsymbol a=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\tilde{\boldsymbol a} \qquad \text{and} \qquad \boldsymbol b=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2} \tilde{\boldsymbol b},
+\]</span>
+and optimisation problem <a href="5-1-canonical-correlation-analysis-cca.html#eq:opt27a">(5.4)</a> subject to <a href="5-1-canonical-correlation-analysis-cca.html#eq:opt27b">(5.5)</a> becomes
+<span class="math display">\[
+\max_{\tilde{\boldsymbol a}, \tilde{\boldsymbol b}}
+\tilde{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2} \tilde{\boldsymbol b}
+\]</span>
+subject to
+<span class="math display">\[
+\vert \vert \tilde{\boldsymbol a} \vert \vert =1 \qquad \text{and} \qquad \vert \vert \tilde{\boldsymbol b}\vert \vert=1.
+\]</span>
+From the properties of the SVD, and in particular Result 2.15 in Chapter 2, we know that the maximum correlation is <span class="math inline">\(\xi_1\)</span>. Moreover, using the SVD again, this is achieved when <span class="math inline">\(\tilde{\boldsymbol a}={\mathbf q}_1\)</span> and <span class="math inline">\(\tilde{\boldsymbol b}={\mathbf r}_1\)</span> or, equivalently, <span class="math inline">\(\boldsymbol a=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf q}_1\)</span> and <span class="math inline">\(\boldsymbol b=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf r}_1\)</span>.
+</div>
+
+<p><strong>Example <a href="5-cca.html#exm:prem">5.1</a> (continued)</strong>.</p>
+<p>MOVED FROM ABOVE.</p>
+<p>The relevant covariance matrix here is given in <a href="4-2-pca-a-formal-description-with-proofs.html#eq:PLES">(4.5)</a>,
+but we need to delete the middle row and middle column because this relates to the variable <span class="math inline">\(L\)</span>, the number of losses,
+which we are omitting. So we are left with
+<span class="math display" id="eq:bSxy1">\[\begin{equation}
+\boldsymbol S_{\boldsymbol x\boldsymbol x}=\begin{pmatrix} 39.4 &amp; -8.3\\ -8.3 &amp; 8.1   \end{pmatrix} , \qquad
+\boldsymbol S_{\boldsymbol y\boldsymbol y}=\begin{pmatrix} 392.2 &amp; -208.7\\ -208.7 &amp; 230.9   \end{pmatrix}
+\tag{5.7}
+\end{equation}\]</span>
+and
+<span class="math display" id="eq:bSxy2">\[\begin{equation}
+\boldsymbol S_{\boldsymbol x\boldsymbol y}=\boldsymbol S_{\boldsymbol y\boldsymbol x}^\top =
+\begin{pmatrix} 115.7  &amp; -81.9\\ -29.4 &amp; 6.0   \end{pmatrix}.
+\tag{5.8}
+\end{equation}\]</span>
+We shall return to this example in a little while.</p>
+<p><strong>Example <a href="5-cca.html#exm:prem">5.1</a> (continued)</strong>
+We now want to calculate the matrix <span class="math inline">\(\boldsymbol A\)</span> in <a href="5-1-canonical-correlation-analysis-cca.html#eq:svdcca">(5.6)</a> and then find its singular valued decomposition. We first need to find <span class="math inline">\(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\)</span> and <span class="math inline">\(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\)</span>.
+Using R to do the calculations, we obtain the following:
+<span class="math display">\[\begin{align*}
+\boldsymbol S_{\boldsymbol x\boldsymbol x}&amp;=\boldsymbol Q_{\boldsymbol x} \boldsymbol \Lambda_{\boldsymbol x} \boldsymbol Q_{\boldsymbol x}^\top\\
+&amp;= \begin{pmatrix}  -0.970 &amp; -0.241\\ 0.241 &amp; -0.970 \end{pmatrix} \begin{pmatrix} 41.46 &amp; 0 \\
+ 0 &amp; 6.04\end{pmatrix} \begin{pmatrix} -0.970 &amp; -0.241\\ 0.241 &amp; -0.970  \end{pmatrix}^\top,
+\end{align*}\]</span>
+and so
+<span class="math display">\[\begin{align*}
+\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}&amp;=\boldsymbol Q_{\boldsymbol x} \boldsymbol \Lambda_{\boldsymbol x}^{-1/2} \boldsymbol Q_{\boldsymbol x}^\top\\
+&amp;= \begin{pmatrix}  -0.970 &amp; -0.241\\ 0.241 &amp; -0.970 \end{pmatrix} \begin{pmatrix} 41.46^{-1/2} &amp; 0 \\
+ 0 &amp; 6.04^{-1/2}\end{pmatrix} \begin{pmatrix} -0.970 &amp; -0.241\\ 0.241 &amp; -0.970  \end{pmatrix}^\top\\
+ &amp;=\begin{pmatrix} 0.170 &amp; 0.059\\0.059  &amp;  0.392 \end{pmatrix};
+\end{align*}\]</span>
+and, omitting details of the calculations this time,
+<span class="math display">\[
+\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}=\boldsymbol Q_{\boldsymbol y} \boldsymbol \Lambda_{\boldsymbol y}^{-1/2} \boldsymbol Q_{\boldsymbol y}^\top=\begin{pmatrix} 0.064 &amp; 0.030\\0.030 &amp;  0.086 \end{pmatrix}.
+\]</span>
+Consequently,
+<span class="math display">\[\begin{align*}
+\boldsymbol A&amp;=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\\
+&amp;=\begin{pmatrix} 0.170 &amp; 0.059\\0.059  &amp;  0.392 \end{pmatrix}
+\begin{pmatrix} 115.7  &amp; -81.9\\ -29.4 &amp; 6.0   \end{pmatrix}
+\begin{pmatrix} 0.064 &amp; 0.030\\0.030 &amp;  0.086 \end{pmatrix}\\
+&amp;=\begin{pmatrix} 0.741 &amp; -0.628\\-0.374 &amp;  -0.351\end{pmatrix}.
+\end{align*}\]</span>
+The SVD of <span class="math inline">\(\boldsymbol A\)</span> is given by
+<span class="math display" id="eq:SVDanalysis">\[\begin{align}
+\boldsymbol A&amp;=\boldsymbol Q{\pmb \Xi} \boldsymbol R^\top \nonumber \\
+&amp;=\begin{pmatrix} -0.997 &amp; 0.082\\ 0.082 &amp; 0.997   \end{pmatrix}
+\begin{pmatrix}  0.974 &amp; 0 \\0 &amp; 0.508 \end{pmatrix}
+\begin{pmatrix} -0.790 &amp; -0.613\\ 0.613 &amp; -0.790 \end{pmatrix}^\top.
+\tag{5.9}
+\end{align}\]</span>
+So the 1st CC coefficient is <span class="math inline">\(0.974\)</span>, which is close to its maximum value of <span class="math inline">\(1\)</span>. The 1st CC weight vectors are
+given by
+<span class="math display">\[\begin{align*}
+\boldsymbol a_1&amp;=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol q_1\\
+&amp;=\begin{pmatrix} 0.170 &amp; 0.059\\0.059  &amp;  0.392 \end{pmatrix} \begin{pmatrix} -0.997 \\ 0.082\end{pmatrix}\\
+&amp;=\begin{pmatrix}  -0.165, \\ - 0.027 \end{pmatrix}.
+\end{align*}\]</span>
+Similar calculations show that
+<span class="math display">\[
+\boldsymbol b_1=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol r_1=\begin{pmatrix}  -0.032 \\ 0.029\end{pmatrix}.
+\]</span></p>
+<p>In order to make interpretation easier:</p>
+<ul>
+<li>We change <span class="math inline">\(\boldsymbol a_1\)</span> to <span class="math inline">\(-\boldsymbol a_1\)</span> and <span class="math inline">\(\boldsymbol b_1\)</span> to <span class="math inline">\(-\boldsymbol b_1\)</span>. [This entails changing <span class="math inline">\(\boldsymbol q_1\)</span> to <span class="math inline">\(-\boldsymbol q_1\)</span> and <span class="math inline">\(\boldsymbol r_1\)</span> to <span class="math inline">\(-\boldsymbol r_1\)</span>; note that, provided we change the sign of <strong>both</strong> <span class="math inline">\(\boldsymbol q_1\)</span> and <span class="math inline">\(\boldsymbol r_1\)</span>, we do not change the matrix <span class="math inline">\(\boldsymbol A\)</span>.]</li>
+<li>We rescale <span class="math inline">\(\boldsymbol a_1\)</span> and <span class="math inline">\(\boldsymbol b_1\)</span> so that they are unit vectors.</li>
+</ul>
+<p>This leads to the standardised 1st CC weight vectors
+<span class="math display">\[
+\boldsymbol a_1=\begin{pmatrix} 0.987\\0.160  \end{pmatrix} \qquad \text{and} \qquad
+\begin{pmatrix} 0.743\\ -0.670\end{pmatrix}
+\]</span>
+and the 1st CC variables, obtained by using these weights, are
+<span class="math display">\[
+\eta_1 =0.987*(W-\bar{W}) +0.160*(D -\bar{D})
+\]</span>
+and
+<span class="math display">\[
+ \psi_1 = 0.743*(F-\bar{F}) - 0.670*(A-\bar{A}),
+\]</span>
+where the bars are used to denote sample means.</p>
+<p>We can see that <span class="math inline">\(\psi_1\)</span> is measuring something similar to goal difference <span class="math inline">\(F-A\)</span>, as usually defined, but it gives slightly higher weight to goals scored than goals conceded (<span class="math inline">\(0.743\)</span> versus <span class="math inline">\(0.670\)</span>).</p>
+<p>It is also seen that <span class="math inline">\(\eta_1\)</span> is measuring something similar to number of points <span class="math inline">\(3*W+D\)</span>, as usually defined, but the ratio of points for a win to points for a draw is somewhat higher, at around 6:1, as opposed to the usual ratio 3:1.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="5-cca.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-2-the-full-set-of-canonical-correlations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

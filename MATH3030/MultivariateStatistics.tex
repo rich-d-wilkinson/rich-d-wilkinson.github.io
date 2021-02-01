@@ -1583,16 +1583,14 @@ which is the usual least-squares estimator.
 
 The \textbf{centering matrix} will be play an important role in this module, as we will use it to remove the column means from a matrix (so that each column has mean zero), \emph{centering} the matrix.
 
-\begin{verbatim}
 \begin{definition}
-<span class="definition" id="def:centeringmatrix"><strong>\label{def:centeringmatrix} </strong></span>The **centering matrix** is 
+\protect\hypertarget{def:centeringmatrix}{}{\label{def:centeringmatrix} } The \textbf{centering matrix} is
 \begin{equation}
-\bH=\bI_n - \frac{1}{n} {\mathbf 1}_n {\mathbf 1}_n^\top.
+\boldsymbol H=\mathbf I_n - \frac{1}{n} {\mathbf 1}_n {\mathbf 1}_n^\top.
 \label{eq:Hcentre}
 \end{equation}
-where $\bI_n$ is the $n \times n$ identity matrix, and ${\mathbf 1}_n$ is an $n \times 1$ column vector of ones.
+where \(\mathbf I_n\) is the \(n \times n\) identity matrix, and \({\mathbf 1}_n\) is an \(n \times 1\) column vector of ones.
 \end{definition}
-\end{verbatim}
 
 You will be asked to prove the following results about \(\boldsymbol H\) in the exercises:
 
@@ -2692,10 +2690,7 @@ We will see much more of the SVD in later chapters.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
- The spectral decomposition of $\bA$ is 
-\end{verbatim}
-
+The spectral decomposition of \(\boldsymbol A\) is
 \[\boldsymbol A= \boldsymbol Q\boldsymbol \Lambda\boldsymbol Q^\top\]
 Let's check this in R (noting as always that there may be some numerical errors)
 
@@ -2717,9 +2712,7 @@ Let's check this in R (noting as always that there may be some numerical errors)
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
- Since A is positive definite, we can calculate the symmetric, positive definite square root of A.
-\end{verbatim}
+Since A is positive definite, we can calculate the symmetric, positive definite square root of A.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2734,12 +2727,14 @@ Let's check this in R (noting as always that there may be some numerical errors)
 ## [2,]    1    6
 \end{verbatim}
 
-\begin{verbatim}
- - Instead of using the full eigendecomposition for $\bA$, try truncating it and using just a single eigenvalue and eigenvector, i.e., compute
-\end{verbatim}
-
-\[\boldsymbol A' = \lambda_1 \boldsymbol q_1 \boldsymbol q_1^\top\]
-- Compute the difference between \(\boldsymbol A\) and \(\boldsymbol A'\) using the 2-norm and the Frobenius norm.
+\begin{itemize}
+\tightlist
+\item
+  Instead of using the full eigendecomposition for \(\boldsymbol A\), try truncating it and using just a single eigenvalue and eigenvector, i.e., compute
+  \[\boldsymbol A' = \lambda_1 \boldsymbol q_1 \boldsymbol q_1^\top\]
+\item
+  Compute the difference between \(\boldsymbol A\) and \(\boldsymbol A'\) using the 2-norm and the Frobenius norm.
+\end{itemize}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2759,21 +2754,20 @@ Let's check this in R (noting as always that there may be some numerical errors)
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-- Compute the SVD of $\bX$ in R and report its singular values.
-
-- Does R report the full or  compact SVD?
-
-
-- Check that $\bX \bv = \sigma \bu$.
-
-
-- Compute the best rank-1, rank-2, and rank-3 approximations to $\bX$, and report the 2-norm and Frobenious norm for these approximations
-
-- Compute the eigenvalues of $\bX^\top \bX$. How do these relate to the singular values? How does  $\bX^\top \bX$ relate to the sample covariance matrix of the iris data? How do the singular values relate to the eigenvalues of the covariance matrix?
-
-- Let $\bS$ be the sample covariance matrix of the iris dataset. What vector maximizes $\bx \bS\bx$? 
-\end{verbatim}
+\begin{itemize}
+\item
+  Compute the SVD of \(\boldsymbol X\) in R and report its singular values.
+\item
+  Does R report the full or compact SVD?
+\item
+  Check that \(\boldsymbol X\boldsymbol v= \sigma \boldsymbol u\).
+\item
+  Compute the best rank-1, rank-2, and rank-3 approximations to \(\boldsymbol X\), and report the 2-norm and Frobenious norm for these approximations
+\item
+  Compute the eigenvalues of \(\boldsymbol X^\top \boldsymbol X\). How do these relate to the singular values? How does \(\boldsymbol X^\top \boldsymbol X\) relate to the sample covariance matrix of the iris data? How do the singular values relate to the eigenvalues of the covariance matrix?
+\item
+  Let \(\boldsymbol S\) be the sample covariance matrix of the iris dataset. What vector maximizes \(\boldsymbol x\boldsymbol S\boldsymbol x\)?
+\end{itemize}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3265,7 +3259,8 @@ The sample covariance matrix can be computed in two ways:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Remember R uses the unbiased factor 1/(n-1), so the 9/10=(n-1)/n changes this to 1/n }
+\CommentTok{# Remember R uses the unbiased factor 1/(n-1), }
+\CommentTok{# so the 9/10=(n-1)/n changes this to 1/n }
 \CommentTok{# to match the notes}
 \end{Highlighting}
 \end{Shaded}
@@ -3356,6 +3351,7 @@ We can find the transformed variables by computing either \(\boldsymbol X\boldsy
 \end{verbatim}
 
 If we plot the PC scores we can see that the variation is now in line with the new coordinate axes:
+
 \includegraphics{04-pca_files/figure-latex/unnamed-chunk-10-1.pdf}
 
 R also has a built-in function for doing PCA.
@@ -3767,6 +3763,7 @@ Leicester City & -32.2 & -1.1\\
 \end{table}
 
 Now that we have reduced the dimension to \(p=2\), we can visualise the differences between the teams.
+
 \includegraphics{04-pca_files/figure-latex/unnamed-chunk-26-1.pdf}
 
 We might interpret the PCs as follows. The first PC seems to measure the difference in goals scored and conceded between teams. It rewards teams with 0 for positive goal difference, and 0.37 for each goal scored, whilst penalising them by -0.58 for every goal they concede. So a team with a large positive PC1 score tends to score lots of goals and concede few. If we rank teams by their PC1 score, and compare this with the rankings using 3 points for a win and 1 point for a draw we get a different ranking of the teams.
@@ -4222,7 +4219,8 @@ Finally, let's do PCA on a selection of the 60,000 images (not just the 3s). You
 \NormalTok{image_index <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{60000}\NormalTok{, }\DataTypeTok{size=}\DecValTok{5000}\NormalTok{) }\CommentTok{# select a random sample of images}
 \NormalTok{mnist.pca <-}\StringTok{ }\KeywordTok{prcomp}\NormalTok{(mnist}\OperatorTok{$}\NormalTok{train}\OperatorTok{$}\NormalTok{x[image_index,], }\DataTypeTok{rank=}\DecValTok{2}\NormalTok{)}
 \NormalTok{Digit =}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(mnist}\OperatorTok{$}\NormalTok{train}\OperatorTok{$}\NormalTok{y[image_index])}
-\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{as.data.frame}\NormalTok{(mnist.pca}\OperatorTok{$}\NormalTok{x), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{PC1, }\DataTypeTok{y=}\NormalTok{PC2, }\DataTypeTok{colour=}\NormalTok{Digit, }\DataTypeTok{label=}\NormalTok{Digit)) }\OperatorTok{+}\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{Digit))}
+\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{as.data.frame}\NormalTok{(mnist.pca}\OperatorTok{$}\NormalTok{x), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{PC1, }\DataTypeTok{y=}\NormalTok{PC2, }\DataTypeTok{colour=}\NormalTok{Digit, }\DataTypeTok{label=}\NormalTok{Digit))}\OperatorTok{+}
+\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{Digit))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4281,9 +4279,7 @@ Now we will do the same thing again, but using the \texttt{svd} command.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-Carry out PCA on the data in $X$, including obtaining a scree plot and plotting the PC scores.
-\end{verbatim}
+Carry out PCA on the data in \(X\), including obtaining a scree plot and plotting the PC scores.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4366,11 +4362,15 @@ Some questions:
 ##  [1] 4.22 2.38 1.88 1.11 0.91 0.82 0.58 0.44 0.35 0.19 0.05 0.04 0.04
 \end{verbatim}
 
-\begin{verbatim}
-- Sketch a scree plot.
-- Determine the minimum number of principal components needed to explain 90\% of the total variation.
-- Determine the number of principal components whose eigenvalues are above average.
-\end{verbatim}
+\begin{itemize}
+\tightlist
+\item
+  Sketch a scree plot.
+\item
+  Determine the minimum number of principal components needed to explain 90\% of the total variation.
+\item
+  Determine the number of principal components whose eigenvalues are above average.
+\end{itemize}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4952,7 +4952,7 @@ So we should refer \(W_0\) to \(\chi_4^2\) and refer \(W_1\) to \(\chi_1^2\). He
 \chapter{Multidimensional Scaling}\label{mds}}
 
 In this chapter our starting point is somewhat different. Suppose we have a sample of \(n\) experimental units
-and we have a way to measure \texttt{distance\textquotesingle{}\ or}dissimilarity' between any pair of experimental units \(i\) and \(j\), leading to a measure of distance or dissimilarity \(d_{ij}\), \(i,j=1, \ldots , n\). The starting point for Multidimensional Scaling (MDS) is a distance matrix \(\boldsymbol D=(d_{ij}: \, i,j=1, \ldots , n)\). A key goal in MDS is to determine coordinates of a set of points in a low-dimensional Euclidean space, e.g. \(\mathbb{R}\) or \(\mathbb{R}^2\), whose inter-point distances (or dissimilarities) are approximately equal to the \(d_{ij}\). Using this approximate approach we are able to perform a statistical study of the original experimental units in a lower-dimensional space than the original one. We shall also see that there is a close connection between MDS and PCA.
+and we have a way to measure \emph{distance} or \emph{dissimilarity} between any pair of experimental units \(i\) and \(j\), leading to a measure of distance or dissimilarity \(d_{ij}\), \(i,j=1, \ldots , n\). The starting point for Multidimensional Scaling (MDS) is a distance matrix \(\boldsymbol D=(d_{ij}: \, i,j=1, \ldots , n)\). A key goal in MDS is to determine coordinates of a set of points in a low-dimensional Euclidean space, e.g. \(\mathbb{R}\) or \(\mathbb{R}^2\), whose inter-point distances (or dissimilarities) are approximately equal to the \(d_{ij}\). Using this approximate approach we are able to perform a statistical study of the original experimental units in a lower-dimensional space than the original one. We shall also see that there is a close connection between MDS and PCA.
 
 \hypertarget{multidimensional-scaling}{%
 \section{Multidimensional Scaling}\label{multidimensional-scaling}}
