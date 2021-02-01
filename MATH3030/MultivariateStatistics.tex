@@ -228,6 +228,7 @@
 \newcommand{\BE}{{\mathbb{E}}}
 \newcommand{\cov}{{\mathbb{C}\operatorname{ov}}}
 \newcommand{\var}{{\mathbb{V}\operatorname{ar}}}
+\newcommand{\cor}{{\mathbb{C}\operatorname{or}}}
 
 \textbf{Warning:} these lecture notes are still in preparation. Chapters 1-4 have been finished. Chapters 5-6 are being worked on. Later chapters will appear once a reasonable draft is available.
 
@@ -665,9 +666,150 @@ Equation \eqref{eq:samplemean} gives an unbiased estimator of the sample mean. T
 \hypertarget{computer-tasks}{%
 \section{Computer tasks}\label{computer-tasks}}
 
-\begin{example}[Task 1]
-\protect\hypertarget{exm:unnamed-chunk-9}{}{\label{exm:unnamed-chunk-9} \iffalse (Task 1) \fi{} }The table below shows the module marks for 5 students on the modules G11PRB (\(P\)) and G11STA (\(S\)).
-\end{example}
+If you haven't done so already, please download and install R and Rstudio. R is the programming language, and Rstudio is an integrated development environment that makes using R much more pleasurable. My advice is to always use Rstudio and never run code in R itself.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{-1}
+\item
+  \textbf{For complete beginners:} For those who are completely new to R (or those who want a refresher), I recommend working through an online tutorial. \href{https://www.statmethods.net/r-tutorial/index.html}{This} tutorial looks good, but contains more than you'll need.
+\item
+  \textbf{Warm-up:} The most important aspects of R to focus on for this module are
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Basic plotting
+  \item
+    Manipulation of matrices and data frames.
+  \end{itemize}
+
+  Let's look at the \texttt{iris} dataset.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Can you plot the sepal length against the sepal width?
+  \end{itemize}
+
+  We'll now do some exercises on data manipulation. Note that there are several ways to do basic data manipulation in R. You can use base R commands or if you prefer, you can use the \href{https://dplyr.tidyverse.org/}{dplyr} commands which are part of the \texttt{tidyverse} packages.
+  For example, to select columns, in base you can do:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris[,}\DecValTok{2}\NormalTok{] }\CommentTok{# selects column 2}
+\NormalTok{iris}\OperatorTok{$}\NormalTok{Sepal.Width }\CommentTok{# selects the same column by name}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+or using dplyr you can do
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\KeywordTok{select}\NormalTok{(iris, }\StringTok{"Sepal.Width"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+- Can you select the  column of the `iris` data  that contains just the sepal length and add it to the sepal width?
+
+
+To select only certain rows of the data (i.e. to filter it), we can again use either base R or dplyr.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris[iris[,}\DecValTok{3}\NormalTok{]}\OperatorTok{<}\DecValTok{5}\NormalTok{,] }\CommentTok{# select all rows that have a petal length less than 5.}
+\KeywordTok{filter}\NormalTok{(iris, Petal.Length}\OperatorTok{<}\DecValTok{5}\NormalTok{) }\CommentTok{# do the same thing using dplyr}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+- Can you now select all the rows of the `iris` data frame that are for species *setosa*? What is the mean petal length for these flowers?
+
+- Can you select all the flowers that have a sepal length greater than 5? What is the proportion of each species of iris in this set?
+
+
+A nice aspect of dplyr is that you can chain commmands together. So for example, to select the versicolour flowers with petal width less than 1.5, we can do
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Species}\OperatorTok{==}\StringTok{'versicolor'}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Petal.Width}\OperatorTok{<}\FloatTok{1.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+- Can you select all the flowers that have a sepal length greater than 6, and a petal length less than 5? What is the proportion of each species in this set? 
+
+
+Note that `iris` is a data frame
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.data.frame}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{verbatim}
+which is a type of structure used in R. This is convenient for some tasks, but not for others. Let's first extract the four numerical columns and store them as a matrix $X$.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{is.matrix}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(iris[,}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{])}
+\KeywordTok{is.matrix}\NormalTok{(X)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{verbatim}
+- Select the 4 numerical columns and multiply the first column by 1, the second by 2, the third by 3, and the 4th by 4. One way to do this is by multiplying $X$ by the diagonal matrix
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{diag}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    0    0    0
+## [2,]    0    2    0    0
+## [3,]    0    0    3    0
+## [4,]    0    0    0    4
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  The table below shows the module marks for 5 students on the modules G11PRB (\(P\)) and G11STA (\(S\)).
+\end{enumerate}
 
 \begin{table}[H]
 \centering
@@ -684,17 +826,13 @@ E & 59 & 85\\
 \end{tabular}
 \end{table}
 
-\begin{itemize}
-\tightlist
-\item
-  As an exercise, calculate the sample mean, sample covariance, sample correlation and total variation by hand.
-\end{itemize}
+\begin{verbatim}
+- As an exercise, calculate the sample mean, sample covariance, sample correlation and total variation by hand. 
+\end{verbatim}
 
-\begin{itemize}
-\tightlist
-\item
-  Now calculate these in R using \texttt{colMeans}, \texttt{cov}, and \texttt{cor}. These commands assume each column is a different variable, and each row a different observation.
-\end{itemize}
+\begin{verbatim}
+-  Now calculate these in R using `colMeans`, `cov`, and `cor`. These commands assume each column is a different variable, and each row a different observation.
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -705,27 +843,6 @@ E & 59 & 85\\
   \DataTypeTok{S =} \KeywordTok{c}\NormalTok{(}\DecValTok{63}\NormalTok{,}\DecValTok{82}\NormalTok{,}\DecValTok{38}\NormalTok{,}\DecValTok{57}\NormalTok{,}\DecValTok{85}\NormalTok{)}
 \NormalTok{  )}
 
-\NormalTok{Ex1 }\OperatorTok{%>%}\StringTok{ }\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\DataTypeTok{booktabs =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{kable_styling}\NormalTok{(}\DataTypeTok{full_width =}\NormalTok{ F)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{lrr}
-\toprule
-Student & P & S\\
-\midrule
-A & 41 & 63\\
-B & 72 & 82\\
-C & 46 & 38\\
-D & 77 & 57\\
-E & 59 & 85\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{Ex1 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select_if}\NormalTok{(is.numeric) }\OperatorTok{%>%}\StringTok{ }\NormalTok{colMeans}
 \end{Highlighting}
 \end{Shaded}
@@ -747,13 +864,16 @@ E & 59 & 85\\
 ## S 116.0 371.5
 \end{verbatim}
 
-Note that by default R uses \(n-1\) in the denominator for the variance and covariance commands, whereas we used \(n\) in our definition.
+\begin{verbatim}
+Note that by default R uses $n-1$ in the denominator for the variance and covariance commands, whereas we used $n$ in our definition. <!-- hence the multiple of $4/5=(n-1)/n introduced in the covariance calculations above.-->
 
-We will be using the \texttt{dplyr} R package to perform basic data manipulation in R.
-If you are unfamiliar with \texttt{dplyr}, you can read about it at \url{https://dplyr.tidyverse.org/}.
-The pipe command \texttt{\%\textgreater{}\%} is particularly useful for chaining together multiple commands.
+
+We will be using the `dplyr` R package to perform basic data manipulation in R. If you are unfamiliar with  `dplyr`, you can read about it at [https://dplyr.tidyverse.org/](https://dplyr.tidyverse.org/). The pipe command `%>%` is particularly useful for chaining together multiple commands.
+
 
 You could compute the same quantities using more familiar commands by selecting the numerical columns:
+ 
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -778,10 +898,13 @@ You could compute the same quantities using more familiar commands by selecting 
 ## S 116.0 371.5
 \end{verbatim}
 
-\begin{example}[Task 2]
-\protect\hypertarget{exm:unnamed-chunk-14}{}{\label{exm:unnamed-chunk-14} \iffalse (Task 2) \fi{} }
-The \texttt{mtcars} dataset is another built-in dataset in R. You can read about it by typing \texttt{?mtcars} in R. Note that some of the variables are factors. You can ensure R treats them as factors by using the following command to create a dataset where they are listed as factors:
-\end{example}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  The \texttt{mtcars} dataset is another built-in dataset in R. You can read about it by typing \texttt{?mtcars} in R. Note that some of the variables are factors. You can ensure R treats them as factors by using the following command to create a dataset where they are listed as factors:
+\end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -795,7 +918,9 @@ The \texttt{mtcars} dataset is another built-in dataset in R. You can read about
 \end{Highlighting}
 \end{Shaded}
 
-Work with the \texttt{mtcars2} dataframe when you use \texttt{ggplot2}.
+\begin{verbatim}
+Work with the `mtcars2` dataframe when you use `ggplot2`.
+\end{verbatim}
 
 \begin{itemize}
 \tightlist
@@ -809,13 +934,17 @@ Work with the \texttt{mtcars2} dataframe when you use \texttt{ggplot2}.
   Find another type of plot from one of the plot galleries and try to create a similar plot with these data.
 \end{itemize}
 
-\begin{example}[Task 3]
-\protect\hypertarget{exm:unnamed-chunk-16}{}{\label{exm:unnamed-chunk-16} \iffalse (Task 3) \fi{} }We can 100 generate samples from the multivariate normal distribution with mean vector
-\[\boldsymbol \mu= \left(\begin{array}{c}1\\0\end{array}\right)\]
-and covariance matrix
-\[\boldsymbol \Sigma= \left(\begin{array}{cc}2&1\\1&2\end{array}\right)\]
-as follows (you may need to install the R package \texttt{mvtnorm} first):
-\end{example}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  We can 100 generate samples from the multivariate normal distribution with mean vector
+  \[\boldsymbol \mu= \left(\begin{array}{c}1\\0\end{array}\right)\]
+  and covariance matrix
+  \[\boldsymbol \Sigma= \left(\begin{array}{cc}2&1\\1&2\end{array}\right)\]
+  as follows (you may need to install the R package \texttt{mvtnorm} first):
+\end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -836,27 +965,135 @@ as follows (you may need to install the R package \texttt{mvtnorm} first):
   Try changing \(n\), the number of samples (making it much larger say), and now recomputing the mean and covariance. What do you notice?
 \end{itemize}
 
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  \textbf{Optional} Download the MNIST data from Moodle and load it into R.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{load}\NormalTok{(}\StringTok{'mnist.rda'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+This loads a list `mnist` that splits the data into two parts
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mnist}\OperatorTok{$}\NormalTok{train }\CommentTok{## a training set of 60000 images}
+\NormalTok{mnist}\OperatorTok{$}\NormalTok{test }\CommentTok{## a test set of 10000 images}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Let's just look at the training set. This is also a list containing the image intensities and the image labels
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mnist}\OperatorTok{$}\NormalTok{train}\OperatorTok{$}\NormalTok{x }\CommentTok{# image intensities}
+\NormalTok{mnist}\OperatorTok{$}\NormalTok{train}\OperatorTok{$}\NormalTok{y }\CommentTok{# image labels}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+If we select just the first image we can see it is a vector of length 784 containing numbers between 0 and 1.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mnist}\OperatorTok{$}\NormalTok{train}\OperatorTok{$}\NormalTok{x[}\DecValTok{1}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+I've created a function to help you plot these images. 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(reshape2)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+
+
+\NormalTok{plot.mnist <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(im)\{}
+  \CommentTok{#im[im<0]<-0 # set any negative intensities to zero}
+  \CommentTok{#im[im>1]<-1 # set an intensities bigger than 1 to 1.}
+  
+  
+  \ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.vector}\NormalTok{(im))\{ }\CommentTok{# a single image}
+    
+\NormalTok{    A<-}\KeywordTok{matrix}\NormalTok{(im, }\DataTypeTok{nr=}\DecValTok{28}\NormalTok{, }\DataTypeTok{byrow=}\NormalTok{F)}
+\NormalTok{    C<-}\StringTok{ }\KeywordTok{melt}\NormalTok{(A, }\DataTypeTok{varnames =} \KeywordTok{c}\NormalTok{(}\StringTok{"x"}\NormalTok{, }\StringTok{"y"}\NormalTok{), }\DataTypeTok{value.name =} \StringTok{"intensity"}\NormalTok{)}
+\NormalTok{    p<-}\KeywordTok{ggplot}\NormalTok{(C, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y, }\DataTypeTok{fill =}\NormalTok{ intensity))}\OperatorTok{+}
+\StringTok{      }\KeywordTok{geom_tile}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill=}\NormalTok{intensity))}\OperatorTok{+}
+\StringTok{      }\KeywordTok{scale_fill_gradient}\NormalTok{(}\DataTypeTok{low=}\StringTok{'white'}\NormalTok{, }\DataTypeTok{high=}\StringTok{'black'}\NormalTok{)}\OperatorTok{+}
+\StringTok{      }\KeywordTok{scale_y_reverse}\NormalTok{()}\OperatorTok{+}\KeywordTok{theme}\NormalTok{(}
+        \DataTypeTok{strip.background =} \KeywordTok{element_blank}\NormalTok{(),}
+        \DataTypeTok{strip.text.x =} \KeywordTok{element_blank}\NormalTok{(),}
+        \DataTypeTok{panel.spacing =} \KeywordTok{unit}\NormalTok{(}\DecValTok{0}\NormalTok{, }\StringTok{"lines"}\NormalTok{),}
+        \DataTypeTok{axis.text =} \KeywordTok{element_blank}\NormalTok{(),}
+        \DataTypeTok{axis.ticks =} \KeywordTok{element_blank}\NormalTok{()}
+\NormalTok{      ) }
+\NormalTok{  \}}
+  \ControlFlowTok{else}\NormalTok{\{}
+    \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{dim}\NormalTok{(im)[}\DecValTok{2}\NormalTok{]}\OperatorTok{!=}\DecValTok{784}\NormalTok{)\{}
+\NormalTok{      im =}\StringTok{ }\KeywordTok{t}\NormalTok{(im)}
+\NormalTok{    \} }
+\NormalTok{    n <-}\StringTok{ }\KeywordTok{dim}\NormalTok{(im)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{    As <-}\StringTok{ }\KeywordTok{array}\NormalTok{(im, }\DataTypeTok{dim =} \KeywordTok{c}\NormalTok{(n, }\DecValTok{28}\NormalTok{, }\DecValTok{28}\NormalTok{))}
+    
+\NormalTok{    Cs<-}\StringTok{ }\KeywordTok{melt}\NormalTok{(As, }\DataTypeTok{varnames =} \KeywordTok{c}\NormalTok{(}\StringTok{"image"}\NormalTok{,}\StringTok{"x"}\NormalTok{, }\StringTok{"y"}\NormalTok{), }\DataTypeTok{value.name =} \StringTok{"intensity"}\NormalTok{)}
+\NormalTok{    p<-}\KeywordTok{ggplot}\NormalTok{(Cs, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y, }\DataTypeTok{fill =}\NormalTok{ intensity))}\OperatorTok{+}
+\StringTok{      }\KeywordTok{geom_tile}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill=}\NormalTok{intensity))}\OperatorTok{+}
+\StringTok{      }\KeywordTok{scale_fill_gradient}\NormalTok{(}\DataTypeTok{low=}\StringTok{'white'}\NormalTok{, }\DataTypeTok{high=}\StringTok{'black'}\NormalTok{)}\OperatorTok{+}
+\StringTok{      }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{image, }\DataTypeTok{nrow =} \KeywordTok{floor}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(n))}\OperatorTok{+}\DecValTok{1}\NormalTok{, }\DataTypeTok{ncol =} \KeywordTok{floor}\NormalTok{(}\KeywordTok{sqrt}\NormalTok{(n))}\OperatorTok{+}\DecValTok{1}\NormalTok{)}\OperatorTok{+}
+\StringTok{      }\KeywordTok{scale_y_reverse}\NormalTok{()}\OperatorTok{+}\KeywordTok{theme}\NormalTok{(}
+        \DataTypeTok{strip.background =} \KeywordTok{element_blank}\NormalTok{(),}
+        \DataTypeTok{strip.text.x =} \KeywordTok{element_blank}\NormalTok{(),}
+        \DataTypeTok{panel.spacing =} \KeywordTok{unit}\NormalTok{(}\DecValTok{0}\NormalTok{, }\StringTok{"lines"}\NormalTok{),}
+        \DataTypeTok{axis.text =} \KeywordTok{element_blank}\NormalTok{(),}
+        \DataTypeTok{axis.ticks =} \KeywordTok{element_blank}\NormalTok{()}
+\NormalTok{      ) }
+    
+\NormalTok{  \}}
+  \KeywordTok{return}\NormalTok{(p)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Use this command to plot the first 10 images from the MNIST training set.
+\item
+  Select all the 5s from the MNIST training set. Plot a selection of these digits.
+\end{itemize}
+
 \hypertarget{exercises}{%
 \section{Exercises}\label{exercises}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Show that the following two formulae for the population covariance matrix \(\boldsymbol \Sigma\) are equivalent, i.e.~show that
-  \[\boldsymbol \Sigma= E[(\boldsymbol x- \boldsymbol \mu) (\boldsymbol x- \boldsymbol \mu)^\top ] = E[ \boldsymbol x\boldsymbol x^\top ] - \boldsymbol \mu\boldsymbol \mu^\top.\]
+  Show that the two formulae for the population covariance matrix \(\boldsymbol \Sigma\) are equivalent, i.e.~show that
+  \[\boldsymbol \Sigma= {\mathbb{E}}[(\boldsymbol x- \boldsymbol \mu) (\boldsymbol x- \boldsymbol \mu)^\top ] = {\mathbb{E}}[ \boldsymbol x\boldsymbol x^\top ] - \boldsymbol \mu\boldsymbol \mu^\top.\]
 \item
   Let \(\boldsymbol x_1, \ldots, \boldsymbol x_n\) be a \(p\)-dimensional sample with mean \(\bar{\boldsymbol x}\) and sample covariance matrix \(\boldsymbol S\). Consider the transformation \(\boldsymbol y_i = \boldsymbol A\boldsymbol x_i + \boldsymbol c\) where \(\boldsymbol A\) is a fixed \(q \times p\) matrix and \(\boldsymbol c\) is a fixed \(q\)-dimensional vector. Let \(\boldsymbol T\) be the sample covariance matrix of \(\boldsymbol y_1, \ldots, \boldsymbol y_n\). Show
 \end{enumerate}
 
 \begin{itemize}
-\tightlist
 \item
   \(\bar{\boldsymbol y} = \boldsymbol A\bar{\boldsymbol x} + \boldsymbol c\),
 \item
   \(\boldsymbol T= \boldsymbol A\boldsymbol S\boldsymbol A^\top\).
-\end{itemize}
 
-Assuming now that \(\boldsymbol x\) is a random vector with \(E(\boldsymbol x)=\boldsymbol \mu\), \(\text{Var}(\boldsymbol x)=\boldsymbol \Sigma\), \(\boldsymbol y=\boldsymbol A\boldsymbol x+\boldsymbol c\) with \(\boldsymbol A\) and \(\boldsymbol c\) as before, \(E(\boldsymbol y)={\pmb \phi}\) and \(\text{Var}(\boldsymbol y)={\pmb \Omega}\), what are the population analogues of results (a) and (b) above?
+  Assuming now that \(\boldsymbol x\) is a random vector with \({\mathbb{E}}(\boldsymbol x)=\boldsymbol \mu\), \({\mathbb{V}\operatorname{ar}}(\boldsymbol x)=\boldsymbol \Sigma\), \(\boldsymbol y=\boldsymbol A\boldsymbol x+\boldsymbol c\) with \(\boldsymbol A\) and \(\boldsymbol c\) as before, \({\mathbb{E}}(\boldsymbol y)={\pmb \phi}\) and \({\mathbb{V}\operatorname{ar}}(\boldsymbol y)={\pmb \Omega}\), what are the population analogues of the results above?
+\end{itemize}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -867,10 +1104,11 @@ Assuming now that \(\boldsymbol x\) is a random vector with \(E(\boldsymbol x)=\
   Calculate the sample mean, the sample covariance matrix and the sample correlation coefficient.
 \item
   Let \(\boldsymbol x\) and \(\boldsymbol y\) be independent random \(p\)-dimensional vectors. Assuming that all relevant moments exist, show that for any real scalars \(\alpha\) and \(\beta\),
-  \[\text{Var}(\alpha \boldsymbol x+ \beta \boldsymbol y) = \alpha^2 \text{Var}(\boldsymbol x) + \beta^2 \text{Var}(\boldsymbol y).\]
-\end{enumerate}
+  \[{\mathbb{V}\operatorname{ar}}(\alpha \boldsymbol x+ \beta \boldsymbol y) = \alpha^2 {\mathbb{V}\operatorname{ar}}(\boldsymbol x) + \beta^2 {\mathbb{V}\operatorname{ar}}(\boldsymbol y).\]
 
-What is the corresponding formula when \(\boldsymbol x\) and \(\boldsymbol y\) are not independent? Express your answer in terms of \(\text{Var}(\boldsymbol x)\), \(\text{Var}(\boldsymbol y)\) and \(\text{Cov}(\boldsymbol x, \boldsymbol y)\).
+  What is the corresponding formula when \(\boldsymbol x\) and \(\boldsymbol y\) are not independent? Express your answer in terms of \({\mathbb{V}\operatorname{ar}}(\boldsymbol x)\), \({\mathbb{V}\operatorname{ar}}(\boldsymbol y)\) and \({\mathbb{C}\operatorname{ov}}(\boldsymbol x, \boldsymbol y)\).
+\item
+\end{enumerate}
 
 \hypertarget{linalg-prelim}{%
 \chapter{Review of linear algebra}\label{linalg-prelim}}
@@ -1461,8 +1699,8 @@ Then \(\boldsymbol Q^\top \boldsymbol Q=\mathbf I_n\), and \(\boldsymbol Q\) is 
 as required.\\
 \end{proof}
 
-\hypertarget{projections}{%
-\subsection{Projections}\label{projections}}
+\hypertarget{projection-matrix}{%
+\subsection{Projections}\label{projection-matrix}}
 
 \begin{definition}
 \protect\hypertarget{def:projection}{}{\label{def:projection} }\(\stackrel{n \times n}{\boldsymbol P}\) is a \emph{projection}
@@ -1729,7 +1967,7 @@ However, it is useful to see these results in the simpler scalar case before mov
 ## [1] 2 2
 \end{verbatim}
 
-Multiplication of a matrix by a scalar is easy - but be carefulm if you use the \texttt{*} for two square matrices, R will do element wise multiplication
+Multiplication of a matrix by a scalar is easy - but be careful if you use the \texttt{*} for two square matrices, as R will do element-wise multiplication
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1859,10 +2097,171 @@ Note that numerical errors will start to appear quite quickly. For example, the 
 \end{Shaded}
 
 \begin{itemize}
-\tightlist
 \item
   Check the properties of the centering matrix (you can ignore 7.) given in Section \ref{centering-matrix}
+\item
+  What does the following command do?
 \end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sweep}\NormalTok{(X, }\DecValTok{2}\NormalTok{, }\KeywordTok{colMeans}\NormalTok{(X))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        Sepal.Length Sepal.Width Petal.Length   Petal.Width
+##   [1,]  -0.74333333  0.44266667       -2.358 -0.9993333333
+##   [2,]  -0.94333333 -0.05733333       -2.358 -0.9993333333
+##   [3,]  -1.14333333  0.14266667       -2.458 -0.9993333333
+##   [4,]  -1.24333333  0.04266667       -2.258 -0.9993333333
+##   [5,]  -0.84333333  0.54266667       -2.358 -0.9993333333
+##   [6,]  -0.44333333  0.84266667       -2.058 -0.7993333333
+##   [7,]  -1.24333333  0.34266667       -2.358 -0.8993333333
+##   [8,]  -0.84333333  0.34266667       -2.258 -0.9993333333
+##   [9,]  -1.44333333 -0.15733333       -2.358 -0.9993333333
+##  [10,]  -0.94333333  0.04266667       -2.258 -1.0993333333
+##  [11,]  -0.44333333  0.64266667       -2.258 -0.9993333333
+##  [12,]  -1.04333333  0.34266667       -2.158 -0.9993333333
+##  [13,]  -1.04333333 -0.05733333       -2.358 -1.0993333333
+##  [14,]  -1.54333333 -0.05733333       -2.658 -1.0993333333
+##  [15,]  -0.04333333  0.94266667       -2.558 -0.9993333333
+##  [16,]  -0.14333333  1.34266667       -2.258 -0.7993333333
+##  [17,]  -0.44333333  0.84266667       -2.458 -0.7993333333
+##  [18,]  -0.74333333  0.44266667       -2.358 -0.8993333333
+##  [19,]  -0.14333333  0.74266667       -2.058 -0.8993333333
+##  [20,]  -0.74333333  0.74266667       -2.258 -0.8993333333
+##  [21,]  -0.44333333  0.34266667       -2.058 -0.9993333333
+##  [22,]  -0.74333333  0.64266667       -2.258 -0.7993333333
+##  [23,]  -1.24333333  0.54266667       -2.758 -0.9993333333
+##  [24,]  -0.74333333  0.24266667       -2.058 -0.6993333333
+##  [25,]  -1.04333333  0.34266667       -1.858 -0.9993333333
+##  [26,]  -0.84333333 -0.05733333       -2.158 -0.9993333333
+##  [27,]  -0.84333333  0.34266667       -2.158 -0.7993333333
+##  [28,]  -0.64333333  0.44266667       -2.258 -0.9993333333
+##  [29,]  -0.64333333  0.34266667       -2.358 -0.9993333333
+##  [30,]  -1.14333333  0.14266667       -2.158 -0.9993333333
+##  [31,]  -1.04333333  0.04266667       -2.158 -0.9993333333
+##  [32,]  -0.44333333  0.34266667       -2.258 -0.7993333333
+##  [33,]  -0.64333333  1.04266667       -2.258 -1.0993333333
+##  [34,]  -0.34333333  1.14266667       -2.358 -0.9993333333
+##  [35,]  -0.94333333  0.04266667       -2.258 -0.9993333333
+##  [36,]  -0.84333333  0.14266667       -2.558 -0.9993333333
+##  [37,]  -0.34333333  0.44266667       -2.458 -0.9993333333
+##  [38,]  -0.94333333  0.54266667       -2.358 -1.0993333333
+##  [39,]  -1.44333333 -0.05733333       -2.458 -0.9993333333
+##  [40,]  -0.74333333  0.34266667       -2.258 -0.9993333333
+##  [41,]  -0.84333333  0.44266667       -2.458 -0.8993333333
+##  [42,]  -1.34333333 -0.75733333       -2.458 -0.8993333333
+##  [43,]  -1.44333333  0.14266667       -2.458 -0.9993333333
+##  [44,]  -0.84333333  0.44266667       -2.158 -0.5993333333
+##  [45,]  -0.74333333  0.74266667       -1.858 -0.7993333333
+##  [46,]  -1.04333333 -0.05733333       -2.358 -0.8993333333
+##  [47,]  -0.74333333  0.74266667       -2.158 -0.9993333333
+##  [48,]  -1.24333333  0.14266667       -2.358 -0.9993333333
+##  [49,]  -0.54333333  0.64266667       -2.258 -0.9993333333
+##  [50,]  -0.84333333  0.24266667       -2.358 -0.9993333333
+##  [51,]   1.15666667  0.14266667        0.942  0.2006666667
+##  [52,]   0.55666667  0.14266667        0.742  0.3006666667
+##  [53,]   1.05666667  0.04266667        1.142  0.3006666667
+##  [54,]  -0.34333333 -0.75733333        0.242  0.1006666667
+##  [55,]   0.65666667 -0.25733333        0.842  0.3006666667
+##  [56,]  -0.14333333 -0.25733333        0.742  0.1006666667
+##  [57,]   0.45666667  0.24266667        0.942  0.4006666667
+##  [58,]  -0.94333333 -0.65733333       -0.458 -0.1993333333
+##  [59,]   0.75666667 -0.15733333        0.842  0.1006666667
+##  [60,]  -0.64333333 -0.35733333        0.142  0.2006666667
+##  [61,]  -0.84333333 -1.05733333       -0.258 -0.1993333333
+##  [62,]   0.05666667 -0.05733333        0.442  0.3006666667
+##  [63,]   0.15666667 -0.85733333        0.242 -0.1993333333
+##  [64,]   0.25666667 -0.15733333        0.942  0.2006666667
+##  [65,]  -0.24333333 -0.15733333       -0.158  0.1006666667
+##  [66,]   0.85666667  0.04266667        0.642  0.2006666667
+##  [67,]  -0.24333333 -0.05733333        0.742  0.3006666667
+##  [68,]  -0.04333333 -0.35733333        0.342 -0.1993333333
+##  [69,]   0.35666667 -0.85733333        0.742  0.3006666667
+##  [70,]  -0.24333333 -0.55733333        0.142 -0.0993333333
+##  [71,]   0.05666667  0.14266667        1.042  0.6006666667
+##  [72,]   0.25666667 -0.25733333        0.242  0.1006666667
+##  [73,]   0.45666667 -0.55733333        1.142  0.3006666667
+##  [74,]   0.25666667 -0.25733333        0.942  0.0006666667
+##  [75,]   0.55666667 -0.15733333        0.542  0.1006666667
+##  [76,]   0.75666667 -0.05733333        0.642  0.2006666667
+##  [77,]   0.95666667 -0.25733333        1.042  0.2006666667
+##  [78,]   0.85666667 -0.05733333        1.242  0.5006666667
+##  [79,]   0.15666667 -0.15733333        0.742  0.3006666667
+##  [80,]  -0.14333333 -0.45733333       -0.258 -0.1993333333
+##  [81,]  -0.34333333 -0.65733333        0.042 -0.0993333333
+##  [82,]  -0.34333333 -0.65733333       -0.058 -0.1993333333
+##  [83,]  -0.04333333 -0.35733333        0.142  0.0006666667
+##  [84,]   0.15666667 -0.35733333        1.342  0.4006666667
+##  [85,]  -0.44333333 -0.05733333        0.742  0.3006666667
+##  [86,]   0.15666667  0.34266667        0.742  0.4006666667
+##  [87,]   0.85666667  0.04266667        0.942  0.3006666667
+##  [88,]   0.45666667 -0.75733333        0.642  0.1006666667
+##  [89,]  -0.24333333 -0.05733333        0.342  0.1006666667
+##  [90,]  -0.34333333 -0.55733333        0.242  0.1006666667
+##  [91,]  -0.34333333 -0.45733333        0.642  0.0006666667
+##  [92,]   0.25666667 -0.05733333        0.842  0.2006666667
+##  [93,]  -0.04333333 -0.45733333        0.242  0.0006666667
+##  [94,]  -0.84333333 -0.75733333       -0.458 -0.1993333333
+##  [95,]  -0.24333333 -0.35733333        0.442  0.1006666667
+##  [96,]  -0.14333333 -0.05733333        0.442  0.0006666667
+##  [97,]  -0.14333333 -0.15733333        0.442  0.1006666667
+##  [98,]   0.35666667 -0.15733333        0.542  0.1006666667
+##  [99,]  -0.74333333 -0.55733333       -0.758 -0.0993333333
+## [100,]  -0.14333333 -0.25733333        0.342  0.1006666667
+## [101,]   0.45666667  0.24266667        2.242  1.3006666667
+## [102,]  -0.04333333 -0.35733333        1.342  0.7006666667
+## [103,]   1.25666667 -0.05733333        2.142  0.9006666667
+## [104,]   0.45666667 -0.15733333        1.842  0.6006666667
+## [105,]   0.65666667 -0.05733333        2.042  1.0006666667
+## [106,]   1.75666667 -0.05733333        2.842  0.9006666667
+## [107,]  -0.94333333 -0.55733333        0.742  0.5006666667
+## [108,]   1.45666667 -0.15733333        2.542  0.6006666667
+## [109,]   0.85666667 -0.55733333        2.042  0.6006666667
+## [110,]   1.35666667  0.54266667        2.342  1.3006666667
+## [111,]   0.65666667  0.14266667        1.342  0.8006666667
+## [112,]   0.55666667 -0.35733333        1.542  0.7006666667
+## [113,]   0.95666667 -0.05733333        1.742  0.9006666667
+## [114,]  -0.14333333 -0.55733333        1.242  0.8006666667
+## [115,]  -0.04333333 -0.25733333        1.342  1.2006666667
+## [116,]   0.55666667  0.14266667        1.542  1.1006666667
+## [117,]   0.65666667 -0.05733333        1.742  0.6006666667
+## [118,]   1.85666667  0.74266667        2.942  1.0006666667
+## [119,]   1.85666667 -0.45733333        3.142  1.1006666667
+## [120,]   0.15666667 -0.85733333        1.242  0.3006666667
+## [121,]   1.05666667  0.14266667        1.942  1.1006666667
+## [122,]  -0.24333333 -0.25733333        1.142  0.8006666667
+## [123,]   1.85666667 -0.25733333        2.942  0.8006666667
+## [124,]   0.45666667 -0.35733333        1.142  0.6006666667
+## [125,]   0.85666667  0.24266667        1.942  0.9006666667
+## [126,]   1.35666667  0.14266667        2.242  0.6006666667
+## [127,]   0.35666667 -0.25733333        1.042  0.6006666667
+## [128,]   0.25666667 -0.05733333        1.142  0.6006666667
+## [129,]   0.55666667 -0.25733333        1.842  0.9006666667
+## [130,]   1.35666667 -0.05733333        2.042  0.4006666667
+## [131,]   1.55666667 -0.25733333        2.342  0.7006666667
+## [132,]   2.05666667  0.74266667        2.642  0.8006666667
+## [133,]   0.55666667 -0.25733333        1.842  1.0006666667
+## [134,]   0.45666667 -0.25733333        1.342  0.3006666667
+## [135,]   0.25666667 -0.45733333        1.842  0.2006666667
+## [136,]   1.85666667 -0.05733333        2.342  1.1006666667
+## [137,]   0.45666667  0.34266667        1.842  1.2006666667
+## [138,]   0.55666667  0.04266667        1.742  0.6006666667
+## [139,]   0.15666667 -0.05733333        1.042  0.6006666667
+## [140,]   1.05666667  0.04266667        1.642  0.9006666667
+## [141,]   0.85666667  0.04266667        1.842  1.2006666667
+## [142,]   1.05666667  0.04266667        1.342  1.1006666667
+## [143,]  -0.04333333 -0.35733333        1.342  0.7006666667
+## [144,]   0.95666667  0.14266667        2.142  1.1006666667
+## [145,]   0.85666667  0.24266667        1.942  1.3006666667
+## [146,]   0.85666667 -0.05733333        1.442  1.1006666667
+## [147,]   0.45666667 -0.55733333        1.242  0.7006666667
+## [148,]   0.65666667 -0.05733333        1.442  0.8006666667
+## [149,]   0.35666667  0.34266667        1.642  1.1006666667
+## [150,]   0.05666667 -0.05733333        1.342  0.6006666667
+\end{verbatim}
 
 \hypertarget{exercises-ch2}{%
 \section{Exercises}\label{exercises-ch2}}
@@ -2030,7 +2429,7 @@ Note that numerical errors will start to appear quite quickly. For example, the 
        \label{eq:SinR}
       \end{equation}
     \textbf{Hint}: using the fact that \(\boldsymbol H\) is a projection matrix,
-    show that \textbackslash{}
+    show that
     \(\boldsymbol X^\top \boldsymbol H\boldsymbol X=(\boldsymbol H\boldsymbol X)^\top (\boldsymbol H\boldsymbol X)\).
   \end{enumerate}
 
@@ -2206,8 +2605,8 @@ determinant will be positive (so that \(\boldsymbol \Sigma\) is \textbf{non-sing
 \protect\hypertarget{prp:eigproj}{}{\label{prp:eigproj} }The eigenvalues of a projection matrix \(\boldsymbol P\) are all \(0\) or \(1\).
 \end{proposition}
 
-\hypertarget{matrix-square-roots}{%
-\subsection{Matrix square roots}\label{matrix-square-roots}}
+\hypertarget{matrixroots}{%
+\subsection{Matrix square roots}\label{matrixroots}}
 
 From the spectral decomposition theorem, we can see that if \(\boldsymbol A\) is a symmetric positive semi-definite matrix, then for any integer \(p\)
 
@@ -2492,7 +2891,7 @@ with the maximum obtained at \(\boldsymbol a=\boldsymbol u_1\) and \(\boldsymbol
 \end{proposition}
 
 \begin{proof}
-\iffalse{} {Proof. } \fi{}
+\iffalse{} {Proof. } \fi{}See chapter \ref{cca}
 \end{proof}
 
 We'll see much more of this kind of thing in Chapters \ref{pca} and \ref{cca}.
@@ -3990,8 +4389,6 @@ and so they are identical to the PC scores of the original variables.
 
 Therefore, under an orthogonal transformation the eigenvalues and PC scores are unchanged; the PCs are orthogonal transformations of the original PCs. We say that the principal components are \textbf{equivariant} with respect to orthogonal transformations.
 
-IS PCA of R EQUIVARAINT?
-
 \hypertarget{an-alternative-view-of-pca}{%
 \section{An alternative view of PCA}\label{an-alternative-view-of-pca}}
 
@@ -4228,8 +4625,8 @@ Finally, let's do PCA on a selection of the 60,000 images (not just the 3s). You
 
 We can see from this scatter plot that the first two principal components do a surprisingly good job of separating and clustering the digits.
 
-\hypertarget{computer-tasks-1}{%
-\section{Computer tasks}\label{computer-tasks-1}}
+\hypertarget{pca-comptask}{%
+\section{Computer tasks}\label{pca-comptask}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4395,157 +4792,199 @@ Suppose we observe a random sample of \(n\) bivariate observations
 \boldsymbol z_1=(x_1,y_1)^\top , \ldots , \boldsymbol z_n=(x_n,y_n)^\top.
 \]
 If we are interested in exploring possible dependence between the \(x_i\)'s and \(y_i\)'s then among the first things we would do would be to obtain a scatterplot of the \(x_i\)'s against the \(y_i\)'s and calculate the correlation coefficient. Recall that the sample correlation coefficient is defined by
-\begin{equation}
-r=r[x,y]=\frac{n^{-1}\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{\left ( n^{-1}\sum_{i=1}^n (x_i-\bar{x})^2  \right )^{1/2}  \left ( n^{-1}\sum_{i=1}^n (y_i-\bar{y})^2 \right )^{1/2}}
+\begin{align}
+r=r(x,y)&=\frac{S_{xy}}{\sqrt{S_{xx}}\sqrt{S_{yy}}}\\
+&=\frac{\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{\left(\sum_{i=1}^n (x_i-\bar{x})^2  \right)^{1/2}  \left(\sum_{i=1}^n (y_i-\bar{y})^2 \right)^{1/2}}
 \label{eq:scr}
-\end{equation}
-where \(\bar{x}=n^{-1}\sum_{i=1}^n x_i\) and \(\bar{y}=n^{-1}\sum_{i=1}^n y_i\) are the sample means. Note that the sample correlation is a \textbf{scale-free measure} of the strength of \textbf{linear dependence} between the \(x_i\)'s and the \(y_i\)'s.
+\end{align}
+where \(\bar{x}=n^{-1}\sum_{i=1}^n x_i\) and \(\bar{y}=n^{-1}\sum_{i=1}^n y_i\) are the sample means.
 
-In this chapter we investigate the multivariate analogue of this question. Suppose
+Recall that the sample correlation is a \textbf{scale-free measure} of the strength of \textbf{linear dependence} between the \(x_i\)'s and the \(y_i\)'s.
+
+In this chapter we investigate the multivariate analogue of this question. Instead of our bivariate observations being a pair of scalars, suppose instead that we are given two different random vectors \(\boldsymbol x\) and \(\boldsymbol y\). In otherwords, for each subject/case \(i\) we have observations
+\(\boldsymbol z_i=(\boldsymbol x_i^\top,\boldsymbol y_i^\top)^\top, \qquad i=1,\ldots, n.\)
+
+Multivariate data structures can be understood better if we look at low-dimensional projections of the data. The question is, given a sample \(\{\boldsymbol x_i, \; \boldsymbol y_i\}_{i=1, \ldots, n}\), what is a sensible way to assess and describe the strength of the linear dependence between the two vectors?
+
+Canonical correlation analysis (CCA) gives an answer to this question in terms of the best low-dimensional linear projections of the \(\boldsymbol x\) and \(\boldsymbol y\) random variables. In a comparable way to PCA, `best' is defined in terms of maximizing correlations etc.
+A key role is played by the singular valued decomposition (SVD) introduced in Chapter \ref{linalg-decomp}.
+
+\hypertarget{cca1}{%
+\section{The first pair of canonical variables}\label{cca1}}
+
+\hypertarget{some-notation}{%
+\subsubsection*{Some notation}\label{some-notation}}
+\addcontentsline{toc}{subsubsection}{Some notation}
+
+Assume we are given a random sample of vectors \(\boldsymbol x_i, \boldsymbol y_i\), and that we stack these into a vector \(\boldsymbol z_i\)
 \[
-\boldsymbol z_i =(\boldsymbol x_i^\top,\boldsymbol y_i^\top)^\top, \qquad i=1,\ldots, n,
-\]
-is a random sample of vectors. What is a sensible way to assess and describe the strength of the linear dependence between the \(\boldsymbol x_i\) vectors and the \(\boldsymbol y_i\) vectors? That is what this chapter is about. A key role is played by the singular valued decomposition (SVD) introduced in Result 2.13 in Chapter 2.
-
-\begin{example}
-\protect\hypertarget{exm:prem}{}{\label{exm:prem} }From time to time we will return to the Premier League example in this chapter. We shall treat \(W\) and \(D\), the number of wins and draws, respectively, as the \(x\)-variables; and \(F\) and \(A\), the number of goals for and against, will be treated as the \(y\)-variables. The number of losses, \(L\), is omitted as it provides no additional information when we know \(W\) and \(D\). A question we shall consider is: how strongly associated are the match outcome variables, \(W\) and \(D\), with the goals for and against variables, \(F\) and \(A\)?
-\end{example}
-
-\hypertarget{canonical-correlation-analysis}{%
-\section{Canonical Correlation Analysis}\label{canonical-correlation-analysis}}
-
-Assume we are given a random sample of vectors
-\[
-\boldsymbol z_i=(\boldsymbol x_i^\top , \boldsymbol y_i^\top )^\top: \, i=1,\ldots, n,
+\boldsymbol z_i=\left(\begin{array}{c}
+\boldsymbol x_i\\
+\boldsymbol y_i
+\end{array}\right)=(\boldsymbol x_i^\top , \boldsymbol y_i^\top )^\top: \, i=1,\ldots, n,
 \]
 where
 the \(\boldsymbol x_i\) are \(p \times 1\), the \(\boldsymbol y_i\) are \(q \times 1\) and, consequently, the \(\boldsymbol z_i\) are \((p+q)\times 1\). We are interested in determining the strength of linear association between the \(\boldsymbol x_i\) vectors and the \(\boldsymbol y_i\) vectors.
 
-Write
-\[
-\bar{\boldsymbol z}=n^{-1}\sum_{i=1}^n \boldsymbol z_i, \qquad \bar{\boldsymbol x}=n^{-1} \sum_{i=1}^n \boldsymbol x_i \qquad \text{and} \qquad \bar{\boldsymbol y}=n^{-1}\sum_{i=1}^n \boldsymbol y_i
-\]
-for the sample mean vectors of the \(\boldsymbol z_i\), \(\boldsymbol x_i\) and \(\boldsymbol y_i\) respectively.
+We formulate this task as an optimisation problem (cf.~PCA). First, we introduce some notation.
 
-We formulate this task as an optimisation problem (cf.~PCA). First, we introduce some notation. Let \(\boldsymbol S_{\boldsymbol z\boldsymbol z}\) denote the sample covariance matrix of the \(\boldsymbol z_i\), \(i=1,\ldots, n\). Then \(\boldsymbol S_{\boldsymbol z\boldsymbol z}\) can be written in block matrix form
-\[
-\boldsymbol S_{\boldsymbol z\boldsymbol z}=\left [\begin{array}{cc}
-\boldsymbol S_{\boldsymbol x\boldsymbol x} & \boldsymbol S_{\boldsymbol x\boldsymbol y}\\
-\boldsymbol S_{\boldsymbol y\boldsymbol x} & \boldsymbol S_{\boldsymbol y\boldsymbol y} \end{array} \right ],
-\]
-where \(\boldsymbol S_{\boldsymbol x\boldsymbol x}\) (\(p \times p\)) is the sample covariance matrix of the \(\boldsymbol x_i\), \(\boldsymbol S_{\boldsymbol y\boldsymbol y}\) (\(q \times q\)) is the sample covariance of the \(\boldsymbol y_i\), and the cross-covariance matrices are given by
-\[
-\stackrel{p \times q}{\boldsymbol S}_{\boldsymbol x\boldsymbol y}=n^{-1} \sum_{i=1}^n (\boldsymbol x_i -\bar{\boldsymbol x})(\boldsymbol y_i-\bar{\boldsymbol y})^\top
-\qquad \text{and} \qquad \stackrel{q \times p}{\boldsymbol S}_{\boldsymbol y\boldsymbol x}=\boldsymbol S_{\boldsymbol x\boldsymbol y}^\top.
-\]
+\begin{itemize}
+\item
+  Let \(\bar{\boldsymbol x}\), \(\bar{\boldsymbol y}\), and \(\bar{\boldsymbol z}\) denote the sample mean vectors of the \(\boldsymbol z_i\), \(\boldsymbol x_i\) and \(\boldsymbol y_i\) respectively.
+\item
+  Let \(\boldsymbol S_{\boldsymbol z\boldsymbol z}\) denote the sample covariance matrix of the \(\boldsymbol z_i\), \(i=1,\ldots, n\). Then \(\boldsymbol S_{\boldsymbol z\boldsymbol z}\) can be written in block matrix form
+  \[
+  \boldsymbol S_{\boldsymbol z\boldsymbol z}=\left [\begin{array}{cc}
+  \boldsymbol S_{\boldsymbol x\boldsymbol x} & \boldsymbol S_{\boldsymbol x\boldsymbol y}\\
+  \boldsymbol S_{\boldsymbol y\boldsymbol x} & \boldsymbol S_{\boldsymbol y\boldsymbol y} \end{array} \right ],
+  \]
+  where \(\boldsymbol S_{\boldsymbol x\boldsymbol x}\) (\(p \times p\)) is the sample covariance matrix of the \(\boldsymbol x_i\), \(\boldsymbol S_{\boldsymbol y\boldsymbol y}\) (\(q \times q\)) is the sample covariance of the \(\boldsymbol y_i\), and the cross-covariance matrices are given by
+  \[
+  \stackrel{p \times q}{\boldsymbol S}_{\boldsymbol x\boldsymbol y}=n^{-1} \sum_{i=1}^n (\boldsymbol x_i -\bar{\boldsymbol x})(\boldsymbol y_i-\bar{\boldsymbol y})^\top
+  \qquad \text{and} \qquad \stackrel{q \times p}{\boldsymbol S}_{\boldsymbol y\boldsymbol x}=\boldsymbol S_{\boldsymbol x\boldsymbol y}^\top.
+  \]
+\end{itemize}
 
-\textbf{Example \ref{exm:prem} (continued)}. The relevant covariance matrix here is given in \eqref{eq:PLES},
-but we need to delete the middle row and middle column because this relates to the variable \(L\), the number of losses,
-which we are omitting. So we are left with
-\begin{equation}
-\boldsymbol S_{\boldsymbol x\boldsymbol x}=\begin{pmatrix} 39.4 & -8.3\\ -8.3 & 8.1   \end{pmatrix} , \qquad
-\boldsymbol S_{\boldsymbol y\boldsymbol y}=\begin{pmatrix} 392.2 & -208.7\\ -208.7 & 230.9   \end{pmatrix}
-\label{eq:bSxy1}
-\end{equation}
-and
-\begin{equation}
-\boldsymbol S_{\boldsymbol x\boldsymbol y}=\boldsymbol S_{\boldsymbol y\boldsymbol x}^\top =
-\begin{pmatrix} 115.7  & -81.9\\ -29.4 & 6.0   \end{pmatrix}.
-\label{eq:bSxy2}
-\end{equation}
-We shall return to this example in a little while.
+\hypertarget{defining-the-optimization-objective}{%
+\subsubsection*{Defining the optimization objective}\label{defining-the-optimization-objective}}
+\addcontentsline{toc}{subsubsection}{Defining the optimization objective}
 
-We want to find the linear combination of the \(x\)-variables and the linear combination of the \(y\)-variables which is most highly correlated.
+We want to find the linear combination of the \(\boldsymbol x\)-variables and the linear combination of the \(\boldsymbol y\)-variables which is most highly correlated.
 
 One version of the optimisation problem we want to solve is: find non-zero vectors \(\stackrel{p \times 1}{\boldsymbol a}\) and \(\stackrel{q \times 1}{\boldsymbol b}\) which maximise the correlation coefficient
 \[
-r[\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y]=\frac{\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b}{(\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a)^{1/2}(\boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b)^{1/2}}.
+{\mathbb{C}\operatorname{or}}(\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y)=r(\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y)=\frac{\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b}{(\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a)^{1/2}(\boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b)^{1/2}}.
 \]
 In other words:
 \begin{align}
-  &\mbox{Find non-zero vectors }\quad  \boldsymbol a\;\; (p \times 1)\mbox{ and  } \boldsymbol b\;\; (q \times 1) \nonumber\\
-  &\mbox{to maximise} \qquad  r[\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y],
-\label{eq:opt26}
+&\mbox{Maximise} \qquad  r(\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y),
+\label{eq:opt26}\\
+  &\mbox{for non-zero vectors}\quad  \boldsymbol a\;\; (p \times 1)\mbox{ and  } \boldsymbol b\;\; (q \times 1) \nonumber
 \end{align}
 
-where \(r[.,.]\) is defined in \eqref{eq:scr}.
-Intuitively, this makes sense, because we want to find the linear combination of the \(x\)-variables and the linear combination of the \(y\)-variables which are most highly correlated.
+where \(r(\cdot,\cdot)\) is defined in \eqref{eq:scr}.
+Intuitively, this makes sense, because we want to find the linear combination of the \(\boldsymbol x\)-variables and the linear combination of the \(\boldsymbol y\)-variables which are most highly correlated.
 
 However, note that for any \(\gamma>0\) and \(\delta>0\),
-\begin{equation}
-  r[\gamma\boldsymbol a^\top \boldsymbol x, \delta \boldsymbol b^\top \boldsymbol y]= \frac{\gamma \delta}{\sqrt{\gamma^2 \delta^2}}r[\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y]=r[\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y],
+\begin{align}
+  r(\gamma\boldsymbol a^\top \boldsymbol x, \delta \boldsymbol b^\top \boldsymbol y)&= \frac{\gamma \delta}{\sqrt{\gamma^2 \delta^2}}r(\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y)\\
+  &=r(\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y),
   \label{eq:invar}
-  \end{equation}
-i.e. \(r[\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y]\) is invariant with respect to positive scalar multiplication of \(\boldsymbol a\) and \(\boldsymbol b\). Consequently there will be an infinite number of solutions to this optimisation problem, because if \(\boldsymbol a\) and \(\boldsymbol b\) are solutions to optimization problem \eqref{eq:opt26}, then so are \(\gamma \boldsymbol a\) and \(\delta \boldsymbol b\), for any \(\gamma>0\) and \(\delta>0\).
+  \end{align}
+i.e. \(r(\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y)\) is invariant to (i.e.~unchanged by) multiplication of \(\boldsymbol a\) and \(\boldsymbol b\) by positive scalars. Consequently there will be an infinite number of solutions to this optimisation problem, because if \(\boldsymbol a\) and \(\boldsymbol b\) are solutions, then so are \(\gamma \boldsymbol a\) and \(\delta \boldsymbol b\), for any \(\gamma>0\) and \(\delta>0\).
 
-A more useful way to formulate this optimisation problem is the following: find
-\begin{equation}
-\max_{\boldsymbol a, \boldsymbol b} \boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b
-\label{eq:opt27a}
-\end{equation}
-subject to the constraints
-\begin{equation}
-\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a=1 \qquad \text{and} \qquad \boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=1.
-\label{eq:opt27b}
-\end{equation}
+A more useful way to formulate this optimisation problem is the following:
+
+\begin{align}
+&\mbox{Maximize }\quad \boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b
+\label{eq:opt27a}\\
+  &\mbox{subject to } \qquad  \boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a=\boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=1.\nonumber
+\end{align}
+
+Thankfully, there is a link between the solutions of the two optimization problems \eqref{eq:opt26} and \eqref{eq:opt27a}. Firstly, the invariance of \(r(\boldsymbol a^\top \boldsymbol x, \boldsymbol b^\top \boldsymbol y)\) when we
+change \(\boldsymbol a\) to \(\gamma \boldsymbol a\) and change \(\boldsymbol b\) to \(\delta \boldsymbol b\), where \(\gamma>0\) and \(\delta>0\) are scalars, means that if
+\(\check{\boldsymbol a}\) and \(\check{\boldsymbol b}\) are a solution to problem \eqref{eq:opt27a}, then for any \(\gamma>0\) and \(\delta>0\), \(\boldsymbol a=\gamma \check{\boldsymbol a}\) and \(\boldsymbol b=\delta \check{\boldsymbol b}\) are a solution to \eqref{eq:opt26}.
+
+Conversely, we can convert any solution to optimization problem \eqref{eq:opt26} to be a solution to the problem \eqref{eq:opt27a}:
 
 \begin{proposition}
-\protect\hypertarget{prp:unnamed-chunk-1}{}{\label{prp:unnamed-chunk-1} }Assume that \(\boldsymbol S_{\boldsymbol x\boldsymbol x}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}\) both are non-singular. Then the following holds.
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  If \(\boldsymbol a=\hat{\boldsymbol a}\) and \(\boldsymbol b=\hat{\boldsymbol b}\) maximise \eqref{eq:opt26}, then
-  \[
-  \boldsymbol a=\check{\boldsymbol a}\equiv\hat{\boldsymbol a}/(\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\boldsymbol a})^{1/2} \qquad \text{and} \qquad
-  \boldsymbol b=\check{\boldsymbol b}\equiv \hat{\boldsymbol b}/(\hat{\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\hat{\boldsymbol b})^{1/2}
-  \]
-  maximise \eqref{eq:opt27a} subject to the constraints \eqref{eq:opt27b}. Moreover, if \(\boldsymbol a=\check{\boldsymbol a}\) and \(\boldsymbol b=\check{\boldsymbol b}\) maximise \eqref{eq:opt27a} subject to constraints
-  \eqref{eq:opt27b} then, for any \(\gamma>0\) and \(\delta>0\), \(\boldsymbol a=\gamma \check{\boldsymbol a}\) and \(\boldsymbol b=\delta \check{\boldsymbol b}\) maximise \eqref{eq:opt26}.
-\item
-  The optimum solution to \eqref{eq:opt27a} and \eqref{eq:opt27b} is obtained when \(\boldsymbol a=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf q}_1\) and \(\boldsymbol b=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2} {\mathbf r}_1\), where \(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\) has SVD
-  \begin{equation}
-  \boldsymbol A\equiv \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}= \sum_{j=1}^t \xi_j {\mathbf q}_j {\mathbf r}_j^\top \equiv {\mathbf Q}{\pmb \Xi} {\mathbf R}^\top,
-  \label{eq:svdcca}
-  \end{equation}
-  where \(\boldsymbol A\) has rank \(t\) and \(\xi_1 \geq \cdots \geq \xi_t >0\).
-\item
-  The maximum value of the correlation coefficient is given by the largest singular value \(\xi_1\).
-\end{enumerate}
+\protect\hypertarget{prp:unnamed-chunk-1}{}{\label{prp:unnamed-chunk-1} }If \(\boldsymbol a\) and \(\boldsymbol b\) maximise \eqref{eq:opt26}, then
+\[
+\check{\boldsymbol a}=\frac{\boldsymbol a}{(\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}{\boldsymbol a})^{1/2}} \qquad \text{and} \qquad
+\check{\boldsymbol b}= \frac{{\boldsymbol b}}{({\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}{\boldsymbol b})^{1/2}}
+\]
+are a solution to the constrained maximization problem \eqref{eq:opt27a}.
 \end{proposition}
 
-Note: the matrix square roots \(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\) of \(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1}\), respectively, are defined using the definition of matrix square roots of symmetric non-negative definite matrices given in Chapter 2.
+\begin{proof}
+\iffalse{} {Proof. } \fi{}
+Suppose \({\boldsymbol a}\) and \({\boldsymbol b}\) are solutions to optimization problem \eqref{eq:opt26}. Then invariance with respect to rescaling implies that \(\check{\boldsymbol a}={\boldsymbol a}/({\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} {\boldsymbol a})^{1/2}\) and \(\check{\boldsymbol b}= {\boldsymbol b}/({\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y} {\boldsymbol b})^{1/2}\) also achieve the optima.
+But \(\check{\boldsymbol a}\) and \(\check{\boldsymbol b}\) satisfy the constraints \(\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a=\boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=1\)
+because
+\[
+\check{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \check{\boldsymbol a}=\frac{{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}{\boldsymbol a}}{\left \{ \left ({\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}{\boldsymbol a}\right )^{1/2}\right \}^2}
+=\frac{{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}{\boldsymbol a}}{{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}{\boldsymbol a}}=1
+\]
+and similarly for \(\check{\boldsymbol b}\).
+So \(\check{\boldsymbol a}\) and \(\check{\boldsymbol b}\) maximises \eqref{eq:opt27a} subject to the constraints.
+\end{proof}
+
+\hypertarget{the-first-canonical-components}{%
+\subsubsection*{The first canonical components}\label{the-first-canonical-components}}
+\addcontentsline{toc}{subsubsection}{The first canonical components}
+
+As in the chapter on PCA, the optimal solution for CCA can be computed using the singular value decomposition. Before we describe the result, let's prove the following proposition from Chapter \ref{linalg-decomp}
+
+\begin{proposition}
+\protect\hypertarget{prp:svdmax2}{}{\label{prp:svdmax2} }For any matrix \(\boldsymbol Q\), we have
+\[
+\max_{\boldsymbol a, \boldsymbol b:\, \vert \vert \boldsymbol a\vert \vert=\vert \vert \boldsymbol b\vert \vert =1} \boldsymbol a^\top \boldsymbol Q\boldsymbol b=\sigma_1.
+\]
+with the maximum obtained at \(\boldsymbol a=\boldsymbol u_1\) and \(\boldsymbol b=\boldsymbol v_1\), the first left and right singular vectors of \(\boldsymbol Q\).
+\end{proposition}
 
 \begin{proof}
-\iffalse{} {Proof. } \fi{}(i) In \eqref{eq:invar} it was noted that, for \(\boldsymbol a\neq {\mathbf 0}_p\) and \(\boldsymbol b\neq {\mathbf 0}_q\), the expression for \(r[\boldsymbol a^\top \boldsymbol x, \boldsymbol b^\top \boldsymbol y]\) is invariant when we change \(\boldsymbol a\) to \(\gamma \boldsymbol a\) and change \(\boldsymbol b\) to \(\delta \boldsymbol b\), where \(\gamma>0\) and \(\delta>0\) are scalars, so the second statement in Result 4.1(i) follows imnmdeiately. Suppose now a solution to problem \eqref{eq:opt26} is achieved when \(\boldsymbol a= \hat{\boldsymbol a}\) and \(\boldsymbol b=\hat{\boldsymbol b}\). Then, due to the invariance with respect to rescaling, the optimum is also achieved when \(\boldsymbol a=\check{\boldsymbol a}\equiv\hat{\boldsymbol a}/(\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \hat{\boldsymbol a})^{1/2}\) and \(\boldsymbol b=\check{\boldsymbol b}\equiv \hat{\boldsymbol b}/(\hat{\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y} \hat{\boldsymbol b})^{1/2}\). But by definition of \(\check{\boldsymbol a}\) and \(\check{\boldsymbol b}\), they satisfy the constraints \eqref{eq:opt27b} because
-\[
-\check{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \check{\boldsymbol a}=\frac{\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\boldsymbol a}}{\left \{ \left (\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\boldsymbol a}\right )^{1/2}\right \}^2}
-=\frac{\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\boldsymbol a}}{\hat{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\boldsymbol a}}=1
-\]
-and, similarly,
-\[
-\check{\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y} \check{\boldsymbol b}=\frac{\hat{\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\hat{\boldsymbol b}}{\hat{\boldsymbol b}^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\hat{\boldsymbol b}}=1.
-\]
-So \(\boldsymbol a=\check{\boldsymbol a}\) and \(\boldsymbol b=\check{\boldsymbol b}\) maximises \eqref{eq:opt27a} subject to the constraints \eqref{eq:opt27b}.
+\iffalse{} {Proof. } \fi{}We'll use the method of Lagrange multipliers to prove this result. Consider the objective
+\[\mathcal{L} = \boldsymbol a^\top \boldsymbol Q\boldsymbol b+\frac{\lambda_1}{2}(1-\boldsymbol a^\top\boldsymbol a)+\frac{\lambda_2}{2} (1-\boldsymbol b^\top \boldsymbol b).\]
+The factor of 1/2 is there to simplify the maths once we differentiate.
+Differentiating with respect to \(\boldsymbol a\) and \(\boldsymbol b\) and setting the derivative equal to zero gives
+\begin{align}
+\boldsymbol 0&= \boldsymbol Q\boldsymbol b-\lambda_1 \boldsymbol a\label{eq:ccaevp1}\\
+\boldsymbol 0&= \boldsymbol Q^\top\boldsymbol a-\lambda_2 \boldsymbol b\label{eq:ccaevp2}
+\end{align}
+where for the second equation we've noted that \(\boldsymbol a^\top \boldsymbol Q\boldsymbol b= \boldsymbol b^\top \boldsymbol Q^\top \boldsymbol a\).
+Left multiplying the first equation by \(\boldsymbol a^\top\) and the second by \(\boldsymbol b^\top\), and recalling that \(\boldsymbol a^\top \boldsymbol a=\boldsymbol b^\top\boldsymbol b=1\), shows that the two Lagrange multipliers are the same \(\lambda_1 = \lambda_2 =: \lambda\) say.
 
-\noindent (ii) \& (iii) We may write the constraints \eqref{eq:opt27b} as
-\[
-\tilde{\boldsymbol a}^\top \tilde{\boldsymbol a}=1 \qquad \text{and} \qquad \tilde{\boldsymbol b}^\top \tilde{\boldsymbol b}=1
+Substituting \(\boldsymbol a=\boldsymbol Q\boldsymbol b/\lambda\) into \eqref{eq:ccaevp1} gives
+\[\boldsymbol Q^\top\boldsymbol Q\boldsymbol b= \lambda^2\boldsymbol b,\]
+and so we can see that \(\boldsymbol b\) is an eigenvalue of \(\boldsymbol Q^\top \boldsymbol Q\), and thus we must have \(\boldsymbol b= \boldsymbol v_i\) for some \(i\), i.e., \(\boldsymbol b\) is one of the right singular vectors of \(\boldsymbol Q\). Similarly, substituting \(\boldsymbol b= \boldsymbol Q^\top \boldsymbol a/\lambda\) into \eqref{eq:ccaevp1} gives
+\[\boldsymbol Q\boldsymbol Q^\top \boldsymbol a= \lambda^2\boldsymbol a.\]
+So \(\boldsymbol a=\boldsymbol u_j\) for some \(j\), i.e., \(\boldsymbol a\) is one of the left singular vectors of \(\boldsymbol Q\).
+
+Finally, consider the original objective with \(\boldsymbol a=\boldsymbol u_j\) and \(\boldsymbol b=\boldsymbol v_i\):
+\[\boldsymbol u_j^\top\boldsymbol Q\boldsymbol v_i = \sigma_i\boldsymbol u_j^\top \boldsymbol u_i = \begin{cases} \sigma_i \mbox{ if } i = j\\
+0 \mbox{ otherwise.}
+\end{cases}
 \]
-where
+Hence we minimize the objective by taking \(\boldsymbol a=\boldsymbol u_1\) and \(\boldsymbol b=\boldsymbol v_1\), and then we find
+\[\max_{\boldsymbol a, \boldsymbol b:\, \vert \vert \boldsymbol a\vert \vert=\vert \vert \boldsymbol b\vert \vert =1} \boldsymbol a^\top \boldsymbol Q\boldsymbol b=\sigma_1.\]
+\end{proof}
+
+We're now in a position to describe the main result giving the first pair of canonical variables
+
+\begin{proposition}
+\protect\hypertarget{prp:unnamed-chunk-4}{}{\label{prp:unnamed-chunk-4} }
+Assume that \(\boldsymbol S_{\boldsymbol x\boldsymbol x}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}\) are both non-singular, and consider the singular value decomposition of the matrix \(\boldsymbol Q=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\)
+\begin{equation}
+\boldsymbol Q= \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2} = {\mathbf U}{\pmb \Sigma} {\mathbf V}^\top = \sum_{j=1}^t \sigma_j {\mathbf u}_j {\mathbf v}_j^\top,
+\label{eq:svdcca}
+\end{equation}
+where \(t=\operatorname{rank}(\boldsymbol Q)\) and \(\sigma_1 \geq \cdots \geq \sigma_t >0\).
+
+Then the solution to the constrained optimization problem \eqref{eq:opt27a} is \[\boldsymbol a=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf u}_1\quad \mbox{and}\quad \boldsymbol b=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf v}_1.\]
+
+The maximum value of the correlation coefficient is given by the largest singular value \(\sigma_1\):
+\[\max_{\boldsymbol a, \boldsymbol b} r(\boldsymbol a^\top\boldsymbol x, \boldsymbol b^\top\boldsymbol b)=\sigma_1.\]
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}If we let
 \[
-\tilde{\boldsymbol a}=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2} \boldsymbol a\qquad \text{and} \qquad \tilde{\boldsymbol b}=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2}\boldsymbol b.
+\tilde{\boldsymbol a}=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2} \boldsymbol a\qquad \text{and} \qquad \tilde{\boldsymbol b}=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2}\boldsymbol b,
+\]
+we may write the constraints \(\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a=\boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=1\) as
+\[
+\tilde{\boldsymbol a}^\top \tilde{\boldsymbol a}=1 \qquad \text{and} \qquad \tilde{\boldsymbol b}^\top \tilde{\boldsymbol b}=1.
 \]
 
-Recall that \(\boldsymbol S_{\boldsymbol x\boldsymbol x}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}\) are assumed to be non-singular. Then, using results from Chapter 2, \(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2}\) will also be non-singular, and so
-\[
-(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2})^{-1}=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \qquad \text{and} \qquad (\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2})^{-1}=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}
-\]
-both exist and so we may write
+Because \(\boldsymbol S_{\boldsymbol x\boldsymbol x}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}\) are non-singular, \(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2}\) must also be non-singular, and so we can compute
+\(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\), using the matrix square roots defined in Section \ref{matrixroots}.
+
+If we write
 \[
 \boldsymbol a=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\tilde{\boldsymbol a} \qquad \text{and} \qquad \boldsymbol b=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2} \tilde{\boldsymbol b},
 \]
-and optimisation problem \eqref{eq:opt27a} subject to \eqref{eq:opt27b} becomes
+then the optimisation problem \eqref{eq:opt27a} becomes
 \[
 \max_{\tilde{\boldsymbol a}, \tilde{\boldsymbol b}}
 \tilde{\boldsymbol a}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2} \tilde{\boldsymbol b}
@@ -4554,174 +4993,479 @@ subject to
 \[
 \vert \vert \tilde{\boldsymbol a} \vert \vert =1 \qquad \text{and} \qquad \vert \vert \tilde{\boldsymbol b}\vert \vert=1.
 \]
-From the properties of the SVD, and in particular Result 2.15 in Chapter 2, we know that the maximum correlation is \(\xi_1\). Moreover, using the SVD again, this is achieved when \(\tilde{\boldsymbol a}={\mathbf q}_1\) and \(\tilde{\boldsymbol b}={\mathbf r}_1\) or, equivalently, \(\boldsymbol a=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf q}_1\) and \(\boldsymbol b=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf r}_1\).\\
+
+Then by proposition \ref{prp:svdmax2} we can see that
+\[\tilde{\boldsymbol a} = \boldsymbol u_1 \quad \mbox{and}\quad\tilde{\boldsymbol b} = \boldsymbol v_1\]
+and the result follows.\\
 \end{proof}
 
-\textbf{Example \ref{exm:prem} (continued)}
-We now want to calculate the matrix \(\boldsymbol A\) in \eqref{eq:svdcca} and then find its singular valued decomposition. We first need to find \(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\).
-Using R to do the calculations, we obtain the following:
-\begin{align*}
-\boldsymbol S_{\boldsymbol x\boldsymbol x}&=\boldsymbol Q_{\boldsymbol x} \boldsymbol \Lambda_{\boldsymbol x} \boldsymbol Q_{\boldsymbol x}^\top\\
-&= \begin{pmatrix}  -0.970 & -0.241\\ 0.241 & -0.970 \end{pmatrix} \begin{pmatrix} 41.46 & 0 \\
- 0 & 6.04\end{pmatrix} \begin{pmatrix} -0.970 & -0.241\\ 0.241 & -0.970  \end{pmatrix}^\top,
-\end{align*}
+We will label the solution found as
+\[\boldsymbol a_1 := \boldsymbol S_{xx}^{-\frac{1}{2}}\boldsymbol u_1\quad \mbox{ and }\quad\boldsymbol b_1 := \boldsymbol S_{yy}^{-\frac{1}{2}}\boldsymbol v_1\]
+to stress that \(\boldsymbol a_1\) and \(\boldsymbol b_1\) are the \textbf{first} pair of \textbf{canonical correlation (CC) vectors}. The variables \(\eta_1=\boldsymbol a_1^\top \boldsymbol x\) and \(\psi_1=\boldsymbol b_1^\top \boldsymbol y\) are called the first pair of \textbf{canonical correlation variables}, and \(\sigma_1\) is the \textbf{first canonical correlation}.
+
+\hypertarget{example-premier-league-football}{%
+\subsection{Example: Premier league football}\label{example-premier-league-football}}
+
+Lets again return to the Premier League from the previous chapter.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\NormalTok{prem1920 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'data/2019_2020EPL.csv'}\NormalTok{) }
+\CommentTok{# the data can be downloaded from https://www.rotowire.com/soccer/league-table.php}
+\NormalTok{table <-}\StringTok{ }\NormalTok{prem1920 }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Team, W, D, L, G, GA, GD) }
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(table,}\DecValTok{5}\NormalTok{), }\DataTypeTok{booktabs =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{escape=}\OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{lrrrrrr}
+\toprule
+Team & W & D & L & G & GA & GD\\
+\midrule
+Liverpool & 32 & 3 & 3 & 85 & 33 & 52\\
+Manchester City & 26 & 3 & 9 & 102 & 35 & 67\\
+Manchester United & 18 & 12 & 8 & 66 & 36 & 30\\
+Chelsea & 20 & 6 & 12 & 69 & 54 & 15\\
+Leicester City & 18 & 8 & 12 & 67 & 41 & 26\\
+\bottomrule
+\end{tabular}
+
+We shall treat \(W\) and \(D\), the number of wins and draws, respectively, as the \(\boldsymbol x\)-variables. The number of goals for and against, \(G\) and \(GA\), will be treated as the \(\boldsymbol y\)-variables. The number of losses and the goal difference, \(L\) and \(GD\), are omitted as they provide no additional information when we know \(W\) and \(D\) (and we've assumed \(\boldsymbol S_{xx}\) is invertible).
+
+We shall consider the questions
+
+\begin{itemize}
+\tightlist
+\item
+  how strongly associated are the match outcome variables, \(W\) and \(D\), with the goals for and against variables, \(G\) and \(GA\)?
+\item
+  what linear combination of \(W\) and \(D\), and of \(G\) and \(GA\) are most strongly correlated?
+\end{itemize}
+
+Firstly, we need to compute the three covariance matrices needed for CCA. These are easily computed in R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X <-}\StringTok{ }\NormalTok{table[}\DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{] }\CommentTok{# W and D}
+\NormalTok{Y <-}\StringTok{ }\NormalTok{table[}\DecValTok{5}\OperatorTok{:}\DecValTok{6}\NormalTok{] }\CommentTok{# G and GA}
+\NormalTok{S_xx <-}\StringTok{ }\KeywordTok{cov}\NormalTok{(X)}
+\NormalTok{S_yy <-}\StringTok{ }\KeywordTok{cov}\NormalTok{(Y)}
+\NormalTok{S_xy <-}\StringTok{ }\KeywordTok{cov}\NormalTok{(X,Y)}
+\end{Highlighting}
+\end{Shaded}
+
+giving
+
+\[\boldsymbol S_{xx} =\begin{pmatrix}40.4&-9.66 \\-9.66&10.7 \\\end{pmatrix}, \quad \boldsymbol S_{yy} =\begin{pmatrix}354&-155 \\-155&141 \\\end{pmatrix}, \quad \boldsymbol S_{xy}=\boldsymbol S_{yx}^\top =\begin{pmatrix}108&-60 \\-28.9&-2.36 \\\end{pmatrix}\]
+
+We now want to calculate the matrix \(\boldsymbol Q\) in \eqref{eq:svdcca} and then find its singular valued decomposition. We first need to find \(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\). Using R to do the computations we obtain the spectral decompositions
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eigen_xx <-}\StringTok{ }\KeywordTok{eigen}\NormalTok{(S_xx)}
+\NormalTok{S_xx_invsqrt <-}\StringTok{ }\NormalTok{eigen_xx}\OperatorTok{$}\NormalTok{vectors}\OperatorTok{%*%}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(eigen_xx}\OperatorTok{$}\NormalTok{values)) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{t}\NormalTok{(eigen_xx}\OperatorTok{$}\NormalTok{vectors)}
+\CommentTok{# check S_xx %*% S_xx_invsqrt %*% S_xx_invsqrt is the identity matrix}
+\end{Highlighting}
+\end{Shaded}
+
+\[\boldsymbol S_{xx} =\boldsymbol Q\boldsymbol \Lambda\boldsymbol Q^\top=\begin{pmatrix}-0.959&-0.285 \\0.285&-0.959 \\\end{pmatrix} \begin{pmatrix}43.2&0 \\0&7.82 \\\end{pmatrix} \begin{pmatrix}-0.959&0.285 \\-0.285&-0.959 \\\end{pmatrix}\]
+
 and so
+
 \begin{align*}
-\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}&=\boldsymbol Q_{\boldsymbol x} \boldsymbol \Lambda_{\boldsymbol x}^{-1/2} \boldsymbol Q_{\boldsymbol x}^\top\\
-&= \begin{pmatrix}  -0.970 & -0.241\\ 0.241 & -0.970 \end{pmatrix} \begin{pmatrix} 41.46^{-1/2} & 0 \\
- 0 & 6.04^{-1/2}\end{pmatrix} \begin{pmatrix} -0.970 & -0.241\\ 0.241 & -0.970  \end{pmatrix}^\top\\
- &=\begin{pmatrix} 0.170 & 0.059\\0.059  &  0.392 \end{pmatrix};
+\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} &= \boldsymbol Q\boldsymbol \Lambda^{-\frac{1}{2}}\boldsymbol Q^\top \\
+&=\begin{pmatrix}-0.959&-0.285 \\0.285&-0.959 \\\end{pmatrix} \begin{pmatrix}0.152&0 \\0&0.357 \\\end{pmatrix} \begin{pmatrix}-0.959&0.285 \\-0.285&-0.959 \\\end{pmatrix}\\
+&= \begin{pmatrix}0.169&0.0561 \\0.0561&0.341 \\\end{pmatrix}.
 \end{align*}
-and, omitting details of the calculations this time,
-\[
-\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}=\boldsymbol Q_{\boldsymbol y} \boldsymbol \Lambda_{\boldsymbol y}^{-1/2} \boldsymbol Q_{\boldsymbol y}^\top=\begin{pmatrix} 0.064 & 0.030\\0.030 &  0.086 \end{pmatrix}.
-\]
+
+Similarly, we find
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eigen_yy <-}\StringTok{ }\KeywordTok{eigen}\NormalTok{(S_yy)}
+\NormalTok{S_yy_invsqrt <-}\StringTok{ }\NormalTok{eigen_yy}\OperatorTok{$}\NormalTok{vectors}\OperatorTok{%*%}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(eigen_yy}\OperatorTok{$}\NormalTok{values)) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{t}\NormalTok{(eigen_yy}\OperatorTok{$}\NormalTok{vectors)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{align*}
+\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}= \begin{pmatrix}0.0657&0.0337 \\0.0337&0.112 \\\end{pmatrix}.
+\end{align*}
+
 Consequently,
 \begin{align*}
-\boldsymbol A&=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\\
-&=\begin{pmatrix} 0.170 & 0.059\\0.059  &  0.392 \end{pmatrix}
-\begin{pmatrix} 115.7  & -81.9\\ -29.4 & 6.0   \end{pmatrix}
-\begin{pmatrix} 0.064 & 0.030\\0.030 &  0.086 \end{pmatrix}\\
-&=\begin{pmatrix} 0.741 & -0.628\\-0.374 &  -0.351\end{pmatrix}.
+\boldsymbol Q&=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\\
+&=\begin{pmatrix}0.169&0.0561 \\0.0561&0.341 \\\end{pmatrix} \begin{pmatrix}108&-60 \\-28.9&-2.36 \\\end{pmatrix}\begin{pmatrix}0.169&0.0561 \\0.0561&0.341 \\\end{pmatrix}\\
+&=\begin{pmatrix}0.747&-0.588 \\-0.39&-0.595 \\\end{pmatrix}
 \end{align*}
-The SVD of \(\boldsymbol A\) is given by
+
+The SVD of \(\boldsymbol Q\) is given by
 \begin{align}
-\boldsymbol A&=\boldsymbol Q{\pmb \Xi} \boldsymbol R^\top \nonumber \\
-&=\begin{pmatrix} -0.997 & 0.082\\ 0.082 & 0.997   \end{pmatrix}
-\begin{pmatrix}  0.974 & 0 \\0 & 0.508 \end{pmatrix}
-\begin{pmatrix} -0.790 & -0.613\\ 0.613 & -0.790 \end{pmatrix}^\top.
+\boldsymbol Q&=\boldsymbol U{\pmb \Sigma} \boldsymbol V^\top \nonumber \\
+&=\begin{pmatrix}-0.99&-0.143 \\-0.143&0.99 \\\end{pmatrix} \begin{pmatrix}0.955&0 \\0&0.705 \\\end{pmatrix}\begin{pmatrix}-0.715&-0.699 \\0.699&-0.715 \\\end{pmatrix}^\top
 \label{eq:SVDanalysis}
 \end{align}
-So the 1st CC coefficient is \(0.974\), which is close to its maximum value of \(1\). The 1st CC weight vectors are
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A =}\StringTok{ }\NormalTok{S_xx_invsqrt }\OperatorTok{%*%}\StringTok{ }\NormalTok{S_xy }\OperatorTok{%*%}\StringTok{ }\NormalTok{S_yy_invsqrt}
+\NormalTok{A_svd =}\StringTok{ }\KeywordTok{svd}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+So the 1st CC coefficient is \(0.955\), which is close to its maximum value of \(1\). The 1st CC weight vectors are
 given by
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a1 =}\StringTok{ }\NormalTok{S_xx_invsqrt}\OperatorTok{%*%}\StringTok{ }\NormalTok{A_svd}\OperatorTok{$}\NormalTok{u[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{b1 =}\StringTok{ }\NormalTok{S_yy_invsqrt}\OperatorTok{%*%}\StringTok{ }\NormalTok{A_svd}\OperatorTok{$}\NormalTok{v[,}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{align*}
-\boldsymbol a_1&=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol q_1\\
-&=\begin{pmatrix} 0.170 & 0.059\\0.059  &  0.392 \end{pmatrix} \begin{pmatrix} -0.997 \\ 0.082\end{pmatrix}\\
-&=\begin{pmatrix}  -0.165, \\ - 0.027 \end{pmatrix}.
+\boldsymbol a_1&=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol u_1\\
+&=\begin{pmatrix}0.169&0.0561 \\0.0561&0.341 \\\end{pmatrix}\begin{pmatrix}-0.99 \\-0.143 \\\end{pmatrix}\\
+&=\begin{pmatrix}-0.175 \\-0.104 \\\end{pmatrix}\\
+\boldsymbol b_1 &=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol v_1= \begin{pmatrix}-0.0234 \\0.0541 \\\end{pmatrix}
 \end{align*}
-Similar calculations show that
-\[
-\boldsymbol b_1=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol r_1=\begin{pmatrix}  -0.032 \\ 0.029\end{pmatrix}.
-\]
 
 In order to make interpretation easier:
 
 \begin{itemize}
 \tightlist
 \item
-  We change \(\boldsymbol a_1\) to \(-\boldsymbol a_1\) and \(\boldsymbol b_1\) to \(-\boldsymbol b_1\). {[}This entails changing \(\boldsymbol q_1\) to \(-\boldsymbol q_1\) and \(\boldsymbol r_1\) to \(-\boldsymbol r_1\); note that, provided we change the sign of \textbf{both} \(\boldsymbol q_1\) and \(\boldsymbol r_1\), we do not change the matrix \(\boldsymbol A\).{]}
+  We change \(\boldsymbol a_1\) to \(-\boldsymbol a_1\) and \(\boldsymbol b_1\) to \(-\boldsymbol b_1\). {[}This entails changing \(\boldsymbol u_1\) to \(-\boldsymbol u_1\) and \(\boldsymbol v_1\) to \(-\boldsymbol v_1\); note that, provided we change the sign of \textbf{both} \(\boldsymbol u_1\) and \(\boldsymbol v_1\), we do not change the matrix \(\boldsymbol Q\).{]}
 \item
   We rescale \(\boldsymbol a_1\) and \(\boldsymbol b_1\) so that they are unit vectors.
 \end{itemize}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a1n =}\StringTok{ }\OperatorTok{-}\NormalTok{a1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{sum}\NormalTok{(a1}\OperatorTok{^}\DecValTok{2}\NormalTok{))}
+\NormalTok{b1n =}\StringTok{ }\OperatorTok{-}\NormalTok{b1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{sum}\NormalTok{(b1}\OperatorTok{^}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
 This leads to the standardised 1st CC weight vectors
 \[
-\boldsymbol a_1=\begin{pmatrix} 0.987\\0.160  \end{pmatrix} \qquad \text{and} \qquad
-\begin{pmatrix} 0.743\\ -0.670\end{pmatrix}
+\boldsymbol a_1=\begin{pmatrix}0.859 \\0.512 \\\end{pmatrix} \qquad \text{and} \qquad
+\boldsymbol b_1=\begin{pmatrix}0.397 \\-0.918 \\\end{pmatrix}
 \]
 and the 1st CC variables, obtained by using these weights, are
 \[
-\eta_1 =0.987*(W-\bar{W}) +0.160*(D -\bar{D})
+\eta_1 =0.859 (W-\bar{W}) +0.512(D -\bar{D})
 \]
 and
 \[
- \psi_1 = 0.743*(F-\bar{F}) - 0.670*(A-\bar{A}),
+ \psi_1 = 0.397(G-\bar{G}) -0.918(GA-\bar{GA}),
 \]
 where the bars are used to denote sample means.
 
-We can see that \(\psi_1\) is measuring something similar to goal difference \(F-A\), as usually defined, but it gives slightly higher weight to goals scored than goals conceded (\(0.743\) versus \(0.670\)).
+THIS IS THE FIRST MENTION OF REMOVING MEANS?
 
-It is also seen that \(\eta_1\) is measuring something similar to number of points \(3*W+D\), as usually defined, but the ratio of points for a win to points for a draw is somewhat higher, at around 6:1, as opposed to the usual ratio 3:1.
+We can see that \(\psi_1\) is measuring something similar to goal difference \(G-GA\), as usually defined, but it gives higher weight to goals scored than goals conceded (\(0.397\) versus \('r -1*signif(b1n[1],3)`\)).
+
+It is also seen that \(\eta_1\) is measuring something similar to number of points \(3W+D\), as usually defined, but the ratio of points for a win to points for a draw is lower, at around 2:1, as opposed to the usual ratio 3:1.
+
+The full list of the first canonical correlation variables (using the original canonical vectors) is thus
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Xcent <-}\StringTok{ }\KeywordTok{sweep}\NormalTok{(X,}\DecValTok{2}\NormalTok{, }\KeywordTok{colMeans}\NormalTok{(X)) }\CommentTok{# column centre the matrix}
+\NormalTok{Ycent <-}\StringTok{ }\KeywordTok{sweep}\NormalTok{(Y,}\DecValTok{2}\NormalTok{, }\KeywordTok{colMeans}\NormalTok{(Y)) }\CommentTok{# column centre the matrix}
+\NormalTok{(}\DataTypeTok{eta =} \KeywordTok{as.matrix}\NormalTok{(Xcent)}\OperatorTok{%*%}\NormalTok{a1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              [,1]
+##  [1,] -2.43407235
+##  [2,] -1.38385898
+##  [3,] -0.92211994
+##  [4,] -0.64649410
+##  [5,] -0.50498863
+##  [6,] -0.46776599
+##  [7,] -0.60557891
+##  [8,] -0.43054335
+##  [9,] -0.22197769
+## [10,] -0.08416477
+## [11,]  0.12440088
+## [12,]  0.16162352
+## [13,]  0.40741182
+## [14,]  0.51169465
+## [15,]  0.44463446
+## [16,]  0.79101303
+## [17,]  1.07033142
+## [18,]  1.17461425
+## [19,]  1.03680133
+## [20,]  1.97903932
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DataTypeTok{psi =} \KeywordTok{as.matrix}\NormalTok{(Ycent)}\OperatorTok{%*%}\NormalTok{b1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             [,1]
+##  [1,] -1.7921117
+##  [2,] -2.0820965
+##  [3,] -1.1846733
+##  [4,] -0.2807761
+##  [5,] -0.9374949
+##  [6,] -0.4722204
+##  [7,] -0.6168145
+##  [8,] -0.3009743
+##  [9,] -0.3898343
+## [10,]  0.1117929
+## [11,]  0.4655992
+## [12,]  0.4130920
+## [13,]  0.6618838
+## [14,]  0.3928938
+## [15,]  0.4219760
+## [16,]  0.6206908
+## [17,]  1.0786948
+## [18,]  0.9938785
+## [19,]  1.0334581
+## [20,]  1.8630363
+\end{verbatim}
+
+A scatter plotof the two canonical correlation variables shows the strong correlation between them.
+
+ADD TEAM NAMES?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cca.out <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{eta=}\NormalTok{eta, }\DataTypeTok{psi=}\NormalTok{psi, }\DataTypeTok{Team=}\NormalTok{table}\OperatorTok{$}\NormalTok{Team)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{ggplot}\NormalTok{(cca.out, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{ eta, }\DataTypeTok{y=}\NormalTok{ psi, }\DataTypeTok{label=}\NormalTok{Team))}\OperatorTok{+}\StringTok{   }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{Team),}\DataTypeTok{hjust=}\DecValTok{0}\NormalTok{, }\DataTypeTok{vjust=}\DecValTok{0}\NormalTok{, }\DataTypeTok{size=}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{05-cca_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+WHAT HAPPENS IF WE INCLUDE L? THen S\_XX is not invertible.
+
+PLOTS + ORTHOGONALIZATION?
+
+Projected variable plots
+
+Do with R package
+
+MOVE TO AFTER DONE THE FULL SET.
+
+We can also do this with the \texttt{CCA} package in R. See if you can find the outputs computed above in the output of the \texttt{cc} command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(CCA)}
+\NormalTok{prem.cca <-}\StringTok{ }\KeywordTok{cc}\NormalTok{(X,Y)}
+\NormalTok{prem.cca}\OperatorTok{$}\NormalTok{cor }\CommentTok{# the canonical correlations}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9550749 0.7054825
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prem.cca}\OperatorTok{$}\NormalTok{xcoef }\CommentTok{# the canonical correlation vectors for X}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         [,1]      [,2]
+## W -0.1750356 0.0313256
+## D -0.1042828 0.3293057
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prem.cca}\OperatorTok{$}\NormalTok{ycoef  }\CommentTok{# the canonical correlation vectors for Y}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]        [,2]
+## G  -0.02342507 -0.07003113
+## GA  0.05412069 -0.10372100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prem.cca}\OperatorTok{$}\NormalTok{scores}\OperatorTok{$}\NormalTok{xscores }\CommentTok{# the canonical correlation variables }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              [,1]        [,2]
+##  [1,] -2.43407235 -1.49036509
+##  [2,] -1.38385898 -1.67831867
+##  [3,] -0.92211994  1.03482821
+##  [4,] -0.64649410 -0.87835503
+##  [5,] -0.50498863 -0.28239474
+##  [6,] -0.46776599  0.64287128
+##  [7,] -0.60557891  1.59946290
+##  [8,] -0.43054335  1.56813730
+##  [9,] -0.22197769  0.90952583
+## [10,] -0.08416477 -0.04706579
+## [11,]  0.12440088 -0.70567727
+## [12,]  0.16162352  0.21958876
+## [13,]  0.40741182  0.48624330
+## [14,]  0.51169465  0.15693757
+## [15,]  0.44463446  1.41150932
+## [16,]  0.79101303 -0.20369377
+## [17,]  1.07033142 -0.56432510
+## [18,]  1.17461425 -0.89363084
+## [19,]  1.03680133  0.06296078
+## [20,]  1.97903932 -1.34823896
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prem.cca}\OperatorTok{$}\NormalTok{scores}\OperatorTok{$}\NormalTok{yscores }\CommentTok{# the canonical correlation variables }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             [,1]        [,2]
+##  [1,] -1.7921117 -0.39245373
+##  [2,] -2.0820965 -1.79042487
+##  [3,] -1.1846733  0.62697465
+##  [4,] -0.2807761 -1.45009678
+##  [5,] -0.9374949  0.03833851
+##  [6,] -0.4722204 -0.16380075
+##  [7,] -0.6168145  1.26255753
+##  [8,] -0.3009743  0.08263387
+##  [9,] -0.3898343  2.20665204
+## [10,]  0.1117929  0.78559650
+## [11,]  0.4655992 -0.81186254
+## [12,]  0.4130920  0.09323935
+## [13,]  0.6618838  0.30598410
+## [14,]  0.3928938  1.62597001
+## [15,]  0.4219760  0.65083699
+## [16,]  0.6206908 -0.87924229
+## [17,]  1.0786948 -0.83759830
+## [18,]  0.9938785 -0.56012517
+## [19,]  1.0334581 -0.17627967
+## [20,]  1.8630363 -0.61689944
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{matcor}\NormalTok{(X,Y)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{the-full-set-of-canonical-correlations}{%
 \section{The full set of canonical correlations}\label{the-full-set-of-canonical-correlations}}
 
-Let us first recap what we did in the previous section: we found the choices linear combinations of the \(x\)-variables and linear combinations of \(y\)-variables which
-maximise the correlation, and expressed the answer in terms of quantities which arise in the SVD of \(\boldsymbol A\), where
+Let us first recap what we did in the previous section: we found a linear combination of the \(x\)-variables and a linear combination of the \(y\)-variables which
+maximised the correlation, and expressed the answer in terms of quantities which arise in the SVD of \(\boldsymbol Q\), where
 \[
-\boldsymbol A\equiv \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}=\boldsymbol Q{\pmb \Xi} \boldsymbol R^\top=\sum_{j=1}^t \xi_j \boldsymbol q_j \boldsymbol r_j^\top,
+\boldsymbol Q\equiv \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}=\boldsymbol U{\pmb \Sigma} \boldsymbol V^\top=\sum_{j=1}^t \sigma_j \boldsymbol u_j \boldsymbol v_j^\top.
 \]
-with \(t\) the rank of \(\boldsymbol A\), which in most examples is given by \(t=\min(p,q)\), and singular values \(\xi_1 \geq \xi_2 \geq \cdots \geq \xi_t>0\).
-Specifically, the maximum value of the correlation is \(\xi_1\), the optimal weights for the \(x\)-variables are given by \(\boldsymbol a=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol q_1=\boldsymbol a_1\), say, and
-the optimal weights for the \(y\)-varables are given by \(\boldsymbol b=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol r_1 = \boldsymbol b_1\), say.
 
-Can we repeat this process, as we did with PCA? Yes, we can. To obtain the second canonical correlation coefficient, plus the associated sets of weights, we need to solve the following optimisation problem:
+We found the maximum value of the correlation \({\mathbb{C}\operatorname{or}}(\boldsymbol a^\top\boldsymbol x, \boldsymbol b^\top\boldsymbol y)\) to be \(\sigma_1\), achieved using the linear combinations \(\eta_1=\boldsymbol a_1^\top \boldsymbol x\) and \(\psi_1=\boldsymbol b_1^\top \boldsymbol y\) with
+
+\[\boldsymbol a_1=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol u_1 \quad\mbox{ and } \boldsymbol b_1=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol v_1.\]
+
+We now repeat this process to find the next most important linear combination, subject to being uncorrelated with the first linear combination, as we did with PCA. For \(\boldsymbol a^\top \boldsymbol x\) to be uncorrelated with \(\eta_1 = \boldsymbol a_1^\top \boldsymbol x\) we require
+\[0 = {\mathbb{C}\operatorname{ov}}(\boldsymbol a_1^\top \boldsymbol x, \boldsymbol a^\top \boldsymbol x) = \boldsymbol a_1^\top \boldsymbol S_{xx}\boldsymbol a,\]
+and similarly we require the condition \(\boldsymbol b_1^\top \boldsymbol S_{yy} \boldsymbol b=0\) for \(\boldsymbol b\).
+
+Thus, to obtain the second canonical correlation coefficient, plus the associated sets of canonical correlation vectors and variables, we need to solve the following optimisation problem:
 \begin{equation}
 \max_{\boldsymbol a,\, \boldsymbol b} \boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b
 \label{eq:cc2}
 \end{equation}
 subject to the constraints
 \begin{equation}
-\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a= 1, \qquad \boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=1,
+\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a= \boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=1,
 \label{eq:conny21}
 \end{equation}
 \begin{equation}
-\boldsymbol a_1^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \boldsymbol a=0 \qquad \text{and} \qquad \boldsymbol b_1^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=0.
+\boldsymbol a_1^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \boldsymbol a= \boldsymbol b_1^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=0.
 \label{eq:conny22}
 \end{equation}
-Note that maximising \eqref{eq:cc2} subject to \eqref{eq:conny21} is very similar to the optimisation problem \eqref{eq:opt27a} and \eqref{eq:opt27b} considered in the previous section. What is
-new are the constraints \eqref{eq:conny22}, which take into account that we have already found the first canonical correlation. If for \(j=1,2\) we write \(\tilde{\boldsymbol a}_j =\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2} \boldsymbol a_j\) and \(\tilde{\boldsymbol b}_j=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2} \boldsymbol b_j\), then it is seen from \eqref{eq:conny22} that
-\[
-\tilde{\boldsymbol a}_1^\top \tilde{\boldsymbol a}_2=0 \qquad \text{and} \qquad \tilde{\boldsymbol b}_1^\top \tilde{\boldsymbol b}_2=0.
+Note that maximising \eqref{eq:cc2} subject to \eqref{eq:conny21} is very similar to the optimisation problem \eqref{eq:opt27a} considered in the previous section.
+What is
+new are the constraints \eqref{eq:conny22}, which take into account that we have already found the first canonical correlation.
+
+It will probably not surprise you to find that the solution is
+\[\boldsymbol a^\top \boldsymbol S_{xy}\boldsymbol b= \sigma_2\quad\mbox{ achieved at} \quad \boldsymbol a=\boldsymbol a_2 := S_{xx}^{-1/2}\boldsymbol u_2 \mbox{ and } \boldsymbol b=\boldsymbol b_2 := S_{yy}^{-1/2}\boldsymbol v_2\]
+where \(\sigma_2\) is the second largest singular value of \(\boldsymbol Q\), and \(\boldsymbol u_2\) and \(\boldsymbol v_2\) are the corresponding left and right singular vectors.
+
+We now state the result in its full generality.
+
+\begin{proposition}
+\protect\hypertarget{prp:ccafull}{}{\label{prp:ccafull} }For \(k=1, \ldots, r = \operatorname{rank}(\boldsymbol S_{xy})\), the solution to sequence of optimization problems
+\begin{align}
+\mbox{Maximize} \quad &\boldsymbol a^\top \boldsymbol S_{xy}\boldsymbol b\\
+\mbox{subject to }  \;\;&\boldsymbol a^\top \boldsymbol S_{xx}\boldsymbol a=\boldsymbol b^\top\boldsymbol S_{yy} \boldsymbol b=1\\
+\mbox{ and }\;\;\;&\boldsymbol a_i^\top \boldsymbol S_{xx}\boldsymbol a=\boldsymbol b_i^\top \boldsymbol S_{yy}\boldsymbol b= 0 \mbox{ for }i=1, \ldots, k
+\end{align}
+is achieved at \(\boldsymbol a_k = \boldsymbol S_{xx}^{-1/2}\boldsymbol u_k\) and \(\boldsymbol b_k=\boldsymbol S_{yy}^{-1/2}\boldsymbol v_k\) with \(\boldsymbol a_k \boldsymbol S_{xy}\boldsymbol b_k = \sigma_k\).
+\end{proposition}
+Note that an equivalent way of writing down the problem is as
+\begin{align*}
+\mbox{Maximize } \quad \operatorname{tr}(\boldsymbol A^\top \boldsymbol S_{xy}\boldsymbol B) &= \sum_{i=1}^k \boldsymbol a_i^\top \boldsymbol S_{xy}\boldsymbol b_i\\
+\mbox{ subject to} \quad \boldsymbol A^\top \boldsymbol S_{xx}\boldsymbol A&=\mathbf I\\
+\mbox{ and }\quad \boldsymbol B^\top S_{yy}\boldsymbol B&= \mathbf I
+\end{align*}
+which is in the form of the general problem given in Equation \eqref{eq:dimredopt} if \[\boldsymbol A= \begin{pmatrix}\boldsymbol a_1&\ldots &\boldsymbol a_k\end{pmatrix}, \quad \boldsymbol B= \begin{pmatrix}\boldsymbol b_1&\ldots &\boldsymbol b_k\end{pmatrix}\]
+are matrices containing the canonical correlation vectors as columns.
+
+Before we prove this result, we first give an extension of Proposition \ref{prp:svdmax2}.
+
+\begin{proposition}
+\protect\hypertarget{prp:svdopt3}{}{\label{prp:svdopt3} }Let \(\boldsymbol Q\) be an arbitrary matrix with SVD \(\boldsymbol Q= \sum_{k=1}^r \sigma_i \boldsymbol u_i \boldsymbol v^\top_i\).
+For \(k=1, \ldots, r\) the solution to the optimization problem
+\begin{align}
+\mbox{Maximize}\quad  &\boldsymbol a^\top \boldsymbol Q\boldsymbol b\\
+\mbox{subject to} \quad &\boldsymbol a^\top \boldsymbol a= \boldsymbol b^\top \boldsymbol b=1\\
+&\boldsymbol a_i^\top\boldsymbol a= \boldsymbol b_i^\top\boldsymbol b= 0 \mbox{ for } i = 1, \ldots, k-1
+  \end{align}
+is achieved at
+\[\boldsymbol a_k=\boldsymbol u_k, \qquad \boldsymbol b_k = \boldsymbol v_k\]
+with
+\[\boldsymbol a_k^\top \boldsymbol Q\boldsymbol b_k = \sigma_k.\]
+\end{proposition}
+
+We will work through the proof of this proposition in the Exercises.
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}To prove Proposition \ref{prp:ccafull} given Proposition \ref{prp:svdopt3}, we note as before that if we write \(\tilde{\boldsymbol a}_j =\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2} \boldsymbol a_j\) and \(\tilde{\boldsymbol b}_j=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2} \boldsymbol b_j\), then the constraints become
+\[\tilde{\boldsymbol a}^\top \tilde{\boldsymbol a}=\tilde{\boldsymbol b}^\top\tilde{ \boldsymbol b}=1 \;\mbox{ and }\;\tilde{\boldsymbol a}_i^\top \tilde{\boldsymbol a}=\tilde{\boldsymbol b}_i^\top \tilde{\boldsymbol b} = 0 \mbox{ for }i=1, \ldots, k.
 \]
 Consequently, we may view constraints \eqref{eq:conny22} as corresponding to orthogonality constraints (cf.~PCA) in modified coordinate systems.
 
-We now discuss the optimisation of \eqref{eq:cc2}, \eqref{eq:conny21} and \eqref{eq:conny22}. At first glance it looks complex. However, using arguments very similar to those used to prove
-Result 2.15 in Chapter 2, we may deduce the following:
+The objective \(\boldsymbol a^\top \boldsymbol S_{xy}\boldsymbol b\) becomes
+\(\tilde{\boldsymbol a}^\top \boldsymbol Q\tilde{\boldsymbol b}\)
+with
+\[\boldsymbol Q= \boldsymbol S_{xx}^{-1/2} \boldsymbol S_{xy}\boldsymbol S_{yy}^{-1/2}.\]
+Thus applying Proposition \ref{prp:svdopt3} gives the desired result.
+\end{proof}
+
+To summarize:
 
 \begin{itemize}
-\tightlist
 \item
-  The maximum of \eqref{eq:cc2} subject to constraints \eqref{eq:conny21} and \eqref{eq:conny22} is equal to \(\xi_2\), the second largest singular value of \(\boldsymbol A\).
+  The \(k^{th}\) \textbf{canonical correlation} is \(\sigma_k\), the \(k^{th}\) largest singular value of \(\boldsymbol Q\).
 \item
-  The optimal weights for the \(x\)-variables for the second canonical correlation are given by \(\boldsymbol a_2=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol q_2\).
+  The \(k^{th}\) \textbf{canonical correlation vectors} (sometimes called the \textbf{weights} for the \(\boldsymbol x\) and \(\boldsymbol y\) variables) are \[\boldsymbol a_k = \boldsymbol S_{xx}^{-1/2} \boldsymbol u_k, \qquad \boldsymbol b_k = \boldsymbol S_{yy}^{-1/2} \boldsymbol v_k\]
 \item
-  The optimal weights for the \(y\)-variables for the second canonical correlation are given by \(\boldsymbol b_2=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol r_2\).
+  The \(k^{th}\) \textbf{canonical correlation variables} (or \textbf{canonical correlation scores}) are
+  \[\eta_{ik} = \boldsymbol a_k^\top (\boldsymbol x_i-\bar{\boldsymbol x}), \qquad \psi_{ik} = \boldsymbol b_k^\top (\boldsymbol y_i-\bar{\boldsymbol y}).\]
 \end{itemize}
 
-Consider now the general case of the \(k\)th canonical correlation where \(2 \leq k \leq t\). In this case we replace \eqref{eq:conny21} and \eqref{eq:conny22} by, respectively,
-\eqref{eq:connyk1} and \eqref{eq:connyk2} below, where
-\begin{equation}
-\boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a= 1, \qquad \boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=1,
-\label{eq:connyk1}
-\end{equation}
-\begin{equation}
-\boldsymbol a_j^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \boldsymbol a=0 \qquad \text{and} \qquad \boldsymbol b_j^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=0, \qquad j=1, \ldots , k-1.
-\label{eq:connyk2}
-\end{equation}
-Then the optimisation problem is
-\begin{equation}
-\max_{\boldsymbol a, \, \boldsymbol b} \boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b
-\label{eq:cck}
-\end{equation}
-subject to constraints \eqref{eq:connyk1} and \eqref{eq:connyk2}. The solution in the general case is as follows.
+We define the CC variable/score vectors to be
+\[{\pmb \eta}_k=(\eta_{1k}, \ldots , \eta_{nk})^\top \mbox{ and }{\pmb \psi}_{k}=(\psi_{1k}, \ldots , \psi_{nk})^\top.\]
 
-\begin{itemize}
-\tightlist
-\item
-  The maximum of \eqref{eq:cck} subject to constraints \eqref{eq:connyk1} and \eqref{eq:connyk2} is equal to \(\xi_k\), the \(k\)th largest singular value of \(\boldsymbol A\).
-\item
-  The optimal weights for the \(x\)-variables for the \(k\)th canonical correlation are given by \(\boldsymbol a_k=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol q_k\).
-\item
-  The optimal weights for the \(y\)-variables for the \(k\)th canonical correlation are given by \(\boldsymbol b_k=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol r_k\).
-\end{itemize}
-
-Terminology: we call \(\boldsymbol a_k\) and \(\boldsymbol b_k\) the \(k\)th cc (weight) vectors for the \(x\)-variables and \(y\) variables, respectively.
-
-We call \(\eta_{ik}=\boldsymbol a_k^\top (\boldsymbol x_i - \bar{\boldsymbol x})\) and \(\psi_{ik}=\boldsymbol b_k^\top (\boldsymbol y_i -\bar{\boldsymbol y})\), \(i=1, \ldots , n\), the \(k\)th cc scores for the \(x\)-variables and the \(y\)-variables, respectively.
-
-Define the CC score vectors \({\pmb \eta}_k=(\eta_{1k}, \ldots , \eta_{nk})^\top\) and \({\pmb \psi}_{k}=(\psi_{1k}, \ldots , \psi_{nk})^\top\). Then we have the following result.
-
-\begin{proposition}
-\protect\hypertarget{prp:unnamed-chunk-3}{}{\label{prp:unnamed-chunk-3} }Assume that \(\boldsymbol S_{\boldsymbol x\boldsymbol x}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}\) both have full rank. Then for \(1 \leq k,\ell \leq t\),
-\[
-r[\eta_k,  \psi_{\ell}]=\begin{cases} \xi_k &\text{if} \quad k=\ell\\
-0 & \text{if} \quad k \neq \ell, \end{cases}
-\]
-where \(t\) is the rank of \(\boldsymbol A=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y} \boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\) and \(\xi_1 \geq \xi_2 \geq \cdots \xi_t > 0\) are the strictly positive singular values of \(\boldsymbol A\).
-\end{proposition}
-
-\textbf{Example \ref{exm:prem} (continued)} From \eqref{eq:SVDanalysis}, it is seen that the 2nd CC coefficient is given by \(\xi_2=0.508\). So the correlation between the second pair of CC variables is a lot smaller than the 1st CC coefficient, though still appreciably different from \(0\). We now calculate the 2nd CC weight vectors:
+\textbf{Example \ref{exm:prem} (continued)} From \eqref{eq:SVDanalysis}, it is seen that the 2nd CC coefficient is given by \(\sigma_2=0.508\). So the correlation between the second pair of CC variables is a lot smaller than the 1st CC coefficient, though still appreciably different from \(0\). We now calculate the 2nd CC weight vectors:
 \[
 \boldsymbol a_2=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol q_2 = \begin{pmatrix} 0.073 \\ 0.396 \end{pmatrix}
 \qquad \text{and} \qquad
@@ -4745,14 +5489,31 @@ Note that, to a good approximation, \(\eta_2\) is measuring something similar to
 
 Interpretation of the 2nd CC: teams that have a lot of draws tend to be in low-scoring games and/or teams that have few draws tend to be in high-scoring games.
 
+\hypertarget{properties}{%
+\section{Properties}\label{properties}}
+
+\begin{proposition}
+\protect\hypertarget{prp:ccavar}{}{\label{prp:ccavar} }Assume that \(\boldsymbol S_{\boldsymbol x\boldsymbol x}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}\) both have full rank. Then for \(1 \leq k,\ell \leq t\),
+\[
+{\mathbb{C}\operatorname{or}}(\eta_k,  \psi_{\ell})=\begin{cases} \sigma_k &\text{if} \quad k=\ell\\
+0 & \text{if} \quad k \neq \ell, \end{cases}
+\]
+and
+\[{\mathbb{C}\operatorname{or}}(\eta_j, \eta_k)= {\mathbb{C}\operatorname{or}}(\psi_j, \psi_k)=\begin{cases}
+1 &\mbox{ if } j=k\\
+0 &\mbox{otherwise}
+\end{cases}
+\]
+\end{proposition}
+
 \hypertarget{connection-with-linear-regression-when-q1}{%
-\section{\texorpdfstring{Connection with linear regression when \(q=1\)}{Connection with linear regression when q=1}}\label{connection-with-linear-regression-when-q1}}
+\subsection{\texorpdfstring{Connection with linear regression when \(q=1\)}{Connection with linear regression when q=1}}\label{connection-with-linear-regression-when-q1}}
 
-Although CCA analysis is clearly a different technique to linear regression, it turns out that when either \(p=1\) or \(q=1\), there is a close connection between the two approaches.
+Although CCA analysis is clearly a different technique to linear regression, it turns out that when either \(\dim \boldsymbol x=p=1\) or \(\dim \boldsymbol y=q=1\), there is a close connection between the two approaches.
 
-Without loss of generality we assume that \(q=1\) and \(p>1\). Hence there is only a single \(y\)-variable but we still have \(p>1\) \(x\)-variables.
+Consider the case \(q=1\) and \(p>1\). Hence there is only a single \(y\)-variable but we still have \(p>1\) \(x\)-variables.
 
-We also make the following assumptions:
+Let's make the following assumptions:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4763,199 +5524,353 @@ We also make the following assumptions:
   The covariance matrix for the \(x\)-variables, \(\boldsymbol S_{\boldsymbol x\boldsymbol x}\), has full rank \(p\).
 \end{enumerate}
 
-Both of these are weak assumptions in the multiple linear regression context.
+The first assumption means that
+\[\boldsymbol S_{xx}=\frac{1}{n}\boldsymbol X^\top \boldsymbol X\quad \mbox{and}\quad \boldsymbol S_{xy}=\boldsymbol X^\top \boldsymbol y,\] and the second means that \((\boldsymbol X^\top \boldsymbol X)^{-1}\) exists.
 
-Since \(q=1\),
+Since \(q=1\), the matrix we decompose in CCA
 \[
-\boldsymbol A=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol S_{\boldsymbol xy}\boldsymbol S_{yy}^{-1/2}
+\boldsymbol Q=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol S_{\boldsymbol xy}\boldsymbol S_{yy}^{-1/2}
 \]
-is a \(p \times 1\) vector. Consequently, in this rather special case,
-the SVD tells us that
+is a \(p \times 1\) vector. Consequently, its
+SVD is just
 \[
-\boldsymbol A=\xi_1 \boldsymbol q_1,
+\boldsymbol Q=\sigma_1 \boldsymbol u_1,
 \]
 where
 \[
-\xi_1=\vert \vert \boldsymbol A\vert \vert \qquad \text{and} \qquad \boldsymbol q_1=\boldsymbol A/\vert \vert \boldsymbol A\vert \vert=\tilde{\boldsymbol a},
+\sigma_1=\vert \vert \boldsymbol Q\vert \vert_F = (\boldsymbol Q^\top \boldsymbol Q)^{\frac{1}{2}} \qquad \text{and} \qquad \boldsymbol u_1=\boldsymbol Q/\vert \vert \boldsymbol Q\vert \vert_F.
 \]
-and \(\tilde{\boldsymbol a}=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2} \boldsymbol a\).
 
-Consequently,
+Consequently, the first canoncial correlation vector for \(\boldsymbol x\) is
 \begin{align*}
-\boldsymbol a&=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol q_1\\
-&=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \frac{1}{\vert \vert \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol xy}S_{yy}^{-1/2}\vert \vert}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}S_{yy}^{-1/2}\\
-&=\frac{1}{\vert \vert \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol xy}\vert \vert}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol xy}\\
-&=\frac{1}{\vert \vert \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol xy}\vert \vert}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1}\boldsymbol S_{\boldsymbol xy}.
+\boldsymbol a&=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol u_1 =\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \frac{\boldsymbol Q}{||\boldsymbol Q||_F}\\
+&=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \frac{1}{\vert \vert \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol xy}S_{yy}^{-1/2}\vert \vert_F}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}S_{yy}^{-1/2}\\
+&=\frac{1}{\vert \vert \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol xy}\vert \vert_F}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1}\boldsymbol S_{\boldsymbol xy}\\
+&= c (\boldsymbol X^\top \boldsymbol X)^{-1}\boldsymbol X^\top \boldsymbol y
 \end{align*}
-But since \(\bar{\boldsymbol x}={\mathbf 0}_p\) and \(\boldsymbol S\) has full rank by the assumptions above, it follows that
-\[
-n\boldsymbol S_{\boldsymbol x\boldsymbol x} =\sum_{i=1}^n \boldsymbol x_i \boldsymbol x_i^\top =\boldsymbol X^\top \boldsymbol X
-\]
-and
-\[
- n\boldsymbol S_{\boldsymbol x\boldsymbol y}=\sum_{i=1}^n y_i \boldsymbol x_i=\boldsymbol X^\top \boldsymbol y,
-\]
-where \(\boldsymbol y=(y_1, \ldots ,y_n)^\top\) is the \(n \times 1\) data matrix for the \(y\)-variable and \(\boldsymbol X=[\boldsymbol x_1, \ldots , \boldsymbol x_n]^\top\) is the data matrix for the \(x\)-variables.
-Consequently, the optimal \(\boldsymbol a\) is a scalar multiple of
-\[
-\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1}\boldsymbol S_{\boldsymbol xy}=\left ( \boldsymbol X^\top \boldsymbol X\right )^{-1} \boldsymbol X^\top \boldsymbol y=\hat{\pmb \beta},
-\]
-say, which is the classical expression for least squares estimator. Therefore the least squares estimator \(\hat{\pmb \beta}\) solves \eqref{eq:opt26}. However, it does not usually solve the optimisation problem defined by problems \eqref{eq:opt27a} and \eqref{eq:opt27b} because typically it will not be the case that \(\hat{\pmb \beta}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\pmb \beta}=1\), so that \eqref{eq:opt27b} will not be satisfied.
+where \(c = \vert \vert \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol xy}\vert \vert_F\) is a scalar.
 
-\hypertarget{population-cca}{%
-\section{Population CCA}\label{population-cca}}
-
-So far in this chapter we have based CCA on the sample covariance matrix
+Thus, we can see that the first canonical correlation vector \(\boldsymbol a\) is a scalar multiple of
 \[
-\boldsymbol S_{\boldsymbol z\boldsymbol z}=\left [\begin{array}{cc}
-\boldsymbol S_{\boldsymbol x\boldsymbol x} & \boldsymbol S_{\boldsymbol x\boldsymbol y}\\
-\boldsymbol S_{\boldsymbol y\boldsymbol x} & \boldsymbol S_{\boldsymbol y\boldsymbol y} \end{array} \right ],
+\hat{\pmb \beta}=\left ( \boldsymbol X^\top \boldsymbol X\right )^{-1} \boldsymbol X^\top \boldsymbol y,
 \]
-However, just as there is a population analogue of PCA, so there is a population analogue of CCA.
-
-Given random vectors \(\stackrel{p \times 1}{\boldsymbol x}\) and \(\stackrel{q \times 1}{\boldsymbol y}\), define the random vector \(\boldsymbol z=(\boldsymbol x^\top, \boldsymbol y^\top)^\top\) with population covariance matrix
-\[
-\text{Var}(\boldsymbol z)=\boldsymbol \Sigma_{\boldsymbol z\boldsymbol z}=\left [\begin{array}{cc}
-\boldsymbol \Sigma_{\boldsymbol x\boldsymbol x} & \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}\\
-\boldsymbol \Sigma_{\boldsymbol y\boldsymbol x} & \boldsymbol \Sigma_{\boldsymbol y\boldsymbol y} \end{array} \right ].
-\]
-Then, by analogy with what we have seen in the sample CCA, the population CCA is based on the
-matrix
-\[
-\check{\boldsymbol A}=\boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}\boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}^{-1/2},
-\]
-where, as in \S 3.4, the check symbol has been used above and below to indicate population quantities.
-If \(\check{\boldsymbol A}\) has SVD
-\[
-\check{\boldsymbol A}=\sum_{j=1}^t \check{\xi}_j\check {\mathbf q}_j \check{\mathbf r}_j^\top \equiv \check{\mathbf Q}\check{\pmb \Xi} \check{\mathbf R}^\top,
-\]
-where \(\check{\xi}_1 \geq \cdots \geq \check{\xi}_t \geq 0\) and \(t=\min(p,q)\), and the \(\check{\boldsymbol q}_j\) and \(\check{\mathbf r}_j\) are unit vectors, then the first population CC coefficient is given by \(\check{\xi}_1\),
-and the associated weights are given by
-\[
-\check{\boldsymbol a}=\boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}^{-1/2}\check{\boldsymbol q}_1=\check{\boldsymbol a}_1 \qquad \text{and} \qquad \check{\boldsymbol b}=\boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}^{-1/2}\check{\mathbf r}_1=\check{\boldsymbol b}_1.
-\]
-The full set of population CC weight vectors is given by
-\[
-\check{\boldsymbol a}_j =\boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}^{-1/2}\check{\boldsymbol q}_j \qquad \text{and} \qquad
-\check{\boldsymbol b}_j=\boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}^{-1/2}\check{\mathbf r}_1, \qquad , j=1, \ldots , t,
-\]
-and the \(j\)th population CC coefficient is given by \(\check{\xi}_j\).
+the classical least squares estimator. Therefore the least squares estimator \(\hat{\pmb \beta}\) solves \eqref{eq:opt26}. However, it does not usually solve the constrained optimisation problem \eqref{eq:opt27a} because typically \(\hat{\pmb \beta}^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\hat{\pmb \beta} \not= 1\), so that the constraint in Equation \eqref{eq:opt27a} will not be satisfied.
 
 \hypertarget{invarianceequivariance-properties-of-cca}{%
-\section{Invariance/equivariance properties of CCA}\label{invarianceequivariance-properties-of-cca}}
+\subsection{Invariance/equivariance properties of CCA}\label{invarianceequivariance-properties-of-cca}}
 
 Suppose we apply orthogonal transformations and translations to the \(\boldsymbol x_i\) and the \(\boldsymbol y_i\) of the form
 \begin{equation}
-{\mathbf h}_i={\mathbf T}\boldsymbol x_i + {\pmb \mu} \qquad \text{and} \qquad {\mathbf k}_i={\mathbf V}\boldsymbol y_i +{\pmb \eta},
+{\mathbf h}_i={\mathbf T}\boldsymbol x_i + {\pmb \mu} \qquad \text{and} \qquad {\mathbf k}_i={\mathbf R}\boldsymbol y_i +{\pmb \eta},
 \qquad i=1,\ldots , n,
 \label{eq:transformations}
 \end{equation}
-where \(\mathbf T\) (\(p \times p\)) and \(\mathbf V\) (\(q \times q\)) are orthogonal matrices, and \(\pmb \mu\) (\(p \times 1\)) and
+where \(\mathbf T\) (\(p \times p\)) and \(\mathbf R\) (\(q \times q\)) are orthogonal matrices, and \(\pmb \mu\) (\(p \times 1\)) and
 \(\pmb \eta\) (\(q \times 1\)) are fixed vectors.
 
 How do these transformations affect the CC analysis?
 
-First of all, since the CCA depends only on sample covariance matrices, it follows that the translation vectors \(\pmb \mu\) and \(\pmb \eta\) have no effect on the analysis, so we can ignore \(\pmb \mu\) and \(\pmb \eta\), and without loss of generality we shall set each to be the zero vector.
+First of all, since CCA depends only on sample covariance matrices, it follows that the translation vectors \(\pmb \mu\) and \(\pmb \eta\) have no effect on the analysis.
 
 As seen in the previous section, the CCA in the original coordinates depends on
 \begin{equation}
-\boldsymbol A\equiv \boldsymbol A_{\boldsymbol x\boldsymbol y}=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}.
+\boldsymbol Q\equiv \boldsymbol Q_{\boldsymbol x\boldsymbol y}=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}.
 \label{eq:Axy}
 \end{equation}
 In the new coordinates we have
 \[
-\tilde{\boldsymbol S}_{\mathbf h h}={\mathbf T} \boldsymbol S_{\boldsymbol x\boldsymbol x}{\mathbf T}^\top, \qquad \tilde{\boldsymbol S}_{\mathbf kk}={\mathbf V}\boldsymbol S_{\boldsymbol y\boldsymbol y}{\mathbf V}^\top,
+\tilde{\boldsymbol S}_{\boldsymbol h\boldsymbol h}={\mathbf T} \boldsymbol S_{\boldsymbol x\boldsymbol x}{\mathbf T}^\top, \qquad \tilde{\boldsymbol S}_{\boldsymbol k\boldsymbol k}={\mathbf R}\boldsymbol S_{\boldsymbol y\boldsymbol y}{\mathbf R}^\top,
 \]
 \[
-\tilde{\boldsymbol S}_{\mathbf hk}={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol y}{\mathbf V}^\top \qquad \text{and} \qquad
-\tilde{\boldsymbol S}_{\mathbf kh}={\mathbf V}\boldsymbol S_{\boldsymbol y\boldsymbol x}{\mathbf T}^\top=\boldsymbol S_{\mathbf h k}^\top,
+\tilde{\boldsymbol S}_{\boldsymbol h\boldsymbol k}={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol y}{\mathbf R}^\top =
+\tilde{\boldsymbol S}_{\boldsymbol k\boldsymbol h}^\top,
 \]
 where here and below, a tilde above a symbol is used to indicate that the corresponding term is defined in terms of the new \(\boldsymbol h\), \(\boldsymbol k\) coordinates, rather
 than the old \(\boldsymbol x\), \(\boldsymbol y\) coordinates.
-Moreover, due to the fact that \(\mathbf T\) and \(\mathbf V\) are orthogonal,
+Due to the fact that \(\mathbf T\) and \(\mathbf R\) are orthogonal,
 \[
-\tilde{\boldsymbol S}_{\mathbf hh}^{ 1/2}={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{ 1/2}{\mathbf T}^\top, \qquad
-\tilde{\boldsymbol S}_{\mathbf hh}^{ -1/2}={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{ -1/2}{\mathbf T}^\top
+\tilde{\boldsymbol S}_{\boldsymbol b\boldsymbol h}^{ 1/2}={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{ 1/2}{\mathbf T}^\top, \qquad
+\tilde{\boldsymbol S}_{\boldsymbol h\boldsymbol h}^{ -1/2}={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{ -1/2}{\mathbf T}^\top
 \]
 \[
-\tilde{\boldsymbol S}_{\mathbf kk}^{ 1/2}={\mathbf V}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{ 1/2}{\mathbf V}^\top \qquad \text{and} \qquad
-\tilde{\boldsymbol S}_{\mathbf kk}^{ -1/2}={\mathbf V}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{- 1/2}{\mathbf V}^\top.
+\tilde{\boldsymbol S}_{\boldsymbol k\boldsymbol k}^{ 1/2}={\mathbf R}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{ 1/2}{\mathbf R}^\top \qquad \text{and} \qquad
+\tilde{\boldsymbol S}_{\boldsymbol k\boldsymbol k}^{ -1/2}={\mathbf R}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{- 1/2}{\mathbf R}^\top.
 \]
 The analogue of \eqref{eq:Axy} in the new coordinates is given by
 \begin{align*}
-\tilde{\boldsymbol A}_{\mathbf h k}&=\tilde{\boldsymbol S}_{\mathbf hh}^{-1/2}\tilde{\boldsymbol S}_{\mathbf h k}\tilde{\boldsymbol S}_{\mathbf kk}^{-1/2}\\
-&={\mathbf T} \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf T}^\top {\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol y}{\mathbf V}^\top {\mathbf V}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf V}^\top\\
-&={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf V}^\top\\
-&={\mathbf T} \boldsymbol A_{\boldsymbol x\boldsymbol y}{\mathbf V}^\top.
+\tilde{\boldsymbol Q}_{\mathbf h k}&=\tilde{\boldsymbol S}_{\boldsymbol h\boldsymbol h}^{-1/2}\tilde{\boldsymbol S}_{\mathbf h k}\tilde{\boldsymbol S}_{\boldsymbol k\boldsymbol k}^{-1/2}\\
+&={\mathbf T} \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf T}^\top {\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol y}{\mathbf R}^\top {\mathbf R}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf R}^\top\\
+&={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf R}^\top\\
+&={\mathbf T} \boldsymbol Q_{\boldsymbol x\boldsymbol y}{\mathbf R}^\top.
 \end{align*}
-So, again using the fact that \(\mathbf T\) and \(\mathbf V\) are orthogonal matrices, if \(\boldsymbol A_{\boldsymbol x\boldsymbol y}\) has SVD \(\sum_{j=1}^t \xi_j {\mathbf q}_j {\mathbf r}_j^\top\), then \(\tilde{\boldsymbol A}_{\mathbf hk}\) has SVD
+So, again using the fact that \(\mathbf T\) and \(\mathbf R\) are orthogonal matrices, if \(\boldsymbol Q_{\boldsymbol x\boldsymbol y}\) has SVD \(\sum_{j=1}^t \sigma_j {\mathbf u}_j {\mathbf v}_j^\top\), then \(\tilde{\boldsymbol Q}_{\boldsymbol h\boldsymbol k}\) has SVD
 \begin{align*}
-\tilde{\boldsymbol A}_{\mathbf hk}&={\mathbf T }\boldsymbol A_{\boldsymbol x\boldsymbol y}{\mathbf V}^\top
-={\mathbf T} \left ( \sum_{j=1}^t \xi_j {\mathbf q}_j {\mathbf r}_j^\top \right){\mathbf V}^\top\\
-&=\sum_{j=1}^t \xi_j {\mathbf T}{\mathbf q}_j {\mathbf r}_j^\top {\mathbf V}^\top
-=\sum_{j=1}^t \xi_j \left ( {\mathbf T} {\mathbf q}_j \right )\left ({\mathbf V}{\mathbf r}_j  \right )^\top
-=\sum_{j=1}^t \xi_j \tilde{\boldsymbol q}_j \tilde{\mathbf r}_j^\top,
+\tilde{\boldsymbol Q}_{\boldsymbol h\boldsymbol k}&={\mathbf T }\boldsymbol Q_{\boldsymbol x\boldsymbol y}{\mathbf R}^\top
+={\mathbf T} \left ( \sum_{j=1}^t \sigma_j {\mathbf u}_j {\mathbf v}_j^\top \right){\mathbf R}^\top\\
+&=\sum_{j=1}^t \sigma_j {\mathbf T}{\mathbf u}_j {\mathbf v}_j^\top {\mathbf R}^\top
+=\sum_{j=1}^t \sigma_j \left ( {\mathbf T} {\mathbf u}_j \right )\left ({\mathbf R}{\mathbf v}_j  \right )^\top
+=\sum_{j=1}^t \sigma_j \tilde{\boldsymbol u}_j \tilde{\mathbf v}_j^\top,
 \end{align*}
-where, for \(j=1, \ldots,t\), the \(\tilde{\boldsymbol q}_j={\mathbf T}\boldsymbol q_j\) are mutually orthogonal unit vectors,
-and the \(\tilde{\mathbf r}_j={\mathbf V}{\mathbf r}_j\) are also mutually orthogonal unit vectors.
+where, for \(j=1, \ldots,t\), the \(\tilde{\boldsymbol u}_j={\mathbf T}\boldsymbol u_j\) are mutually orthogonal unit vectors,
+and the \(\tilde{\mathbf v}_j={\mathbf R}{\mathbf v}_j\) are also mutually orthogonal unit vectors.
 
-Consequently, \(\tilde{\boldsymbol A}_{\mathbf h k}\) has the same singular values as \(\boldsymbol A_{\boldsymbol x\boldsymbol y}\), namely \(\xi_1, \ldots , \xi_t\) in both cases, and so the canonical correlation coefficients are invariant with respect to the transformations \eqref{eq:transformations}. Moreover, since the optimal linear combinations for the \(j\)th CC in the original coordinates are given by \(\boldsymbol a_j =\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf q}_j\) and \(\boldsymbol b_j=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf r}_j\), the optimal linear combinations in the new coordinates are given by
+Consequently, \(\tilde{\boldsymbol Q}_{\mathbf h k}\) has the same singular values as \(\boldsymbol Q_{\boldsymbol x\boldsymbol y}\), namely \(\sigma_1, \ldots , \sigma_t\) in both cases, and so the canonical correlation coefficients are invariant with respect to the transformations \eqref{eq:transformations}. Moreover, since the optimal linear combinations for the \(j\)th CC in the original coordinates are given by \(\boldsymbol a_j =\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf u}_j\) and \(\boldsymbol b_j=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}{\mathbf v}_j\), the optimal linear combinations in the new coordinates are given by
 \begin{align*}
-\tilde{\boldsymbol a}_{j}&=\boldsymbol S_{\mathbf hh}^{-1/2}{\mathbf T}{\mathbf q}_j\\
-&={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf T}^\top {\mathbf T}{\mathbf q}_j\\
-&={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf q}_j \\
+\tilde{\boldsymbol a}_{j}&=\boldsymbol S_{\boldsymbol h\boldsymbol h}^{-1/2}{\mathbf T}{\mathbf u}_j\\
+&={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf T}^\top {\mathbf T}{\mathbf u}_j\\
+&={\mathbf T}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}{\mathbf u}_j \\
 &={\mathbf T}\boldsymbol a_{j},
 \end{align*}
-and a similar argument shows that \(\tilde{\boldsymbol b}_{j}={\mathbf V}\boldsymbol b_{j}\). So under transformations \eqref{eq:transformations},
+and a similar argument shows that \(\tilde{\boldsymbol b}_{j}={\mathbf R}\boldsymbol b_{j}\). So under transformations \eqref{eq:transformations},
 the optimal vectors \(\boldsymbol a_{j}\) and \(\boldsymbol b_{j}\) transform in an equivariant manner to \(\tilde{\boldsymbol a}_{j}\) and \(\tilde{\boldsymbol b}_{j}\), respectively, \(j=1, \ldots , t\).
 
-If either of \(\mathbf T\) or \(\mathbf V\) in \eqref{eq:transformations} is not an orthogonal matrix then the singular values are not invariant and the cc vectors do not transform in an equivariant manner.
+If either of \(\mathbf T\) or \(\mathbf R\) in \eqref{eq:transformations} is not an orthogonal matrix then the singular values are not invariant and the CC vectors do not transform in an equivariant manner.
 
-\hypertarget{testing-for-zero-canonical-correlation-coefficients}{%
-\section{Testing for zero canonical correlation coefficients}\label{testing-for-zero-canonical-correlation-coefficients}}
+\hypertarget{example-1}{%
+\section{Example?}\label{example-1}}
 
-So far in Part II of this module we have not considered formal statistical inference (e.g.~hypothesis testing, construction of confidence regions). Inference in various multivariate settings is considered in Part III. However, before moving on, we briefly explain how to perform tests for zero correlations in the CCA setting, under the assumption that the \(\boldsymbol z_i = (\boldsymbol x_i^\top , \boldsymbol y_i^\top)^\top\) are IID multivariate normal.
+\url{https://stats.idre.ucla.edu/r/dae/canonical-correlation-analysis/\#}:\textasciitilde{}:text=Canonical\%20correlation\%20analysis\%20is\%20used,among\%20two\%20sets\%20of\%20variables.\&text=Canonical\%20correlation\%20analysis\%20determines\%20a,both\%20within\%20and\%20between\%20sets.
 
-As previously, suppose that the \(\boldsymbol x_i\) are \(p \times 1\) vectors and the \(\boldsymbol y_i\) are \(q \times 1\) vectors and the sample size, i.e.~the number of \(\boldsymbol z_i\) vectors, is \(n\). Let \(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y} =\text{Cov}(\boldsymbol x,\boldsymbol y)\) denote the population cross-covariance matrix as before and consider the null hypothesis
-\[
-H_0: \, \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}={\mathbf 0}_{p,q},
-\]
-i.e. \(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}\) is the \(p \times q\) matrix of zeros. Let \(H_A\) denote the general alternative
-\[
-H_A:\, \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y} \quad *unrestricted*.
-\]
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mm <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"https://stats.idre.ucla.edu/stat/data/mmreg.csv"}\NormalTok{)}
+\KeywordTok{colnames}\NormalTok{(mm) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Control"}\NormalTok{, }\StringTok{"Concept"}\NormalTok{, }\StringTok{"Motivation"}\NormalTok{, }\StringTok{"Read"}\NormalTok{, }\StringTok{"Write"}\NormalTok{, }\StringTok{"Math"}\NormalTok{,}
+\StringTok{"Science"}\NormalTok{, }\StringTok{"Sex"}\NormalTok{)}
+\NormalTok{psych <-}\StringTok{ }\NormalTok{mm[,}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{]}
+\NormalTok{acad <-}\StringTok{ }\NormalTok{mm[,}\DecValTok{4}\OperatorTok{:}\DecValTok{8}\NormalTok{]}
+\KeywordTok{library}\NormalTok{(CCA)}
+\KeywordTok{matcor}\NormalTok{(psych, acad)}
+\end{Highlighting}
+\end{Shaded}
 
-Then the large-sample log-likelihood ratio test statistic for testing \(H_0\) versus \(H_A\) is as follows:
-\[
-W_0=-\left \{n-\frac{1}{2}(p+q+3)  \right \}\sum_{j=1}^{\min(p,q)} \log (1-\xi_j^2),
-\]
-where \(\xi_1\geq \xi_2 \cdots \geq \xi_{\min(p,q)} \geq 0\) are the sample canonical correlations.
-Moreover, when \(n\) is large, \(W_0\) is approximately \(\chi_{pq}^2\) under \(H_0\), and \(H_0\) should be rejected
-when \(W_0\) is sufficiently large.
+\begin{verbatim}
+## $Xcor
+##              Control   Concept Motivation
+## Control    1.0000000 0.1711878  0.2451323
+## Concept    0.1711878 1.0000000  0.2885707
+## Motivation 0.2451323 0.2885707  1.0000000
+## 
+## $Ycor
+##                Read     Write       Math    Science         Sex
+## Read     1.00000000 0.6285909  0.6792757  0.6906929 -0.04174278
+## Write    0.62859089 1.0000000  0.6326664  0.5691498  0.24433183
+## Math     0.67927568 0.6326664  1.0000000  0.6495261 -0.04821830
+## Science  0.69069291 0.5691498  0.6495261  1.0000000 -0.13818587
+## Sex     -0.04174278 0.2443318 -0.0482183 -0.1381859  1.00000000
+## 
+## $XYcor
+##              Control     Concept Motivation        Read      Write       Math
+## Control    1.0000000  0.17118778 0.24513227  0.37356505 0.35887684  0.3372690
+## Concept    0.1711878  1.00000000 0.28857075  0.06065584 0.01944856  0.0535977
+## Motivation 0.2451323  0.28857075 1.00000000  0.21060992 0.25424818  0.1950135
+## Read       0.3735650  0.06065584 0.21060992  1.00000000 0.62859089  0.6792757
+## Write      0.3588768  0.01944856 0.25424818  0.62859089 1.00000000  0.6326664
+## Math       0.3372690  0.05359770 0.19501347  0.67927568 0.63266640  1.0000000
+## Science    0.3246269  0.06982633 0.11566948  0.69069291 0.56914983  0.6495261
+## Sex        0.1134108 -0.12595132 0.09810277 -0.04174278 0.24433183 -0.0482183
+##                Science         Sex
+## Control     0.32462694  0.11341075
+## Concept     0.06982633 -0.12595132
+## Motivation  0.11566948  0.09810277
+## Read        0.69069291 -0.04174278
+## Write       0.56914983  0.24433183
+## Math        0.64952612 -0.04821830
+## Science     1.00000000 -0.13818587
+## Sex        -0.13818587  1.00000000
+\end{verbatim}
 
-We now consider a test concerning the rank of \(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}\). For \(0 \leq t <\min(p,q)\), consider the hypothesis:
-\[
-H_t: \,   \text{at most $t$ of the CC coefficients are non-zero}.
-\]
-It turns out there is a similar statistic to \(W_0\) above, for testing \(H_t\) against \(H_A\), defined by
-\[
-W_t=-\left \{n-\frac{1}{2}(p+q+3)  \right \}\sum_{j=t+1}^{\min(p,q)} \log (1-\xi_j^2),
-\]
-where, under \(H_t\) with \(n\) large, \(W_t\) is approximately \(\chi_{(p-t)(q-t)}^2\). Also, we reject
-\(H_t\) when \(W_t\) is sufficiently large.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cc1 <-}\StringTok{ }\KeywordTok{cc}\NormalTok{(psych, acad)}
+\end{Highlighting}
+\end{Shaded}
 
-\textbf{Example \ref{exm:prem} (continued)}.
-Here \(p=q=2\), \(n=20\) and \(\xi_1=0.974\) and \(\xi_2=0.508\).
-So we should refer \(W_0\) to \(\chi_4^2\) and refer \(W_1\) to \(\chi_1^2\). Here, \(W_0=53.92\) and \(W_1=4.92\). So hypothesis \(H_0\) is strongly rejected, with \(p\)-value \(<\,<0.001\). In contrast, \(H_1\) is rejected at the \(0.05\) level but is not rejected at the \(0.01\) level. So there is only moderate evidence that the 2nd CC coefficient is non-zero.
+\hypertarget{exercises-2}{%
+\section{Exercises}\label{exercises-2}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Suppose that \(\boldsymbol z= (\boldsymbol x^\top \boldsymbol y^\top)^\top\) is a random vector, where both \(\boldsymbol x\) and \(\boldsymbol y\) are sub-vectors of dimension \(p\), so that \(\boldsymbol z\) is \((2p)\times 1\). Define
+  \[{\mathbb{V}\operatorname{ar}}(\boldsymbol z)=\boldsymbol \Sigma_{\boldsymbol z\boldsymbol z}=\begin{pmatrix} \boldsymbol \Sigma_{\boldsymbol x\boldsymbol x} & \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}\\\boldsymbol \Sigma_{\boldsymbol y\boldsymbol x} & \boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}  \end{pmatrix}.\]
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Suppose that \(\boldsymbol y= \boldsymbol T\boldsymbol x\) where \(\boldsymbol T\) is a fixed matrix. Find \(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}\) and \(\boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}\) in terms of \(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}\) and \(\boldsymbol T\).
+  \item
+    Assuming now that \(\boldsymbol T\) is an orthogonal matrix and \(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}\) is of full rank, determine the singular values of the matrix \(\boldsymbol Q=\boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol \Sigma_ {\boldsymbol x\boldsymbol y}\boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}^{-1/2}\), and hence write down the canonical correlation coefficients.
+  \item
+    Suppose now that \(\boldsymbol T\) is non-singular but not orthogonal. Comment on whether the answer to part (b) changes.
+  \end{itemize}
+\item
+  We will now prove Proposition \ref{prp:svdopt3} by induction.
+  The case for \(k=1\) was proved in Section \ref{cca1} in Proposition \ref{prp:svdmax2}. Assume the result is true for \(k\). Consider the objective
+  \[\mathcal{L} = \boldsymbol a^\top \boldsymbol Q\boldsymbol b+ \sum_{i=1}^k \gamma_i\boldsymbol a^\top \boldsymbol a_i + \sum_{i=1}^k \mu_i\boldsymbol b^\top \boldsymbol b_i + \frac{\lambda_1}{2}(1-\boldsymbol a^\top\boldsymbol a)+ \frac{\lambda_2}{2}(1-\boldsymbol b^\top\boldsymbol b)\]
+  where \(\lambda_i, \mu_i, \gamma_i\) are Lagrangian multipliers.
+
+  \begin{itemize}
+  \item
+    By differentiating with respect to \(\boldsymbol a\) and \(\boldsymbol b\) and setting the derivative to zero show that
+    \begin{align}
+     \boldsymbol Q\boldsymbol b+ \sum\gamma_i \boldsymbol a_i - \lambda_1 \boldsymbol a&= 0 \label{eq:ex3a}\\
+     \boldsymbol Q^\top\boldsymbol a+ \sum\mu_i \boldsymbol b_i - \lambda_2 \boldsymbol b&= 0. \label{eq:ex3b} 
+     \end{align}
+  \item
+    By left multiplying the equations above by \(\boldsymbol a^\top\) and \(\boldsymbol b^\top\) respectively show that
+    \[\lambda_1=\lambda_2 = \boldsymbol a^\top \boldsymbol Q\boldsymbol b.\]
+  \item
+    By left multiplying \eqref{eq:ex3a} by \(\boldsymbol a_i^\top\) show that \(\gamma_i=0\) for \(i=1, \ldots, k\). Show similarly that \(\mu_i =0\) for \(i=1, \ldots, k\).
+  \item
+    Finally, by copying the proof of Proposition \ref{prp:svdmax2}, prove Proposition \ref{prp:svdopt3}.
+  \end{itemize}
+\item
+  Show the mean of the cc variables \(\eta_k\) and \(\psi_k\) is zero. Prove Proposition \ref{prp:ccavar} giving the variance of covariance the cc variables.
+\end{enumerate}
+
+\hypertarget{computer-tasks-1}{%
+\section{Computer tasks}\label{computer-tasks-1}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Use generalized inverse to find \(\boldsymbol S_{xx}^{-1/2}\)
+\item
+  What if do football example but allow \(L\) to be a variable in \(Y\) so that some of \(X\) perfectly explains \(Y\).
+\item
+  Lets consider again the crabs dataset you looked at in the exercises in the chapter on PCA (see \ref{pca-comp}).
+  We now consider a canonical correlation analysis in which one set of variables, the \(x\)-set, is given by CL and CW and the
+  other set, the \(y\)-set, is given by FL, RW and BD.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(MASS)}
+\NormalTok{?crabs           }\CommentTok{# read the help page to find out about the dataset}
+\NormalTok{X=}\KeywordTok{as.matrix}\NormalTok{(crabs[}\DecValTok{4}\OperatorTok{:}\DecValTok{8}\NormalTok{])    }
+\NormalTok{n=}\DecValTok{200}                                      \CommentTok{# sample size}
+\NormalTok{H=}\KeywordTok{diag}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,n))}\OperatorTok{-}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,n)}\OperatorTok{%*%}\KeywordTok{t}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,n))}\OperatorTok{/}\NormalTok{n  }\CommentTok{# n times n centering matrix}
+\NormalTok{X1=X[,}\DecValTok{3}\OperatorTok{:}\DecValTok{4}\NormalTok{]                                 }\CommentTok{# store CL and CW in X1}
+\NormalTok{Y1=}\KeywordTok{cbind}\NormalTok{(X[,}\DecValTok{1}\NormalTok{],X[,}\DecValTok{2}\NormalTok{],X[,}\DecValTok{5}\NormalTok{])                }\CommentTok{# store FL, RW and BD in Y1}
+\NormalTok{Sxx=}\KeywordTok{t}\NormalTok{(X1)}\OperatorTok{%*%}\NormalTok{H}\OperatorTok{%*%}\NormalTok{X1}\OperatorTok{/}\NormalTok{n                       }\CommentTok{# find x-variable variance matrix}
+\NormalTok{Syy=}\KeywordTok{t}\NormalTok{(Y1)}\OperatorTok{%*%}\NormalTok{H}\OperatorTok{%*%}\NormalTok{Y1}\OperatorTok{/}\NormalTok{n                       }\CommentTok{# find y-variable variance matrix}
+\NormalTok{Sxy=}\KeywordTok{t}\NormalTok{(X1)}\OperatorTok{%*%}\NormalTok{H}\OperatorTok{%*%}\NormalTok{Y1}\OperatorTok{/}\NormalTok{n                       }\CommentTok{# find cross-covariance matrix}
+\end{Highlighting}
+\end{Shaded}
+
+Now calculate \({\bf C}_{\bf x}={\bf S}_{\bf x x}^{-1/2}\) and \({\bf C}_{\bf y}={\bf S}_{\bf yy}^{-1/2}\), and store the results in \texttt{Cx} and \texttt{Cy}, respectively.
+
+Then calculate
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A=Cx}\OperatorTok{%*%}\NormalTok{Sxy}\OperatorTok{%*%}\NormalTok{Cy            }\CommentTok{# calculate the A matrix (see Chapter 5)}
+\NormalTok{U4=}\KeywordTok{svd}\NormalTok{(A)}\OperatorTok{$}\NormalTok{u                }\CommentTok{# extract the U matrix (our notation) in svd}
+\NormalTok{V4=}\KeywordTok{svd}\NormalTok{(A)}\OperatorTok{$}\NormalTok{v                }\CommentTok{# extract the V matrix (our notation) in svd}
+\NormalTok{d4=}\KeywordTok{svd}\NormalTok{(A)}\OperatorTok{$}\NormalTok{d                }\CommentTok{# extract the singular values in svd}
+\NormalTok{acheck=Cx}\OperatorTok{%*%}\NormalTok{U4[,}\DecValTok{1}\NormalTok{]         }\CommentTok{# calculate optimal x-weights}
+\NormalTok{bcheck=Cy}\OperatorTok{%*%}\NormalTok{V4[,}\DecValTok{1}\NormalTok{]         }\CommentTok{# calculate optimal y-weights}
+\NormalTok{xscores1=H}\OperatorTok{%*%}\NormalTok{X1}\OperatorTok{%*%}\NormalTok{acheck   }\CommentTok{# calculate centred x-scores for 1st CC}
+\NormalTok{yscores1=H}\OperatorTok{%*%}\NormalTok{Y1}\OperatorTok{%*%}\NormalTok{bcheck   }\CommentTok{# calculate centred y-scores for 1st CC}
+\KeywordTok{plot}\NormalTok{(xscores1,yscores1)    }\CommentTok{# plot x-scores against y-scores for 1st CC}
+\end{Highlighting}
+\end{Shaded}
+
+What does the plot tell you (if anything)? What is the 1st CC coefficient?
+
+Repeat the above to find the two sets of 2nd CC scores, \texttt{xscores2} and \texttt{yscores2} say, and plot these against each other and against the first CC scores. {[}Hint: you need to extract the second column from \texttt{Q4} and \texttt{R4} rather than the first column.{]} Is there any interesting structure in any of the plots? Which plots suggest random scatter?
+
+Test the following hypotheses: (i) that both CC coefficients are zero, and (ii) that at most one of the CC coefficients is non-zero. What do you conclude from your findings?
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Explore using CCA of the crabs data with the command \{\tt cc\} and \{\tt plt.cc\} in the package \{\tt CCA\} which you will need to download. {[}Note: these commands were also used on the Boston Housing data in lectures and I have provided the html output on the Moodle page, which could be helpful{]}.
+\end{enumerate}
+
+Note that you can use the commands
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(CCA)}
+\KeywordTok{matcor}\NormalTok{(X1, Y1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  The full Premier League dataset is available on the Moodle page. Read the data into R. You will need to download the data into your file space, and then
+  read it in, e.g.~using
+\end{enumerate}
+
+SORT
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(x , }\DataTypeTok{file=}\StringTok{"/YOURDIRECTORY/prem_league_data.txt, sep="} \StringTok{", header=TRUE)}
+\end{Highlighting}
+\end{Shaded}
+
+If you are not sure what the name of YOURDIRECTORY is where the file is located, then a useful command to find out is \{\tt file.choose()\}
+
+Check that you agree with the calculations in Chapters 3 and 4 of the lecture notes. Also, look at the PC scores as indicated in point 2 and the CC scores as indicated in point 3. Note that there will be some differences due to \{\tt prcomp\} using divisor \(n-1\) in the calculation of the sample covariance matrix, whereas we use \(n\) in the notes.
+Also, there may be some minor numerical/rounding differences.
 
 \hypertarget{mds}{%
 \chapter{Multidimensional Scaling}\label{mds}}
 
-In this chapter our starting point is somewhat different. Suppose we have a sample of \(n\) experimental units
-and we have a way to measure \emph{distance} or \emph{dissimilarity} between any pair of experimental units \(i\) and \(j\), leading to a measure of distance or dissimilarity \(d_{ij}\), \(i,j=1, \ldots , n\). The starting point for Multidimensional Scaling (MDS) is a distance matrix \(\boldsymbol D=(d_{ij}: \, i,j=1, \ldots , n)\). A key goal in MDS is to determine coordinates of a set of points in a low-dimensional Euclidean space, e.g. \(\mathbb{R}\) or \(\mathbb{R}^2\), whose inter-point distances (or dissimilarities) are approximately equal to the \(d_{ij}\). Using this approximate approach we are able to perform a statistical study of the original experimental units in a lower-dimensional space than the original one. We shall also see that there is a close connection between MDS and PCA.
+In PCA, we start with \(n\) data points \(\boldsymbol x_i \in \mathbb{R}^p\), and then try to find a low dimensional projection of these points, e.g., \(\boldsymbol y_1, \ldots, \boldsymbol y_n \in \mathbb{R}^r\) with \(r<p\), in such a way that they minimize the reconstruction error (or maximize the variance).
 
-\hypertarget{multidimensional-scaling}{%
-\section{Multidimensional Scaling}\label{multidimensional-scaling}}
+The focus in \textbf{Multidimensional Scaling (MDS)} is somewhat different. Instead of being given the data \(\boldsymbol X\), our starting point is a matrix of \textbf{distances} or \textbf{dissimilarities} between the data points, \(\boldsymbol D\). For example, if we have data on \(n\) different experimental units, then we would be given the distances \(d_{ij}\) between any pair of experimental units \(i\) and \(j\). We compile these into a \(n\times n\) \textbf{distance matrix} \(\boldsymbol D=(d_{ij}: \, i,j=1, \ldots , n)\).
+
+The goal of MDS is to find a set of points in a low-dimensional Euclidean space, e.g. \(\mathbb{R}\) or \(\mathbb{R}^2\), whose inter-point distances (or dissimilarities) are approximately equal to the \(d_{ij}\). We may or may not have access to the original data \(\boldsymbol X\), and we may not even know the dimension of the original data points \(\boldsymbol x_i\). The aim is simply to find a set of points \(\boldsymbol y_1, \ldots, \boldsymbol y_n\) whose distance matrix is approximately \(\boldsymbol D\), i.e., for which
+\[\operatorname{distance}(\boldsymbol y_i, \boldsymbol y_j) \approx d_{ij}.\]
+
+As an illustrative example, consider the location of some of England's cities.
+
+\includegraphics{06-mda_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+If we are told their latitude and longitude, it is easy to calculate the distances between the cities.
+
+\begin{table}[H]
+\centering\begingroup\fontsize{7}{9}\selectfont
+
+\begin{tabular}{lrrrrrrrrrrr}
+\toprule
+  & London & Birmingham & Manchester & Leeds & Newcastle & Liverpool & Portsmouth & Southampton & Nottingham & Bristol & Sheffield\\
+\midrule
+London & 0 & 163 & 262 & 273 & 403 & 286 & 103 & 112 & 175 & 170 & 228\\
+Birmingham & 163 & 0 & 114 & 149 & 282 & 125 & 195 & 179 & 73 & 124 & 105\\
+Manchester & 262 & 114 & 0 & 58 & 174 & 50 & 308 & 293 & 94 & 227 & 53\\
+Leeds & 273 & 149 & 58 & 0 & 135 & 105 & 335 & 323 & 98 & 271 & 47\\
+Newcastle & 403 & 282 & 174 & 135 & 0 & 199 & 469 & 458 & 231 & 401 & 181\\
+\addlinespace
+Liverpool & 286 & 125 & 50 & 105 & 199 & 0 & 317 & 299 & 132 & 219 & 101\\
+Portsmouth & 103 & 195 & 308 & 335 & 469 & 317 & 0 & 24 & 239 & 127 & 288\\
+Southampton & 112 & 179 & 293 & 323 & 458 & 299 & 24 & 0 & 229 & 103 & 276\\
+Nottingham & 175 & 73 & 94 & 98 & 231 & 132 & 239 & 229 & 0 & 193 & 53\\
+Bristol & 170 & 124 & 227 & 271 & 401 & 219 & 127 & 103 & 193 & 0 & 228\\
+\addlinespace
+Sheffield & 228 & 105 & 53 & 47 & 181 & 101 & 288 & 276 & 53 & 228 & 0\\
+\bottomrule
+\end{tabular}
+\endgroup{}
+\end{table}
+
+But can we reconstruct the map from the distance matrix? This is the aim of multidimensional scaling.
+MDS constructs a set of points that have distances between them given by the distance matrix \(\boldsymbol D\). In other words, it creates a map with a set of coordinates for which the distances between points are approximately the same as in the real data.
+
+Of course, this illustrative example is not very interesting, as the original data (the city locations) are only two-dimensional, but in problems with high dimensional data, finding a way to
+represent the points in a low-0dimensional space will make visualization and statistical analysis easier. As we shall see, there is a close connection between MDS and PCA.
+
+\hypertarget{classical-multidimensional-scaling}{%
+\section{Classical Multidimensional Scaling}\label{classical-multidimensional-scaling}}
 
 We call an \(n \times n\) matrix \(\boldsymbol D=(d_{ij})_{i,j=1}^n\) a \textbf{distance matrix} or, equivalently, a \textbf{dissimilarity matrix}, if the following properties are satisfied:
 
@@ -5045,14 +5960,102 @@ We now present the key result for classical MDS.
 In other words, we sum over those \(j\) such that \(\lambda_j\) is positive.
 Then \(\boldsymbol B_{\text{pos}}\) is non-negative definite and so we can use Theorem 5.1(iii) to determine a Euclidean configuration which has centred inner-product matrix \(\boldsymbol B_{\text{pos}}\). Then, provided the negative eigenvalues are small in absolute value relative to the positive eigenvalues, the inter-point distances of the new points in Euclidean space should provide a good approximation to the original inter-point distances \((d_{ij})\).
 
-\begin{example}
-\protect\hypertarget{exm:mdsm1}{}{\label{exm:mdsm1} }Consider the five point in \(\mathbb{R}^2\):
+\hypertarget{example-2}{%
+\subsection{Example}\label{example-2}}
+
+Consider the five point in \(\mathbb{R}^2\):
 \[
 \boldsymbol x_1=(0,0)^\top,  \boldsymbol x_2 =(1,0)^\top, \quad \boldsymbol x_3 =(0,1)^\top
 \]
 \[
 \boldsymbol x_4 =(-1,0)^\top \quad \text{and} \quad \boldsymbol x_5=(0,-1)^\top.
 \]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+              \DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+              \DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}
+              \DecValTok{-1}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+              \DecValTok{0}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{), }\DataTypeTok{nc=}\DecValTok{2}\NormalTok{, }\DataTypeTok{byrow=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{(D <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{dist}\NormalTok{(X, }\DataTypeTok{upper=}\NormalTok{T, }\DataTypeTok{diag=}\NormalTok{T)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   1        2        3        4        5
+## 1 0 1.000000 1.000000 1.000000 1.000000
+## 2 1 0.000000 1.414214 2.000000 1.414214
+## 3 1 1.414214 0.000000 1.414214 2.000000
+## 4 1 2.000000 1.414214 0.000000 1.414214
+## 5 1 1.414214 2.000000 1.414214 0.000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(A <-}\StringTok{ }\OperatorTok{-}\NormalTok{D}\OperatorTok{^}\DecValTok{2}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      1    2    3    4    5
+## 1  0.0 -0.5 -0.5 -0.5 -0.5
+## 2 -0.5  0.0 -1.0 -2.0 -1.0
+## 3 -0.5 -1.0  0.0 -1.0 -2.0
+## 4 -0.5 -2.0 -1.0  0.0 -1.0
+## 5 -0.5 -1.0 -2.0 -1.0  0.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{H <-}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\DecValTok{5}\NormalTok{) }\OperatorTok{-}\StringTok{ }\DecValTok{1}\OperatorTok{/}\DecValTok{5} \OperatorTok{*}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{), }\DataTypeTok{nc=}\DecValTok{1}\NormalTok{)}\OperatorTok{%*%}\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{), }\DataTypeTok{nr=}\DecValTok{1}\NormalTok{)}
+\NormalTok{B <-}\StringTok{ }\NormalTok{H}\OperatorTok{%*%}\StringTok{ }\NormalTok{A}\OperatorTok{%*%}\NormalTok{H}
+\KeywordTok{print}\NormalTok{(}\KeywordTok{round}\NormalTok{(B,}\DecValTok{0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    0    0    0    0    0
+## [2,]    0    1    0   -1    0
+## [3,]    0    0    1    0   -1
+## [4,]    0   -1    0    1    0
+## [5,]    0    0   -1    0    1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B.eig <-}\KeywordTok{eigen}\NormalTok{(B)}
+\NormalTok{Y<-}\KeywordTok{sqrt}\NormalTok{(B.eig}\OperatorTok{$}\NormalTok{values[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{])}\OperatorTok{*}\NormalTok{B.eig}\OperatorTok{$}\NormalTok{vectors[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\KeywordTok{dist}\NormalTok{(Y, }\DataTypeTok{upper=}\NormalTok{T, }\DataTypeTok{diag=}\NormalTok{T) }\CommentTok{# should agree with D.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          1        2        3        4        5
+## 1 0.000000 1.000000 1.000000 1.000000 1.000000
+## 2 1.000000 0.000000 1.414214 2.000000 1.414214
+## 3 1.000000 1.414214 0.000000 1.414214 2.000000
+## 4 1.000000 2.000000 1.414214 0.000000 1.414214
+## 5 1.000000 1.414214 2.000000 1.414214 0.000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Y.mds <-}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(D, }\DataTypeTok{eig=}\OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{dist}\NormalTok{(Y.mds}\OperatorTok{$}\NormalTok{points, }\DataTypeTok{upper=}\NormalTok{T, }\DataTypeTok{diag=}\NormalTok{T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          1        2        3        4        5
+## 1 0.000000 1.000000 1.000000 1.000000 1.000000
+## 2 1.000000 0.000000 1.414214 2.000000 1.414214
+## 3 1.000000 1.414214 0.000000 1.414214 2.000000
+## 4 1.000000 2.000000 1.414214 0.000000 1.414214
+## 5 1.000000 1.414214 2.000000 1.414214 0.000000
+\end{verbatim}
+
 The resulting distance matrix is
 \[
 \boldsymbol D=\left [ \begin{array}{ccccc}
@@ -5108,7 +6111,6 @@ So the coordinates of five points in \(\mathbb{R}^2\) which have the same inter-
 \end{pmatrix}.
 \]
 In the example sheets you asked to verify that there is an orthogonal transformation which maps the original five points onto the new five points.
-\end{example}
 
 \hypertarget{principal-coordinates}{%
 \section{Principal Coordinates}\label{principal-coordinates}}
@@ -5178,7 +6180,7 @@ Condition 2. implies that an object is at least as similar to itself as it is to
 One important class of problems is when the similarity between any two objects is measured by the number of common attributes. We illustrate this through two examples.
 
 \begin{example}
-\protect\hypertarget{exm:unnamed-chunk-2}{}{\label{exm:unnamed-chunk-2} }Suppose there are 4 attributes we wish to consider.
+\protect\hypertarget{exm:unnamed-chunk-6}{}{\label{exm:unnamed-chunk-6} }Suppose there are 4 attributes we wish to consider.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -5304,6 +6306,748 @@ b_{ij}&=a_{ij}-\bar{a}_{i+}-\bar{a}_{+j}+\bar{a}_{++}\\
 Consequently, \(\boldsymbol B=\boldsymbol H\boldsymbol F\boldsymbol H\), using part (vii) of \S 2.7 again, and the result is proved.
 \hfill\(\square\)
 \end{proof}
+
+\hypertarget{exercises-3}{%
+\section{Exercises}\label{exercises-3}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In this question we will prove part (ii) of ????????????? Result 5.1 in the lecture notes.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Define
+    \[
+    b_{ij}=(\boldsymbol x_i-\bar{\boldsymbol x})^\top (\boldsymbol x_j-\bar{\boldsymbol x}), \quad i,j=1, \ldots , n,
+    \]
+    and write \(\boldsymbol B=(b_{ij})_{i,j=1}^n\). Prove that \[\boldsymbol B=(\boldsymbol H\boldsymbol X)(\boldsymbol H\boldsymbol X)^\top,\] where
+    \(\boldsymbol H\) is the \(n \times n\) centering matrix and \(\boldsymbol X= (\boldsymbol x_1, \ldots , \boldsymbol x_n)^\top\) is the data matrix.
+  \item
+    Show that \(\boldsymbol B\) is non-negative definite (in which case part (ii) of Result 5.1 holds). \textbf{Hint}: explain why, for
+    all \(n \times 1\) vectors \(\boldsymbol a\),
+    \[
+    \boldsymbol a^\top \boldsymbol B\boldsymbol a=\boldsymbol a^\top (\boldsymbol H\boldsymbol X) (\boldsymbol H\boldsymbol X)^\top \boldsymbol a\geq 0. 
+    \]
+  \end{itemize}
+\item
+  In this question we will prove part (iii) of Result 5.1.?????????????
+\end{enumerate}
+
+\begin{verbatim}
+- Prove Property 7. of Section \\ref{centering-matrix}.  Specifically: if $\bA$ is a  symmetric $n \times n$ matrix, and $\bH=\bI_n -n^{-1} {\bf 1}_n{\bf 1}_n^\top$ is the $n \times n$ centering matrix, show that $\bB$ defined by
+\end{verbatim}
+
+\[\boldsymbol B= \boldsymbol H\boldsymbol A\boldsymbol H\]
+has elements given by
+\[
+b_{ij}=a_{ij}-\bar{a}_{i+}-\bar{a}_{+j}+\bar{a}_{++},  \qquad i,j=1, \ldots , n,
+\]
+where\\
+\[\bar{a}_{i+}= \frac{1}{n} \sum_{j=1}^n a_{ij}, \quad \bar{a}_{+j}=\frac{1}{n} \sum_{i=1}^n a_{ij}, \quad\mbox{and} \quad\bar{a}_{++} = \frac{1}{n^2} \sum_{i,j=1}^n a_{ij}.\]
+
+\begin{verbatim}
+- Assume that $\bB$ is non-negative definite with $k$ strictly positive eigenvalues and let
+\end{verbatim}
+
+\[
+\boldsymbol B= \sum_{j=1}^k \lambda_j \boldsymbol q_j\boldsymbol q_j^\top =\boldsymbol Q\boldsymbol \Lambda\boldsymbol Q^\top,
+\]
+where \(\boldsymbol \Lambda=\text{diag}\{\lambda_1, \ldots , \lambda_k\}\) and \(\boldsymbol Q\) is \(n \times k\) and satisfies \(\boldsymbol Q^\top \boldsymbol Q=\mathbf I_k\).
+Now define a `new' \(n \times k\) data matrix
+\[
+\boldsymbol X=[\boldsymbol x_1, \ldots , \boldsymbol x_n]^\top=\boldsymbol Q\boldsymbol \Lambda^{1/2}.
+\]
+Show that \(b_{ij}=\boldsymbol x_i^\top \boldsymbol x_j\) for all \(i,j=1, \ldots , n\).\\
+\textbf{Hint}: check that for \(\boldsymbol X\) defined as above, \(\boldsymbol X\boldsymbol X^\top =\boldsymbol B\).
+
+\begin{verbatim}
+- We now need to show that $\bD=(d_{ij})$ represents the set of inter-point distances for this new data matrix.  Recall that $a_{ij}=-d_{ij}^2/2$.  Deduce that
+\end{verbatim}
+
+\[
+(\boldsymbol x_i -\boldsymbol x_j)^\top (\boldsymbol x_i-\boldsymbol x_j)= b_{ii} + b_{jj}-2b_{ij};
+\]
+and so, using the first part of this question, show that
+\[
+(\boldsymbol x_i -\boldsymbol x_j)^\top (\boldsymbol x_i-\boldsymbol x_j)=-2a_{ij}=d_{ij}^2.
+\]
+Hence the new inter-point distances are the same as the original ones, and part (iii) of Result 5.1 is proved.
+
+\hypertarget{computer-tasks-2}{%
+\section{Computer Tasks}\label{computer-tasks-2}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Look at this computational trick \url{https://www.robots.ox.ac.uk/~albanie/notes/Euclidean_distance_trick.pdf}
+  for computing the distance matrix.
+\item
+  Do UK map?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mds <-}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(distances)}
+\KeywordTok{plot}\NormalTok{(mds[,}\DecValTok{2}\NormalTok{], mds[,}\DecValTok{1}\NormalTok{])}
+\KeywordTok{text}\NormalTok{(mds[,}\DecValTok{2}\NormalTok{], mds[,}\DecValTok{1}\NormalTok{], }\DataTypeTok{labels=}\NormalTok{city}\OperatorTok{$}\NormalTok{Name, }\DataTypeTok{pos=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cmdscale}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \url{http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/122-multidimensional-scaling-essentials-algorithms-and-r-code/}
+  Visualizing a correlation matrix using Multidimensional Scaling
+\end{enumerate}
+
+MDS can be also used to reveal a hidden pattern in a correlation matrix.
+
+Correlation actually measures similarity, but it is easy to transform it to a measure of dissimilarity. Distance between objects can be calculated as 1 - res.cor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res.cor <-}\StringTok{ }\KeywordTok{cor}\NormalTok{(mtcars, }\DataTypeTok{method =} \StringTok{"spearman"}\NormalTok{)}
+\NormalTok{mds.cor <-}\KeywordTok{cmdscale}\NormalTok{((}\DecValTok{1} \OperatorTok{-}\StringTok{ }\NormalTok{res.cor) ) }
+\KeywordTok{colnames}\NormalTok{(mds.cor) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Dim.1"}\NormalTok{, }\StringTok{"Dim.2"}\NormalTok{)}
+
+\KeywordTok{library}\NormalTok{(ggpubr)}
+\KeywordTok{ggscatter}\NormalTok{(mds.cor, }\DataTypeTok{x =} \StringTok{"Dim.1"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"Dim.2"}\NormalTok{, }
+          \DataTypeTok{label =} \KeywordTok{rownames}\NormalTok{(swiss),}
+          \DataTypeTok{size =} \DecValTok{1}\NormalTok{,}
+          \DataTypeTok{repel =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{part-iii-inference-using-the-multivariate-normal-distribution-mvn}{%
+\chapter*{Part III: Inference using the Multivariate Normal Distribution (MVN)}\label{part-iii-inference-using-the-multivariate-normal-distribution-mvn}}
+\addcontentsline{toc}{chapter}{Part III: Inference using the Multivariate Normal Distribution (MVN)}
+
+Part III of this module covers statistical inference based on the multivariate normal (MVN) distribution.
+
+Chapter \ref{multinormal} focuses on classical distribution theory relating to the MVN distribution, including the Wishart distribution, which is defined on the set of symmetric positive definite matrices and is a natural generalisation of the \(\chi^2\) distribution. Another important distribution related to the MVN distribution is the Hotelling \(T^2\) distribution, which is a multivariate analogue of the Student \(t\)-distribution.
+
+Chapter \ref{inferenceMVN} is concerned with testing hypotheses concerning vector means in \(1\)-sample and \(2\)-sample settings. There is a close connection with the classical \(1\)-sample and \(2\)-sample \(t\)-tests in univariate statistics.
+
+Chapter \ref{lm} is concerned with the multivariate linear model, in which the responses consist of random vectors rather than single random variables. Errors in this setting take the form of random vectors.
+
+The results in Part III turn out to be natural but non-trivial generalisations of the results in the univariate case.
+
+\hypertarget{multinormal}{%
+\chapter{The Multivariate Normal Distribution}\label{multinormal}}
+
+The multivariate normal distribution (MVN) generalises the univariate normal distribution from scalar to vector random variables. It is important for a number of reasons:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  It is entirely defined by its mean vector \(\boldsymbol \mu\) and its covariance matrix \(\boldsymbol \Sigma\).
+\item
+  Zero correlation implies independence.
+\item
+  Linear functions of multivariate normal vectors are also multivariate normal vectors.
+\item
+  The multivariate version of the Central Limit Theorem means that it appears naturally throughout statistics.
+\item
+  It has simple geometric properties, and is easy to work with mathematically.
+\end{enumerate}
+
+\hypertarget{definition-and-properties-of-the-mvn}{%
+\section{Definition and Properties of the MVN}\label{definition-and-properties-of-the-mvn}}
+
+\begin{definition}
+\protect\hypertarget{def:mvn}{}{\label{def:mvn} }A random vector \(\boldsymbol x=(x_1, \ldots , x_p)^\top\) has a \(p\)-dimensional MVN distribution if and only if \(\boldsymbol a^\top \boldsymbol x\) is a univariate normal random variable for all fixed \(p \times 1\) vectors \(\boldsymbol a\).
+\end{definition}
+
+\textbf{Notation}: \quad If \(\boldsymbol x\) (\(p \times 1\)) is MVN with mean \(\boldsymbol \mu\) and covariance matrix \(\boldsymbol \Sigma\) then we write
+\[ \boldsymbol x\sim N_p (\boldsymbol \mu, \boldsymbol \Sigma).\]
+
+\begin{proposition}
+\protect\hypertarget{prp:six1}{}{\label{prp:six1} }If \(\stackrel{p \times 1}{\boldsymbol x}\) is a multivariate normal random variable, then for each constant matrix \(\boldsymbol A\) (\(q \times p\)) and constant vector \(\boldsymbol c\) (\(q \times 1\)), \(\boldsymbol y= \boldsymbol A\boldsymbol x+ \boldsymbol c\) has a \(q\)-dimensional MVN.
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}Let \(\boldsymbol b\) (\(q \times 1)\) be a fixed vector. Then
+\[ \boldsymbol b^\top \boldsymbol y= \boldsymbol b^\top \boldsymbol A\boldsymbol x+ \boldsymbol b^\top \boldsymbol c= \boldsymbol a^\top \boldsymbol x+ \boldsymbol b^\top \boldsymbol c\]
+where \(\boldsymbol a^\top = \boldsymbol b^\top \boldsymbol A\). Now \(\boldsymbol a^\top \boldsymbol x\) is univariate normal for all \(\boldsymbol a\) since \(\boldsymbol x\) is MVN. Therefore \(\boldsymbol b^\top \boldsymbol y\) is univariate normal for all \(\boldsymbol b\), so \(\boldsymbol y\) is MVN.
+\end{proof}
+
+\begin{corollary}
+\protect\hypertarget{cor:csix1}{}{\label{cor:csix1} }Any subset of the components of a MVN vector \(\boldsymbol x\) is also MVN.
+\end{corollary}
+
+\begin{definition}
+\protect\hypertarget{def:mvnpdf}{}{\label{def:mvnpdf} }If the population covariance matrix \(\boldsymbol \Sigma\) (\(p \times p\)) is positive definite (i.e.~full rank), so that \(\boldsymbol \Sigma^{-1}\) exists,
+then the \textbf{probability density function} (pdf) of the MVN distribution is given by
+\[ f(\boldsymbol x) = \frac{1}{| 2 \pi \boldsymbol \Sigma|^{1/2}} \exp \left(-\frac{1}{2}(\boldsymbol x- \boldsymbol \mu)^\top \boldsymbol \Sigma^{-1} (\boldsymbol x- \boldsymbol \mu) \right).\]
+\end{definition}
+
+If \(p=1\), so that \(\boldsymbol x= x\), \(\boldsymbol \mu= \mu\) and \(\boldsymbol \Sigma= \sigma^2\), say, then the pdf simplifies to
+\begin{eqnarray*}
+f(\boldsymbol x) &=& \frac{1}{|2 \pi \sigma^2|^{1/2}} \exp \left(-\frac{1}{2}(x - \mu) (\sigma^2)^{-1} (x - \mu) \right)\\
+&=& \frac{1}{(2 \pi \sigma^2)^{1/2}} \exp \left(-\frac{1}{2 \sigma^2}(x - \mu)^2 \right)
+\end{eqnarray*}
+which is the familiar pdf of the univariate normal distribution \(N(\mu,\sigma^2)\).
+
+If \(p>1\) and \(\boldsymbol \Sigma= \operatorname{diag}(\sigma_1^2, \ldots, \sigma_p^2)\) then
+\begin{eqnarray*}
+f(\boldsymbol x) &=& \frac{1}{(2 \pi)^{p/2}} \exp \left(-\frac{1}{2}(\boldsymbol x- \boldsymbol \mu)^\top \boldsymbol \Sigma^{-1}(\boldsymbol x- \boldsymbol \mu) \right)\\
+&=& \frac{1}{(2 \pi)^{p/2}} \exp \left(-\frac{1}{2} \sum_{i=1}^p \frac{(x_i - \mu_i)^2}{\sigma_i^2} \right)\\
+&=& \left(\frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{1}{2\sigma_1^2} (x_1 - \mu_1)^2 \right)\right)\\
+ && \qquad \qquad \times \ldots \left(\frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{1}{2\sigma_p^2} (x_p - \mu_p)^2 \right)\right)
+\end{eqnarray*}
+Thus, by the factorisation theorem for probability densities, the components of \(\boldsymbol x\) have independent univariate normal distributions: \(x_i \sim N(\mu_i, \sigma_i^2)\).
+
+If \(p=2\) we can plot \(f(\boldsymbol x)\) using contour plots. Below, I've generated 1000 points from four different normal distributions using mean vectors
+\[\boldsymbol \mu_1=\boldsymbol \mu_3=\boldsymbol \mu_4=\begin{pmatrix}0 \\0 \\\end{pmatrix}, \quad \boldsymbol \mu_2=\begin{pmatrix}1 \\-1 \\\end{pmatrix}\]
+and covariance matrices
+\[\boldsymbol \Sigma_1=\boldsymbol \Sigma_2=\begin{pmatrix}1&0 \\0&1 \\\end{pmatrix}, \quad \boldsymbol \Sigma_3=\begin{pmatrix}1&0 \\0&0.05 \\\end{pmatrix}, \quad \boldsymbol \Sigma_4=\begin{pmatrix}1&0.9 \\0.9&1 \\\end{pmatrix}.\]
+
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+The contours on each plot are obtained by finding values of \(\boldsymbol x\) for which \(f(\boldsymbol x)=c\). The constant \(c\) is chosen so that the the shapes
+enclose 66\% and 95\% of the data.
+
+\hypertarget{ellipses}{%
+\subsubsection*{Ellipses}\label{ellipses}}
+\addcontentsline{toc}{subsubsection}{Ellipses}
+
+What is the shape of the contours in the plots above? They are defined by \(f(\boldsymbol x)=c\), which implies
+
+\begin{equation}
+(\boldsymbol x- \boldsymbol \mu)^\top \boldsymbol \Sigma^{-1} (\boldsymbol x- \boldsymbol \mu)=c' \label{eq:mvnellipse}
+\end{equation}
+for some constant \(c'\).
+This is the equation of an ellipse. To see this, note that a standard ellipse in \(\mathbb{R}^2\) is given by the equation
+\begin{equation}
+\frac{x^2}{a^2}+\frac{y^2}{b^2}=1 \quad (a>b>0). \label{eq:ellipse}
+\end{equation}
+and recall that a standard ellipse has axes of symmetry given by the \(x\)-axis and \(y\)-axis
+(if \(a>b\), the \(x\)-axis is the major axis, and the \(y\)-axis the minor axis). For example, \(a=10, b=3\) gives the ellipse:
+
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+If we define
+\({\mathbf A}=\left( \begin{array}{cc} a^2&0\\ 0&b^2 \end{array} \right)\) and write \({\mathbf x}=\binom{x}{y}\),
+then Equation \eqref{eq:ellipse} can be written in the form
+\[ \boldsymbol x^\top {\mathbf A}^{-1}\boldsymbol x=c'. \]
+To shift the centre of the ellipse from the origin to the point \(\boldsymbol \mu\) we modify the equation to be
+\[ (\boldsymbol x-\boldsymbol \mu)^\top {\mathbf A}^{-1}(\boldsymbol x-\boldsymbol \mu) =c'.\]
+
+What if instead of using a diagonal matrix \(\boldsymbol A\), we use a non-diagonal matrix \(\boldsymbol \Sigma\) as in Equation \eqref{eq:mvnellipse}? If \(\boldsymbol \Sigma\) has spectral decomposition
+\(\boldsymbol \Sigma= \boldsymbol V\boldsymbol \Lambda\boldsymbol V^\top\), then
+\[ (\boldsymbol x-\boldsymbol \mu)^\top {\boldsymbol \Sigma}^{-1}(\boldsymbol x-\boldsymbol \mu) = (\boldsymbol x-\boldsymbol \mu)^\top \boldsymbol V\boldsymbol \Lambda^{-1}\boldsymbol V^\top(\boldsymbol x-\boldsymbol \mu) = \boldsymbol y^\top \boldsymbol \Lambda^{-1}\boldsymbol y\]
+where \(\boldsymbol \Lambda\) is a diagonal matrix of eigenvalues, and \(\boldsymbol y= \boldsymbol V^\top (\boldsymbol x-\boldsymbol u)\). Because \(\boldsymbol V\) is an orthogonal matrix (a rotation), we can see that this is the equation of a standard ellipse when using the eigenvectors as the coordinate system. Or in other words, it is an ellipse
+with major axis given by the first eigenvector, and minor axis given by the second eigenvector, centered aroubd \(\boldsymbol \mu\).
+
+Analogous results for ellipsoids and quadratic forms hold in three and higher dimensions.
+
+\hypertarget{transformations}{%
+\subsection{Transformations}\label{transformations}}
+
+\begin{proposition}
+\protect\hypertarget{prp:six2}{}{\label{prp:six2} } If \(\boldsymbol x\sim N_p(\boldsymbol \mu,\boldsymbol \Sigma)\) and \(\boldsymbol y= \boldsymbol A\boldsymbol x+ \boldsymbol c\), where \(\boldsymbol A\) (\(q \times p\)) and \(\boldsymbol c\) (\(q \times 1\)) are constant, then
+\[\boldsymbol y\sim N_q(\boldsymbol A\boldsymbol \mu+ \boldsymbol c, \boldsymbol A\boldsymbol \Sigma\boldsymbol A^\top).\]
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}We know \(\boldsymbol y\) is MVN by Proposition \ref{prp:six1}. We also know \({\mathbb{E}}(\boldsymbol y)\) and \({\mathbb{V}\operatorname{ar}}(\boldsymbol y)\) from Section \ref{randvec}.
+\end{proof}
+
+This implies that a linear transformation of a MVN random variable is also MVN. We can use this result to prove two important corollaries. The first corollary is useful for simulating data from a general MVN distribution.
+
+\begin{corollary}
+\protect\hypertarget{cor:csix2}{}{\label{cor:csix2} } If \(\boldsymbol x\sim N_p(\boldsymbol 0,\mathbf I_p)\) and \(\boldsymbol y= \boldsymbol \Sigma^{1/2} \boldsymbol x+ \boldsymbol \mu\) then \[\boldsymbol y\sim N_p(\boldsymbol \mu,\boldsymbol \Sigma).\]
+\end{corollary}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}Apply \ref{prp:six2} with \(\boldsymbol A= \boldsymbol \Sigma^{1/2}\) and \(\boldsymbol c= \boldsymbol \mu\). Therefore
+\[{\mathbb{E}}(\boldsymbol y) = \boldsymbol \Sigma^{1/2} \boldsymbol 0_p + \boldsymbol \mu= \boldsymbol \mu\quad \mbox{and}\quad {\mathbb{V}\operatorname{ar}}(\boldsymbol y) = \boldsymbol \Sigma^{1/2} \mathbf I_p \boldsymbol \Sigma^{1/2} = \boldsymbol \Sigma.\]
+\end{proof}
+
+The second corollary says that any MVN random variable can be transformed into standard form.
+
+\begin{corollary}
+\protect\hypertarget{cor:csix3}{}{\label{cor:csix3} }Suppose \(\boldsymbol x\sim N_p(\boldsymbol \mu,\boldsymbol \Sigma)\), where \(\boldsymbol \Sigma\) has full rank. Then\\
+\[\boldsymbol y= \boldsymbol \Sigma^{-1/2}(\boldsymbol x- \boldsymbol \mu) \sim N_p(\boldsymbol 0,\mathbf I_p).\]
+\end{corollary}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}Apply Proposition \ref{prp:six2} with \(\boldsymbol A= \boldsymbol \Sigma^{-1/2}\) and \(\boldsymbol c= - \boldsymbol \Sigma^{-1/2} \boldsymbol \mu\).\\
+\end{proof}
+
+\hypertarget{moment-generating-functions}{%
+\subsection{Moment Generating Functions}\label{moment-generating-functions}}
+
+\begin{definition}
+\protect\hypertarget{def:mgf}{}{\label{def:mgf} }The \textbf{moment generating function} of a random vector \(\boldsymbol x\in \mathbb{R}^p\) is given by
+\[
+M({\boldsymbol t})={\mathbb{E}}[e^{{\boldsymbol t}^\top \boldsymbol x}],
+\]
+and is defined for all \({\boldsymbol t}\in \mathbb{R}^p\) for which \(M({\boldsymbol t})\) is finite.
+\end{definition}
+\begin{proposition}
+\protect\hypertarget{prp:six3}{}{\label{prp:six3} } The moment generating function of \(\boldsymbol x\sim N_p(\boldsymbol \mu, \boldsymbol \Sigma)\) is given by
+\begin{equation}
+M({\boldsymbol t})=\exp \left (\boldsymbol \mu^\top  {\boldsymbol t}+ \frac{1}{2} {\boldsymbol t}^\top \boldsymbol \Sigma{\boldsymbol t}\right).
+\label{eq:Mt}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}For fixed \({\boldsymbol t}\), define the random variable \(Y=\boldsymbol x^\top {\boldsymbol t}\). From Proposition \ref{prp:six2},
+\(Y \sim N(\mu_{{\boldsymbol t}}, {\sigma_{\boldsymbol t}}^2)\),
+where \(\mu_{\boldsymbol t}=\boldsymbol \mu^\top {\boldsymbol t}\) and \(\sigma^2_{\boldsymbol t}={\boldsymbol t}^\top \boldsymbol \Sigma{\boldsymbol t}\).
+
+If \(\sigma_{\boldsymbol t}=0\) then \(Y=\boldsymbol \mu^\top {\boldsymbol t}\) with probability one, and \(M({\boldsymbol t})=e^{\boldsymbol \mu^\top {\boldsymbol t}}\) which agrees with \eqref{eq:Mt}.
+
+Assume \(\sigma_{{\boldsymbol t}}>0\). Then
+\begin{align*}
+M({\boldsymbol t})&={\mathbb{E}}[e^{\boldsymbol x^\top {\boldsymbol t}}]\\
+&={\mathbb{E}}[e^{Y}]=\int_{-\infty}^\infty \exp(y) \frac{1}{\sqrt{2\pi \sigma_{\boldsymbol t}^2}}
+\exp\left (-\frac{1}{2}\frac{(y-\mu_{\boldsymbol t})^2}{\sigma_{\boldsymbol t}^2} \right )dy.
+\end{align*}
+
+The integral above can be evaluated by completing the square in the exponent, using the identity
+\[
+y-\frac{1}{2}\frac{(y-\mu_{\boldsymbol t})^2}{\sigma_{\boldsymbol t}^2}=\mu_{\boldsymbol t}
++\frac{1}{2}\sigma_{\boldsymbol t}^2-\frac{1}{2}\frac{(y-\mu_{\boldsymbol t}-\sigma_{\boldsymbol t}^2)^2}{\sigma_{\boldsymbol t}^2}.
+\]
+
+Consequently
+\begin{align*}
+M({\boldsymbol t})&=\int_{-\infty}^\infty \exp \left\{\mu_{\boldsymbol t}+\frac{1}{2}\sigma_{\boldsymbol t}^2 \right\}
+\frac{1}{\sqrt{2 \pi \sigma_{\boldsymbol t}^2}}\exp \left\{ -\frac{1}{2} \frac{(y-\mu_{\boldsymbol t}-\sigma_{\boldsymbol t}^2)^2}
+{\sigma_{\boldsymbol t}^2}\right\}dy\\
+&=\exp\left( \mu_{\boldsymbol t}+ \frac{1}{2}\sigma_{\boldsymbol t}^2  \right)\\
+&=\exp\left(
+\boldsymbol \mu^\top {\boldsymbol t}+ \frac{1}{2}{\boldsymbol t}^\top \boldsymbol \Sigma{\boldsymbol t}\right),
+\end{align*}
+as required.
+\end{proof}
+
+\begin{proposition}
+\protect\hypertarget{prp:six4}{}{\label{prp:six4} }Two vectors \(\boldsymbol x\) (\(p \times 1\)) and \(\boldsymbol y\) (\(q \times 1\)) which are jointly multivariate normal are independent if and only if they are uncorrelated, i.e. \({\mathbb{C}\operatorname{ov}}(\boldsymbol x,\boldsymbol y) = \boldsymbol 0_{p,q}\).
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}We prove this result using the factorisation theorem for moment generating functions (MGFs), which is now stated.
+Let
+\[{\boldsymbol t}=\begin{pmatrix}{\boldsymbol t}_1\\ {\boldsymbol t}_2\end{pmatrix}\]
+where \({\boldsymbol t}_1 \in \mathbb{R}^p\), \({\boldsymbol t}_2 \in \mathbb{R}^q\) and \({\boldsymbol t}\in \mathbb{R}^{p+q}\). The joint MGF of two arbitrary random vectors \(\stackrel{p \times 1}{\boldsymbol x}\) and \(\stackrel{q \times 1}{\boldsymbol y}\) is \[
+ M({\boldsymbol t}_1, {\boldsymbol t}_2)={\mathbb{E}}[e^{{\boldsymbol t}_1^\top \boldsymbol x+ {\boldsymbol t}_2^\top \boldsymbol y}].
+  \]
+The factorisation theorem for MGFs states that
+\(\boldsymbol x\) and \(\boldsymbol y\) are independent if and only if \(M({\boldsymbol t}_1 , {\boldsymbol t}_2)\) factorises, i.e.,
+\[
+M({\boldsymbol t}_1 , {\boldsymbol t}_2)=M_1({\boldsymbol t}_1)M_2({\boldsymbol t}_2)
+\]
+for some functions \(M_1\) and \(M_2\), in which case \(M_1\) and \(M_2\) are the marginal MGFs of \(\boldsymbol x\) and \(\boldsymbol y\).
+
+Now suppose \(\boldsymbol x\) and \(\boldsymbol y\) are multivariate normal random variables with
+\begin{equation}
+{\mathbb{E}}[\boldsymbol x]=\boldsymbol \mu_{\boldsymbol x}, \qquad \qquad {\mathbb{E}}[\boldsymbol y]=\boldsymbol \mu_{\boldsymbol y}, \quad  {\mathbb{V}\operatorname{ar}}(\boldsymbol x)=\boldsymbol \Sigma_{\boldsymbol x\boldsymbol x},
+\quad  {\mathbb{V}\operatorname{ar}}(\boldsymbol y)=\boldsymbol \Sigma_{\boldsymbol y\boldsymbol y},
+\label{eq:def1}
+\end{equation}
+and
+\begin{equation}
+{\mathbb{C}\operatorname{ov}}(\boldsymbol x,\boldsymbol y)=\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}=\boldsymbol \Sigma_{\boldsymbol y\boldsymbol x}^\top = {\mathbb{C}\operatorname{ov}}(\boldsymbol y, \boldsymbol x)^\top.
+\label{eq:def2}
+\end{equation}
+Using Proposition \ref{prp:six3} and definitions \eqref{eq:def1} and \eqref{eq:def2},
+\begin{align*}
+M({\boldsymbol t}_1, {\boldsymbol t}_2)&=\exp\left ( \boldsymbol \mu^\top {\boldsymbol t}+ \frac{1}{2}{\boldsymbol t}^\top \boldsymbol \Sigma{\boldsymbol t}\right )\\
+&=\exp\bigg (\boldsymbol \mu_{\boldsymbol x}^\top {\boldsymbol t}_1 +\boldsymbol \mu_{\boldsymbol y}^\top {\boldsymbol t}_2+\frac{1}{2}{\boldsymbol t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol x}{{\boldsymbol t}_1}\\
+& \qquad \qquad +\frac{1}{2}{\boldsymbol t}_2^\top  \boldsymbol \Sigma_{\boldsymbol y\boldsymbol y}{\boldsymbol t}_2+\frac{1}{2} 2{\boldsymbol t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}{\boldsymbol t}_2 \bigg)\\
+&=M_1({\boldsymbol t}_1)M_2({\boldsymbol t}_2)M_3({\boldsymbol t}_1, {\boldsymbol t}_2),
+\end{align*}
+where \(M_1({\boldsymbol t}_1)\) and \(M_2({\boldsymbol t}_2)\) are the marginal MGFs of \(\boldsymbol x\) and \(\boldsymbol y\) respectively, and
+\[
+M_3({\boldsymbol t}_1, {\boldsymbol t}_2)=\exp\left ({\boldsymbol t}_1^\top \boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}{\boldsymbol t}_2 \right ).
+\]
+Thus, by the factorisation theorem, \(\boldsymbol x\) and \(\boldsymbol y\) are independent if and only if \(M_3({\boldsymbol t}_1, {\boldsymbol t}_2)\) is constant with respect to
+\({\boldsymbol t}_1\) and \({\boldsymbol t}_2\), which is the case if and only if \(\boldsymbol \Sigma_{\boldsymbol x\boldsymbol y}={\mathbf 0}_{p,q}\).
+\end{proof}
+
+Proposition \ref{prp:six4} means that zero correlation implies independence for the MVN distribution. This is not true in general for other distributions.
+
+\textbf{Note}: Propositions \ref{prp:six1} - \ref{prp:six4} holds regardless irregardless of whether the covariance matrix \(\boldsymbol \Sigma\) is invertible.
+
+The term \((\boldsymbol x-\boldsymbol \mu)^\top \boldsymbol \Sigma^{-1} (\boldsymbol x-\boldsymbol \mu)\) appears in the exponent of the pdf and
+will be important later. We now derive its distribution:
+
+\begin{proposition}
+\protect\hypertarget{prp:six5}{}{\label{prp:six5} }If \(\boldsymbol x\sim N_p(\boldsymbol \mu, \boldsymbol \Sigma)\) and \(\boldsymbol \Sigma\) is positive definite then
+\[(\boldsymbol x-\boldsymbol \mu)^\top \boldsymbol \Sigma^{-1} (\boldsymbol x-\boldsymbol \mu) \sim \chi_p^2.\]
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}Define \(\boldsymbol y= \boldsymbol \Sigma^{-1/2} (\boldsymbol x-\boldsymbol \mu)\) so
+\begin{align*}
+(\boldsymbol x-\boldsymbol \mu)^\top \boldsymbol \Sigma^{-1} (\boldsymbol x-\boldsymbol \mu) &= \left(\boldsymbol \Sigma^{-1/2} (\boldsymbol x-\boldsymbol \mu) \right)^\top \left(\boldsymbol \Sigma^{-1/2} (\boldsymbol x-\boldsymbol \mu) \right)\\
+&= \boldsymbol y^\top \boldsymbol y= \sum_{i=1}^p y_i^2
+\end{align*}
+By Corollary \ref{cor:csix3}, \(\boldsymbol y\sim N_p (\boldsymbol 0, \mathbf I_p)\), and so the components of \(\boldsymbol y\) have independent univariate normal distributions with mean 0 and variance 1. Recall from univariate statistics that if \(z \sim N(0,1)\) then \(z^2 \sim \chi^2_1\) and if \(z_1, \ldots, z_n\) are iid \(N(0,1)\) then \(\sum_{i=1}^n z_i^2 \sim \chi_n^2\). It therefore follows that \[\sum_{i=1}^p y_i^2 \sim \chi^2_p.\]
+\end{proof}
+
+We saw earlier in this section chapter that the MVN distribution in \(p\) dimensions has constant density on ellipses or ellipsoids given by \(f(\boldsymbol x) = c\) for some constant \(c > 0\), and that we can rearrange this equation to be of the form
+\[U(\boldsymbol x) = (\boldsymbol x-\boldsymbol \mu)^\top \boldsymbol \Sigma^{-1} (\boldsymbol x-\boldsymbol \mu) = k\]
+where \(k = - 2 \log(c) - \log |2 \pi \boldsymbol \Sigma| > 0\) is a combination of the constant, \(c\), and the normalising constant in the pdf. Proposition \ref{prp:six5} means we can calculate the probability, \(P(U(\boldsymbol x)<k)\), which is the probability of \(\boldsymbol x\) lying within a particular ellipsoid.
+
+\hypertarget{sampling-results-for-the-mvn}{%
+\subsection{Sampling results for the MVN}\label{sampling-results-for-the-mvn}}
+
+In this section we present two important results which are natural
+generalisations of what happens in the univariate case.
+
+\begin{proposition}
+\protect\hypertarget{prp:six6}{}{\label{prp:six6} }If \(\boldsymbol x_1, \ldots, \boldsymbol x_n\) is an IID random sample from \(N_p(\boldsymbol \mu, \boldsymbol \Sigma)\), then the sample mean and sample variance matrix
+\[\bar{\boldsymbol x} = \frac{1}{n} \sum_{i=1}^n \boldsymbol x_i, \quad \boldsymbol S= \frac{1}{n} \sum_{i=1}^n (\boldsymbol x_i - \bar{\boldsymbol x})(\boldsymbol x_i-\bar{\boldsymbol x})^\top\] are independent.
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}From Proposition \ref{prp:six1} and Proposition \ref{prp:six2} we can see that if \(\boldsymbol x_1, \ldots, \boldsymbol x_n \sim N_p(\boldsymbol \mu, \boldsymbol \Sigma)\) then \(\bar{\boldsymbol x} \sim N_p (\boldsymbol \mu, n^{-1}\boldsymbol \Sigma)\). Then
+\begin{align*}
+{\mathbb{C}\operatorname{ov}}(\bar{\boldsymbol x},\boldsymbol y_i)&={\mathbb{C}\operatorname{ov}}(\bar{\boldsymbol x}, \boldsymbol x_i -\bar{\boldsymbol x})\\
+&={\mathbb{C}\operatorname{ov}}(\bar{\boldsymbol x}, \boldsymbol x_i) - {\mathbb{C}\operatorname{ov}}(\bar{\boldsymbol x}, \bar{\boldsymbol x})\\
+&=n^{-1}\sum_{j=1}^n \left \{{\mathbb{E}}[(\boldsymbol x_j -\boldsymbol \mu)(\boldsymbol x_i-\boldsymbol \mu)^\top]\right \}\\
+& \qquad \qquad -{\mathbb{E}}[(\bar{\boldsymbol x}-\boldsymbol \mu)(\bar{\boldsymbol x}-\boldsymbol \mu)^\top]\\
+&=n^{-1}\boldsymbol \Sigma- n^{-1}\boldsymbol \Sigma\\
+&= {\mathbf 0}_{p,p}.
+\end{align*}
+Thus Proposition \ref{prp:six4} gives that \(\bar{\boldsymbol x}\) and \(\boldsymbol y_i\) are independent, and therefore \(\bar{\boldsymbol x}\) and
+\[
+\boldsymbol S=\frac{1}{n}\sum_{i=1}^n \boldsymbol y_i \boldsymbol y_i^\top =n^{-1}\sum_{i=1}^n (\boldsymbol x_i -\bar{\boldsymbol x})(\boldsymbol x_i -\bar{\boldsymbol x})^\top
+\]
+are independent.\\
+\end{proof}
+
+Recall from above that if \(\boldsymbol x_1, \ldots, \boldsymbol x_n\) is a random sample from \(N_p(\boldsymbol \mu, \boldsymbol \Sigma)\) then \[\bar{\boldsymbol x} \sim N_p (\boldsymbol \mu, \frac{1}{n}\boldsymbol \Sigma).\] This result is also approximately true for large samples from non-normal distributions, as is now stated in the multivariate central limit theorem.
+
+\begin{proposition}
+\protect\hypertarget{prp:clt}{}{\label{prp:clt} }\textbf{Central limit theorem} Let \(\boldsymbol x_1, \boldsymbol x_2, \ldots \in \mathbb{R}^p\) be a sample of independent and identically distributed random vectors from a distribution with mean \(\boldsymbol \mu\) and finite variance matrix \(\boldsymbol \Sigma\). Then asymptotically as \(n \rightarrow \infty\), \(\sqrt{n}(\bar{\boldsymbol x}-\boldsymbol \mu)\) converges in distribution to \(N_p ({\mathbf 0}_p, \boldsymbol \Sigma)\).
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}Beyond the scope of this module.
+\end{proof}
+
+\hypertarget{the-wishart-distribution}{%
+\section{The Wishart distribution}\label{the-wishart-distribution}}
+
+The Wishart distribution is a multivariate generalisation of the univariate \(\chi^2\) distribution. In univariate statistics the \(\chi^2\) distribution plays an important role in inference related to the univariate normal, e.g.~in the definition of Student's \(t\) distribution. An analogous role is played by the Wishart distribution in multivariate statistics. In this section we introduce the Wishart distribution and show that for MVN random variables, the sample covariance matrix \(\boldsymbol S\) has a Wishart distribution.
+
+\begin{definition}
+\protect\hypertarget{def:wishart}{}{\label{def:wishart} } Let \(\boldsymbol x_1, \ldots, \boldsymbol x_n\) be an IID random sample from \(N_p (\boldsymbol 0, \boldsymbol \Sigma)\). Then \[\boldsymbol M= \sum_{i=1}^n \boldsymbol x_i \boldsymbol x_i^\top \in \mathbb{R}^{p\times p}\]
+is said to have a Wishart distribution with \(n\) degrees of freedom and scale matrix \(\boldsymbol \Sigma\). We write this as
+\[\boldsymbol M\sim W_p(\boldsymbol \Sigma, n).\]
+and refer to \(W_p(\mathbf I_p,n)\) as a standard Wishart distribution.
+\end{definition}
+
+\textbf{Note:}
+
+\begin{itemize}
+\item
+  \(W_p(\boldsymbol \Sigma,n)\) is a probability distribution on the set of \(p \times p\) symmetric non-negative definite random matrices.
+\item
+  When \(p=1\), \(W_1(1,n)\) is the \(\chi_n^2\) distribution and \(W_1(\sigma^2,n)\) is the \(\sigma^2 \chi_n^2\) distribution. This claim follows from \ref{prp:six9} below.
+\item
+  If \(\boldsymbol X\) is the usual \(n \times p\) matrix with rows \(\boldsymbol x_i^\top\), then
+  \[\boldsymbol M= \boldsymbol X^\top \boldsymbol X.\]
+\end{itemize}
+
+We can sample from the Wishart distribution in R using the \texttt{rWishart} command. For example, setting \(\boldsymbol \Sigma=\mathbf I_2\) and using 2 degrees of freedom, we can generate 4 random samples \(\boldsymbol M_1, \ldots, \boldsymbol M_4 \sim W_2(\mathbf I_2, 2)\) as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{out <-}\StringTok{ }\KeywordTok{rWishart}\NormalTok{(}\DataTypeTok{n=}\DecValTok{4}\NormalTok{, }\DataTypeTok{df=}\DecValTok{2}\NormalTok{, }\DataTypeTok{Sigma=}\KeywordTok{diag}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Visualizing these by plotting the ellipses with \(\boldsymbol x^\top \boldsymbol M_i \boldsymbol x=c\) for some constant \(c\), we can see the variability in these random matrices:
+
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+\begin{proposition}
+\protect\hypertarget{prp:wishartmean}{}{\label{prp:wishartmean} }Let \(\boldsymbol M\sim W_p(\boldsymbol \Sigma, n)\). Then
+\[{\mathbb{E}}\boldsymbol M= n \boldsymbol \Sigma\]
+and if the \(ij^{th}\) element of \(\boldsymbol \Sigma\) is \(\sigma_{ij}\), and the \(ij^{th}\) element of \(\boldsymbol M\) is \(m_{ij}\), then
+\[{\mathbb{V}\operatorname{ar}}(m_{ij}) =  n \left(\sigma_{ij}^2+\sigma_{ii}\sigma_{jj} \right)\]
+\end{proposition}
+
+\hypertarget{properties-1}{%
+\subsection{Properties}\label{properties-1}}
+
+We now use the definition of \(W_p(\boldsymbol \Sigma, n)\) to prove some important
+results.
+
+\begin{proposition}
+\protect\hypertarget{prp:six8}{}{\label{prp:six8} }If \(\boldsymbol M\sim W_p(\boldsymbol \Sigma,n)\) and \(\boldsymbol A\) is a fixed \(q \times p\) matrix, then
+\[ \boldsymbol A\boldsymbol M\boldsymbol A^\top \sim W_q \left(\boldsymbol A\boldsymbol \Sigma\boldsymbol A^\top, n \right).\]
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}From the definition, let \(\boldsymbol M= \sum_{i=1}^n \boldsymbol x_i \boldsymbol x_i^\top\), where the \(\boldsymbol x_i\) are
+IID \(N_p(\boldsymbol 0,\boldsymbol \Sigma)\). Then
+\begin{align*}
+\boldsymbol A\boldsymbol M\boldsymbol A^\top &= \boldsymbol A\left(\sum_{i=1}^n \boldsymbol x_i \boldsymbol x_i^\top \right)\boldsymbol A^\top\\
+ &= \sum_{i=1}^n (\boldsymbol A\boldsymbol x_i)(\boldsymbol A\boldsymbol x_i)^\top = \sum_{i=1}^n \boldsymbol y_i \boldsymbol y_i^\top
+\end{align*}
+where \(\boldsymbol y_i = \boldsymbol A\boldsymbol x_i \sim N_q(\boldsymbol 0,\boldsymbol A\boldsymbol \Sigma\boldsymbol A^\top)\), by Proposition \ref{prp:six2}. Now we apply the definition of the Wishart distribution to \(\boldsymbol y_1,\ldots,\boldsymbol y_n\) and, hence, \(\sum_{i=1}^n \boldsymbol y_i \boldsymbol y_i^\top \sim W_q\left(\boldsymbol A\boldsymbol \Sigma\boldsymbol A^\top, n \right)\).
+\end{proof}
+
+\begin{proposition}
+\protect\hypertarget{prp:six9}{}{\label{prp:six9} }If \(\boldsymbol M\sim W_p(\boldsymbol \Sigma,n)\) and \(\boldsymbol a\) is a fixed \(p \times 1\) vector then
+\[ \boldsymbol a^\top \boldsymbol M\boldsymbol a\sim \left(\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a\right)\chi_n^2.\]
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}Apply Proposition \ref{prp:six8} with \(\boldsymbol A= \boldsymbol a^\top\) then \(\boldsymbol a^\top \boldsymbol M\boldsymbol a\sim W_1( \boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a, n)\). But \(W_1(1,n)\) is equal in distribution to \(\sum_{i=1}^n z_i^2\) where the \(z_i\) are IID \(N(0,1)\), and so has \(\chi_n^2\) distribution. Moreover, using Proposition \ref{prp:six8} with \(p=q=1\) and \(A=\sigma\), it is seen that \(W_1(\sigma^2,n)\) is equal in distribution to \(\sigma^2 \chi_n^2\).
+\end{proof}
+
+Note that an alternative form of the above result is
+\[\frac{ \boldsymbol a^\top \boldsymbol M\boldsymbol a}{ \boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a} \sim \chi_n^2.\]
+
+\begin{corollary}
+\protect\hypertarget{cor:csix4}{}{\label{cor:csix4} }Let \(m_{ii}\) and \(\sigma_{ii}\) be the \(i\)th diagonal entry for \(\boldsymbol M\) and \(\boldsymbol \Sigma\) respectively, then \(m_{ii} \sim \sigma_{ii} \chi^2_n\) for \(i=1,\ldots,p\).
+\end{corollary}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}Let \(\boldsymbol a= (a_1,\ldots,a_p)^\top\) where \(a_j = 1\) if \(j=i\) and \(a_j = 0\) otherwise. Then \(\boldsymbol a^\top \boldsymbol M\boldsymbol a= m_{ii}\) and \(\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a= \sigma_{ii}\). Now apply Proposition \ref{prp:six9}\\
+\end{proof}
+
+Note, however, that the \(m_{ii}\), \(i=1,\ldots,p\), are not, in general, independent.
+
+\begin{proposition}
+\protect\hypertarget{prp:six10}{}{\label{prp:six10} }If \(\boldsymbol M_1 \sim W_p(\boldsymbol \Sigma,n_1)\) and \(\boldsymbol M_2 \sim W_p(\boldsymbol \Sigma,n_2)\) are independent
+then
+\[\boldsymbol M_1 + \boldsymbol M_2 \sim W_p(\boldsymbol \Sigma,n_1 + n_2).\]
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}From the definition, let \(\boldsymbol M_1 = \sum_{i=1}^{n_1} \boldsymbol x_i \boldsymbol x_i^\top\) and let \(\boldsymbol M_2 = \sum_{i=n_1+1}^{n_1+n_2} \boldsymbol x_i \boldsymbol x_i^\top\), where \(\boldsymbol x_i \sim N_p(\boldsymbol 0,\boldsymbol \Sigma)\), then \(\boldsymbol M_1+\boldsymbol M_2 = \sum_{i=1}^{n_1+n_2} \boldsymbol x_i \boldsymbol x_i^\top \sim W_p(\boldsymbol \Sigma,n_1 + n_2)\) by the definition of the Wishart distribution.
+\end{proof}
+
+\hypertarget{cochrans-theorem}{%
+\subsection{Cochran's theorem}\label{cochrans-theorem}}
+
+Our next result is known as Cochran's theorem. We use Cochran's theorem to show that sample covariance matrices have a scaled Wishart distribution.
+
+First though, recall the definition of projection matrices from Section \ref{projection-matrix}. Namely, that \(\boldsymbol P\) is a projection matrix if \(\boldsymbol P^2=\boldsymbol P\).
+
+\begin{theorem}
+\protect\hypertarget{thm:six11}{}{\label{thm:six11} }\textbf{(Cochran's Theorem)} Suppose \(\stackrel{n \times n}{\mathbf P}\) is a projection matrix of rank \(r\). Assume that \(\boldsymbol X\) is an \(n \times p\) data matrix with IID rows that have a common \(N_p({\mathbf 0}_p, \boldsymbol \Sigma)\) distribution, where \(\Sigma\) has full rank \(p\), and note the identity
+\begin{equation}
+\boldsymbol X^\top \boldsymbol X= \boldsymbol X^\top {\mathbf P} \boldsymbol X+ \boldsymbol X^\top ({\mathbf I}_n -{\mathbf P})\boldsymbol X.
+\label{eq:Cochran1}
+\end{equation}
+Then
+\begin{equation}
+\boldsymbol X^\top {\mathbf P} \boldsymbol X\sim W_p(\boldsymbol \Sigma, r), \qquad  \boldsymbol X^\top ({\mathbf I}_n -{\mathbf P})\boldsymbol X\sim W_p(\boldsymbol \Sigma, n-r),
+\label{eq:Cochran2}
+\end{equation}
+and \(\boldsymbol X^\top {\mathbf P} \boldsymbol X\) and \(\boldsymbol X^\top ({\mathbf I}_n -{\mathbf P})\boldsymbol X\)
+are independent.
+\end{theorem}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}We first of all prove the result in the particular case \(\boldsymbol \Sigma= {\mathbf I}_p\) and
+then consider the general case. Using the Spectral Decomposition Theorem \ref{prp:spectraldecomp} and noting that the eigenvalues of projection matrices must be either \(0\) or \(1\), we may write
+\[
+{\mathbf P}=\sum_{j=1}^r \boldsymbol q_j \boldsymbol q_j^\top \qquad  \hbox{and} \qquad 
+(\mathbf I_n-{\mathbf P})=\sum_{j=r+1}^n \boldsymbol q_j \boldsymbol q_j^\top
+\]
+where \(\boldsymbol q_1, \ldots , \boldsymbol q_n\mathbb{R}^n\) are mutually orthogonal unit vectors. Then
+\begin{align}
+\boldsymbol X^\top \boldsymbol P\boldsymbol X&=  \boldsymbol X^\top \left (\sum_{j=1}^r \boldsymbol q_j \boldsymbol q_j^\top \right) \boldsymbol X\nonumber \\
+& =\sum_{j=1}^r \boldsymbol X^\top \boldsymbol q_j \boldsymbol q_j^\top \boldsymbol X=\sum_{j=1}^r \boldsymbol y_j \boldsymbol y_j^\top,
+\label{eq:Prep}
+\end{align}
+and similarly,
+\begin{align}
+\boldsymbol X^\top (\mathbf I_n -\boldsymbol P) \boldsymbol X&=  \boldsymbol X^\top \left (\sum_{j=r+1}^n \boldsymbol q_j \boldsymbol q_j^\top \right) \boldsymbol X\nonumber \\
+& =\sum_{j=r+1}^n \boldsymbol X^\top \boldsymbol q_j \boldsymbol q_j^\top \boldsymbol X=\sum_{j=r+1}^n \boldsymbol y_j \boldsymbol y_j^\top,
+\label{eq:I-Prep}
+\end{align}
+where \(\boldsymbol y_j=\boldsymbol X^\top \boldsymbol q_j\) is a \(p \times 1\) vector. We shall now prove that the \(\boldsymbol y_j\) are
+IID \(N_p({\mathbf 0}_p, \mathbf I_p)\). Write \(\boldsymbol X=(\boldsymbol x_{[1]}, \ldots , \boldsymbol x_{[p]})\), where \(\boldsymbol x_{[u]}\) is column \(u\) of
+\(\boldsymbol X\). Then \(\boldsymbol x_{[1]}, \ldots , \boldsymbol x_{[p]}\) are IID \(N_n({\mathbf 0}_n ,\mathbf I_n)\). Moreover,
+\[
+\boldsymbol y_j=\boldsymbol X^\top \boldsymbol q_j = \left [  \begin{array}{c}
+\boldsymbol q_j^\top \boldsymbol x_{[1]}\\
+\boldsymbol q_j^\top \boldsymbol x_{[2]}\\
+..\\
+..\\
+..\\
+\boldsymbol q_j^\top \boldsymbol x_{[p]}
+\end{array} \right ].
+\]
+But
+\begin{align}
+{\mathbb{E}}[\boldsymbol q_j^\top \boldsymbol x_{[u]} \boldsymbol q_k^\top \boldsymbol x_{[v]}] &={\mathbb{E}}[\boldsymbol q_j^\top \boldsymbol x_{[u]} \boldsymbol x_{[v]}^\top \boldsymbol q_k]\nonumber \\
+&=\boldsymbol q_j^\top {\mathbb{E}}[\boldsymbol x_{[u]} \boldsymbol x_{[v]}^\top ]\boldsymbol q_k \nonumber\\
+&=\boldsymbol q_j^\top \left (\delta_{uv}\mathbf I_n \right)\boldsymbol q_k \nonumber\\
+&=\boldsymbol q_j^\top \boldsymbol q_k \delta_{uv}\nonumber\\
+&=\delta_{jk}\delta_{uv},
+\label{eq:jkuv}
+\end{align}
+where \(\delta\) is the Kronecker \(\delta\) defined by
+\[
+\delta_{ab}=\begin{cases} 0 &\text{if} \quad  a \neq b\\
+1 &\text{if} \quad  a=b \end{cases}.
+\]
+If follows immediately from \eqref{eq:jkuv} that
+\[
+{\mathbb{V}\operatorname{ar}}(\boldsymbol y_j)=\mathbf I_p \qquad  {\mathbb{C}\operatorname{ov}}(\boldsymbol y_j , \boldsymbol y_k)={\mathbf 0}_{pp} \quad 
+\text{if} \quad  j \neq k.
+\]
+By Proposition \ref{prp:six4}, the \(\boldsymbol y_j\), \(j=1,\ldots , n\), are IID \(N_p({\mathbf 0}_p , \mathbf I_p)\), and therefore it follows from the
+definition of the Wishart distribution that, when \(\boldsymbol \Sigma=\mathbf I_p\), \eqref{eq:Prep} has a Wishart \(W_p(\mathbf I_p,r)\) distribiton, \eqref{eq:I-Prep} has a Wishart \(W_p(\mathbf I_p, n-r)\) distrubtion. Moreover, these random Wishart matrices are independent becasue the \(\boldsymbol y_j\) are all independent.
+
+Finally, we consider the case of a general covariance matrix \(\boldsymbol \Sigma\). We have proved that \eqref{eq:Cochran1} holds
+when \(\boldsymbol \Sigma=\mathbf I_p\), so pre-multiply both sides by the matrix square root \(\boldsymbol \Sigma^{1/2}\), and post-multiply both sides by \(\boldsymbol \Sigma^{1/2}\). This corresponds to the case where the \(\boldsymbol x_i\) are IID \(N_p({\mathbf 0}_p, \boldsymbol \Sigma)\). Then, using Proposition \ref{prp:six8},
+\[
+\boldsymbol \Sigma^{1/2} W_p(\mathbf I_p, t)\boldsymbol \Sigma^{1/2} \stackrel{d}{=} W_p(\boldsymbol \Sigma^{1/2} \boldsymbol \Sigma^{1/2}, t)
+\stackrel{d}{=}W_p(\boldsymbol \Sigma,t),
+\]
+when \(t=r\) and \(t=n-r\). Moreover, since \(\boldsymbol \Sigma^{1/2}\) is a non-random matrix, independence is preserved
+when we pre- and post-multiply by \(\boldsymbol \Sigma^{1/2}\), and the result is proved.
+\end{proof}
+
+\begin{proposition}
+\protect\hypertarget{prp:six12}{}{\label{prp:six12} }If \(\boldsymbol x_1,\ldots,\boldsymbol x_n\) is an IID sample from \(N_p(\boldsymbol \mu,\boldsymbol \Sigma)\), then
+\[ n \boldsymbol S= \sum_{i=1}^n (\boldsymbol x_i - \bar{\boldsymbol x})(\boldsymbol x_i - \bar{\boldsymbol x})^\top \sim W_p(\boldsymbol \Sigma,n-1).\]
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{} Define \(\boldsymbol P= {\mathbf H}\equiv \mathbf I_n - n^{-1}{\mathbf 1}_n {\mathbf 1}_n^\top\) where \({\mathbf 1}_n\) is the \(n \times 1\) vector of ones. Note that \(\boldsymbol H\) is the \(n \times n\) centering matrix and, from Property 1. of \ref{centering-matrix}, \(\boldsymbol H\) is a projection matrix. Clearly, \(\mathbf I_n - \boldsymbol P=n^{-1} {\mathbf 1}_n {\mathbf 1}_n^\top\) has rank \(1\), so \(\boldsymbol H\) has rank \(n-1\). Therefore, using Theorem \ref{thm:six11} ,
+\[
+\boldsymbol X^\top \boldsymbol H\boldsymbol X\sim W_p(\boldsymbol \Sigma, n-1).
+\]
+But from Property 6. in Section \ref{centering-matrix}, \(\boldsymbol X^\top \boldsymbol H\boldsymbol X=n\boldsymbol S\),
+and consequently, \(n\boldsymbol S\sim W_p(\boldsymbol \Sigma, n-1)\), as required.
+\end{proof}
+
+\hypertarget{hotellings-t2-distribution}{%
+\section{\texorpdfstring{Hotelling's \(T^2\) distribution}{Hotelling's T\^{}2 distribution}}\label{hotellings-t2-distribution}}
+
+Recall that in univariate statistics, Student's \(t\)-distribution appears as the sampling distribution of \(\frac{\bar{x}-\mu}{s/\sqrt{n}}\), which is used for hypothesis tests and constructing confidence intervals.
+
+Hotelling's \(T^2\) distribution is the multivariate analogue of Student's \(t\)-distribution. It plays an important role in multivariate hypothesis testing and confidence region construction, just as the Student \(t\)-distribution does in the univariate setting.
+
+\begin{definition}
+\protect\hypertarget{def:Hotelling}{}{\label{def:Hotelling} }Suppose \(\boldsymbol x\sim N_p(\boldsymbol 0,\mathbf I_p)\) and \(\boldsymbol M\sim W_p(\mathbf I_p,n)\) are independent, then the quantity \(\tau ^2 = n \boldsymbol x^\top \boldsymbol M^{-1} \boldsymbol x\) is said to have \textbf{Hotelling's \(T^2\) distribution} with parameters \(p\) and \(n\). We write this as \(\tau^2 \sim T^2(p,n)\).
+\end{definition}
+
+We can generalise the definition with the following result.
+
+\begin{proposition}
+\protect\hypertarget{prp:six13}{}{\label{prp:six13} }Suppose \(\boldsymbol x\sim N_p(\boldsymbol \mu,\boldsymbol \Sigma)\) and \(\boldsymbol M\sim W_p(\boldsymbol \Sigma,n)\) are independent and
+\(\boldsymbol \Sigma\) has full rank \(p\). Then
+\[ n (\boldsymbol x-\boldsymbol \mu)^\top \boldsymbol M^{-1} (\boldsymbol x-\boldsymbol \mu) \sim T^2(p,n). \]
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}Define \(\boldsymbol y= \boldsymbol \Sigma^{-1/2}(\boldsymbol x-\boldsymbol \mu)\). Then, by Corollary \ref{cor:csix3}, \(\boldsymbol y\sim N_p(\boldsymbol 0,\mathbf I_p)\). Further, let \(\boldsymbol Z= \boldsymbol \Sigma^{-1/2} \boldsymbol M\boldsymbol \Sigma^{-1/2}\) then \(\boldsymbol Z\sim W_p(\mathbf I_p,n)\) by applying \ref{prp:six8} with \(\boldsymbol A= \boldsymbol \Sigma^{-1/2}\). From the definition, \(n \boldsymbol y^\top \boldsymbol Z^{-1} \boldsymbol y\sim T^2(p,n)\) and
+\begin{eqnarray*}
+n \boldsymbol y^\top \boldsymbol Z^{-1} \boldsymbol y&=& n (\boldsymbol x-\boldsymbol \mu)^\top \boldsymbol \Sigma^{-1/2} \boldsymbol \Sigma^{1/2} \boldsymbol M^{-1} \boldsymbol \Sigma^{1/2} \boldsymbol \Sigma^{-1/2} (\boldsymbol x-\boldsymbol \mu) \\
+&=& n(\boldsymbol x-\boldsymbol \mu)^\top \boldsymbol M^{-1}(\boldsymbol x-\boldsymbol \mu)
+\end{eqnarray*}
+so the result is proved.
+\end{proof}
+
+This result gives rise to an important corollary used in hypothesis testing when \(\boldsymbol \Sigma\) is unknown.
+
+\begin{corollary}
+\protect\hypertarget{cor:csix5}{}{\label{cor:csix5} }If \(\bar{\boldsymbol x}\) and \(\boldsymbol S\) are the mean and covariance matrix based on a sample of size \(n\) from \(N_p(\boldsymbol \mu,\boldsymbol \Sigma)\) then
+\[ (n-1)(\bar{\boldsymbol x}-\boldsymbol \mu)^\top \boldsymbol S^{-1} (\bar{\boldsymbol x}-\boldsymbol \mu) \sim T^2(p,n-1).\]
+\end{corollary}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}We have seen earlier that \(\bar{\boldsymbol x} \sim N_p(\boldsymbol \mu,\frac{1}{n}\boldsymbol \Sigma)\). Let \(\boldsymbol x^\ast = n^{1/2} \bar{\boldsymbol x}\) and let \(\boldsymbol \mu^\ast = n^{1/2} \boldsymbol \mu\). Then \(\boldsymbol x^\ast=n^{1/2} \bar{\boldsymbol x} \sim N_p(\boldsymbol \mu^\ast, \boldsymbol \Sigma)\).
+
+From Proposition \ref{prp:six12} we know \(n\boldsymbol S\sim W_p(\boldsymbol \Sigma,n-1)\), and from Theorem \ref{prp:six6} we know \(\bar{\boldsymbol x}\) and \(\boldsymbol S\) are independent. Applying Proposition \ref{prp:six13} with \(\boldsymbol x= \boldsymbol x^\ast\) and \(\boldsymbol M= n\boldsymbol S\) we obtain
+\[ (n-1)(\boldsymbol x^\ast - \boldsymbol \mu^\ast)^\top (n\boldsymbol S)^{-1} (\boldsymbol x^\ast - \boldsymbol \mu^\ast) \sim T^2(p,n-1),\]
+and given \(\boldsymbol x^\ast - \boldsymbol \mu^\ast = n^{1/2} (\boldsymbol x-\boldsymbol \mu)\) then
+\begin{align*}
+&(n-1)(\boldsymbol x^\ast - \boldsymbol \mu^\ast)^\top (n\boldsymbol S)^{-1} (\boldsymbol x^\ast - \boldsymbol \mu^\ast)\\
+& \qquad \qquad = (n-1)n^{1/2}(\bar{\boldsymbol x}-\boldsymbol \mu)^\top n^{-1} \boldsymbol S^{-1} n^{1/2}(\bar{\boldsymbol x}-\boldsymbol \mu) \\
+&\qquad \qquad = (n-1)(\bar{\boldsymbol x}-\boldsymbol \mu)^\top \boldsymbol S^{-1} (\bar{\boldsymbol x}-\boldsymbol \mu).
+\end{align*}
+\end{proof}
+
+Hotelling's \(T^2\) distribution is not often included in statistical tables but the next result tells us that Hotelling's \(T^2\) is a scale transformation of an \(F\) distribution.
+
+\begin{proposition}
+\protect\hypertarget{prp:six14}{}{\label{prp:six14} }If \(\tau^2 \sim T^2(p,n)\) then
+\[\gamma^2 = \frac{n-p+1}{np} \tau^2 \sim F_{p,n-p+1}.\]
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{} Beyond the scope of the module.
+\end{proof}
+
+We can apply this result to the previous corollary.
+
+\begin{corollary}
+\protect\hypertarget{cor:csix6}{}{\label{cor:csix6} } If \(\tau^2 = (n-1)(\bar{\boldsymbol x}-\boldsymbol \mu)^\top \boldsymbol S^{-1} (\bar{\boldsymbol x}-\boldsymbol \mu)\) then
+\[ \gamma^2 = \frac{n-p}{p} (\bar{\boldsymbol x}-\boldsymbol \mu)^\top \boldsymbol S^{-1} (\bar{\boldsymbol x}-\boldsymbol \mu) \sim F_{p,n-p}. \]
+\end{corollary}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}From Corollary \ref{cor:csix6} we know \(\tau^2 \sim T^2(p,n-1)\). Applying Proposition \ref{prp:six14} we get
+\begin{align*}
+&\gamma^2\\
+& = \frac{(n-1)-p+1}{(n-1)p}(n-1)(\bar{\boldsymbol x}-\boldsymbol \mu)^\top \boldsymbol S^{-1} (\bar{\boldsymbol x}-\boldsymbol \mu) \sim F_{p,(n-1)-p+1} \\
+&= \frac{n-p}{p}(\bar{\boldsymbol x}-\boldsymbol \mu)^\top \boldsymbol S^{-1} (\bar{\boldsymbol x}-\boldsymbol \mu) \sim F_{p,n-p}
+\end{align*}
+\end{proof}
+
+\hypertarget{exercises-4}{%
+\section{Exercises}\label{exercises-4}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Compute something with chisquared and ellipses.
+\item
+  Prove mean and vairance of sample covariance matrices?
+\item
+  If \(\boldsymbol x\sim N_p(\boldsymbol \mu,\boldsymbol \Sigma)\) and \(\boldsymbol a\) is any fixed vector of dimension \(p\), show that
+  \[ z = \frac{ \boldsymbol a^\top (\boldsymbol x- \boldsymbol \mu) }{ \sqrt{\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a} } \sim N(0,1).\]
+\item
+  Prove that
+  \[ n ( \bar{\boldsymbol x} - \boldsymbol \mu)^{\rm T} \boldsymbol \Sigma^{-1} ( \bar{\boldsymbol x} - \boldsymbol \mu) \sim \chi_p^2 . \]
+\item
+  If \(\boldsymbol x_1, \ldots, \boldsymbol x_n\) are i.i.d. \(N_p(\boldsymbol \mu, \boldsymbol \Sigma)\) with sample mean \(\bar{\boldsymbol x}\) and sample covariance matrix \(\boldsymbol S\), show that \({\mathbb{C}\operatorname{ov}}(\bar{\boldsymbol x}, \boldsymbol x_i - \bar{\boldsymbol x}) = \boldsymbol 0\). Hence deduce that \(\bar{\boldsymbol x}\) and \(\boldsymbol S\) are independent.
+\end{enumerate}
+
+\textbf{Hint:} If the random vector \(\boldsymbol x\) is independent of the random vector \(\boldsymbol y\), then \(\boldsymbol x\) is also independent of any function \(f(\boldsymbol y)\).{]}
+
+\hypertarget{computer-tasks-3}{%
+\section{Computer tasks}\label{computer-tasks-3}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Simulate and show CLT.
+\item
+  Play around with the Wishart distribution.
+\item
+  Numerical demonstration of Cochran's theorem?
+\end{enumerate}
 
 \bibliography{book.bib,packages.bib}
 

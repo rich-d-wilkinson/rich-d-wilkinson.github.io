@@ -274,23 +274,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exercises" class="section level2">
 <h2><span class="header-section-number">1.5</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li><p>Show that the following two formulae for the population covariance matrix <span class="math inline">\(\boldsymbol \Sigma\)</span> are equivalent, i.e. show that
+<li><p>Show that the two formulae for the population covariance matrix <span class="math inline">\(\boldsymbol \Sigma\)</span> are equivalent, i.e. show that
 <span class="math display">\[\boldsymbol \Sigma= {\mathbb{E}}[(\boldsymbol x- \boldsymbol \mu) (\boldsymbol x- \boldsymbol \mu)^\top ] = {\mathbb{E}}[ \boldsymbol x\boldsymbol x^\top ] - \boldsymbol \mu\boldsymbol \mu^\top.\]</span></p></li>
 <li><p>Let <span class="math inline">\(\boldsymbol x_1, \ldots, \boldsymbol x_n\)</span> be a <span class="math inline">\(p\)</span>-dimensional sample with mean <span class="math inline">\(\bar{\boldsymbol x}\)</span> and sample covariance matrix <span class="math inline">\(\boldsymbol S\)</span>. Consider the transformation <span class="math inline">\(\boldsymbol y_i = \boldsymbol A\boldsymbol x_i + \boldsymbol c\)</span> where <span class="math inline">\(\boldsymbol A\)</span> is a fixed <span class="math inline">\(q \times p\)</span> matrix and <span class="math inline">\(\boldsymbol c\)</span> is a fixed <span class="math inline">\(q\)</span>-dimensional vector. Let <span class="math inline">\(\boldsymbol T\)</span> be the sample covariance matrix of <span class="math inline">\(\boldsymbol y_1, \ldots, \boldsymbol y_n\)</span>. Show</p></li>
 </ol>
 <ul>
 <li><span class="math inline">\(\bar{\boldsymbol y} = \boldsymbol A\bar{\boldsymbol x} + \boldsymbol c\)</span>,</li>
-<li><span class="math inline">\(\boldsymbol T= \boldsymbol A\boldsymbol S\boldsymbol A^\top\)</span>.</li>
+<li><p><span class="math inline">\(\boldsymbol T= \boldsymbol A\boldsymbol S\boldsymbol A^\top\)</span>.</p>
+<p>Assuming now that <span class="math inline">\(\boldsymbol x\)</span> is a random vector with <span class="math inline">\({\mathbb{E}}(\boldsymbol x)=\boldsymbol \mu\)</span>, <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\boldsymbol x)=\boldsymbol \Sigma\)</span>, <span class="math inline">\(\boldsymbol y=\boldsymbol A\boldsymbol x+\boldsymbol c\)</span> with <span class="math inline">\(\boldsymbol A\)</span> and <span class="math inline">\(\boldsymbol c\)</span> as before, <span class="math inline">\({\mathbb{E}}(\boldsymbol y)={\pmb \phi}\)</span> and <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\boldsymbol y)={\pmb \Omega}\)</span>, what are the population analogues of the results above?</p></li>
 </ul>
-<p>Assuming now that <span class="math inline">\(\boldsymbol x\)</span> is a random vector with <span class="math inline">\({\mathbb{E}}(\boldsymbol x)=\boldsymbol \mu\)</span>, <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\boldsymbol x)=\boldsymbol \Sigma\)</span>, <span class="math inline">\(\boldsymbol y=\boldsymbol A\boldsymbol x+\boldsymbol c\)</span> with <span class="math inline">\(\boldsymbol A\)</span> and <span class="math inline">\(\boldsymbol c\)</span> as before, <span class="math inline">\({\mathbb{E}}(\boldsymbol y)={\pmb \phi}\)</span> and <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\boldsymbol y)={\pmb \Omega}\)</span>, what are the population analogues of results (a) and (b) above?</p>
 <ol start="3" style="list-style-type: decimal">
 <li><p>A sample of size <span class="math inline">\(n=144\)</span> produced the following summary statistics
 <span class="math display">\[ \sum_{i=1}^n \boldsymbol x_i = \begin{pmatrix} 392.2 \\ 1530.8 \end{pmatrix} \qquad \sum_{i=1}^n \boldsymbol x_i \boldsymbol x_i^\top = \begin{pmatrix} 1101.88 &amp; 4305.17 \\ 4305.17 &amp; 17120.88 \end{pmatrix}.\]</span>
 Calculate the sample mean, the sample covariance matrix and the sample correlation coefficient.</p></li>
 <li><p>Let <span class="math inline">\(\boldsymbol x\)</span> and <span class="math inline">\(\boldsymbol y\)</span> be independent random <span class="math inline">\(p\)</span>-dimensional vectors. Assuming that all relevant moments exist, show that for any real scalars <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>,
-<span class="math display">\[{\mathbb{V}\operatorname{ar}}(\alpha \boldsymbol x+ \beta \boldsymbol y) = \alpha^2 {\mathbb{V}\operatorname{ar}}(\boldsymbol x) + \beta^2 {\mathbb{V}\operatorname{ar}}(\boldsymbol y).\]</span></p></li>
+<span class="math display">\[{\mathbb{V}\operatorname{ar}}(\alpha \boldsymbol x+ \beta \boldsymbol y) = \alpha^2 {\mathbb{V}\operatorname{ar}}(\boldsymbol x) + \beta^2 {\mathbb{V}\operatorname{ar}}(\boldsymbol y).\]</span></p>
+<p>What is the corresponding formula when <span class="math inline">\(\boldsymbol x\)</span> and <span class="math inline">\(\boldsymbol y\)</span> are not independent? Express your answer in terms of <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\boldsymbol x)\)</span>, <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\boldsymbol y)\)</span> and <span class="math inline">\({\mathbb{C}\operatorname{ov}}(\boldsymbol x, \boldsymbol y)\)</span>.</p></li>
+<li></li>
 </ol>
-<p>What is the corresponding formula when <span class="math inline">\(\boldsymbol x\)</span> and <span class="math inline">\(\boldsymbol y\)</span> are not independent? Express your answer in terms of <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\boldsymbol x)\)</span>, <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\boldsymbol y)\)</span> and <span class="math inline">\({\mathbb{C}\operatorname{ov}}(\boldsymbol x, \boldsymbol y)\)</span>.</p>
 <!--
 1. Prove the following properties of the variance and covariance operators.
 

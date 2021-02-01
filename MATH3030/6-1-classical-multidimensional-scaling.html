@@ -353,45 +353,45 @@ Then <span class="math inline">\(\boldsymbol B_{\text{pos}}\)</span> is non-nega
 <span class="math display">\[
 \boldsymbol x_4 =(-1,0)^\top \quad \text{and} \quad \boldsymbol x_5=(0,-1)^\top.
 \]</span></p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb156-2" data-line-number="2">              <span class="dv">1</span>,<span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb156-3" data-line-number="3">              <span class="dv">0</span>,<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb156-4" data-line-number="4">              <span class="dv">-1</span>,<span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb156-5" data-line-number="5">              <span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>), <span class="dt">nc=</span><span class="dv">2</span>, <span class="dt">byrow=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb156-6" data-line-number="6">(D &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(X, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T)))</a></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb158-2" data-line-number="2">              <span class="dv">1</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb158-3" data-line-number="3">              <span class="dv">0</span>,<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb158-4" data-line-number="4">              <span class="dv">-1</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb158-5" data-line-number="5">              <span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>), <span class="dt">nc=</span><span class="dv">2</span>, <span class="dt">byrow=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb158-6" data-line-number="6">(D &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(X, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T)))</a></code></pre></div>
 <pre><code>##   1        2        3        4        5
 ## 1 0 1.000000 1.000000 1.000000 1.000000
 ## 2 1 0.000000 1.414214 2.000000 1.414214
 ## 3 1 1.414214 0.000000 1.414214 2.000000
 ## 4 1 2.000000 1.414214 0.000000 1.414214
 ## 5 1 1.414214 2.000000 1.414214 0.000000</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1">(A &lt;-<span class="st"> </span><span class="op">-</span>D<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1">(A &lt;-<span class="st"> </span><span class="op">-</span>D<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>##      1    2    3    4    5
 ## 1  0.0 -0.5 -0.5 -0.5 -0.5
 ## 2 -0.5  0.0 -1.0 -2.0 -1.0
 ## 3 -0.5 -1.0  0.0 -1.0 -2.0
 ## 4 -0.5 -2.0 -1.0  0.0 -1.0
 ## 5 -0.5 -1.0 -2.0 -1.0  0.0</code></pre>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1">H &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="dv">5</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dt">nc=</span><span class="dv">1</span>)<span class="op">%*%</span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dt">nr=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb160-2" data-line-number="2">B &lt;-<span class="st"> </span>H<span class="op">%*%</span><span class="st"> </span>A<span class="op">%*%</span>H</a>
-<a class="sourceLine" id="cb160-3" data-line-number="3"><span class="kw">print</span>(<span class="kw">round</span>(B,<span class="dv">0</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1">H &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="dv">5</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dt">nc=</span><span class="dv">1</span>)<span class="op">%*%</span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dt">nr=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb162-2" data-line-number="2">B &lt;-<span class="st"> </span>H<span class="op">%*%</span><span class="st"> </span>A<span class="op">%*%</span>H</a>
+<a class="sourceLine" id="cb162-3" data-line-number="3"><span class="kw">print</span>(<span class="kw">round</span>(B,<span class="dv">0</span>))</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    0    0    0    0    0
 ## [2,]    0    1    0   -1    0
 ## [3,]    0    0    1    0   -1
 ## [4,]    0   -1    0    1    0
 ## [5,]    0    0   -1    0    1</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1">B.eig &lt;-<span class="kw">eigen</span>(B)</a>
-<a class="sourceLine" id="cb162-2" data-line-number="2">Y&lt;-<span class="kw">sqrt</span>(B.eig<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])<span class="op">*</span>B.eig<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb162-3" data-line-number="3"><span class="kw">dist</span>(Y, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T) <span class="co"># should agree with D.</span></a></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1">B.eig &lt;-<span class="kw">eigen</span>(B)</a>
+<a class="sourceLine" id="cb164-2" data-line-number="2">Y&lt;-<span class="kw">sqrt</span>(B.eig<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])<span class="op">*</span>B.eig<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb164-3" data-line-number="3"><span class="kw">dist</span>(Y, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T) <span class="co"># should agree with D.</span></a></code></pre></div>
 <pre><code>##          1        2        3        4        5
 ## 1 0.000000 1.000000 1.000000 1.000000 1.000000
 ## 2 1.000000 0.000000 1.414214 2.000000 1.414214
 ## 3 1.000000 1.414214 0.000000 1.414214 2.000000
 ## 4 1.000000 2.000000 1.414214 0.000000 1.414214
 ## 5 1.000000 1.414214 2.000000 1.414214 0.000000</code></pre>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1">Y.mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(D, <span class="dt">eig=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb164-2" data-line-number="2"><span class="kw">dist</span>(Y.mds<span class="op">$</span>points, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T)</a></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1">Y.mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(D, <span class="dt">eig=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb166-2" data-line-number="2"><span class="kw">dist</span>(Y.mds<span class="op">$</span>points, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T)</a></code></pre></div>
 <pre><code>##          1        2        3        4        5
 ## 1 0.000000 1.000000 1.000000 1.000000 1.000000
 ## 2 1.000000 0.000000 1.414214 2.000000 1.414214

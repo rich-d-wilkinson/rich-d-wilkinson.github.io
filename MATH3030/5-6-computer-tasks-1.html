@@ -280,27 +280,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 We now consider a canonical correlation analysis in which one set of variables, the <span class="math inline">\(x\)</span>-set, is given by CL and CW and the
 other set, the <span class="math inline">\(y\)</span>-set, is given by FL, RW and BD.</p></li>
 </ol>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
-<a class="sourceLine" id="cb152-2" data-line-number="2">?crabs           <span class="co"># read the help page to find out about the dataset</span></a>
-<a class="sourceLine" id="cb152-3" data-line-number="3">X=<span class="kw">as.matrix</span>(crabs[<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>])    </a>
-<a class="sourceLine" id="cb152-4" data-line-number="4">n=<span class="dv">200</span>                                      <span class="co"># sample size</span></a>
-<a class="sourceLine" id="cb152-5" data-line-number="5">H=<span class="kw">diag</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n))<span class="op">-</span><span class="kw">rep</span>(<span class="dv">1</span>,n)<span class="op">%*%</span><span class="kw">t</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n))<span class="op">/</span>n  <span class="co"># n times n centering matrix</span></a>
-<a class="sourceLine" id="cb152-6" data-line-number="6">X1=X[,<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>]                                 <span class="co"># store CL and CW in X1</span></a>
-<a class="sourceLine" id="cb152-7" data-line-number="7">Y1=<span class="kw">cbind</span>(X[,<span class="dv">1</span>],X[,<span class="dv">2</span>],X[,<span class="dv">5</span>])                <span class="co"># store FL, RW and BD in Y1</span></a>
-<a class="sourceLine" id="cb152-8" data-line-number="8">Sxx=<span class="kw">t</span>(X1)<span class="op">%*%</span>H<span class="op">%*%</span>X1<span class="op">/</span>n                       <span class="co"># find x-variable variance matrix</span></a>
-<a class="sourceLine" id="cb152-9" data-line-number="9">Syy=<span class="kw">t</span>(Y1)<span class="op">%*%</span>H<span class="op">%*%</span>Y1<span class="op">/</span>n                       <span class="co"># find y-variable variance matrix</span></a>
-<a class="sourceLine" id="cb152-10" data-line-number="10">Sxy=<span class="kw">t</span>(X1)<span class="op">%*%</span>H<span class="op">%*%</span>Y1<span class="op">/</span>n                       <span class="co"># find cross-covariance matrix</span></a></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb154-2" data-line-number="2">?crabs           <span class="co"># read the help page to find out about the dataset</span></a>
+<a class="sourceLine" id="cb154-3" data-line-number="3">X=<span class="kw">as.matrix</span>(crabs[<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>])    </a>
+<a class="sourceLine" id="cb154-4" data-line-number="4">n=<span class="dv">200</span>                                      <span class="co"># sample size</span></a>
+<a class="sourceLine" id="cb154-5" data-line-number="5">H=<span class="kw">diag</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n))<span class="op">-</span><span class="kw">rep</span>(<span class="dv">1</span>,n)<span class="op">%*%</span><span class="kw">t</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n))<span class="op">/</span>n  <span class="co"># n times n centering matrix</span></a>
+<a class="sourceLine" id="cb154-6" data-line-number="6">X1=X[,<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>]                                 <span class="co"># store CL and CW in X1</span></a>
+<a class="sourceLine" id="cb154-7" data-line-number="7">Y1=<span class="kw">cbind</span>(X[,<span class="dv">1</span>],X[,<span class="dv">2</span>],X[,<span class="dv">5</span>])                <span class="co"># store FL, RW and BD in Y1</span></a>
+<a class="sourceLine" id="cb154-8" data-line-number="8">Sxx=<span class="kw">t</span>(X1)<span class="op">%*%</span>H<span class="op">%*%</span>X1<span class="op">/</span>n                       <span class="co"># find x-variable variance matrix</span></a>
+<a class="sourceLine" id="cb154-9" data-line-number="9">Syy=<span class="kw">t</span>(Y1)<span class="op">%*%</span>H<span class="op">%*%</span>Y1<span class="op">/</span>n                       <span class="co"># find y-variable variance matrix</span></a>
+<a class="sourceLine" id="cb154-10" data-line-number="10">Sxy=<span class="kw">t</span>(X1)<span class="op">%*%</span>H<span class="op">%*%</span>Y1<span class="op">/</span>n                       <span class="co"># find cross-covariance matrix</span></a></code></pre></div>
 <p>Now calculate <span class="math inline">\({\bf C}_{\bf x}={\bf S}_{\bf x x}^{-1/2}\)</span> and <span class="math inline">\({\bf C}_{\bf y}={\bf S}_{\bf yy}^{-1/2}\)</span>, and store the results in  and , respectively.</p>
 <p>Then calculate</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">A=Cx<span class="op">%*%</span>Sxy<span class="op">%*%</span>Cy            <span class="co"># calculate the A matrix (see Chapter 5)</span></a>
-<a class="sourceLine" id="cb153-2" data-line-number="2">U4=<span class="kw">svd</span>(A)<span class="op">$</span>u                <span class="co"># extract the U matrix (our notation) in svd</span></a>
-<a class="sourceLine" id="cb153-3" data-line-number="3">V4=<span class="kw">svd</span>(A)<span class="op">$</span>v                <span class="co"># extract the V matrix (our notation) in svd</span></a>
-<a class="sourceLine" id="cb153-4" data-line-number="4">d4=<span class="kw">svd</span>(A)<span class="op">$</span>d                <span class="co"># extract the singular values in svd</span></a>
-<a class="sourceLine" id="cb153-5" data-line-number="5">acheck=Cx<span class="op">%*%</span>U4[,<span class="dv">1</span>]         <span class="co"># calculate optimal x-weights</span></a>
-<a class="sourceLine" id="cb153-6" data-line-number="6">bcheck=Cy<span class="op">%*%</span>V4[,<span class="dv">1</span>]         <span class="co"># calculate optimal y-weights</span></a>
-<a class="sourceLine" id="cb153-7" data-line-number="7">xscores1=H<span class="op">%*%</span>X1<span class="op">%*%</span>acheck   <span class="co"># calculate centred x-scores for 1st CC</span></a>
-<a class="sourceLine" id="cb153-8" data-line-number="8">yscores1=H<span class="op">%*%</span>Y1<span class="op">%*%</span>bcheck   <span class="co"># calculate centred y-scores for 1st CC</span></a>
-<a class="sourceLine" id="cb153-9" data-line-number="9"><span class="kw">plot</span>(xscores1,yscores1)    <span class="co"># plot x-scores against y-scores for 1st CC</span></a></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1">A=Cx<span class="op">%*%</span>Sxy<span class="op">%*%</span>Cy            <span class="co"># calculate the A matrix (see Chapter 5)</span></a>
+<a class="sourceLine" id="cb155-2" data-line-number="2">U4=<span class="kw">svd</span>(A)<span class="op">$</span>u                <span class="co"># extract the U matrix (our notation) in svd</span></a>
+<a class="sourceLine" id="cb155-3" data-line-number="3">V4=<span class="kw">svd</span>(A)<span class="op">$</span>v                <span class="co"># extract the V matrix (our notation) in svd</span></a>
+<a class="sourceLine" id="cb155-4" data-line-number="4">d4=<span class="kw">svd</span>(A)<span class="op">$</span>d                <span class="co"># extract the singular values in svd</span></a>
+<a class="sourceLine" id="cb155-5" data-line-number="5">acheck=Cx<span class="op">%*%</span>U4[,<span class="dv">1</span>]         <span class="co"># calculate optimal x-weights</span></a>
+<a class="sourceLine" id="cb155-6" data-line-number="6">bcheck=Cy<span class="op">%*%</span>V4[,<span class="dv">1</span>]         <span class="co"># calculate optimal y-weights</span></a>
+<a class="sourceLine" id="cb155-7" data-line-number="7">xscores1=H<span class="op">%*%</span>X1<span class="op">%*%</span>acheck   <span class="co"># calculate centred x-scores for 1st CC</span></a>
+<a class="sourceLine" id="cb155-8" data-line-number="8">yscores1=H<span class="op">%*%</span>Y1<span class="op">%*%</span>bcheck   <span class="co"># calculate centred y-scores for 1st CC</span></a>
+<a class="sourceLine" id="cb155-9" data-line-number="9"><span class="kw">plot</span>(xscores1,yscores1)    <span class="co"># plot x-scores against y-scores for 1st CC</span></a></code></pre></div>
 <p>What does the plot tell you (if anything)? What is the 1st CC coefficient?</p>
 <p>Repeat the above to find the two sets of 2nd CC scores,  and  say, and plot these against each other and against the first CC scores. [Hint: you need to extract the second column from  and  rather than the first column.] Is there any interesting structure in any of the plots? Which plots suggest random scatter?</p>
 <p>Test the following hypotheses: (i) that both CC coefficients are zero, and (ii) that at most one of the CC coefficients is non-zero. What do you conclude from your findings?</p>
@@ -308,14 +308,14 @@ other set, the <span class="math inline">\(y\)</span>-set, is given by FL, RW an
 <li>Explore using CCA of the crabs data with the command {cc} and {plt.cc} in the package {CCA} which you will need to download. [Note: these commands were also used on the Boston Housing data in lectures and I have provided the html output on the Moodle page, which could be helpful].</li>
 </ol>
 <p>Note that you can use the commands</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1"><span class="kw">library</span>(CCA)</a>
-<a class="sourceLine" id="cb154-2" data-line-number="2"><span class="kw">matcor</span>(X1, Y1)</a></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1"><span class="kw">library</span>(CCA)</a>
+<a class="sourceLine" id="cb156-2" data-line-number="2"><span class="kw">matcor</span>(X1, Y1)</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>The full Premier League dataset is available on the Moodle page. Read the data into R. You will need to download the data into your file space, and then
 read it in, e.g. using</li>
 </ol>
 <p>SORT</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">read.csv</span>(x , <span class="dt">file=</span><span class="st">&quot;/YOURDIRECTORY/prem_league_data.txt, sep=&quot;</span> <span class="st">&quot;, header=TRUE)</span></a></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">read.csv</span>(x , <span class="dt">file=</span><span class="st">&quot;/YOURDIRECTORY/prem_league_data.txt, sep=&quot;</span> <span class="st">&quot;, header=TRUE)</span></a></code></pre></div>
 <p>If you are not sure what the name of YOURDIRECTORY is where the file is located, then a useful command to find out is {file.choose()}</p>
 <p>Check that you agree with the calculations in Chapters 3 and 4 of the lecture notes. Also, look at the PC scores as indicated in point 2 and the CC scores as indicated in point 3. Note that there will be some differences due to {prcomp} using divisor <span class="math inline">\(n-1\)</span> in the calculation of the sample covariance matrix, whereas we use <span class="math inline">\(n\)</span> in the notes.
 Also, there may be some minor numerical/rounding differences.</p>

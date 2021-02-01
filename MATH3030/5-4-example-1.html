@@ -274,13 +274,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="example-1" class="section level2">
 <h2><span class="header-section-number">5.4</span> Example?</h2>
 <p><a href="https://stats.idre.ucla.edu/r/dae/canonical-correlation-analysis/#" class="uri">https://stats.idre.ucla.edu/r/dae/canonical-correlation-analysis/#</a>:~:text=Canonical%20correlation%20analysis%20is%20used,among%20two%20sets%20of%20variables.&amp;text=Canonical%20correlation%20analysis%20determines%20a,both%20within%20and%20between%20sets.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">mm &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://stats.idre.ucla.edu/stat/data/mmreg.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb149-2" data-line-number="2"><span class="kw">colnames</span>(mm) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Concept&quot;</span>, <span class="st">&quot;Motivation&quot;</span>, <span class="st">&quot;Read&quot;</span>, <span class="st">&quot;Write&quot;</span>, <span class="st">&quot;Math&quot;</span>,</a>
-<a class="sourceLine" id="cb149-3" data-line-number="3"><span class="st">&quot;Science&quot;</span>, <span class="st">&quot;Sex&quot;</span>)</a>
-<a class="sourceLine" id="cb149-4" data-line-number="4">psych &lt;-<span class="st"> </span>mm[,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb149-5" data-line-number="5">acad &lt;-<span class="st"> </span>mm[,<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>]</a>
-<a class="sourceLine" id="cb149-6" data-line-number="6"><span class="kw">library</span>(CCA)</a>
-<a class="sourceLine" id="cb149-7" data-line-number="7"><span class="kw">matcor</span>(psych, acad)</a></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">mm &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://stats.idre.ucla.edu/stat/data/mmreg.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb151-2" data-line-number="2"><span class="kw">colnames</span>(mm) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Concept&quot;</span>, <span class="st">&quot;Motivation&quot;</span>, <span class="st">&quot;Read&quot;</span>, <span class="st">&quot;Write&quot;</span>, <span class="st">&quot;Math&quot;</span>,</a>
+<a class="sourceLine" id="cb151-3" data-line-number="3"><span class="st">&quot;Science&quot;</span>, <span class="st">&quot;Sex&quot;</span>)</a>
+<a class="sourceLine" id="cb151-4" data-line-number="4">psych &lt;-<span class="st"> </span>mm[,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb151-5" data-line-number="5">acad &lt;-<span class="st"> </span>mm[,<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>]</a>
+<a class="sourceLine" id="cb151-6" data-line-number="6"><span class="kw">library</span>(CCA)</a>
+<a class="sourceLine" id="cb151-7" data-line-number="7"><span class="kw">matcor</span>(psych, acad)</a></code></pre></div>
 <pre><code>## $Xcor
 ##              Control   Concept Motivation
 ## Control    1.0000000 0.1711878  0.2451323
@@ -314,7 +314,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Math        0.64952612 -0.04821830
 ## Science     1.00000000 -0.13818587
 ## Sex        -0.13818587  1.00000000</code></pre>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">cc1 &lt;-<span class="st"> </span><span class="kw">cc</span>(psych, acad)</a></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">cc1 &lt;-<span class="st"> </span><span class="kw">cc</span>(psych, acad)</a></code></pre></div>
 </div>
             </section>
 

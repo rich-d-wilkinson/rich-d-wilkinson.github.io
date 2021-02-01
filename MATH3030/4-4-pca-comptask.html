@@ -293,15 +293,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Then we focus on 5 continuous variables, all measured in mm: FL = frontal lobe size; RW = rear width; CL = carapace length;
 CW = carapace width; and BD = body depth. The sample size is <span class="math inline">\(200\)</span>.</li>
 </ol>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
-<a class="sourceLine" id="cb123-2" data-line-number="2">?crabs           <span class="co"># read the help page to find out about the dataset</span></a>
-<a class="sourceLine" id="cb123-3" data-line-number="3">X=crabs[<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>]     <span class="co"># construct data matrix X with columns FL, RW, CL, CW, BD</span></a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb125-2" data-line-number="2">?crabs           <span class="co"># read the help page to find out about the dataset</span></a>
+<a class="sourceLine" id="cb125-3" data-line-number="3">X=crabs[<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>]     <span class="co"># construct data matrix X with columns FL, RW, CL, CW, BD</span></a></code></pre></div>
 <p>Carry out PCA on the data in <span class="math inline">\(X\)</span>, including obtaining a scree plot and plotting the PC scores.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(X, <span class="dt">scale=</span><span class="ot">FALSE</span>)   <span class="co">#carry out PCA on S  </span></a>
-<a class="sourceLine" id="cb124-2" data-line-number="2">pca</a>
-<a class="sourceLine" id="cb124-3" data-line-number="3">lambda &lt;-<span class="st"> </span>pca<span class="op">$</span>sdev<span class="op">**</span><span class="dv">2</span>    <span class="co">#eigenvalues of S</span></a>
-<a class="sourceLine" id="cb124-4" data-line-number="4"><span class="kw">plot</span>( lambda , <span class="dt">ylim=</span><span class="kw">c</span>( <span class="dv">0</span>, <span class="kw">max</span>(lambda) )</a>
-<a class="sourceLine" id="cb124-5" data-line-number="5"><span class="kw">lines</span>(lambda)</a></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(X, <span class="dt">scale=</span><span class="ot">FALSE</span>)   <span class="co">#carry out PCA on S  </span></a>
+<a class="sourceLine" id="cb126-2" data-line-number="2">pca</a>
+<a class="sourceLine" id="cb126-3" data-line-number="3">lambda &lt;-<span class="st"> </span>pca<span class="op">$</span>sdev<span class="op">**</span><span class="dv">2</span>    <span class="co">#eigenvalues of S</span></a>
+<a class="sourceLine" id="cb126-4" data-line-number="4"><span class="kw">plot</span>( lambda , <span class="dt">ylim=</span><span class="kw">c</span>( <span class="dv">0</span>, <span class="kw">max</span>(lambda) )</a>
+<a class="sourceLine" id="cb126-5" data-line-number="5"><span class="kw">lines</span>(lambda)</a></code></pre></div>
 <p>Some questions:</p>
 <ul>
 <li><p>Do you have any suggestions for an interpretation for the 1st PC?</p></li>
