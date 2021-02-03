@@ -703,9 +703,7 @@ If you haven't done so already, please download and install R and Rstudio. R is 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
 or using dplyr you can do
-\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -714,12 +712,12 @@ or using dplyr you can do
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-- Can you select the  column of the `iris` data  that contains just the sepal length and add it to the sepal width?
+\begin{itemize}
+\item
+  Can you select the column of the \texttt{iris} data that contains just the sepal length and add it to the sepal width?
 
-
-To select only certain rows of the data (i.e. to filter it), we can again use either base R or dplyr.
-\end{verbatim}
+  To select only certain rows of the data (i.e.~to filter it), we can again use either base R or dplyr.
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -728,14 +726,14 @@ To select only certain rows of the data (i.e. to filter it), we can again use ei
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-- Can you now select all the rows of the `iris` data frame that are for species *setosa*? What is the mean petal length for these flowers?
-
-- Can you select all the flowers that have a sepal length greater than 5? What is the proportion of each species of iris in this set?
-
+\begin{itemize}
+\item
+  Can you now select all the rows of the \texttt{iris} data frame that are for species \emph{setosa}? What is the mean petal length for these flowers?
+\item
+  Can you select all the flowers that have a sepal length greater than 5? What is the proportion of each species of iris in this set?
+\end{itemize}
 
 A nice aspect of dplyr is that you can chain commmands together. So for example, to select the versicolour flowers with petal width less than 1.5, we can do
-\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -743,12 +741,13 @@ A nice aspect of dplyr is that you can chain commmands together. So for example,
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-- Can you select all the flowers that have a sepal length greater than 6, and a petal length less than 5? What is the proportion of each species in this set? 
+\begin{itemize}
+\tightlist
+\item
+  Can you select all the flowers that have a sepal length greater than 6, and a petal length less than 5? What is the proportion of each species in this set?
+\end{itemize}
 
-
-Note that `iris` is a data frame
-\end{verbatim}
+Note that \texttt{iris} is a data frame
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -760,9 +759,7 @@ Note that `iris` is a data frame
 ## [1] TRUE
 \end{verbatim}
 
-\begin{verbatim}
-which is a type of structure used in R. This is convenient for some tasks, but not for others. Let's first extract the four numerical columns and store them as a matrix $X$.
-\end{verbatim}
+which is a type of structure used in R. This is convenient for some tasks, but not for others. Let's first extract the four numerical columns and store them as a matrix \(X\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -785,9 +782,11 @@ which is a type of structure used in R. This is convenient for some tasks, but n
 ## [1] TRUE
 \end{verbatim}
 
-\begin{verbatim}
-- Select the 4 numerical columns and multiply the first column by 1, the second by 2, the third by 3, and the 4th by 4. One way to do this is by multiplying $X$ by the diagonal matrix
-\end{verbatim}
+\begin{itemize}
+\tightlist
+\item
+  Select the 4 numerical columns and multiply the first column by 1, the second by 2, the third by 3, and the 4th by 4. One way to do this is by multiplying \(X\) by the diagonal matrix
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -826,13 +825,17 @@ E & 59 & 85\\
 \end{tabular}
 \end{table}
 
-\begin{verbatim}
-- As an exercise, calculate the sample mean, sample covariance, sample correlation and total variation by hand. 
-\end{verbatim}
+\begin{itemize}
+\tightlist
+\item
+  As an exercise, calculate the sample mean, sample covariance, sample correlation and total variation by hand.
+\end{itemize}
 
-\begin{verbatim}
--  Now calculate these in R using `colMeans`, `cov`, and `cor`. These commands assume each column is a different variable, and each row a different observation.
-\end{verbatim}
+\begin{itemize}
+\tightlist
+\item
+  Now calculate these in R using \texttt{colMeans}, \texttt{cov}, and \texttt{cor}. These commands assume each column is a different variable, and each row a different observation.
+\end{itemize}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -864,16 +867,11 @@ E & 59 & 85\\
 ## S 116.0 371.5
 \end{verbatim}
 
-\begin{verbatim}
-Note that by default R uses $n-1$ in the denominator for the variance and covariance commands, whereas we used $n$ in our definition. <!-- hence the multiple of $4/5=(n-1)/n introduced in the covariance calculations above.-->
+Note that by default R uses \(n-1\) in the denominator for the variance and covariance commands, whereas we used \(n\) in our definition.
 
-
-We will be using the `dplyr` R package to perform basic data manipulation in R. If you are unfamiliar with  `dplyr`, you can read about it at [https://dplyr.tidyverse.org/](https://dplyr.tidyverse.org/). The pipe command `%>%` is particularly useful for chaining together multiple commands.
-
+We will be using the \texttt{dplyr} R package to perform basic data manipulation in R. If you are unfamiliar with \texttt{dplyr}, you can read about it at \url{https://dplyr.tidyverse.org/}. The pipe command \texttt{\%\textgreater{}\%} is particularly useful for chaining together multiple commands.
 
 You could compute the same quantities using more familiar commands by selecting the numerical columns:
- 
-\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -897,6 +895,12 @@ You could compute the same quantities using more familiar commands by selecting 
 ## P 246.5 116.0
 ## S 116.0 371.5
 \end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Can you compute the covariance matrix using the definition in Equation \eqref{eq:samplecov}?
+\end{itemize}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -979,9 +983,7 @@ Work with the `mtcars2` dataframe when you use `ggplot2`.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-This loads a list `mnist` that splits the data into two parts
-\end{verbatim}
+This loads a list \texttt{mnist} that splits the data into two parts
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -990,9 +992,7 @@ This loads a list `mnist` that splits the data into two parts
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
 Let's just look at the training set. This is also a list containing the image intensities and the image labels
-\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1001,9 +1001,7 @@ Let's just look at the training set. This is also a list containing the image in
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
 If we select just the first image we can see it is a vector of length 784 containing numbers between 0 and 1.
-\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1011,9 +1009,7 @@ If we select just the first image we can see it is a vector of length 784 contai
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-I've created a function to help you plot these images. 
-\end{verbatim}
+I've created a function to help you plot these images.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1107,7 +1103,6 @@ I've created a function to help you plot these images.
   \[{\mathbb{V}\operatorname{ar}}(\alpha \boldsymbol x+ \beta \boldsymbol y) = \alpha^2 {\mathbb{V}\operatorname{ar}}(\boldsymbol x) + \beta^2 {\mathbb{V}\operatorname{ar}}(\boldsymbol y).\]
 
   What is the corresponding formula when \(\boldsymbol x\) and \(\boldsymbol y\) are not independent? Express your answer in terms of \({\mathbb{V}\operatorname{ar}}(\boldsymbol x)\), \({\mathbb{V}\operatorname{ar}}(\boldsymbol y)\) and \({\mathbb{C}\operatorname{ov}}(\boldsymbol x, \boldsymbol y)\).
-\item
 \end{enumerate}
 
 \hypertarget{linalg-prelim}{%
@@ -1895,8 +1890,11 @@ However, it is useful to see these results in the simpler scalar case before mov
 \hypertarget{tasks-ch2}{%
 \section{Computer tasks}\label{tasks-ch2}}
 
+This Chapter's computer tasks are short and sweet, as the focus has primarily been on the mathematics. Tasks for later chapters will be more challenging.
+
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{-1}
 \tightlist
 \item
   Let's consider some basic matrix computations in R. First, we show how to do matrix multiplication and addition
@@ -2058,7 +2056,6 @@ Note that numerical errors will start to appear quite quickly. For example, the 
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
 \tightlist
 \item
   Solve the linear system for \(\boldsymbol x\) using R.
@@ -2109,159 +2106,13 @@ Note that numerical errors will start to appear quite quickly. For example, the 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##        Sepal.Length Sepal.Width Petal.Length   Petal.Width
-##   [1,]  -0.74333333  0.44266667       -2.358 -0.9993333333
-##   [2,]  -0.94333333 -0.05733333       -2.358 -0.9993333333
-##   [3,]  -1.14333333  0.14266667       -2.458 -0.9993333333
-##   [4,]  -1.24333333  0.04266667       -2.258 -0.9993333333
-##   [5,]  -0.84333333  0.54266667       -2.358 -0.9993333333
-##   [6,]  -0.44333333  0.84266667       -2.058 -0.7993333333
-##   [7,]  -1.24333333  0.34266667       -2.358 -0.8993333333
-##   [8,]  -0.84333333  0.34266667       -2.258 -0.9993333333
-##   [9,]  -1.44333333 -0.15733333       -2.358 -0.9993333333
-##  [10,]  -0.94333333  0.04266667       -2.258 -1.0993333333
-##  [11,]  -0.44333333  0.64266667       -2.258 -0.9993333333
-##  [12,]  -1.04333333  0.34266667       -2.158 -0.9993333333
-##  [13,]  -1.04333333 -0.05733333       -2.358 -1.0993333333
-##  [14,]  -1.54333333 -0.05733333       -2.658 -1.0993333333
-##  [15,]  -0.04333333  0.94266667       -2.558 -0.9993333333
-##  [16,]  -0.14333333  1.34266667       -2.258 -0.7993333333
-##  [17,]  -0.44333333  0.84266667       -2.458 -0.7993333333
-##  [18,]  -0.74333333  0.44266667       -2.358 -0.8993333333
-##  [19,]  -0.14333333  0.74266667       -2.058 -0.8993333333
-##  [20,]  -0.74333333  0.74266667       -2.258 -0.8993333333
-##  [21,]  -0.44333333  0.34266667       -2.058 -0.9993333333
-##  [22,]  -0.74333333  0.64266667       -2.258 -0.7993333333
-##  [23,]  -1.24333333  0.54266667       -2.758 -0.9993333333
-##  [24,]  -0.74333333  0.24266667       -2.058 -0.6993333333
-##  [25,]  -1.04333333  0.34266667       -1.858 -0.9993333333
-##  [26,]  -0.84333333 -0.05733333       -2.158 -0.9993333333
-##  [27,]  -0.84333333  0.34266667       -2.158 -0.7993333333
-##  [28,]  -0.64333333  0.44266667       -2.258 -0.9993333333
-##  [29,]  -0.64333333  0.34266667       -2.358 -0.9993333333
-##  [30,]  -1.14333333  0.14266667       -2.158 -0.9993333333
-##  [31,]  -1.04333333  0.04266667       -2.158 -0.9993333333
-##  [32,]  -0.44333333  0.34266667       -2.258 -0.7993333333
-##  [33,]  -0.64333333  1.04266667       -2.258 -1.0993333333
-##  [34,]  -0.34333333  1.14266667       -2.358 -0.9993333333
-##  [35,]  -0.94333333  0.04266667       -2.258 -0.9993333333
-##  [36,]  -0.84333333  0.14266667       -2.558 -0.9993333333
-##  [37,]  -0.34333333  0.44266667       -2.458 -0.9993333333
-##  [38,]  -0.94333333  0.54266667       -2.358 -1.0993333333
-##  [39,]  -1.44333333 -0.05733333       -2.458 -0.9993333333
-##  [40,]  -0.74333333  0.34266667       -2.258 -0.9993333333
-##  [41,]  -0.84333333  0.44266667       -2.458 -0.8993333333
-##  [42,]  -1.34333333 -0.75733333       -2.458 -0.8993333333
-##  [43,]  -1.44333333  0.14266667       -2.458 -0.9993333333
-##  [44,]  -0.84333333  0.44266667       -2.158 -0.5993333333
-##  [45,]  -0.74333333  0.74266667       -1.858 -0.7993333333
-##  [46,]  -1.04333333 -0.05733333       -2.358 -0.8993333333
-##  [47,]  -0.74333333  0.74266667       -2.158 -0.9993333333
-##  [48,]  -1.24333333  0.14266667       -2.358 -0.9993333333
-##  [49,]  -0.54333333  0.64266667       -2.258 -0.9993333333
-##  [50,]  -0.84333333  0.24266667       -2.358 -0.9993333333
-##  [51,]   1.15666667  0.14266667        0.942  0.2006666667
-##  [52,]   0.55666667  0.14266667        0.742  0.3006666667
-##  [53,]   1.05666667  0.04266667        1.142  0.3006666667
-##  [54,]  -0.34333333 -0.75733333        0.242  0.1006666667
-##  [55,]   0.65666667 -0.25733333        0.842  0.3006666667
-##  [56,]  -0.14333333 -0.25733333        0.742  0.1006666667
-##  [57,]   0.45666667  0.24266667        0.942  0.4006666667
-##  [58,]  -0.94333333 -0.65733333       -0.458 -0.1993333333
-##  [59,]   0.75666667 -0.15733333        0.842  0.1006666667
-##  [60,]  -0.64333333 -0.35733333        0.142  0.2006666667
-##  [61,]  -0.84333333 -1.05733333       -0.258 -0.1993333333
-##  [62,]   0.05666667 -0.05733333        0.442  0.3006666667
-##  [63,]   0.15666667 -0.85733333        0.242 -0.1993333333
-##  [64,]   0.25666667 -0.15733333        0.942  0.2006666667
-##  [65,]  -0.24333333 -0.15733333       -0.158  0.1006666667
-##  [66,]   0.85666667  0.04266667        0.642  0.2006666667
-##  [67,]  -0.24333333 -0.05733333        0.742  0.3006666667
-##  [68,]  -0.04333333 -0.35733333        0.342 -0.1993333333
-##  [69,]   0.35666667 -0.85733333        0.742  0.3006666667
-##  [70,]  -0.24333333 -0.55733333        0.142 -0.0993333333
-##  [71,]   0.05666667  0.14266667        1.042  0.6006666667
-##  [72,]   0.25666667 -0.25733333        0.242  0.1006666667
-##  [73,]   0.45666667 -0.55733333        1.142  0.3006666667
-##  [74,]   0.25666667 -0.25733333        0.942  0.0006666667
-##  [75,]   0.55666667 -0.15733333        0.542  0.1006666667
-##  [76,]   0.75666667 -0.05733333        0.642  0.2006666667
-##  [77,]   0.95666667 -0.25733333        1.042  0.2006666667
-##  [78,]   0.85666667 -0.05733333        1.242  0.5006666667
-##  [79,]   0.15666667 -0.15733333        0.742  0.3006666667
-##  [80,]  -0.14333333 -0.45733333       -0.258 -0.1993333333
-##  [81,]  -0.34333333 -0.65733333        0.042 -0.0993333333
-##  [82,]  -0.34333333 -0.65733333       -0.058 -0.1993333333
-##  [83,]  -0.04333333 -0.35733333        0.142  0.0006666667
-##  [84,]   0.15666667 -0.35733333        1.342  0.4006666667
-##  [85,]  -0.44333333 -0.05733333        0.742  0.3006666667
-##  [86,]   0.15666667  0.34266667        0.742  0.4006666667
-##  [87,]   0.85666667  0.04266667        0.942  0.3006666667
-##  [88,]   0.45666667 -0.75733333        0.642  0.1006666667
-##  [89,]  -0.24333333 -0.05733333        0.342  0.1006666667
-##  [90,]  -0.34333333 -0.55733333        0.242  0.1006666667
-##  [91,]  -0.34333333 -0.45733333        0.642  0.0006666667
-##  [92,]   0.25666667 -0.05733333        0.842  0.2006666667
-##  [93,]  -0.04333333 -0.45733333        0.242  0.0006666667
-##  [94,]  -0.84333333 -0.75733333       -0.458 -0.1993333333
-##  [95,]  -0.24333333 -0.35733333        0.442  0.1006666667
-##  [96,]  -0.14333333 -0.05733333        0.442  0.0006666667
-##  [97,]  -0.14333333 -0.15733333        0.442  0.1006666667
-##  [98,]   0.35666667 -0.15733333        0.542  0.1006666667
-##  [99,]  -0.74333333 -0.55733333       -0.758 -0.0993333333
-## [100,]  -0.14333333 -0.25733333        0.342  0.1006666667
-## [101,]   0.45666667  0.24266667        2.242  1.3006666667
-## [102,]  -0.04333333 -0.35733333        1.342  0.7006666667
-## [103,]   1.25666667 -0.05733333        2.142  0.9006666667
-## [104,]   0.45666667 -0.15733333        1.842  0.6006666667
-## [105,]   0.65666667 -0.05733333        2.042  1.0006666667
-## [106,]   1.75666667 -0.05733333        2.842  0.9006666667
-## [107,]  -0.94333333 -0.55733333        0.742  0.5006666667
-## [108,]   1.45666667 -0.15733333        2.542  0.6006666667
-## [109,]   0.85666667 -0.55733333        2.042  0.6006666667
-## [110,]   1.35666667  0.54266667        2.342  1.3006666667
-## [111,]   0.65666667  0.14266667        1.342  0.8006666667
-## [112,]   0.55666667 -0.35733333        1.542  0.7006666667
-## [113,]   0.95666667 -0.05733333        1.742  0.9006666667
-## [114,]  -0.14333333 -0.55733333        1.242  0.8006666667
-## [115,]  -0.04333333 -0.25733333        1.342  1.2006666667
-## [116,]   0.55666667  0.14266667        1.542  1.1006666667
-## [117,]   0.65666667 -0.05733333        1.742  0.6006666667
-## [118,]   1.85666667  0.74266667        2.942  1.0006666667
-## [119,]   1.85666667 -0.45733333        3.142  1.1006666667
-## [120,]   0.15666667 -0.85733333        1.242  0.3006666667
-## [121,]   1.05666667  0.14266667        1.942  1.1006666667
-## [122,]  -0.24333333 -0.25733333        1.142  0.8006666667
-## [123,]   1.85666667 -0.25733333        2.942  0.8006666667
-## [124,]   0.45666667 -0.35733333        1.142  0.6006666667
-## [125,]   0.85666667  0.24266667        1.942  0.9006666667
-## [126,]   1.35666667  0.14266667        2.242  0.6006666667
-## [127,]   0.35666667 -0.25733333        1.042  0.6006666667
-## [128,]   0.25666667 -0.05733333        1.142  0.6006666667
-## [129,]   0.55666667 -0.25733333        1.842  0.9006666667
-## [130,]   1.35666667 -0.05733333        2.042  0.4006666667
-## [131,]   1.55666667 -0.25733333        2.342  0.7006666667
-## [132,]   2.05666667  0.74266667        2.642  0.8006666667
-## [133,]   0.55666667 -0.25733333        1.842  1.0006666667
-## [134,]   0.45666667 -0.25733333        1.342  0.3006666667
-## [135,]   0.25666667 -0.45733333        1.842  0.2006666667
-## [136,]   1.85666667 -0.05733333        2.342  1.1006666667
-## [137,]   0.45666667  0.34266667        1.842  1.2006666667
-## [138,]   0.55666667  0.04266667        1.742  0.6006666667
-## [139,]   0.15666667 -0.05733333        1.042  0.6006666667
-## [140,]   1.05666667  0.04266667        1.642  0.9006666667
-## [141,]   0.85666667  0.04266667        1.842  1.2006666667
-## [142,]   1.05666667  0.04266667        1.342  1.1006666667
-## [143,]  -0.04333333 -0.35733333        1.342  0.7006666667
-## [144,]   0.95666667  0.14266667        2.142  1.1006666667
-## [145,]   0.85666667  0.24266667        1.942  1.3006666667
-## [146,]   0.85666667 -0.05733333        1.442  1.1006666667
-## [147,]   0.45666667 -0.55733333        1.242  0.7006666667
-## [148,]   0.65666667 -0.05733333        1.442  0.8006666667
-## [149,]   0.35666667  0.34266667        1.642  1.1006666667
-## [150,]   0.05666667 -0.05733333        1.342  0.6006666667
-\end{verbatim}
+Thus you'll see that it usually isn't worth computing the centering matrix when doing things in practice. We use \(\boldsymbol H\) in the description of the methods as it makes the mathematics easier to write down.
+
+\begin{itemize}
+\tightlist
+\item
+  Compute the covariance matrix of \(\boldsymbol X\) directly (ie, don't use the \texttt{cov} command - but do check your answer with \texttt{cov}).
+\end{itemize}
 
 \hypertarget{exercises-ch2}{%
 \section{Exercises}\label{exercises-ch2}}
@@ -2335,7 +2186,7 @@ Note that numerical errors will start to appear quite quickly. For example, the 
   \item
     What is the angle between \(\boldsymbol x_1\) and \(\boldsymbol x_2\)? Which pairs of vectors are orthogonal to each other?
   \item
-    What is the norm associated with this inner-product space, and compute the norm or \(\boldsymbol x_1, \ldots, \boldsymbol x_3\). What is the geometric interpretation of the norm?
+    What is the norm associated with this inner-product space, and compute the norm of \(\boldsymbol x_1, \ldots, \boldsymbol x_3\). What is the geometric interpretation of the norm?
   \end{itemize}
 \end{enumerate}
 
@@ -2355,7 +2206,7 @@ Note that numerical errors will start to appear quite quickly. For example, the 
   \item
     Let \(\boldsymbol A\) be an \(n\times n\) matrix of the form
     \[\boldsymbol A= \boldsymbol Q\boldsymbol B\boldsymbol Q^\top.\]
-    where \(\boldsymbol Q\) is an \(n\times n\) orthogonal matrix. Prove that \(\boldsymbol A\) is symmetric.
+    where \(\boldsymbol Q\) is an \(n\times n\) orthogonal matrix, and \(\boldsymbol B\) is an \(n\times n\) diagonal matrix. Prove that \(\boldsymbol A\) is symmetric.
   \end{itemize}
 \end{enumerate}
 
@@ -2371,7 +2222,7 @@ Note that numerical errors will start to appear quite quickly. For example, the 
   \item
     Show that \(\boldsymbol P\) is a projection matrix.
   \item
-    Describe the subspace \(\boldsymbol P\) projections onto.
+    Describe the subspace \(\boldsymbol P\) projects onto.
   \item
     Describe the image and kernel of \(\boldsymbol P\).
   \item
@@ -3165,7 +3016,7 @@ Since A is positive definite, we can calculate the symmetric, positive definite 
 \item
   Compute the eigenvalues of \(\boldsymbol X^\top \boldsymbol X\). How do these relate to the singular values? How does \(\boldsymbol X^\top \boldsymbol X\) relate to the sample covariance matrix of the iris data? How do the singular values relate to the eigenvalues of the covariance matrix?
 \item
-  Let \(\boldsymbol S\) be the sample covariance matrix of the iris dataset. What vector maximizes \(\boldsymbol x\boldsymbol S\boldsymbol x\)?
+  Let \(\boldsymbol S\) be the sample covariance matrix of the iris dataset. What vector maximizes \(\boldsymbol x^\top \boldsymbol S\boldsymbol x\)?
 \end{itemize}
 
 \begin{enumerate}
@@ -3200,7 +3051,7 @@ Since A is positive definite, we can calculate the symmetric, positive definite 
   \right) \left(\begin{array}{cc}3&0\\0&1\end{array}
   \right)\frac{1}{\sqrt{2}}\left(\begin{array}{cc}1&-1\\1&1\end{array}
   \right)^\top \]
-  Use this fact to compute the following:
+  Use this fact to compute answer the following questions:
 
   \begin{itemize}
   \tightlist
@@ -3238,7 +3089,7 @@ Since A is positive definite, we can calculate the symmetric, positive definite 
     \(\tilde{\boldsymbol x}=\boldsymbol A^+\boldsymbol y\) is still a useful quantity to consider as we shall now see. Let \(\boldsymbol A=\left(\begin{array}{cc}1&1\\0&1\\1&0\end{array} \right)\) and \(\boldsymbol y= \left(\begin{array}{c}2\\1\\1\end{array} \right)\). Then \(\boldsymbol A\boldsymbol x=\boldsymbol y\) is an over-determined system in that there are 3 equations in 2 unknowns. Compute \(\tilde{\boldsymbol x}=\boldsymbol A^+\boldsymbol y\). Is this a solution to the equation?
   \end{itemize}
 
-  \textbf{Note} that you computed the svd for \(\boldsymbol A\) in the question 2.
+  \textbf{Note} that you computed the svd for \(\boldsymbol A\) in Q2.
 
   \begin{itemize}
   \tightlist
@@ -5626,65 +5477,6 @@ the optimal vectors \(\boldsymbol a_{j}\) and \(\boldsymbol b_{j}\) transform in
 
 If either of \(\mathbf T\) or \(\mathbf R\) in \eqref{eq:transformations} is not an orthogonal matrix then the singular values are not invariant and the CC vectors do not transform in an equivariant manner.
 
-\hypertarget{example-1}{%
-\section{Example?}\label{example-1}}
-
-\url{https://stats.idre.ucla.edu/r/dae/canonical-correlation-analysis/\#}:\textasciitilde{}:text=Canonical\%20correlation\%20analysis\%20is\%20used,among\%20two\%20sets\%20of\%20variables.\&text=Canonical\%20correlation\%20analysis\%20determines\%20a,both\%20within\%20and\%20between\%20sets.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mm <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"https://stats.idre.ucla.edu/stat/data/mmreg.csv"}\NormalTok{)}
-\KeywordTok{colnames}\NormalTok{(mm) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Control"}\NormalTok{, }\StringTok{"Concept"}\NormalTok{, }\StringTok{"Motivation"}\NormalTok{, }\StringTok{"Read"}\NormalTok{, }\StringTok{"Write"}\NormalTok{, }\StringTok{"Math"}\NormalTok{,}
-\StringTok{"Science"}\NormalTok{, }\StringTok{"Sex"}\NormalTok{)}
-\NormalTok{psych <-}\StringTok{ }\NormalTok{mm[,}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{]}
-\NormalTok{acad <-}\StringTok{ }\NormalTok{mm[,}\DecValTok{4}\OperatorTok{:}\DecValTok{8}\NormalTok{]}
-\KeywordTok{library}\NormalTok{(CCA)}
-\KeywordTok{matcor}\NormalTok{(psych, acad)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## $Xcor
-##              Control   Concept Motivation
-## Control    1.0000000 0.1711878  0.2451323
-## Concept    0.1711878 1.0000000  0.2885707
-## Motivation 0.2451323 0.2885707  1.0000000
-## 
-## $Ycor
-##                Read     Write       Math    Science         Sex
-## Read     1.00000000 0.6285909  0.6792757  0.6906929 -0.04174278
-## Write    0.62859089 1.0000000  0.6326664  0.5691498  0.24433183
-## Math     0.67927568 0.6326664  1.0000000  0.6495261 -0.04821830
-## Science  0.69069291 0.5691498  0.6495261  1.0000000 -0.13818587
-## Sex     -0.04174278 0.2443318 -0.0482183 -0.1381859  1.00000000
-## 
-## $XYcor
-##              Control     Concept Motivation        Read      Write       Math
-## Control    1.0000000  0.17118778 0.24513227  0.37356505 0.35887684  0.3372690
-## Concept    0.1711878  1.00000000 0.28857075  0.06065584 0.01944856  0.0535977
-## Motivation 0.2451323  0.28857075 1.00000000  0.21060992 0.25424818  0.1950135
-## Read       0.3735650  0.06065584 0.21060992  1.00000000 0.62859089  0.6792757
-## Write      0.3588768  0.01944856 0.25424818  0.62859089 1.00000000  0.6326664
-## Math       0.3372690  0.05359770 0.19501347  0.67927568 0.63266640  1.0000000
-## Science    0.3246269  0.06982633 0.11566948  0.69069291 0.56914983  0.6495261
-## Sex        0.1134108 -0.12595132 0.09810277 -0.04174278 0.24433183 -0.0482183
-##                Science         Sex
-## Control     0.32462694  0.11341075
-## Concept     0.06982633 -0.12595132
-## Motivation  0.11566948  0.09810277
-## Read        0.69069291 -0.04174278
-## Write       0.56914983  0.24433183
-## Math        0.64952612 -0.04821830
-## Science     1.00000000 -0.13818587
-## Sex        -0.13818587  1.00000000
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cc1 <-}\StringTok{ }\KeywordTok{cc}\NormalTok{(psych, acad)}
-\end{Highlighting}
-\end{Shaded}
-
 \hypertarget{exercises-2}{%
 \section{Exercises}\label{exercises-2}}
 
@@ -5788,7 +5580,7 @@ Test the following hypotheses: (i) that both CC coefficients are zero, and (ii) 
 \setcounter{enumi}{1}
 \tightlist
 \item
-  Explore using CCA of the crabs data with the command \{\tt cc\} and \{\tt plt.cc\} in the package \{\tt CCA\} which you will need to download. {[}Note: these commands were also used on the Boston Housing data in lectures and I have provided the html output on the Moodle page, which could be helpful{]}.
+  Explore using CCA of the crabs data with the command \texttt{cc} and \texttt{plt.cc} in the package \texttt{CCA} which you will need to download. {[}Note: these commands were also used on the Boston Housing data in lectures and I have provided the html output on the Moodle page, which could be helpful{]}.
 \end{enumerate}
 
 Note that you can use the commands
@@ -5817,9 +5609,9 @@ SORT
 \end{Highlighting}
 \end{Shaded}
 
-If you are not sure what the name of YOURDIRECTORY is where the file is located, then a useful command to find out is \{\tt file.choose()\}
+If you are not sure what the name of YOURDIRECTORY is where the file is located, then a useful command to find out is \texttt{file.choose()}
 
-Check that you agree with the calculations in Chapters 3 and 4 of the lecture notes. Also, look at the PC scores as indicated in point 2 and the CC scores as indicated in point 3. Note that there will be some differences due to \{\tt prcomp\} using divisor \(n-1\) in the calculation of the sample covariance matrix, whereas we use \(n\) in the notes.
+Check that you agree with the calculations in Chapters 3 and 4 of the lecture notes. Also, look at the PC scores as indicated in point 2 and the CC scores as indicated in point 3. Note that there will be some differences due to \texttt{prcomp} using divisor \(n-1\) in the calculation of the sample covariance matrix, whereas we use \(n\) in the notes.
 Also, there may be some minor numerical/rounding differences.
 
 \hypertarget{mds}{%
@@ -5960,8 +5752,8 @@ We now present the key result for classical MDS.
 In other words, we sum over those \(j\) such that \(\lambda_j\) is positive.
 Then \(\boldsymbol B_{\text{pos}}\) is non-negative definite and so we can use Theorem 5.1(iii) to determine a Euclidean configuration which has centred inner-product matrix \(\boldsymbol B_{\text{pos}}\). Then, provided the negative eigenvalues are small in absolute value relative to the positive eigenvalues, the inter-point distances of the new points in Euclidean space should provide a good approximation to the original inter-point distances \((d_{ij})\).
 
-\hypertarget{example-2}{%
-\subsection{Example}\label{example-2}}
+\hypertarget{example-1}{%
+\subsection{Example}\label{example-1}}
 
 Consider the five point in \(\mathbb{R}^2\):
 \[
@@ -6436,8 +6228,7 @@ Correlation actually measures similarity, but it is easy to transform it to a me
 Part III of this module covers statistical inference based on the multivariate normal (MVN) distribution.
 
 Chapter \ref{multinormal} focuses on classical distribution theory relating to the MVN distribution, including the Wishart distribution, which is defined on the set of symmetric positive definite matrices and is a natural generalisation of the \(\chi^2\) distribution. Another important distribution related to the MVN distribution is the Hotelling \(T^2\) distribution, which is a multivariate analogue of the Student \(t\)-distribution.
-
-Chapter \ref{inferenceMVN} is concerned with testing hypotheses concerning vector means in \(1\)-sample and \(2\)-sample settings. There is a close connection with the classical \(1\)-sample and \(2\)-sample \(t\)-tests in univariate statistics.
+The Wishart and Hotelling \(T^2\) distributions then allow us to conduct hypothesis tests concerning vector means in \(1\)-sample and \(2\)-sample settings.
 
 Chapter \ref{lm} is concerned with the multivariate linear model, in which the responses consist of random vectors rather than single random variables. Errors in this setting take the form of random vectors.
 
@@ -7015,39 +6806,418 @@ We can apply this result to the previous corollary.
 \end{align*}
 \end{proof}
 
-\hypertarget{exercises-4}{%
-\section{Exercises}\label{exercises-4}}
+\hypertarget{inference-based-on-the-mvn}{%
+\section{Inference based on the MVN}\label{inference-based-on-the-mvn}}
+
+In univariate statistical analysis, you will have seen how to do hypothesis testing for the mean of a population.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Compute something with chisquared and ellipses.
+  In the case where you have a single sample \(x_1, \ldots, x_n\) which come from a population with known variance \(\sigma^2\) we use a z-test when testing hypotheses such as
+  \(H_0: \mu=\mu_1\).
 \item
-  Prove mean and vairance of sample covariance matrices?
+  When the variance of the population, \(\sigma^2\), is unknown, then we have to use a t-test.
 \item
-  If \(\boldsymbol x\sim N_p(\boldsymbol \mu,\boldsymbol \Sigma)\) and \(\boldsymbol a\) is any fixed vector of dimension \(p\), show that
-  \[ z = \frac{ \boldsymbol a^\top (\boldsymbol x- \boldsymbol \mu) }{ \sqrt{\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a} } \sim N(0,1).\]
-\item
-  Prove that
-  \[ n ( \bar{\boldsymbol x} - \boldsymbol \mu)^{\rm T} \boldsymbol \Sigma^{-1} ( \bar{\boldsymbol x} - \boldsymbol \mu) \sim \chi_p^2 . \]
-\item
-  If \(\boldsymbol x_1, \ldots, \boldsymbol x_n\) are i.i.d. \(N_p(\boldsymbol \mu, \boldsymbol \Sigma)\) with sample mean \(\bar{\boldsymbol x}\) and sample covariance matrix \(\boldsymbol S\), show that \({\mathbb{C}\operatorname{ov}}(\bar{\boldsymbol x}, \boldsymbol x_i - \bar{\boldsymbol x}) = \boldsymbol 0\). Hence deduce that \(\bar{\boldsymbol x}\) and \(\boldsymbol S\) are independent.
+  When we have two samples, \(x_1, \ldots, x_n\) and \(y_1, \ldots, y_m\), we use either a paired or an unpaired t-test.
 \end{enumerate}
 
-\textbf{Hint:} If the random vector \(\boldsymbol x\) is independent of the random vector \(\boldsymbol y\), then \(\boldsymbol x\) is also independent of any function \(f(\boldsymbol y)\).{]}
+We now develop analogous results in the multivariate case. The role of the Student \(t\) distribution will be played by Hotelling's \(T^2\), and the role of the \(\chi^2\) is played by the Wishart distribution.
 
-\hypertarget{computer-tasks-3}{%
-\section{Computer tasks}\label{computer-tasks-3}}
+The next three subsections deal with the multivariate equivalent of the three situations listed above. Before we do, lets quickly recap how hypothesis testing works:
+
+\hypertarget{recap-of-hypothesis-testing-framework}{%
+\subsubsection*{Recap of hypothesis testing framework}\label{recap-of-hypothesis-testing-framework}}
+\addcontentsline{toc}{subsubsection}{Recap of hypothesis testing framework}
+
+Suppose that we have a null hypothesis \(H_0\) represented by a completely specified model and that we wish to test this hypothesis using data \(x_1, \ldots, x_n\). We proceed as follows
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Simulate and show CLT.
+  Assume \(H_0\) is true.
 \item
-  Play around with the Wishart distribution.
+  Find a test statistic \(T(x_1, \ldots, x_n)\) for which large values indicate departure from \(H_0\).
 \item
-  Numerical demonstration of Cochran's theorem?
+  Calculate the theoretical sampling distribution of \(T\) under \(H_0\).
+\item
+  The observed value \(T_{obs}=T(x_1, \ldots, x_n)\) of the test statistic is compared with the distribution of \(T\) under \(H_0\). Either
+
+  \begin{itemize}
+  \tightlist
+  \item
+    (Neyman-Pearson) reject \(H_0\) if \(T_{obs}>c\). Here \(c\) is chosen so that \(\mathbb{P}(T\geq c| H_0)=\alpha\) where \(\alpha\) is the \textbf{size} of the test, i.e., \(\mathbb{P}(\mbox{reject } H_0 | H_0 \mbox{ true})=\alpha\).
+  \item
+    (Fisherian) compute the p-value \(p=\mathbb{P}(T\geq T_{obs}|H_0)\) and report it. This represents the strength of evidence against \(H_0\).
+  \end{itemize}
 \end{enumerate}
+
+\hypertarget{onesampleSigma}{%
+\subsection{\texorpdfstring{\(\boldsymbol \Sigma\) known}{\textbackslash{}boldsymbol \textbackslash{}Sigma known}}\label{onesampleSigma}}
+
+Let \(\boldsymbol x_1,\ldots,\boldsymbol x_n\) be a random sample from \(N_p(\boldsymbol \mu,\boldsymbol \Sigma)\) where
+\(\boldsymbol \mu= (\mu_1,\ldots,\mu_p)^\top\). Suppose we wish to conduct the following hypothesis test \[H_0: \boldsymbol \mu= \boldsymbol a\mbox{ vs } H_1: \boldsymbol \mu\neq \boldsymbol a\] where \(\boldsymbol a\) is fixed and pre-specified.
+Let's first \textbf{assume that \(\boldsymbol \Sigma\) is known}. This will result in the multivariate analogue of the z-test.
+
+One approach would be to conduct \(p\) separate univariate z-tests tests with null hypotheses
+\[H_0: \mu_i = a_i \qquad \text{vs.} \qquad H_1: \mu_i \neq a_i, \quad \mbox{for } i=1,\ldots,p.\]\\
+However, this ignores possible correlations between the variables - see the example for a situation in which this can make a difference.
+
+A better approach is to conduct a single (multivariate) hypothesis test using the test statistic
+\[
+\zeta^2 = n(\bar{\boldsymbol x}-\boldsymbol a)^\top \boldsymbol \Sigma^{-1} (\bar{\boldsymbol x}-\boldsymbol a).
+\]
+
+We need to compute the distribution of \(\zeta^2\) when \(H_0\) is true. Note that
+
+\[
+\zeta^2 = (n^{1/2}\bar{\boldsymbol x}-n^{1/2}\boldsymbol \mu)^\top \boldsymbol \Sigma^{-1} (n^{1/2}\bar{\boldsymbol x}-n^{1/2}\boldsymbol \mu).
+\]
+Recall that \(\bar{\boldsymbol x} \sim N_p(\boldsymbol \mu, \frac{1}{n} \boldsymbol \Sigma)\), and that therefore \(n^{1/2} \bar{\boldsymbol x} \sim N_p(n^{1/2} \boldsymbol \mu, \boldsymbol \Sigma)\). Applying Proposition\\
+Proposition \ref{prp:six5} we thus see that
+\[\zeta^2\sim \chi_p^2\]
+when \(H_0\) is true.
+
+Thus to conduct the hypothesis test, we compute \(\zeta^2\) for the observed data, and if the value is large compared to a \(\chi^2_p\) distribution, we reject \(H_0\).
+
+\begin{itemize}
+\item
+  The Neyman-Pearson approach is to define a critical region and reject \(H_0\) if \(\zeta^2 > \chi^2_{p,\alpha}\), where \(\chi^2_{p,\alpha}\) is the upper \(\alpha\) quantile of the \(\chi^2_p\) distribution, i.e., \(\mathbb{P}(\chi^2_p > \chi^2_{p,\alpha})=\alpha\).
+\item
+  The Fisherian approach is to state the result as a \(p\)-value where \(p = \mathbb{P}(\chi^2_p > \zeta_{\text{obs}}^2)\), and
+  \(\zeta_{\text{obs}}^2\) is the observed value of the statistic \(\zeta^2\).
+\end{itemize}
+
+The multivariate equivalent of a confidence interval is a \textbf{confidence region} and the \(100(1-\alpha)\)\% confidence region for \(\boldsymbol \mu\) is \(\{ \boldsymbol a: \zeta^2 \leq \chi^2_{p,\alpha} \}\).
+This confidence region will be the interior of an ellipse or ellipsoid.
+
+\hypertarget{example-2}{%
+\subsubsection*{Example}\label{example-2}}
+\addcontentsline{toc}{subsubsection}{Example}
+
+Consider again the exam marks for first year maths students in the two modules PRB and STA. The scatterplot below shows the module marks for \(n=203\) students on probability (PRB, \(x_1\)) and statistics (STA, \(x_2\)), with the sample mean vector \(\begin{pmatrix}62.1 \\62.7 \\\end{pmatrix}\) marked on as a red `+'.
+
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-28-1.pdf}
+
+The target for the module mean for a large population of students should be exactly 60 for both modules. We now conduct a hypothesis test to see if the lecturers have missed the target and made the exam too difficult. We will test the hypotheses \(H_0\) versus \(H_1\) at the 5\% level where
+\[
+H_0: \boldsymbol \mu= \begin{pmatrix} 60 \\ 60 \end{pmatrix} \qquad \text{and} \qquad H_1: \boldsymbol \mu\neq \begin{pmatrix} 60 \\ 60 \end{pmatrix}.
+\]
+
+Let's assume to begin with that observations \(\boldsymbol x_1,\ldots,\boldsymbol x_{203}\) are a random sample from \(N_2(\boldsymbol \mu,\boldsymbol \Sigma)\) where
+\[
+\boldsymbol \Sigma= \begin{pmatrix} 200 & 150 \\ 150 & 300 \end{pmatrix}
+\]
+is assumed known.
+
+The test statistic is
+\begin{align*}
+\zeta^2 &= 203 \begin{pmatrix} 62.1 - 60 \\ 62.7 - 60 \end{pmatrix}^\top \begin{pmatrix} 200 & 150 \\ 150 & 300 \end{pmatrix}^{-1} \begin{pmatrix} 62.1 - 60 \\ 62.7 - 60 \end{pmatrix}\\
+&=5.84
+\end{align*}
+
+Under \(H_0\), \(\zeta^2\sim \chi^2_2\). and so the critical value is \(\chi^2_{2,0.05} = 5.991\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qchisq}\NormalTok{(}\FloatTok{0.95}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.991465
+\end{verbatim}
+
+The plot below shows the density of a \(\chi^2_2\) random variable. The vertical red line shows the critical value, the vertical black line the observed value, and the shaded region shows the critical region. As \(\zeta^2 < \chi^2_{p,0.05}\) we can see that we do not reject the null hypothesis at the 5\% level.
+
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-31-1.pdf}
+
+The \(p\)-value is
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\OperatorTok{-}\KeywordTok{pchisq}\NormalTok{(zeta2, }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]
+## [1,] 0.05389049
+\end{verbatim}
+
+which is area of the red shaded region.
+
+Note that if we had conducted separate univariate hypothesis tests of \(H_0: \mu_1 = 60\) and \(H_0: \mu_2 = 60\) then the test statistics would have been:
+\begin{eqnarray*}
+z_1 &=& \frac{\bar{x}_1 - \mu_1}{\sqrt{\sigma_1^2/n}} = \frac{62-60}{\sqrt{200/203}} = 2.11  \\
+z_2 &=& \frac{\bar{x}_2 - \mu_2}{\sqrt{\sigma_2^2/n}} = \frac{62-60}{\sqrt{300/203}} = 2.22.
+\end{eqnarray*}
+The critical value would have been \(Z_{0.025} = 1.960\) and both null hypotheses would have been rejected. Therefore we see that a multivariate hypothesis can be accepted when each of univariate components is rejected and vice-versa.
+
+The \(95\)\% confidence region is the interior of an ellipse, centred on \(\bar{\boldsymbol x}\), with the angle of the major-axis governed by \(\boldsymbol \Sigma\) (given by the eigenvectors of \(\boldsymbol \Sigma\)). We can see from the plot below that \((60,60)^\top\), marked with a cross, lies just inside the confidence region.`
+
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-33-1.pdf}
+
+\hypertarget{onesample}{%
+\subsection{\texorpdfstring{\(\boldsymbol \Sigma\) unknown: 1 sample}{\textbackslash{}boldsymbol \textbackslash{}Sigma unknown: 1 sample}}\label{onesample}}
+
+In the previous section we considered a hypothesis test of
+\[H_0: \boldsymbol \mu= \boldsymbol a\mbox{ vs } H_1: \boldsymbol \mu\neq \boldsymbol a\] based on an IID sample from \(N_p(\boldsymbol \mu,\boldsymbol \Sigma)\) when \(\boldsymbol \Sigma\) was \textbf{known}. In reality, we rarely know \(\boldsymbol \Sigma\), so we \textbf{replace it with the sample covariance matrix}, \(\boldsymbol S\). Corollary \ref{cor:csix6} tells us that the distribution is then \(F_{p,n-p}\) rather than \(\chi^2_p\) as was the case when \(\boldsymbol \Sigma\) was known.
+
+More specifically, we use the test statistic:
+\[\gamma^2 = \frac{n-p}{p} (\bar{\boldsymbol x}-\boldsymbol a)^\top \boldsymbol S^{-1} (\bar{\boldsymbol x}-\boldsymbol a),\]
+Corollary \ref{cor:csix6} tellsus that when \(H_0\) is true,
+\[\gamma^2 \sim F_{p,n-p}.\]
+As before, depending upon our approach we either
+
+\begin{itemize}
+\item
+  (Neyman-Pearson approach) reject \(H_0\) if \(\gamma^2 > F_{p,n-p,\alpha}\), where \(\alpha\) is the significance level.
+\item
+  (Fisherian approach) compute the p-value \(p = \mathbb{P}(F_{p,n-p} > \gamma^2_{obs})\).
+\end{itemize}
+
+The \(100(1-\alpha)\)\% confidence region for \(\boldsymbol \mu\) is \(\{ \boldsymbol a: \gamma^2 \leq F_{p,n-p,\alpha} \}\), which will again be the interior of an ellipse or ellipsoid, but the confidence region is now determined by \(\boldsymbol S\) rather than \(\boldsymbol \Sigma\).
+
+\hypertarget{example-continued}{%
+\subsubsection*{Example continued}\label{example-continued}}
+\addcontentsline{toc}{subsubsection}{Example continued}
+
+We return to the example with the module marks for \(n=203\) students on probability (PRB, \(x_1\)) and statistics (STA, \(x_2\)), but now we assume that \(\boldsymbol \Sigma\) is unknown.
+
+The sample mean and sample covariance matrix are
+\[\bar{\boldsymbol x} = \begin{pmatrix}62.1 \\62.7 \\\end{pmatrix} \qquad \boldsymbol S= \begin{pmatrix}191&155.6 \\155.6&313.5 \\\end{pmatrix}\]
+We conduct a hypothesis test at the 5\% level of:
+\[H_0: \boldsymbol \mu= \begin{pmatrix} 60 \\ 60 \end{pmatrix} \qquad \text{vs.} \qquad H_1: \boldsymbol \mu\neq \begin{pmatrix} 60 \\ 60 \end{pmatrix}.\]
+
+The test statistic is
+\begin{align*}
+\gamma^2 &= \frac{203-2}{2} \begin{pmatrix} 62.1 - 60 \\ 62.7 - 60 \end{pmatrix}^\top \begin{pmatrix}191&155.6 \\155.6&313.5 \\\end{pmatrix}^{-1} \begin{pmatrix} 62.1 - 60 \\ 62.7 - 60 \end{pmatrix} \\
+ &= 2.84.
+\end{align*}
+The critical value is \(F_{2,201,0.05}\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \KeywordTok{qf}\NormalTok{(}\FloatTok{0.95}\NormalTok{, }\DecValTok{2}\NormalTok{,}\DecValTok{201}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.040828
+\end{verbatim}
+
+so \(\gamma^2 < F_{p,n-p,0.05}\) and we do not reject the null hypothesis at the 5\% level.
+
+The \(p\)-value is
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\OperatorTok{-}\KeywordTok{pf}\NormalTok{(gamma2, }\DecValTok{2}\NormalTok{, }\DecValTok{201}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]
+## [1,] 0.06051421
+\end{verbatim}
+
+Thankfully, we don't need to do all the computation ourselves whenever we want to do a test, as there are several R packages that will do the work for us:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ICSNP) }\CommentTok{# you'll need to install this package the first time}
+\KeywordTok{HotellingsT2}\NormalTok{(X,  }\DataTypeTok{mu =}\NormalTok{ mu)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Hotelling's one sample T2-test
+## 
+## data:  X
+## T.2 = 2.8444, df1 = 2, df2 = 201, p-value = 0.06051
+## alternative hypothesis: true location is not equal to c(60,60)
+\end{verbatim}
+
+Notice again the difference to the two univariate tests
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(X[,}\DecValTok{1}\NormalTok{], }\DataTypeTok{mu=}\DecValTok{60}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  X[, 1]
+## t = 2.1581, df = 202, p-value = 0.0321
+## alternative hypothesis: true mean is not equal to 60
+## 95 percent confidence interval:
+##  60.18121 64.01584
+## sample estimates:
+## mean of x 
+##  62.09852
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{t.test}\NormalTok{(X[,}\DecValTok{2}\NormalTok{], }\DataTypeTok{mu=}\DecValTok{60}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  X[, 2]
+## t = 2.1669, df = 202, p-value = 0.03141
+## alternative hypothesis: true mean is not equal to 60
+## 95 percent confidence interval:
+##  60.24305 65.15596
+## sample estimates:
+## mean of x 
+##  62.69951
+\end{verbatim}
+
+The \(95\)\% confidence region is the interior of an ellipse, centred on \(\bar{\boldsymbol x}\), with the angle of the major-axis governed by \(\boldsymbol S\). The confidence region is very slightly larger than when \(\boldsymbol \Sigma\) was known.
+
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-39-1.pdf}
+
+\hypertarget{boldsymbol-sigma-unknown-2-samples}{%
+\subsection{\texorpdfstring{\(\boldsymbol \Sigma\) unknown: 2 samples}{\textbackslash{}boldsymbol \textbackslash{}Sigma unknown: 2 samples}}\label{boldsymbol-sigma-unknown-2-samples}}
+
+Suppose now we have data from two populations \(\boldsymbol x_1, \ldots, \boldsymbol x_n\) and \(\boldsymbol y_1,\ldots, \boldsymbol y_m\), and that we wish to test the difference between the two population means. As with the univariate case, there are two cases to consider:
+
+\hypertarget{paired-case}{%
+\subsubsection*{Paired case}\label{paired-case}}
+\addcontentsline{toc}{subsubsection}{Paired case}
+
+If \(m=n\) and there exists some experimental link between \(\boldsymbol x_i\) and \(\boldsymbol y_i\) then we can look at the differences \(\boldsymbol z_i = \boldsymbol y_i - \boldsymbol x_i\) for \(i=1,\ldots,n\). For example, \(\boldsymbol x_i\) and \(\boldsymbol y_i\) could be vectors of pre-treatment and post-treatment measurements, respectively, of the same variables. The crucial assumption is that the differences \(\boldsymbol z_i\) are IID \(N_p(\boldsymbol \mu, \boldsymbol \Sigma)\). To examine the null hypothesis of no difference between the means we would test
+
+\[H_0: \boldsymbol \mu={\mathbf 0}_p \mbox{ vs } H_1: \boldsymbol \mu\neq {\mathbf 0}_p.\]
+
+We then base our inference on \(\bar{\boldsymbol z} = \frac{1}{n} \sum_{i=1}^n \boldsymbol z_i = \bar{\boldsymbol y} - \bar{\boldsymbol x}\), and proceed exactly as in the 1 sample case, using the test in Secion \ref{onesampleSigma} if \(\boldsymbol \Sigma\) is known, or else the test in Section \ref{onesample} if with \(\boldsymbol S= \frac{1}{n} \sum_{i=1}^n (\boldsymbol z_i - \bar{\boldsymbol z})(\boldsymbol z_i - \bar{\boldsymbol z})^\top\).
+
+\hypertarget{unpaired-case}{%
+\subsubsection*{Unpaired case}\label{unpaired-case}}
+\addcontentsline{toc}{subsubsection}{Unpaired case}
+
+The unpaired case is where \(\boldsymbol x_i\) and \(\boldsymbol y_i\) are independent and not connected to each other. For example, in a clinical trial we may have two separate groups of patients, where one group receives a placebo and the other group receives an active treatment. Let \(\boldsymbol x_1,\ldots,\boldsymbol x_n\) be an IID sample from \(N_p(\boldsymbol \mu_1,\boldsymbol \Sigma)\) and let \(\boldsymbol y_1,\ldots,\boldsymbol y_m\) be an IID sample from \(N_p(\boldsymbol \mu_2,\boldsymbol \Sigma)\). In this case, we can base our inference on the following result.
+
+\begin{proposition}
+\protect\hypertarget{prp:seven1}{}{\label{prp:seven1} }Suppose
+\begin{align*}
+\boldsymbol x_1,\ldots,\boldsymbol x_n  &\sim N_p(\boldsymbol \mu_1,\boldsymbol \Sigma_1)\\ 
+\boldsymbol y_1,\ldots,\boldsymbol y_m  &\sim N_p(\boldsymbol \mu_2,\boldsymbol \Sigma_2). 
+\end{align*}
+Then when \(\boldsymbol \mu_1 = \boldsymbol \mu_2\) and \(\boldsymbol \Sigma_1 = \boldsymbol \Sigma_2\) (i.e.~when the two populations have the same distribution),
+\[\frac{nm}{n+m} (\bar{\boldsymbol y} - \bar{\boldsymbol x})^\top \boldsymbol S_u^{-1} (\bar{\boldsymbol y} - \bar{\boldsymbol x}) \sim T^2(p,n+m-2),\]
+where
+\[\boldsymbol S_u = \frac{n\boldsymbol S_1 + m\boldsymbol S_2}{n+m-2}\]
+is the pooled unbiased variance matrix estimator
+and \(\boldsymbol S_j\) is the sample covariance matrix for group \(j\).
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}We know that \(\bar{\boldsymbol x} \sim N_p \left(\boldsymbol \mu_1,n^{-1}\boldsymbol \Sigma_1 \right)\) and \(\bar{\boldsymbol y} \sim N_p \left(\boldsymbol \mu_2,m^{-1}\boldsymbol \Sigma_2 \right)\), and \(\bar{\boldsymbol x}\) and \(\bar{\boldsymbol y}\) are independent, so
+\[\bar{\boldsymbol y} - \bar{\boldsymbol x} \sim N_p \left(\boldsymbol \mu_2 - \boldsymbol \mu_1, \frac{1}{n}\boldsymbol \Sigma_1 + \frac{1}{m} \boldsymbol \Sigma_2 \right).\]
+If \(\boldsymbol \mu_1 = \boldsymbol \mu_2\) and \(\boldsymbol \Sigma_1 = \boldsymbol \Sigma_2 = \boldsymbol \Sigma\), then \(\bar{\boldsymbol y} - \bar{\boldsymbol x} \sim N_p \left(\boldsymbol 0_p, \left(\frac{1}{n} + \frac{1}{m} \right)\boldsymbol \Sigma\right)\) and
+\[\boldsymbol z= \left(\frac{1}{n} + \frac{1}{m} \right)^{-1/2} (\bar{\boldsymbol y} - \bar{\boldsymbol x}) \sim N_p(\boldsymbol 0_p,\boldsymbol \Sigma).\]
+
+From Proposition \ref{prp:six12} we know that \(n\boldsymbol S_1 \sim W_p(\Sigma_1,n-1)\) and \(m\boldsymbol S_2 \sim W_p(\Sigma_2,m-1)\). Therefore when \(\boldsymbol \Sigma_1 = \boldsymbol \Sigma_2 = \boldsymbol \Sigma\),
+\begin{eqnarray*}
+\boldsymbol M= (n+m-2)\boldsymbol S_u &=& (n+m-2)\frac{n\boldsymbol S_1 + m\boldsymbol S_2}{n+m-2} \\
+&=& n\boldsymbol S_1 + m\boldsymbol S_2 \sim W_p(\boldsymbol \Sigma,n+m-2)
+\end{eqnarray*}
+by Proposition \ref{prp:six10}, using the fact that \(\boldsymbol S_1\) and \(\boldsymbol S_2\) are independent.
+
+Now \(\boldsymbol z\) is independent of \(\boldsymbol M\), since \(\bar{\boldsymbol x}\) and \(\bar{\boldsymbol y}\) are independent of \(\boldsymbol S_1\) and \(\boldsymbol S_2\), respectively, by Proposition \ref{prp:six6}. Therefore, applying Proposition \ref{prp:six13} with \(\boldsymbol x= \boldsymbol z\) and \(\boldsymbol M= (n+m-2)\boldsymbol S_u\), we have
+\begin{align*}
+(n+m-2) \boldsymbol z^\top ((n+m-2)\boldsymbol S_u)^{-1} \boldsymbol z&= \boldsymbol z^\top \boldsymbol S_u^{-1} \boldsymbol z\\
+&\sim T^2(p,n+m-2)
+\end{align*}
+and
+\begin{eqnarray*}
+\boldsymbol z^\top \boldsymbol S_u^{-1} \boldsymbol z&=& \left(\frac{1}{n} + \frac{1}{m} \right)^{-1/2} (\bar{\boldsymbol y} - \bar{\boldsymbol x})^\top \boldsymbol S_u^{-1} \left(\frac{1}{n} + \frac{1}{m} \right)^{-1/2} (\bar{\boldsymbol y} - \bar{\boldsymbol x}) \\
+&=& \left(\frac{1}{n} + \frac{1}{m} \right)^{-1} (\bar{\boldsymbol y} - \bar{\boldsymbol x})^\top \boldsymbol S_u^{-1} (\bar{\boldsymbol y} - \bar{\boldsymbol x}).
+\end{eqnarray*}
+Finally,
+\[\left(\frac{1}{n} + \frac{1}{m} \right)^{-1} = \left(\frac{m}{nm} + \frac{n}{nm} \right)^{-1} = \left(\frac{n+m}{nm} \right)^{-1} = \frac{nm}{n+m},\]
+so Proposition \ref{prp:seven1} is proved.\\
+\end{proof}
+
+As in the one sample case, we can convert Hotelling's two-sample \(T^2\) statistic to the \(F\) distribution using Proposition \ref{prp:six14}.
+
+\begin{corollary}
+\protect\hypertarget{cor:cseven1}{}{\label{cor:cseven1} }Using the notation of Proposition \ref{prp:seven1}, it follows that
+\[\delta^2 = \frac{(n+m-p-1)}{(n+m-2)p} \frac{nm}{(n+m)} (\bar{\boldsymbol y} - \bar{\boldsymbol x})^\top \boldsymbol S_u^{-1} (\bar{\boldsymbol y} - \bar{\boldsymbol x}) \sim F_{p,n+m-p-1}.\]
+\end{corollary}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}Simply apply Proposition \ref{prp:six14} to the statistic in Proposition \ref{prp:seven1} (replace \(n\) with \(n+m-2\)).
+\end{proof}
+
+\hypertarget{example-continued-1}{%
+\subsubsection*{Example continued}\label{example-continued-1}}
+\addcontentsline{toc}{subsubsection}{Example continued}
+
+There are two different maths undergraduate programmes at the University of Nottingham: a 3-year (G100) and a 4-year (G103) programme. For the exam marks example, is there a significant difference between students registered on the two different programmes? Let \(\boldsymbol x_1,\ldots, \boldsymbol x_{131}\) be the exam marks of the G100 students and let \(\boldsymbol y_1,\ldots, \boldsymbol y_{72}\) be the exam marks of the G103 students. The data is shown below, with the sample means marked as large `+' signs.
+
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-42-1.pdf}
+
+Let \(\boldsymbol \mu_1\) and \(\boldsymbol \mu_2\) be the population means for G100 and G103 respectively. Our hypotheses are
+\[H_0: \boldsymbol \mu_1 = \boldsymbol \mu_2 \qquad \text{vs.} \qquad H_1: \boldsymbol \mu_1 \neq \boldsymbol \mu_2.\]
+
+We will assume that
+\begin{align*}
+\boldsymbol x_n, \ldots, \boldsymbol x_{131}&\sim N_2(\boldsymbol \mu_1,\boldsymbol \Sigma_1)\\
+\boldsymbol y_1,\ldots,\boldsymbol y_m &\sim  N_2(\boldsymbol \mu_2,\boldsymbol \Sigma_2).
+\end{align*}
+
+The sample summary statistics are:
+\begin{eqnarray*}
+n = 131 &\quad& m = 72 \\
+\bar{\boldsymbol x} = \begin{pmatrix}61.6 \\63.2 \\\end{pmatrix}&\quad& \bar{\boldsymbol y}= \begin{pmatrix}63.1 \\61.9 \\\end{pmatrix}\\
+\boldsymbol S_1 = \begin{pmatrix}180.2&158.5 \\158.5&312.8 \\\end{pmatrix} &\qquad& \boldsymbol S_2 = \begin{pmatrix}179.1&157.5 \\157.5&310.8 \\\end{pmatrix}
+\end{eqnarray*}
+
+The assumption \(\boldsymbol \Sigma= \boldsymbol \Sigma_1 = \boldsymbol \Sigma_2\) does not look unreasonable given the sample covariance matrices. Using the \texttt{HotellingT2} command from the \texttt{ICSNP} package, we find
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ICSNP) }\CommentTok{# you'll need to install this}
+\KeywordTok{HotellingsT2}\NormalTok{(G100, G103)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Hotelling's two sample T2-test
+## 
+## data:  G100 and G103
+## T.2 = 1.0696, df1 = 2, df2 = 200, p-value = 0.3451
+## alternative hypothesis: true location difference is not equal to c(0,0)
+\end{verbatim}
+
+So the test statistic was computed to be \(\delta^2 = 1.06962\) and the p-value is \(p= 0.345\).
+
+The critical value for \(\alpha=0.05\) is
+\[F_{2,n+m-2-1,\alpha} = F_{2,200,0.05} = 3.041.\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{qf}\NormalTok{(}\FloatTok{0.95}\NormalTok{,}\DecValTok{2}\NormalTok{, }\DecValTok{200}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.041056
+\end{verbatim}
+
+Therefore \(\delta^2 < F_{p,n+m-p-1}\), so we do not reject the null hypothesis at the 5\% level.
 
 \bibliography{book.bib,packages.bib}
 

@@ -108,6 +108,8 @@ prp:six13
 cor:csix5
 prp:six14
 cor:csix6
+prp:seven1
+cor:cseven1
 stat-prelim
 notation
 example-datasets
@@ -179,12 +181,11 @@ the-full-set-of-canonical-correlations
 properties
 connection-with-linear-regression-when-q1
 invarianceequivariance-properties-of-cca
-example-1
 exercises-2
 computer-tasks-1
 mds
 classical-multidimensional-scaling
-example-2
+example-1
 principal-coordinates
 similarity-measures
 exercises-3
@@ -198,5 +199,7 @@ the-wishart-distribution
 properties-1
 cochrans-theorem
 hotellings-t2-distribution
-exercises-4
-computer-tasks-3
+inference-based-on-the-mvn
+onesampleSigma
+onesample
+boldsymbol-sigma-unknown-2-samples

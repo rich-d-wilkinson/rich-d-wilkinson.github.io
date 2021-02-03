@@ -223,13 +223,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="5-3-properties.html"><a href="5-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>5.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
 <li class="chapter" data-level="5.3.2" data-path="5-3-properties.html"><a href="5-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>5.3.2</b> Invariance/equivariance properties of CCA</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="5-4-example-1.html"><a href="5-4-example-1.html"><i class="fa fa-check"></i><b>5.4</b> Example?</a></li>
-<li class="chapter" data-level="5.5" data-path="5-5-exercises-2.html"><a href="5-5-exercises-2.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
-<li class="chapter" data-level="5.6" data-path="5-6-computer-tasks-1.html"><a href="5-6-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.6</b> Computer tasks</a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-exercises-2.html"><a href="5-4-exercises-2.html"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-computer-tasks-1.html"><a href="5-5-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.5</b> Computer tasks</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling</a><ul>
 <li class="chapter" data-level="6.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html"><i class="fa fa-check"></i><b>6.1</b> Classical Multidimensional Scaling</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html#example-2"><i class="fa fa-check"></i><b>6.1.1</b> Example</a></li>
+<li class="chapter" data-level="6.1.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html#example-1"><i class="fa fa-check"></i><b>6.1.1</b> Example</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="6-2-principal-coordinates.html"><a href="6-2-principal-coordinates.html"><i class="fa fa-check"></i><b>6.2</b> Principal Coordinates</a></li>
 <li class="chapter" data-level="6.3" data-path="6-3-similarity-measures.html"><a href="6-3-similarity-measures.html"><i class="fa fa-check"></i><b>6.3</b> Similarity measures</a></li>
@@ -248,8 +247,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.2" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html#cochrans-theorem"><i class="fa fa-check"></i><b>7.2.2</b> Cochran’s theorem</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="7-3-hotellings-t2-distribution.html"><a href="7-3-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>7.3</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
-<li class="chapter" data-level="7.4" data-path="7-4-exercises-4.html"><a href="7-4-exercises-4.html"><i class="fa fa-check"></i><b>7.4</b> Exercises</a></li>
-<li class="chapter" data-level="7.5" data-path="7-5-computer-tasks-3.html"><a href="7-5-computer-tasks-3.html"><i class="fa fa-check"></i><b>7.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="7.4" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html"><i class="fa fa-check"></i><b>7.4</b> Inference based on the MVN</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#onesampleSigma"><i class="fa fa-check"></i><b>7.4.1</b> <span class="math inline">\(\boldsymbol \Sigma\)</span> known</a></li>
+<li class="chapter" data-level="7.4.2" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#onesample"><i class="fa fa-check"></i><b>7.4.2</b> <span class="math inline">\(\boldsymbol \Sigma\)</span> unknown: 1 sample</a></li>
+<li class="chapter" data-level="7.4.3" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#boldsymbol-sigma-unknown-2-samples"><i class="fa fa-check"></i><b>7.4.3</b> <span class="math inline">\(\boldsymbol \Sigma\)</span> unknown: 2 samples</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -447,11 +449,11 @@ to stress that <span class="math inline">\(\boldsymbol a_1\)</span> and <span cl
 <div id="example-premier-league-football" class="section level3">
 <h3><span class="header-section-number">5.1.1</span> Example: Premier league football</h3>
 <p>Lets again return to the Premier League from the previous chapter.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb128-2" data-line-number="2">prem1920 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/2019_2020EPL.csv&#39;</span>) </a>
-<a class="sourceLine" id="cb128-3" data-line-number="3"><span class="co"># the data can be downloaded from https://www.rotowire.com/soccer/league-table.php</span></a>
-<a class="sourceLine" id="cb128-4" data-line-number="4">table &lt;-<span class="st"> </span>prem1920 <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Team, W, D, L, G, GA, GD) </a>
-<a class="sourceLine" id="cb128-5" data-line-number="5">knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(table,<span class="dv">5</span>), <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">escape=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb127-2" data-line-number="2">prem1920 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/2019_2020EPL.csv&#39;</span>) </a>
+<a class="sourceLine" id="cb127-3" data-line-number="3"><span class="co"># the data can be downloaded from https://www.rotowire.com/soccer/league-table.php</span></a>
+<a class="sourceLine" id="cb127-4" data-line-number="4">table &lt;-<span class="st"> </span>prem1920 <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Team, W, D, L, G, GA, GD) </a>
+<a class="sourceLine" id="cb127-5" data-line-number="5">knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(table,<span class="dv">5</span>), <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">escape=</span><span class="ot">FALSE</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -519,17 +521,17 @@ to stress that <span class="math inline">\(\boldsymbol a_1\)</span> and <span cl
 <li>what linear combination of <span class="math inline">\(W\)</span> and <span class="math inline">\(D\)</span>, and of <span class="math inline">\(G\)</span> and <span class="math inline">\(GA\)</span> are most strongly correlated?</li>
 </ul>
 <p>Firstly, we need to compute the three covariance matrices needed for CCA. These are easily computed in R:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">X &lt;-<span class="st"> </span>table[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>] <span class="co"># W and D</span></a>
-<a class="sourceLine" id="cb129-2" data-line-number="2">Y &lt;-<span class="st"> </span>table[<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>] <span class="co"># G and GA</span></a>
-<a class="sourceLine" id="cb129-3" data-line-number="3">S_xx &lt;-<span class="st"> </span><span class="kw">cov</span>(X)</a>
-<a class="sourceLine" id="cb129-4" data-line-number="4">S_yy &lt;-<span class="st"> </span><span class="kw">cov</span>(Y)</a>
-<a class="sourceLine" id="cb129-5" data-line-number="5">S_xy &lt;-<span class="st"> </span><span class="kw">cov</span>(X,Y)</a></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">X &lt;-<span class="st"> </span>table[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>] <span class="co"># W and D</span></a>
+<a class="sourceLine" id="cb128-2" data-line-number="2">Y &lt;-<span class="st"> </span>table[<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>] <span class="co"># G and GA</span></a>
+<a class="sourceLine" id="cb128-3" data-line-number="3">S_xx &lt;-<span class="st"> </span><span class="kw">cov</span>(X)</a>
+<a class="sourceLine" id="cb128-4" data-line-number="4">S_yy &lt;-<span class="st"> </span><span class="kw">cov</span>(Y)</a>
+<a class="sourceLine" id="cb128-5" data-line-number="5">S_xy &lt;-<span class="st"> </span><span class="kw">cov</span>(X,Y)</a></code></pre></div>
 <p>giving</p>
 <p><span class="math display">\[\boldsymbol S_{xx} =\begin{pmatrix}40.4&amp;-9.66 \\-9.66&amp;10.7 \\\end{pmatrix}, \quad \boldsymbol S_{yy} =\begin{pmatrix}354&amp;-155 \\-155&amp;141 \\\end{pmatrix}, \quad \boldsymbol S_{xy}=\boldsymbol S_{yx}^\top =\begin{pmatrix}108&amp;-60 \\-28.9&amp;-2.36 \\\end{pmatrix}\]</span></p>
 <p>We now want to calculate the matrix <span class="math inline">\(\boldsymbol Q\)</span> in <a href="5-1-cca1.html#eq:svdcca">(5.7)</a> and then find its singular valued decomposition. We first need to find <span class="math inline">\(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\)</span> and <span class="math inline">\(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\)</span>. Using R to do the computations we obtain the spectral decompositions</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">eigen_xx &lt;-<span class="st"> </span><span class="kw">eigen</span>(S_xx)</a>
-<a class="sourceLine" id="cb130-2" data-line-number="2">S_xx_invsqrt &lt;-<span class="st"> </span>eigen_xx<span class="op">$</span>vectors<span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(<span class="dv">1</span><span class="op">/</span><span class="kw">sqrt</span>(eigen_xx<span class="op">$</span>values)) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(eigen_xx<span class="op">$</span>vectors)</a>
-<a class="sourceLine" id="cb130-3" data-line-number="3"><span class="co"># check S_xx %*% S_xx_invsqrt %*% S_xx_invsqrt is the identity matrix</span></a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">eigen_xx &lt;-<span class="st"> </span><span class="kw">eigen</span>(S_xx)</a>
+<a class="sourceLine" id="cb129-2" data-line-number="2">S_xx_invsqrt &lt;-<span class="st"> </span>eigen_xx<span class="op">$</span>vectors<span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(<span class="dv">1</span><span class="op">/</span><span class="kw">sqrt</span>(eigen_xx<span class="op">$</span>values)) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(eigen_xx<span class="op">$</span>vectors)</a>
+<a class="sourceLine" id="cb129-3" data-line-number="3"><span class="co"># check S_xx %*% S_xx_invsqrt %*% S_xx_invsqrt is the identity matrix</span></a></code></pre></div>
 <p><span class="math display">\[\boldsymbol S_{xx} =\boldsymbol Q\boldsymbol \Lambda\boldsymbol Q^\top=\begin{pmatrix}-0.959&amp;-0.285 \\0.285&amp;-0.959 \\\end{pmatrix} \begin{pmatrix}43.2&amp;0 \\0&amp;7.82 \\\end{pmatrix} \begin{pmatrix}-0.959&amp;0.285 \\-0.285&amp;-0.959 \\\end{pmatrix}\]</span></p>
 <p>and so</p>
 <p><span class="math display">\[\begin{align*}
@@ -538,8 +540,8 @@ to stress that <span class="math inline">\(\boldsymbol a_1\)</span> and <span cl
 &amp;= \begin{pmatrix}0.169&amp;0.0561 \\0.0561&amp;0.341 \\\end{pmatrix}.
 \end{align*}\]</span></p>
 <p>Similarly, we find</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">eigen_yy &lt;-<span class="st"> </span><span class="kw">eigen</span>(S_yy)</a>
-<a class="sourceLine" id="cb131-2" data-line-number="2">S_yy_invsqrt &lt;-<span class="st"> </span>eigen_yy<span class="op">$</span>vectors<span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(<span class="dv">1</span><span class="op">/</span><span class="kw">sqrt</span>(eigen_yy<span class="op">$</span>values)) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(eigen_yy<span class="op">$</span>vectors)</a></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">eigen_yy &lt;-<span class="st"> </span><span class="kw">eigen</span>(S_yy)</a>
+<a class="sourceLine" id="cb130-2" data-line-number="2">S_yy_invsqrt &lt;-<span class="st"> </span>eigen_yy<span class="op">$</span>vectors<span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(<span class="dv">1</span><span class="op">/</span><span class="kw">sqrt</span>(eigen_yy<span class="op">$</span>values)) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(eigen_yy<span class="op">$</span>vectors)</a></code></pre></div>
 <p><span class="math display">\[\begin{align*}
 \boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}= \begin{pmatrix}0.0657&amp;0.0337 \\0.0337&amp;0.112 \\\end{pmatrix}.
 \end{align*}\]</span></p>
@@ -555,12 +557,12 @@ to stress that <span class="math inline">\(\boldsymbol a_1\)</span> and <span cl
 &amp;=\begin{pmatrix}-0.99&amp;-0.143 \\-0.143&amp;0.99 \\\end{pmatrix} \begin{pmatrix}0.955&amp;0 \\0&amp;0.705 \\\end{pmatrix}\begin{pmatrix}-0.715&amp;-0.699 \\0.699&amp;-0.715 \\\end{pmatrix}^\top
 \tag{5.8}
 \end{align}\]</span></p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">A =<span class="st"> </span>S_xx_invsqrt <span class="op">%*%</span><span class="st"> </span>S_xy <span class="op">%*%</span><span class="st"> </span>S_yy_invsqrt</a>
-<a class="sourceLine" id="cb132-2" data-line-number="2">A_svd =<span class="st"> </span><span class="kw">svd</span>(A)</a></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">A =<span class="st"> </span>S_xx_invsqrt <span class="op">%*%</span><span class="st"> </span>S_xy <span class="op">%*%</span><span class="st"> </span>S_yy_invsqrt</a>
+<a class="sourceLine" id="cb131-2" data-line-number="2">A_svd =<span class="st"> </span><span class="kw">svd</span>(A)</a></code></pre></div>
 <p>So the 1st CC coefficient is <span class="math inline">\(0.955\)</span>, which is close to its maximum value of <span class="math inline">\(1\)</span>. The 1st CC weight vectors are
 given by</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">a1 =<span class="st"> </span>S_xx_invsqrt<span class="op">%*%</span><span class="st"> </span>A_svd<span class="op">$</span>u[,<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb133-2" data-line-number="2">b1 =<span class="st"> </span>S_yy_invsqrt<span class="op">%*%</span><span class="st"> </span>A_svd<span class="op">$</span>v[,<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">a1 =<span class="st"> </span>S_xx_invsqrt<span class="op">%*%</span><span class="st"> </span>A_svd<span class="op">$</span>u[,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb132-2" data-line-number="2">b1 =<span class="st"> </span>S_yy_invsqrt<span class="op">%*%</span><span class="st"> </span>A_svd<span class="op">$</span>v[,<span class="dv">1</span>]</a></code></pre></div>
 <p><span class="math display">\[\begin{align*}
 \boldsymbol a_1&amp;=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol u_1\\
 &amp;=\begin{pmatrix}0.169&amp;0.0561 \\0.0561&amp;0.341 \\\end{pmatrix}\begin{pmatrix}-0.99 \\-0.143 \\\end{pmatrix}\\
@@ -572,8 +574,8 @@ given by</p>
 <li>We change <span class="math inline">\(\boldsymbol a_1\)</span> to <span class="math inline">\(-\boldsymbol a_1\)</span> and <span class="math inline">\(\boldsymbol b_1\)</span> to <span class="math inline">\(-\boldsymbol b_1\)</span>. [This entails changing <span class="math inline">\(\boldsymbol u_1\)</span> to <span class="math inline">\(-\boldsymbol u_1\)</span> and <span class="math inline">\(\boldsymbol v_1\)</span> to <span class="math inline">\(-\boldsymbol v_1\)</span>; note that, provided we change the sign of <strong>both</strong> <span class="math inline">\(\boldsymbol u_1\)</span> and <span class="math inline">\(\boldsymbol v_1\)</span>, we do not change the matrix <span class="math inline">\(\boldsymbol Q\)</span>.]</li>
 <li>We rescale <span class="math inline">\(\boldsymbol a_1\)</span> and <span class="math inline">\(\boldsymbol b_1\)</span> so that they are unit vectors.</li>
 </ul>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1">a1n =<span class="st"> </span><span class="op">-</span>a1<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">sum</span>(a1<span class="op">^</span><span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb134-2" data-line-number="2">b1n =<span class="st"> </span><span class="op">-</span>b1<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">sum</span>(b1<span class="op">^</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">a1n =<span class="st"> </span><span class="op">-</span>a1<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">sum</span>(a1<span class="op">^</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb133-2" data-line-number="2">b1n =<span class="st"> </span><span class="op">-</span>b1<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">sum</span>(b1<span class="op">^</span><span class="dv">2</span>))</a></code></pre></div>
 <p>This leads to the standardised 1st CC weight vectors
 <span class="math display">\[
 \boldsymbol a_1=\begin{pmatrix}0.859 \\0.512 \\\end{pmatrix} \qquad \text{and} \qquad
@@ -679,9 +681,9 @@ It is also seen that $\eta_1$ is measuring something similar to number of points
 
 -->
 <p>The full list of the first canonical correlation variables (using the original canonical vectors) is thus</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">Xcent &lt;-<span class="st"> </span><span class="kw">sweep</span>(X,<span class="dv">2</span>, <span class="kw">colMeans</span>(X)) <span class="co"># column centre the matrix</span></a>
-<a class="sourceLine" id="cb135-2" data-line-number="2">Ycent &lt;-<span class="st"> </span><span class="kw">sweep</span>(Y,<span class="dv">2</span>, <span class="kw">colMeans</span>(Y)) <span class="co"># column centre the matrix</span></a>
-<a class="sourceLine" id="cb135-3" data-line-number="3">(<span class="dt">eta =</span> <span class="kw">as.matrix</span>(Xcent)<span class="op">%*%</span>a1)</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1">Xcent &lt;-<span class="st"> </span><span class="kw">sweep</span>(X,<span class="dv">2</span>, <span class="kw">colMeans</span>(X)) <span class="co"># column centre the matrix</span></a>
+<a class="sourceLine" id="cb134-2" data-line-number="2">Ycent &lt;-<span class="st"> </span><span class="kw">sweep</span>(Y,<span class="dv">2</span>, <span class="kw">colMeans</span>(Y)) <span class="co"># column centre the matrix</span></a>
+<a class="sourceLine" id="cb134-3" data-line-number="3">(<span class="dt">eta =</span> <span class="kw">as.matrix</span>(Xcent)<span class="op">%*%</span>a1)</a></code></pre></div>
 <pre><code>##              [,1]
 ##  [1,] -2.43407235
 ##  [2,] -1.38385898
@@ -703,7 +705,7 @@ It is also seen that $\eta_1$ is measuring something similar to number of points
 ## [18,]  1.17461425
 ## [19,]  1.03680133
 ## [20,]  1.97903932</code></pre>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">(<span class="dt">psi =</span> <span class="kw">as.matrix</span>(Ycent)<span class="op">%*%</span>b1)</a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1">(<span class="dt">psi =</span> <span class="kw">as.matrix</span>(Ycent)<span class="op">%*%</span>b1)</a></code></pre></div>
 <pre><code>##             [,1]
 ##  [1,] -1.7921117
 ##  [2,] -2.0820965
@@ -727,10 +729,10 @@ It is also seen that $\eta_1$ is measuring something similar to number of points
 ## [20,]  1.8630363</code></pre>
 <p>A scatter plotof the two canonical correlation variables shows the strong correlation between them.</p>
 <p>ADD TEAM NAMES?</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">cca.out &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">eta=</span>eta, <span class="dt">psi=</span>psi, <span class="dt">Team=</span>table<span class="op">$</span>Team)</a>
-<a class="sourceLine" id="cb139-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb139-3" data-line-number="3"><span class="kw">ggplot</span>(cca.out, <span class="kw">aes</span>(<span class="dt">x=</span> eta, <span class="dt">y=</span> psi, <span class="dt">label=</span>Team))<span class="op">+</span><span class="st">   </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb139-4" data-line-number="4"><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Team),<span class="dt">hjust=</span><span class="dv">0</span>, <span class="dt">vjust=</span><span class="dv">0</span>, <span class="dt">size=</span><span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1">cca.out &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">eta=</span>eta, <span class="dt">psi=</span>psi, <span class="dt">Team=</span>table<span class="op">$</span>Team)</a>
+<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb138-3" data-line-number="3"><span class="kw">ggplot</span>(cca.out, <span class="kw">aes</span>(<span class="dt">x=</span> eta, <span class="dt">y=</span> psi, <span class="dt">label=</span>Team))<span class="op">+</span><span class="st">   </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb138-4" data-line-number="4"><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Team),<span class="dt">hjust=</span><span class="dv">0</span>, <span class="dt">vjust=</span><span class="dv">0</span>, <span class="dt">size=</span><span class="dv">4</span>)</a></code></pre></div>
 <p><img src="05-cca_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>WHAT HAPPENS IF WE INCLUDE L? THen S_XX is not invertible.</p>
 <p>PLOTS + ORTHOGONALIZATION?</p>
@@ -738,19 +740,19 @@ It is also seen that $\eta_1$ is measuring something similar to number of points
 <p>Do with R package</p>
 <p>MOVE TO AFTER DONE THE FULL SET.</p>
 <p>We can also do this with the <code>CCA</code> package in R. See if you can find the outputs computed above in the output of the <code>cc</code> command.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="kw">library</span>(CCA)</a>
-<a class="sourceLine" id="cb140-2" data-line-number="2">prem.cca &lt;-<span class="st"> </span><span class="kw">cc</span>(X,Y)</a>
-<a class="sourceLine" id="cb140-3" data-line-number="3">prem.cca<span class="op">$</span>cor <span class="co"># the canonical correlations</span></a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="kw">library</span>(CCA)</a>
+<a class="sourceLine" id="cb139-2" data-line-number="2">prem.cca &lt;-<span class="st"> </span><span class="kw">cc</span>(X,Y)</a>
+<a class="sourceLine" id="cb139-3" data-line-number="3">prem.cca<span class="op">$</span>cor <span class="co"># the canonical correlations</span></a></code></pre></div>
 <pre><code>## [1] 0.9550749 0.7054825</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1">prem.cca<span class="op">$</span>xcoef <span class="co"># the canonical correlation vectors for X</span></a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">prem.cca<span class="op">$</span>xcoef <span class="co"># the canonical correlation vectors for X</span></a></code></pre></div>
 <pre><code>##         [,1]      [,2]
 ## W -0.1750356 0.0313256
 ## D -0.1042828 0.3293057</code></pre>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">prem.cca<span class="op">$</span>ycoef  <span class="co"># the canonical correlation vectors for Y</span></a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1">prem.cca<span class="op">$</span>ycoef  <span class="co"># the canonical correlation vectors for Y</span></a></code></pre></div>
 <pre><code>##           [,1]        [,2]
 ## G  -0.02342507 -0.07003113
 ## GA  0.05412069 -0.10372100</code></pre>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1">prem.cca<span class="op">$</span>scores<span class="op">$</span>xscores <span class="co"># the canonical correlation variables </span></a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1">prem.cca<span class="op">$</span>scores<span class="op">$</span>xscores <span class="co"># the canonical correlation variables </span></a></code></pre></div>
 <pre><code>##              [,1]        [,2]
 ##  [1,] -2.43407235 -1.49036509
 ##  [2,] -1.38385898 -1.67831867
@@ -772,7 +774,7 @@ It is also seen that $\eta_1$ is measuring something similar to number of points
 ## [18,]  1.17461425 -0.89363084
 ## [19,]  1.03680133  0.06296078
 ## [20,]  1.97903932 -1.34823896</code></pre>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1">prem.cca<span class="op">$</span>scores<span class="op">$</span>yscores <span class="co"># the canonical correlation variables </span></a></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1">prem.cca<span class="op">$</span>scores<span class="op">$</span>yscores <span class="co"># the canonical correlation variables </span></a></code></pre></div>
 <pre><code>##             [,1]        [,2]
 ##  [1,] -1.7921117 -0.39245373
 ##  [2,] -2.0820965 -1.79042487
@@ -794,7 +796,7 @@ It is also seen that $\eta_1$ is measuring something similar to number of points
 ## [18,]  0.9938785 -0.56012517
 ## [19,]  1.0334581 -0.17627967
 ## [20,]  1.8630363 -0.61689944</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1"><span class="kw">matcor</span>(X,Y)</a></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1"><span class="kw">matcor</span>(X,Y)</a></code></pre></div>
 </div>
 </div>
             </section>
@@ -845,7 +847,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["MultivariateStatistics.pdf"],
+"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
 "toc": {
 "collapse": "section"
 },

@@ -223,13 +223,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="5-3-properties.html"><a href="5-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>5.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
 <li class="chapter" data-level="5.3.2" data-path="5-3-properties.html"><a href="5-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>5.3.2</b> Invariance/equivariance properties of CCA</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="5-4-example-1.html"><a href="5-4-example-1.html"><i class="fa fa-check"></i><b>5.4</b> Example?</a></li>
-<li class="chapter" data-level="5.5" data-path="5-5-exercises-2.html"><a href="5-5-exercises-2.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
-<li class="chapter" data-level="5.6" data-path="5-6-computer-tasks-1.html"><a href="5-6-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.6</b> Computer tasks</a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-exercises-2.html"><a href="5-4-exercises-2.html"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-computer-tasks-1.html"><a href="5-5-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.5</b> Computer tasks</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling</a><ul>
 <li class="chapter" data-level="6.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html"><i class="fa fa-check"></i><b>6.1</b> Classical Multidimensional Scaling</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html#example-2"><i class="fa fa-check"></i><b>6.1.1</b> Example</a></li>
+<li class="chapter" data-level="6.1.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html#example-1"><i class="fa fa-check"></i><b>6.1.1</b> Example</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="6-2-principal-coordinates.html"><a href="6-2-principal-coordinates.html"><i class="fa fa-check"></i><b>6.2</b> Principal Coordinates</a></li>
 <li class="chapter" data-level="6.3" data-path="6-3-similarity-measures.html"><a href="6-3-similarity-measures.html"><i class="fa fa-check"></i><b>6.3</b> Similarity measures</a></li>
@@ -248,8 +247,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.2" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html#cochrans-theorem"><i class="fa fa-check"></i><b>7.2.2</b> Cochran’s theorem</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="7-3-hotellings-t2-distribution.html"><a href="7-3-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>7.3</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
-<li class="chapter" data-level="7.4" data-path="7-4-exercises-4.html"><a href="7-4-exercises-4.html"><i class="fa fa-check"></i><b>7.4</b> Exercises</a></li>
-<li class="chapter" data-level="7.5" data-path="7-5-computer-tasks-3.html"><a href="7-5-computer-tasks-3.html"><i class="fa fa-check"></i><b>7.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="7.4" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html"><i class="fa fa-check"></i><b>7.4</b> Inference based on the MVN</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#onesampleSigma"><i class="fa fa-check"></i><b>7.4.1</b> <span class="math inline">\(\boldsymbol \Sigma\)</span> known</a></li>
+<li class="chapter" data-level="7.4.2" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#onesample"><i class="fa fa-check"></i><b>7.4.2</b> <span class="math inline">\(\boldsymbol \Sigma\)</span> unknown: 1 sample</a></li>
+<li class="chapter" data-level="7.4.3" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#boldsymbol-sigma-unknown-2-samples"><i class="fa fa-check"></i><b>7.4.3</b> <span class="math inline">\(\boldsymbol \Sigma\)</span> unknown: 2 samples</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -344,7 +346,7 @@ where <span class="math inline">\({\mathbf X}=[\boldsymbol x_1,\ldots , \boldsym
 \]</span>
 In other words, we sum over those <span class="math inline">\(j\)</span> such that <span class="math inline">\(\lambda_j\)</span> is positive.
 Then <span class="math inline">\(\boldsymbol B_{\text{pos}}\)</span> is non-negative definite and so we can use Theorem 5.1(iii) to determine a Euclidean configuration which has centred inner-product matrix <span class="math inline">\(\boldsymbol B_{\text{pos}}\)</span>. Then, provided the negative eigenvalues are small in absolute value relative to the positive eigenvalues, the inter-point distances of the new points in Euclidean space should provide a good approximation to the original inter-point distances <span class="math inline">\((d_{ij})\)</span>.</p>
-<div id="example-2" class="section level3">
+<div id="example-1" class="section level3">
 <h3><span class="header-section-number">6.1.1</span> Example</h3>
 <p>Consider the five point in <span class="math inline">\(\mathbb{R}^2\)</span>:
 <span class="math display">\[
@@ -353,45 +355,45 @@ Then <span class="math inline">\(\boldsymbol B_{\text{pos}}\)</span> is non-nega
 <span class="math display">\[
 \boldsymbol x_4 =(-1,0)^\top \quad \text{and} \quad \boldsymbol x_5=(0,-1)^\top.
 \]</span></p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb158-2" data-line-number="2">              <span class="dv">1</span>,<span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb158-3" data-line-number="3">              <span class="dv">0</span>,<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb158-4" data-line-number="4">              <span class="dv">-1</span>,<span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb158-5" data-line-number="5">              <span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>), <span class="dt">nc=</span><span class="dv">2</span>, <span class="dt">byrow=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb158-6" data-line-number="6">(D &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(X, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T)))</a></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb154-2" data-line-number="2">              <span class="dv">1</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb154-3" data-line-number="3">              <span class="dv">0</span>,<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb154-4" data-line-number="4">              <span class="dv">-1</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb154-5" data-line-number="5">              <span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>), <span class="dt">nc=</span><span class="dv">2</span>, <span class="dt">byrow=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb154-6" data-line-number="6">(D &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(X, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T)))</a></code></pre></div>
 <pre><code>##   1        2        3        4        5
 ## 1 0 1.000000 1.000000 1.000000 1.000000
 ## 2 1 0.000000 1.414214 2.000000 1.414214
 ## 3 1 1.414214 0.000000 1.414214 2.000000
 ## 4 1 2.000000 1.414214 0.000000 1.414214
 ## 5 1 1.414214 2.000000 1.414214 0.000000</code></pre>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1">(A &lt;-<span class="st"> </span><span class="op">-</span>D<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1">(A &lt;-<span class="st"> </span><span class="op">-</span>D<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>##      1    2    3    4    5
 ## 1  0.0 -0.5 -0.5 -0.5 -0.5
 ## 2 -0.5  0.0 -1.0 -2.0 -1.0
 ## 3 -0.5 -1.0  0.0 -1.0 -2.0
 ## 4 -0.5 -2.0 -1.0  0.0 -1.0
 ## 5 -0.5 -1.0 -2.0 -1.0  0.0</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1">H &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="dv">5</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dt">nc=</span><span class="dv">1</span>)<span class="op">%*%</span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dt">nr=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb162-2" data-line-number="2">B &lt;-<span class="st"> </span>H<span class="op">%*%</span><span class="st"> </span>A<span class="op">%*%</span>H</a>
-<a class="sourceLine" id="cb162-3" data-line-number="3"><span class="kw">print</span>(<span class="kw">round</span>(B,<span class="dv">0</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1">H &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="dv">5</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dt">nc=</span><span class="dv">1</span>)<span class="op">%*%</span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dt">nr=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb158-2" data-line-number="2">B &lt;-<span class="st"> </span>H<span class="op">%*%</span><span class="st"> </span>A<span class="op">%*%</span>H</a>
+<a class="sourceLine" id="cb158-3" data-line-number="3"><span class="kw">print</span>(<span class="kw">round</span>(B,<span class="dv">0</span>))</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    0    0    0    0    0
 ## [2,]    0    1    0   -1    0
 ## [3,]    0    0    1    0   -1
 ## [4,]    0   -1    0    1    0
 ## [5,]    0    0   -1    0    1</code></pre>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1">B.eig &lt;-<span class="kw">eigen</span>(B)</a>
-<a class="sourceLine" id="cb164-2" data-line-number="2">Y&lt;-<span class="kw">sqrt</span>(B.eig<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])<span class="op">*</span>B.eig<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb164-3" data-line-number="3"><span class="kw">dist</span>(Y, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T) <span class="co"># should agree with D.</span></a></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1">B.eig &lt;-<span class="kw">eigen</span>(B)</a>
+<a class="sourceLine" id="cb160-2" data-line-number="2">Y&lt;-<span class="kw">sqrt</span>(B.eig<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])<span class="op">*</span>B.eig<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb160-3" data-line-number="3"><span class="kw">dist</span>(Y, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T) <span class="co"># should agree with D.</span></a></code></pre></div>
 <pre><code>##          1        2        3        4        5
 ## 1 0.000000 1.000000 1.000000 1.000000 1.000000
 ## 2 1.000000 0.000000 1.414214 2.000000 1.414214
 ## 3 1.000000 1.414214 0.000000 1.414214 2.000000
 ## 4 1.000000 2.000000 1.414214 0.000000 1.414214
 ## 5 1.000000 1.414214 2.000000 1.414214 0.000000</code></pre>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1">Y.mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(D, <span class="dt">eig=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb166-2" data-line-number="2"><span class="kw">dist</span>(Y.mds<span class="op">$</span>points, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T)</a></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1">Y.mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(D, <span class="dt">eig=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb162-2" data-line-number="2"><span class="kw">dist</span>(Y.mds<span class="op">$</span>points, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T)</a></code></pre></div>
 <pre><code>##          1        2        3        4        5
 ## 1 0.000000 1.000000 1.000000 1.000000 1.000000
 ## 2 1.000000 0.000000 1.414214 2.000000 1.414214
@@ -502,7 +504,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["MultivariateStatistics.pdf"],
+"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
 "toc": {
 "collapse": "section"
 },

@@ -223,13 +223,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="5-3-properties.html"><a href="5-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>5.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
 <li class="chapter" data-level="5.3.2" data-path="5-3-properties.html"><a href="5-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>5.3.2</b> Invariance/equivariance properties of CCA</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="5-4-example-1.html"><a href="5-4-example-1.html"><i class="fa fa-check"></i><b>5.4</b> Example?</a></li>
-<li class="chapter" data-level="5.5" data-path="5-5-exercises-2.html"><a href="5-5-exercises-2.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
-<li class="chapter" data-level="5.6" data-path="5-6-computer-tasks-1.html"><a href="5-6-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.6</b> Computer tasks</a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-exercises-2.html"><a href="5-4-exercises-2.html"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-computer-tasks-1.html"><a href="5-5-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.5</b> Computer tasks</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling</a><ul>
 <li class="chapter" data-level="6.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html"><i class="fa fa-check"></i><b>6.1</b> Classical Multidimensional Scaling</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html#example-2"><i class="fa fa-check"></i><b>6.1.1</b> Example</a></li>
+<li class="chapter" data-level="6.1.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html#example-1"><i class="fa fa-check"></i><b>6.1.1</b> Example</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="6-2-principal-coordinates.html"><a href="6-2-principal-coordinates.html"><i class="fa fa-check"></i><b>6.2</b> Principal Coordinates</a></li>
 <li class="chapter" data-level="6.3" data-path="6-3-similarity-measures.html"><a href="6-3-similarity-measures.html"><i class="fa fa-check"></i><b>6.3</b> Similarity measures</a></li>
@@ -248,8 +247,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.2" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html#cochrans-theorem"><i class="fa fa-check"></i><b>7.2.2</b> Cochran’s theorem</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="7-3-hotellings-t2-distribution.html"><a href="7-3-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>7.3</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
-<li class="chapter" data-level="7.4" data-path="7-4-exercises-4.html"><a href="7-4-exercises-4.html"><i class="fa fa-check"></i><b>7.4</b> Exercises</a></li>
-<li class="chapter" data-level="7.5" data-path="7-5-computer-tasks-3.html"><a href="7-5-computer-tasks-3.html"><i class="fa fa-check"></i><b>7.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="7.4" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html"><i class="fa fa-check"></i><b>7.4</b> Inference based on the MVN</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#onesampleSigma"><i class="fa fa-check"></i><b>7.4.1</b> <span class="math inline">\(\boldsymbol \Sigma\)</span> known</a></li>
+<li class="chapter" data-level="7.4.2" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#onesample"><i class="fa fa-check"></i><b>7.4.2</b> <span class="math inline">\(\boldsymbol \Sigma\)</span> unknown: 1 sample</a></li>
+<li class="chapter" data-level="7.4.3" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#boldsymbol-sigma-unknown-2-samples"><i class="fa fa-check"></i><b>7.4.3</b> <span class="math inline">\(\boldsymbol \Sigma\)</span> unknown: 2 samples</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -300,17 +302,15 @@ For example, to select columns, in base you can do:</p></li>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">iris[iris[,<span class="dv">3</span>]<span class="op">&lt;</span><span class="dv">5</span>,] <span class="co"># select all rows that have a petal length less than 5.</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">filter</span>(iris, Petal.Length<span class="op">&lt;</span><span class="dv">5</span>) <span class="co"># do the same thing using dplyr</span></a></code></pre></div>
 <ul>
-<li><p>Can you now select all the rows of the <code>iris</code> data frame that are for species <em>setosa</em>? What is the mean petal length for these flowers?</p>
-<ul>
-<li>Can you select all the flowers that have a sepal length greater than 5? What is the proportion of each species of iris in this set?</li>
+<li><p>Can you now select all the rows of the <code>iris</code> data frame that are for species <em>setosa</em>? What is the mean petal length for these flowers?</p></li>
+<li><p>Can you select all the flowers that have a sepal length greater than 5? What is the proportion of each species of iris in this set?</p></li>
 </ul>
-<p>A nice aspect of dplyr is that you can chain commmands together. So for example, to select the versicolour flowers with petal width less than 1.5, we can do</p></li>
-</ul>
+<p>A nice aspect of dplyr is that you can chain commmands together. So for example, to select the versicolour flowers with petal width less than 1.5, we can do</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species<span class="op">==</span><span class="st">&#39;versicolor&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Petal.Width<span class="op">&lt;</span><span class="fl">1.5</span>)</a></code></pre></div>
 <ul>
-<li><p>Can you select all the flowers that have a sepal length greater than 6, and a petal length less than 5? What is the proportion of each species in this set?</p>
-<p>Note that <code>iris</code> is a data frame</p></li>
+<li>Can you select all the flowers that have a sepal length greater than 6, and a petal length less than 5? What is the proportion of each species in this set?</li>
 </ul>
+<p>Note that <code>iris</code> is a data frame</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">is.data.frame</span>(iris)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>which is a type of structure used in R. This is convenient for some tasks, but not for others. Let’s first extract the four numerical columns and store them as a matrix <span class="math inline">\(X\)</span>.</p>
@@ -447,6 +447,9 @@ The total variation is $\ttr(\bS) = 197.2 + 297.2 = 494.4$.
 <pre><code>##       P     S
 ## P 246.5 116.0
 ## S 116.0 371.5</code></pre>
+<ul>
+<li>Can you compute the covariance matrix using the definition in Equation <a href="1-2-exploratory-data-analysis-eda.html#eq:samplecov">(1.2)</a>?</li>
+</ul>
 <!--```
 Ex1 %>% select_if(is.numeric) %>% cov*4/5
 Ex1 %>% select_if(is.numeric) %>% cor
@@ -598,7 +601,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["MultivariateStatistics.pdf"],
+"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
 "toc": {
 "collapse": "section"
 },

@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="7-4-hotellings-t2-distribution.html"/>
+<link rel="prev" href="7-4-inference-based-on-the-mvn.html"/>
 <link rel="next" href="7-6-computer-tasks-3.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -164,7 +164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html"><i class="fa fa-check"></i><b>2.3</b> Inner product spaces</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#normed"><i class="fa fa-check"></i><b>2.3.1</b> Distances, and angles</a></li>
 <li class="chapter" data-level="2.3.2" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#orthogonal-matrices"><i class="fa fa-check"></i><b>2.3.2</b> Orthogonal matrices</a></li>
-<li class="chapter" data-level="2.3.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#projections"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#projection-matrix"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="2-4-centering-matrix.html"><a href="2-4-centering-matrix.html"><i class="fa fa-check"></i><b>2.4</b> The Centering Matrix</a></li>
 <li class="chapter" data-level="2.5" data-path="2-5-tasks-ch2.html"><a href="2-5-tasks-ch2.html"><i class="fa fa-check"></i><b>2.5</b> Computer tasks</a></li>
@@ -223,13 +223,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.1" data-path="5-3-properties.html"><a href="5-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>5.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
 <li class="chapter" data-level="5.3.2" data-path="5-3-properties.html"><a href="5-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>5.3.2</b> Invariance/equivariance properties of CCA</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="5-4-example-1.html"><a href="5-4-example-1.html"><i class="fa fa-check"></i><b>5.4</b> Example?</a></li>
-<li class="chapter" data-level="5.5" data-path="5-5-exercises-2.html"><a href="5-5-exercises-2.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
-<li class="chapter" data-level="5.6" data-path="5-6-computer-tasks-1.html"><a href="5-6-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.6</b> Computer tasks</a></li>
+<li class="chapter" data-level="5.4" data-path="5-4-exercises-2.html"><a href="5-4-exercises-2.html"><i class="fa fa-check"></i><b>5.4</b> Exercises</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-computer-tasks-1.html"><a href="5-5-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.5</b> Computer tasks</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling</a><ul>
 <li class="chapter" data-level="6.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html"><i class="fa fa-check"></i><b>6.1</b> Classical Multidimensional Scaling</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html#example-2"><i class="fa fa-check"></i><b>6.1.1</b> Example</a></li>
+<li class="chapter" data-level="6.1.1" data-path="6-1-classical-multidimensional-scaling.html"><a href="6-1-classical-multidimensional-scaling.html#example-1"><i class="fa fa-check"></i><b>6.1.1</b> Example</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="6-2-principal-coordinates.html"><a href="6-2-principal-coordinates.html"><i class="fa fa-check"></i><b>6.2</b> Principal Coordinates</a></li>
 <li class="chapter" data-level="6.3" data-path="6-3-similarity-measures.html"><a href="6-3-similarity-measures.html"><i class="fa fa-check"></i><b>6.3</b> Similarity measures</a></li>
@@ -241,10 +240,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html"><i class="fa fa-check"></i><b>7.1</b> Definition and Properties of the MVN</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#transformations"><i class="fa fa-check"></i><b>7.1.1</b> Transformations</a></li>
 <li class="chapter" data-level="7.1.2" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#moment-generating-functions"><i class="fa fa-check"></i><b>7.1.2</b> Moment Generating Functions</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#sampling-results-for-the-mvn"><i class="fa fa-check"></i><b>7.1.3</b> Sampling results for the MVN</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="7-2-sampling-results-for-the-mvn.html"><a href="7-2-sampling-results-for-the-mvn.html"><i class="fa fa-check"></i><b>7.2</b> Sampling results for the MVN</a></li>
-<li class="chapter" data-level="7.3" data-path="7-3-the-wishart-distribution.html"><a href="7-3-the-wishart-distribution.html"><i class="fa fa-check"></i><b>7.3</b> The Wishart distribution</a></li>
-<li class="chapter" data-level="7.4" data-path="7-4-hotellings-t2-distribution.html"><a href="7-4-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>7.4</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
+<li class="chapter" data-level="7.2" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html"><i class="fa fa-check"></i><b>7.2</b> The Wishart distribution</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html#properties-1"><i class="fa fa-check"></i><b>7.2.1</b> Properties</a></li>
+<li class="chapter" data-level="7.2.2" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html#cochrans-theorem"><i class="fa fa-check"></i><b>7.2.2</b> Cochran’s theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7-3-hotellings-t2-distribution.html"><a href="7-3-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>7.3</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
+<li class="chapter" data-level="7.4" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html"><i class="fa fa-check"></i><b>7.4</b> Inference based on the MVN</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#onesampleSigma"><i class="fa fa-check"></i><b>7.4.1</b> <span class="math inline">\(\boldsymbol \Sigma\)</span> known</a></li>
+<li class="chapter" data-level="7.4.2" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#onesample"><i class="fa fa-check"></i><b>7.4.2</b> <span class="math inline">\(\boldsymbol \Sigma\)</span> unknown: 1 sample</a></li>
+<li class="chapter" data-level="7.4.3" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#boldsymbol-sigma-unknown-2-samples"><i class="fa fa-check"></i><b>7.4.3</b> <span class="math inline">\(\boldsymbol \Sigma\)</span> unknown: 2 samples</a></li>
+</ul></li>
 <li class="chapter" data-level="7.5" data-path="7-5-exercises-4.html"><a href="7-5-exercises-4.html"><i class="fa fa-check"></i><b>7.5</b> Exercises</a></li>
 <li class="chapter" data-level="7.6" data-path="7-6-computer-tasks-3.html"><a href="7-6-computer-tasks-3.html"><i class="fa fa-check"></i><b>7.6</b> Computer tasks</a></li>
 </ul></li>
@@ -271,7 +278,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exercises-4" class="section level2">
 <h2><span class="header-section-number">7.5</span> Exercises</h2>
 <ol style="list-style-type: decimal">
-<li>Compute something with chisquared and ellipses.</li>
+<li><p>If <span class="math inline">\(M \sim W_p(\boldsymbol \Sigma,n)\)</span>, prove that <span class="math inline">\({\mathbb{E}}\boldsymbol M= n \boldsymbol \Sigma\)</span>.</p></li>
+<li><p>If <span class="math inline">\(\boldsymbol x\sim N_p(\boldsymbol \mu,\boldsymbol \Sigma)\)</span> and <span class="math inline">\(\boldsymbol a\)</span> is any fixed vector of dimension <span class="math inline">\(p\)</span>, show that
+<span class="math display">\[ z = \frac{ \boldsymbol a^\top (\boldsymbol x- \boldsymbol \mu) }{ \sqrt{\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a} } \sim N(0,1).\]</span></p></li>
+<li><p>Prove that
+<span class="math display">\[ n ( \bar{\boldsymbol x} - \boldsymbol \mu)^{\rm T} \boldsymbol \Sigma^{-1} ( \bar{\boldsymbol x} - \boldsymbol \mu) \sim \chi_p^2 . \]</span></p></li>
+<li><p>If <span class="math inline">\(\boldsymbol x_1, \ldots, \boldsymbol x_n\)</span> are i.i.d. <span class="math inline">\(N_p(\boldsymbol \mu, \boldsymbol \Sigma)\)</span> with sample mean <span class="math inline">\(\bar{\boldsymbol x}\)</span> and sample covariance matrix <span class="math inline">\(\boldsymbol S\)</span>, show that <span class="math inline">\({\mathbb{C}\operatorname{ov}}(\bar{\boldsymbol x}, \boldsymbol x_i - \bar{\boldsymbol x}) = \boldsymbol 0\)</span>. Hence deduce that <span class="math inline">\(\bar{\boldsymbol x}\)</span> and <span class="math inline">\(\boldsymbol S\)</span> are independent.</p>
+<p><strong>Hint:</strong> If the random vector <span class="math inline">\(\boldsymbol x\)</span> is independent of the random vector <span class="math inline">\(\boldsymbol y\)</span>, then <span class="math inline">\(\boldsymbol x\)</span> is also independent of any function <span class="math inline">\(f(\boldsymbol y)\)</span>.</p></li>
+<li>A survey of <span class="math inline">\(n=25\)</span> families records the head length of the first (<span class="math inline">\(x_1\)</span>) and second (<span class="math inline">\(x_2\)</span>) sons. The sample mean is <span class="math inline">\(\bar{\boldsymbol x} = (185.72, 183.84)^\top\)</span>. Assume that the observations are sampled from <span class="math inline">\(N_2(\boldsymbol \mu,\boldsymbol \Sigma)\)</span> where <span class="math inline">\(\boldsymbol \Sigma= \text{diag}(100,100)\)</span>.
+<ul>
+<li>Conduct a hypothesis test of <span class="math inline">\(\boldsymbol \mu= (182,182)^\top\)</span>.</li>
+<li>Show that the confidence region for <span class="math inline">\(\boldsymbol \mu\)</span> is circular. Find its centre and radius.</li>
+<li>Repeat the hypothesis test and sketch the confidence region if we assume that
+<span class="math display">\[\boldsymbol \Sigma= \begin{pmatrix} 100 &amp; 50 \\ 50 &amp; 100 \end{pmatrix}.\]</span></li>
+</ul></li>
+<li><p>Let <span class="math inline">\(\boldsymbol x_1, \ldots, \boldsymbol x_{20}\)</span> be a random sample of vectors from a <span class="math inline">\(N_3(\boldsymbol \mu,\boldsymbol \Sigma)\)</span> population where <span class="math inline">\(\boldsymbol \mu\)</span> and <span class="math inline">\(\boldsymbol \Sigma\)</span> are unknown. The sample mean and sample covariance matrix are given by
+<span class="math display">\[\bar{\boldsymbol x} = \begin{pmatrix} 0.358 \\ -1.056 \\ -1.795 \end{pmatrix} \qquad
+\boldsymbol S= \begin{pmatrix} 0.522 &amp; 0.556 &amp; -2.285 \\ 0.556 &amp; 3.258 &amp; -0.765 \\ -2.285 &amp; -0.765 &amp; 14.093 \end{pmatrix}.\]</span></p>
+<ul>
+<li>Use Hotelling’s <span class="math inline">\(T^2\)</span> distribution to perform a significance test of the hypothesis <span class="math inline">\(H_0: \boldsymbol \mu= (0,-1,-1)^T\)</span>. Note that <span class="math inline">\(\boldsymbol S= \boldsymbol Q\boldsymbol \Lambda\boldsymbol Q^T\)</span> where <span class="math inline">\(\boldsymbol \Lambda= \text{diag}(14.531, 3.253,0.090)\)</span> and
+<span class="math display">\[\boldsymbol Q= \begin{pmatrix} -0.163 &amp; -0.121 &amp; -0.979 \\ -0.075 &amp; -0.988 &amp; 0.135 \\ 0.984 &amp; -0.095 &amp; -0.152 \end{pmatrix}.\]</span></li>
+<li>Let <span class="math inline">\(\boldsymbol \mu= (\mu_1,\mu_2,\mu_3)^\top\)</span>. Perform separate (univariate) <span class="math inline">\(t\)</span>-tests of the following hypotheses: <span class="math inline">\(\mu_1 = 0\)</span>; <span class="math inline">\(\mu_2 = -1\)</span>; <span class="math inline">\(\mu_3 = -1\)</span>. Compare the results of the individual tests with the combined test based on Hotelling’s <span class="math inline">\(T^2\)</span> distribution in (a). Comment briefly.</li>
+</ul></li>
+<li><p>Two measurements were collected on each of 36 flea-beetles; 18 of the beetles were from a species called Chaetocnema concinna and the other 18 were from another species called Chaetocnema heikertingeri. The first variable consisted of the sum of widths (in micrometres) of the first joints of the first two tarsi (``feet’’); and the second variable consisted of the corresponding sum for the second joints. It is of interest to know
+whether or not the population means of the two species are different.</p>
+<p>The sample means are <span class="math inline">\(\bar{\boldsymbol x}_1 = (181.50,129.17)^\top\)</span> and <span class="math inline">\(\bar{\boldsymbol x}_2 = (205.06,120.44)^\top\)</span>; and the sample covariance matrices are
+<span class="math display">\[\boldsymbol S_1 = \begin{pmatrix} 120.58 &amp; 56.25 \\ 56.25 &amp; 44.63 \end{pmatrix} \qquad
+\boldsymbol S_2 = \begin{pmatrix} 203.94 &amp; 73.42 \\ 73.42 &amp; 47.14 \end{pmatrix}.\]</span>
+Conduct a suitable hypothesis test. State your conclusion in words. What assumptions have you made in constructing the test? Do any of these assumptions seem suspect with these data?</p></li>
 </ol>
 </div>
             </section>
@@ -279,7 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="7-4-hotellings-t2-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="7-4-inference-based-on-the-mvn.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="7-6-computer-tasks-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
