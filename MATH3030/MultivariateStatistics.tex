@@ -1189,17 +1189,17 @@ In this section, we recap some basic definitions and notation. Hopefully this ma
 
 The matrix \({\mathbf A}\) will be referred to in the following equivalent ways:
 \begin{eqnarray*}
-{\mathbf A}=\stackrel{n\times p}{\mathbf A} &=& \left[\begin{array}{cccc}
+{\mathbf A}=\stackrel{n\times p}{\mathbf A} &=& \left(\begin{array}{cccc}
 a_{11}&a_{12}&\dots&a_{1p}\\
 a_{21}&a_{22}&\dots&a_{2p}\\
 \vdots&\vdots&&\vdots\\
 a_{n1}&a_{n2}&\dots&a_{np}
-\end{array} \right] \\
-&=&[a_{ij}: i=1, \ldots , m; j=1, \ldots , n]\\
+\end{array} \right) \\
+&=&[a_{ij}: i=1, \ldots , n; j=1, \ldots , p]\\
 &=&(a_{ij})\\
-&=& \left[ \begin{array}{c}\boldsymbol a_1^\top\\
+&=& \left( \begin{array}{c}\boldsymbol a_1^\top\\
 \vdots\\
-\boldsymbol a_n^\top\end{array}\right]
+\boldsymbol a_n^\top\end{array}\right)
 \end{eqnarray*}
 where the \(a_{ij}\) are the individual entries, and \(\boldsymbol a_i^\top=(a_{i1}, a_{i2}, \ldots, a_{ip})\) is the \(i^{th}\) row.
 
@@ -1452,7 +1452,7 @@ The number of linearly independent columns of \(\boldsymbol A\) is called the \t
 The \textbf{row space} of \(\boldsymbol A\) is defined to be the column space of \(\boldsymbol A^\top\), and the \textbf{row rank} is the number of linearly independent rows of \(\boldsymbol A\).
 
 \begin{theorem}
-\protect\hypertarget{thm:rowrank}{}{\label{thm:rowrank} }The \textbf{row rank} of of a matrix equals the \textbf{column rank}.
+\protect\hypertarget{thm:rowrank}{}{\label{thm:rowrank} }The \textbf{row rank} of a matrix equals the \textbf{column rank}.
 \end{theorem}
 
 Thus we can simply refer to the \textbf{rank} of the matrix.
@@ -1521,7 +1521,7 @@ So we have
 \[\dim \mathcal{C}(D)+\dim \mathcal{N}(D)=1+2=3\]
 as required by the rank-nullity theorem.
 
-If we consider \(D^\top\), we already know \(\dim \mathcal{C}(D)=1\) (as row-rank=column rank), and the rank-nullity theorem tells us that the dimension of the null space of \(D^\top\) must be \(2-1=1\). This is easy to confirm as \(D^\top x=0\) implies
+If we consider \(D^\top\), we already know \(\dim \mathcal{C}(D^\top)=1\) (as row-rank=column rank), and the rank-nullity theorem tells us that the dimension of the null space of \(D^\top\) must be \(2-1=1\). This is easy to confirm as \(D^\top x=0\) implies
 \[x_1+2x_2=0\]
 which is a line in \(\mathbb{R}^2\)
 \[\mathcal{N}(D^\top) = \operatorname{span}\left\{ \left(\begin{array}{c}-2\\1\end{array}\right)\right\}\]
@@ -1642,7 +1642,7 @@ If \({\mathbf Q}=[\boldsymbol q_1,\ldots, \boldsymbol q_n]\) is an orthogonal ma
 \end{lemma}
 
 \begin{proof}
-\iffalse{} {Proof. } \fi{}Suppose \(n=p\), and think of \(\boldsymbol Q\) as a linear map""
+\iffalse{} {Proof. } \fi{}Suppose \(n=p\), and think of \(\boldsymbol Q\) as a linear map
 \begin{align*}
 \boldsymbol Q: &\mathbb{R}^n \rightarrow \mathbb{R}^n\\
 &\boldsymbol v\mapsto \boldsymbol Q\boldsymbol v
@@ -2065,7 +2065,7 @@ Note that numerical errors will start to appear quite quickly. For example, the 
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
+\setcounter{enumi}{1}
 \tightlist
 \item
   Consider the \texttt{iris} dataset. Let \(\boldsymbol X\) be the 4 numerical variables
@@ -2155,25 +2155,6 @@ Thus you'll see that it usually isn't worth computing the centering matrix when 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{2}
-\tightlist
-\item
-  Let \(\boldsymbol \Sigma\) be an arbitrary covariance matrix.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Show \(\boldsymbol \Sigma\) is symmetric and
-    non-negative definite.
-  \item
-    Give examples of both singular and non-singular covariance matrices.\\
-  \item
-    What condition must the eigenvalues of a non-singular covariance matrix satisfy?
-  \end{itemize}
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{3}
 \item
   Let's consider the inner product space \(\mathbb{R}^3\) with the Euclidean inner product
   \[\langle \boldsymbol x, \boldsymbol y\rangle = \boldsymbol x^\top \boldsymbol y\]
@@ -2192,7 +2173,7 @@ Thus you'll see that it usually isn't worth computing the centering matrix when 
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{4}
+\setcounter{enumi}{3}
 \tightlist
 \item
   Prove the following statements:
@@ -2212,7 +2193,7 @@ Thus you'll see that it usually isn't worth computing the centering matrix when 
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{5}
+\setcounter{enumi}{4}
 \item
   Consider the matrix \[\boldsymbol P=\left( \begin{array}{cc}1&0\\
   0&0\end{array}\right).\]
@@ -2742,7 +2723,7 @@ with the maximum obtained at \(\boldsymbol a=\boldsymbol u_1\) and \(\boldsymbol
 \end{proposition}
 
 \begin{proof}
-\iffalse{} {Proof. } \fi{}See chapter \ref{cca}
+\iffalse{} {Proof. } \fi{}See Section \ref{cca1}
 \end{proof}
 
 We'll see much more of this kind of thing in Chapters \ref{pca} and \ref{cca}.
@@ -3034,6 +3015,25 @@ Since A is positive definite, we can calculate the symmetric, positive definite 
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
+  Let \(\boldsymbol \Sigma\) be an arbitrary covariance matrix.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Show \(\boldsymbol \Sigma\) is symmetric and
+    non-negative definite.
+  \item
+    Give examples of both singular and non-singular covariance matrices.\\
+  \item
+    What condition must the eigenvalues of a non-singular covariance matrix satisfy?
+  \end{itemize}
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
   Compute, by hand (but check your answer in R), the singular value decomposition (full and compact) of the following matrices.
 
   \begin{itemize}
@@ -3074,7 +3074,7 @@ Since A is positive definite, we can calculate the symmetric, positive definite 
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
+\setcounter{enumi}{3}
 \item
   The SVD can be used to solve linear systems of the form
   \[\boldsymbol A\boldsymbol x= \boldsymbol y\]
@@ -3178,7 +3178,7 @@ Beware that high-dimensional data can behave qualitatively differently to low-di
 So we can see that as the dimension increases, the ratio of the maximum and minimum distance between any two random points in our sample tends to 1. In other words, all points are the same distance apart!
 
 \hypertarget{pca}{%
-\chapter{Principal component analysis (PCA)}\label{pca}}
+\chapter{Principal Component Analysis (PCA)}\label{pca}}
 
 With multivariate data, it is common to want to reduce the dimension of the data \emph{in a sensible way}. For example
 
@@ -4636,7 +4636,7 @@ Some questions:
 \end{enumerate}
 
 \hypertarget{cca}{%
-\chapter{Canonical Correlation Analysis}\label{cca}}
+\chapter{Canonical Correlation Analysis (CCA)}\label{cca}}
 
 Suppose we observe a random sample of \(n\) bivariate observations
 \[
@@ -4653,11 +4653,11 @@ where \(\bar{x}=n^{-1}\sum_{i=1}^n x_i\) and \(\bar{y}=n^{-1}\sum_{i=1}^n y_i\) 
 Recall that the sample correlation is a \textbf{scale-free measure} of the strength of \textbf{linear dependence} between the \(x_i\)'s and the \(y_i\)'s.
 
 In this chapter we investigate the multivariate analogue of this question. Instead of our bivariate observations being a pair of scalars, suppose instead that we are given two different random vectors \(\boldsymbol x\) and \(\boldsymbol y\). In otherwords, for each subject/case \(i\) we have observations
-\(\boldsymbol z_i=(\boldsymbol x_i^\top,\boldsymbol y_i^\top)^\top, \qquad i=1,\ldots, n.\)
+\(\{\boldsymbol x_i,\boldsymbol y_i\}_{i=1}^n.\)
 
 Multivariate data structures can be understood better if we look at low-dimensional projections of the data. The question is, given a sample \(\{\boldsymbol x_i, \; \boldsymbol y_i\}_{i=1, \ldots, n}\), what is a sensible way to assess and describe the strength of the linear dependence between the two vectors?
 
-Canonical correlation analysis (CCA) gives an answer to this question in terms of the best low-dimensional linear projections of the \(\boldsymbol x\) and \(\boldsymbol y\) random variables. In a comparable way to PCA, `best' is defined in terms of maximizing correlations etc.
+Canonical correlation analysis (CCA) gives an answer to this question in terms of the best low-dimensional linear projections of the \(\boldsymbol x\) and \(\boldsymbol y\) random variables. In a comparable way to PCA, `best' in CCA is defined in terms of maximizing correlations.
 A key role is played by the singular valued decomposition (SVD) introduced in Chapter \ref{linalg-decomp}.
 
 \hypertarget{cca1}{%
@@ -4676,12 +4676,13 @@ Assume we are given a random sample of vectors \(\boldsymbol x_i, \boldsymbol y_
 \]
 where
 the \(\boldsymbol x_i\) are \(p \times 1\), the \(\boldsymbol y_i\) are \(q \times 1\) and, consequently, the \(\boldsymbol z_i\) are \((p+q)\times 1\). We are interested in determining the strength of linear association between the \(\boldsymbol x_i\) vectors and the \(\boldsymbol y_i\) vectors.
+We formulate this task as an optimisation problem (cf.~PCA).
 
-We formulate this task as an optimisation problem (cf.~PCA). First, we introduce some notation.
+First, we introduce some notation.
 
 \begin{itemize}
 \item
-  Let \(\bar{\boldsymbol x}\), \(\bar{\boldsymbol y}\), and \(\bar{\boldsymbol z}\) denote the sample mean vectors of the \(\boldsymbol z_i\), \(\boldsymbol x_i\) and \(\boldsymbol y_i\) respectively.
+  Let \(\bar{\boldsymbol x}\), \(\bar{\boldsymbol y}\), and \(\bar{\boldsymbol z}\) denote the sample mean vectors of the \(\boldsymbol x_i\), \(\boldsymbol y_i\) and \(\boldsymbol z_i\) respectively.
 \item
   Let \(\boldsymbol S_{\boldsymbol z\boldsymbol z}\) denote the sample covariance matrix of the \(\boldsymbol z_i\), \(i=1,\ldots, n\). Then \(\boldsymbol S_{\boldsymbol z\boldsymbol z}\) can be written in block matrix form
   \[
@@ -4708,33 +4709,32 @@ One version of the optimisation problem we want to solve is: find non-zero vecto
 \]
 In other words:
 \begin{align}
-&\mbox{Maximise} \qquad  r(\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y),
+&\mbox{Maximise} \qquad\qquad \quad  r(\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y),
 \label{eq:opt26}\\
   &\mbox{for non-zero vectors}\quad  \boldsymbol a\;\; (p \times 1)\mbox{ and  } \boldsymbol b\;\; (q \times 1) \nonumber
 \end{align}
 
 where \(r(\cdot,\cdot)\) is defined in \eqref{eq:scr}.
-Intuitively, this makes sense, because we want to find the linear combination of the \(\boldsymbol x\)-variables and the linear combination of the \(\boldsymbol y\)-variables which are most highly correlated.
 
+Intuitively, this objective makes sense, because we want to find the linear combination of the \(\boldsymbol x\)-variables and the linear combination of the \(\boldsymbol y\)-variables which are most highly correlated.
 However, note that for any \(\gamma>0\) and \(\delta>0\),
 \begin{align}
   r(\gamma\boldsymbol a^\top \boldsymbol x, \delta \boldsymbol b^\top \boldsymbol y)&= \frac{\gamma \delta}{\sqrt{\gamma^2 \delta^2}}r(\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y)\\
-  &=r(\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y),
+  &=r(\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y).
   \label{eq:invar}
   \end{align}
-i.e. \(r(\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y)\) is invariant to (i.e.~unchanged by) multiplication of \(\boldsymbol a\) and \(\boldsymbol b\) by positive scalars. Consequently there will be an infinite number of solutions to this optimisation problem, because if \(\boldsymbol a\) and \(\boldsymbol b\) are solutions, then so are \(\gamma \boldsymbol a\) and \(\delta \boldsymbol b\), for any \(\gamma>0\) and \(\delta>0\).
+\(r(\boldsymbol a^\top \boldsymbol x,\boldsymbol b^\top \boldsymbol y)\) is invariant to (i.e.~unchanged by) multiplication of \(\boldsymbol a\) and \(\boldsymbol b\) by positive scalars. Consequently there will be an infinite number of solutions to this optimisation problem, because if \(\boldsymbol a\) and \(\boldsymbol b\) are solutions, then so are \(\gamma \boldsymbol a\) and \(\delta \boldsymbol b\), for any \(\gamma>0\) and \(\delta>0\).
 
-A more useful way to formulate this optimisation problem is the following:
+A more useful way to formulate this optimisation problem is
 
 \begin{align}
-&\mbox{Maximize }\quad \boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b
+&\mbox{Maximize }\qquad \boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol b
 \label{eq:opt27a}\\
   &\mbox{subject to } \qquad  \boldsymbol a^\top \boldsymbol S_{\boldsymbol x\boldsymbol x}\boldsymbol a=\boldsymbol b^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=1.\nonumber
 \end{align}
 
-Thankfully, there is a link between the solutions of the two optimization problems \eqref{eq:opt26} and \eqref{eq:opt27a}. Firstly, the invariance of \(r(\boldsymbol a^\top \boldsymbol x, \boldsymbol b^\top \boldsymbol y)\) when we
-change \(\boldsymbol a\) to \(\gamma \boldsymbol a\) and change \(\boldsymbol b\) to \(\delta \boldsymbol b\), where \(\gamma>0\) and \(\delta>0\) are scalars, means that if
-\(\check{\boldsymbol a}\) and \(\check{\boldsymbol b}\) are a solution to problem \eqref{eq:opt27a}, then for any \(\gamma>0\) and \(\delta>0\), \(\boldsymbol a=\gamma \check{\boldsymbol a}\) and \(\boldsymbol b=\delta \check{\boldsymbol b}\) are a solution to \eqref{eq:opt26}.
+Thankfully, there is a link between the solutions of the two optimization problems \eqref{eq:opt26} and \eqref{eq:opt27a}. Firstly, the invariance of \(r(\boldsymbol a^\top \boldsymbol x, \boldsymbol b^\top \boldsymbol y)\) means that if
+\(\check{\boldsymbol a}\) and \(\check{\boldsymbol b}\) are a solution to problem \eqref{eq:opt27a}, then for any \(\gamma,\;\delta>0\), we have that \(\boldsymbol a=\gamma \check{\boldsymbol a}\) and \(\boldsymbol b=\delta \check{\boldsymbol b}\) are a solution to \eqref{eq:opt26}.
 
 Conversely, we can convert any solution to optimization problem \eqref{eq:opt26} to be a solution to the problem \eqref{eq:opt27a}:
 
@@ -4786,15 +4786,15 @@ Differentiating with respect to \(\boldsymbol a\) and \(\boldsymbol b\) and sett
 where for the second equation we've noted that \(\boldsymbol a^\top \boldsymbol Q\boldsymbol b= \boldsymbol b^\top \boldsymbol Q^\top \boldsymbol a\).
 Left multiplying the first equation by \(\boldsymbol a^\top\) and the second by \(\boldsymbol b^\top\), and recalling that \(\boldsymbol a^\top \boldsymbol a=\boldsymbol b^\top\boldsymbol b=1\), shows that the two Lagrange multipliers are the same \(\lambda_1 = \lambda_2 =: \lambda\) say.
 
-Substituting \(\boldsymbol a=\boldsymbol Q\boldsymbol b/\lambda\) into \eqref{eq:ccaevp1} gives
+Substituting \(\boldsymbol a=\boldsymbol Q\boldsymbol b/\lambda\) into \eqref{eq:ccaevp2} gives
 \[\boldsymbol Q^\top\boldsymbol Q\boldsymbol b= \lambda^2\boldsymbol b,\]
 and so we can see that \(\boldsymbol b\) is an eigenvalue of \(\boldsymbol Q^\top \boldsymbol Q\), and thus we must have \(\boldsymbol b= \boldsymbol v_i\) for some \(i\), i.e., \(\boldsymbol b\) is one of the right singular vectors of \(\boldsymbol Q\). Similarly, substituting \(\boldsymbol b= \boldsymbol Q^\top \boldsymbol a/\lambda\) into \eqref{eq:ccaevp1} gives
 \[\boldsymbol Q\boldsymbol Q^\top \boldsymbol a= \lambda^2\boldsymbol a.\]
 So \(\boldsymbol a=\boldsymbol u_j\) for some \(j\), i.e., \(\boldsymbol a\) is one of the left singular vectors of \(\boldsymbol Q\).
 
 Finally, consider the original objective with \(\boldsymbol a=\boldsymbol u_j\) and \(\boldsymbol b=\boldsymbol v_i\):
-\[\boldsymbol u_j^\top\boldsymbol Q\boldsymbol v_i = \sigma_i\boldsymbol u_j^\top \boldsymbol u_i = \begin{cases} \sigma_i \mbox{ if } i = j\\
-0 \mbox{ otherwise.}
+\[\boldsymbol u_j^\top\boldsymbol Q\boldsymbol v_i = \sigma_i\boldsymbol u_j^\top \boldsymbol u_i = \begin{cases} \sigma_i &\mbox{ if } i = j\\
+0 &\mbox{ otherwise.}
 \end{cases}
 \]
 Hence we minimize the objective by taking \(\boldsymbol a=\boldsymbol u_1\) and \(\boldsymbol b=\boldsymbol v_1\), and then we find
@@ -4845,29 +4845,21 @@ subject to
 \vert \vert \tilde{\boldsymbol a} \vert \vert =1 \qquad \text{and} \qquad \vert \vert \tilde{\boldsymbol b}\vert \vert=1.
 \]
 
-Then by proposition \ref{prp:svdmax2} we can see that
+Then by Proposition \ref{prp:svdmax2} we can see that
 \[\tilde{\boldsymbol a} = \boldsymbol u_1 \quad \mbox{and}\quad\tilde{\boldsymbol b} = \boldsymbol v_1\]
 and the result follows.\\
 \end{proof}
 
 We will label the solution found as
 \[\boldsymbol a_1 := \boldsymbol S_{xx}^{-\frac{1}{2}}\boldsymbol u_1\quad \mbox{ and }\quad\boldsymbol b_1 := \boldsymbol S_{yy}^{-\frac{1}{2}}\boldsymbol v_1\]
-to stress that \(\boldsymbol a_1\) and \(\boldsymbol b_1\) are the \textbf{first} pair of \textbf{canonical correlation (CC) vectors}. The variables \(\eta_1=\boldsymbol a_1^\top \boldsymbol x\) and \(\psi_1=\boldsymbol b_1^\top \boldsymbol y\) are called the first pair of \textbf{canonical correlation variables}, and \(\sigma_1\) is the \textbf{first canonical correlation}.
+to stress that \(\boldsymbol a_1\) and \(\boldsymbol b_1\) are the \textbf{first} pair of \textbf{canonical correlation (CC) vectors}. The variables \(\eta_1=\boldsymbol a_1^\top (\boldsymbol x-\bar{\boldsymbol x})\) and \(\psi_1=\boldsymbol b_1^\top (\boldsymbol y-\bar{\boldsymbol y})\) are called the first pair of \textbf{canonical correlation variables}, and \(\sigma_1={\mathbb{C}\operatorname{ov}}(\eta_1, \psi_1)\) is the \textbf{first canonical correlation}.
 
-\hypertarget{example-premier-league-football}{%
-\subsection{Example: Premier league football}\label{example-premier-league-football}}
+It is convention
+
+\hypertarget{premcca}{%
+\subsection{Example: Premier league football}\label{premcca}}
 
 Lets again return to the Premier League from the previous chapter.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(dplyr)}
-\NormalTok{prem1920 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'data/2019_2020EPL.csv'}\NormalTok{) }
-\CommentTok{# the data can be downloaded from https://www.rotowire.com/soccer/league-table.php}
-\NormalTok{table <-}\StringTok{ }\NormalTok{prem1920 }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Team, W, D, L, G, GA, GD) }
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(table,}\DecValTok{5}\NormalTok{), }\DataTypeTok{booktabs =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{escape=}\OtherTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{tabular}{lrrrrrr}
 \toprule
@@ -4881,7 +4873,7 @@ Leicester City & 18 & 8 & 12 & 67 & 41 & 26\\
 \bottomrule
 \end{tabular}
 
-We shall treat \(W\) and \(D\), the number of wins and draws, respectively, as the \(\boldsymbol x\)-variables. The number of goals for and against, \(G\) and \(GA\), will be treated as the \(\boldsymbol y\)-variables. The number of losses and the goal difference, \(L\) and \(GD\), are omitted as they provide no additional information when we know \(W\) and \(D\) (and we've assumed \(\boldsymbol S_{xx}\) is invertible).
+We shall treat \(W\) and \(D\), the number of wins and draws, as the \(\boldsymbol x\)-variables. The number of goals for and against, \(G\) and \(GA\), will be treated as the \(\boldsymbol y\)-variables. The number of losses and the goal difference, \(L\) and \(GD\), are omitted as they provide no additional information when we know \(W\) and \(D\).
 
 We shall consider the questions
 
@@ -4897,8 +4889,8 @@ Firstly, we need to compute the three covariance matrices needed for CCA. These 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{X <-}\StringTok{ }\NormalTok{table[}\DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{] }\CommentTok{# W and D}
-\NormalTok{Y <-}\StringTok{ }\NormalTok{table[}\DecValTok{5}\OperatorTok{:}\DecValTok{6}\NormalTok{] }\CommentTok{# G and GA}
+\NormalTok{X <-}\StringTok{ }\NormalTok{table[,}\KeywordTok{c}\NormalTok{(}\StringTok{'W'}\NormalTok{,}\StringTok{'D'}\NormalTok{)] }\CommentTok{# W and D}
+\NormalTok{Y <-}\StringTok{ }\NormalTok{table[,}\KeywordTok{c}\NormalTok{(}\StringTok{'G'}\NormalTok{,}\StringTok{'GA'}\NormalTok{)] }\CommentTok{# G and GA}
 \NormalTok{S_xx <-}\StringTok{ }\KeywordTok{cov}\NormalTok{(X)}
 \NormalTok{S_yy <-}\StringTok{ }\KeywordTok{cov}\NormalTok{(Y)}
 \NormalTok{S_xy <-}\StringTok{ }\KeywordTok{cov}\NormalTok{(X,Y)}
@@ -4907,14 +4899,15 @@ Firstly, we need to compute the three covariance matrices needed for CCA. These 
 
 giving
 
-\[\boldsymbol S_{xx} =\begin{pmatrix}40.4&-9.66 \\-9.66&10.7 \\\end{pmatrix}, \quad \boldsymbol S_{yy} =\begin{pmatrix}354&-155 \\-155&141 \\\end{pmatrix}, \quad \boldsymbol S_{xy}=\boldsymbol S_{yx}^\top =\begin{pmatrix}108&-60 \\-28.9&-2.36 \\\end{pmatrix}\]
+\[\boldsymbol S_{xx} =\begin{pmatrix}40.4&-9.66 \\-9.66&10.7 \\\end{pmatrix}, \quad \boldsymbol S_{yy} =\begin{pmatrix}354&-155 \\-155&141 \\\end{pmatrix}, \quad \boldsymbol S_{xy}=\boldsymbol S_{yx}^\top =\begin{pmatrix}108&-60 \\-28.9&-2.36 \\\end{pmatrix}.\]
 
 We now want to calculate the matrix \(\boldsymbol Q\) in \eqref{eq:svdcca} and then find its singular valued decomposition. We first need to find \(\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\). Using R to do the computations we obtain the spectral decompositions
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{eigen_xx <-}\StringTok{ }\KeywordTok{eigen}\NormalTok{(S_xx)}
-\NormalTok{S_xx_invsqrt <-}\StringTok{ }\NormalTok{eigen_xx}\OperatorTok{$}\NormalTok{vectors}\OperatorTok{%*%}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(eigen_xx}\OperatorTok{$}\NormalTok{values)) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{t}\NormalTok{(eigen_xx}\OperatorTok{$}\NormalTok{vectors)}
+\NormalTok{Vx <-}\StringTok{ }\NormalTok{eigen_xx}\OperatorTok{$}\NormalTok{vectors}
+\NormalTok{S_xx_invsqrt <-}\StringTok{ }\NormalTok{Vx }\OperatorTok{%*%}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(eigen_xx}\OperatorTok{$}\NormalTok{values)) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{t}\NormalTok{(Vx)}
 \CommentTok{# check S_xx %*% S_xx_invsqrt %*% S_xx_invsqrt is the identity matrix}
 \end{Highlighting}
 \end{Shaded}
@@ -4934,7 +4927,8 @@ Similarly, we find
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{eigen_yy <-}\StringTok{ }\KeywordTok{eigen}\NormalTok{(S_yy)}
-\NormalTok{S_yy_invsqrt <-}\StringTok{ }\NormalTok{eigen_yy}\OperatorTok{$}\NormalTok{vectors}\OperatorTok{%*%}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(eigen_yy}\OperatorTok{$}\NormalTok{values)) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{t}\NormalTok{(eigen_yy}\OperatorTok{$}\NormalTok{vectors)}
+\NormalTok{Vy <-}\StringTok{ }\NormalTok{eigen_yy}\OperatorTok{$}\NormalTok{vectors}
+\NormalTok{S_yy_invsqrt <-}\StringTok{ }\NormalTok{Vy }\OperatorTok{%*%}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(eigen_yy}\OperatorTok{$}\NormalTok{values)) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{t}\NormalTok{(Vy)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4946,7 +4940,7 @@ Consequently,
 \begin{align*}
 \boldsymbol Q&=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\\
 &=\begin{pmatrix}0.169&0.0561 \\0.0561&0.341 \\\end{pmatrix} \begin{pmatrix}108&-60 \\-28.9&-2.36 \\\end{pmatrix}\begin{pmatrix}0.169&0.0561 \\0.0561&0.341 \\\end{pmatrix}\\
-&=\begin{pmatrix}0.747&-0.588 \\-0.39&-0.595 \\\end{pmatrix}
+&=\begin{pmatrix}0.747&-0.588 \\-0.39&-0.595 \\\end{pmatrix}.
 \end{align*}
 
 The SVD of \(\boldsymbol Q\) is given by
@@ -4956,20 +4950,13 @@ The SVD of \(\boldsymbol Q\) is given by
 \label{eq:SVDanalysis}
 \end{align}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{A =}\StringTok{ }\NormalTok{S_xx_invsqrt }\OperatorTok{%*%}\StringTok{ }\NormalTok{S_xy }\OperatorTok{%*%}\StringTok{ }\NormalTok{S_yy_invsqrt}
-\NormalTok{A_svd =}\StringTok{ }\KeywordTok{svd}\NormalTok{(A)}
-\end{Highlighting}
-\end{Shaded}
-
 So the 1st CC coefficient is \(0.955\), which is close to its maximum value of \(1\). The 1st CC weight vectors are
 given by
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{a1 =}\StringTok{ }\NormalTok{S_xx_invsqrt}\OperatorTok{%*%}\StringTok{ }\NormalTok{A_svd}\OperatorTok{$}\NormalTok{u[,}\DecValTok{1}\NormalTok{]}
-\NormalTok{b1 =}\StringTok{ }\NormalTok{S_yy_invsqrt}\OperatorTok{%*%}\StringTok{ }\NormalTok{A_svd}\OperatorTok{$}\NormalTok{v[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{a1 =}\StringTok{ }\NormalTok{S_xx_invsqrt}\OperatorTok{%*%}\StringTok{ }\NormalTok{Q_svd}\OperatorTok{$}\NormalTok{u[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{b1 =}\StringTok{ }\NormalTok{S_yy_invsqrt}\OperatorTok{%*%}\StringTok{ }\NormalTok{Q_svd}\OperatorTok{$}\NormalTok{v[,}\DecValTok{1}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4977,7 +4964,8 @@ given by
 \boldsymbol a_1&=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol u_1\\
 &=\begin{pmatrix}0.169&0.0561 \\0.0561&0.341 \\\end{pmatrix}\begin{pmatrix}-0.99 \\-0.143 \\\end{pmatrix}\\
 &=\begin{pmatrix}-0.175 \\-0.104 \\\end{pmatrix}\\
-\boldsymbol b_1 &=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol v_1= \begin{pmatrix}-0.0234 \\0.0541 \\\end{pmatrix}
+\boldsymbol b_1 &=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol v_1\\
+&= \begin{pmatrix}-0.0234 \\0.0541 \\\end{pmatrix}
 \end{align*}
 
 In order to make interpretation easier:
@@ -5008,15 +4996,12 @@ and the 1st CC variables, obtained by using these weights, are
 \]
 and
 \[
- \psi_1 = 0.397(G-\bar{G}) -0.918(GA-\bar{GA}),
+ \psi_1 = 0.397(G-\bar{G}) -0.918(GA-\bar{GA}).
 \]
-where the bars are used to denote sample means.
 
-THIS IS THE FIRST MENTION OF REMOVING MEANS?
+We can see that \(\psi_1\) is measuring something similar to goal difference \(G-GA\), as usually defined, but it gives higher weight to goals conceded than goals conceded (\(0.397\) versus \(-0.397\)).
 
-We can see that \(\psi_1\) is measuring something similar to goal difference \(G-GA\), as usually defined, but it gives higher weight to goals scored than goals conceded (\(0.397\) versus \('r -1*signif(b1n[1],3)`\)).
-
-It is also seen that \(\eta_1\) is measuring something similar to number of points \(3W+D\), as usually defined, but the ratio of points for a win to points for a draw is lower, at around 2:1, as opposed to the usual ratio 3:1.
+\(\eta_1\) is measuring something similar to number of points \(3W+D\), as usually defined, but the ratio of points for a win to points for a draw is lower, at around 2:1, as opposed to the usual ratio 3:1.
 
 The full list of the first canonical correlation variables (using the original canonical vectors) is thus
 
@@ -5024,90 +5009,37 @@ The full list of the first canonical correlation variables (using the original c
 \begin{Highlighting}[]
 \NormalTok{Xcent <-}\StringTok{ }\KeywordTok{sweep}\NormalTok{(X,}\DecValTok{2}\NormalTok{, }\KeywordTok{colMeans}\NormalTok{(X)) }\CommentTok{# column centre the matrix}
 \NormalTok{Ycent <-}\StringTok{ }\KeywordTok{sweep}\NormalTok{(Y,}\DecValTok{2}\NormalTok{, }\KeywordTok{colMeans}\NormalTok{(Y)) }\CommentTok{# column centre the matrix}
-\NormalTok{(}\DataTypeTok{eta =} \KeywordTok{as.matrix}\NormalTok{(Xcent)}\OperatorTok{%*%}\NormalTok{a1)}
+\NormalTok{eta =}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(Xcent)}\OperatorTok{%*%}\NormalTok{a1}
+\NormalTok{psi =}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(Ycent)}\OperatorTok{%*%}\NormalTok{b1}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-##              [,1]
-##  [1,] -2.43407235
-##  [2,] -1.38385898
-##  [3,] -0.92211994
-##  [4,] -0.64649410
-##  [5,] -0.50498863
-##  [6,] -0.46776599
-##  [7,] -0.60557891
-##  [8,] -0.43054335
-##  [9,] -0.22197769
-## [10,] -0.08416477
-## [11,]  0.12440088
-## [12,]  0.16162352
-## [13,]  0.40741182
-## [14,]  0.51169465
-## [15,]  0.44463446
-## [16,]  0.79101303
-## [17,]  1.07033142
-## [18,]  1.17461425
-## [19,]  1.03680133
-## [20,]  1.97903932
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{(}\DataTypeTok{psi =} \KeywordTok{as.matrix}\NormalTok{(Ycent)}\OperatorTok{%*%}\NormalTok{b1)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##             [,1]
-##  [1,] -1.7921117
-##  [2,] -2.0820965
-##  [3,] -1.1846733
-##  [4,] -0.2807761
-##  [5,] -0.9374949
-##  [6,] -0.4722204
-##  [7,] -0.6168145
-##  [8,] -0.3009743
-##  [9,] -0.3898343
-## [10,]  0.1117929
-## [11,]  0.4655992
-## [12,]  0.4130920
-## [13,]  0.6618838
-## [14,]  0.3928938
-## [15,]  0.4219760
-## [16,]  0.6206908
-## [17,]  1.0786948
-## [18,]  0.9938785
-## [19,]  1.0334581
-## [20,]  1.8630363
-\end{verbatim}
+\begin{tabular}{lrr}
+\toprule
+Team & eta & psi\\
+\midrule
+Liverpool & -2.4340723 & -1.7921117\\
+Manchester City & -1.3838590 & -2.0820965\\
+Manchester United & -0.9221199 & -1.1846733\\
+Chelsea & -0.6464941 & -0.2807761\\
+Leicester City & -0.5049886 & -0.9374949\\
+\bottomrule
+\end{tabular}
 
 A scatter plotof the two canonical correlation variables shows the strong correlation between them.
 
-ADD TEAM NAMES?
-
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{cca.out <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{eta=}\NormalTok{eta, }\DataTypeTok{psi=}\NormalTok{psi, }\DataTypeTok{Team=}\NormalTok{table}\OperatorTok{$}\NormalTok{Team)}
+\NormalTok{cca.out <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Team=}\NormalTok{table}\OperatorTok{$}\NormalTok{Team, }\DataTypeTok{eta=}\NormalTok{eta, }\DataTypeTok{psi=}\NormalTok{psi)}
 \KeywordTok{library}\NormalTok{(ggplot2)}
 \KeywordTok{ggplot}\NormalTok{(cca.out, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{ eta, }\DataTypeTok{y=}\NormalTok{ psi, }\DataTypeTok{label=}\NormalTok{Team))}\OperatorTok{+}\StringTok{   }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
 \KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{Team),}\DataTypeTok{hjust=}\DecValTok{0}\NormalTok{, }\DataTypeTok{vjust=}\DecValTok{0}\NormalTok{, }\DataTypeTok{size=}\DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{05-cca_files/figure-latex/unnamed-chunk-16-1.pdf}
+\includegraphics{05-cca_files/figure-latex/unnamed-chunk-17-1.pdf}
 
-WHAT HAPPENS IF WE INCLUDE L? THen S\_XX is not invertible.
-
-PLOTS + ORTHOGONALIZATION?
-
-Projected variable plots
-
-Do with R package
-
-MOVE TO AFTER DONE THE FULL SET.
-
-We can also do this with the \texttt{CCA} package in R. See if you can find the outputs computed above in the output of the \texttt{cc} command.
+We can also do this with the \texttt{CCA} package in R. The command \texttt{matcor(X,Y)} gives the correlation matrices, and the command \texttt{cc} performs CCA. See if you can find the outputs computed above in the output of the \texttt{cc} command.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5147,74 +5079,40 @@ We can also do this with the \texttt{CCA} package in R. See if you can find the 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{prem.cca}\OperatorTok{$}\NormalTok{scores}\OperatorTok{$}\NormalTok{xscores }\CommentTok{# the canonical correlation variables }
+\KeywordTok{head}\NormalTok{(prem.cca}\OperatorTok{$}\NormalTok{scores}\OperatorTok{$}\NormalTok{xscores) }\CommentTok{# the canonical correlation variables }
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##              [,1]        [,2]
-##  [1,] -2.43407235 -1.49036509
-##  [2,] -1.38385898 -1.67831867
-##  [3,] -0.92211994  1.03482821
-##  [4,] -0.64649410 -0.87835503
-##  [5,] -0.50498863 -0.28239474
-##  [6,] -0.46776599  0.64287128
-##  [7,] -0.60557891  1.59946290
-##  [8,] -0.43054335  1.56813730
-##  [9,] -0.22197769  0.90952583
-## [10,] -0.08416477 -0.04706579
-## [11,]  0.12440088 -0.70567727
-## [12,]  0.16162352  0.21958876
-## [13,]  0.40741182  0.48624330
-## [14,]  0.51169465  0.15693757
-## [15,]  0.44463446  1.41150932
-## [16,]  0.79101303 -0.20369377
-## [17,]  1.07033142 -0.56432510
-## [18,]  1.17461425 -0.89363084
-## [19,]  1.03680133  0.06296078
-## [20,]  1.97903932 -1.34823896
+##            [,1]       [,2]
+## [1,] -2.4340723 -1.4903651
+## [2,] -1.3838590 -1.6783187
+## [3,] -0.9221199  1.0348282
+## [4,] -0.6464941 -0.8783550
+## [5,] -0.5049886 -0.2823947
+## [6,] -0.4677660  0.6428713
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{prem.cca}\OperatorTok{$}\NormalTok{scores}\OperatorTok{$}\NormalTok{yscores }\CommentTok{# the canonical correlation variables }
+\KeywordTok{head}\NormalTok{(prem.cca}\OperatorTok{$}\NormalTok{scores}\OperatorTok{$}\NormalTok{yscores) }\CommentTok{# the canonical correlation variables }
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##             [,1]        [,2]
-##  [1,] -1.7921117 -0.39245373
-##  [2,] -2.0820965 -1.79042487
-##  [3,] -1.1846733  0.62697465
-##  [4,] -0.2807761 -1.45009678
-##  [5,] -0.9374949  0.03833851
-##  [6,] -0.4722204 -0.16380075
-##  [7,] -0.6168145  1.26255753
-##  [8,] -0.3009743  0.08263387
-##  [9,] -0.3898343  2.20665204
-## [10,]  0.1117929  0.78559650
-## [11,]  0.4655992 -0.81186254
-## [12,]  0.4130920  0.09323935
-## [13,]  0.6618838  0.30598410
-## [14,]  0.3928938  1.62597001
-## [15,]  0.4219760  0.65083699
-## [16,]  0.6206908 -0.87924229
-## [17,]  1.0786948 -0.83759830
-## [18,]  0.9938785 -0.56012517
-## [19,]  1.0334581 -0.17627967
-## [20,]  1.8630363 -0.61689944
+##            [,1]        [,2]
+## [1,] -1.7921117 -0.39245373
+## [2,] -2.0820965 -1.79042487
+## [3,] -1.1846733  0.62697465
+## [4,] -0.2807761 -1.45009678
+## [5,] -0.9374949  0.03833851
+## [6,] -0.4722204 -0.16380075
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{matcor}\NormalTok{(X,Y)}
-\end{Highlighting}
-\end{Shaded}
 
 \hypertarget{the-full-set-of-canonical-correlations}{%
 \section{The full set of canonical correlations}\label{the-full-set-of-canonical-correlations}}
 
-Let us first recap what we did in the previous section: we found a linear combination of the \(x\)-variables and a linear combination of the \(y\)-variables which
+Let us first recap what we did in the previous section: we found a linear combination of the \(\boldsymbol x\)-variables and a linear combination of the \(\boldsymbol y\)-variables which
 maximised the correlation, and expressed the answer in terms of quantities which arise in the SVD of \(\boldsymbol Q\), where
 \[
 \boldsymbol Q\equiv \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}=\boldsymbol U{\pmb \Sigma} \boldsymbol V^\top=\sum_{j=1}^t \sigma_j \boldsymbol u_j \boldsymbol v_j^\top.
@@ -5242,7 +5140,7 @@ subject to the constraints
 \boldsymbol a_1^\top \boldsymbol S_{\boldsymbol x\boldsymbol x} \boldsymbol a= \boldsymbol b_1^\top \boldsymbol S_{\boldsymbol y\boldsymbol y}\boldsymbol b=0.
 \label{eq:conny22}
 \end{equation}
-Note that maximising \eqref{eq:cc2} subject to \eqref{eq:conny21} is very similar to the optimisation problem \eqref{eq:opt27a} considered in the previous section.
+Note that maximising \eqref{eq:cc2} subject to \eqref{eq:conny21} and \eqref{eq:conny22}is very similar to the optimisation problem \eqref{eq:opt27a} considered in the previous section.
 What is
 new are the constraints \eqref{eq:conny22}, which take into account that we have already found the first canonical correlation.
 
@@ -5257,7 +5155,7 @@ We now state the result in its full generality.
 \begin{align}
 \mbox{Maximize} \quad &\boldsymbol a^\top \boldsymbol S_{xy}\boldsymbol b\\
 \mbox{subject to }  \;\;&\boldsymbol a^\top \boldsymbol S_{xx}\boldsymbol a=\boldsymbol b^\top\boldsymbol S_{yy} \boldsymbol b=1\\
-\mbox{ and }\;\;\;&\boldsymbol a_i^\top \boldsymbol S_{xx}\boldsymbol a=\boldsymbol b_i^\top \boldsymbol S_{yy}\boldsymbol b= 0 \mbox{ for }i=1, \ldots, k
+\mbox{ and }\;\;\;&\boldsymbol a_i^\top \boldsymbol S_{xx}\boldsymbol a=\boldsymbol b_i^\top \boldsymbol S_{yy}\boldsymbol b= 0 \mbox{ for }i=1, \ldots, k-1
 \end{align}
 is achieved at \(\boldsymbol a_k = \boldsymbol S_{xx}^{-1/2}\boldsymbol u_k\) and \(\boldsymbol b_k=\boldsymbol S_{yy}^{-1/2}\boldsymbol v_k\) with \(\boldsymbol a_k \boldsymbol S_{xy}\boldsymbol b_k = \sigma_k\).
 \end{proposition}
@@ -5286,10 +5184,11 @@ with
 \[\boldsymbol a_k^\top \boldsymbol Q\boldsymbol b_k = \sigma_k.\]
 \end{proposition}
 
-We will work through the proof of this proposition in the Exercises.
-
 \begin{proof}
-\iffalse{} {Proof. } \fi{}To prove Proposition \ref{prp:ccafull} given Proposition \ref{prp:svdopt3}, we note as before that if we write \(\tilde{\boldsymbol a}_j =\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2} \boldsymbol a_j\) and \(\tilde{\boldsymbol b}_j=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2} \boldsymbol b_j\), then the constraints become
+\iffalse{} {Proof. } \fi{}We will work through the proof of this proposition in the Exercises.
+\end{proof}
+
+```\{proof\}\textbf{Proof of Proposition \ref{prp:ccafull}}. We note as before that if we write \(\tilde{\boldsymbol a}_j =\boldsymbol S_{\boldsymbol x\boldsymbol x}^{1/2} \boldsymbol a_j\) and \(\tilde{\boldsymbol b}_j=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{1/2} \boldsymbol b_j\), then the constraints become
 \[\tilde{\boldsymbol a}^\top \tilde{\boldsymbol a}=\tilde{\boldsymbol b}^\top\tilde{ \boldsymbol b}=1 \;\mbox{ and }\;\tilde{\boldsymbol a}_i^\top \tilde{\boldsymbol a}=\tilde{\boldsymbol b}_i^\top \tilde{\boldsymbol b} = 0 \mbox{ for }i=1, \ldots, k.
 \]
 Consequently, we may view constraints \eqref{eq:conny22} as corresponding to orthogonality constraints (cf.~PCA) in modified coordinate systems.
@@ -5299,7 +5198,7 @@ The objective \(\boldsymbol a^\top \boldsymbol S_{xy}\boldsymbol b\) becomes
 with
 \[\boldsymbol Q= \boldsymbol S_{xx}^{-1/2} \boldsymbol S_{xy}\boldsymbol S_{yy}^{-1/2}.\]
 Thus applying Proposition \ref{prp:svdopt3} gives the desired result.
-\end{proof}
+```
 
 To summarize:
 
@@ -5316,25 +5215,29 @@ To summarize:
 We define the CC variable/score vectors to be
 \[{\pmb \eta}_k=(\eta_{1k}, \ldots , \eta_{nk})^\top \mbox{ and }{\pmb \psi}_{k}=(\psi_{1k}, \ldots , \psi_{nk})^\top.\]
 
-\textbf{Example \ref{exm:prem} (continued)} From \eqref{eq:SVDanalysis}, it is seen that the 2nd CC coefficient is given by \(\sigma_2=0.508\). So the correlation between the second pair of CC variables is a lot smaller than the 1st CC coefficient, though still appreciably different from \(0\). We now calculate the 2nd CC weight vectors:
+\hypertarget{example-continued}{%
+\subsection{Example continued}\label{example-continued}}
+
+From \eqref{eq:SVDanalysis}, it is seen that the 2nd CC coefficient is given by \(\sigma_2=0.705\). So the correlation between the second pair of CC variables is smaller than the 1st CC coefficient, though still appreciably different from \(0\). We now calculate the 2nd CC weight vectors:
+
 \[
-\boldsymbol a_2=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol q_2 = \begin{pmatrix} 0.073 \\ 0.396 \end{pmatrix}
+\boldsymbol a_2=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2} \boldsymbol q_2 = \begin{pmatrix}0.0313 \\0.329 \\\end{pmatrix}
 \qquad \text{and} \qquad
-\boldsymbol b_2=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol r_2=-\begin{pmatrix}0.062\\ 0.086  \end{pmatrix},
+\boldsymbol b_2=\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}\boldsymbol r_2=\begin{pmatrix}-0.07 \\-0.104 \\\end{pmatrix},
 \]
-with standardised version (without the sign changes this time)
+with standardised versions (without the sign changes this time)
 \[
-\boldsymbol a_2=\begin{pmatrix}0.181 \\ 0.984  \end{pmatrix}
+\boldsymbol a_2=\begin{pmatrix}0.0947 \\0.996 \\\end{pmatrix}
 \qquad \text{and} \qquad
-\boldsymbol b_2=-\begin{pmatrix}0.589 \\ 0.808  \end{pmatrix},
+\boldsymbol b_2=\begin{pmatrix}-0.56 \\-0.829 \\\end{pmatrix},
 \]
 and new variables
 \[
-\eta_2=0.181*(W-\bar{W}) +0.984*(D -\bar{D})
+\eta_2 =0.0947 (W-\bar{W}) +0.996(D -\bar{D})
 \]
 and
 \[
-\psi_2=-\{0.589*(F-\bar{F})+0.808*(A-\bar{A})\}.
+ \psi_2 = -0.56(G-\bar{G}) -0.829(GA-\bar{GA}).
 \]
 Note that, to a good approximation, \(\eta_2\) is measuring something similar to the number of draws and, approximately, \(\psi_2\) is something related to the negative of total number of goals in a team's games. So large \(\psi_2\) means relatively few goals in a team's games, and small (i.e.~large negative) \(\psi_2\) means a relatively large number of goals in a team's games.
 
@@ -5342,6 +5245,8 @@ Interpretation of the 2nd CC: teams that have a lot of draws tend to be in low-s
 
 \hypertarget{properties}{%
 \section{Properties}\label{properties}}
+
+The CC variables have a mean of zero. Their correlation structure is given in the following proposition:
 
 \begin{proposition}
 \protect\hypertarget{prp:ccavar}{}{\label{prp:ccavar} }Assume that \(\boldsymbol S_{\boldsymbol x\boldsymbol x}\) and \(\boldsymbol S_{\boldsymbol y\boldsymbol y}\) both have full rank. Then for \(1 \leq k,\ell \leq t\),
@@ -5357,10 +5262,14 @@ and
 \]
 \end{proposition}
 
+\begin{proof}
+\iffalse{} {Proof. } \fi{}You will prove this in the exercises.
+\end{proof}
+
 \hypertarget{connection-with-linear-regression-when-q1}{%
 \subsection{\texorpdfstring{Connection with linear regression when \(q=1\)}{Connection with linear regression when q=1}}\label{connection-with-linear-regression-when-q1}}
 
-Although CCA analysis is clearly a different technique to linear regression, it turns out that when either \(\dim \boldsymbol x=p=1\) or \(\dim \boldsymbol y=q=1\), there is a close connection between the two approaches.
+Although CCA is clearly a different technique to linear regression, it turns out that when either \(\dim \boldsymbol x=p=1\) or \(\dim \boldsymbol y=q=1\), there is a close connection between the two approaches.
 
 Consider the case \(q=1\) and \(p>1\). Hence there is only a single \(y\)-variable but we still have \(p>1\) \(x\)-variables.
 
@@ -5376,7 +5285,7 @@ Let's make the following assumptions:
 \end{enumerate}
 
 The first assumption means that
-\[\boldsymbol S_{xx}=\frac{1}{n}\boldsymbol X^\top \boldsymbol X\quad \mbox{and}\quad \boldsymbol S_{xy}=\boldsymbol X^\top \boldsymbol y,\] and the second means that \((\boldsymbol X^\top \boldsymbol X)^{-1}\) exists.
+\[\boldsymbol S_{xx}=\frac{1}{n}\boldsymbol X^\top \boldsymbol X\quad \mbox{and}\quad \boldsymbol S_{xy}=\frac{1}{n}\boldsymbol X^\top \boldsymbol y,\] and the second means that \((\boldsymbol X^\top \boldsymbol X)^{-1}\) exists.
 
 Since \(q=1\), the matrix we decompose in CCA
 \[
@@ -5399,7 +5308,7 @@ Consequently, the first canoncial correlation vector for \(\boldsymbol x\) is
 &=\frac{1}{\vert \vert \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol xy}\vert \vert_F}\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1}\boldsymbol S_{\boldsymbol xy}\\
 &= c (\boldsymbol X^\top \boldsymbol X)^{-1}\boldsymbol X^\top \boldsymbol y
 \end{align*}
-where \(c = \vert \vert \boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol xy}\vert \vert_F\) is a scalar.
+where \$c \$ is a scalar constant.
 
 Thus, we can see that the first canonical correlation vector \(\boldsymbol a\) is a scalar multiple of
 \[
@@ -5421,9 +5330,9 @@ where \(\mathbf T\) (\(p \times p\)) and \(\mathbf R\) (\(q \times q\)) are orth
 
 How do these transformations affect the CC analysis?
 
-First of all, since CCA depends only on sample covariance matrices, it follows that the translation vectors \(\pmb \mu\) and \(\pmb \eta\) have no effect on the analysis.
+Firstly, since CCA depends only on sample covariance matrices, it follows that the translation vectors \(\pmb \mu\) and \(\pmb \eta\) have no effect on the analysis.
 
-As seen in the previous section, the CCA in the original coordinates depends on
+Secondly, let's consider the effect of the rotations by an orthogonal matrix. We've seen that CCA in the original \(\boldsymbol x\) and \(\boldsymbol y\) coordinates depends on
 \begin{equation}
 \boldsymbol Q\equiv \boldsymbol Q_{\boldsymbol x\boldsymbol y}=\boldsymbol S_{\boldsymbol x\boldsymbol x}^{-1/2}\boldsymbol S_{\boldsymbol x\boldsymbol y}\boldsymbol S_{\boldsymbol y\boldsymbol y}^{-1/2}.
 \label{eq:Axy}
@@ -5480,6 +5389,8 @@ If either of \(\mathbf T\) or \(\mathbf R\) in \eqref{eq:transformations} is not
 \hypertarget{exercises-2}{%
 \section{Exercises}\label{exercises-2}}
 
+ADD PAST EXAM PAPERS?
+
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
@@ -5530,11 +5441,15 @@ If either of \(\mathbf T\) or \(\mathbf R\) in \eqref{eq:transformations} is not
   Use generalized inverse to find \(\boldsymbol S_{xx}^{-1/2}\)
 \item
   What if do football example but allow \(L\) to be a variable in \(Y\) so that some of \(X\) perfectly explains \(Y\).
-\item
-  Lets consider again the crabs dataset you looked at in the exercises in the chapter on PCA (see \ref{pca-comp}).
-  We now consider a canonical correlation analysis in which one set of variables, the \(x\)-set, is given by CL and CW and the
-  other set, the \(y\)-set, is given by FL, RW and BD.
 \end{enumerate}
+
+\hypertarget{exercise-1}{%
+\paragraph{Exercise 1}\label{exercise-1}}
+\addcontentsline{toc}{paragraph}{Exercise 1}
+
+Lets consider again the crabs dataset you looked at in the exercises in the chapter on PCA (see \ref{pca-comp}).
+We now consider a canonical correlation analysis in which one set of variables, the \(x\)-set, is given by CL and CW and the
+other set, the \(y\)-set, is given by FL, RW and BD.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5575,13 +5490,11 @@ Repeat the above to find the two sets of 2nd CC scores, \texttt{xscores2} and \t
 
 Test the following hypotheses: (i) that both CC coefficients are zero, and (ii) that at most one of the CC coefficients is non-zero. What do you conclude from your findings?
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  Explore using CCA of the crabs data with the command \texttt{cc} and \texttt{plt.cc} in the package \texttt{CCA} which you will need to download. {[}Note: these commands were also used on the Boston Housing data in lectures and I have provided the html output on the Moodle page, which could be helpful{]}.
-\end{enumerate}
+\hypertarget{exercise-2}{%
+\paragraph{Exercise 2}\label{exercise-2}}
+\addcontentsline{toc}{paragraph}{Exercise 2}
+
+Explore using CCA of the crabs data with the command \texttt{cc} and \texttt{plt.cc} in the package \texttt{CCA} which you will need to download. {[}Note: these commands were also used on the Boston Housing data in lectures and I have provided the html output on the Moodle page, which could be helpful{]}.
 
 Note that you can use the commands
 
@@ -5592,14 +5505,12 @@ Note that you can use the commands
 \end{Highlighting}
 \end{Shaded}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
-\item
-  The full Premier League dataset is available on the Moodle page. Read the data into R. You will need to download the data into your file space, and then
-  read it in, e.g.~using
-\end{enumerate}
+\hypertarget{exercise-3}{%
+\paragraph{Exercise 3}\label{exercise-3}}
+\addcontentsline{toc}{paragraph}{Exercise 3}
+
+The full Premier League dataset is available on the Moodle page. Read the data into R. You will need to download the data into your file space, and then
+read it in, e.g.~using
 
 SORT
 
@@ -5615,145 +5526,188 @@ Check that you agree with the calculations in Chapters 3 and 4 of the lecture no
 Also, there may be some minor numerical/rounding differences.
 
 \hypertarget{mds}{%
-\chapter{Multidimensional Scaling}\label{mds}}
+\chapter{Multidimensional Scaling (MDS)}\label{mds}}
 
 In PCA, we start with \(n\) data points \(\boldsymbol x_i \in \mathbb{R}^p\), and then try to find a low dimensional projection of these points, e.g., \(\boldsymbol y_1, \ldots, \boldsymbol y_n \in \mathbb{R}^r\) with \(r<p\), in such a way that they minimize the reconstruction error (or maximize the variance).
 
-The focus in \textbf{Multidimensional Scaling (MDS)} is somewhat different. Instead of being given the data \(\boldsymbol X\), our starting point is a matrix of \textbf{distances} or \textbf{dissimilarities} between the data points, \(\boldsymbol D\). For example, if we have data on \(n\) different experimental units, then we would be given the distances \(d_{ij}\) between any pair of experimental units \(i\) and \(j\). We compile these into a \(n\times n\) \textbf{distance matrix} \(\boldsymbol D=(d_{ij}: \, i,j=1, \ldots , n)\).
+The focus in \textbf{Multidimensional Scaling (MDS)} is somewhat different. Instead of being given the data \(\boldsymbol X\), our starting point is often a matrix of \textbf{distances} or \textbf{dissimilarities} between the data points, \(\boldsymbol D\). For example, if we have data on \(n\) different experimental units, then we would be given the distances \(d_{ij}\) between any pair of experimental units \(i\) and \(j\). We compile these into a \(n\times n\) \textbf{distance matrix} \(\boldsymbol D=(d_{ij}: \, i,j=1, \ldots , n)\).
 
-The goal of MDS is to find a set of points in a low-dimensional Euclidean space, e.g. \(\mathbb{R}\) or \(\mathbb{R}^2\), whose inter-point distances (or dissimilarities) are approximately equal to the \(d_{ij}\). We may or may not have access to the original data \(\boldsymbol X\), and we may not even know the dimension of the original data points \(\boldsymbol x_i\). The aim is simply to find a set of points \(\boldsymbol y_1, \ldots, \boldsymbol y_n\) whose distance matrix is approximately \(\boldsymbol D\), i.e., for which
+The goal of MDS is to find a set of points in a low-dimensional Euclidean space \(\mathbb{R}^r\), usually \(\mathbb{R}\) or \(\mathbb{R}^2\), whose inter-point distances (or dissimilarities) are as close as possible to the \(d_{ij}\). That is, we want to find \(\boldsymbol y_1, \ldots, \boldsymbol y_n \in \mathbb{R}^r\) whose distance matrix is approximately \(\boldsymbol D\), i.e., for which
 \[\operatorname{distance}(\boldsymbol y_i, \boldsymbol y_j) \approx d_{ij}.\]
+
+If we define the errors in terms of a square distane, then we can write the goal of MDS as the following optimization problem:
+\begin{align}
+\mbox{Find} \quad& \boldsymbol y_1, \ldots, \boldsymbol y_k \in \mathbb{R}^r\\
+\mbox{to minimize} \quad &\sum_{i=1}^n \sum_{j=1}^n (d_{ij} - d(\boldsymbol y_i, \boldsymbol y_j))^2.
+\end{align}
 
 As an illustrative example, consider the location of some of England's cities.
 
-\includegraphics{06-mda_files/figure-latex/unnamed-chunk-1-1.pdf}
+\includegraphics{06-mds_files/figure-latex/unnamed-chunk-1-1.pdf}
 
 If we are told their latitude and longitude, it is easy to calculate the distances between the cities.
 
 \begin{table}[H]
 \centering\begingroup\fontsize{7}{9}\selectfont
 
-\begin{tabular}{lrrrrrrrrrrr}
+\begin{tabular}{lrrrrrrrrrrrrr}
 \toprule
-  & London & Birmingham & Manchester & Leeds & Newcastle & Liverpool & Portsmouth & Southampton & Nottingham & Bristol & Sheffield\\
+  & London & Birmingham & Manchester & Leeds & Newcastle & Liverpool & Portsmouth & Southampton & Nottingham & Bristol & Sheffield & Norwich & Plymouth\\
 \midrule
-London & 0 & 163 & 262 & 273 & 403 & 286 & 103 & 112 & 175 & 170 & 228\\
-Birmingham & 163 & 0 & 114 & 149 & 282 & 125 & 195 & 179 & 73 & 124 & 105\\
-Manchester & 262 & 114 & 0 & 58 & 174 & 50 & 308 & 293 & 94 & 227 & 53\\
-Leeds & 273 & 149 & 58 & 0 & 135 & 105 & 335 & 323 & 98 & 271 & 47\\
-Newcastle & 403 & 282 & 174 & 135 & 0 & 199 & 469 & 458 & 231 & 401 & 181\\
+London & 0 & 163 & 262 & 273 & 403 & 286 & 103 & 112 & 175 & 170 & 228 & 159 & 308\\
+Birmingham & 163 & 0 & 114 & 149 & 282 & 125 & 195 & 179 & 73 & 124 & 105 & 217 & 281\\
+Manchester & 262 & 114 & 0 & 58 & 174 & 50 & 308 & 293 & 94 & 227 & 53 & 255 & 369\\
+Leeds & 273 & 149 & 58 & 0 & 135 & 105 & 335 & 323 & 98 & 271 & 47 & 230 & 420\\
+Newcastle & 403 & 282 & 174 & 135 & 0 & 199 & 469 & 458 & 231 & 401 & 181 & 328 & 542\\
 \addlinespace
-Liverpool & 286 & 125 & 50 & 105 & 199 & 0 & 317 & 299 & 132 & 219 & 101\\
-Portsmouth & 103 & 195 & 308 & 335 & 469 & 317 & 0 & 24 & 239 & 127 & 288\\
-Southampton & 112 & 179 & 293 & 323 & 458 & 299 & 24 & 0 & 229 & 103 & 276\\
-Nottingham & 175 & 73 & 94 & 98 & 231 & 132 & 239 & 229 & 0 & 193 & 53\\
-Bristol & 170 & 124 & 227 & 271 & 401 & 219 & 127 & 103 & 193 & 0 & 228\\
+Liverpool & 286 & 125 & 50 & 105 & 199 & 0 & 317 & 299 & 132 & 219 & 101 & 299 & 346\\
+Portsmouth & 103 & 195 & 308 & 335 & 469 & 317 & 0 & 24 & 239 & 127 & 288 & 261 & 221\\
+Southampton & 112 & 179 & 293 & 323 & 458 & 299 & 24 & 0 & 229 & 103 & 276 & 268 & 202\\
+Nottingham & 175 & 73 & 94 & 98 & 231 & 132 & 239 & 229 & 0 & 193 & 53 & 169 & 353\\
+Bristol & 170 & 124 & 227 & 271 & 401 & 219 & 127 & 103 & 193 & 0 & 228 & 296 & 162\\
 \addlinespace
-Sheffield & 228 & 105 & 53 & 47 & 181 & 101 & 288 & 276 & 53 & 228 & 0\\
+Sheffield & 228 & 105 & 53 & 47 & 181 & 101 & 288 & 276 & 53 & 228 & 0 & 203 & 382\\
+Norwich & 159 & 217 & 255 & 230 & 328 & 299 & 261 & 268 & 169 & 296 & 203 & 0 & 453\\
+Plymouth & 308 & 281 & 369 & 420 & 542 & 346 & 221 & 202 & 353 & 162 & 382 & 453 & 0\\
 \bottomrule
 \end{tabular}
 \endgroup{}
 \end{table}
 
-But can we reconstruct the map from the distance matrix? This is the aim of multidimensional scaling.
+But can we do the reverse and reconstruct the map from the distance matrix? This is the aim of multidimensional scaling.
 MDS constructs a set of points that have distances between them given by the distance matrix \(\boldsymbol D\). In other words, it creates a map with a set of coordinates for which the distances between points are approximately the same as in the real data.
 
 Of course, this illustrative example is not very interesting, as the original data (the city locations) are only two-dimensional, but in problems with high dimensional data, finding a way to
-represent the points in a low-0dimensional space will make visualization and statistical analysis easier. As we shall see, there is a close connection between MDS and PCA.
+represent the points in a low-dimensional space will make visualization and statistical analysis easier. We shall also see, perhaps unsurprisingly, that there is a close connection between MDS and PCA.
 
-\hypertarget{classical-multidimensional-scaling}{%
-\section{Classical Multidimensional Scaling}\label{classical-multidimensional-scaling}}
+\hypertarget{notation-2}{%
+\paragraph{Notation}\label{notation-2}}
+\addcontentsline{toc}{paragraph}{Notation}
 
-We call an \(n \times n\) matrix \(\boldsymbol D=(d_{ij})_{i,j=1}^n\) a \textbf{distance matrix} or, equivalently, a \textbf{dissimilarity matrix}, if the following properties are satisfied:
+\begin{definition}
+\protect\hypertarget{def:distanceD}{}{\label{def:distanceD} }The \(n \times n\) matrix \(\boldsymbol D=(d_{ij})_{i,j=1}^n\) is a \textbf{distance matrix} (sometimes called a \textbf{dissimilarity matrix}) if
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  For \(i=1, \ldots , n\), \(d_{ii}=0\).
+  \(d_{ij}\geq 0\) for all \(i, j=1,\ldots,n\).
 \item
-  Symmetry: \(d_{ij}=d_{ji} \geq 0\) for all \(i,j=1,\ldots, n\).
+  \(d_{ii}=0\) for \(i=1,\ldots, n\) and
 \item
-  Definiteness: \(d_{ij}=0\) implies \(i=j\).
+  \(\boldsymbol D=\boldsymbol D^\top\), i.e., \(\boldsymbol D\) is symmetric (\(d_{ij}=d_{ji}\)).
+\item
+  \(d_{ij}=0\) implies \(\boldsymbol x_i=\boldsymbol x_j\) DO I NEED THIS??????????? MDS STARTS WITH D- there is no x.
 \end{enumerate}
+\end{definition}
 
-A comment on our terminology. We do not require distances necessarily to satisfy the triangle inequality
+We do not require distances to necessarily satisfy the triangle inequality
 \begin{equation}
 d_{ik} \leq d_{ij}+d_{jk}.
 \label{eq:triangle}
 \end{equation}
 A distance function which always satisfies the triangle inequality is called a \textbf{metric distance}
-or just a \textbf{metric}, and a distance function which does not always satisfy the triangle inequality is called
+or just a \textbf{metric}. A distance function which does not always satisfy the triangle inequality is called a
 \textbf{non-metric} distance.
 
-Suppose \(\boldsymbol x_1,\ldots , \boldsymbol x_n\) are points in \(\mathbb{R}^p\). If the \(d_{ij}\) are of the form
-\[
-d_{ij}=\vert \vert \boldsymbol x_i -\boldsymbol x_j \vert \vert =\sqrt{(\boldsymbol x_i-\boldsymbol x_j)^\top (\boldsymbol x_i-\boldsymbol x_j)}.
-\]
-Then each \(d_{ij}\) is called a \textbf{Euclidean distance} and, in this case, \(\boldsymbol D\) is called a \textbf{Euclidean distance matrix}. Since Euclidean distances satisfy the triangle
-inequality \eqref{eq:triangle}, it follows that Euclidean distance is a metric distance.
+\hypertarget{classical-mds}{%
+\section{Classical MDS}\label{classical-mds}}
 
-Given a distance matrix \({\mathbf D}=\{d_{ij}\}_{i,j=1}^n\), define the matrix
+Classical MDS is based upon \textbf{Euclidean distances}:
+\[d(\boldsymbol x, \boldsymbol x') = ||\boldsymbol x-\boldsymbol x'||_2 = \sqrt{(\boldsymbol x-\boldsymbol x')^\top (\boldsymbol x-\boldsymbol x')}.\]
+
+Since Euclidean distances satisfy the triangle
+inequality \eqref{eq:triangle}, it follows that Euclidean distance is a metric distance. In general, any distance derived from a norm is a metric distance.
+
+\begin{definition}
+\protect\hypertarget{def:euclideanD}{}{\label{def:euclideanD} }Suppose \(\boldsymbol D\) is an \(n\times n\) distance matrix. We say \(\boldsymbol D\) is a \textbf{Euclidean distance matrix}
+if there is a set of points \(\boldsymbol x_1,\ldots , \boldsymbol x_n \in \mathbb{R}^p\) for some \(p\), such that
+\[
+d_{ij}=\vert \vert \boldsymbol x_i -\boldsymbol x_j \vert \vert_2 =\sqrt{(\boldsymbol x_i-\boldsymbol x_j)^\top (\boldsymbol x_i-\boldsymbol x_j)}.
+\]
+\end{definition}
+
+Two other matrices play key roles in MDS.
+
+\begin{definition}
+\protect\hypertarget{def:unnamed-chunk-3}{}{\label{def:unnamed-chunk-3} }Given a distance matrix \({\mathbf D}=\{d_{ij}\}_{i,j=1}^n\), define \(\boldsymbol A\) to be the matrix of negative square distances divided by two:
 \begin{equation}
 \boldsymbol A=\{a_{ij}\}_{i,j=1}^n,  \quad \text{where} \qquad a_{ij}=-\frac{1}{2}d_{ij}^2.
 \label{eq:defA}
 \end{equation}
-Note that, for \(i=1,\ldots , n\), \(a_{ii}=-d_{ii}^2/2=0\).
 
-Now define the matrix
+The \textbf{centred inner-product matrix} (also called the centred-Gram matrix) is
 \begin{equation}
 {\mathbf B}={\mathbf H} \boldsymbol A{\mathbf H},
 \label{eq:defB}
 \end{equation}
 where
-\begin{equation}
+\begin{equation*}
 {\mathbf H}={\mathbf I}_n -n^{-1}{\mathbf 1}_n {\mathbf 1}_n^\top
-\label{eq:defH}
-\end{equation}
-is the \(n \times n\) \textbf{centering matrix}; see \S 2.7. For reasons that will soon become clear, \(\boldsymbol B\) defined by \eqref{eq:defB} is known as a centred inner-product matrix.
+\end{equation*}
+is the \(n \times n\) \textbf{centering matrix} (see Section \ref{centering-matrix}).
+\end{definition}
 
-Let \(\boldsymbol x_1, \ldots , \boldsymbol x_n\) denote \(n\) points in \(\mathbb{R}^p\). Then the \(n \times p\) matrix
-\(\mathbf X=[\boldsymbol x_1, \ldots , \boldsymbol x_n]^\top\) is the data matrix, as before.
+The reason we call \(\boldsymbol B\) the centred inner product matrix will become clear later.
 
-We now present the key result for classical MDS.
+\hypertarget{main-result}{%
+\subsubsection*{Main result}\label{main-result}}
+\addcontentsline{toc}{subsubsection}{Main result}
 
-\begin{proposition}
-\protect\hypertarget{prp:five1}{}{\label{prp:five1} }Let \(\boldsymbol D\) denote an \(n \times n\) distance matrix and suppose \(\boldsymbol A\), \(\boldsymbol B\) and \(\mathbf H\) be as defined in \eqref{eq:defA}, \eqref{eq:defB} and \eqref{eq:defH}, respectively.
+We now present the key result for classical MDS. It says that a distance matrix \(\boldsymbol D\) is a \emph{Euclidean} distance matrix if and only if the corresponding centred inner product matrix \(\boldsymbol B\) is positive semi-definite. It also tells us how given data \(\boldsymbol X\) we can compute \(\boldsymbol B\) directly from \(\boldsymbol X\). Conversely, and more importantly, it tells us how given \(\boldsymbol B\) we can compute some data points \(\boldsymbol X\) that have corresponding Euclidean distance matrix \(\boldsymbol D\).
+
+\begin{theorem}
+\protect\hypertarget{thm:five1}{}{\label{thm:five1} }Let \(\boldsymbol D\) denote an \(n \times n\) distance matrix with corresponding centered inner-product matrix \(\boldsymbol B=\boldsymbol H\boldsymbol A\boldsymbol H.\)
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  The matrix \(\boldsymbol D\) is a Euclidean distance matrix if and only if \(\boldsymbol B\) is a non-negative definite matrix.
-\item
-  If \(\boldsymbol D\) is a Euclidean distance matrix for the sample of \(n\) vectors \(\boldsymbol x_1,\ldots , \boldsymbol x_n\), then
+  If \(\boldsymbol D\) is a \textbf{Euclidean} distance matrix for the sample of \(n\) vectors \(\boldsymbol x_1,\ldots , \boldsymbol x_n\), then
   \begin{equation}
-  b_{ij}=(\boldsymbol x_i-\bar{\boldsymbol x})^\top (\boldsymbol x_j - \bar{\boldsymbol x}), \qquad i,j=1,\ldots , n,
+  \boldsymbol B= ({\mathbf H} {\mathbf X})({\mathbf H} {\mathbf X})^\top.
   \label{eq:bijB}
   \end{equation}
-  where \(\bar{\mathbf x}=n^{-1}\sum_{i=1}^n \boldsymbol x_i\) is the sample mean vector. Equivalently, we may write
-  \[
-  \boldsymbol B= ({\mathbf H} {\mathbf X})({\mathbf H} {\mathbf X})^\top,
-  \]
-  where \({\mathbf X}=[\boldsymbol x_1,\ldots , \boldsymbol x_n]^\top\) is the data matrix, and \(\boldsymbol H\) is the \(n \times n\) centering matrix. Consequently,
-  \(\boldsymbol B\) is non-negative definite.
+  Thus \(\boldsymbol B\) is positive semi-definite.
 \item
-  Suppose \(\boldsymbol B\) is non-negative definite with positive eigenvalues \(\lambda_1 \geq \lambda_2 \cdots \geq \lambda_k\) and spectral decomposition \(\boldsymbol B={\mathbf Q} {\pmb \Lambda}{\mathbf Q}^\top\), where \({\pmb \Lambda}=\text{diag}\{\lambda_1 \ldots \lambda_k\}\) and \(\mathbf Q\) is \(n \times k\) and satisfies \({\mathbf Q}^\top {\mathbf Q}={\mathbf I}_k\). Then \({\mathbf X}=[\boldsymbol x_1, \ldots , \boldsymbol x_n]^\top={\mathbf Q}{\pmb \Lambda}^{1/2}\) is an \(n \times k\) data matrix for points \(\boldsymbol x_1, \ldots , \boldsymbol x_n\) in \(\mathbb{R}^k\), which have inter-point distances given by \(\boldsymbol D=(d_{ij})\). Moreover, for this data matrix \(\bar{\boldsymbol x}={\mathbf 0}_k\) and \(\boldsymbol B\) represents the inner product matrix with elements given by \eqref{eq:bijB}.
+  Suppose \(\boldsymbol B\) is positive semi-definite with eigenvalues \(\lambda_1 \geq \lambda_2 \cdots \geq \lambda_k \geq 0\) and that it has spectral decomposition \(\boldsymbol B={\mathbf U} {\pmb \Lambda}{\mathbf U}^\top\), where \({\pmb \Lambda}=\text{diag}\{\lambda_1 \ldots \lambda_k\}\) and \(\mathbf U\) is \(n \times k\) and satisfies \({\mathbf U}^\top {\mathbf U}={\mathbf I}_k\). Then
+  \[{\mathbf X}=[\boldsymbol x_1, \ldots , \boldsymbol x_n]^\top={\mathbf U}{\pmb \Lambda}^{1/2}\]
+  is an \(n \times k\) data matrix which has \textbf{Euclidean} distance marrix \(\boldsymbol D\).
+
+  Moreover, for this data matrix \(\bar{\boldsymbol x}={\mathbf 0}_k\) and \(\boldsymbol B\) represents the inner product matrix with elements given by \eqref{eq:bijB}.
 \end{enumerate}
-\end{proposition}
+\end{theorem}
+
+For part 1. we may equivalently write
+\begin{equation}
+b_{ij}=(\boldsymbol x_i-\bar{\boldsymbol x})^\top (\boldsymbol x_j - \bar{\boldsymbol x}), \qquad i,j=1,\ldots , n,
+\end{equation}
+where \(\bar{\mathbf x}=n^{-1}\sum_{i=1}^n \boldsymbol x_i\) is the sample mean vector.
+This illustrates why we call \(\boldsymbol B\) the \emph{centred inner-product} matrix: \(\boldsymbol H\boldsymbol X\) is the centred data matrix, and \((\boldsymbol H\boldsymbol X)(\boldsymbol H\boldsymbol X)^\top\) thus contains the inner product of each pair of centred vectors.
 
 \begin{proof}
-\iffalse{} {Proof. } \fi{}Part 1. is a direct consequence of parts 2. and 3. Parts 2. and 3. are proved in the example sheets.
+\iffalse{} {Proof. } \fi{}You will prove this result in the example sheets.
 \end{proof}
 
-\textbf{Important Point}: Proposition \ref{prp:five1} may be useful even if \({\mathbf D}\) is not a Euclidean distance matrix, in which case \(\boldsymbol B\) has some negative eigenvalues. What we can do is to replace \(\boldsymbol B\) by its positive part. If \(\boldsymbol B\) has spectral decomposition \(\sum_{j=1}^p \lambda_j \boldsymbol q_j \boldsymbol q_j^\top\), then its positive definite part is defined by
+\begin{corollary}
+\protect\hypertarget{cor:unnamed-chunk-5}{}{\label{cor:unnamed-chunk-5} }The distance matrix \(\boldsymbol D\) is a Euclidean distance matrix if and only if the corresponding centred inner-product matrix \(\boldsymbol B\) is a positive semi-definite matrix.
+\end{corollary}
+
+\hypertarget{important-point}{%
+\paragraph{Important Point}\label{important-point}}
+\addcontentsline{toc}{paragraph}{Important Point}
+
+Proposition \ref{thm:five1} may be useful even if \({\mathbf D}\) is not a \emph{Euclidean} distance matrix (in which case \(\boldsymbol B\) will have some negative eigenvalues).
+
+Instead of using \(\boldsymbol B\) in Proposition \ref{thm:five1} we can use its positive part. If \(\boldsymbol B\) has spectral decomposition \(\sum_{j=1}^p \lambda_j \boldsymbol u_j \boldsymbol u_j^\top\), then its positive definite part is defined by
 \[
-\boldsymbol B_{\text{pos}}=\sum_{j: \, \lambda_j>0} \lambda_j \boldsymbol q_j \boldsymbol q_j^\top.
+\boldsymbol B_{\text{pos}}=\sum_{j: \, \lambda_j>0} \lambda_j \boldsymbol u_j \boldsymbol u_j^\top.
 \]
 In other words, we sum over those \(j\) such that \(\lambda_j\) is positive.
-Then \(\boldsymbol B_{\text{pos}}\) is non-negative definite and so we can use Theorem 5.1(iii) to determine a Euclidean configuration which has centred inner-product matrix \(\boldsymbol B_{\text{pos}}\). Then, provided the negative eigenvalues are small in absolute value relative to the positive eigenvalues, the inter-point distances of the new points in Euclidean space should provide a good approximation to the original inter-point distances \((d_{ij})\).
+
+Then \(\boldsymbol B_{\text{pos}}\) is positive semi-definite and so we can use part 2. of Theorem \ref{thm:five1} to determine a Euclidean configuration which has centred inner-product matrix \(\boldsymbol B_{\text{pos}}\). Then, provided the negative eigenvalues are small in absolute value relative to the positive eigenvalues, the inter-point distances of the new points in Euclidean space should provide a good approximation to the original inter-point distances \((d_{ij})\).
 
 \hypertarget{example-1}{%
-\subsection{Example}\label{example-1}}
+\subsection{Example 1}\label{example-1}}
 
 Consider the five point in \(\mathbb{R}^2\):
 \[
@@ -5762,91 +5716,6 @@ Consider the five point in \(\mathbb{R}^2\):
 \[
 \boldsymbol x_4 =(-1,0)^\top \quad \text{and} \quad \boldsymbol x_5=(0,-1)^\top.
 \]
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{X <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}
-              \DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}
-              \DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}
-              \DecValTok{-1}\NormalTok{,}\DecValTok{0}\NormalTok{,}
-              \DecValTok{0}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{), }\DataTypeTok{nc=}\DecValTok{2}\NormalTok{, }\DataTypeTok{byrow=}\OtherTok{TRUE}\NormalTok{)}
-\NormalTok{(D <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{dist}\NormalTok{(X, }\DataTypeTok{upper=}\NormalTok{T, }\DataTypeTok{diag=}\NormalTok{T)))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##   1        2        3        4        5
-## 1 0 1.000000 1.000000 1.000000 1.000000
-## 2 1 0.000000 1.414214 2.000000 1.414214
-## 3 1 1.414214 0.000000 1.414214 2.000000
-## 4 1 2.000000 1.414214 0.000000 1.414214
-## 5 1 1.414214 2.000000 1.414214 0.000000
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{(A <-}\StringTok{ }\OperatorTok{-}\NormalTok{D}\OperatorTok{^}\DecValTok{2}\OperatorTok{/}\DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      1    2    3    4    5
-## 1  0.0 -0.5 -0.5 -0.5 -0.5
-## 2 -0.5  0.0 -1.0 -2.0 -1.0
-## 3 -0.5 -1.0  0.0 -1.0 -2.0
-## 4 -0.5 -2.0 -1.0  0.0 -1.0
-## 5 -0.5 -1.0 -2.0 -1.0  0.0
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{H <-}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\DecValTok{5}\NormalTok{) }\OperatorTok{-}\StringTok{ }\DecValTok{1}\OperatorTok{/}\DecValTok{5} \OperatorTok{*}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{), }\DataTypeTok{nc=}\DecValTok{1}\NormalTok{)}\OperatorTok{%*%}\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{), }\DataTypeTok{nr=}\DecValTok{1}\NormalTok{)}
-\NormalTok{B <-}\StringTok{ }\NormalTok{H}\OperatorTok{%*%}\StringTok{ }\NormalTok{A}\OperatorTok{%*%}\NormalTok{H}
-\KeywordTok{print}\NormalTok{(}\KeywordTok{round}\NormalTok{(B,}\DecValTok{0}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      [,1] [,2] [,3] [,4] [,5]
-## [1,]    0    0    0    0    0
-## [2,]    0    1    0   -1    0
-## [3,]    0    0    1    0   -1
-## [4,]    0   -1    0    1    0
-## [5,]    0    0   -1    0    1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{B.eig <-}\KeywordTok{eigen}\NormalTok{(B)}
-\NormalTok{Y<-}\KeywordTok{sqrt}\NormalTok{(B.eig}\OperatorTok{$}\NormalTok{values[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{])}\OperatorTok{*}\NormalTok{B.eig}\OperatorTok{$}\NormalTok{vectors[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
-\KeywordTok{dist}\NormalTok{(Y, }\DataTypeTok{upper=}\NormalTok{T, }\DataTypeTok{diag=}\NormalTok{T) }\CommentTok{# should agree with D.}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##          1        2        3        4        5
-## 1 0.000000 1.000000 1.000000 1.000000 1.000000
-## 2 1.000000 0.000000 1.414214 2.000000 1.414214
-## 3 1.000000 1.414214 0.000000 1.414214 2.000000
-## 4 1.000000 2.000000 1.414214 0.000000 1.414214
-## 5 1.000000 1.414214 2.000000 1.414214 0.000000
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Y.mds <-}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(D, }\DataTypeTok{eig=}\OtherTok{TRUE}\NormalTok{)}
-\KeywordTok{dist}\NormalTok{(Y.mds}\OperatorTok{$}\NormalTok{points, }\DataTypeTok{upper=}\NormalTok{T, }\DataTypeTok{diag=}\NormalTok{T)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##          1        2        3        4        5
-## 1 0.000000 1.000000 1.000000 1.000000 1.000000
-## 2 1.000000 0.000000 1.414214 2.000000 1.414214
-## 3 1.000000 1.414214 0.000000 1.414214 2.000000
-## 4 1.000000 2.000000 1.414214 0.000000 1.414214
-## 5 1.000000 1.414214 2.000000 1.414214 0.000000
-\end{verbatim}
 
 The resulting distance matrix is
 \[
@@ -5878,36 +5747,258 @@ and
 0&0&-1&0&1
 \end{array} \right ].
 \]
-Further numerical calculations using R show that the eigenvalues of \(\boldsymbol B\) are
+
+In R we can compute these as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+              \DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+              \DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}
+              \DecValTok{-1}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+              \DecValTok{0}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{), }\DataTypeTok{nc=}\DecValTok{2}\NormalTok{, }\DataTypeTok{byrow=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{D <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{dist}\NormalTok{(X, }\DataTypeTok{upper=}\NormalTok{T, }\DataTypeTok{diag=}\NormalTok{T))}
+\NormalTok{A <-}\StringTok{ }\OperatorTok{-}\NormalTok{D}\OperatorTok{^}\DecValTok{2}\OperatorTok{/}\DecValTok{2} 
+\CommentTok{# note D^2 does element wise operations, different to D%*%D}
+\NormalTok{H <-}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\DecValTok{5}\NormalTok{) }\OperatorTok{-}\StringTok{ }\DecValTok{1}\OperatorTok{/}\DecValTok{5} \OperatorTok{*}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{), }\DataTypeTok{nc=}\DecValTok{1}\NormalTok{)}\OperatorTok{%*%}\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{), }\DataTypeTok{nr=}\DecValTok{1}\NormalTok{)}
+\NormalTok{B <-}\StringTok{ }\NormalTok{H}\OperatorTok{%*%}\StringTok{ }\NormalTok{A}\OperatorTok{%*%}\NormalTok{H }\CommentTok{#check this matches  (H %*% X) %*% t(H %*% X)}
+\end{Highlighting}
+\end{Shaded}
+
+You should check that \(\boldsymbol H\boldsymbol A\boldsymbol H\) is the same as \((\boldsymbol H\boldsymbol X)(\boldsymbol H\boldsymbol X)^\top\), thus verifying part 1. of Theorem \ref{thm:five1}. Note that there will be very small differences (\(\sim 10^{-16}\)) due to numerical errors.
+
+Can we now find a set of \(5\) points in \(\mathbb{R}^2\) that have a Euclidean distance matrix \(\boldsymbol D\) if we are only given the matrix \(\boldsymbol B\)?
+
+\begin{itemize}
+\tightlist
+\item
+  Yes, this is what part 2. of the Theorem gives us.
+\end{itemize}
+
+Firstly, we need to compute the spectral decomposition of \(\boldsymbol B\). The eigenvalues of \(\boldsymbol B\) are
 \[
 \lambda_1=\lambda_2=2 \qquad \text{and} \qquad \lambda_3=\lambda_4=\lambda_5=0.
 \]
-Note that, as expected from Proposition \ref{prp:five1}, \(\boldsymbol B\) is non-negative definite because it is a Euclidean
+Note that, as expected from Proposition \ref{thm:five1}, \(\boldsymbol B\) is positive semi-definite because it is a Euclidean
 distance matrix.
 
-The following mutually orthogonal unit eigenvectors corresponding to the repeated eigenvalue \(2\)
-are produced by R:
+Because we have a repeated eigenvalue (\(\lambda=2\) has \emph{multiplicity} 2), the eigenspace associated with \(\lambda=2\) is a two dimensional space, and so there are many pairs of mutually orthogonal unit eigenvectors spanning this eigenspace (i.e., there is not a unique pair of eigenvectors). One choice (the sparsest) is
 \[
-\boldsymbol q_1= \begin{pmatrix}0 \\ -0.439 \\ -0.554 \\ 0.439 \\ 0.554 \end{pmatrix} \qquad
-\text{and} \qquad \boldsymbol q_2 =\begin{pmatrix}0 \\ 0.554 \\ -0.439 \\ -0.554\\ 0.439 \end{pmatrix}.
+\boldsymbol u_1= \begin{pmatrix}0 \\ 0 \\ -\frac{1}{\sqrt{2}} \\ 0 \\ -\frac{1}{\sqrt{2}} \end{pmatrix} \qquad
+\text{and} \qquad \boldsymbol q_2 =\begin{pmatrix}0 \\ -\frac{1}{\sqrt{2}} \\ 0 \\ \frac{1}{\sqrt{2}}\\ 0 \end{pmatrix}.
 \]
-So the coordinates of five points in \(\mathbb{R}^2\) which have the same inter-point distance matrix, \(\boldsymbol D\), as the original five points in \(\mathbb{R}^2\), are given by the rows of the matrix
+
+Note that if we compute these in R, you may well get different eigenvectors, but the subspace described by the pair of vectors will be the same.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{eigen}\NormalTok{(B)}\OperatorTok{$}\NormalTok{values }\CommentTok{#using B = H%*% A%*%H }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  2.000000e+00  2.000000e+00  1.207037e-15  3.331224e-16 -2.775558e-17
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{eigen}\NormalTok{(B)}\OperatorTok{$}\NormalTok{vectors[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]       [,2]
+## [1,]  0.0000000  0.0000000
+## [2,] -0.6916609  0.1469869
+## [3,] -0.1469869 -0.6916609
+## [4,]  0.6916609 -0.1469869
+## [5,]  0.1469869  0.6916609
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B2 <-}\StringTok{ }\NormalTok{(H }\OperatorTok{%*%}\StringTok{ }\NormalTok{X) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{t}\NormalTok{(H }\OperatorTok{%*%}\StringTok{ }\NormalTok{X) }\CommentTok{# alternative way of computing B}
+\KeywordTok{eigen}\NormalTok{(B2)}\OperatorTok{$}\NormalTok{values}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.000000e+00 2.000000e+00 1.110223e-15 1.110223e-15 0.000000e+00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{eigen}\NormalTok{(B2)}\OperatorTok{$}\NormalTok{vectors[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]       [,2]
+## [1,]  0.0000000  0.0000000
+## [2,]  0.0000000 -0.7071068
+## [3,] -0.7071068  0.0000000
+## [4,]  0.0000000  0.7071068
+## [5,]  0.7071068  0.0000000
+\end{verbatim}
+
+We can compute the coordinates of five points in \(\mathbb{R}^2\) which have Euclidean distance matrix, \(\boldsymbol D,\) by
 \[
-\boldsymbol Q\boldsymbol \Lambda^{1/2}=\sqrt{2}[\boldsymbol q_1 , \boldsymbol q_2]=
-\begin{pmatrix}
-0&0\\
--0.621 & 0.784\\
--0.784 & -0.621\\
-0.621 & -0.784\\
-0.784 & 0.621
-\end{pmatrix}.
-\]
-In the example sheets you asked to verify that there is an orthogonal transformation which maps the original five points onto the new five points.
+\boldsymbol Q\boldsymbol \Lambda^{1/2}=\sqrt{2}[\boldsymbol q_1 , \boldsymbol q_2].\]
+
+Note again that these coordinates are not unique as any rotation or translation of them will have the same distance matrix. In particular, when doing computations in R we may find different answers depending upon how we do the computation. So for example, if we use the eigendecompostion of \(\boldsymbol B= \boldsymbol H\boldsymbol A\boldsymbol H\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B.eig <-}\StringTok{ }\KeywordTok{eigen}\NormalTok{(B)}
+\NormalTok{Y <-}\KeywordTok{sqrt}\NormalTok{(B.eig}\OperatorTok{$}\NormalTok{values[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{])}\OperatorTok{*}\NormalTok{B.eig}\OperatorTok{$}\NormalTok{vectors[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+we find
+\[\begin{pmatrix}0&0 \\-0.978&0.208 \\-0.208&-0.978 \\0.978&-0.208 \\0.208&0.978 \\\end{pmatrix}.\]
+Where as if we use the eigen decomposition of \((\boldsymbol H\boldsymbol H)(\boldsymbol H\boldsymbol X)^\top\) we find a different set of points:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B2.eig <-}\StringTok{ }\KeywordTok{eigen}\NormalTok{(B2)}
+\NormalTok{Y2 <-}\KeywordTok{sqrt}\NormalTok{(B2.eig}\OperatorTok{$}\NormalTok{values[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{])}\OperatorTok{*}\NormalTok{B2.eig}\OperatorTok{$}\NormalTok{vectors[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\[\begin{pmatrix}0&0 \\0&-1 \\-1&0 \\0&1 \\1&0 \\\end{pmatrix}.\]
+
+The distance matrices for both sets of points are equal to \(\boldsymbol D\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{signif}\NormalTok{(}\KeywordTok{dist}\NormalTok{(Y, }\DataTypeTok{upper=}\NormalTok{T, }\DataTypeTok{diag=}\NormalTok{T),}\DecValTok{2}\NormalTok{) }\CommentTok{# should agree with D.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     1   2   3   4   5
+## 1 0.0 1.0 1.0 1.0 1.0
+## 2 1.0 0.0 1.4 2.0 1.4
+## 3 1.0 1.4 0.0 1.4 2.0
+## 4 1.0 2.0 1.4 0.0 1.4
+## 5 1.0 1.4 2.0 1.4 0.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{signif}\NormalTok{(}\KeywordTok{dist}\NormalTok{(Y2, }\DataTypeTok{upper=}\NormalTok{T, }\DataTypeTok{diag=}\NormalTok{T),}\DecValTok{2}\NormalTok{) }\CommentTok{# should agree with D.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     1   2   3   4   5
+## 1 0.0 1.0 1.0 1.0 1.0
+## 2 1.0 0.0 1.4 2.0 1.4
+## 3 1.0 1.4 0.0 1.4 2.0
+## 4 1.0 2.0 1.4 0.0 1.4
+## 5 1.0 1.4 2.0 1.4 0.0
+\end{verbatim}
+
+Finally, note that as always, there is an R command that will do all of this work for us
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Y.mds <-}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(D, }\DataTypeTok{eig=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+giving the set of points
+\[\begin{pmatrix}0&0 \\1&0 \\0&-1 \\-1&0 \\0&1 \\\end{pmatrix}\]
+
+If we plot the original data points \(\boldsymbol X\), along with the three sets of reconstructed data points \texttt{Y}, \texttt{Y2}, and \texttt{Y.mds} we can see that they are essentially the same, apart from being rotatated or reordered.
+
+\includegraphics{06-mds_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+In the Exercises you will be asked to verify that there is an orthogonal transformation which maps the original five points onto the set of five reconstructed points.
+
+\hypertarget{example-2}{%
+\subsection{Example 2}\label{example-2}}
+
+Let's now look at a case for which \(\boldsymbol B\) isn't positive dinite. We'll create this by modifying the distance matrix we had before:
+
+\[\boldsymbol D_2 = \begin{pmatrix}0&0.5&1&1&1 \\0.5&0&1.41&2&1.41 \\1&1.41&0&1.41&2 \\1&2&1.41&0&1.41 \\1&1.41&2&1.41&0 \\\end{pmatrix}.\]
+This is a distance matrix, but is it a \emph{Euclidean} distance matrix? I.e., is there a set of vectors \(\boldsymbol x_1, \ldots, \boldsymbol x_5\) which have Euclidean distances between them given by \(\boldsymbol D_2\)?
+
+If we look at the eigenvalues of the centred inner-product matrix \(\boldsymbol B\) associated with \(\boldsymbol D_2\), then we find that it has negative eigenvalues, and is thus not positive semi-definite. Thus by Theorem \ref{thm:five1} \(\boldsymbol D_2\) is not a \emph{Euclidean} distance matrix.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{D2 <-}\StringTok{ }\NormalTok{D}
+\NormalTok{D2[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]<-}\FloatTok{0.5}
+\NormalTok{D2[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]<-D2[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{A2 <-}\StringTok{ }\OperatorTok{-}\NormalTok{D2}\OperatorTok{^}\DecValTok{2}\OperatorTok{/}\DecValTok{2} 
+\CommentTok{# note D^2 does element wise operations, different to D%*%D}
+\NormalTok{B2 <-}\StringTok{ }\NormalTok{H}\OperatorTok{%*%}\StringTok{ }\NormalTok{A2}\OperatorTok{%*%}\NormalTok{H }\CommentTok{#check this matches  (H %*% X) %*% t(H %*% X)}
+\KeywordTok{eigen}\NormalTok{(B2)}\OperatorTok{$}\NormalTok{values}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  2.026016e+00  2.000000e+00  1.004310e-01 -7.216450e-16 -2.764470e-01
+\end{verbatim}
+
+We can still use classical multidimensional scaling to find a set of points \(\boldsymbol x_1, \ldots, \boldsymbol x_5\) that have distances approximately given by \(\boldsymbol D_2\).
+\texttt{cmdscale} allows us to specify the dimension of the points \(\boldsymbol x_i\). If we pick \(\dim(\boldsymbol x)=2\) then itt gives us the set of points
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cmdscale}\NormalTok{(D2, }\DataTypeTok{k=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]          [,2]
+## 1 -0.13881300  1.449541e-15
+## 2 -0.97216111  1.011091e-14
+## 3  0.04112656 -1.000000e+00
+## 4  1.02872100 -1.018790e-14
+## 5  0.04112656  1.000000e+00
+\end{verbatim}
+
+which have a distance matrix that approximates \(\boldsymbol D_2\), but does not equal it. By using a different number of dimensions, we may be able to get a set of points have a distance matrix closer to \(\boldsymbol D\), but we will not be able to find a set of \(5\) points that have a distance matrix exactly equal to \(\boldsymbol D_2\).
+
+To do this ourselves (i.e., not using \texttt{cmdscale}) we can use the commands
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{U <-}\StringTok{ }\KeywordTok{eigen}\NormalTok{(B2)}\OperatorTok{$}\NormalTok{vectors[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{Lambda_sqrt <-}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\KeywordTok{eigen}\NormalTok{(B2)}\OperatorTok{$}\NormalTok{values[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{])}
+\NormalTok{U }\OperatorTok{%*%}\StringTok{ }\NormalTok{Lambda_sqrt}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             [,1]          [,2]
+## [1,] -0.19758391 -7.490239e-16
+## [2,] -1.38375651 -5.393269e-15
+## [3,]  0.05853879 -1.414214e+00
+## [4,]  1.46426283  5.197828e-15
+## [5,]  0.05853879  1.414214e+00
+\end{verbatim}
+
+\includegraphics{06-mds_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+\hypertarget{example-3}{%
+\subsection{Example 3}\label{example-3}}
+
+Finally, if we apply the \texttt{cmdscale} to the distances between UK cities from the introduction, we get the `coordinates' shown below.
+
+\includegraphics{06-mds_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+This `map' is essentially correct, but it is rotated \(90^\circ\).
 
 \hypertarget{principal-coordinates}{%
 \section{Principal Coordinates}\label{principal-coordinates}}
 
-Starting with a distance matrix \(\boldsymbol D\), and using the matrix \(\boldsymbol B\), we now show how to calculate exact or approximate Euclidean coordinates for the \(n\) objects under study. We already know from Proposition \ref{prp:five1} how to do this when the distance matrix \(\boldsymbol D\) is Euclidean, but we will see now that this construction works more generally. Moreover, there is a very close connection with principal components analysis.
+See
+\url{https://stats.stackexchange.com/questions/14002/whats-the-difference-between-principal-component-analysis-and-multidimensional}
+
+Starting with a distance matrix \(\boldsymbol D\), and using the matrix \(\boldsymbol B\), we now show how to calculate exact or approximate Euclidean coordinates for the \(n\) objects under study. We already know from Proposition \ref{thm:five1} how to do this when the distance matrix \(\boldsymbol D\) is Euclidean, but we will see now that this construction works more generally. Moreover, there is a very close connection with principal components analysis.
 
 \begin{itemize}
 \item
@@ -5943,6 +6034,11 @@ d_{ij}^2 = (\boldsymbol x_i -\boldsymbol x_j)^\top(\boldsymbol x_i -\boldsymbol 
 where \(\boldsymbol x_1^\top, \ldots , \boldsymbol x_n^\top\) are the rows of \(\boldsymbol X\). Then the centred PC scores based on the first \(k\) principal components are principal coordinates of the \(n\) points in \(k\) dimensions based on the distance matrix \(\boldsymbol D\).
 \end{proposition}
 
+\hypertarget{properties-1}{%
+\section{Properties}\label{properties-1}}
+
+Scaling, translation, uniqueness of solution? Mean of solution???
+
 \hypertarget{similarity-measures}{%
 \section{Similarity measures}\label{similarity-measures}}
 
@@ -5972,7 +6068,7 @@ Condition 2. implies that an object is at least as similar to itself as it is to
 One important class of problems is when the similarity between any two objects is measured by the number of common attributes. We illustrate this through two examples.
 
 \begin{example}
-\protect\hypertarget{exm:unnamed-chunk-6}{}{\label{exm:unnamed-chunk-6} }Suppose there are 4 attributes we wish to consider.
+\protect\hypertarget{exm:unnamed-chunk-21}{}{\label{exm:unnamed-chunk-21} }Suppose there are 4 attributes we wish to consider.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6059,7 +6155,7 @@ Note that, provided \(\boldsymbol F\) is a similarity matrix, the \(d_{ij}\) are
 We have the following result.
 
 \begin{proposition}
-\protect\hypertarget{prp:mds2}{}{\label{prp:mds2} }Suppose that \(\boldsymbol F\) is a similarity matrix. If, in addition, \(\boldsymbol F\) is non-negative definite, then \(\boldsymbol D\) defined in \eqref{eq:defD} is Euclidean with centred inner product matrix
+\protect\hypertarget{prp:mds2}{}{\label{prp:mds2} }Suppose that \(\boldsymbol F\) is a similarity matrix. If, in addition, \(\boldsymbol F\) is positive semi-definite, then \(\boldsymbol D\) defined in \eqref{eq:defD} is Euclidean with centred inner product matrix
 \begin{equation}
 \boldsymbol B=\boldsymbol H\boldsymbol F\boldsymbol H,
 \label{eq:BHFH}
@@ -6068,7 +6164,7 @@ where \(\boldsymbol H=\mathbf I_n - n^{-1}{\mathbf 1}_n {\mathbf 1}_n^\top\) is 
 \end{proposition}
 
 \begin{proof}
-\iffalse{} {Proof. } \fi{}Since \(\boldsymbol F\) is non-negative definite by assumption, and \(\boldsymbol H^\top =\boldsymbol H\) by definition of \(\boldsymbol H\), it follows that \(\boldsymbol H\boldsymbol F\boldsymbol H\) must also be non-negative definite. So by Result 5.1, we just need to show that \eqref{eq:BHFH} holds, where \(\boldsymbol B\) is given by \(\boldsymbol B=\boldsymbol H\boldsymbol A\boldsymbol H\) and \(\boldsymbol A\) is defined as in \eqref{eq:defA}, and the \(d_{ij}\) are defined by \eqref{eq:defD}. Then
+\iffalse{} {Proof. } \fi{}Since \(\boldsymbol F\) is positive semi-definite by assumption, and \(\boldsymbol H^\top =\boldsymbol H\) by definition of \(\boldsymbol H\), it follows that \(\boldsymbol H\boldsymbol F\boldsymbol H\) must also be positive semi-definite. So by Result 5.1, we just need to show that \eqref{eq:BHFH} holds, where \(\boldsymbol B\) is given by \(\boldsymbol B=\boldsymbol H\boldsymbol A\boldsymbol H\) and \(\boldsymbol A\) is defined as in \eqref{eq:defA}, and the \(d_{ij}\) are defined by \eqref{eq:defD}. Then
 \[
 a_{ij}=-\frac{1}{2}d_{ij}^2 =f_{ij}-\frac{1}{2}(f_{ii}+f_{jj}).
 \]
@@ -6118,7 +6214,7 @@ Consequently, \(\boldsymbol B=\boldsymbol H\boldsymbol F\boldsymbol H\), using p
     and write \(\boldsymbol B=(b_{ij})_{i,j=1}^n\). Prove that \[\boldsymbol B=(\boldsymbol H\boldsymbol X)(\boldsymbol H\boldsymbol X)^\top,\] where
     \(\boldsymbol H\) is the \(n \times n\) centering matrix and \(\boldsymbol X= (\boldsymbol x_1, \ldots , \boldsymbol x_n)^\top\) is the data matrix.
   \item
-    Show that \(\boldsymbol B\) is non-negative definite (in which case part (ii) of Result 5.1 holds). \textbf{Hint}: explain why, for
+    Show that \(\boldsymbol B\) is positive semi-definite (in which case part (ii) of Result 5.1 holds). \textbf{Hint}: explain why, for
     all \(n \times 1\) vectors \(\boldsymbol a\),
     \[
     \boldsymbol a^\top \boldsymbol B\boldsymbol a=\boldsymbol a^\top (\boldsymbol H\boldsymbol X) (\boldsymbol H\boldsymbol X)^\top \boldsymbol a\geq 0. 
@@ -6141,7 +6237,7 @@ where\\
 \[\bar{a}_{i+}= \frac{1}{n} \sum_{j=1}^n a_{ij}, \quad \bar{a}_{+j}=\frac{1}{n} \sum_{i=1}^n a_{ij}, \quad\mbox{and} \quad\bar{a}_{++} = \frac{1}{n^2} \sum_{i,j=1}^n a_{ij}.\]
 
 \begin{verbatim}
-- Assume that $\bB$ is non-negative definite with $k$ strictly positive eigenvalues and let
+- Assume that $\bB$ is positive semi-definite with $k$ strictly positive eigenvalues and let
 \end{verbatim}
 
 \[
@@ -6578,8 +6674,8 @@ and if the \(ij^{th}\) element of \(\boldsymbol \Sigma\) is \(\sigma_{ij}\), and
 \[{\mathbb{V}\operatorname{ar}}(m_{ij}) =  n \left(\sigma_{ij}^2+\sigma_{ii}\sigma_{jj} \right)\]
 \end{proposition}
 
-\hypertarget{properties-1}{%
-\subsection{Properties}\label{properties-1}}
+\hypertarget{properties-2}{%
+\subsection{Properties}\label{properties-2}}
 
 We now use the definition of \(W_p(\boldsymbol \Sigma, n)\) to prove some important
 results.
@@ -6891,8 +6987,8 @@ Thus to conduct the hypothesis test, we compute \(\zeta^2\) for the observed dat
 The multivariate equivalent of a confidence interval is a \textbf{confidence region} and the \(100(1-\alpha)\)\% confidence region for \(\boldsymbol \mu\) is \(\{ \boldsymbol a: \zeta^2 \leq \chi^2_{p,\alpha} \}\).
 This confidence region will be the interior of an ellipse or ellipsoid.
 
-\hypertarget{example-2}{%
-\subsubsection*{Example}\label{example-2}}
+\hypertarget{example-4}{%
+\subsubsection*{Example}\label{example-4}}
 \addcontentsline{toc}{subsubsection}{Example}
 
 Consider again the exam marks for first year maths students in the two modules PRB and STA. The scatterplot below shows the module marks for \(n=203\) students on probability (PRB, \(x_1\)) and statistics (STA, \(x_2\)), with the sample mean vector \(\begin{pmatrix}62.1 \\62.7 \\\end{pmatrix}\) marked on as a red `+'.
@@ -6979,8 +7075,8 @@ As before, depending upon our approach we either
 
 The \(100(1-\alpha)\)\% confidence region for \(\boldsymbol \mu\) is \(\{ \boldsymbol a: \gamma^2 \leq F_{p,n-p,\alpha} \}\), which will again be the interior of an ellipse or ellipsoid, but the confidence region is now determined by \(\boldsymbol S\) rather than \(\boldsymbol \Sigma\).
 
-\hypertarget{example-continued}{%
-\subsubsection*{Example continued}\label{example-continued}}
+\hypertarget{example-continued-1}{%
+\subsubsection*{Example continued}\label{example-continued-1}}
 \addcontentsline{toc}{subsubsection}{Example continued}
 
 We return to the example with the module marks for \(n=203\) students on probability (PRB, \(x_1\)) and statistics (STA, \(x_2\)), but now we assume that \(\boldsymbol \Sigma\) is unknown.
@@ -7160,8 +7256,8 @@ As in the one sample case, we can convert Hotelling's two-sample \(T^2\) statist
 \iffalse{} {Proof. } \fi{}Simply apply Proposition \ref{prp:six14} to the statistic in Proposition \ref{prp:seven1} (replace \(n\) with \(n+m-2\)).
 \end{proof}
 
-\hypertarget{example-continued-1}{%
-\subsubsection*{Example continued}\label{example-continued-1}}
+\hypertarget{example-continued-2}{%
+\subsubsection*{Example continued}\label{example-continued-2}}
 \addcontentsline{toc}{subsubsection}{Example continued}
 
 There are two different maths undergraduate programmes at the University of Nottingham: a 3-year (G100) and a 4-year (G103) programme. For the exam marks example, is there a significant difference between students registered on the two different programmes? Let \(\boldsymbol x_1,\ldots, \boldsymbol x_{131}\) be the exam marks of the G100 students and let \(\boldsymbol y_1,\ldots, \boldsymbol y_{72}\) be the exam marks of the G103 students. The data is shown below, with the sample means marked as large `+' signs.
@@ -7218,6 +7314,148 @@ The critical value for \(\alpha=0.05\) is
 \end{verbatim}
 
 Therefore \(\delta^2 < F_{p,n+m-p-1}\), so we do not reject the null hypothesis at the 5\% level.
+
+\hypertarget{exercises-4}{%
+\section{Exercises}\label{exercises-4}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  If \(M \sim W_p(\boldsymbol \Sigma,n)\), prove that \({\mathbb{E}}\boldsymbol M= n \boldsymbol \Sigma\).
+\item
+  If \(\boldsymbol x\sim N_p(\boldsymbol \mu,\boldsymbol \Sigma)\) and \(\boldsymbol a\) is any fixed vector of dimension \(p\), show that
+  \[ z = \frac{ \boldsymbol a^\top (\boldsymbol x- \boldsymbol \mu) }{ \sqrt{\boldsymbol a^\top \boldsymbol \Sigma\boldsymbol a} } \sim N(0,1).\]
+\item
+  Prove that
+  \[ n ( \bar{\boldsymbol x} - \boldsymbol \mu)^{\rm T} \boldsymbol \Sigma^{-1} ( \bar{\boldsymbol x} - \boldsymbol \mu) \sim \chi_p^2 . \]
+\item
+  If \(\boldsymbol x_1, \ldots, \boldsymbol x_n\) are i.i.d. \(N_p(\boldsymbol \mu, \boldsymbol \Sigma)\) with sample mean \(\bar{\boldsymbol x}\) and sample covariance matrix \(\boldsymbol S\), show that \({\mathbb{C}\operatorname{ov}}(\bar{\boldsymbol x}, \boldsymbol x_i - \bar{\boldsymbol x}) = \boldsymbol 0\). Hence deduce that \(\bar{\boldsymbol x}\) and \(\boldsymbol S\) are independent.
+
+  \textbf{Hint:} If the random vector \(\boldsymbol x\) is independent of the random vector \(\boldsymbol y\), then \(\boldsymbol x\) is also independent of any function \(f(\boldsymbol y)\).
+\item
+  A survey of \(n=25\) families records the head length of the first (\(x_1\)) and second (\(x_2\)) sons. The sample mean is \(\bar{\boldsymbol x} = (185.72, 183.84)^\top\). Assume that the observations are sampled from \(N_2(\boldsymbol \mu,\boldsymbol \Sigma)\) where \(\boldsymbol \Sigma= \text{diag}(100,100)\).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Conduct a hypothesis test of \(\boldsymbol \mu= (182,182)^\top\).
+  \item
+    Show that the confidence region for \(\boldsymbol \mu\) is circular. Find its centre and radius.
+  \item
+    Repeat the hypothesis test and sketch the confidence region if we assume that
+    \[\boldsymbol \Sigma= \begin{pmatrix} 100 & 50 \\ 50 & 100 \end{pmatrix}.\]
+  \end{itemize}
+\item
+  Let \(\boldsymbol x_1, \ldots, \boldsymbol x_{20}\) be a random sample of vectors from a \(N_3(\boldsymbol \mu,\boldsymbol \Sigma)\) population where \(\boldsymbol \mu\) and \(\boldsymbol \Sigma\) are unknown. The sample mean and sample covariance matrix are given by
+  \[\bar{\boldsymbol x} = \begin{pmatrix} 0.358 \\ -1.056 \\ -1.795 \end{pmatrix} \qquad
+  \boldsymbol S= \begin{pmatrix} 0.522 & 0.556 & -2.285 \\ 0.556 & 3.258 & -0.765 \\ -2.285 & -0.765 & 14.093 \end{pmatrix}.\]
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Use Hotelling's \(T^2\) distribution to perform a significance test of the hypothesis \(H_0: \boldsymbol \mu= (0,-1,-1)^T\). Note that \(\boldsymbol S= \boldsymbol Q\boldsymbol \Lambda\boldsymbol Q^T\) where \(\boldsymbol \Lambda= \text{diag}(14.531, 3.253,0.090)\) and
+    \[\boldsymbol Q= \begin{pmatrix} -0.163 & -0.121 & -0.979 \\ -0.075 & -0.988 & 0.135 \\ 0.984 & -0.095 & -0.152 \end{pmatrix}.\]
+  \item
+    Let \(\boldsymbol \mu= (\mu_1,\mu_2,\mu_3)^\top\). Perform separate (univariate) \(t\)-tests of the following hypotheses: \(\mu_1 = 0\); \(\mu_2 = -1\); \(\mu_3 = -1\). Compare the results of the individual tests with the combined test based on Hotelling's \(T^2\) distribution in (a). Comment briefly.
+  \end{itemize}
+\item
+  Two measurements were collected on each of 36 flea-beetles; 18 of the beetles were from a species called Chaetocnema concinna and the other 18 were from another species called Chaetocnema heikertingeri. The first variable consisted of the sum of widths (in micrometres) of the first joints of the first two tarsi (``feet''); and the second variable consisted of the corresponding sum for the second joints. It is of interest to know
+  whether or not the population means of the two species are different.
+
+  The sample means are \(\bar{\boldsymbol x}_1 = (181.50,129.17)^\top\) and \(\bar{\boldsymbol x}_2 = (205.06,120.44)^\top\); and the sample covariance matrices are
+  \[\boldsymbol S_1 = \begin{pmatrix} 120.58 & 56.25 \\ 56.25 & 44.63 \end{pmatrix} \qquad
+  \boldsymbol S_2 = \begin{pmatrix} 203.94 & 73.42 \\ 73.42 & 47.14 \end{pmatrix}.\]
+  Conduct a suitable hypothesis test. State your conclusion in words. What assumptions have you made in constructing the test? Do any of these assumptions seem suspect with these data?
+\end{enumerate}
+
+\hypertarget{computer-tasks-3}{%
+\section{Computer tasks}\label{computer-tasks-3}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Download the wine dataset from the \href{https://archive.ics.uci.edu/ml/datasets/wine}{UCI Machine Learning Repository}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{download.file}\NormalTok{(}\DataTypeTok{url=}\StringTok{"https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data"}\NormalTok{, }\DataTypeTok{destfile=}\StringTok{"wine.data"}\NormalTok{)}
+\NormalTok{wine <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"wine.data"}\NormalTok{, }\DataTypeTok{header=}\OtherTok{FALSE}\NormalTok{)}
+\KeywordTok{colnames}\NormalTok{(wine) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Type"}\NormalTok{, }\StringTok{"Alcohol"}\NormalTok{, }\StringTok{"Malic"}\NormalTok{,}
+\StringTok{"Ash"}\NormalTok{,}
+\StringTok{"Alcalinity"}\NormalTok{,}
+\StringTok{"Magnesium"}\NormalTok{,}
+\StringTok{"Phenols"}\NormalTok{,}
+\StringTok{"Flavanoids"}\NormalTok{,}
+\StringTok{"Nonflavanoids"}\NormalTok{,}
+\StringTok{"Proanthocyanins"}\NormalTok{,}
+\StringTok{"Color"}\NormalTok{,}
+\StringTok{"Hue"}\NormalTok{,}
+\StringTok{"Dilution"}\NormalTok{,}
+\StringTok{"Proline"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Let's assume this selection of wines is a random sample from the population of all possible wines. Conduct a multivariate hypothesis test to see whether the average wine has an alcohol content different from 13 and an Malic acide content different from 2?
+
+Test whether the alcohol and Malic acid content are significantly different between wines of type 1 and wines of type 2.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  The command \texttt{rWishart} can be used to simulate from a Wishart distribution. Alternatively, to sample from \(W_p(\boldsymbol \Sigma,n)\), you can sample \(\boldsymbol x_1, \ldots, \boldsymbol x_n \sim N_p(\boldsymbol 0, \boldsymbol \Sigma)\) and set \(\boldsymbol M= \sum \boldsymbol x_i \boldsymbol x_i^\top\).
+
+  \begin{itemize}
+  \item
+    Generate 10,000 samples \(M_1, \ldots,\) from a \(W_2(\boldsymbol \Sigma, 10)\) distribution with \(\boldsymbol \Sigma= \operatorname{diag}(2,1)\) using these two approaches. Compute the mean and variance of the two samples and check these accord with Proposition \ref{prp:wishartmean}.
+  \item
+    Set \(\boldsymbol a= (1\; 1)^\top\). Check empirically that \(\boldsymbol a^\top \boldsymbol M\boldsymbol a\sim 3 \chi^2_10\). \textbf{Hint} plot the theoretical densities on top of a histogram of the sampled quantities.
+  \item
+    Suppose \(\boldsymbol x_1, \ldots, \boldsymbol x_{10} \sim N_2(\boldsymbol 0, \operatorname{diag}(2,1))\). Empirically check that Proposition \ref{prp:six12} is true by computing the covariance matrix of a large number of such samples, and comparing this to the mean and variance of the Wishart distribution specified in the proposition.
+  \item
+    Similarly, validate Corollary \ref{cor:csix6} by comparing the distribution of \(\gamma^2\) with a \(F_{p, n-p}\) distribution.
+  \end{itemize}
+\item
+  Explain why the confidence regions for the population mean discussed in Section \ref{onesample} are ellipses. What are the major and minor axes of these ellipses?
+
+  Download the exam data from Moodle. We will now work through how to plot the confidence regions shown.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Firstly, let's plot a circle with equation
+    \[x^2+y^2=c^2\]
+    or in vector form:
+    \[\boldsymbol x^\top\boldsymbol x=c^2.\]
+    Why must \(x\) be in the range \((-c,c)\)? Suppose \(c=10\). In this case you can plot a circle using the following commands
+  \end{itemize}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{10}\NormalTok{, }\DecValTok{10}\NormalTok{,}\DecValTok{1}\OperatorTok{/}\DecValTok{1000}\NormalTok{) }
+\NormalTok{y <-}\StringTok{ }\OperatorTok{-}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{10}\OperatorTok{^}\DecValTok{2}\OperatorTok{-}\NormalTok{x}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(x, }\DecValTok{10}\NormalTok{, }\KeywordTok{rev}\NormalTok{(x) )}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(y, }\DecValTok{0}\NormalTok{, }\OperatorTok{-}\KeywordTok{rev}\NormalTok{(y))}
+\KeywordTok{plot}\NormalTok{(x,y,}\DataTypeTok{type=}\StringTok{'l'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ Explain why this works. **Note** if your plotting window is not square, your circle will look like an ellipse!
+
+- Secondly, let's now plot the ellipse 
+$$\bx^\top \bS^{-1}\bx=c^2$$
+We can do this by noting that $\bu = \bS^{-1/2}\bx$ obeys the equation
+$$\bu^\top\bu=c^2,$$
+i.e., a circle. Thus you can plot an ellipse by using the code above to generate a circle, and then transforming it to be an ellipse. Plot the ellipse for $\bS$ given by the sample covariance matrix of the data.
+
+- Thirdly, we can plot the ellipse
+  $$(\bx-\mu)^\top \bS^{-1}(\bx-\mu)=c^2$$
+by shifting the ellipse to be centered around $\mu$. Thus plot the 95\% confidence region for the population mean for the exam data.
+\end{verbatim}
 
 \bibliography{book.bib,packages.bib}
 
