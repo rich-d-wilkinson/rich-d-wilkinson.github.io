@@ -203,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>4.2</b> PCA: a formal description with proofs</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>4.2.1</b> Properties of principal components</a></li>
-<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#example-football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
 <li class="chapter" data-level="4.2.3" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>4.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
 <li class="chapter" data-level="4.2.4" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>4.2.4</b> Population PCA</a></li>
 <li class="chapter" data-level="4.2.5" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>4.2.5</b> PCA under transformations of variables</a></li>
@@ -283,7 +283,7 @@ Let’s check this in R (noting as always that there may be some numerical error
 <li><p>Check that <span class="math inline">\(\mathbf X\mathbf v= \sigma \mathbf u\)</span>.</p></li>
 <li><p>Compute the best rank-1, rank-2, and rank-3 approximations to <span class="math inline">\(\mathbf X\)</span>, and report the 2-norm and Frobenious norm for these approximations</p></li>
 <li><p>Compute the eigenvalues of <span class="math inline">\(\mathbf X^\top \mathbf X\)</span>. How do these relate to the singular values? How does <span class="math inline">\(\mathbf X^\top \mathbf X\)</span> relate to the sample covariance matrix of the iris data? How do the singular values relate to the eigenvalues of the covariance matrix?</p></li>
-<li><p>Let <span class="math inline">\(\mathbf S\)</span> be the sample covariance matrix of the iris dataset. What vector maximizes <span class="math inline">\(\mathbf x^\top \mathbf S\mathbf x\)</span>?</p></li>
+<li><p>Let <span class="math inline">\(\mathbf S\)</span> be the sample covariance matrix of the iris dataset. What vector <span class="math inline">\(\mathbf x\)</span> with <span class="math inline">\(||\mathbf x||=1\)</span> maximizes <span class="math inline">\(\mathbf x^\top \mathbf S\mathbf x\)</span>?</p></li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
 <li>Choose an few images from the <a href="http://sipi.usc.edu/database/">USC-SIPI Image Database</a> and repeat the image compression example from the notes. Which type of images compress well do you think?</li>

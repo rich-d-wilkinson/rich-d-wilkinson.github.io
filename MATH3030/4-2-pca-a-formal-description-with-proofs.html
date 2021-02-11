@@ -203,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>4.2</b> PCA: a formal description with proofs</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>4.2.1</b> Properties of principal components</a></li>
-<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#example-football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
 <li class="chapter" data-level="4.2.3" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>4.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
 <li class="chapter" data-level="4.2.4" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>4.2.4</b> Population PCA</a></li>
 <li class="chapter" data-level="4.2.5" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>4.2.5</b> PCA under transformations of variables</a></li>
@@ -243,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 \tag{4.2}
 \end{equation}\]</span>
 where the eigenvalues are <span class="math inline">\(\lambda_1 \geq \lambda_2 \geq \lambda_p \geq 0\)</span> with <span class="math inline">\(\boldsymbol \Lambda=\text{diag}\{\lambda_1, \ldots, \lambda_p\}\)</span>, and <span class="math inline">\(\mathbf V\)</span> contains the eigenvectors of <span class="math inline">\(\mathbf S\)</span>.</p>
-<p>The principal components of <span class="math inline">\(\mathbf X\)</span> are defined sequentially. The <span class="math inline">\(j^{th}\)</span> principal component is the solution to the following optimization problem:
+<p>The principal components of <span class="math inline">\(\mathbf X\)</span> are defined sequentially. If the <span class="math inline">\(\mathbf v_k\)</span> is value of <span class="math inline">\(\mathbf u\)</span> that maximizes the objective for the <span class="math inline">\(k^{th}\)</span> problem (for <span class="math inline">\(k&lt;j\)</span>), then the <span class="math inline">\(j^{th}\)</span> principal component is the solution to the following optimization problem:
 <span class="math display" id="eq:pcmaxgen">\[\begin{equation}
 \max_{\mathbf u: \, \vert \vert \mathbf u\vert \vert =1}\mathbf u^\top \mathbf S\mathbf u
 \tag{4.3}
@@ -272,7 +272,7 @@ i.e., <span class="math inline">\(\mathbf u\)</span> is a unit eigenvector of <s
 <span class="math display">\[\mathbf u\mathbf S\mathbf u= \lambda\]</span>
 and so we must choose <span class="math inline">\(\mathbf u=\mathbf v_1\)</span>, the eigenvector corresponding to the largest eigenvalue of <span class="math inline">\(\mathbf S\)</span>.</p>
 We now proceed inductively and assume the result is true for <span class="math inline">\(k=1, \ldots, j-1\)</span>. The Lagrangian for the <span class="math inline">\(j^{th}\)</span> optimization problem is
-<span class="math display">\[\mathcal{L} = \mathbf u^\top  \mathbf S\mathbf u+\lambda(1-\mathbf u^\top \mathbf u) +\sum_{k=1}^{j-1}\mu_k (1-\mathbf u^\top \mathbf v_k)\]</span>
+<span class="math display">\[\mathcal{L} = \mathbf u^\top  \mathbf S\mathbf u+\lambda(1-\mathbf u^\top \mathbf u) +\sum_{k=1}^{j-1}\mu_k (0-\mathbf u^\top \mathbf v_k)\]</span>
 where we now have <span class="math inline">\(j\)</span> Lagrange multipliers <span class="math inline">\(\lambda, \mu_1, \ldots, \mu_{j-1}\)</span> - one for each constraint.
 Differentiating with respect to <span class="math inline">\(\mathbf u\)</span> and setting equal to zero gives
 <span class="math display">\[0 = 2\mathbf S\mathbf u- 2\lambda \mathbf u- \sum_{k=1}^{j-1} \mu_k\mathbf v_k=0 \]</span>
@@ -302,7 +302,7 @@ In matrix form, the full set of PC scores is given by
 <p>If <span class="math inline">\(\tilde{\mathbf X}=\mathbf H\mathbf X\)</span> is the column centered data matrix, with singular value decomposition
 <span class="math inline">\(\tilde{\mathbf X}=\mathbf U\boldsymbol{\Sigma}\mathbf V^\top\)</span> with <span class="math inline">\(\mathbf V\)</span> as in Equation <a href="4-2-pca-a-formal-description-with-proofs.html#eq:pcaspect">(4.2)</a>, then
 <span class="math display">\[\mathbf Y= \tilde{\mathbf X}\mathbf V= \mathbf U\boldsymbol{\Sigma}.\]</span></p>
-<p>The transformed variables <span class="math inline">\(\mathbf y= \mathbf H\mathbf X\mathbf V\)</span> have some important properties which we collect together in the following proposition.</p>
+<p>The transformed variables <span class="math inline">\(\mathbf Y= \mathbf H\mathbf X\mathbf V\)</span> have some important properties which we collect together in the following proposition.</p>
 
 <div class="proposition">
 <p><span id="prp:pca2" class="proposition"><strong>Proposition 4.2  </strong></span>The following results hold:</p>
@@ -344,9 +344,9 @@ i.e., for each fixed <span class="math inline">\(j\)</span>, the sample variance
 of the variability in the sample is ‘explained’ by the <span class="math inline">\(j^{th}\)</span> PC.</p>
 <p>One tool for looking at the contributions of each PC is to look at the <strong>scree plot</strong> which plots the percentage of variance explained by PC <span class="math inline">\(j\)</span> against <span class="math inline">\(j\)</span>. We’ll see examples of scree plots below.</p>
 </div>
-<div id="example-football" class="section level3">
+<div id="pca:football" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Example: Football</h3>
-<p>We can apply PCA to a football league table where <span class="math inline">\(W\)</span>, <span class="math inline">\(D\)</span>, <span class="math inline">\(L\)</span> are the number of matches won, drawn and lost and <span class="math inline">\(G\)</span> and <span class="math inline">\(GA\)</span> are the goals scored for and against, and <span class="math inline">\(GD\)</span> is the goal difference (<span class="math inline">\(G-GA\)</span>). An extract of the table for a recent Premiership season is:</p>
+<p>We can apply PCA to a football league table where <span class="math inline">\(W\)</span>, <span class="math inline">\(D\)</span>, <span class="math inline">\(L\)</span> are the number of matches won, drawn and lost and <span class="math inline">\(G\)</span> and <span class="math inline">\(GA\)</span> are the goals scored for and against, and <span class="math inline">\(GD\)</span> is the goal difference (<span class="math inline">\(G-GA\)</span>). An extract of the table for the 2019-2020 Premier League season is:</p>
 <table>
 <thead>
 <tr>
@@ -616,7 +616,7 @@ Burnley
 <p>The eigenvalues of <span class="math inline">\(\mathbf S\)</span> are
 <span class="math display">\[\boldsymbol \Lambda= \text{diag}\begin{pmatrix}1300&amp;71.9&amp;8.05&amp;4.62&amp;-2.65e-14&amp;-3.73e-14 \\\end{pmatrix}\]</span></p>
 <p>Note that we have two zero eigenvalues (which won’t be computed as exactly zero because of numerical rounding errors) because two of our variables are a linear combinations of the other variables, <span class="math inline">\(W+D+L = 38\)</span> and <span class="math inline">\(GD=G-GA\)</span>. The corresponding eigenvectors are
-<span class="math display">\[\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] =\begin{pmatrix}0.166&amp;-0.0262&amp;0.707&amp;0.373&amp;-0.577&amp;0 \\-0.0282&amp;0.275&amp;-0.661&amp;0.391&amp;-0.577&amp;1.06e-14 \\-0.138&amp;-0.249&amp;-0.0455&amp;-0.764&amp;-0.577&amp;-2.04e-14 \\0.502&amp;-0.6&amp;-0.202&amp;0.117&amp;3.22e-15&amp;-0.577 \\-0.285&amp;-0.701&amp;-0.11&amp;0.286&amp;-6.11e-15&amp;0.577 \\0.787&amp;0.101&amp;-0.0915&amp;-0.169&amp;-3.33e-16&amp;0.577 \\\end{pmatrix}\]</span></p>
+<span class="math display">\[\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] =\begin{pmatrix}-0.166&amp;0.0262&amp;-0.707&amp;0.373&amp;0.222&amp;-0.533 \\0.0282&amp;-0.275&amp;0.661&amp;0.391&amp;0.222&amp;-0.533 \\0.138&amp;0.249&amp;0.0455&amp;-0.764&amp;0.222&amp;-0.533 \\-0.502&amp;0.6&amp;0.202&amp;0.117&amp;0.533&amp;0.222 \\0.285&amp;0.701&amp;0.11&amp;0.286&amp;-0.533&amp;-0.222 \\-0.787&amp;-0.101&amp;0.0915&amp;-0.169&amp;-0.533&amp;-0.222 \\\end{pmatrix}\]</span></p>
 <p>The proportion of variability explained by each of the PCs is:
 <span class="math display">\[
 \begin{pmatrix}0.939&amp;0.052&amp;0.00583&amp;0.00334&amp;-1.92e-17&amp;-2.7e-17 \\\end{pmatrix}
@@ -624,11 +624,11 @@ Burnley
 <p>There is no point computing the scores for PC 5 and 6, because these do not explain any of the variability in the data. Similarly, there is little value in computing the scores for PCs 3 &amp; 4 because they account for less than 1% of the variability in the data.</p>
 <p>We can, therefore, choose to compute only the first two PC scores. We are reducing the dimension of our data set from <span class="math inline">\(p=5\)</span> to <span class="math inline">\(p=2\)</span> while still retaining 99% of the variability. The first PC score/transformed variable is given by:
 <span class="math display">\[\begin{align*}
-y_{i1} &amp;= 0.17(W_i-\bar{W}) +-0.03(D_i-\bar{D}) +-0.14(L_i-\bar{L})\\
-&amp; \qquad +0.5(G_i-\bar{G}) +-0.28(GA_i-\bar{GA})+0.79(GD_i-\bar{GD}),
+y_{i1} &amp;= -0.17(W_i-\bar{W}) +0.03(D_i-\bar{D}) +0.14(L_i-\bar{L})\\
+&amp; \qquad +-0.5(G_i-\bar{G}) +0.28(GA_i-\bar{GA})+-0.79(GD_i-\bar{GD}),
 \end{align*}\]</span>
 and similarly for PC 2.</p>
-The first five rows of our revised ``league table’’ are now
+The first five rows of our revised ‘league table’ are now
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -703,7 +703,7 @@ Leicester City
 </table>
 <p>Now that we have reduced the dimension to <span class="math inline">\(p=2\)</span>, we can visualise the differences between the teams.</p>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
-<p>We might interpret the PCs as follows. The first PC seems to measure the difference in goals scored and conceded between teams. It rewards teams with 0 for positive goal difference, and 0.37 for each goal scored, whilst penalising them by -0.58 for every goal they concede. So a team with a large positive PC1 score tends to score lots of goals and concede few. If we rank teams by their PC1 score, and compare this with the rankings using 3 points for a win and 1 point for a draw we get a different ranking of the teams.</p>
+<p>We might interpret the PCs as follows. The first PC seems to measure the difference in goals scored and conceded between teams. Low values of PC1 indicate good peformance, and high values poor performance. Teams are rewarded with -0.79 for each positive goal difference, and -0.5 for each goal scored, whilst being penalised by 0.28 for every goal they concede. So a team with a large negative positive PC1 score tends to score lots of goals and concede few. If we rank teams by their PC1 score, and compare this with the rankings using 3 points for a win and 1 point for a draw we get a different ranking of the teams.</p>
 <table>
 <thead>
 <tr>
@@ -720,24 +720,24 @@ PC2
 <tbody>
 <tr>
 <td style="text-align:left;">
-Liverpool
+Manchester City
 </td>
 <td style="text-align:right;">
--67.637127
+-85.59
 </td>
 <td style="text-align:right;">
-0.9306615
+12.35
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Manchester City
+Liverpool
 </td>
 <td style="text-align:right;">
--85.593967
+-67.64
 </td>
 <td style="text-align:right;">
-12.3492387
+0.93
 </td>
 </tr>
 <tr>
@@ -745,21 +745,10 @@ Manchester City
 Manchester United
 </td>
 <td style="text-align:right;">
--36.661797
+-36.66
 </td>
 <td style="text-align:right;">
--7.7344979
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Chelsea
-</td>
-<td style="text-align:right;">
--21.190382
-</td>
-<td style="text-align:right;">
-10.9021516
+-7.73
 </td>
 </tr>
 <tr>
@@ -767,74 +756,30 @@ Chelsea
 Leicester City
 </td>
 <td style="text-align:right;">
--32.155292
+-32.16
 </td>
 <td style="text-align:right;">
--1.1285032
+-1.13
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Tottenham Hotspur
+Chelsea
 </td>
 <td style="text-align:right;">
--17.710519
+-21.19
 </td>
 <td style="text-align:right;">
--0.4325749
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Wolverhampton
-</td>
-<td style="text-align:right;">
--12.342929
-</td>
-<td style="text-align:right;">
--12.3850152
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Arsenal
-</td>
-<td style="text-align:right;">
--9.913433
-</td>
-<td style="text-align:right;">
--3.2498502
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Sheffield United
-</td>
-<td style="text-align:right;">
-2.580462
-</td>
-<td style="text-align:right;">
--17.9013025
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Burnley
-</td>
-<td style="text-align:right;">
-9.235955
-</td>
-<td style="text-align:right;">
--5.7314925
+10.90
 </td>
 </tr>
 </tbody>
 </table>
-<p>The second PC has a strong negative loading for both goals for and against. A team with a large negative PC 2 score was, therefore, involved in matches with lots of goals. We could, therefore, interpret PC 2 as an ‘’entertainment’’ measure, ranking teams according to their involvement in high-scoring games.</p>
+<p>The second PC has a strong positive loading for both goals for and against. A team with a large positive PC 2 score was, therefore, involved in matches with lots of goals. We could, therefore, interpret PC 2 as an ‘entertainment’ measure, ranking teams according to their involvement in high-scoring games.</p>
 <p>The above example raises the question of how many PCs should we use in practice. If we reduce the dimension to <span class="math inline">\(p=1\)</span> then we can rank observations and analyse our new variable with univariate statistics. If we reduce the dimension to <span class="math inline">\(p=2\)</span> then it is still easy to visualise the data. However, reducing the dimension to <span class="math inline">\(p=1\)</span> or <span class="math inline">\(p=2\)</span> may involve losing lots of information and a sensible answer should depend on the objectives of the analysis and the data itself.</p>
 <p>The scree graph for the football example is:</p>
-<p><img src="04-pca_files/figure-html/unnamed-chunk-29-1.png" width="672" />
-There are many possible methods for choosing the number of PCs to retain for analysis, including:</p>
+<p><img src="04-pca_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p>There are many possible methods for choosing the number of PCs to retain for analysis, including:</p>
 <ul>
 <li>retaining enough PCs to explain, say, 90% of the total variation;</li>
 <li>retaining PCs where the eigenvalue is above the average.</li>
@@ -882,10 +827,10 @@ PC2
 Liverpool
 </td>
 <td style="text-align:right;">
--4.6996438
+-4.70
 </td>
 <td style="text-align:right;">
-1.2003675
+1.20
 </td>
 </tr>
 <tr>
@@ -893,10 +838,10 @@ Liverpool
 Manchester City
 </td>
 <td style="text-align:right;">
--4.3806921
+-4.38
 </td>
 <td style="text-align:right;">
-1.6517491
+1.65
 </td>
 </tr>
 <tr>
@@ -904,10 +849,10 @@ Manchester City
 Manchester United
 </td>
 <td style="text-align:right;">
--2.0067554
+-2.01
 </td>
 <td style="text-align:right;">
--1.2938783
+-1.29
 </td>
 </tr>
 <tr>
@@ -915,10 +860,10 @@ Manchester United
 Chelsea
 </td>
 <td style="text-align:right;">
--1.2946867
+-1.29
 </td>
 <td style="text-align:right;">
-1.0826790
+1.08
 </td>
 </tr>
 <tr>
@@ -926,10 +871,10 @@ Chelsea
 Leicester City
 </td>
 <td style="text-align:right;">
--1.6563468
+-1.66
 </td>
 <td style="text-align:right;">
-0.1216950
+0.12
 </td>
 </tr>
 <tr>
@@ -937,10 +882,10 @@ Leicester City
 Tottenham Hotspur
 </td>
 <td style="text-align:right;">
--0.9093467
+-0.91
 </td>
 <td style="text-align:right;">
--0.6509021
+-0.65
 </td>
 </tr>
 <tr>
@@ -948,10 +893,10 @@ Tottenham Hotspur
 Wolverhampton
 </td>
 <td style="text-align:right;">
--0.8242372
+-0.82
 </td>
 <td style="text-align:right;">
--1.8777265
+-1.88
 </td>
 </tr>
 <tr>
@@ -959,10 +904,10 @@ Wolverhampton
 Arsenal
 </td>
 <td style="text-align:right;">
--0.4606630
+-0.46
 </td>
 <td style="text-align:right;">
--1.5565564
+-1.56
 </td>
 </tr>
 <tr>
@@ -970,10 +915,10 @@ Arsenal
 Sheffield United
 </td>
 <td style="text-align:right;">
--0.1849220
+-0.18
 </td>
 <td style="text-align:right;">
--1.3791244
+-1.38
 </td>
 </tr>
 <tr>
@@ -981,17 +926,15 @@ Sheffield United
 Burnley
 </td>
 <td style="text-align:right;">
-0.1752204
+0.18
 </td>
 <td style="text-align:right;">
--0.1047675
+-0.10
 </td>
 </tr>
 </tbody>
 </table>
 <p>Overall for these data, doing PCA with <span class="math inline">\(\mathbf R\)</span> instead of <span class="math inline">\(\mathbf S\)</span> better summarizes the data (although this is just my subjective opinion - you may feel differently).</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="kw">library</span>(ggfortify)</a>
-<a class="sourceLine" id="cb110-2" data-line-number="2"><span class="kw">autoplot</span>(prem.pca, <span class="dt">data =</span> table,  <span class="dt">label =</span> <span class="ot">TRUE</span>,  <span class="dt">label.size =</span> <span class="dv">3</span>, <span class="dt">shape=</span><span class="ot">FALSE</span>)</a></code></pre></div>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 </div>
 </div>

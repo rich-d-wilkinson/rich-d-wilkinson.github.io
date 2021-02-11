@@ -203,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>4.2</b> PCA: a formal description with proofs</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>4.2.1</b> Properties of principal components</a></li>
-<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#example-football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
 <li class="chapter" data-level="4.2.3" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>4.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
 <li class="chapter" data-level="4.2.4" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>4.2.4</b> Population PCA</a></li>
 <li class="chapter" data-level="4.2.5" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>4.2.5</b> PCA under transformations of variables</a></li>
@@ -340,14 +340,14 @@ Let’s try to find the SVD of <span class="math inline">\(\mathbf A\)</span>.</
 <span class="math display">\[\mathbf A\mathbf A^\top =  \left(\begin{array}{cc}17&amp;8\\
                8&amp;17\end{array}\right) \quad \mbox{ and so } \det(\mathbf A\mathbf A^\top-\lambda \mathbf I)=(17-\lambda)^2-64
 \]</span></p>
-<p>Solving <span class="math inline">\(\det(\mathbf A\mathbf A^\top-\lambda \mathbf I)=0\)</span> gives the eigenvalues to be <span class="math inline">\(\lambda=25\)</span> or <span class="math inline">\(9\)</span>. Thus the singular values of <span class="math inline">\(\mathbf A\)</span> are <span class="math inline">\(\sigma_1=5\)</span> and <span class="math inline">\(\sigma_2=3\)</span>, and
+<p>Solving <span class="math inline">\(\det(\mathbf A\mathbf A^\top-\lambda \mathbf I)=0\)</span> gives the eigenvalues to be <span class="math inline">\(\lambda=25\)</span> or <span class="math inline">\(9\)</span>. Thus the singular values of <span class="math inline">\(\mathbf A\)</span> are <span class="math inline">\(\sigma_1=\sqrt{25}=5\)</span> and <span class="math inline">\(\sigma_2=\sqrt{9}=3\)</span>, and
 <span class="math display">\[\boldsymbol{\Sigma}=\left(\begin{array}{cc}5&amp;0\\
                0&amp;3\end{array}\right).\]</span></p>
 <p>The columns of <span class="math inline">\(\mathbf U\)</span> are the <em>unit</em> eigenvectors of <span class="math inline">\(\mathbf A\mathbf A^\top\)</span> which we can find by solving
-<span class="math display">\[\begin{align*}(\mathbf A-25\mathbf I_2)\mathbf u&amp;=\left(\begin{array}{cc}-8&amp;8\\
-               8&amp;-8\end{array}\right)\left(\begin{array}{c}u_1\\u_2\\\end{array}\right)=\left(\begin{array}{c}0\\0\\\end{array}\right) \quad \mbox{ and }\\ (\mathbf A-9\mathbf I_2)\mathbf u&amp;=\left(\begin{array}{cc}8&amp;8\\
+<span class="math display">\[\begin{align*}(\mathbf A^\top \mathbf A-25\mathbf I_2)\mathbf u&amp;=\left(\begin{array}{cc}-8&amp;8\\
+               8&amp;-8\end{array}\right)\left(\begin{array}{c}u_1\\u_2\\\end{array}\right)=\left(\begin{array}{c}0\\0\\\end{array}\right) \quad \mbox{ and }\\ (\mathbf A^\top \mathbf A-9\mathbf I_2)\mathbf u&amp;=\left(\begin{array}{cc}8&amp;8\\
                8&amp;8\end{array}\right)\left(\begin{array}{c}u_1\\u_2\\\end{array}\right)=\left(\begin{array}{c}0\\0\\\end{array}\right).\end{align*}\]</span>
-And so, remembering that the eigenvectors used to form <span class="math inline">\(\mathbf V\)</span> need to be <em>unit</em> vectors, we can see that
+And so, remembering that the eigenvectors used to form <span class="math inline">\(\mathbf U\)</span> need to be <em>unit</em> vectors, we can see that
 <span class="math display">\[\mathbf U=\frac{1}{\sqrt{2}}\left(\begin{array}{cc}1&amp;1\\
                1&amp;-1\end{array}\right).\]</span>
 Finally, to compute <span class="math inline">\(\mathbf V\)</span> recall that <span class="math inline">\(\sigma_i \mathbf v_i = \mathbf A^\top \mathbf u_i\)</span> and so

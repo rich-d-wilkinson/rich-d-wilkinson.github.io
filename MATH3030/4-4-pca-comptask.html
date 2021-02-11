@@ -203,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>4.2</b> PCA: a formal description with proofs</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>4.2.1</b> Properties of principal components</a></li>
-<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#example-football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
 <li class="chapter" data-level="4.2.3" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>4.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
 <li class="chapter" data-level="4.2.4" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>4.2.4</b> Population PCA</a></li>
 <li class="chapter" data-level="4.2.5" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>4.2.5</b> PCA under transformations of variables</a></li>
@@ -256,22 +256,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Then we focus on 5 continuous variables, all measured in mm: FL = frontal lobe size; RW = rear width; CL = carapace length;
 CW = carapace width; and BD = body depth. The sample size is <span class="math inline">\(200\)</span>.</li>
 </ol>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
-<a class="sourceLine" id="cb124-2" data-line-number="2">?crabs           <span class="co"># read the help page to find out about the dataset</span></a>
-<a class="sourceLine" id="cb124-3" data-line-number="3">X=crabs[<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>]     <span class="co"># construct data matrix X with columns FL, RW, CL, CW, BD</span></a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb123-2" data-line-number="2">?crabs           <span class="co"># read the help page to find out about the dataset</span></a>
+<a class="sourceLine" id="cb123-3" data-line-number="3">X=crabs[<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>]     <span class="co"># construct data matrix X with columns FL, RW, CL, CW, BD</span></a></code></pre></div>
 <p>Carry out PCA on the data in <span class="math inline">\(X\)</span>, including obtaining a scree plot and plotting the PC scores.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(X, <span class="dt">scale=</span><span class="ot">FALSE</span>)   <span class="co">#carry out PCA on S  </span></a>
-<a class="sourceLine" id="cb125-2" data-line-number="2">pca</a>
-<a class="sourceLine" id="cb125-3" data-line-number="3">lambda &lt;-<span class="st"> </span>pca<span class="op">$</span>sdev<span class="op">**</span><span class="dv">2</span>    <span class="co">#eigenvalues of S</span></a>
-<a class="sourceLine" id="cb125-4" data-line-number="4"><span class="kw">plot</span>( lambda , <span class="dt">ylim=</span><span class="kw">c</span>( <span class="dv">0</span>, <span class="kw">max</span>(lambda) )</a>
-<a class="sourceLine" id="cb125-5" data-line-number="5"><span class="kw">lines</span>(lambda)</a></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(X, <span class="dt">scale=</span><span class="ot">FALSE</span>)   <span class="co">#carry out PCA on S  </span></a>
+<a class="sourceLine" id="cb124-2" data-line-number="2">pca</a>
+<a class="sourceLine" id="cb124-3" data-line-number="3">lambda &lt;-<span class="st"> </span>pca<span class="op">$</span>sdev<span class="op">**</span><span class="dv">2</span>    <span class="co">#eigenvalues of S</span></a>
+<a class="sourceLine" id="cb124-4" data-line-number="4"><span class="kw">plot</span>( lambda , <span class="dt">ylim=</span><span class="kw">c</span>( <span class="dv">0</span>, <span class="kw">max</span>(lambda) )</a>
+<a class="sourceLine" id="cb124-5" data-line-number="5"><span class="kw">lines</span>(lambda)</a></code></pre></div>
 <p>Some questions:</p>
 <ul>
 <li><p>Do you have any suggestions for an interpretation for the 1st PC?</p></li>
 <li><p>Are you able to come up with an interpretation for the 2nd PC?</p></li>
 <li><p>Do you think an analysis based on the sample covariance matrix <span class="math inline">\({\bf S}\)</span> or the
-correlation matrix <span class="math inline">\({\bf R}\)</span> is preferable with this dataset? Note that you can use {scale=TRUE} in {prcomp}
+correlation matrix <span class="math inline">\({\bf R}\)</span> is preferable with this dataset? Note that you can use <code>scale=TRUE</code> in <code>prcomp</code>
 to carry out PCA on <span class="math inline">\({\bf R}\)</span>. Does it make much difference which is used?</p></li>
+<li><p>Without doing any computation, think about what you expect the sample mean and sample covariance matrix to be for the PC scores. Check this numerically.</p></li>
+<li><p>Now check other properties of the PC scores listed in proposition <a href="4-2-pca-a-formal-description-with-proofs.html#prp:pca2">4.2</a>.</p></li>
+<li><p>Try the following transformations of the data.</p>
+<ul>
+<li><p>adding a constant to the data
+<span class="math display">\[\mathbf z= \mathbf x+\mathbf c,\]</span></p></li>
+<li>scaling the data:
+<span class="math display">\[\mathbf z= \mathbf D\mathbf x\]</span>
+for some diagonal matrix <span class="math inline">\(\mathbf D\)</span></li>
+<li><p>rotating the data:
+<span class="math display">\[\mathbf z= \mathbf U\mathbf x\]</span>
+for some <span class="math inline">\(p\times p\)</span> orthogonal matrix <span class="math inline">\(\mathbf U\)</span>.
+You can generate a random orthogonal matrix using the following commands</p></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="kw">library</span>(pracma)</a>
+<a class="sourceLine" id="cb125-2" data-line-number="2">U &lt;-<span class="st"> </span><span class="kw">randortho</span>(<span class="dv">5</span>)</a></code></pre></div>
+<p>Check the effect of each transformation on the principal components (the loadings/eigenvectors), the principal component scores, and the variance of the principal components (the eigenvalues).</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Download the final Premier League table for the 2018-19 season from
+<a href="https://www.rotowire.com/soccer/league-table.php?season=2018">https://www.rotowire.com/soccer/league-table.php?season=2018</a>. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.</li>
+</ol>
+<ul>
+<li><p>Load the data into R using the command <code>read.csv</code>. Note that you may need to manually delete the first row of the csv file before doing this. (<em>I haven’t given you the command here, as learning how to do this yourself is important</em>).</p></li>
+<li><p>Repeat the analysis from section <a href="4-2-pca-a-formal-description-with-proofs.html#pca:football">4.2.2</a>. Does the meaning of the principal components change? Was the 2018-19 league season notable different to the 2019-20 season (which is the season analysed in the notes)?</p></li>
 </ul>
 </div>
             </section>

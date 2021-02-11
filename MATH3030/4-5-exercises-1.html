@@ -203,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>4.2</b> PCA: a formal description with proofs</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>4.2.1</b> Properties of principal components</a></li>
-<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#example-football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
 <li class="chapter" data-level="4.2.3" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>4.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
 <li class="chapter" data-level="4.2.4" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>4.2.4</b> Population PCA</a></li>
 <li class="chapter" data-level="4.2.5" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>4.2.5</b> PCA under transformations of variables</a></li>
@@ -258,10 +258,12 @@ where <span class="math inline">\(\gamma&gt;0\)</span> is a scalar, <span class=
 <li>Show that <span class="math inline">\(\mathbf a\)</span> is an eigenvector of <span class="math inline">\(\boldsymbol{\Sigma}\)</span>.</li>
 <li>Show that if <span class="math inline">\(\mathbf b\)</span> is any vector such that <span class="math inline">\(\mathbf a^\top \mathbf b=0\)</span>, then <span class="math inline">\(\mathbf b\)</span> is also an eigenvector of <span class="math inline">\(\boldsymbol{\Sigma}\)</span>.</li>
 <li>Obtain all the eigenvalues of <span class="math inline">\(\boldsymbol{\Sigma}\)</span>.</li>
-<li>Determine expressions for the proportion of (population) variability ``explained’’ by:
-- the largest (population) principal component of <span class="math inline">\(\boldsymbol{\Sigma}\)</span>;
-- the <span class="math inline">\(r\)</span> largest (population) principal components of <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, where <span class="math inline">\(1 &lt; r \leq p\)</span>.</li>
-</ul></li>
+<li>Determine expressions for the proportion of variability ‘explained’ by:</li>
+</ul>
+<ol style="list-style-type: lower-roman">
+<li>the largest (population) principal component of <span class="math inline">\(\boldsymbol{\Sigma}\)</span>;</li>
+<li>the <span class="math inline">\(r\)</span> largest (population) principal components of <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, where <span class="math inline">\(1 &lt; r \leq p\)</span>.</li>
+</ol></li>
 <li>A covariance matrix has the following eigenvalues:</li>
 </ol>
 <pre><code>##  [1] 4.22 2.38 1.88 1.11 0.91 0.82 0.58 0.44 0.35 0.19 0.05 0.04 0.04</code></pre>
@@ -271,14 +273,15 @@ where <span class="math inline">\(\gamma&gt;0\)</span> is a scalar, <span class=
 <li>Determine the number of principal components whose eigenvalues are above average.</li>
 </ul>
 <ol start="4" style="list-style-type: decimal">
-<li>Measurements are taken on <span class="math inline">\(p=3\)</span> variables <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span> and <span class="math inline">\(x_3\)</span>, with sample correlation matrix
+<li><p>Measurements are taken on <span class="math inline">\(p=3\)</span> variables <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span> and <span class="math inline">\(x_3\)</span>, with sample correlation matrix
 <span class="math display">\[
  \mathbf R= \begin{pmatrix} 1 &amp; 0.5792 &amp; 0.2414 \\ 0.5792 &amp; 1 &amp; 0.5816 \\ 0.2414 &amp; 0.5816 &amp; 1 \end{pmatrix}.
 \]</span>
 The variable <span class="math inline">\(z_j\)</span> is the standardised versions of <span class="math inline">\(x_j\)</span>, <span class="math inline">\(j=1,2,3\)</span>, i.e. each <span class="math inline">\(z_j\)</span> has sample mean <span class="math inline">\(0\)</span> and variance <span class="math inline">\(1\)</span>.
 One observation has <span class="math inline">\(z_1 = z_2 = z_3 = 0\)</span> and a second observation has <span class="math inline">\(z_1 = z_2 = z_3 =1\)</span>. Calculate the three
 principal component scores for
-each of these observations.</li>
+each of these observations.</p></li>
+<li><p>Do exam question 1 part (a) from the 2017-18 exam paper. You will find the past exam papers on Moodle.</p></li>
 </ol>
 
 </div>

@@ -203,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>4.2</b> PCA: a formal description with proofs</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>4.2.1</b> Properties of principal components</a></li>
-<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#example-football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
 <li class="chapter" data-level="4.2.3" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>4.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
 <li class="chapter" data-level="4.2.4" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>4.2.4</b> Population PCA</a></li>
 <li class="chapter" data-level="4.2.5" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>4.2.5</b> PCA under transformations of variables</a></li>
@@ -236,6 +236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="part-ii-dimension-reduction-methods" class="section level1 unnumbered">
 <h1>PART II: Dimension reduction methods</h1>
+<p><a href="https://mediaspace.nottingham.ac.uk/media/Part+IIA+Dimension+reduction+introduction/1_0s2cgr1r">Introductory Video</a></p>
 <p>In many applications, a large number of variables are recorded for each experimental unit under study. For example, if we think of individual people as the <em>experimental units</em>, then in a health check-up we might collect data on age, blood pressure, cholesterol level, blood test results, lung function, weight, height, BMI, etc. If you use websites such as Amazon, Facebook, and Google, they store thousands (possibly millions) of pieces of information about you (<a href="https://www.theguardian.com/commentisfree/2018/mar/28/all-the-data-facebook-google-has-on-you-privacy">this article</a> shows you how to download the information Google stores about you, including all the locations you’ve visited, every search, youtube video, or app you’ve used and more). They process this data to create an individual profile for each user, which they can then use to create targetted adverts.</p>
 <p>When analysing data of moderate or high dimension, it is often desirable to seeks ways to restructure the data and reduce its dimension whilst <strong>retaining the most important information</strong> within the data or <strong>preserving some feature of interest</strong> in the data. There a variety of reasons we might want to do this.</p>
 <ul>
@@ -267,7 +268,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb70-18" data-line-number="18">     averatio, <span class="dt">ylab=</span><span class="st">&#39;Max. dist. / min. dist.&#39;</span>, <span class="dt">xlab=</span><span class="st">&#39;Dimension d&#39;</span>, <span class="dt">log=</span><span class="st">&#39;xy&#39;</span>)</a></code></pre></div>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>So we can see that as the dimension increases, the ratio of the maximum and minimum distance between any two random points in our sample tends to 1. In other words, all points are the same distance apart!</p>
-<p><a href="https://mediaspace.nottingham.ac.uk/media/Part+IIA+Dimension+reduction+introduction/1_0s2cgr1r">Video</a></p>
 <!--### Why reduce dimension? {-}-->
 </div>
 </div>

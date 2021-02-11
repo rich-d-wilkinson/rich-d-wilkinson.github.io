@@ -2497,15 +2497,15 @@ We know the singular values are the square roots of the eigenvalues of \(\mathbf
                8&17\end{array}\right) \quad \mbox{ and so } \det(\mathbf A\mathbf A^\top-\lambda \mathbf I)=(17-\lambda)^2-64
 \]
 
-Solving \(\det(\mathbf A\mathbf A^\top-\lambda \mathbf I)=0\) gives the eigenvalues to be \(\lambda=25\) or \(9\). Thus the singular values of \(\mathbf A\) are \(\sigma_1=5\) and \(\sigma_2=3\), and
+Solving \(\det(\mathbf A\mathbf A^\top-\lambda \mathbf I)=0\) gives the eigenvalues to be \(\lambda=25\) or \(9\). Thus the singular values of \(\mathbf A\) are \(\sigma_1=\sqrt{25}=5\) and \(\sigma_2=\sqrt{9}=3\), and
 \[\boldsymbol{\Sigma}=\left(\begin{array}{cc}5&0\\
                0&3\end{array}\right).\]
 
 The columns of \(\mathbf U\) are the \emph{unit} eigenvectors of \(\mathbf A\mathbf A^\top\) which we can find by solving
-\begin{align*}(\mathbf A-25\mathbf I_2)\mathbf u&=\left(\begin{array}{cc}-8&8\\
-               8&-8\end{array}\right)\left(\begin{array}{c}u_1\\u_2\\\end{array}\right)=\left(\begin{array}{c}0\\0\\\end{array}\right) \quad \mbox{ and }\\ (\mathbf A-9\mathbf I_2)\mathbf u&=\left(\begin{array}{cc}8&8\\
+\begin{align*}(\mathbf A^\top \mathbf A-25\mathbf I_2)\mathbf u&=\left(\begin{array}{cc}-8&8\\
+               8&-8\end{array}\right)\left(\begin{array}{c}u_1\\u_2\\\end{array}\right)=\left(\begin{array}{c}0\\0\\\end{array}\right) \quad \mbox{ and }\\ (\mathbf A^\top \mathbf A-9\mathbf I_2)\mathbf u&=\left(\begin{array}{cc}8&8\\
                8&8\end{array}\right)\left(\begin{array}{c}u_1\\u_2\\\end{array}\right)=\left(\begin{array}{c}0\\0\\\end{array}\right).\end{align*}
-And so, remembering that the eigenvectors used to form \(\mathbf V\) need to be \emph{unit} vectors, we can see that
+And so, remembering that the eigenvectors used to form \(\mathbf U\) need to be \emph{unit} vectors, we can see that
 \[\mathbf U=\frac{1}{\sqrt{2}}\left(\begin{array}{cc}1&1\\
                1&-1\end{array}\right).\]
 Finally, to compute \(\mathbf V\) recall that \(\sigma_i \mathbf v_i = \mathbf A^\top \mathbf u_i\) and so
@@ -2601,7 +2601,7 @@ where the maximum occurs at \(\mathbf a=\pm \mathbf v_1\), and
 where the minimum occurs at \(\mathbf a= \pm \mathbf v_n\), where \(\lambda_i, \mathbf v_i\) are the ordered eigenpairs of \(\boldsymbol{\Sigma}\).
 \end{proposition}
 
-Note that \[\frac{\mathbf a^\top \boldsymbol{\Sigma}\mathbf a}{\mathbf a^\top\mathbf a}=\frac{\mathbf a^\top \boldsymbol{\Sigma}\mathbf a}{||\mathbf a||^\top} = (\frac{\mathbf a}{||\mathbf a||})^\top \boldsymbol{\Sigma}(\frac{\mathbf a}{||\mathbf a||})\]
+Note that \[\frac{\mathbf a^\top \boldsymbol{\Sigma}\mathbf a}{\mathbf a^\top\mathbf a}=\frac{\mathbf a^\top \boldsymbol{\Sigma}\mathbf a}{||\mathbf a||^2} = (\frac{\mathbf a}{||\mathbf a||})^\top \boldsymbol{\Sigma}(\frac{\mathbf a}{||\mathbf a||})\]
 and so another way to write the maximization problems \eqref{eq:eigenopt} is as unconstrained optimization problems:
 
 \[\max_{\mathbf a}\frac{\mathbf a^\top \boldsymbol{\Sigma}\mathbf a}{\mathbf a^\top\mathbf a}\quad \mbox{ and } \quad \min_{\mathbf a}\frac{\mathbf a^\top \boldsymbol{\Sigma}\mathbf a}{\mathbf a^\top\mathbf a}.\]
@@ -2903,7 +2903,7 @@ Since A is positive definite, we can calculate the symmetric, positive definite 
 \item
   Compute the eigenvalues of \(\mathbf X^\top \mathbf X\). How do these relate to the singular values? How does \(\mathbf X^\top \mathbf X\) relate to the sample covariance matrix of the iris data? How do the singular values relate to the eigenvalues of the covariance matrix?
 \item
-  Let \(\mathbf S\) be the sample covariance matrix of the iris dataset. What vector maximizes \(\mathbf x^\top \mathbf S\mathbf x\)?
+  Let \(\mathbf S\) be the sample covariance matrix of the iris dataset. What vector \(\mathbf x\) with \(||\mathbf x||=1\) maximizes \(\mathbf x^\top \mathbf S\mathbf x\)?
 \end{itemize}
 
 \begin{enumerate}
@@ -3034,6 +3034,8 @@ Since A is positive definite, we can calculate the symmetric, positive definite 
 \chapter*{PART II: Dimension reduction methods}\label{part-ii-dimension-reduction-methods}}
 \addcontentsline{toc}{chapter}{PART II: Dimension reduction methods}
 
+\href{https://mediaspace.nottingham.ac.uk/media/Part+IIA+Dimension+reduction+introduction/1_0s2cgr1r}{Introductory Video}
+
 In many applications, a large number of variables are recorded for each experimental unit under study. For example, if we think of individual people as the \emph{experimental units}, then in a health check-up we might collect data on age, blood pressure, cholesterol level, blood test results, lung function, weight, height, BMI, etc. If you use websites such as Amazon, Facebook, and Google, they store thousands (possibly millions) of pieces of information about you (\href{https://www.theguardian.com/commentisfree/2018/mar/28/all-the-data-facebook-google-has-on-you-privacy}{this article} shows you how to download the information Google stores about you, including all the locations you've visited, every search, youtube video, or app you've used and more). They process this data to create an individual profile for each user, which they can then use to create targetted adverts.
 
 When analysing data of moderate or high dimension, it is often desirable to seeks ways to restructure the data and reduce its dimension whilst \textbf{retaining the most important information} within the data or \textbf{preserving some feature of interest} in the data. There a variety of reasons we might want to do this.
@@ -3083,10 +3085,30 @@ Beware that high-dimensional data can behave qualitatively differently to low-di
 
 So we can see that as the dimension increases, the ratio of the maximum and minimum distance between any two random points in our sample tends to 1. In other words, all points are the same distance apart!
 
-\href{https://mediaspace.nottingham.ac.uk/media/Part+IIA+Dimension+reduction+introduction/1_0s2cgr1r}{Video}
-
 \hypertarget{pca}{%
 \chapter{Principal Component Analysis (PCA)}\label{pca}}
+
+The videos for this chapter are available at the following links:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/PCA_Informal/1_zs9dumou}{4.1 An informal introduction to PCA}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/PCA+Informal+Examples/1_3c9ghrtf}{4.1.5 Informal Examples}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/PCA+Formal+Description/1_tq8tpcn0}{4.2 A more formal description of PCA}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/PCA+Properties/1_s2ldu6a7}{4.2.1 Properties of PC scores}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/PCA+Football+Example/1_h70vgqq2}{4.2.2 Example: PCA of the football data}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/Population+PCA+and+transformations/1_y1s2arei}{4.2.4 Population PCA and transformations}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/PCAA+Minimizing+Reconstruction+Error/1_93tzf0ju}{4.3 An alternative view of PCA: minimizing reconstruction error`}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/PCAA+MNIST+example/1_ljte3zc1}{4.3.1 Example: PCA of the MNIST data}
+\end{itemize}
 
 With multivariate data, it is common to want to reduce the dimension of the data \emph{in a sensible way}. For example
 
@@ -3364,7 +3386,7 @@ These data haven't been column centered, so let's do that in R. You can do it us
 \DataTypeTok{STA =}\KeywordTok{c}\NormalTok{(}\DecValTok{75}\NormalTok{ , }\DecValTok{73}\NormalTok{ , }\DecValTok{79}\NormalTok{ , }\DecValTok{55}\NormalTok{ , }\DecValTok{53}\NormalTok{ , }\DecValTok{49}\NormalTok{ , }\DecValTok{72}\NormalTok{ , }\DecValTok{92}\NormalTok{ , }\DecValTok{58}\NormalTok{ , }\DecValTok{56}\NormalTok{)}
 \NormalTok{        )}
 \NormalTok{xbar <-}\StringTok{ }\KeywordTok{colMeans}\NormalTok{(secondyr[,}\DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{]) }\CommentTok{#only columns 2 and 3 are data}
-\NormalTok{X <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{sweep}\NormalTok{(secondyr[,}\DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{], }\DecValTok{2}\NormalTok{, xbar) )}
+\NormalTok{X <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{sweep}\NormalTok{(secondyr[,}\DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{], }\DecValTok{2}\NormalTok{, xbar) ) }
 \end{Highlighting}
 \end{Shaded}
 
@@ -3547,8 +3569,6 @@ R also has a built-in function for doing PCA.
 ## [10,]  12.627880 -1.5286074
 \end{verbatim}
 
-```
-
 Note that the new variables have sample mean \(\bar{\mathbf y}=\boldsymbol 0\). The sample covariance matrix is a diagonal with entries given by the eigenvalues (see part 4. of Proposition \ref{prp:pca1}). Note that there is always some numerical error (so quantities are never 0, and instead are just very small numnbers).
 
 \[
@@ -3730,7 +3750,7 @@ Let \(\mathbf x_1, \ldots , \mathbf x_n\) denote a sample of vectors in \(\mathb
 \end{equation}
 where the eigenvalues are \(\lambda_1 \geq \lambda_2 \geq \lambda_p \geq 0\) with \(\boldsymbol \Lambda=\text{diag}\{\lambda_1, \ldots, \lambda_p\}\), and \(\mathbf V\) contains the eigenvectors of \(\mathbf S\).
 
-The principal components of \(\mathbf X\) are defined sequentially. The \(j^{th}\) principal component is the solution to the following optimization problem:
+The principal components of \(\mathbf X\) are defined sequentially. If the \(\mathbf v_k\) is value of \(\mathbf u\) that maximizes the objective for the \(k^{th}\) problem (for \(k<j\)), then the \(j^{th}\) principal component is the solution to the following optimization problem:
 \begin{equation}
 \max_{\mathbf u: \, \vert \vert \mathbf u\vert \vert =1}\mathbf u^\top \mathbf S\mathbf u
 \label{eq:pcmaxgen}
@@ -3759,7 +3779,7 @@ i.e., \(\mathbf u\) is a unit eigenvector of \(\mathbf S\). Substituting this ba
 and so we must choose \(\mathbf u=\mathbf v_1\), the eigenvector corresponding to the largest eigenvalue of \(\mathbf S\).
 
 We now proceed inductively and assume the result is true for \(k=1, \ldots, j-1\). The Lagrangian for the \(j^{th}\) optimization problem is
-\[\mathcal{L} = \mathbf u^\top  \mathbf S\mathbf u+\lambda(1-\mathbf u^\top \mathbf u) +\sum_{k=1}^{j-1}\mu_k (1-\mathbf u^\top \mathbf v_k)\]
+\[\mathcal{L} = \mathbf u^\top  \mathbf S\mathbf u+\lambda(1-\mathbf u^\top \mathbf u) +\sum_{k=1}^{j-1}\mu_k (0-\mathbf u^\top \mathbf v_k)\]
 where we now have \(j\) Lagrange multipliers \(\lambda, \mu_1, \ldots, \mu_{j-1}\) - one for each constraint.
 Differentiating with respect to \(\mathbf u\) and setting equal to zero gives
 \[0 = 2\mathbf S\mathbf u- 2\lambda \mathbf u- \sum_{k=1}^{j-1} \mu_k\mathbf v_k=0 \]
@@ -3793,7 +3813,7 @@ If \(\tilde{\mathbf X}=\mathbf H\mathbf X\) is the column centered data matrix, 
 \(\tilde{\mathbf X}=\mathbf U\boldsymbol{\Sigma}\mathbf V^\top\) with \(\mathbf V\) as in Equation \eqref{eq:pcaspect}, then
 \[\mathbf Y= \tilde{\mathbf X}\mathbf V= \mathbf U\boldsymbol{\Sigma}.\]
 
-The transformed variables \(\mathbf y= \mathbf H\mathbf X\mathbf V\) have some important properties which we collect together in the following proposition.
+The transformed variables \(\mathbf Y= \mathbf H\mathbf X\mathbf V\) have some important properties which we collect together in the following proposition.
 
 \begin{proposition}
 \protect\hypertarget{prp:pca2}{}{\label{prp:pca2} }The following results hold:
@@ -3849,10 +3869,10 @@ of the variability in the sample is `explained' by the \(j^{th}\) PC.
 
 One tool for looking at the contributions of each PC is to look at the \textbf{scree plot} which plots the percentage of variance explained by PC \(j\) against \(j\). We'll see examples of scree plots below.
 
-\hypertarget{example-football}{%
-\subsection{Example: Football}\label{example-football}}
+\hypertarget{pca:football}{%
+\subsection{Example: Football}\label{pca:football}}
 
-We can apply PCA to a football league table where \(W\), \(D\), \(L\) are the number of matches won, drawn and lost and \(G\) and \(GA\) are the goals scored for and against, and \(GD\) is the goal difference (\(G-GA\)). An extract of the table for a recent Premiership season is:
+We can apply PCA to a football league table where \(W\), \(D\), \(L\) are the number of matches won, drawn and lost and \(G\) and \(GA\) are the goals scored for and against, and \(GD\) is the goal difference (\(G-GA\)). An extract of the table for the 2019-2020 Premier League season is:
 
 \begin{tabular}{lrrrrrr}
 \toprule
@@ -3887,7 +3907,7 @@ The eigenvalues of \(\mathbf S\) are
 \[\boldsymbol \Lambda= \text{diag}\begin{pmatrix}1300&71.9&8.05&4.62&-2.65e-14&-3.73e-14 \\\end{pmatrix}\]
 
 Note that we have two zero eigenvalues (which won't be computed as exactly zero because of numerical rounding errors) because two of our variables are a linear combinations of the other variables, \(W+D+L = 38\) and \(GD=G-GA\). The corresponding eigenvectors are
-\[\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] =\begin{pmatrix}0.166&-0.0262&0.707&0.373&-0.577&0 \\-0.0282&0.275&-0.661&0.391&-0.577&1.06e-14 \\-0.138&-0.249&-0.0455&-0.764&-0.577&-2.04e-14 \\0.502&-0.6&-0.202&0.117&3.22e-15&-0.577 \\-0.285&-0.701&-0.11&0.286&-6.11e-15&0.577 \\0.787&0.101&-0.0915&-0.169&-3.33e-16&0.577 \\\end{pmatrix}\]
+\[\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] =\begin{pmatrix}-0.166&0.0262&-0.707&0.373&0.222&-0.533 \\0.0282&-0.275&0.661&0.391&0.222&-0.533 \\0.138&0.249&0.0455&-0.764&0.222&-0.533 \\-0.502&0.6&0.202&0.117&0.533&0.222 \\0.285&0.701&0.11&0.286&-0.533&-0.222 \\-0.787&-0.101&0.0915&-0.169&-0.533&-0.222 \\\end{pmatrix}\]
 
 The proportion of variability explained by each of the PCs is:
 \[
@@ -3898,12 +3918,12 @@ There is no point computing the scores for PC 5 and 6, because these do not expl
 
 We can, therefore, choose to compute only the first two PC scores. We are reducing the dimension of our data set from \(p=5\) to \(p=2\) while still retaining 99\% of the variability. The first PC score/transformed variable is given by:
 \begin{align*}
-y_{i1} &= 0.17(W_i-\bar{W}) +-0.03(D_i-\bar{D}) +-0.14(L_i-\bar{L})\\
-& \qquad +0.5(G_i-\bar{G}) +-0.28(GA_i-\bar{GA})+0.79(GD_i-\bar{GD}),
+y_{i1} &= -0.17(W_i-\bar{W}) +0.03(D_i-\bar{D}) +0.14(L_i-\bar{L})\\
+& \qquad +-0.5(G_i-\bar{G}) +0.28(GA_i-\bar{GA})+-0.79(GD_i-\bar{GD}),
 \end{align*}
 and similarly for PC 2.
 
-The first five rows of our revised ``league table'' are now
+The first five rows of our revised `league table' are now
 
 \begin{table}[H]
 \centering
@@ -3924,33 +3944,28 @@ Now that we have reduced the dimension to \(p=2\), we can visualise the differen
 
 \includegraphics{04-pca_files/figure-latex/unnamed-chunk-26-1.pdf}
 
-We might interpret the PCs as follows. The first PC seems to measure the difference in goals scored and conceded between teams. It rewards teams with 0 for positive goal difference, and 0.37 for each goal scored, whilst penalising them by -0.58 for every goal they concede. So a team with a large positive PC1 score tends to score lots of goals and concede few. If we rank teams by their PC1 score, and compare this with the rankings using 3 points for a win and 1 point for a draw we get a different ranking of the teams.
+We might interpret the PCs as follows. The first PC seems to measure the difference in goals scored and conceded between teams. Low values of PC1 indicate good peformance, and high values poor performance. Teams are rewarded with -0.79 for each positive goal difference, and -0.5 for each goal scored, whilst being penalised by 0.28 for every goal they concede. So a team with a large negative positive PC1 score tends to score lots of goals and concede few. If we rank teams by their PC1 score, and compare this with the rankings using 3 points for a win and 1 point for a draw we get a different ranking of the teams.
 
 \begin{tabular}{lrr}
 \toprule
   & PC1 & PC2\\
 \midrule
-Liverpool & -67.637127 & 0.9306615\\
-Manchester City & -85.593967 & 12.3492387\\
-Manchester United & -36.661797 & -7.7344979\\
-Chelsea & -21.190382 & 10.9021516\\
-Leicester City & -32.155292 & -1.1285032\\
-\addlinespace
-Tottenham Hotspur & -17.710519 & -0.4325749\\
-Wolverhampton & -12.342929 & -12.3850152\\
-Arsenal & -9.913433 & -3.2498502\\
-Sheffield United & 2.580462 & -17.9013025\\
-Burnley & 9.235955 & -5.7314925\\
+Manchester City & -85.59 & 12.35\\
+Liverpool & -67.64 & 0.93\\
+Manchester United & -36.66 & -7.73\\
+Leicester City & -32.16 & -1.13\\
+Chelsea & -21.19 & 10.90\\
 \bottomrule
 \end{tabular}
 
-The second PC has a strong negative loading for both goals for and against. A team with a large negative PC 2 score was, therefore, involved in matches with lots of goals. We could, therefore, interpret PC 2 as an `'entertainment'' measure, ranking teams according to their involvement in high-scoring games.
+The second PC has a strong positive loading for both goals for and against. A team with a large positive PC 2 score was, therefore, involved in matches with lots of goals. We could, therefore, interpret PC 2 as an `entertainment' measure, ranking teams according to their involvement in high-scoring games.
 
 The above example raises the question of how many PCs should we use in practice. If we reduce the dimension to \(p=1\) then we can rank observations and analyse our new variable with univariate statistics. If we reduce the dimension to \(p=2\) then it is still easy to visualise the data. However, reducing the dimension to \(p=1\) or \(p=2\) may involve losing lots of information and a sensible answer should depend on the objectives of the analysis and the data itself.
 
 The scree graph for the football example is:
 
 \includegraphics{04-pca_files/figure-latex/unnamed-chunk-29-1.pdf}
+
 There are many possible methods for choosing the number of PCs to retain for analysis, including:
 
 \begin{itemize}
@@ -4002,28 +4017,21 @@ Teams will have a small value of PC1 score if they won lots, lost rarely, scored
 \toprule
   & PC1 & PC2\\
 \midrule
-Liverpool & -4.6996438 & 1.2003675\\
-Manchester City & -4.3806921 & 1.6517491\\
-Manchester United & -2.0067554 & -1.2938783\\
-Chelsea & -1.2946867 & 1.0826790\\
-Leicester City & -1.6563468 & 0.1216950\\
+Liverpool & -4.70 & 1.20\\
+Manchester City & -4.38 & 1.65\\
+Manchester United & -2.01 & -1.29\\
+Chelsea & -1.29 & 1.08\\
+Leicester City & -1.66 & 0.12\\
 \addlinespace
-Tottenham Hotspur & -0.9093467 & -0.6509021\\
-Wolverhampton & -0.8242372 & -1.8777265\\
-Arsenal & -0.4606630 & -1.5565564\\
-Sheffield United & -0.1849220 & -1.3791244\\
-Burnley & 0.1752204 & -0.1047675\\
+Tottenham Hotspur & -0.91 & -0.65\\
+Wolverhampton & -0.82 & -1.88\\
+Arsenal & -0.46 & -1.56\\
+Sheffield United & -0.18 & -1.38\\
+Burnley & 0.18 & -0.10\\
 \bottomrule
 \end{tabular}
 
 Overall for these data, doing PCA with \(\mathbf R\) instead of \(\mathbf S\) better summarizes the data (although this is just my subjective opinion - you may feel differently).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(ggfortify)}
-\KeywordTok{autoplot}\NormalTok{(prem.pca, }\DataTypeTok{data =}\NormalTok{ table,  }\DataTypeTok{label =} \OtherTok{TRUE}\NormalTok{,  }\DataTypeTok{label.size =} \DecValTok{3}\NormalTok{, }\DataTypeTok{shape=}\OtherTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \includegraphics{04-pca_files/figure-latex/unnamed-chunk-32-1.pdf}
 
@@ -4151,7 +4159,9 @@ Therefore, under an orthogonal transformation the eigenvalues and PC scores are 
 \hypertarget{an-alternative-view-of-pca}{%
 \section{An alternative view of PCA}\label{an-alternative-view-of-pca}}
 
-Consider a sample \(\mathbf x_1, \ldots , \mathbf x_n \in \mathbb{R}^p\) with zero mean (replace \(\mathbf x_i\) by \(\mathbf x_i-\bar{\mathbf x}\) if the mean is not zero). In order to find the \(r\) leading principal components, we solve the optimization problem
+In this section, we will again consider the situation in which the sample \(\mathbf x_1, \ldots , \mathbf x_n \in \mathbb{R}^p\) have zero mean (replace \(\mathbf x_i\) by \(\mathbf x_i-\bar{\mathbf x}\) if the mean is not zero).
+
+To recap, in PCA to find the \(r\) leading principal components, we solve the optimization problem
 \begin{align*}
 \mbox{For } k=1, \ldots, r &\mbox{ maximize } \mathbf u_k^\top \mathbf S\mathbf u_k \\
  &\mbox{ subject to } \mathbf u_k^\top \mathbf u_j = \begin{cases}
@@ -4173,7 +4183,7 @@ as \(\operatorname{tr}(\mathbf U^\top \mathbf S\mathbf U) = \sum_{k=1}^r \mathbf
 
 There is another optimization problem that we sometimes wish to solve, that turns out to be equivalent to the above, thus providing another reason why PCA is so widely used.
 
-Suppose we want to find the best rank-\(r\) linear approximation to the dataset \(\{\mathbf x_1, \ldots, \mathbf x_n\}\). One way to think about this is seek a \(p\times r\) matrix \(\mathbf U\) for which the rank \(r\) linear model
+Suppose we want to find the best rank-\(r\) linear approximation to the data matrix \(\mathbf X=\begin{pmatrix}\mathbf x_1& \ldots & \mathbf x_n\end{pmatrix}^\top\) (remember that we're assuming the data have been column centered, if not, replace \(\mathbf X\) by \(\mathbf H\mathbf X\)). One way to think about this is seek a \(p\times r\) matrix \(\mathbf U\) for which the rank \(r\) linear model
 \[f(\mathbf y) = \mathbf U\mathbf y\] can be used to represent the data.
 
 Let's choose \(\mathbf y_i\in \mathbb{R}^r\) and \(\mathbf U\) to minimize the sum of squared errors
@@ -4456,8 +4466,54 @@ Some questions:
   Are you able to come up with an interpretation for the 2nd PC?
 \item
   Do you think an analysis based on the sample covariance matrix \({\bf S}\) or the
-  correlation matrix \({\bf R}\) is preferable with this dataset? Note that you can use \{\tt scale=TRUE\} in \{\tt prcomp\}
+  correlation matrix \({\bf R}\) is preferable with this dataset? Note that you can use \texttt{scale=TRUE} in \texttt{prcomp}
   to carry out PCA on \({\bf R}\). Does it make much difference which is used?
+\item
+  Without doing any computation, think about what you expect the sample mean and sample covariance matrix to be for the PC scores. Check this numerically.
+\item
+  Now check other properties of the PC scores listed in proposition \ref{prp:pca2}.
+\item
+  Try the following transformations of the data.
+
+  \begin{itemize}
+  \item
+    adding a constant to the data
+    \[\mathbf z= \mathbf x+\mathbf c,\]
+  \item
+    scaling the data:
+    \[\mathbf z= \mathbf D\mathbf x\]
+    for some diagonal matrix \(\mathbf D\)
+  \item
+    rotating the data:
+    \[\mathbf z= \mathbf U\mathbf x\]
+    for some \(p\times p\) orthogonal matrix \(\mathbf U\).
+    You can generate a random orthogonal matrix using the following commands
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(pracma)}
+\NormalTok{U <-}\StringTok{ }\KeywordTok{randortho}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Check the effect of each transformation on the principal components (the loadings/eigenvectors), the principal component scores, and the variance of the principal components (the eigenvalues).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Download the final Premier League table for the 2018-19 season from
+  \url{https://www.rotowire.com/soccer/league-table.php?season=2018}. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.
+\end{enumerate}
+
+\begin{itemize}
+\item
+  Load the data into R using the command \texttt{read.csv}. Note that you may need to manually delete the first row of the csv file before doing this. (\emph{I haven't given you the command here, as learning how to do this yourself is important}).
+\item
+  Repeat the analysis from section \ref{pca:football}. Does the meaning of the principal components change? Was the 2018-19 league season notable different to the 2019-20 season (which is the season analysed in the notes)?
 \end{itemize}
 
 \hypertarget{exercises-1}{%
@@ -4506,10 +4562,17 @@ Some questions:
   \item
     Obtain all the eigenvalues of \(\boldsymbol{\Sigma}\).
   \item
-    Determine expressions for the proportion of (population) variability ``explained'' by:
-    - the largest (population) principal component of \(\boldsymbol{\Sigma}\);
-    - the \(r\) largest (population) principal components of \(\boldsymbol{\Sigma}\), where \(1 < r \leq p\).
+    Determine expressions for the proportion of variability `explained' by:
   \end{itemize}
+
+  \begin{enumerate}
+  \def\labelenumii{\roman{enumii}.}
+  \tightlist
+  \item
+    the largest (population) principal component of \(\boldsymbol{\Sigma}\);
+  \item
+    the \(r\) largest (population) principal components of \(\boldsymbol{\Sigma}\), where \(1 < r \leq p\).
+  \end{enumerate}
 \item
   A covariance matrix has the following eigenvalues:
 \end{enumerate}
@@ -4531,7 +4594,6 @@ Some questions:
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{3}
-\tightlist
 \item
   Measurements are taken on \(p=3\) variables \(x_1\), \(x_2\) and \(x_3\), with sample correlation matrix
   \[
@@ -4541,6 +4603,8 @@ Some questions:
   One observation has \(z_1 = z_2 = z_3 = 0\) and a second observation has \(z_1 = z_2 = z_3 =1\). Calculate the three
   principal component scores for
   each of these observations.
+\item
+  Do exam question 1 part (a) from the 2017-18 exam paper. You will find the past exam papers on Moodle.
 \end{enumerate}
 
 \bibliography{book.bib,packages.bib}

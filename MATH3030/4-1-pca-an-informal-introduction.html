@@ -203,7 +203,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>4.2</b> PCA: a formal description with proofs</a><ul>
 <li class="chapter" data-level="4.2.1" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>4.2.1</b> Properties of principal components</a></li>
-<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#example-football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
 <li class="chapter" data-level="4.2.3" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>4.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
 <li class="chapter" data-level="4.2.4" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>4.2.4</b> Population PCA</a></li>
 <li class="chapter" data-level="4.2.5" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>4.2.5</b> PCA under transformations of variables</a></li>
@@ -477,7 +477,7 @@ STA
 <a class="sourceLine" id="cb71-4" data-line-number="4"><span class="dt">STA =</span><span class="kw">c</span>(<span class="dv">75</span> , <span class="dv">73</span> , <span class="dv">79</span> , <span class="dv">55</span> , <span class="dv">53</span> , <span class="dv">49</span> , <span class="dv">72</span> , <span class="dv">92</span> , <span class="dv">58</span> , <span class="dv">56</span>)</a>
 <a class="sourceLine" id="cb71-5" data-line-number="5">        )</a>
 <a class="sourceLine" id="cb71-6" data-line-number="6">xbar &lt;-<span class="st"> </span><span class="kw">colMeans</span>(secondyr[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]) <span class="co">#only columns 2 and 3 are data</span></a>
-<a class="sourceLine" id="cb71-7" data-line-number="7">X &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">sweep</span>(secondyr[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">2</span>, xbar) )</a></code></pre></div>
+<a class="sourceLine" id="cb71-7" data-line-number="7">X &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">sweep</span>(secondyr[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">2</span>, xbar) ) </a></code></pre></div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -658,7 +658,6 @@ We can see that the first PC is in the direction of greatest variation (shown in
 ##  [8,] -29.994240  5.9114764
 ##  [9,]  15.316435  4.1960474
 ## [10,]  12.627880 -1.5286074</code></pre>
-<p>```</p>
 <p>Note that the new variables have sample mean <span class="math inline">\(\bar{\mathbf y}=\boldsymbol 0\)</span>. The sample covariance matrix is a diagonal with entries given by the eigenvalues (see part 4. of Proposition <a href="4-2-pca-a-formal-description-with-proofs.html#prp:pca1">4.1</a>). Note that there is always some numerical error (so quantities are never 0, and instead are just very small numnbers).</p>
 <p><span class="math display">\[
 \boldsymbol \Lambda= \text{diag}(\lambda_1,\lambda_2) =  \begin{pmatrix} \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2 \end{pmatrix}.
