@@ -214,6 +214,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="4-4-pca-comptask.html"><a href="4-4-pca-comptask.html"><i class="fa fa-check"></i><b>4.4</b> Computer tasks</a></li>
 <li class="chapter" data-level="4.5" data-path="4-5-exercises-1.html"><a href="4-5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis (CCA)</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html"><i class="fa fa-check"></i><b>5.1</b> The first pair of canonical variables</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>5.1.1</b> The first canonical components</a></li>
+<li class="chapter" data-level="5.1.2" data-path="5-1-cca1.html"><a href="5-1-cca1.html#premcca"><i class="fa fa-check"></i><b>5.1.2</b> Example: Premier league football</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>5.2.1</b> Example continued</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5-3-properties.html"><a href="5-3-properties.html"><i class="fa fa-check"></i><b>5.3</b> Properties</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="5-3-properties.html"><a href="5-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>5.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="5-3-properties.html"><a href="5-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>5.3.2</b> Invariance/equivariance properties of CCA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5-4-computer-tasks-1.html"><a href="5-4-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-exercises-2.html"><a href="5-5-exercises-2.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+</ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
 
@@ -244,28 +259,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>If there is a lot of reduncancy in the data, we might want to reduce the dimension to lower the memory requirements in storing it (e.g. with sound and image compression).</li>
 <li>In high dimensions, it can be difficult to analyse data (e.g. with statistical methods), and so reducing the dimension can be a way to make a dataset amenable to analysis.</li>
 </ul>
-<p>In this part of the module we investigate three different methods for dimension reduction: Principal Component Analysis (PCA) in Chapter <a href="4-pca.html#pca">4</a>; Canonical Correlation Analysis (CCA) in Chapter <a href="#cca"><strong>??</strong></a>; and Multidimensional Scaling (MDS) in Chapter <a href="#mds"><strong>??</strong></a>. Matrix algebra (Chapters <a href="2-linalg-prelim.html#linalg-prelim">2</a> and <a href="3-linalg-decomp.html#linalg-decomp">3</a>) plays a key role in all three of these techniques.</p>
+<p>In this part of the module we investigate three different methods for dimension reduction: Principal Component Analysis (PCA) in Chapter <a href="4-pca.html#pca">4</a>; Canonical Correlation Analysis (CCA) in Chapter <a href="5-cca.html#cca">5</a>; and Multidimensional Scaling (MDS) in Chapter <a href="#mds"><strong>??</strong></a>. Matrix algebra (Chapters <a href="2-linalg-prelim.html#linalg-prelim">2</a> and <a href="3-linalg-decomp.html#linalg-decomp">3</a>) plays a key role in all three of these techniques.</p>
 <div id="a-warning" class="section level3 unnumbered">
 <h3>A warning</h3>
 <p>Beware that high-dimensional data can behave qualitatively differently to low-dimensional data. As an example, lets consider 1000 points uniformly distributed in <span class="math inline">\([0,1]^d\)</span>, and think about how close together or spread out the points are. A simple way to do this is to consider the ratio of the maximum and minimum distance between any two points in our sample.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">N&lt;-<span class="dv">1000</span></a>
-<a class="sourceLine" id="cb70-2" data-line-number="2">averatio &lt;-<span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb70-3" data-line-number="3">ii&lt;-<span class="dv">1</span></a>
-<a class="sourceLine" id="cb70-4" data-line-number="4"><span class="cf">for</span>(d <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">350</span>, <span class="dv">500</span>, <span class="dv">750</span>, <span class="dv">1000</span>)){</a>
-<a class="sourceLine" id="cb70-5" data-line-number="5">  averatio[ii] &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">replicate</span>(<span class="dv">10</span>, {</a>
-<a class="sourceLine" id="cb70-6" data-line-number="6">  X&lt;-<span class="kw">matrix</span>(<span class="kw">runif</span>(N<span class="op">*</span>d), <span class="dt">nc=</span>d)</a>
-<a class="sourceLine" id="cb70-7" data-line-number="7">  d &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(X)) </a>
-<a class="sourceLine" id="cb70-8" data-line-number="8">  <span class="co"># this gives a N x N matrix of the Euclidean distances between the data points.</span></a>
-<a class="sourceLine" id="cb70-9" data-line-number="9">  maxdist &lt;-<span class="st"> </span><span class="kw">max</span>(d) </a>
-<a class="sourceLine" id="cb70-10" data-line-number="10">  mindist &lt;-<span class="st"> </span><span class="kw">min</span>(d<span class="op">+</span><span class="kw">diag</span>(<span class="dv">10</span><span class="op">^</span><span class="dv">5</span>, <span class="dt">nrow=</span>N)) </a>
-<a class="sourceLine" id="cb70-11" data-line-number="11">  <span class="co"># The diagonal elements of the distance matrix are zero,</span></a>
-<a class="sourceLine" id="cb70-12" data-line-number="12">  <span class="co"># so I&#39;ve added a big number to the diagonal </span></a>
-<a class="sourceLine" id="cb70-13" data-line-number="13">  <span class="co"># so that we get the minimum distance between different points</span></a>
-<a class="sourceLine" id="cb70-14" data-line-number="14">  maxdist<span class="op">/</span>mindist}))</a>
-<a class="sourceLine" id="cb70-15" data-line-number="15">  ii &lt;-<span class="st"> </span>ii<span class="op">+</span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb70-16" data-line-number="16">}</a>
-<a class="sourceLine" id="cb70-17" data-line-number="17"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">350</span>, <span class="dv">500</span>, <span class="dv">750</span>, <span class="dv">1000</span>), </a>
-<a class="sourceLine" id="cb70-18" data-line-number="18">     averatio, <span class="dt">ylab=</span><span class="st">&#39;Max. dist. / min. dist.&#39;</span>, <span class="dt">xlab=</span><span class="st">&#39;Dimension d&#39;</span>, <span class="dt">log=</span><span class="st">&#39;xy&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">N&lt;-<span class="dv">1000</span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2">averatio &lt;-<span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb71-3" data-line-number="3">ii&lt;-<span class="dv">1</span></a>
+<a class="sourceLine" id="cb71-4" data-line-number="4"><span class="cf">for</span>(d <span class="cf">in</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">350</span>, <span class="dv">500</span>, <span class="dv">750</span>, <span class="dv">1000</span>)){</a>
+<a class="sourceLine" id="cb71-5" data-line-number="5">  averatio[ii] &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">replicate</span>(<span class="dv">10</span>, {</a>
+<a class="sourceLine" id="cb71-6" data-line-number="6">  X&lt;-<span class="kw">matrix</span>(<span class="kw">runif</span>(N<span class="op">*</span>d), <span class="dt">nc=</span>d)</a>
+<a class="sourceLine" id="cb71-7" data-line-number="7">  d &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(X)) </a>
+<a class="sourceLine" id="cb71-8" data-line-number="8">  <span class="co"># this gives a N x N matrix of the Euclidean distances between the data points.</span></a>
+<a class="sourceLine" id="cb71-9" data-line-number="9">  maxdist &lt;-<span class="st"> </span><span class="kw">max</span>(d) </a>
+<a class="sourceLine" id="cb71-10" data-line-number="10">  mindist &lt;-<span class="st"> </span><span class="kw">min</span>(d<span class="op">+</span><span class="kw">diag</span>(<span class="dv">10</span><span class="op">^</span><span class="dv">5</span>, <span class="dt">nrow=</span>N)) </a>
+<a class="sourceLine" id="cb71-11" data-line-number="11">  <span class="co"># The diagonal elements of the distance matrix are zero,</span></a>
+<a class="sourceLine" id="cb71-12" data-line-number="12">  <span class="co"># so I&#39;ve added a big number to the diagonal </span></a>
+<a class="sourceLine" id="cb71-13" data-line-number="13">  <span class="co"># so that we get the minimum distance between different points</span></a>
+<a class="sourceLine" id="cb71-14" data-line-number="14">  maxdist<span class="op">/</span>mindist}))</a>
+<a class="sourceLine" id="cb71-15" data-line-number="15">  ii &lt;-<span class="st"> </span>ii<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb71-16" data-line-number="16">}</a>
+<a class="sourceLine" id="cb71-17" data-line-number="17"><span class="kw">plot</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">350</span>, <span class="dv">500</span>, <span class="dv">750</span>, <span class="dv">1000</span>), </a>
+<a class="sourceLine" id="cb71-18" data-line-number="18">     averatio, <span class="dt">ylab=</span><span class="st">&#39;Max. dist. / min. dist.&#39;</span>, <span class="dt">xlab=</span><span class="st">&#39;Dimension d&#39;</span>, <span class="dt">log=</span><span class="st">&#39;xy&#39;</span>)</a></code></pre></div>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>So we can see that as the dimension increases, the ratio of the maximum and minimum distance between any two random points in our sample tends to 1. In other words, all points are the same distance apart!</p>
 <!--### Why reduce dimension? {-}-->

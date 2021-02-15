@@ -214,6 +214,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="4-4-pca-comptask.html"><a href="4-4-pca-comptask.html"><i class="fa fa-check"></i><b>4.4</b> Computer tasks</a></li>
 <li class="chapter" data-level="4.5" data-path="4-5-exercises-1.html"><a href="4-5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis (CCA)</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html"><i class="fa fa-check"></i><b>5.1</b> The first pair of canonical variables</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>5.1.1</b> The first canonical components</a></li>
+<li class="chapter" data-level="5.1.2" data-path="5-1-cca1.html"><a href="5-1-cca1.html#premcca"><i class="fa fa-check"></i><b>5.1.2</b> Example: Premier league football</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>5.2.1</b> Example continued</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5-3-properties.html"><a href="5-3-properties.html"><i class="fa fa-check"></i><b>5.3</b> Properties</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="5-3-properties.html"><a href="5-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>5.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="5-3-properties.html"><a href="5-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>5.3.2</b> Invariance/equivariance properties of CCA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5-4-computer-tasks-1.html"><a href="5-4-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-exercises-2.html"><a href="5-5-exercises-2.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+</ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
 
@@ -471,13 +486,13 @@ STA
 </tbody>
 </table>
 <p>These data haven’t been column centered, so let’s do that in R. You can do it using the centering matrix as previously, but here is a different approach:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">secondyr &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb71-2" data-line-number="2">  <span class="dt">student =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</a>
-<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="dt">PRB=</span><span class="kw">c</span>(<span class="dv">81</span> , <span class="dv">79</span> , <span class="dv">66</span> , <span class="dv">53</span> , <span class="dv">43</span> , <span class="dv">59</span> , <span class="dv">62</span> , <span class="dv">79</span> , <span class="dv">49</span> , <span class="dv">55</span>),</a>
-<a class="sourceLine" id="cb71-4" data-line-number="4"><span class="dt">STA =</span><span class="kw">c</span>(<span class="dv">75</span> , <span class="dv">73</span> , <span class="dv">79</span> , <span class="dv">55</span> , <span class="dv">53</span> , <span class="dv">49</span> , <span class="dv">72</span> , <span class="dv">92</span> , <span class="dv">58</span> , <span class="dv">56</span>)</a>
-<a class="sourceLine" id="cb71-5" data-line-number="5">        )</a>
-<a class="sourceLine" id="cb71-6" data-line-number="6">xbar &lt;-<span class="st"> </span><span class="kw">colMeans</span>(secondyr[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]) <span class="co">#only columns 2 and 3 are data</span></a>
-<a class="sourceLine" id="cb71-7" data-line-number="7">X &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">sweep</span>(secondyr[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">2</span>, xbar) ) </a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">secondyr &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb72-2" data-line-number="2">  <span class="dt">student =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb72-3" data-line-number="3"><span class="dt">PRB=</span><span class="kw">c</span>(<span class="dv">81</span> , <span class="dv">79</span> , <span class="dv">66</span> , <span class="dv">53</span> , <span class="dv">43</span> , <span class="dv">59</span> , <span class="dv">62</span> , <span class="dv">79</span> , <span class="dv">49</span> , <span class="dv">55</span>),</a>
+<a class="sourceLine" id="cb72-4" data-line-number="4"><span class="dt">STA =</span><span class="kw">c</span>(<span class="dv">75</span> , <span class="dv">73</span> , <span class="dv">79</span> , <span class="dv">55</span> , <span class="dv">53</span> , <span class="dv">49</span> , <span class="dv">72</span> , <span class="dv">92</span> , <span class="dv">58</span> , <span class="dv">56</span>)</a>
+<a class="sourceLine" id="cb72-5" data-line-number="5">        )</a>
+<a class="sourceLine" id="cb72-6" data-line-number="6">xbar &lt;-<span class="st"> </span><span class="kw">colMeans</span>(secondyr[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]) <span class="co">#only columns 2 and 3 are data</span></a>
+<a class="sourceLine" id="cb72-7" data-line-number="7">X &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">sweep</span>(secondyr[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], <span class="dv">2</span>, xbar) ) </a></code></pre></div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -573,19 +588,19 @@ STA
 </tbody>
 </table>
 <p>The sample covariance matrix can be computed in two ways:</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="dv">1</span><span class="op">/</span><span class="dv">10</span><span class="op">*</span><span class="st"> </span><span class="kw">t</span>(X)<span class="op">%*%</span>X</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="dv">1</span><span class="op">/</span><span class="dv">10</span><span class="op">*</span><span class="st"> </span><span class="kw">t</span>(X)<span class="op">%*%</span>X</a></code></pre></div>
 <pre><code>##        PRB    STA
 ## PRB 162.04 135.38
 ## STA 135.38 175.36</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="kw">cov</span>(X)<span class="op">*</span><span class="dv">9</span><span class="op">/</span><span class="dv">10</span> </a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">cov</span>(X)<span class="op">*</span><span class="dv">9</span><span class="op">/</span><span class="dv">10</span> </a></code></pre></div>
 <pre><code>##        PRB    STA
 ## PRB 162.04 135.38
 ## STA 135.38 175.36</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="co"># Remember R uses the unbiased factor 1/(n-1), </span></a>
-<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="co"># so the 9/10=(n-1)/n changes this to 1/n </span></a>
-<a class="sourceLine" id="cb76-3" data-line-number="3"><span class="co"># to match the notes</span></a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="co"># Remember R uses the unbiased factor 1/(n-1), </span></a>
+<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="co"># so the 9/10=(n-1)/n changes this to 1/n </span></a>
+<a class="sourceLine" id="cb77-3" data-line-number="3"><span class="co"># to match the notes</span></a></code></pre></div>
 <p>We can find the singular value decomposition of <span class="math inline">\(\mathbf X\)</span> using R</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1">(<span class="dt">X_svd =</span> <span class="kw">svd</span>(X))</a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1">(<span class="dt">X_svd =</span> <span class="kw">svd</span>(X))</a></code></pre></div>
 <pre><code>## $d
 ## [1] 55.15829 18.20887
 ## 
@@ -614,7 +629,7 @@ As it is, a student that has a high mark on PRB and STA will have a low negative
 We can see that the first PC is in the direction of greatest variation (shown in red), and that the second PC (shown in green) is orthogonal to the first PC.</p>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-8-1.png" width="576" /></p>
 <p>We can find the transformed variables by computing either <span class="math inline">\(\mathbf X\mathbf V\)</span> or <span class="math inline">\(\mathbf U\boldsymbol{\Sigma}\)</span></p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1">X <span class="op">%*%</span><span class="st"> </span>X_svd<span class="op">$</span>v</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1">X <span class="op">%*%</span><span class="st"> </span>X_svd<span class="op">$</span>v</a></code></pre></div>
 <pre><code>##             [,1]       [,2]
 ##  [1,] -19.060674 -7.2588361
 ##  [2,] -16.233101 -7.1893271
@@ -626,7 +641,7 @@ We can see that the first PC is in the direction of greatest variation (shown in
 ##  [8,] -29.994240  5.9114764
 ##  [9,]  15.316435  4.1960474
 ## [10,]  12.627880 -1.5286074</code></pre>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">X_svd<span class="op">$</span>u <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(X_svd<span class="op">$</span>d)</a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">X_svd<span class="op">$</span>u <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(X_svd<span class="op">$</span>d)</a></code></pre></div>
 <pre><code>##             [,1]       [,2]
 ##  [1,] -19.060674 -7.2588361
 ##  [2,] -16.233101 -7.1893271
@@ -641,12 +656,12 @@ We can see that the first PC is in the direction of greatest variation (shown in
 <p>If we plot the PC scores we can see that the variation is now in line with the new coordinate axes:</p>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>R also has a built-in function for doing PCA.</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(secondyr[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]) <span class="co"># prcomp will automatocally remove the column mean</span></a>
-<a class="sourceLine" id="cb83-2" data-line-number="2">pca<span class="op">$</span>rotation <span class="co"># the loadings</span></a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1">pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(secondyr[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]) <span class="co"># prcomp will automatocally remove the column mean</span></a>
+<a class="sourceLine" id="cb84-2" data-line-number="2">pca<span class="op">$</span>rotation <span class="co"># the loadings</span></a></code></pre></div>
 <pre><code>##            PC1        PC2
 ## PRB -0.6895160 -0.7242705
 ## STA -0.7242705  0.6895160</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">pca<span class="op">$</span>x <span class="co"># the scores</span></a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1">pca<span class="op">$</span>x <span class="co"># the scores</span></a></code></pre></div>
 <pre><code>##              PC1        PC2
 ##  [1,] -19.060674 -7.2588361
 ##  [2,] -16.233101 -7.1893271
@@ -662,29 +677,29 @@ We can see that the first PC is in the direction of greatest variation (shown in
 <p><span class="math display">\[
 \boldsymbol \Lambda= \text{diag}(\lambda_1,\lambda_2) =  \begin{pmatrix} \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2 \end{pmatrix}.
 \]</span></p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="kw">colMeans</span>(pca<span class="op">$</span>x)</a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1"><span class="kw">colMeans</span>(pca<span class="op">$</span>x)</a></code></pre></div>
 <pre><code>##           PC1           PC2 
 ##  2.842171e-15 -9.769963e-16</code></pre>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">cov</span>(pca<span class="op">$</span>x)<span class="op">*</span><span class="dv">9</span><span class="op">/</span><span class="dv">10</span> <span class="co"># to convert to using 1/n as the denominator </span></a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="kw">cov</span>(pca<span class="op">$</span>x)<span class="op">*</span><span class="dv">9</span><span class="op">/</span><span class="dv">10</span> <span class="co"># to convert to using 1/n as the denominator </span></a></code></pre></div>
 <pre><code>##              PC1          PC2
 ## PC1 3.042437e+02 1.974167e-14
 ## PC2 1.974167e-14 3.315628e+01</code></pre>
 <p>Finally, note that we did the singular value decomposition for <span class="math inline">\(\mathbf X\)</span> above not <span class="math inline">\(\frac{1}{\sqrt{10}}\mathbf X\)</span>, and so we’d need to square and scale the singular values to find the eigenvalues. Let’s check:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">X_svd<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">10</span> <span class="co"># square and scale the singular values</span></a></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">X_svd<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">10</span> <span class="co"># square and scale the singular values</span></a></code></pre></div>
 <pre><code>## [1] 304.24372  33.15628</code></pre>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="kw">eigen</span>(<span class="kw">t</span>(X) <span class="op">%*%</span><span class="st"> </span>X<span class="op">/</span><span class="dv">10</span>)<span class="op">$</span>values  <span class="co"># compute the eigenvalues of the covariance matrix</span></a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="kw">eigen</span>(<span class="kw">t</span>(X) <span class="op">%*%</span><span class="st"> </span>X<span class="op">/</span><span class="dv">10</span>)<span class="op">$</span>values  <span class="co"># compute the eigenvalues of the covariance matrix</span></a></code></pre></div>
 <pre><code>## [1] 304.24372  33.15628</code></pre>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="kw">svd</span>(X<span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">10</span>))<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span> <span class="co"># compute the singular values of X/sqrt(10) and square</span></a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="kw">svd</span>(X<span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">10</span>))<span class="op">$</span>d<span class="op">^</span><span class="dv">2</span> <span class="co"># compute the singular values of X/sqrt(10) and square</span></a></code></pre></div>
 <pre><code>## [1] 304.24372  33.15628</code></pre>
 </div>
 <div id="example-iris" class="section level3">
 <h3><span class="header-section-number">4.1.6</span> Example: Iris</h3>
 <p>In general when using R to do PCA, we don’t need to compute the SVD and then do the projections, as there is an R command <code>prcomp</code> that will do it all for us. The <code>princomp</code> will also do PCA, but is less stable than <code>prcomp</code>, and it is recommended that you use <code>prcomp</code> in preference.</p>
 <p>Let’s do PCA on the iris dataset discussed in Chapter <a href="1-stat-prelim.html#stat-prelim">1</a>. The <code>prcomp</code> returns the square root of the eigenvalues (the standard devaiation of the PC scores), and the PC scores.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">iris.pca =<span class="st"> </span><span class="kw">prcomp</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a>
-<a class="sourceLine" id="cb97-2" data-line-number="2">iris.pca<span class="op">$</span>sdev <span class="co"># the square root of the eigenvalues</span></a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">iris.pca =<span class="st"> </span><span class="kw">prcomp</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a>
+<a class="sourceLine" id="cb98-2" data-line-number="2">iris.pca<span class="op">$</span>sdev <span class="co"># the square root of the eigenvalues</span></a></code></pre></div>
 <pre><code>## [1] 2.0562689 0.4926162 0.2796596 0.1543862</code></pre>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="kw">head</span>(iris.pca<span class="op">$</span>x)  <span class="co">#the PC scores</span></a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="kw">head</span>(iris.pca<span class="op">$</span>x)  <span class="co">#the PC scores</span></a></code></pre></div>
 <pre><code>##            PC1        PC2         PC3          PC4
 ## [1,] -2.684126 -0.3193972  0.02791483  0.002262437
 ## [2,] -2.714142  0.1770012  0.21046427  0.099026550
@@ -693,32 +708,32 @@ We can see that the first PC is in the direction of greatest variation (shown in
 ## [5,] -2.728717 -0.3267545 -0.09007924 -0.061258593
 ## [6,] -2.280860 -0.7413304 -0.16867766 -0.024200858</code></pre>
 <p>The PC loadings/eigenvectors can also be accessed, as can the sample mean</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">iris.pca<span class="op">$</span>rotation <span class="co">#the eigenvecstors</span></a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">iris.pca<span class="op">$</span>rotation <span class="co">#the eigenvecstors</span></a></code></pre></div>
 <pre><code>##                      PC1         PC2         PC3        PC4
 ## Sepal.Length  0.36138659 -0.65658877  0.58202985  0.3154872
 ## Sepal.Width  -0.08452251 -0.73016143 -0.59791083 -0.3197231
 ## Petal.Length  0.85667061  0.17337266 -0.07623608 -0.4798390
 ## Petal.Width   0.35828920  0.07548102 -0.54583143  0.7536574</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">iris.pca<span class="op">$</span>center <span class="co"># the sample mean of the data</span></a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">iris.pca<span class="op">$</span>center <span class="co"># the sample mean of the data</span></a></code></pre></div>
 <pre><code>## Sepal.Length  Sepal.Width Petal.Length  Petal.Width 
 ##     5.843333     3.057333     3.758000     1.199333</code></pre>
 <p>A scree plot can be obtained simply by using the <code>plot</code> command. The summary command also gives useful information about the importance of each PC.</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">plot</span>(iris.pca)</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="kw">plot</span>(iris.pca)</a></code></pre></div>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="kw">summary</span>(iris.pca)</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1"><span class="kw">summary</span>(iris.pca)</a></code></pre></div>
 <pre><code>## Importance of components:
 ##                           PC1     PC2    PC3     PC4
 ## Standard deviation     2.0563 0.49262 0.2797 0.15439
 ## Proportion of Variance 0.9246 0.05307 0.0171 0.00521
 ## Cumulative Proportion  0.9246 0.97769 0.9948 1.00000</code></pre>
 <p>To plot the PC scores, you can either manually create a plot or use the <code>ggfortify</code> package. For example, here is a plot of the first two PC scores coloured according to the species of iris.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">iris<span class="op">$</span>PC1=iris.pca<span class="op">$</span>x[,<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb108-2" data-line-number="2">iris<span class="op">$</span>PC2=iris.pca<span class="op">$</span>x[,<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb108-3" data-line-number="3"><span class="kw">qplot</span>(PC1, PC2, <span class="dt">colour=</span>Species, <span class="dt">data=</span>iris)</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">iris<span class="op">$</span>PC1=iris.pca<span class="op">$</span>x[,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb109-2" data-line-number="2">iris<span class="op">$</span>PC2=iris.pca<span class="op">$</span>x[,<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb109-3" data-line-number="3"><span class="kw">qplot</span>(PC1, PC2, <span class="dt">colour=</span>Species, <span class="dt">data=</span>iris)</a></code></pre></div>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>The <code>ggfortify</code> package provides a nice wrapper for some of this functionality.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">library</span>(ggfortify)</a>
-<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="kw">autoplot</span>(iris.pca, <span class="dt">data =</span> iris, <span class="dt">colour =</span> <span class="st">&#39;Species&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="kw">library</span>(ggfortify)</a>
+<a class="sourceLine" id="cb110-2" data-line-number="2"><span class="kw">autoplot</span>(iris.pca, <span class="dt">data =</span> iris, <span class="dt">colour =</span> <span class="st">&#39;Species&#39;</span>)</a></code></pre></div>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 </div>
 </div>

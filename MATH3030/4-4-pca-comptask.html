@@ -214,6 +214,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="4-4-pca-comptask.html"><a href="4-4-pca-comptask.html"><i class="fa fa-check"></i><b>4.4</b> Computer tasks</a></li>
 <li class="chapter" data-level="4.5" data-path="4-5-exercises-1.html"><a href="4-5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis (CCA)</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html"><i class="fa fa-check"></i><b>5.1</b> The first pair of canonical variables</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>5.1.1</b> The first canonical components</a></li>
+<li class="chapter" data-level="5.1.2" data-path="5-1-cca1.html"><a href="5-1-cca1.html#premcca"><i class="fa fa-check"></i><b>5.1.2</b> Example: Premier league football</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>5.2.1</b> Example continued</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5-3-properties.html"><a href="5-3-properties.html"><i class="fa fa-check"></i><b>5.3</b> Properties</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="5-3-properties.html"><a href="5-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>5.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="5-3-properties.html"><a href="5-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>5.3.2</b> Invariance/equivariance properties of CCA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5-4-computer-tasks-1.html"><a href="5-4-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-exercises-2.html"><a href="5-5-exercises-2.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+</ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
 
@@ -236,10 +251,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="pca-comptask" class="section level2">
 <h2><span class="header-section-number">4.4</span> Computer tasks</h2>
-<ol style="list-style-type: decimal">
-<li><p>Using the <code>iris</code> dataset, familiarize yourself with the <code>prcomp</code> command and its output.</p>
-<p>Now, instead of using <code>prcomp</code> we will do the analysis ourselves using the <code>eigen</code> command.</p></li>
-</ol>
+<div id="exercise-1" class="section level5 unnumbered">
+<h5>Exercise 1</h5>
+<p>Using the <code>iris</code> dataset, familiarize yourself with the <code>prcomp</code> command and its output.</p>
+<p>Now, instead of using <code>prcomp</code> we will do the analysis ourselves using the <code>eigen</code> command.</p>
 <ul>
 <li>Start by computing the sample mean and sample variance of the dataset (use <span class="math inline">\(n-1\)</span> as the denominator when you compute the sample variance to get the same answer as provided by <code>prcomp</code>).</li>
 <li>Now compute the eigenvalues and eigenvectors of the covariance matrix using <code>eigen</code>. Check that these agree with those computed by <code>prcomp</code> (noting that <code>prcomp</code> returns the standard deviation which is the square root of the eigenvalues).</li>
@@ -251,20 +266,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Compute the SVD of this matrix. Check the singular values match the square root of the eigenvalues computed previously.</li>
 <li>Compute the SVD scores by doing both <span class="math inline">\(\mathbf X\mathbf V\)</span> and <span class="math inline">\(\mathbf U\boldsymbol{\Sigma}\)</span>.</li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li>We first look at the crabs data, which is a dataset in the MASS library. First, we obtain the data.
-Then we focus on 5 continuous variables, all measured in mm: FL = frontal lobe size; RW = rear width; CL = carapace length;
-CW = carapace width; and BD = body depth. The sample size is <span class="math inline">\(200\)</span>.</li>
-</ol>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
-<a class="sourceLine" id="cb123-2" data-line-number="2">?crabs           <span class="co"># read the help page to find out about the dataset</span></a>
-<a class="sourceLine" id="cb123-3" data-line-number="3">X=crabs[<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>]     <span class="co"># construct data matrix X with columns FL, RW, CL, CW, BD</span></a></code></pre></div>
-<p>Carry out PCA on the data in <span class="math inline">\(X\)</span>, including obtaining a scree plot and plotting the PC scores.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">pca &lt;-<span class="st"> </span><span class="kw">prcomp</span>(X, <span class="dt">scale=</span><span class="ot">FALSE</span>)   <span class="co">#carry out PCA on S  </span></a>
-<a class="sourceLine" id="cb124-2" data-line-number="2">pca</a>
-<a class="sourceLine" id="cb124-3" data-line-number="3">lambda &lt;-<span class="st"> </span>pca<span class="op">$</span>sdev<span class="op">**</span><span class="dv">2</span>    <span class="co">#eigenvalues of S</span></a>
-<a class="sourceLine" id="cb124-4" data-line-number="4"><span class="kw">plot</span>( lambda , <span class="dt">ylim=</span><span class="kw">c</span>( <span class="dv">0</span>, <span class="kw">max</span>(lambda) )</a>
-<a class="sourceLine" id="cb124-5" data-line-number="5"><span class="kw">lines</span>(lambda)</a></code></pre></div>
+</div>
+<div id="exercise-2" class="section level5 unnumbered">
+<h5>Exercise 2</h5>
+<p>In this question we will look at the crabs data from the <code>MASS</code> R package.
+We will focus on the 5 continuous variables, all measured in mm:</p>
+<ul>
+<li>FL = frontal lobe size</li>
+<li>RW = rear width</li>
+<li>CL = carapace length</li>
+<li>CW = carapace width</li>
+<li>BD = body depth.</li>
+</ul>
+<p>The sample size is <span class="math inline">\(200\)</span>.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb124-2" data-line-number="2">?crabs <span class="co"># read the help page to find out about the dataset</span></a>
+<a class="sourceLine" id="cb124-3" data-line-number="3">X=crabs[<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>]     <span class="co"># construct data matrix X with columns FL, RW, CL, CW, BD</span></a></code></pre></div>
+<ul>
+<li>Carry out PCA on the data in <span class="math inline">\(X\)</span> using the covariance matrix, including obtaining a scree plot and plotting the PC scores.</li>
+</ul>
+<!--
+
+```r
+pca <- prcomp(X, scale=FALSE)   #carry out PCA on S  
+pca
+lambda <- pca$sdev**2    #eigenvalues of S
+plot( lambda , ylim=c( 0, max(lambda) )
+lines(lambda)
+```
+-->
 <p>Some questions:</p>
 <ul>
 <li><p>Do you have any suggestions for an interpretation for the 1st PC?</p></li>
@@ -290,14 +320,16 @@ You can generate a random orthogonal matrix using the following commands</p></li
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="kw">library</span>(pracma)</a>
 <a class="sourceLine" id="cb125-2" data-line-number="2">U &lt;-<span class="st"> </span><span class="kw">randortho</span>(<span class="dv">5</span>)</a></code></pre></div>
 <p>Check the effect of each transformation on the principal components (the loadings/eigenvectors), the principal component scores, and the variance of the principal components (the eigenvalues).</p>
-<ol start="3" style="list-style-type: decimal">
-<li>Download the final Premier League table for the 2018-19 season from
-<a href="https://www.rotowire.com/soccer/league-table.php?season=2018">https://www.rotowire.com/soccer/league-table.php?season=2018</a>. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.</li>
-</ol>
+</div>
+<div id="exercise-3" class="section level5 unnumbered">
+<h5>Exercise 3</h5>
+<p>Download the final Premier League table for the 2018-19 season from
+<a href="https://www.rotowire.com/soccer/league-table.php?season=2018">https://www.rotowire.com/soccer/league-table.php?season=2018</a>. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.</p>
 <ul>
 <li><p>Load the data into R using the command <code>read.csv</code>. Note that you may need to manually delete the first row of the csv file before doing this. (<em>I haven’t given you the command here, as learning how to do this yourself is important</em>).</p></li>
 <li><p>Repeat the analysis from section <a href="4-2-pca-a-formal-description-with-proofs.html#pca:football">4.2.2</a>. Does the meaning of the principal components change? Was the 2018-19 league season notable different to the 2019-20 season (which is the season analysed in the notes)?</p></li>
 </ul>
+</div>
 </div>
             </section>
 

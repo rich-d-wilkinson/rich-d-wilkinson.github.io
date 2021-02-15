@@ -214,6 +214,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="4-4-pca-comptask.html"><a href="4-4-pca-comptask.html"><i class="fa fa-check"></i><b>4.4</b> Computer tasks</a></li>
 <li class="chapter" data-level="4.5" data-path="4-5-exercises-1.html"><a href="4-5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis (CCA)</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html"><i class="fa fa-check"></i><b>5.1</b> The first pair of canonical variables</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>5.1.1</b> The first canonical components</a></li>
+<li class="chapter" data-level="5.1.2" data-path="5-1-cca1.html"><a href="5-1-cca1.html#premcca"><i class="fa fa-check"></i><b>5.1.2</b> Example: Premier league football</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>5.2.1</b> Example continued</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5-3-properties.html"><a href="5-3-properties.html"><i class="fa fa-check"></i><b>5.3</b> Properties</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="5-3-properties.html"><a href="5-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>5.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="5-3-properties.html"><a href="5-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>5.3.2</b> Invariance/equivariance properties of CCA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5-4-computer-tasks-1.html"><a href="5-4-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-exercises-2.html"><a href="5-5-exercises-2.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+</ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
 
@@ -250,13 +265,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <!-- NEED TO OPEN PROJECT TO MAKE IT WORK PROPERLY! -->
-<p><strong>Warning:</strong> these lecture notes are still in preparation. Chapters 1-4 have been finished. Chapters 5-6 are being worked on. Later chapters will appear once a reasonable draft is available.</p>
+<p><strong>Warning:</strong> these lecture notes are still in preparation. Chapters 1-5 have been finished. Chapters 6-10 are still being worked on.</p>
 <p>This module is concerned with the analysis of multivariate data, in which the response is a vector of random variables rather than a single random variable.</p>
 <p>Part I of the module describes some basic concepts in Multivariate Analysis and then recaps and introduces some key ideas needed from linear algebra.
 Chapter <a href="1-stat-prelim.html#stat-prelim">1</a> defines notation, introduces some datasets, and discusses exploratory data analysis. Chapter <a href="2-linalg-prelim.html#linalg-prelim">2</a> provides a recap on some matrix algebra. Much of this will be familiar to you, but if not, we take the time to introduce the key mathematical concepts that will be relied upon during the module. Chapter <a href="3-linalg-decomp.html#linalg-decomp">3</a> introduces matrix decompositions. We start with the spectral decomposition of square symmetric matrices (which you will have studied previously), and then introduce the singular value decomposition (SVD). The SVD is one of the most important concepts in this module, and is the key linear algebra technique behind many of the methods we will study.</p>
 <!--FIX CHAPTER REFERENCES AND TEXT FROM HERE.-->
 <p>A theme running through the module is that of dimension reduction. In Part II we consider three types of dimension reduction: Principal Components Analysis (in Chapter <a href="4-pca.html#pca">4</a>),
-whose purpose is to identify the main modes of variation in a multivariate dataset; Canonical Correlation Analysis (Chapter <a href="#cca"><strong>??</strong></a>), whose purpose is to describe the association between two sets of variables; and Multidimensional Scaling (Chapter <a href="#mds"><strong>??</strong></a>), in which the starting point is a set of pairwise distances, suitably defined, between the objects under study.</p>
+whose purpose is to identify the main modes of variation in a multivariate dataset; Canonical Correlation Analysis (Chapter <a href="5-cca.html#cca">5</a>), whose purpose is to describe the association between two sets of variables; and Multidimensional Scaling (Chapter <a href="#mds"><strong>??</strong></a>), in which the starting point is a set of pairwise distances, suitably defined, between the objects under study.</p>
 <p>In Part III, we focus on methods of inference for multivariate data whose distribution is multivariate normal.</p>
 <!--First, in Chapter 7, we develop relevant distribution theory for the multivariate normal distribution.  This includes a study of the Wishart distribution, which is a matrix generalisation of the chi-squared distribution, and Hotelling's $T^2$, which can be thought of as a multivariate generalisation of the Student $t$ distribution.  Then in Chapter 8 we focus on inference in  multivariate one-sample and two-sample problems in which the underlying distribution is multivariate normal, making use of the distribution theory developed in Chapter 6.  In Chapter 9, we focus on the multivariate linear model in which the dependent variable (or $y$ variable) is a vector and the error distribution is multivariate normal.
 -->

@@ -214,6 +214,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="4-4-pca-comptask.html"><a href="4-4-pca-comptask.html"><i class="fa fa-check"></i><b>4.4</b> Computer tasks</a></li>
 <li class="chapter" data-level="4.5" data-path="4-5-exercises-1.html"><a href="4-5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis (CCA)</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html"><i class="fa fa-check"></i><b>5.1</b> The first pair of canonical variables</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>5.1.1</b> The first canonical components</a></li>
+<li class="chapter" data-level="5.1.2" data-path="5-1-cca1.html"><a href="5-1-cca1.html#premcca"><i class="fa fa-check"></i><b>5.1.2</b> Example: Premier league football</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>5.2.1</b> Example continued</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5-3-properties.html"><a href="5-3-properties.html"><i class="fa fa-check"></i><b>5.3</b> Properties</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="5-3-properties.html"><a href="5-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>5.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="5-3-properties.html"><a href="5-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>5.3.2</b> Invariance/equivariance properties of CCA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5-4-computer-tasks-1.html"><a href="5-4-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-exercises-2.html"><a href="5-5-exercises-2.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+</ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
 
@@ -286,8 +301,21 @@ Let’s check this in R (noting as always that there may be some numerical error
 <li><p>Let <span class="math inline">\(\mathbf S\)</span> be the sample covariance matrix of the iris dataset. What vector <span class="math inline">\(\mathbf x\)</span> with <span class="math inline">\(||\mathbf x||=1\)</span> maximizes <span class="math inline">\(\mathbf x^\top \mathbf S\mathbf x\)</span>?</p></li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
-<li>Choose an few images from the <a href="http://sipi.usc.edu/database/">USC-SIPI Image Database</a> and repeat the image compression example from the notes. Which type of images compress well do you think?</li>
+<li><p>Choose an few images from the <a href="http://sipi.usc.edu/database/">USC-SIPI Image Database</a> and repeat the image compression example from the notes. Which type of images compress well do you think?</p></li>
+<li><p>We won’t discuss how the SVD is computed in practice, but there are a variety of approaches that can be used. Try the following iterative approach for computing the first singular vectors:</p></li>
 </ol>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">v &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">dim</span>(X)[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb70-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb70-4" data-line-number="4"><span class="cf">for</span> (iter <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">500</span>){</a>
+<a class="sourceLine" id="cb70-5" data-line-number="5">  u &lt;-<span class="st"> </span>X <span class="op">%*%</span>v</a>
+<a class="sourceLine" id="cb70-6" data-line-number="6">  u &lt;-<span class="st"> </span>u<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">sum</span>(u<span class="op">^</span><span class="dv">2</span>)) </a>
+<a class="sourceLine" id="cb70-7" data-line-number="7">  v &lt;-<span class="st"> </span><span class="kw">t</span>(X) <span class="op">%*%</span>u</a>
+<a class="sourceLine" id="cb70-8" data-line-number="8">  v &lt;-<span class="st"> </span>v<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">sum</span>(v<span class="op">^</span><span class="dv">2</span>)) </a>
+<a class="sourceLine" id="cb70-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb70-10" data-line-number="10">X.svd &lt;-<span class="st"> </span><span class="kw">svd</span>(X)</a>
+<a class="sourceLine" id="cb70-11" data-line-number="11">X.svd<span class="op">$</span>v[,<span class="dv">1</span>]<span class="op">/</span>v</a>
+<a class="sourceLine" id="cb70-12" data-line-number="12">X.svd<span class="op">$</span>u[,<span class="dv">1</span>]<span class="op">/</span>u</a></code></pre></div>
 </div>
             </section>
 

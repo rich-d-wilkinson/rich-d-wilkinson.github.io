@@ -232,7 +232,7 @@
 \newcommand{\var}{{\mathbb{V}\operatorname{ar}}}
 \newcommand{\cor}{{\mathbb{C}\operatorname{or}}}
 
-\textbf{Warning:} these lecture notes are still in preparation. Chapters 1-4 have been finished. Chapters 5-6 are being worked on. Later chapters will appear once a reasonable draft is available.
+\textbf{Warning:} these lecture notes are still in preparation. Chapters 1-5 have been finished. Chapters 6-10 are still being worked on.
 
 This module is concerned with the analysis of multivariate data, in which the response is a vector of random variables rather than a single random variable.
 
@@ -2502,8 +2502,8 @@ Solving \(\det(\mathbf A\mathbf A^\top-\lambda \mathbf I)=0\) gives the eigenval
                0&3\end{array}\right).\]
 
 The columns of \(\mathbf U\) are the \emph{unit} eigenvectors of \(\mathbf A\mathbf A^\top\) which we can find by solving
-\begin{align*}(\mathbf A^\top \mathbf A-25\mathbf I_2)\mathbf u&=\left(\begin{array}{cc}-8&8\\
-               8&-8\end{array}\right)\left(\begin{array}{c}u_1\\u_2\\\end{array}\right)=\left(\begin{array}{c}0\\0\\\end{array}\right) \quad \mbox{ and }\\ (\mathbf A^\top \mathbf A-9\mathbf I_2)\mathbf u&=\left(\begin{array}{cc}8&8\\
+\begin{align*}(\mathbf A\mathbf A^\top-25\mathbf I_2)\mathbf u&=\left(\begin{array}{cc}-8&8\\
+               8&-8\end{array}\right)\left(\begin{array}{c}u_1\\u_2\\\end{array}\right)=\left(\begin{array}{c}0\\0\\\end{array}\right) \quad \mbox{ and }\\ (\mathbf A\mathbf A^\top-9\mathbf I_2)\mathbf u&=\left(\begin{array}{cc}8&8\\
                8&8\end{array}\right)\left(\begin{array}{c}u_1\\u_2\\\end{array}\right)=\left(\begin{array}{c}0\\0\\\end{array}\right).\end{align*}
 And so, remembering that the eigenvectors used to form \(\mathbf U\) need to be \emph{unit} vectors, we can see that
 \[\mathbf U=\frac{1}{\sqrt{2}}\left(\begin{array}{cc}1&1\\
@@ -2909,17 +2909,37 @@ Since A is positive definite, we can calculate the symmetric, positive definite 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{2}
-\tightlist
 \item
   Choose an few images from the \href{http://sipi.usc.edu/database/}{USC-SIPI Image Database} and repeat the image compression example from the notes. Which type of images compress well do you think?
+\item
+  We won't discuss how the SVD is computed in practice, but there are a variety of approaches that can be used. Try the following iterative approach for computing the first singular vectors:
 \end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(iris[,}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{])}
+\NormalTok{v <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\KeywordTok{dim}\NormalTok{(X)[}\DecValTok{2}\NormalTok{])}
+
+\ControlFlowTok{for}\NormalTok{ (iter }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{500}\NormalTok{)\{}
+\NormalTok{  u <-}\StringTok{ }\NormalTok{X }\OperatorTok{%*%}\NormalTok{v}
+\NormalTok{  u <-}\StringTok{ }\NormalTok{u}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{sum}\NormalTok{(u}\OperatorTok{^}\DecValTok{2}\NormalTok{)) }
+\NormalTok{  v <-}\StringTok{ }\KeywordTok{t}\NormalTok{(X) }\OperatorTok{%*%}\NormalTok{u}
+\NormalTok{  v <-}\StringTok{ }\NormalTok{v}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{sum}\NormalTok{(v}\OperatorTok{^}\DecValTok{2}\NormalTok{)) }
+\NormalTok{\}}
+\NormalTok{X.svd <-}\StringTok{ }\KeywordTok{svd}\NormalTok{(X)}
+\NormalTok{X.svd}\OperatorTok{$}\NormalTok{v[,}\DecValTok{1}\NormalTok{]}\OperatorTok{/}\NormalTok{v}
+\NormalTok{X.svd}\OperatorTok{$}\NormalTok{u[,}\DecValTok{1}\NormalTok{]}\OperatorTok{/}\NormalTok{u}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{exercises-ch3}{%
 \section{Exercises}\label{exercises-ch3}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\tightlist
+\setcounter{enumi}{-1}
+\item
+  There is a great Twitter thread on the SVD by Daniella Witten \citet{WomenInStat} Go and read it \href{https://twitter.com/WomenInStat/status/1285610321747611653}{here}.
 \item
   Let \(\boldsymbol{\Sigma}\) be an arbitrary covariance matrix.
 
@@ -4397,13 +4417,15 @@ We can see from this scatter plot that the first two principal components do a s
 \hypertarget{pca-comptask}{%
 \section{Computer tasks}\label{pca-comptask}}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Using the \texttt{iris} dataset, familiarize yourself with the \texttt{prcomp} command and its output.
+\hypertarget{exercise-1}{%
+\paragraph{Exercise 1}\label{exercise-1}}
+\addcontentsline{toc}{paragraph}{Exercise 1}
 
-  Now, instead of using \texttt{prcomp} we will do the analysis ourselves using the \texttt{eigen} command.
-\end{enumerate}
+Using the \texttt{iris} dataset, familiarize yourself with the \texttt{prcomp} command and its output.
+
+\begin{verbatim}
+Now, instead of using `prcomp` we will do the analysis ourselves using the `eigen` command. 
+\end{verbatim}
 
 \begin{itemize}
 \tightlist
@@ -4427,35 +4449,42 @@ Now we will do the same thing again, but using the \texttt{svd} command.
   Compute the SVD scores by doing both \(\mathbf X\mathbf V\) and \(\mathbf U\boldsymbol{\Sigma}\).
 \end{itemize}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
+\hypertarget{exercise-2}{%
+\paragraph{Exercise 2}\label{exercise-2}}
+\addcontentsline{toc}{paragraph}{Exercise 2}
+
+In this question we will look at the crabs data from the \texttt{MASS} R package.
+We will focus on the 5 continuous variables, all measured in mm:
+
+\begin{itemize}
 \tightlist
 \item
-  We first look at the crabs data, which is a dataset in the MASS library. First, we obtain the data.
-  Then we focus on 5 continuous variables, all measured in mm: FL = frontal lobe size; RW = rear width; CL = carapace length;
-  CW = carapace width; and BD = body depth. The sample size is \(200\).
-\end{enumerate}
+  FL = frontal lobe size
+\item
+  RW = rear width
+\item
+  CL = carapace length
+\item
+  CW = carapace width
+\item
+  BD = body depth.
+\end{itemize}
+
+The sample size is \(200\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(MASS)}
-\NormalTok{?crabs           }\CommentTok{# read the help page to find out about the dataset}
+\NormalTok{?crabs }\CommentTok{# read the help page to find out about the dataset}
 \NormalTok{X=crabs[}\DecValTok{4}\OperatorTok{:}\DecValTok{8}\NormalTok{]     }\CommentTok{# construct data matrix X with columns FL, RW, CL, CW, BD}
 \end{Highlighting}
 \end{Shaded}
 
-Carry out PCA on the data in \(X\), including obtaining a scree plot and plotting the PC scores.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{pca <-}\StringTok{ }\KeywordTok{prcomp}\NormalTok{(X, }\DataTypeTok{scale=}\OtherTok{FALSE}\NormalTok{)   }\CommentTok{#carry out PCA on S  }
-\NormalTok{pca}
-\NormalTok{lambda <-}\StringTok{ }\NormalTok{pca}\OperatorTok{$}\NormalTok{sdev}\OperatorTok{**}\DecValTok{2}    \CommentTok{#eigenvalues of S}
-\KeywordTok{plot}\NormalTok{( lambda , }\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{( }\DecValTok{0}\NormalTok{, }\KeywordTok{max}\NormalTok{(lambda) )}
-\KeywordTok{lines}\NormalTok{(lambda)}
-\end{Highlighting}
-\end{Shaded}
+\begin{itemize}
+\tightlist
+\item
+  Carry out PCA on the data in \(X\) using the covariance matrix, including obtaining a scree plot and plotting the PC scores.
+\end{itemize}
 
 Some questions:
 
@@ -4500,14 +4529,12 @@ Some questions:
 
 Check the effect of each transformation on the principal components (the loadings/eigenvectors), the principal component scores, and the variance of the principal components (the eigenvalues).
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
-\item
-  Download the final Premier League table for the 2018-19 season from
-  \url{https://www.rotowire.com/soccer/league-table.php?season=2018}. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.
-\end{enumerate}
+\hypertarget{exercise-3}{%
+\paragraph{Exercise 3}\label{exercise-3}}
+\addcontentsline{toc}{paragraph}{Exercise 3}
+
+Download the final Premier League table for the 2018-19 season from
+\url{https://www.rotowire.com/soccer/league-table.php?season=2018}. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.
 
 \begin{itemize}
 \item
@@ -4605,6 +4632,908 @@ Check the effect of each transformation on the principal components (the loading
   each of these observations.
 \item
   Do exam question 1 part (a) from the 2017-18 exam paper. You will find the past exam papers on Moodle.
+\end{enumerate}
+
+\hypertarget{cca}{%
+\chapter{Canonical Correlation Analysis (CCA)}\label{cca}}
+
+The videos for this chapter are available at the following links
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/CCA+Introduction/1_qhk7v35f}{5.1: Introduction to CCA}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/CCAA+First+CC/1_yjm6kkxf}{5.1.1: The first pair of CC variables}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/CCAA+Football+Example/1_r2v6924j}{5.1.2: Example: Premier league data}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/CCAA+Full+Set/1_xmdoi9i6}{5.2: The full set of CC variables}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/CCA\%3A\%20Properties/1_g24h27bj}{5.3: Properties of CCA}
+\end{itemize}
+
+Suppose we observe a random sample of \(n\) bivariate observations
+\[
+\mathbf z_1=(x_1,y_1)^\top , \ldots , \mathbf z_n=(x_n,y_n)^\top.
+\]
+If we are interested in exploring possible dependence between the \(x_i\)'s and \(y_i\)'s then among the first things we would do would be to obtain a scatterplot of the \(x_i\)'s against the \(y_i\)'s and calculate the correlation coefficient. Recall that the sample correlation coefficient is defined by
+\begin{align}
+r={\mathbb{C}\operatorname{or}}(x,y)&=\frac{S_{xy}}{\sqrt{S_{xx}}\sqrt{S_{yy}}}\\
+&=\frac{\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{\left(\sum_{i=1}^n (x_i-\bar{x})^2  \right)^{1/2}  \left(\sum_{i=1}^n (y_i-\bar{y})^2 \right)^{1/2}}
+\label{eq:scr}
+\end{align}
+where \(\bar{x}=n^{-1}\sum_{i=1}^n x_i\) and \(\bar{y}=n^{-1}\sum_{i=1}^n y_i\) are the sample means.
+
+Recall that the sample correlation is a \textbf{scale-free measure} of the strength of the \textbf{linear dependence} between the \(x_i\)'s and the \(y_i\)'s.
+
+In this chapter we investigate the multivariate analogue of this question. Instead of our bivariate observations being a pair of scalars, suppose instead that we are given two different random vectors \(\mathbf x\) and \(\mathbf y\). In otherwords, for each subject/case \(i\) we have observations
+\(\{\mathbf x_i,\mathbf y_i\}_{i=1}^n.\)
+
+Multivariate data structures can be understood better if we look at low-dimensional projections of the data. The question is, given a sample \(\{\mathbf x_i, \; \mathbf y_i\}_{i=1}^{n}\), what is a sensible way to assess and describe the strength of the linear dependence between the two vectors?
+
+Canonical correlation analysis (CCA) gives an answer to this question in terms of the best low-dimensional linear projections of the \(\mathbf x\) and \(\mathbf y\) random variables. In a comparable way to PCA, `best' in CCA is defined in terms of maximizing correlations.
+A key role is played by the singular value decomposition (SVD) introduced in Chapter \ref{linalg-decomp}.
+
+\hypertarget{cca1}{%
+\section{The first pair of canonical variables}\label{cca1}}
+
+\hypertarget{some-notation}{%
+\subsubsection*{Some notation}\label{some-notation}}
+\addcontentsline{toc}{subsubsection}{Some notation}
+
+Assume we are given a random sample of vectors \(\mathbf x_i, \mathbf y_i\), and that we stack these into a vector \(\mathbf z_i\)
+\[
+\mathbf z_i=\left(\begin{array}{c}
+\mathbf x_i\\
+\mathbf y_i
+\end{array}\right)=(\mathbf x_i^\top , \mathbf y_i^\top )^\top,\quad  i=1,\ldots, n,
+\]
+where
+the \(\mathbf x_i\) are \(p \times 1\), the \(\mathbf y_i\) are \(q \times 1\) and, consequently, the \(\mathbf z_i\) are \((p+q)\times 1\). We are interested in determining the strength of linear association between the \(\mathbf x_i\) vectors and the \(\mathbf y_i\) vectors.
+We formulate this task as an optimisation problem (cf.~PCA).
+
+First, some notation:
+
+\begin{itemize}
+\item
+  Let \(\bar{\mathbf x}\), \(\bar{\mathbf y}\), and \(\bar{\mathbf z}\) denote the sample mean vectors of the \(\mathbf x_i\), \(\mathbf y_i\) and \(\mathbf z_i\) respectively.
+\item
+  Let \(\mathbf S_{\mathbf z\mathbf z}\) denote the sample covariance matrix of the \(\mathbf z_i\), \(i=1,\ldots, n\). Then \(\mathbf S_{\mathbf z\mathbf z}\) can be written in block matrix form
+  \[
+  \mathbf S_{\mathbf z\mathbf z}=\left [\begin{array}{cc}
+  \mathbf S_{\mathbf x\mathbf x} & \mathbf S_{\mathbf x\mathbf y}\\
+  \mathbf S_{\mathbf y\mathbf x} & \mathbf S_{\mathbf y\mathbf y} \end{array} \right ],
+  \]
+  where \(\mathbf S_{\mathbf x\mathbf x}\) (\(p \times p\)) is the sample covariance matrix of the \(\mathbf x_i\), \(\mathbf S_{\mathbf y\mathbf y}\) (\(q \times q\)) is the sample covariance of the \(\mathbf y_i\), and the cross-covariance matrices are given by
+  \[
+  \stackrel{p \times q}{\mathbf S}_{\mathbf x\mathbf y}=n^{-1} \sum_{i=1}^n (\mathbf x_i -\bar{\mathbf x})(\mathbf y_i-\bar{\mathbf y})^\top
+  \qquad \text{and} \qquad \stackrel{q \times p}{\mathbf S}_{\mathbf y\mathbf x}=\mathbf S_{\mathbf x\mathbf y}^\top.
+  \]
+\end{itemize}
+
+\hypertarget{defining-the-optimization-objective}{%
+\subsubsection*{Defining the optimization objective}\label{defining-the-optimization-objective}}
+\addcontentsline{toc}{subsubsection}{Defining the optimization objective}
+
+We want to find the linear combination of the \(\mathbf x\)-variables and the linear combination of the \(\mathbf y\)-variables which is most highly correlated.
+
+One version of the optimisation problem we want to solve is: find non-zero vectors \(\stackrel{p \times 1}{\mathbf a}\) and \(\stackrel{q \times 1}{\mathbf b}\) which maximise the correlation coefficient
+\[
+{\mathbb{C}\operatorname{or}}(\mathbf a^\top \mathbf x,\mathbf b^\top \mathbf y)=\frac{\mathbf a^\top \mathbf S_{\mathbf x\mathbf y}\mathbf b}{(\mathbf a^\top \mathbf S_{\mathbf x\mathbf x}\mathbf a)^{1/2}(\mathbf b^\top \mathbf S_{\mathbf y\mathbf y}\mathbf b)^{1/2}}.
+\]
+In other words:
+\begin{align}
+&\mbox{Maximise} \qquad\qquad \quad  {\mathbb{C}\operatorname{or}}(\mathbf a^\top \mathbf x,\mathbf b^\top \mathbf y),
+\label{eq:opt26}\\
+  &\mbox{for non-zero vectors}\quad  \mathbf a\;\; (p \times 1)\mbox{ and  } \mathbf b\;\; (q \times 1) \nonumber
+\end{align}
+
+where \({\mathbb{C}\operatorname{or}}(\cdot,\cdot)\) is defined in \eqref{eq:scr}.
+
+Intuitively, this objective makes sense, because we want to find the linear combination of the \(\mathbf x\)-variables and the linear combination of the \(\mathbf y\)-variables which are most highly correlated.
+However, note that for any \(\gamma>0\) and \(\delta>0\),
+\begin{align}
+  {\mathbb{C}\operatorname{or}}(\gamma\mathbf a^\top \mathbf x, \delta \mathbf b^\top \mathbf y)&= \frac{\gamma \delta}{\sqrt{\gamma^2 \delta^2}}{\mathbb{C}\operatorname{or}}(\mathbf a^\top \mathbf x,\mathbf b^\top \mathbf y)\\
+  &={\mathbb{C}\operatorname{or}}(\mathbf a^\top \mathbf x,\mathbf b^\top \mathbf y).
+  \label{eq:invar}
+  \end{align}
+\({\mathbb{C}\operatorname{or}}(\mathbf a^\top \mathbf x,\mathbf b^\top \mathbf y)\) is invariant to (i.e.~unchanged by) multiplication of \(\mathbf a\) and \(\mathbf b\) by positive scalars. Consequently there will be an infinite number of solutions to this optimisation problem, because if \(\mathbf a\) and \(\mathbf b\) are solutions, then so are \(\gamma \mathbf a\) and \(\delta \mathbf b\), for any \(\gamma>0\) and \(\delta>0\).
+
+A more useful way to formulate this optimisation problem is
+
+\begin{align}
+&\mbox{Maximize }\qquad \mathbf a^\top \mathbf S_{\mathbf x\mathbf y}\mathbf b
+\label{eq:opt27a}\\
+  &\mbox{subject to } \qquad  \mathbf a^\top \mathbf S_{\mathbf x\mathbf x}\mathbf a=\mathbf b^\top \mathbf S_{\mathbf y\mathbf y}\mathbf b=1.\nonumber
+\end{align}
+
+Thankfully, there is a link between the solutions of the two optimization problems \eqref{eq:opt26} and \eqref{eq:opt27a}. Firstly, the invariance of \({\mathbb{C}\operatorname{or}}(\mathbf a^\top \mathbf x, \mathbf b^\top \mathbf y)\) means that if
+\(\check{\mathbf a}\) and \(\check{\mathbf b}\) are a solution to problem \eqref{eq:opt27a}, then for any \(\gamma,\;\delta>0\), we have that \(\mathbf a=\gamma \check{\mathbf a}\) and \(\mathbf b=\delta \check{\mathbf b}\) are a solution to \eqref{eq:opt26}.
+
+Conversely, we can convert any solution to optimization problem \eqref{eq:opt26} to be a solution to the problem \eqref{eq:opt27a}:
+
+\begin{proposition}
+\protect\hypertarget{prp:unnamed-chunk-1}{}{\label{prp:unnamed-chunk-1} }If \(\mathbf a\) and \(\mathbf b\) maximise \eqref{eq:opt26}, then
+\[
+\check{\mathbf a}=\frac{\mathbf a}{(\mathbf a^\top \mathbf S_{\mathbf x\mathbf x}{\mathbf a})^{1/2}} \qquad \text{and} \qquad
+\check{\mathbf b}= \frac{{\mathbf b}}{({\mathbf b}^\top \mathbf S_{\mathbf y\mathbf y}{\mathbf b})^{1/2}}
+\]
+are a solution to the constrained maximization problem \eqref{eq:opt27a}.
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}
+Suppose \({\mathbf a}\) and \({\mathbf b}\) are solutions to optimization problem \eqref{eq:opt26}. Then invariance with respect to rescaling implies that \(\check{\mathbf a}={\mathbf a}/({\mathbf a}^\top \mathbf S_{\mathbf x\mathbf x} {\mathbf a})^{1/2}\) and \(\check{\mathbf b}= {\mathbf b}/({\mathbf b}^\top \mathbf S_{\mathbf y\mathbf y} {\mathbf b})^{1/2}\) also achieve the optima.
+But \(\check{\mathbf a}\) and \(\check{\mathbf b}\) satisfy the constraints \(\mathbf a^\top \mathbf S_{\mathbf x\mathbf x}\mathbf a=\mathbf b^\top \mathbf S_{\mathbf y\mathbf y}\mathbf b=1\)
+because
+\[
+\check{\mathbf a}^\top \mathbf S_{\mathbf x\mathbf x} \check{\mathbf a}=\frac{{\mathbf a}^\top \mathbf S_{\mathbf x\mathbf x}{\mathbf a}}{\left \{ \left ({\mathbf a}^\top \mathbf S_{\mathbf x\mathbf x}{\mathbf a}\right )^{1/2}\right \}^2}
+=\frac{{\mathbf a}^\top \mathbf S_{\mathbf x\mathbf x}{\mathbf a}}{{\mathbf a}^\top \mathbf S_{\mathbf x\mathbf x}{\mathbf a}}=1
+\]
+and similarly for \(\check{\mathbf b}\).
+So \(\check{\mathbf a}\) and \(\check{\mathbf b}\) maximises \eqref{eq:opt27a} subject to the constraints.
+\end{proof}
+
+\hypertarget{the-first-canonical-components}{%
+\subsection{The first canonical components}\label{the-first-canonical-components}}
+
+As in the chapter on PCA, the optimal solution for CCA can be computed using the singular value decomposition. Before we describe the result, let's prove the following proposition from Chapter \ref{linalg-decomp}
+
+\begin{proposition}
+\protect\hypertarget{prp:svdmax2}{}{\label{prp:svdmax2} }For any matrix \(\mathbf Q\), we have
+\[
+\max_{\mathbf a, \mathbf b:\, \vert \vert \mathbf a\vert \vert=\vert \vert \mathbf b\vert \vert =1} \mathbf a^\top \mathbf Q\mathbf b=\sigma_1.
+\]
+with the maximum obtained at \(\mathbf a=\mathbf u_1\) and \(\mathbf b=\mathbf v_1\), the first left and right singular vectors of \(\mathbf Q\).
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}We'll use the method of Lagrange multipliers to prove this result. Consider the objective
+\[\mathcal{L} = \mathbf a^\top \mathbf Q\mathbf b+\frac{\lambda_1}{2}(1-\mathbf a^\top\mathbf a)+\frac{\lambda_2}{2} (1-\mathbf b^\top \mathbf b).\]
+The factor of 1/2 is there to simplify the maths once we differentiate.
+Differentiating with respect to \(\mathbf a\) and \(\mathbf b\) and setting the derivative equal to zero gives
+\begin{align}
+\boldsymbol 0&= \mathbf Q\mathbf b-\lambda_1 \mathbf a\label{eq:ccaevp1}\\
+\boldsymbol 0&= \mathbf Q^\top\mathbf a-\lambda_2 \mathbf b\label{eq:ccaevp2}
+\end{align}
+where for the second equation we've noted that \(\mathbf a^\top \mathbf Q\mathbf b= \mathbf b^\top \mathbf Q^\top \mathbf a\).
+Left multiplying the first equation by \(\mathbf a^\top\) and the second by \(\mathbf b^\top\), and recalling that \(\mathbf a^\top \mathbf a=\mathbf b^\top\mathbf b=1\), shows that the two Lagrange multipliers are the same \(\lambda_1 = \lambda_2 =: \lambda\) say.
+
+Substituting \(\mathbf a=\mathbf Q\mathbf b/\lambda\) into \eqref{eq:ccaevp2} gives
+\[\mathbf Q^\top\mathbf Q\mathbf b= \lambda^2\mathbf b,\]
+and so we can see that \(\mathbf b\) is an eigenvalue of \(\mathbf Q^\top \mathbf Q\), and thus we must have \(\mathbf b= \mathbf v_i\) for some \(i\), i.e., \(\mathbf b\) is one of the right singular vectors of \(\mathbf Q\). Similarly, substituting \(\mathbf b= \mathbf Q^\top \mathbf a/\lambda\) into \eqref{eq:ccaevp1} gives
+\[\mathbf Q\mathbf Q^\top \mathbf a= \lambda^2\mathbf a.\]
+So \(\mathbf a=\mathbf u_j\) for some \(j\), i.e., \(\mathbf a\) is one of the left singular vectors of \(\mathbf Q\).
+
+Finally, consider the original objective with \(\mathbf a=\mathbf u_j\) and \(\mathbf b=\mathbf v_i\):
+\[\mathbf u_j^\top\mathbf Q\mathbf v_i = \sigma_i\mathbf u_j^\top \mathbf u_i = \begin{cases} \sigma_i &\mbox{ if } i = j\\
+0 &\mbox{ otherwise.}
+\end{cases}
+\]
+Hence we minimize the objective by taking \(\mathbf a=\mathbf u_1\) and \(\mathbf b=\mathbf v_1\), and then we find
+\[\max_{\mathbf a, \mathbf b:\, \vert \vert \mathbf a\vert \vert=\vert \vert \mathbf b\vert \vert =1} \mathbf a^\top \mathbf Q\mathbf b=\sigma_1.\]
+\end{proof}
+
+\hypertarget{main-result}{%
+\subsubsection*{Main result}\label{main-result}}
+\addcontentsline{toc}{subsubsection}{Main result}
+
+We're now in a position to describe the main result giving the first pair of canonical variables
+
+\begin{proposition}
+\protect\hypertarget{prp:unnamed-chunk-4}{}{\label{prp:unnamed-chunk-4} }
+Assume that \(\mathbf S_{\mathbf x\mathbf x}\) and \(\mathbf S_{\mathbf y\mathbf y}\) are both non-singular, and consider the singular value decomposition of the matrix \(\mathbf Q:=\mathbf S_{\mathbf x\mathbf x}^{-1/2} \mathbf S_{\mathbf x\mathbf y}\mathbf S_{\mathbf y\mathbf y}^{-1/2}\)
+\begin{equation}
+\mathbf Q= {\mathbf U}{\pmb \Sigma} {\mathbf V}^\top = \sum_{j=1}^t \sigma_j {\mathbf u}_j {\mathbf v}_j^\top,
+\label{eq:svdcca}
+\end{equation}
+where \(t=\operatorname{rank}(\mathbf Q)\) and \(\sigma_1 \geq \cdots \geq \sigma_t >0\).
+
+Then the solution to the constrained optimization problem \eqref{eq:opt27a} is \[\mathbf a=\mathbf S_{\mathbf x\mathbf x}^{-1/2}{\mathbf u}_1\quad \mbox{and}\quad \mathbf b=\mathbf S_{\mathbf y\mathbf y}^{-1/2}{\mathbf v}_1.\]
+
+The maximum value of the correlation coefficient is given by the largest singular value \(\sigma_1\):
+\[\max_{\mathbf a, \mathbf b} {\mathbb{C}\operatorname{or}}(\mathbf a^\top\mathbf x, \mathbf b^\top\mathbf b)=\sigma_1.\]
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}If we let
+\[
+\tilde{\mathbf a}=\mathbf S_{\mathbf x\mathbf x}^{1/2} \mathbf a\qquad \text{and} \qquad \tilde{\mathbf b}=\mathbf S_{\mathbf y\mathbf y}^{1/2}\mathbf b,
+\]
+we may write the constraints \(\mathbf a^\top \mathbf S_{\mathbf x\mathbf x}\mathbf a=\mathbf b^\top \mathbf S_{\mathbf y\mathbf y}\mathbf b=1\) as
+\[
+\tilde{\mathbf a}^\top \tilde{\mathbf a}=1 \qquad \text{and} \qquad \tilde{\mathbf b}^\top \tilde{\mathbf b}=1.
+\]
+
+Because \(\mathbf S_{\mathbf x\mathbf x}\) and \(\mathbf S_{\mathbf y\mathbf y}\) are non-singular, \(\mathbf S_{\mathbf x\mathbf x}^{1/2}\) and \(\mathbf S_{\mathbf y\mathbf y}^{1/2}\) must also be non-singular, and so we can compute
+\(\mathbf S_{\mathbf x\mathbf x}^{-1/2}\) and \(\mathbf S_{\mathbf y\mathbf y}^{-1/2}\), using the matrix square roots defined in Section \ref{matrixroots}.
+
+If we write
+\[
+\mathbf a=\mathbf S_{\mathbf x\mathbf x}^{-1/2}\tilde{\mathbf a} \qquad \text{and} \qquad \mathbf b=\mathbf S_{\mathbf y\mathbf y}^{-1/2} \tilde{\mathbf b},
+\]
+then the optimisation problem \eqref{eq:opt27a} becomes
+\[
+\max_{\tilde{\mathbf a}, \tilde{\mathbf b}}
+\tilde{\mathbf a}^\top \mathbf S_{\mathbf x\mathbf x}^{-1/2}\mathbf S_{\mathbf x\mathbf y}\mathbf S_{\mathbf y\mathbf y}^{-1/2} \tilde{\mathbf b}
+\]
+subject to
+\[
+\vert \vert \tilde{\mathbf a} \vert \vert =1 \qquad \text{and} \qquad \vert \vert \tilde{\mathbf b}\vert \vert=1.
+\]
+
+Then by Proposition \ref{prp:svdmax2} we can see that
+\[\tilde{\mathbf a} = \mathbf u_1 \quad \mbox{and}\quad\tilde{\mathbf b} = \mathbf v_1\]
+and the result follows.\\
+\end{proof}
+
+We will label the solution found as
+\[\mathbf a_1 := \mathbf S_{xx}^{-\frac{1}{2}}\mathbf u_1\quad \mbox{ and }\quad\mathbf b_1 := \mathbf S_{yy}^{-\frac{1}{2}}\mathbf v_1\]
+to stress that \(\mathbf a_1\) and \(\mathbf b_1\) are the \textbf{first} pair of \textbf{canonical correlation (CC) vectors}. The variables \(\eta_1=\mathbf a_1^\top (\mathbf x-\bar{\mathbf x})\) and \(\psi_1=\mathbf b_1^\top (\mathbf y-\bar{\mathbf y})\) are called the first pair of \textbf{canonical correlation variables}, and \(\sigma_1={\mathbb{C}\operatorname{or}}(\eta_1, \psi_1)\) is the \textbf{first canonical correlation}.
+
+\hypertarget{premcca}{%
+\subsection{Example: Premier league football}\label{premcca}}
+
+Lets again return to the Premier League from the previous chapter.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\NormalTok{prem1920 <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'data/2019_2020EPL.csv'}\NormalTok{) }
+\CommentTok{# the data can be downloaded from https://www.rotowire.com/soccer/league-table.php}
+\NormalTok{table <-}\StringTok{ }\NormalTok{prem1920 }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Team, W, D, L, G, GA, GD) }
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(table,}\DecValTok{5}\NormalTok{), }\DataTypeTok{booktabs =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{escape=}\OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{lrrrrrr}
+\toprule
+Team & W & D & L & G & GA & GD\\
+\midrule
+Liverpool & 32 & 3 & 3 & 85 & 33 & 52\\
+Manchester City & 26 & 3 & 9 & 102 & 35 & 67\\
+Manchester United & 18 & 12 & 8 & 66 & 36 & 30\\
+Chelsea & 20 & 6 & 12 & 69 & 54 & 15\\
+Leicester City & 18 & 8 & 12 & 67 & 41 & 26\\
+\bottomrule
+\end{tabular}
+
+We shall treat \(W\) and \(D\), the number of wins and draws, as the \(\mathbf x\)-variables. The number of goals for and against, \(G\) and \(GA\), will be treated as the \(\mathbf y\)-variables. The number of losses and the goal difference, \(L\) and \(GD\), are omitted as they provide no additional information when we know \(W\) and \(D\).
+
+We shall consider the questions
+
+\begin{itemize}
+\tightlist
+\item
+  how strongly associated are the match outcome variables, \(W\) and \(D\), with the goals for and against variables, \(G\) and \(GA\)?
+\item
+  what linear combination of \(W\) and \(D\), and of \(G\) and \(GA\) are most strongly correlated?
+\end{itemize}
+
+Firstly, we need to compute the three covariance matrices needed for CCA. These are easily computed in R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X <-}\StringTok{ }\NormalTok{table[,}\KeywordTok{c}\NormalTok{(}\StringTok{'W'}\NormalTok{,}\StringTok{'D'}\NormalTok{)] }\CommentTok{# W and D}
+\NormalTok{Y <-}\StringTok{ }\NormalTok{table[,}\KeywordTok{c}\NormalTok{(}\StringTok{'G'}\NormalTok{,}\StringTok{'GA'}\NormalTok{)] }\CommentTok{# G and GA}
+\NormalTok{S_xx <-}\StringTok{ }\KeywordTok{cov}\NormalTok{(X)}
+\NormalTok{S_yy <-}\StringTok{ }\KeywordTok{cov}\NormalTok{(Y)}
+\NormalTok{S_xy <-}\StringTok{ }\KeywordTok{cov}\NormalTok{(X,Y)}
+\end{Highlighting}
+\end{Shaded}
+
+giving
+
+\[\mathbf S_{xx} =\begin{pmatrix}40.4&-9.66 \\-9.66&10.7 \\\end{pmatrix}, \quad \mathbf S_{yy} =\begin{pmatrix}354&-155 \\-155&141 \\\end{pmatrix}, \quad \mathbf S_{xy}=\mathbf S_{yx}^\top =\begin{pmatrix}108&-60 \\-28.9&-2.36 \\\end{pmatrix}.\]
+
+We now want to calculate the matrix \(\mathbf Q\) in \eqref{eq:svdcca} and then find its singular valued decomposition. We first need to find \(\mathbf S_{\mathbf x\mathbf x}^{-1/2}\) and \(\mathbf S_{\mathbf y\mathbf y}^{-1/2}\). Using R to do the computations we obtain the spectral decompositions
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eigen_xx <-}\StringTok{ }\KeywordTok{eigen}\NormalTok{(S_xx)}
+\NormalTok{Vx <-}\StringTok{ }\NormalTok{eigen_xx}\OperatorTok{$}\NormalTok{vectors}
+\NormalTok{S_xx_invsqrt <-}\StringTok{ }\NormalTok{Vx }\OperatorTok{%*%}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(eigen_xx}\OperatorTok{$}\NormalTok{values)) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{t}\NormalTok{(Vx)}
+\CommentTok{# check S_xx %*% S_xx_invsqrt %*% S_xx_invsqrt is the identity matrix}
+\end{Highlighting}
+\end{Shaded}
+
+\[\mathbf S_{xx} =\mathbf Q\boldsymbol \Lambda\mathbf Q^\top=\begin{pmatrix}-0.959&-0.285 \\0.285&-0.959 \\\end{pmatrix} \begin{pmatrix}43.2&0 \\0&7.82 \\\end{pmatrix} \begin{pmatrix}-0.959&0.285 \\-0.285&-0.959 \\\end{pmatrix}\]
+
+and so
+
+\begin{align*}
+\mathbf S_{\mathbf x\mathbf x}^{-1/2} &= \mathbf Q\boldsymbol \Lambda^{-\frac{1}{2}}\mathbf Q^\top \\
+&=\begin{pmatrix}-0.959&-0.285 \\0.285&-0.959 \\\end{pmatrix} \begin{pmatrix}0.152&0 \\0&0.357 \\\end{pmatrix} \begin{pmatrix}-0.959&0.285 \\-0.285&-0.959 \\\end{pmatrix}\\
+&= \begin{pmatrix}0.169&0.0561 \\0.0561&0.341 \\\end{pmatrix}.
+\end{align*}
+
+Similarly, we find
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eigen_yy <-}\StringTok{ }\KeywordTok{eigen}\NormalTok{(S_yy)}
+\NormalTok{Vy <-}\StringTok{ }\NormalTok{eigen_yy}\OperatorTok{$}\NormalTok{vectors}
+\NormalTok{S_yy_invsqrt <-}\StringTok{ }\NormalTok{Vy }\OperatorTok{%*%}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\KeywordTok{sqrt}\NormalTok{(eigen_yy}\OperatorTok{$}\NormalTok{values)) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{t}\NormalTok{(Vy)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{align*}
+\mathbf S_{\mathbf y\mathbf y}^{-1/2}= \begin{pmatrix}0.0657&0.0337 \\0.0337&0.112 \\\end{pmatrix}.
+\end{align*}
+
+Consequently,
+\begin{align*}
+\mathbf Q&=\mathbf S_{\mathbf x\mathbf x}^{-1/2}\mathbf S_{\mathbf x\mathbf y}\mathbf S_{\mathbf y\mathbf y}^{-1/2}\\
+&=\begin{pmatrix}0.169&0.0561 \\0.0561&0.341 \\\end{pmatrix} \begin{pmatrix}108&-60 \\-28.9&-2.36 \\\end{pmatrix}\begin{pmatrix}0.169&0.0561 \\0.0561&0.341 \\\end{pmatrix}\\
+&=\begin{pmatrix}0.747&-0.588 \\-0.39&-0.595 \\\end{pmatrix}.
+\end{align*}
+
+The SVD of \(\mathbf Q\) is given by
+\begin{align}
+\mathbf Q&=\mathbf U{\pmb \Sigma} \mathbf V^\top \nonumber \\
+&=\begin{pmatrix}-0.99&-0.143 \\-0.143&0.99 \\\end{pmatrix} \begin{pmatrix}0.955&0 \\0&0.705 \\\end{pmatrix}\begin{pmatrix}-0.715&-0.699 \\0.699&-0.715 \\\end{pmatrix}^\top
+\label{eq:SVDanalysis}
+\end{align}
+
+So the 1st CC coefficient is \(0.955\), which is close to its maximum value of \(1\). The 1st CC weight vectors are
+given by
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a1 =}\StringTok{ }\NormalTok{S_xx_invsqrt}\OperatorTok{%*%}\StringTok{ }\NormalTok{Q_svd}\OperatorTok{$}\NormalTok{u[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{b1 =}\StringTok{ }\NormalTok{S_yy_invsqrt}\OperatorTok{%*%}\StringTok{ }\NormalTok{Q_svd}\OperatorTok{$}\NormalTok{v[,}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{align*}
+\mathbf a_1&=\mathbf S_{\mathbf x\mathbf x}^{-1/2}\mathbf u_1\\
+&=\begin{pmatrix}0.169&0.0561 \\0.0561&0.341 \\\end{pmatrix}\begin{pmatrix}-0.99 \\-0.143 \\\end{pmatrix}\\
+&=\begin{pmatrix}-0.175 \\-0.104 \\\end{pmatrix}\\
+\mathbf b_1 &=\mathbf S_{\mathbf y\mathbf y}^{-1/2}\mathbf v_1\\
+&= \begin{pmatrix}-0.0234 \\0.0541 \\\end{pmatrix}
+\end{align*}
+
+This leads to the first pair of CC variables, obtained using these CC vectors/weights:
+\[
+\eta_1 =-0.175 (W-\bar{W}) +-0.104(D -\bar{D})
+\]
+and
+\[
+ \psi_1 = -0.0234(G-\bar{G}) +0.0541(GA-\bar{GA}).
+\]
+
+We can see that \(\psi_1\) is measuring something similar to goal difference \(G-GA\), as usually defined, but it gives higher weight to goals conceded than goals conceded (\(0.0541\) versus \(0.0234\)).
+
+\(\eta_1\) is measuring something similar to number of points \(3W+D\), as usually defined, but the ratio of points for a win to points for a draw is lower, at around 2:1, as opposed to the usual ratio 3:1.
+
+The full list of the first canonical correlation variables is thus
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Xcent <-}\StringTok{ }\KeywordTok{sweep}\NormalTok{(X,}\DecValTok{2}\NormalTok{, }\KeywordTok{colMeans}\NormalTok{(X)) }\CommentTok{# column centre the matrix}
+\NormalTok{Ycent <-}\StringTok{ }\KeywordTok{sweep}\NormalTok{(Y,}\DecValTok{2}\NormalTok{, }\KeywordTok{colMeans}\NormalTok{(Y)) }\CommentTok{# column centre the matrix}
+\NormalTok{eta =}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(Xcent)}\OperatorTok{%*%}\NormalTok{a1}
+\NormalTok{psi =}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(Ycent)}\OperatorTok{%*%}\NormalTok{b1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{lrr}
+\toprule
+Team & eta & psi\\
+\midrule
+Liverpool & -2.4340723 & -1.7921117\\
+Manchester City & -1.3838590 & -2.0820965\\
+Manchester United & -0.9221199 & -1.1846733\\
+Chelsea & -0.6464941 & -0.2807761\\
+Leicester City & -0.5049886 & -0.9374949\\
+\bottomrule
+\end{tabular}
+
+A scatter plotof the two canonical correlation variables shows the strong correlation between them.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cca.out <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Team=}\NormalTok{table}\OperatorTok{$}\NormalTok{Team, }\DataTypeTok{eta=}\NormalTok{eta, }\DataTypeTok{psi=}\NormalTok{psi)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{ggplot}\NormalTok{(cca.out, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{ eta, }\DataTypeTok{y=}\NormalTok{ psi, }\DataTypeTok{label=}\NormalTok{Team))}\OperatorTok{+}\StringTok{   }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{Team),}\DataTypeTok{hjust=}\DecValTok{0}\NormalTok{, }\DataTypeTok{vjust=}\DecValTok{0}\NormalTok{, }\DataTypeTok{size=}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{05-cca_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+We can also do this with the \texttt{CCA} package in R. The command \texttt{matcor(X,Y)} gives the correlation matrices, and the command \texttt{cc} performs CCA. See if you can find the outputs computed above in the output of the \texttt{cc} command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(CCA)}
+\NormalTok{prem.cca <-}\StringTok{ }\KeywordTok{cc}\NormalTok{(X,Y)}
+\NormalTok{prem.cca}\OperatorTok{$}\NormalTok{cor }\CommentTok{# the canonical correlations}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9550749 0.7054825
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prem.cca}\OperatorTok{$}\NormalTok{xcoef }\CommentTok{# the canonical correlation vectors for X}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         [,1]      [,2]
+## W -0.1750356 0.0313256
+## D -0.1042828 0.3293057
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prem.cca}\OperatorTok{$}\NormalTok{ycoef  }\CommentTok{# the canonical correlation vectors for Y}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]        [,2]
+## G  -0.02342507 -0.07003113
+## GA  0.05412069 -0.10372100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(prem.cca}\OperatorTok{$}\NormalTok{scores}\OperatorTok{$}\NormalTok{xscores) }\CommentTok{# the canonical correlation variables }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]       [,2]
+## [1,] -2.4340723 -1.4903651
+## [2,] -1.3838590 -1.6783187
+## [3,] -0.9221199  1.0348282
+## [4,] -0.6464941 -0.8783550
+## [5,] -0.5049886 -0.2823947
+## [6,] -0.4677660  0.6428713
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(prem.cca}\OperatorTok{$}\NormalTok{scores}\OperatorTok{$}\NormalTok{yscores) }\CommentTok{# the canonical correlation variables }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]        [,2]
+## [1,] -1.7921117 -0.39245373
+## [2,] -2.0820965 -1.79042487
+## [3,] -1.1846733  0.62697465
+## [4,] -0.2807761 -1.45009678
+## [5,] -0.9374949  0.03833851
+## [6,] -0.4722204 -0.16380075
+\end{verbatim}
+
+\hypertarget{the-full-set-of-canonical-correlations}{%
+\section{The full set of canonical correlations}\label{the-full-set-of-canonical-correlations}}
+
+Let us first recap what we did in the previous section: we found a linear combination of the \(\mathbf x\)-variables and a linear combination of the \(\mathbf y\)-variables which
+maximised the correlation, and expressed the answer in terms of quantities which arise in the SVD of \(\mathbf Q\), where
+\[
+\mathbf Q\equiv \mathbf S_{\mathbf x\mathbf x}^{-1/2} \mathbf S_{\mathbf x\mathbf y}\mathbf S_{\mathbf y\mathbf y}^{-1/2}=\mathbf U{\pmb \Sigma} \mathbf V^\top=\sum_{j=1}^t \sigma_j \mathbf u_j \mathbf v_j^\top.
+\]
+
+We found the maximum value of the correlation \({\mathbb{C}\operatorname{or}}(\mathbf a^\top\mathbf x, \mathbf b^\top\mathbf y)\) to be \(\sigma_1\), achieved using the linear combinations \(\eta_1=\mathbf a_1^\top \mathbf x\) and \(\psi_1=\mathbf b_1^\top \mathbf y\) with
+
+\[\mathbf a_1=\mathbf S_{\mathbf x\mathbf x}^{-1/2}\mathbf u_1 \quad\mbox{ and } \mathbf b_1=\mathbf S_{\mathbf y\mathbf y}^{-1/2}\mathbf v_1.\]
+
+We now repeat this process to find the next most important linear combination, subject to being uncorrelated with the first linear combination, as we did with PCA. For \(\mathbf a^\top \mathbf x\) to be uncorrelated with \(\eta_1 = \mathbf a_1^\top \mathbf x\) we require
+\[0 = {\mathbb{C}\operatorname{ov}}(\mathbf a_1^\top \mathbf x, \mathbf a^\top \mathbf x) = \mathbf a_1^\top \mathbf S_{xx}\mathbf a,\]
+and similarly we require the condition \(\mathbf b_1^\top \mathbf S_{yy} \mathbf b=0\) for \(\mathbf b\).
+
+Thus, to obtain the second canonical correlation coefficient, plus the associated sets of canonical correlation vectors and variables, we need to solve the following optimisation problem:
+\begin{equation}
+\max_{\mathbf a,\, \mathbf b} \mathbf a^\top \mathbf S_{\mathbf x\mathbf y}\mathbf b
+\label{eq:cc2}
+\end{equation}
+subject to the constraints
+\begin{equation}
+\mathbf a^\top \mathbf S_{\mathbf x\mathbf x}\mathbf a= \mathbf b^\top \mathbf S_{\mathbf y\mathbf y}\mathbf b=1,
+\label{eq:conny21}
+\end{equation}
+\begin{equation}
+\mathbf a_1^\top \mathbf S_{\mathbf x\mathbf x} \mathbf a= \mathbf b_1^\top \mathbf S_{\mathbf y\mathbf y}\mathbf b=0.
+\label{eq:conny22}
+\end{equation}
+Note that maximising \eqref{eq:cc2} subject to \eqref{eq:conny21} and \eqref{eq:conny22}is very similar to the optimisation problem \eqref{eq:opt27a} considered in the previous section.
+What is
+new are the constraints \eqref{eq:conny22}, which take into account that we have already found the first canonical correlation.
+
+It will probably not surprise you to find that the solution is
+\[\mathbf a^\top \mathbf S_{xy}\mathbf b= \sigma_2\quad\mbox{ achieved at} \quad \mathbf a=\mathbf a_2 := S_{xx}^{-1/2}\mathbf u_2 \mbox{ and } \mathbf b=\mathbf b_2 := S_{yy}^{-1/2}\mathbf v_2\]
+where \(\sigma_2\) is the second largest singular value of \(\mathbf Q\), and \(\mathbf u_2\) and \(\mathbf v_2\) are the corresponding left and right singular vectors.
+
+\hypertarget{main-results}{%
+\subsubsection*{Main results}\label{main-results}}
+\addcontentsline{toc}{subsubsection}{Main results}
+
+We now state the result in its full generality.
+
+\begin{proposition}
+\protect\hypertarget{prp:ccafull}{}{\label{prp:ccafull} }For \(k=1, \ldots, r = \operatorname{rank}(\mathbf S_{xy})\), the solution to sequence of optimization problems
+\begin{align}
+\mbox{Maximize} \quad &\mathbf a^\top \mathbf S_{xy}\mathbf b\\
+\mbox{subject to }  \;\;&\mathbf a^\top \mathbf S_{xx}\mathbf a=\mathbf b^\top\mathbf S_{yy} \mathbf b=1\\
+\mbox{ and }\;\;\;&\mathbf a_i^\top \mathbf S_{xx}\mathbf a=\mathbf b_i^\top \mathbf S_{yy}\mathbf b= 0 \mbox{ for }i=1, \ldots, k-1
+\end{align}
+is achieved at \(\mathbf a_k = \mathbf S_{xx}^{-1/2}\mathbf u_k\) and \(\mathbf b_k=\mathbf S_{yy}^{-1/2}\mathbf v_k\) with \(\mathbf a_k \mathbf S_{xy}\mathbf b_k = \sigma_k\).
+\end{proposition}
+Note that an equivalent way of writing down the problem is as
+\begin{align*}
+\mbox{Maximize } \quad \operatorname{tr}(\mathbf A^\top \mathbf S_{xy}\mathbf B) &= \sum_{i=1}^k \mathbf a_i^\top \mathbf S_{xy}\mathbf b_i\\
+\mbox{ subject to} \quad \mathbf A^\top \mathbf S_{xx}\mathbf A&=\mathbf I\\
+\mbox{ and }\quad \mathbf B^\top \mathbf S_{yy}\mathbf B&= \mathbf I
+\end{align*}
+which is in the form of the general problem given in Equation \eqref{eq:dimredopt} if \[\mathbf A= \begin{pmatrix}\mathbf a_1&\ldots &\mathbf a_k\end{pmatrix}, \quad \mathbf B= \begin{pmatrix}\mathbf b_1&\ldots &\mathbf b_k\end{pmatrix}\]
+are matrices containing the canonical correlation vectors as columns.
+
+Before we prove this result, we first give an extension of Proposition \ref{prp:svdmax2}.
+
+\begin{proposition}
+\protect\hypertarget{prp:svdopt3}{}{\label{prp:svdopt3} }Let \(\mathbf Q\) be an arbitrary matrix with SVD \(\mathbf Q= \sum_{k=1}^r \sigma_i \mathbf u_i \mathbf v^\top_i\).
+For \(k=1, \ldots, r\) the solution to the optimization problem
+\begin{align}
+\mbox{Maximize}\quad  &\mathbf a^\top \mathbf Q\mathbf b\\
+\mbox{subject to} \quad &\mathbf a^\top \mathbf a= \mathbf b^\top \mathbf b=1\\
+&\mathbf a_i^\top\mathbf a= \mathbf b_i^\top\mathbf b= 0 \mbox{ for } i = 1, \ldots, k-1
+  \end{align}
+is achieved at
+\[\mathbf a_k=\mathbf u_k, \qquad \mathbf b_k = \mathbf v_k\]
+with
+\[\mathbf a_k^\top \mathbf Q\mathbf b_k = \sigma_k.\]
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}We will work through the proof of this proposition in the Exercises.
+\end{proof}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}\textbf{Proof of Proposition \ref{prp:ccafull}}. We note as before that if we write \(\tilde{\mathbf a}_j =\mathbf S_{\mathbf x\mathbf x}^{1/2} \mathbf a_j\) and \(\tilde{\mathbf b}_j=\mathbf S_{\mathbf y\mathbf y}^{1/2} \mathbf b_j\), then the constraints become
+\[\tilde{\mathbf a}^\top \tilde{\mathbf a}=\tilde{\mathbf b}^\top\tilde{ \mathbf b}=1 \;\mbox{ and }\;\tilde{\mathbf a}_i^\top \tilde{\mathbf a}=\tilde{\mathbf b}_i^\top \tilde{\mathbf b} = 0 \mbox{ for }i=1, \ldots, k.
+\]
+Consequently, we may view constraints \eqref{eq:conny22} as corresponding to orthogonality constraints (cf.~PCA) in modified coordinate systems.
+
+The objective \(\mathbf a^\top \mathbf S_{xy}\mathbf b\) becomes
+\(\tilde{\mathbf a}^\top \mathbf Q\tilde{\mathbf b}\)
+with
+\[\mathbf Q= \mathbf S_{xx}^{-1/2} \mathbf S_{xy}\mathbf S_{yy}^{-1/2}.\]
+Thus applying Proposition \ref{prp:svdopt3} gives the desired result.
+\end{proof}
+
+To summarize:
+
+\begin{itemize}
+\item
+  The \(k^{th}\) \textbf{canonical correlation} is \(\sigma_k\), the \(k^{th}\) largest singular value of \(\mathbf Q\).
+\item
+  The \(k^{th}\) \textbf{canonical correlation vectors} (sometimes called the \textbf{weights} for the \(\mathbf x\) and \(\mathbf y\) variables) are \[\mathbf a_k = \mathbf S_{xx}^{-1/2} \mathbf u_k, \qquad \mathbf b_k = \mathbf S_{yy}^{-1/2} \mathbf v_k\]
+\item
+  The \(k^{th}\) \textbf{canonical correlation variables} (or \textbf{canonical correlation scores}) are
+  \[\eta_{ik} = \mathbf a_k^\top (\mathbf x_i-\bar{\mathbf x}), \qquad \psi_{ik} = \mathbf b_k^\top (\mathbf y_i-\bar{\mathbf y}).\]
+\end{itemize}
+
+We define the CC variable/score vectors to be
+\[{\pmb \eta}_k=(\eta_{1k}, \ldots , \eta_{nk})^\top \mbox{ and }{\pmb \psi}_{k}=(\psi_{1k}, \ldots , \psi_{nk})^\top.\]
+
+\hypertarget{example-continued}{%
+\subsection{Example continued}\label{example-continued}}
+
+From \eqref{eq:SVDanalysis}, it is seen that the 2nd CC coefficient is given by \(\sigma_2=0.705\). So the correlation between the second pair of CC variables is smaller than the 1st CC coefficient, though still appreciably different from \(0\). We now calculate the 2nd CC weight vectors:
+
+\[
+\mathbf a_2=\mathbf S_{\mathbf x\mathbf x}^{-1/2} \mathbf q_2 = \begin{pmatrix}0.0313 \\0.329 \\\end{pmatrix}
+\qquad \text{and} \qquad
+\mathbf b_2=\mathbf S_{\mathbf y\mathbf y}^{-1/2}\mathbf r_2=\begin{pmatrix}-0.07 \\-0.104 \\\end{pmatrix},
+\]
+with
+new variables
+\[
+\eta_2 =0.0313 (W-\bar{W}) +0.329(D -\bar{D})
+\]
+and
+\[
+ \psi_2 = -0.07(G-\bar{G}) -0.104(GA-\bar{GA}).
+\]
+Note that, to a good approximation, \(\eta_2\) is measuring something similar to the number of draws and, approximately, \(\psi_2\) is something related to the negative of total number of goals in a team's games. So large \(\psi_2\) means relatively few goals in a team's games, and small (i.e.~large negative) \(\psi_2\) means a relatively large number of goals in a team's games.
+
+Interpretation of the 2nd CC: teams that have a lot of draws tend to be in low-scoring games and/or teams that have few draws tend to be in high-scoring games.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eta2 =}\StringTok{ }\NormalTok{prem.cca}\OperatorTok{$}\NormalTok{scores}\OperatorTok{$}\NormalTok{xscores[,}\DecValTok{1}\NormalTok{] }
+\NormalTok{psi2=}\StringTok{ }\NormalTok{prem.cca}\OperatorTok{$}\NormalTok{scores}\OperatorTok{$}\NormalTok{yscores[,}\DecValTok{2}\NormalTok{] }
+\NormalTok{cca.out <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Team=}\NormalTok{table}\OperatorTok{$}\NormalTok{Team, }\DataTypeTok{eta2=}\NormalTok{eta2, }\DataTypeTok{psi2=}\NormalTok{psi2)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{ggplot}\NormalTok{(cca.out, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{ eta2, }\DataTypeTok{y=}\NormalTok{ psi2, }\DataTypeTok{label=}\NormalTok{Team))}\OperatorTok{+}\StringTok{   }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{Team),}\DataTypeTok{hjust=}\DecValTok{0}\NormalTok{, }\DataTypeTok{vjust=}\DecValTok{0}\NormalTok{, }\DataTypeTok{size=}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{05-cca_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+\hypertarget{properties}{%
+\section{Properties}\label{properties}}
+
+The CC variables have a mean of zero. Their correlation structure is given in the following proposition:
+
+\begin{proposition}
+\protect\hypertarget{prp:ccavar}{}{\label{prp:ccavar} }Assume that \(\mathbf S_{\mathbf x\mathbf x}\) and \(\mathbf S_{\mathbf y\mathbf y}\) both have full rank. Then for \(1 \leq k,\ell \leq t\),
+\[
+{\mathbb{C}\operatorname{or}}(\eta_k,  \psi_{\ell})=\begin{cases} \sigma_k &\text{if} \quad k=\ell\\
+0 & \text{if} \quad k \neq \ell, \end{cases}
+\]
+and
+\[{\mathbb{C}\operatorname{or}}(\eta_j, \eta_k)= {\mathbb{C}\operatorname{or}}(\psi_j, \psi_k)=\begin{cases}
+1 &\mbox{ if } j=k\\
+0 &\mbox{otherwise}
+\end{cases}
+\]
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}You will prove this in the exercises.
+\end{proof}
+
+\hypertarget{connection-with-linear-regression-when-q1}{%
+\subsection{\texorpdfstring{Connection with linear regression when \(q=1\)}{Connection with linear regression when q=1}}\label{connection-with-linear-regression-when-q1}}
+
+Although CCA is clearly a different technique to linear regression, it turns out that when either \(\dim \mathbf x=p=1\) or \(\dim \mathbf y=q=1\), there is a close connection between the two approaches.
+
+Consider the case \(q=1\) and \(p>1\). Hence there is only a single \(y\)-variable but we still have \(p>1\) \(x\)-variables.
+
+Let's make the following assumptions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The \(\mathbf x_i\) have been centred so that \(\bar{\mathbf x}={\mathbf 0}_p\), the zero vector.
+\item
+  The covariance matrix for the \(x\)-variables, \(\mathbf S_{\mathbf x\mathbf x}\), has full rank \(p\).
+\end{enumerate}
+
+The first assumption means that
+\[\mathbf S_{xx}=\frac{1}{n}\mathbf X^\top \mathbf X\quad \mbox{and}\quad \mathbf S_{xy}=\frac{1}{n}\mathbf X^\top \mathbf y,\] and the second means that \((\mathbf X^\top \mathbf X)^{-1}\) exists.
+
+Since \(q=1\), the matrix we decompose in CCA
+\[
+\mathbf Q=\mathbf S_{\mathbf x\mathbf x}^{-1/2} \mathbf S_{\mathbf xy}\mathbf S_{yy}^{-1/2}
+\]
+is a \(p \times 1\) vector. Consequently, its
+SVD is just
+\[
+\mathbf Q=\sigma_1 \mathbf u_1,
+\]
+where
+\[
+\sigma_1=\vert \vert \mathbf Q\vert \vert_F = (\mathbf Q^\top \mathbf Q)^{\frac{1}{2}} \qquad \text{and} \qquad \mathbf u_1=\mathbf Q/\vert \vert \mathbf Q\vert \vert_F.
+\]
+
+Consequently, the first canoncial correlation vector for \(\mathbf x\) is
+\begin{align*}
+\mathbf a&=\mathbf S_{\mathbf x\mathbf x}^{-1/2}\mathbf u_1 =\mathbf S_{\mathbf x\mathbf x}^{-1/2} \frac{\mathbf Q}{||\mathbf Q||_F}\\
+&=\mathbf S_{\mathbf x\mathbf x}^{-1/2} \frac{1}{\vert \vert \mathbf S_{\mathbf x\mathbf x}^{-1/2}\mathbf S_{\mathbf xy}S_{yy}^{-1/2}\vert \vert_F}\mathbf S_{\mathbf x\mathbf x}^{-1/2}\mathbf S_{\mathbf x\mathbf y}S_{yy}^{-1/2}\\
+&=\frac{1}{\vert \vert \mathbf S_{\mathbf x\mathbf x}^{-1/2}\mathbf S_{\mathbf xy}\vert \vert_F}\mathbf S_{\mathbf x\mathbf x}^{-1}\mathbf S_{\mathbf xy}\\
+&= c (\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y
+\end{align*}
+where \$c \$ is a scalar constant.
+
+Thus, we can see that the first canonical correlation vector \(\mathbf a\) is a scalar multiple of
+\[
+\hat{\pmb \beta}=\left ( \mathbf X^\top \mathbf X\right )^{-1} \mathbf X^\top \mathbf y,
+\]
+the classical least squares estimator. Therefore the least squares estimator \(\hat{\pmb \beta}\) solves \eqref{eq:opt26}. However, it does not usually solve the constrained optimisation problem \eqref{eq:opt27a} because typically \(\hat{\pmb \beta}^\top \mathbf S_{\mathbf x\mathbf x}\hat{\pmb \beta} \not= 1\), so that the constraint in Equation \eqref{eq:opt27a} will not be satisfied.
+
+\hypertarget{invarianceequivariance-properties-of-cca}{%
+\subsection{Invariance/equivariance properties of CCA}\label{invarianceequivariance-properties-of-cca}}
+
+Suppose we apply orthogonal transformations and translations to the \(\mathbf x_i\) and the \(\mathbf y_i\) of the form
+\begin{equation}
+{\mathbf h}_i={\mathbf T}\mathbf x_i + {\pmb \mu} \qquad \text{and} \qquad {\mathbf k}_i={\mathbf R}\mathbf y_i +{\pmb \nu},
+\qquad i=1,\ldots , n,
+\label{eq:transformations}
+\end{equation}
+where \(\mathbf T\) (\(p \times p\)) and \(\mathbf R\) (\(q \times q\)) are orthogonal matrices, and \(\pmb \mu\) (\(p \times 1\)) and
+\(\pmb \nu\) (\(q \times 1\)) are fixed vectors.
+
+How do these transformations affect the CC analysis?
+
+Firstly, since CCA depends only on sample covariance matrices, it follows that the translation vectors \(\pmb \mu\) and \(\pmb \nu\) have no effect on the analysis.
+
+Secondly, let's consider the effect of the rotations by an orthogonal matrix. We've seen that CCA in the original \(\mathbf x\) and \(\mathbf y\) coordinates depends on
+\begin{equation}
+\mathbf Q\equiv \mathbf Q_{\mathbf x\mathbf y}=\mathbf S_{\mathbf x\mathbf x}^{-1/2}\mathbf S_{\mathbf x\mathbf y}\mathbf S_{\mathbf y\mathbf y}^{-1/2}.
+\label{eq:Axy}
+\end{equation}
+In the new coordinates we have
+\[
+\tilde{\mathbf S}_{\mathbf h\mathbf h}={\mathbf T} \mathbf S_{\mathbf x\mathbf x}{\mathbf T}^\top, \qquad \tilde{\mathbf S}_{\mathbf k\mathbf k}={\mathbf R}\mathbf S_{\mathbf y\mathbf y}{\mathbf R}^\top,
+\]
+\[
+\tilde{\mathbf S}_{\mathbf h\mathbf k}={\mathbf T}\mathbf S_{\mathbf x\mathbf y}{\mathbf R}^\top =
+\tilde{\mathbf S}_{\mathbf k\mathbf h}^\top,
+\]
+where here and below, a tilde above a symbol is used to indicate that the corresponding term is defined in terms of the new \(\mathbf h\), \(\mathbf k\) coordinates, rather
+than the old \(\mathbf x\), \(\mathbf y\) coordinates.
+Due to the fact that \(\mathbf T\) and \(\mathbf R\) are orthogonal,
+\[
+\tilde{\mathbf S}_{\mathbf b\mathbf h}^{ 1/2}={\mathbf T}\mathbf S_{\mathbf x\mathbf x}^{ 1/2}{\mathbf T}^\top, \qquad
+\tilde{\mathbf S}_{\mathbf h\mathbf h}^{ -1/2}={\mathbf T}\mathbf S_{\mathbf x\mathbf x}^{ -1/2}{\mathbf T}^\top
+\]
+\[
+\tilde{\mathbf S}_{\mathbf k\mathbf k}^{ 1/2}={\mathbf R}\mathbf S_{\mathbf y\mathbf y}^{ 1/2}{\mathbf R}^\top \qquad \text{and} \qquad
+\tilde{\mathbf S}_{\mathbf k\mathbf k}^{ -1/2}={\mathbf R}\mathbf S_{\mathbf y\mathbf y}^{- 1/2}{\mathbf R}^\top.
+\]
+The analogue of \eqref{eq:Axy} in the new coordinates is given by
+\begin{align*}
+\tilde{\mathbf Q}_{\mathbf h k}&=\tilde{\mathbf S}_{\mathbf h\mathbf h}^{-1/2}\tilde{\mathbf S}_{\mathbf h k}\tilde{\mathbf S}_{\mathbf k\mathbf k}^{-1/2}\\
+&={\mathbf T} \mathbf S_{\mathbf x\mathbf x}^{-1/2}{\mathbf T}^\top {\mathbf T}\mathbf S_{\mathbf x\mathbf y}{\mathbf R}^\top {\mathbf R}\mathbf S_{\mathbf y\mathbf y}^{-1/2}{\mathbf R}^\top\\
+&={\mathbf T}\mathbf S_{\mathbf x\mathbf x}^{-1/2}\mathbf S_{\mathbf x\mathbf y}\mathbf S_{\mathbf y\mathbf y}^{-1/2}{\mathbf R}^\top\\
+&={\mathbf T} \mathbf Q_{\mathbf x\mathbf y}{\mathbf R}^\top.
+\end{align*}
+So, again using the fact that \(\mathbf T\) and \(\mathbf R\) are orthogonal matrices, if \(\mathbf Q_{\mathbf x\mathbf y}\) has SVD \(\sum_{j=1}^t \sigma_j {\mathbf u}_j {\mathbf v}_j^\top\), then \(\tilde{\mathbf Q}_{\mathbf h\mathbf k}\) has SVD
+\begin{align*}
+\tilde{\mathbf Q}_{\mathbf h\mathbf k}&={\mathbf T }\mathbf Q_{\mathbf x\mathbf y}{\mathbf R}^\top
+={\mathbf T} \left ( \sum_{j=1}^t \sigma_j {\mathbf u}_j {\mathbf v}_j^\top \right){\mathbf R}^\top\\
+&=\sum_{j=1}^t \sigma_j {\mathbf T}{\mathbf u}_j {\mathbf v}_j^\top {\mathbf R}^\top
+=\sum_{j=1}^t \sigma_j \left ( {\mathbf T} {\mathbf u}_j \right )\left ({\mathbf R}{\mathbf v}_j  \right )^\top
+=\sum_{j=1}^t \sigma_j \tilde{\mathbf u}_j \tilde{\mathbf v}_j^\top,
+\end{align*}
+where, for \(j=1, \ldots,t\), the \(\tilde{\mathbf u}_j={\mathbf T}\mathbf u_j\) are mutually orthogonal unit vectors,
+and the \(\tilde{\mathbf v}_j={\mathbf R}{\mathbf v}_j\) are also mutually orthogonal unit vectors.
+
+Consequently, \(\tilde{\mathbf Q}_{\mathbf h k}\) has the same singular values as \(\mathbf Q_{\mathbf x\mathbf y}\), namely \(\sigma_1, \ldots , \sigma_t\) in both cases, and so the canonical correlation coefficients are invariant with respect to the transformations \eqref{eq:transformations}. Moreover, since the optimal linear combinations for the \(j\)th CC in the original coordinates are given by \(\mathbf a_j =\mathbf S_{\mathbf x\mathbf x}^{-1/2}{\mathbf u}_j\) and \(\mathbf b_j=\mathbf S_{\mathbf y\mathbf y}^{-1/2}{\mathbf v}_j\), the optimal linear combinations in the new coordinates are given by
+\begin{align*}
+\tilde{\mathbf a}_{j}&=\mathbf S_{\mathbf h\mathbf h}^{-1/2}{\mathbf T}{\mathbf u}_j\\
+&={\mathbf T}\mathbf S_{\mathbf x\mathbf x}^{-1/2}{\mathbf T}^\top {\mathbf T}{\mathbf u}_j\\
+&={\mathbf T}\mathbf S_{\mathbf x\mathbf x}^{-1/2}{\mathbf u}_j \\
+&={\mathbf T}\mathbf a_{j},
+\end{align*}
+and a similar argument shows that \(\tilde{\mathbf b}_{j}={\mathbf R}\mathbf b_{j}\). So under transformations \eqref{eq:transformations},
+the optimal vectors \(\mathbf a_{j}\) and \(\mathbf b_{j}\) transform in an equivariant manner to \(\tilde{\mathbf a}_{j}\) and \(\tilde{\mathbf b}_{j}\), respectively, \(j=1, \ldots , t\).
+
+If either of \(\mathbf T\) or \(\mathbf R\) in \eqref{eq:transformations} is not an orthogonal matrix then the singular values are not invariant and the CC vectors do not transform in an equivariant manner.
+
+\hypertarget{computer-tasks-1}{%
+\section{Computer tasks}\label{computer-tasks-1}}
+
+\hypertarget{exercise-1-1}{%
+\paragraph{Exercise 1}\label{exercise-1-1}}
+\addcontentsline{toc}{paragraph}{Exercise 1}
+
+Consider again the crabs dataset you looked at in the exercises in the chapter on PCA (see \ref{pca-comptask}).
+We now consider a canonical correlation analysis in which one set of variables, the \(\mathbf x\)-set, is given by CL and CW and the
+other set, the \(\mathbf y\)-set, is given by FL, RW and BD.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(MASS)}
+\NormalTok{?crabs           }\CommentTok{# read the help page to find out about the dataset}
+\NormalTok{X=}\KeywordTok{as.matrix}\NormalTok{(crabs[}\DecValTok{4}\OperatorTok{:}\DecValTok{8}\NormalTok{])    }
+\NormalTok{n=}\DecValTok{200}                                      \CommentTok{# sample size}
+\NormalTok{H=}\KeywordTok{diag}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,n))}\OperatorTok{-}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,n)}\OperatorTok{%*%}\KeywordTok{t}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,n))}\OperatorTok{/}\NormalTok{n  }\CommentTok{# n times n centering matrix}
+\NormalTok{X1=X[,}\DecValTok{3}\OperatorTok{:}\DecValTok{4}\NormalTok{]                                 }\CommentTok{# store CL and CW in X1}
+\NormalTok{Y1=}\KeywordTok{cbind}\NormalTok{(X[,}\DecValTok{1}\NormalTok{],X[,}\DecValTok{2}\NormalTok{],X[,}\DecValTok{5}\NormalTok{])                }\CommentTok{# store FL, RW and BD in Y1}
+\NormalTok{Sxx=}\KeywordTok{t}\NormalTok{(X1)}\OperatorTok{%*%}\NormalTok{H}\OperatorTok{%*%}\NormalTok{X1}\OperatorTok{/}\NormalTok{n                       }\CommentTok{# find x-variable variance matrix}
+\NormalTok{Syy=}\KeywordTok{t}\NormalTok{(Y1)}\OperatorTok{%*%}\NormalTok{H}\OperatorTok{%*%}\NormalTok{Y1}\OperatorTok{/}\NormalTok{n                       }\CommentTok{# find y-variable variance matrix}
+\NormalTok{Sxy=}\KeywordTok{t}\NormalTok{(X1)}\OperatorTok{%*%}\NormalTok{H}\OperatorTok{%*%}\NormalTok{Y1}\OperatorTok{/}\NormalTok{n                       }\CommentTok{# find cross-covariance matrix}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  calculate \({\bf S}_{\bf x x}^{-1/2}\) and \({\bf S}_{\bf yy}^{-1/2}\) by first computing the spectral decomposition of \(\mathbf S_{xx}\) and \(\mathbf S_{yy}\).
+\item
+  Now calculate the matrix \(\mathbf Q\) and compute its singular value decomposition.
+\end{itemize}
+
+\begin{itemize}
+\item
+  Compute the first pair of CC vectors and CC variables \(\eta_1\) and \(\psi_1\). What is the 1st canonical correlation?
+\item
+  Plot \(\psi_1\) vs \(\eta_1\). What does the plot tell you (if anything)?
+\item
+  Repeat the above to find the second pair of CC vectors, and the second set of CC variables/scores, and plot these against each other and against the first CC scores. Is there any interesting structure in any of the plots? Which plots suggest random scatter?
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  Finally, repeat the analysis above using the \texttt{cc} command and \texttt{plt.cc} from the package \texttt{CCA} which you will need to download.
+\end{itemize}
+
+\hypertarget{exercise-2-1}{%
+\paragraph{Exercise 2}\label{exercise-2-1}}
+\addcontentsline{toc}{paragraph}{Exercise 2}
+
+The full Premier League dataset is available at
+\href{https://www.rotowire.com/soccer/league-table.php?season=2019}{https://www.rotowire.com/soccer/league-table.php?season=2018}. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.
+
+Read the data into R (hint: try the \texttt{read.csv} command).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(x , }\DataTypeTok{file=}\StringTok{"/YOURDIRECTORY/prem_league_data.txt, sep="} \StringTok{", header=TRUE)}
+\end{Highlighting}
+\end{Shaded}
+
+If you are not sure what the name of YOURDIRECTORY is where the file is located, then a useful command to find out is \texttt{file.choose()}
+
+\begin{itemize}
+\item
+  Check that you can reproduce, and agree with, the calculations done in this chapter.
+\item
+  Consider now doing CCA with \(\mathbf x=(W,D)\) and \(\mathbf y=(G,GA, L)\). Note that if you knew \(W\) and \(D\), you could calculate \(L\). Without doing any computation, what do you expect the first canoncial correlation to be? What will the first pair of CC vectors be (upto a multiplicative constant)?
+\item
+  Check your intuition by doing the calculation in R:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X <-}\StringTok{ }\NormalTok{table[,}\KeywordTok{c}\NormalTok{(}\StringTok{'W'}\NormalTok{,}\StringTok{'D'}\NormalTok{)] }
+\NormalTok{Y <-}\StringTok{ }\NormalTok{table[,}\KeywordTok{c}\NormalTok{(}\StringTok{'G'}\NormalTok{,}\StringTok{'GA'}\NormalTok{,}\StringTok{'L'}\NormalTok{)] }
+\KeywordTok{cc}\NormalTok{(X,Y)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{exercise-3-1}{%
+\paragraph{Exercise 3}\label{exercise-3-1}}
+\addcontentsline{toc}{paragraph}{Exercise 3}
+
+{[}Note: these commands were also used on the Boston Housing data in lectures and I have provided the html output on the Moodle page, which could be helpful{]}.
+
+\hypertarget{exercises-2}{%
+\section{Exercises}\label{exercises-2}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Attempt exam question 1 part (b) from the 2017-18 exam paper. You will find the past exam papers on Moodle.
+\item
+  Suppose that \(\mathbf z= (\mathbf x^\top \mathbf y^\top)^\top\) is a random vector, where both \(\mathbf x\) and \(\mathbf y\) are sub-vectors of dimension \(p\), so that \(\mathbf z\) is \((2p)\times 1\). Define
+  \[{\mathbb{V}\operatorname{ar}}(\mathbf z)=\boldsymbol{\Sigma}_{\mathbf z\mathbf z}=\begin{pmatrix} \boldsymbol{\Sigma}_{\mathbf x\mathbf x} & \boldsymbol{\Sigma}_{\mathbf x\mathbf y}\\\boldsymbol{\Sigma}_{\mathbf y\mathbf x} & \boldsymbol{\Sigma}_{\mathbf y\mathbf y}  \end{pmatrix}.\]
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Suppose that \(\mathbf y= \mathbf T\mathbf x\) where \(\mathbf T\) is a fixed matrix. Find \(\boldsymbol{\Sigma}_{\mathbf x\mathbf y}\) and \(\boldsymbol{\Sigma}_{\mathbf y\mathbf y}\) in terms of \(\boldsymbol{\Sigma}_{\mathbf x\mathbf x}\) and \(\mathbf T\).
+  \item
+    Assuming now that \(\mathbf T\) is an orthogonal matrix and \(\boldsymbol{\Sigma}_{\mathbf x\mathbf x}\) is of full rank, determine the singular values of the matrix \(\mathbf Q=\boldsymbol{\Sigma}_{\mathbf x\mathbf x}^{-1/2}\boldsymbol{\Sigma}_ {\mathbf x\mathbf y}\boldsymbol{\Sigma}_{\mathbf y\mathbf y}^{-1/2}\), and hence write down the canonical correlation coefficients.
+  \item
+    Suppose now that \(\mathbf T\) is non-singular but not orthogonal. Comment on whether the answer to part (b) changes.
+  \end{itemize}
+\item
+  We will now prove Proposition \ref{prp:svdopt3} by induction.
+  The case for \(k=1\) was proved in Section \ref{cca1} in Proposition \ref{prp:svdmax2}. Assume the result is true for \(k\). Consider the objective
+  \[\mathcal{L} = \mathbf a^\top \mathbf Q\mathbf b+ \sum_{i=1}^k \gamma_i\mathbf a^\top \mathbf a_i + \sum_{i=1}^k \mu_i\mathbf b^\top \mathbf b_i + \frac{\lambda_1}{2}(1-\mathbf a^\top\mathbf a)+ \frac{\lambda_2}{2}(1-\mathbf b^\top\mathbf b)\]
+  where \(\lambda_i, \mu_i, \gamma_i\) are Lagrangian multipliers.
+
+  \begin{itemize}
+  \item
+    By differentiating with respect to \(\mathbf a\) and \(\mathbf b\) and setting the derivative to zero show that
+    \begin{align}
+     \mathbf Q\mathbf b+ \sum\gamma_i \mathbf a_i - \lambda_1 \mathbf a&= 0 \label{eq:ex3a}\\
+     \mathbf Q^\top\mathbf a+ \sum\mu_i \mathbf b_i - \lambda_2 \mathbf b&= 0. \label{eq:ex3b} 
+     \end{align}
+  \item
+    By left multiplying the equations above by \(\mathbf a^\top\) and \(\mathbf b^\top\) respectively show that
+    \[\lambda_1=\lambda_2 = \mathbf a^\top \mathbf Q\mathbf b.\]
+  \item
+    By left multiplying \eqref{eq:ex3a} by \(\mathbf a_i^\top\) show that \(\gamma_i=0\) for \(i=1, \ldots, k\). Show similarly that \(\mu_i =0\) for \(i=1, \ldots, k\).
+  \item
+    Finally, by copying the proof of Proposition \ref{prp:svdmax2}, prove Proposition \ref{prp:svdopt3}.
+  \end{itemize}
+\item
+  Show the mean of the cc variables \(\eta_k\) and \(\psi_k\) is zero. Prove Proposition \ref{prp:ccavar} giving the variance of covariance the cc variables.
 \end{enumerate}
 
 \bibliography{book.bib,packages.bib}
