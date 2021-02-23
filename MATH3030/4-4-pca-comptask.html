@@ -284,9 +284,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Now we will do the same thing again, but using the <code>svd</code> command.</p>
 <ul>
-<li>Compute the column centred data matrix <span class="math inline">\(\frac{1}{\sqrt{n-1}}\mathbf H\mathbf X\)</span></li>
-<li>Compute the SVD of this matrix. Check the singular values match the square root of the eigenvalues computed previously.</li>
-<li>Compute the SVD scores by doing both <span class="math inline">\(\mathbf X\mathbf V\)</span> and <span class="math inline">\(\mathbf U\boldsymbol{\Sigma}\)</span>.</li>
+<li>Compute the column centred data matrix <span class="math inline">\(\frac{1}{\sqrt{n-1}}\mathbf H\mathbf X\)</span>.</li>
+<li><p>Compute the SVD of <span class="math inline">\(\frac{1}{\sqrt{n-1}}\mathbf H\mathbf X\)</span> and <span class="math inline">\(\mathbf H\mathbf X\)</span>. How are the two sets of singular values related, and how do they relate to the eigenvalues computed previously.
+Are the singular vectors of <span class="math inline">\(\frac{1}{\sqrt{n-1}}\mathbf H\mathbf X\)</span> and <span class="math inline">\(\mathbf H\mathbf X\)</span> the same?</p></li>
+<li><p>Compute the SVD scores by doing both <span class="math inline">\(\mathbf H\mathbf X\mathbf V\)</span> and <span class="math inline">\(\mathbf U\boldsymbol{\Sigma}\)</span>, where
+<span class="math display">\[\mathbf H\mathbf X= \mathbf U\boldsymbol{\Sigma}\mathbf V^\top\]</span>
+is the SVD of <span class="math inline">\(\mathbf H\mathbf X\)</span>.</p></li>
 </ul>
 </div>
 <div id="exercise-2" class="section level5 unnumbered">
@@ -303,7 +306,7 @@ We will focus on the 5 continuous variables, all measured in mm:</p>
 <p>The sample size is <span class="math inline">\(200\)</span>.</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
 <a class="sourceLine" id="cb124-2" data-line-number="2">?crabs <span class="co"># read the help page to find out about the dataset</span></a>
-<a class="sourceLine" id="cb124-3" data-line-number="3">X=crabs[<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>]     <span class="co"># construct data matrix X with columns FL, RW, CL, CW, BD</span></a></code></pre></div>
+<a class="sourceLine" id="cb124-3" data-line-number="3">X=crabs[,<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>]     <span class="co"># construct data matrix X with columns FL, RW, CL, CW, BD</span></a></code></pre></div>
 <ul>
 <li>Carry out PCA on the data in <span class="math inline">\(X\)</span> using the covariance matrix, including obtaining a scree plot and plotting the PC scores.</li>
 </ul>
@@ -349,7 +352,7 @@ You can generate a random orthogonal matrix using the following commands</p></li
 <a href="https://www.rotowire.com/soccer/league-table.php?season=2018">https://www.rotowire.com/soccer/league-table.php?season=2018</a>. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.</p>
 <ul>
 <li><p>Load the data into R using the command <code>read.csv</code>. Note that you may need to manually delete the first row of the csv file before doing this. (<em>I haven’t given you the command here, as learning how to do this yourself is important</em>).</p></li>
-<li><p>Repeat the analysis from section <a href="4-2-pca-a-formal-description-with-proofs.html#pca:football">4.2.2</a>. Does the meaning of the principal components change? Was the 2018-19 league season notable different to the 2019-20 season (which is the season analysed in the notes)?</p></li>
+<li><p>Repeat the analysis from section <a href="4-2-pca-a-formal-description-with-proofs.html#pca:football">4.2.2</a>. Does the meaning of the principal components change? Was the 2018-19 league season notably different to the 2019-20 season (which is the season analysed in the notes)?</p></li>
 </ul>
 </div>
 </div>

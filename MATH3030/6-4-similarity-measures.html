@@ -287,15 +287,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.4</span> Similarity measures</h2>
 <p>Recap: so far in this chapter we have considered distances matrices <span class="math inline">\(\mathbf D=(d_{ij})_{i,j=1}^n\)</span> with distances <span class="math inline">\(d_{ij}\)</span>. In this setting, the larger <span class="math inline">\(d_{ij}\)</span> is, the more distant, or dissimilar, object <span class="math inline">\(i\)</span> is from object <span class="math inline">\(j\)</span>.</p>
 <p>Recall that we have distinguished between metric distances (``metrics’’), which satisfy the triangle inequality <a href="6-mds.html#eq:triangle">(6.1)</a>, and non-metric distances, or dissimilarities, which need not satisfy <a href="6-mds.html#eq:triangle">(6.1)</a>.</p>
-<p>In this section, we now consider the analysis of measures of <em>similarity</em> as opposed to measures of dissimilarity.</p>
-<p>A <em>similarity</em> matrix is defined to be an <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf=(f_{ij})_{i,j=1}^n\)</span> with the following properties:</p>
+<p>In this section, we now consider the analysis of measures of <strong>similarity</strong> as opposed to measures of dissimilarity.</p>
+<p>A <strong>similarity matrix</strong> is defined to be an <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf=(f_{ij})_{i,j=1}^n\)</span> with the following properties:</p>
 <ol style="list-style-type: decimal">
 <li>Symmetry, i.e. <span class="math inline">\(f_{ij} =f_{ji}\)</span>, <span class="math inline">\(i,j=1, \ldots , n\)</span>.</li>
 <li>For all <span class="math inline">\(i,j=1, \ldots , n\)</span>, <span class="math inline">\(f_{ij} \leq f_{ii}\)</span>.</li>
 </ol>
 <p>Note that when working with similarities <span class="math inline">\(f_{ij}\)</span>, the larger <span class="math inline">\(f_{ij}\)</span> is, the more similar objects <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are.</p>
-<p>Condition 1. implies that object <span class="math inline">\(i\)</span> is as similar to object <span class="math inline">\(j\)</span> as object <span class="math inline">\(j\)</span> is to object <span class="math inline">\(i\)</span> (symmetry).</p>
-<p>Condition 2. implies that an object is at least as similar to itself as it is to any other object.</p>
+<ul>
+<li><p>Condition 1. implies that object <span class="math inline">\(i\)</span> is as similar to object <span class="math inline">\(j\)</span> as object <span class="math inline">\(j\)</span> is to object <span class="math inline">\(i\)</span> (symmetry).</p></li>
+<li><p>Condition 2. implies that an object is at least as similar to itself as it is to any other object.</p></li>
+</ul>
 <p>One important class of problems is when the similarity between any two objects is measured by the number of common attributes. We illustrate this through two examples.</p>
 
 <div class="example">

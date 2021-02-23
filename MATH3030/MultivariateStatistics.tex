@@ -4445,13 +4445,15 @@ Now, instead of using `prcomp` we will do the analysis ourselves using the `eige
 Now we will do the same thing again, but using the \texttt{svd} command.
 
 \begin{itemize}
-\tightlist
 \item
-  Compute the column centred data matrix \(\frac{1}{\sqrt{n-1}}\mathbf H\mathbf X\)
+  Compute the column centred data matrix \(\frac{1}{\sqrt{n-1}}\mathbf H\mathbf X\).
 \item
-  Compute the SVD of this matrix. Check the singular values match the square root of the eigenvalues computed previously.
+  Compute the SVD of \(\frac{1}{\sqrt{n-1}}\mathbf H\mathbf X\) and \(\mathbf H\mathbf X\). How are the two sets of singular values related, and how do they relate to the eigenvalues computed previously.
+  Are the singular vectors of \(\frac{1}{\sqrt{n-1}}\mathbf H\mathbf X\) and \(\mathbf H\mathbf X\) the same?
 \item
-  Compute the SVD scores by doing both \(\mathbf X\mathbf V\) and \(\mathbf U\boldsymbol{\Sigma}\).
+  Compute the SVD scores by doing both \(\mathbf H\mathbf X\mathbf V\) and \(\mathbf U\boldsymbol{\Sigma}\), where
+  \[\mathbf H\mathbf X= \mathbf U\boldsymbol{\Sigma}\mathbf V^\top\]
+  is the SVD of \(\mathbf H\mathbf X\).
 \end{itemize}
 
 \hypertarget{exercise-2}{%
@@ -4481,7 +4483,7 @@ The sample size is \(200\).
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(MASS)}
 \NormalTok{?crabs }\CommentTok{# read the help page to find out about the dataset}
-\NormalTok{X=crabs[}\DecValTok{4}\OperatorTok{:}\DecValTok{8}\NormalTok{]     }\CommentTok{# construct data matrix X with columns FL, RW, CL, CW, BD}
+\NormalTok{X=crabs[,}\DecValTok{4}\OperatorTok{:}\DecValTok{8}\NormalTok{]     }\CommentTok{# construct data matrix X with columns FL, RW, CL, CW, BD}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4545,7 +4547,7 @@ Download the final Premier League table for the 2018-19 season from
 \item
   Load the data into R using the command \texttt{read.csv}. Note that you may need to manually delete the first row of the csv file before doing this. (\emph{I haven't given you the command here, as learning how to do this yourself is important}).
 \item
-  Repeat the analysis from section \ref{pca:football}. Does the meaning of the principal components change? Was the 2018-19 league season notable different to the 2019-20 season (which is the season analysed in the notes)?
+  Repeat the analysis from section \ref{pca:football}. Does the meaning of the principal components change? Was the 2018-19 league season notably different to the 2019-20 season (which is the season analysed in the notes)?
 \end{itemize}
 
 \hypertarget{exercises-1}{%
