@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.7 Computer Tasks | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.7 Computer Tasks | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.7 Computer Tasks | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="4-6-exercises-1.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="1-linalg-prelim.html"><a href="1-linalg-prelim.html"><i class="fa fa-check"></i><b>1</b> Review of linear algebra</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-linalg-basics.html"><a href="1-1-linalg-basics.html"><i class="fa fa-check"></i><b>1.1</b> Basics</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-linalg-basics.html"><a href="1-1-linalg-basics.html#notation"><i class="fa fa-check"></i><b>1.1.1</b> Notation</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-linalg-basics.html"><a href="1-1-linalg-basics.html#elementary-matrix-operations"><i class="fa fa-check"></i><b>1.1.2</b> Elementary matrix operations</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1-1-linalg-basics.html"><a href="1-1-linalg-basics.html#special-matrices"><i class="fa fa-check"></i><b>1.1.3</b> Special matrices</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1-1-linalg-basics.html"><a href="1-1-linalg-basics.html#vectordiff"><i class="fa fa-check"></i><b>1.1.4</b> Vector Differentiation</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-linalg-vecspaces.html"><a href="1-2-linalg-vecspaces.html"><i class="fa fa-check"></i><b>1.2</b> Vector spaces</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-linalg-vecspaces.html"><a href="1-2-linalg-vecspaces.html#linear-independence"><i class="fa fa-check"></i><b>1.2.1</b> Linear independence</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-linalg-vecspaces.html"><a href="1-2-linalg-vecspaces.html#colsspace"><i class="fa fa-check"></i><b>1.2.2</b> Row and column spaces</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-linalg-vecspaces.html"><a href="1-2-linalg-vecspaces.html#linear-transformations"><i class="fa fa-check"></i><b>1.2.3</b> Linear transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-linalg-innerprod.html"><a href="1-3-linalg-innerprod.html"><i class="fa fa-check"></i><b>1.3</b> Inner product spaces</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-linalg-innerprod.html"><a href="1-3-linalg-innerprod.html#normed"><i class="fa fa-check"></i><b>1.3.1</b> Distances, and angles</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-3-linalg-innerprod.html"><a href="1-3-linalg-innerprod.html#orthogonal-matrices"><i class="fa fa-check"></i><b>1.3.2</b> Orthogonal matrices</a></li>
+<li class="chapter" data-level="1.3.3" data-path="1-3-linalg-innerprod.html"><a href="1-3-linalg-innerprod.html#projection-matrix"><i class="fa fa-check"></i><b>1.3.3</b> Projections</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-centering-matrix.html"><a href="1-4-centering-matrix.html"><i class="fa fa-check"></i><b>1.4</b> The Centering Matrix</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-tasks-ch2.html"><a href="1-5-tasks-ch2.html"><i class="fa fa-check"></i><b>1.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.6" data-path="1-6-exercises-ch2.html"><a href="1-6-exercises-ch2.html"><i class="fa fa-check"></i><b>1.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-linalg-decomp.html"><a href="2-linalg-decomp.html"><i class="fa fa-check"></i><b>2</b> Matrix decompositions</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-matrix-matrix.html"><a href="2-1-matrix-matrix.html"><i class="fa fa-check"></i><b>2.1</b> Matrix-matrix products</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-spectraleigen-decomposition.html"><a href="2-2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>2.2</b> Spectral/eigen decomposition</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-spectraleigen-decomposition.html"><a href="2-2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>2.2.1</b> Eigenvalues and eigenvectors</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-spectraleigen-decomposition.html"><a href="2-2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>2.2.2</b> Spectral decomposition</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-2-spectraleigen-decomposition.html"><a href="2-2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>2.2.3</b> Matrix square roots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-linalg-SVD.html"><a href="2-3-linalg-SVD.html"><i class="fa fa-check"></i><b>2.3</b> Singular Value Decomposition (SVD)</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-linalg-SVD.html"><a href="2-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>2.3.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-4-svdopt.html"><a href="2-4-svdopt.html"><i class="fa fa-check"></i><b>2.4</b> SVD optimization results</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-low-rank-approximation.html"><a href="2-5-low-rank-approximation.html"><i class="fa fa-check"></i><b>2.5</b> Low-rank approximation</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="2-5-low-rank-approximation.html"><a href="2-5-low-rank-approximation.html#matrix-norms"><i class="fa fa-check"></i><b>2.5.1</b> Matrix norms</a></li>
+<li class="chapter" data-level="2.5.2" data-path="2-5-low-rank-approximation.html"><a href="2-5-low-rank-approximation.html#eckart-young-mirsky-theorem"><i class="fa fa-check"></i><b>2.5.2</b> Eckart-Young-Mirsky Theorem</a></li>
+<li class="chapter" data-level="2.5.3" data-path="2-5-low-rank-approximation.html"><a href="2-5-low-rank-approximation.html#example-image-compression"><i class="fa fa-check"></i><b>2.5.3</b> Example: image compression</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="2-6-tasks-ch3.html"><a href="2-6-tasks-ch3.html"><i class="fa fa-check"></i><b>2.6</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.7" data-path="2-7-exercises-ch3.html"><a href="2-7-exercises-ch3.html"><i class="fa fa-check"></i><b>2.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html"><i class="fa fa-check"></i>PART II: Dimension reduction methods</a><ul>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#a-warning"><i class="fa fa-check"></i>A warning</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-pca.html"><a href="3-pca.html"><i class="fa fa-check"></i><b>3</b> Principal Component Analysis (PCA)</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-pca-an-informal-introduction.html"><a href="3-1-pca-an-informal-introduction.html"><i class="fa fa-check"></i><b>3.1</b> PCA: an informal introduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="3-1-pca-an-informal-introduction.html"><a href="3-1-pca-an-informal-introduction.html#notation-recap"><i class="fa fa-check"></i><b>3.1.1</b> Notation recap</a></li>
+<li class="chapter" data-level="3.1.2" data-path="3-1-pca-an-informal-introduction.html"><a href="3-1-pca-an-informal-introduction.html#first-principal-component"><i class="fa fa-check"></i><b>3.1.2</b> First principal component</a></li>
+<li class="chapter" data-level="3.1.3" data-path="3-1-pca-an-informal-introduction.html"><a href="3-1-pca-an-informal-introduction.html#second-principal-component"><i class="fa fa-check"></i><b>3.1.3</b> Second principal component</a></li>
+<li class="chapter" data-level="3.1.4" data-path="3-1-pca-an-informal-introduction.html"><a href="3-1-pca-an-informal-introduction.html#geometric-interpretation-1"><i class="fa fa-check"></i><b>3.1.4</b> Geometric interpretation</a></li>
+<li class="chapter" data-level="3.1.5" data-path="3-1-pca-an-informal-introduction.html"><a href="3-1-pca-an-informal-introduction.html#example"><i class="fa fa-check"></i><b>3.1.5</b> Example</a></li>
+<li class="chapter" data-level="3.1.6" data-path="3-1-pca-an-informal-introduction.html"><a href="3-1-pca-an-informal-introduction.html#example-iris"><i class="fa fa-check"></i><b>3.1.6</b> Example: Iris</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3-2-pca-a-formal-description-with-proofs.html"><a href="3-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>3.2</b> PCA: a formal description with proofs</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-2-pca-a-formal-description-with-proofs.html"><a href="3-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>3.2.1</b> Properties of principal components</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-2-pca-a-formal-description-with-proofs.html"><a href="3-2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>3.2.2</b> Example: Football</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-2-pca-a-formal-description-with-proofs.html"><a href="3-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>3.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="3-2-pca-a-formal-description-with-proofs.html"><a href="3-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>3.2.4</b> Population PCA</a></li>
+<li class="chapter" data-level="3.2.5" data-path="3-2-pca-a-formal-description-with-proofs.html"><a href="3-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>3.2.5</b> PCA under transformations of variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-3-an-alternative-view-of-pca.html"><a href="3-3-an-alternative-view-of-pca.html"><i class="fa fa-check"></i><b>3.3</b> An alternative view of PCA</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-an-alternative-view-of-pca.html"><a href="3-3-an-alternative-view-of-pca.html#example-mnist-handwritten-digits"><i class="fa fa-check"></i><b>3.3.1</b> Example: MNIST handwritten digits</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-pca-comptask.html"><a href="3-4-pca-comptask.html"><i class="fa fa-check"></i><b>3.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-exercises.html"><a href="3-5-exercises.html"><i class="fa fa-check"></i><b>3.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-mds.html"><a href="4-mds.html"><i class="fa fa-check"></i><b>4</b> Multidimensional Scaling (MDS)</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-classical-mds.html"><a href="4-1-classical-mds.html"><i class="fa fa-check"></i><b>4.1</b> Classical MDS</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="4-1-classical-mds.html"><a href="4-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>4.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="4.1.2" data-path="4-1-classical-mds.html"><a href="4-1-classical-mds.html#example-3"><i class="fa fa-check"></i><b>4.1.2</b> Example 3</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-2-principal-coordinates.html"><a href="4-2-principal-coordinates.html"><i class="fa fa-check"></i><b>4.2</b> Principal Coordinates</a></li>
+<li class="chapter" data-level="4.3" data-path="4-3-properties.html"><a href="4-3-properties.html"><i class="fa fa-check"></i><b>4.3</b> Properties</a></li>
+<li class="chapter" data-level="4.4" data-path="4-4-similarity-measures.html"><a href="4-4-similarity-measures.html"><i class="fa fa-check"></i><b>4.4</b> Similarity measures</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="4-4-similarity-measures.html"><a href="4-4-similarity-measures.html#example-4"><i class="fa fa-check"></i><b>4.4.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="4-5-non-metric-mds.html"><a href="4-5-non-metric-mds.html"><i class="fa fa-check"></i><b>4.5</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="4.6" data-path="4-6-exercises-1.html"><a href="4-6-exercises-1.html"><i class="fa fa-check"></i><b>4.6</b> Exercises</a></li>
+<li class="chapter" data-level="4.7" data-path="4-7-computer-tasks.html"><a href="4-7-computer-tasks.html"><i class="fa fa-check"></i><b>4.7</b> Computer Tasks</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="computer-tasks" class="section level2">
+<h2><span class="header-section-number">4.7</span> Computer Tasks</h2>
+<ol style="list-style-type: decimal">
+<li><p>Look at this computational trick <a href="https://www.robots.ox.ac.uk/~albanie/notes/Euclidean_distance_trick.pdf" class="uri">https://www.robots.ox.ac.uk/~albanie/notes/Euclidean_distance_trick.pdf</a>
+for computing the distance matrix.</p></li>
+<li><p>Do UK map?</p></li>
+</ol>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1">mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(distances)</a>
+<a class="sourceLine" id="cb140-2" data-line-number="2"><span class="kw">plot</span>(mds[,<span class="dv">2</span>], mds[,<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb140-3" data-line-number="3"><span class="kw">text</span>(mds[,<span class="dv">2</span>], mds[,<span class="dv">1</span>], <span class="dt">labels=</span>city<span class="op">$</span>Name, <span class="dt">pos=</span><span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">cmdscale</a></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li><a href="http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/122-multidimensional-scaling-essentials-algorithms-and-r-code/" class="uri">http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/122-multidimensional-scaling-essentials-algorithms-and-r-code/</a>
+Visualizing a correlation matrix using Multidimensional Scaling</li>
+</ol>
+<p>MDS can be also used to reveal a hidden pattern in a correlation matrix.</p>
+<p>Correlation actually measures similarity, but it is easy to transform it to a measure of dissimilarity. Distance between objects can be calculated as 1 - res.cor.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1">res.cor &lt;-<span class="st"> </span><span class="kw">cor</span>(mtcars, <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</a>
+<a class="sourceLine" id="cb142-2" data-line-number="2">mds.cor &lt;-<span class="kw">cmdscale</span>((<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>res.cor) ) </a>
+<a class="sourceLine" id="cb142-3" data-line-number="3"><span class="kw">colnames</span>(mds.cor) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Dim.1&quot;</span>, <span class="st">&quot;Dim.2&quot;</span>)</a>
+<a class="sourceLine" id="cb142-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb142-5" data-line-number="5"><span class="kw">library</span>(ggpubr)</a>
+<a class="sourceLine" id="cb142-6" data-line-number="6"><span class="kw">ggscatter</span>(mds.cor, <span class="dt">x =</span> <span class="st">&quot;Dim.1&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Dim.2&quot;</span>, </a>
+<a class="sourceLine" id="cb142-7" data-line-number="7">          <span class="dt">label =</span> <span class="kw">rownames</span>(swiss),</a>
+<a class="sourceLine" id="cb142-8" data-line-number="8">          <span class="dt">size =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb142-9" data-line-number="9">          <span class="dt">repel =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="4-6-exercises-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

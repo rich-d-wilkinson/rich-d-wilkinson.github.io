@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Multidimensional Scaling (MDS) | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Multidimensional Scaling (MDS) | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="1-5-exercises.html"/>
+<link rel="prev" href="1-7-exercises-ch3.html"/>
 <link rel="next" href="2-1-classical-mds.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -133,42 +133,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html"><i class="fa fa-check"></i>PART II: Dimension reduction methods</a><ul>
-<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#a-warning"><i class="fa fa-check"></i>A warning</a></li>
+<li class="chapter" data-level="1" data-path="1-linalg-decomp.html"><a href="1-linalg-decomp.html"><i class="fa fa-check"></i><b>1</b> Matrix decompositions</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-matrix-matrix.html"><a href="1-1-matrix-matrix.html"><i class="fa fa-check"></i><b>1.1</b> Matrix-matrix products</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>1.2</b> Spectral/eigen decomposition</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>1.2.1</b> Eigenvalues and eigenvectors</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>1.2.2</b> Spectral decomposition</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>1.2.3</b> Matrix square roots</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="1-pca.html"><a href="1-pca.html"><i class="fa fa-check"></i><b>1</b> Principal Component Analysis (PCA)</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html"><i class="fa fa-check"></i><b>1.1</b> PCA: an informal introduction</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#notation-recap"><i class="fa fa-check"></i><b>1.1.1</b> Notation recap</a></li>
-<li class="chapter" data-level="1.1.2" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#first-principal-component"><i class="fa fa-check"></i><b>1.1.2</b> First principal component</a></li>
-<li class="chapter" data-level="1.1.3" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#second-principal-component"><i class="fa fa-check"></i><b>1.1.3</b> Second principal component</a></li>
-<li class="chapter" data-level="1.1.4" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#geometric-interpretation-1"><i class="fa fa-check"></i><b>1.1.4</b> Geometric interpretation</a></li>
-<li class="chapter" data-level="1.1.5" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#example"><i class="fa fa-check"></i><b>1.1.5</b> Example</a></li>
-<li class="chapter" data-level="1.1.6" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#example-iris"><i class="fa fa-check"></i><b>1.1.6</b> Example: Iris</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-linalg-SVD.html"><a href="1-3-linalg-SVD.html"><i class="fa fa-check"></i><b>1.3</b> Singular Value Decomposition (SVD)</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-linalg-SVD.html"><a href="1-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>1.3.1</b> Examples</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>1.2</b> PCA: a formal description with proofs</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>1.2.1</b> Properties of principal components</a></li>
-<li class="chapter" data-level="1.2.2" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>1.2.2</b> Example: Football</a></li>
-<li class="chapter" data-level="1.2.3" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>1.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
-<li class="chapter" data-level="1.2.4" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>1.2.4</b> Population PCA</a></li>
-<li class="chapter" data-level="1.2.5" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>1.2.5</b> PCA under transformations of variables</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-svdopt.html"><a href="1-4-svdopt.html"><i class="fa fa-check"></i><b>1.4</b> SVD optimization results</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html"><i class="fa fa-check"></i><b>1.5</b> Low-rank approximation</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html#matrix-norms"><i class="fa fa-check"></i><b>1.5.1</b> Matrix norms</a></li>
+<li class="chapter" data-level="1.5.2" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html#eckart-young-mirsky-theorem"><i class="fa fa-check"></i><b>1.5.2</b> Eckart-Young-Mirsky Theorem</a></li>
+<li class="chapter" data-level="1.5.3" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html#example-image-compression"><i class="fa fa-check"></i><b>1.5.3</b> Example: image compression</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="1-3-an-alternative-view-of-pca.html"><a href="1-3-an-alternative-view-of-pca.html"><i class="fa fa-check"></i><b>1.3</b> An alternative view of PCA</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="1-3-an-alternative-view-of-pca.html"><a href="1-3-an-alternative-view-of-pca.html#example-mnist-handwritten-digits"><i class="fa fa-check"></i><b>1.3.1</b> Example: MNIST handwritten digits</a></li>
-</ul></li>
-<li class="chapter" data-level="1.4" data-path="1-4-pca-comptask.html"><a href="1-4-pca-comptask.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
-<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+<li class="chapter" data-level="1.6" data-path="1-6-tasks-ch3.html"><a href="1-6-tasks-ch3.html"><i class="fa fa-check"></i><b>1.6</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.7" data-path="1-7-exercises-ch3.html"><a href="1-7-exercises-ch3.html"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-mds.html"><a href="2-mds.html"><i class="fa fa-check"></i><b>2</b> Multidimensional Scaling (MDS)</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html"><i class="fa fa-check"></i><b>2.1</b> Classical MDS</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-1"><i class="fa fa-check"></i><b>2.1.1</b> Example 1</a></li>
-<li class="chapter" data-level="2.1.2" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-2"><i class="fa fa-check"></i><b>2.1.2</b> Example 2</a></li>
-<li class="chapter" data-level="2.1.3" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-3"><i class="fa fa-check"></i><b>2.1.3</b> Example 3</a></li>
+<li class="chapter" data-level="2.1.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>2.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>2.1.2</b> Principal Coordinate Analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="2-2-principal-coordinates.html"><a href="2-2-principal-coordinates.html"><i class="fa fa-check"></i><b>2.2</b> Principal Coordinates</a></li>
-<li class="chapter" data-level="2.3" data-path="2-3-properties.html"><a href="2-3-properties.html"><i class="fa fa-check"></i><b>2.3</b> Properties</a></li>
-<li class="chapter" data-level="2.4" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html"><i class="fa fa-check"></i><b>2.4</b> Similarity measures</a></li>
-<li class="chapter" data-level="2.5" data-path="2-5-exercises-1.html"><a href="2-5-exercises-1.html"><i class="fa fa-check"></i><b>2.5</b> Exercises</a></li>
-<li class="chapter" data-level="2.6" data-path="2-6-computer-tasks.html"><a href="2-6-computer-tasks.html"><i class="fa fa-check"></i><b>2.6</b> Computer Tasks</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-properties.html"><a href="2-2-properties.html"><i class="fa fa-check"></i><b>2.2</b> Properties</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-non-classical-mds.html"><a href="2-3-non-classical-mds.html"><i class="fa fa-check"></i><b>2.3</b> Non-classical MDS</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html"><i class="fa fa-check"></i><b>2.4</b> Similarity measures</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html#example"><i class="fa fa-check"></i><b>2.4.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-5-non-metric-mds.html"><a href="2-5-non-metric-mds.html"><i class="fa fa-check"></i><b>2.5</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-exercises.html"><a href="2-6-exercises.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+<li class="chapter" data-level="2.7" data-path="2-7-computer-tasks.html"><a href="2-7-computer-tasks.html"><i class="fa fa-check"></i><b>2.7</b> Computer Tasks</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -195,15 +191,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In PCA, we start with <span class="math inline">\(n\)</span> data points <span class="math inline">\(\mathbf x_i \in \mathbb{R}^p\)</span>, and then try to find a low dimensional projection of these points, e.g., <span class="math inline">\(\mathbf y_1, \ldots, \mathbf y_n \in \mathbb{R}^r\)</span> with <span class="math inline">\(r&lt;p\)</span>, in such a way that they minimize the reconstruction error (or maximize the variance).</p>
 <p>The focus in <strong>Multidimensional Scaling (MDS)</strong> is somewhat different. Instead of being given the data <span class="math inline">\(\mathbf X\)</span>, our starting point is often a matrix of <strong>distances</strong> or <strong>dissimilarities</strong> between the data points, <span class="math inline">\(\mathbf D\)</span>. For example, if we have data on <span class="math inline">\(n\)</span> different experimental units, then we would be given the distances <span class="math inline">\(d_{ij}\)</span> between any pair of experimental units <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>. We compile these into a <span class="math inline">\(n\times n\)</span> <strong>distance matrix</strong> <span class="math inline">\(\mathbf D=(d_{ij}: \, i,j=1, \ldots , n)\)</span>.</p>
 <p>The goal of MDS is to find a set of points in a low-dimensional Euclidean space <span class="math inline">\(\mathbb{R}^r\)</span>, usually <span class="math inline">\(\mathbb{R}\)</span> or <span class="math inline">\(\mathbb{R}^2\)</span>, whose inter-point distances (or dissimilarities) are as close as possible to the <span class="math inline">\(d_{ij}\)</span>. That is, we want to find <span class="math inline">\(\mathbf y_1, \ldots, \mathbf y_n \in \mathbb{R}^r\)</span> whose distance matrix is approximately <span class="math inline">\(\mathbf D\)</span>, i.e., for which
-<span class="math display">\[\operatorname{distance}(\mathbf y_i, \mathbf y_j) \approx d_{ij}.\]</span></p>
-<p>If we define the errors in terms of a square distane, then we can write the goal of MDS as the following optimization problem:
+<span class="math display">\[\operatorname{distance}(\mathbf y_i, \mathbf y_j) \approx d_{ij}.\]</span>
+In other words, we are trying to create a spatial representation of the data, <span class="math inline">\(\mathbf y_1, \ldots, \mathbf y_n\)</span>, from a distance matrix <span class="math inline">\(\mathbf D\)</span>. The vectors <span class="math inline">\(\mathbf y_i\)</span> have no meaning by themselves, but by visualising their spatial pattern we can hope to learn something about the dataset represented by <span class="math inline">\(\mathbf D\)</span>.</p>
+<p>If we define the errors in terms of a square distance, then we can write the goal of MDS as the following optimization problem:
 <span class="math display">\[\begin{align}
 \mbox{Find} \quad&amp; \mathbf y_1, \ldots, \mathbf y_k \in \mathbb{R}^r\\
 \mbox{to minimize} \quad &amp;\sum_{i=1}^n \sum_{j=1}^n (d_{ij} - d(\mathbf y_i, \mathbf y_j))^2.
 \end{align}\]</span></p>
 <p>As an illustrative example, consider the location of some of England’s cities.</p>
 <p><img src="06-mds_files/figure-html/unnamed-chunk-1-1.png" width="576" /></p>
-<p>If we are told their latitude and longitude, it is easy to calculate the distances between the cities.</p>
+<p>If we are told their latitude and longitude, it is easy to calculate the distances between the cities. I.e., given the latitude and longitude of each city, <span class="math inline">\(\mathbf x_i\)</span>, we can compute the distance matrix between pairs of cities <span class="math inline">\(\mathbf D\)</span>:</p>
 <table class="table" style="font-size: 7px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -825,12 +822,13 @@ Plymouth
 </tr>
 </tbody>
 </table>
-<p>But can we do the reverse and reconstruct the map from the distance matrix? This is the aim of multidimensional scaling.
-MDS constructs a set of points that have distances between them given by the distance matrix <span class="math inline">\(\mathbf D\)</span>. In other words, it creates a map with a set of coordinates for which the distances between points are approximately the same as in the real data.</p>
+<p>But can we do the reverse and construct a map from the distance matrix? This is the aim of multidimensional scaling:
+MDS constructs a set of points, <span class="math inline">\(\mathbf y_1, \ldots, \mathbf y_n\)</span>, that have distances between them given by the distance matrix <span class="math inline">\(\mathbf D\)</span>. In other words, it creates a map with a set of coordinates for which the distances between points are approximately the same as in the real data.</p>
 <p>Of course, this illustrative example is not very interesting, as the original data (the city locations) are only two-dimensional, but in problems with high dimensional data, finding a way to
-represent the points in a low-dimensional space will make visualization and statistical analysis easier. We shall also see, perhaps unsurprisingly, that there is a close connection between MDS and PCA.</p>
+represent the points in a low-dimensional space will make visualization and statistical analysis easier. We shall see, perhaps unsurprisingly, that there is a close connection between MDS and PCA.</p>
 <div id="notation" class="section level5 unnumbered">
 <h5>Notation</h5>
+<p>There are many ways to compute distances between points. For example, you may have studied metrics previously, which are distance functions that satisfy certain axioms. In MDS, we do not need to work with distances that are metrics (although sometimes we do), and instead we only require that distances satisfy a weaker set of conditions:</p>
 
 <div class="definition">
 <p><span id="def:distanceD" class="definition"><strong>Definition 2.1  </strong></span>The <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\mathbf D=(d_{ij})_{i,j=1}^n\)</span> is a <strong>distance matrix</strong> (sometimes called a <strong>dissimilarity matrix</strong>) if</p>
@@ -838,11 +836,10 @@ represent the points in a low-dimensional space will make visualization and stat
 <li><span class="math inline">\(d_{ij}\geq 0\)</span> for all <span class="math inline">\(i, j=1,\ldots,n\)</span>.</li>
 <li><span class="math inline">\(d_{ii}=0\)</span> for <span class="math inline">\(i=1,\ldots, n\)</span> and</li>
 <li><span class="math inline">\(\mathbf D=\mathbf D^\top\)</span>, i.e., <span class="math inline">\(\mathbf D\)</span> is symmetric (<span class="math inline">\(d_{ij}=d_{ji}\)</span>).</li>
-<li><span class="math inline">\(d_{ij}=0\)</span> implies <span class="math inline">\(\mathbf x_i=\mathbf x_j\)</span> DO I NEED THIS??????????? MDS STARTS WITH D- there is no x.</li>
+<li><span class="math inline">\(d_{ij}=0\)</span> implies <span class="math inline">\(\mathbf x_i=\mathbf x_j\)</span>
+</div></li>
 </ol>
-</div>
-
-<p>We do not require distances to necessarily satisfy the triangle inequality
+<p>Note that we do not require distances to necessarily satisfy the triangle inequality
 <span class="math display" id="eq:triangle">\[\begin{equation}
 d_{ik} \leq d_{ij}+d_{jk}.
 \tag{2.1}
@@ -850,6 +847,11 @@ d_{ik} \leq d_{ij}+d_{jk}.
 A distance function which always satisfies the triangle inequality is called a <strong>metric distance</strong>
 or just a <strong>metric</strong>. A distance function which does not always satisfy the triangle inequality is called a
 <strong>non-metric</strong> distance.</p>
+<!--
+There are many types of MDS method. 
+- Classical MDS works with Euclidean distances
+- Metric MDS 
+-->
 </div>
 </div>
             </section>
@@ -857,7 +859,7 @@ or just a <strong>metric</strong>. A distance function which does not always sat
           </div>
         </div>
       </div>
-<a href="1-5-exercises.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-7-exercises-ch3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="2-1-classical-mds.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

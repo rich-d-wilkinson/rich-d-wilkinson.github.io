@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.4 Computer tasks | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.4 Computer tasks | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -477,10 +477,11 @@ and covariance matrix
 <span class="math display">\[\boldsymbol{\Sigma}= \left(\begin{array}{cc}2&amp;1\\1&amp;2\end{array}\right)\]</span>
 as follows (you may need to install the R package <code>mvtnorm</code> first):</li>
 </ol>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">library</span>(mvtnorm)</a>
-<a class="sourceLine" id="cb24-2" data-line-number="2">mu =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb24-3" data-line-number="3">Sigma=<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">nr=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb24-4" data-line-number="4">X &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dt">n=</span><span class="dv">100</span>, <span class="dt">mean=</span>mu, <span class="dt">sigma=</span>Sigma)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">library</span>(mvtnorm)</a></code></pre></div>
+<pre><code>## Warning: package &#39;mvtnorm&#39; was built under R version 3.6.2</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">mu =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">Sigma=<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">nr=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3">X &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dt">n=</span><span class="dv">100</span>, <span class="dt">mean=</span>mu, <span class="dt">sigma=</span>Sigma)</a></code></pre></div>
 <ul>
 <li>Compute the sample mean and covariance matrix of these samples.</li>
 <li>Generate a new sample dataset, <span class="math inline">\(X\)</span>, and recompute the sample mean and covariance matrix. What do you notice?</li>
@@ -489,63 +490,63 @@ as follows (you may need to install the R package <code>mvtnorm</code> first):</
 <ol start="5" style="list-style-type: decimal">
 <li><strong>Optional</strong> Download the MNIST data from Moodle and load it into R.</li>
 </ol>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&#39;mnist.rda&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&#39;mnist.rda&#39;</span>)</a></code></pre></div>
 <p>This loads a list <code>mnist</code> that splits the data into two parts</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">mnist<span class="op">$</span>train <span class="co">## a training set of 60000 images</span></a>
-<a class="sourceLine" id="cb26-2" data-line-number="2">mnist<span class="op">$</span>test <span class="co">## a test set of 10000 images</span></a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">mnist<span class="op">$</span>train <span class="co">## a training set of 60000 images</span></a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">mnist<span class="op">$</span>test <span class="co">## a test set of 10000 images</span></a></code></pre></div>
 <p>Let’s just look at the training set. This is also a list containing the image intensities and the image labels</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">mnist<span class="op">$</span>train<span class="op">$</span>x <span class="co"># image intensities</span></a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">mnist<span class="op">$</span>train<span class="op">$</span>y <span class="co"># image labels</span></a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">mnist<span class="op">$</span>train<span class="op">$</span>x <span class="co"># image intensities</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">mnist<span class="op">$</span>train<span class="op">$</span>y <span class="co"># image labels</span></a></code></pre></div>
 <p>If we select just the first image we can see it is a vector of length 784 containing numbers between 0 and 1.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">mnist<span class="op">$</span>train<span class="op">$</span>x[<span class="dv">1</span>,]</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">mnist<span class="op">$</span>train<span class="op">$</span>x[<span class="dv">1</span>,]</a></code></pre></div>
 <p>I’ve created a function to help you plot these images.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">library</span>(reshape2)</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb29-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb29-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb29-5" data-line-number="5">plot.mnist &lt;-<span class="st"> </span><span class="cf">function</span>(im){</a>
-<a class="sourceLine" id="cb29-6" data-line-number="6">  <span class="co">#im[im&lt;0]&lt;-0 # set any negative intensities to zero</span></a>
-<a class="sourceLine" id="cb29-7" data-line-number="7">  <span class="co">#im[im&gt;1]&lt;-1 # set an intensities bigger than 1 to 1.</span></a>
-<a class="sourceLine" id="cb29-8" data-line-number="8">  </a>
-<a class="sourceLine" id="cb29-9" data-line-number="9">  </a>
-<a class="sourceLine" id="cb29-10" data-line-number="10">  <span class="cf">if</span>(<span class="kw">is.vector</span>(im)){ <span class="co"># a single image</span></a>
-<a class="sourceLine" id="cb29-11" data-line-number="11">    </a>
-<a class="sourceLine" id="cb29-12" data-line-number="12">    A&lt;-<span class="kw">matrix</span>(im, <span class="dt">nr=</span><span class="dv">28</span>, <span class="dt">byrow=</span>F)</a>
-<a class="sourceLine" id="cb29-13" data-line-number="13">    C&lt;-<span class="st"> </span><span class="kw">melt</span>(A, <span class="dt">varnames =</span> <span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>), <span class="dt">value.name =</span> <span class="st">&quot;intensity&quot;</span>)</a>
-<a class="sourceLine" id="cb29-14" data-line-number="14">    p&lt;-<span class="kw">ggplot</span>(C, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> intensity))<span class="op">+</span></a>
-<a class="sourceLine" id="cb29-15" data-line-number="15"><span class="st">      </span><span class="kw">geom_tile</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>intensity))<span class="op">+</span></a>
-<a class="sourceLine" id="cb29-16" data-line-number="16"><span class="st">      </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low=</span><span class="st">&#39;white&#39;</span>, <span class="dt">high=</span><span class="st">&#39;black&#39;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb29-17" data-line-number="17"><span class="st">      </span><span class="kw">scale_y_reverse</span>()<span class="op">+</span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb29-18" data-line-number="18">        <span class="dt">strip.background =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb29-19" data-line-number="19">        <span class="dt">strip.text.x =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb29-20" data-line-number="20">        <span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>),</a>
-<a class="sourceLine" id="cb29-21" data-line-number="21">        <span class="dt">axis.text =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb29-22" data-line-number="22">        <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>()</a>
-<a class="sourceLine" id="cb29-23" data-line-number="23">      ) </a>
-<a class="sourceLine" id="cb29-24" data-line-number="24">  }</a>
-<a class="sourceLine" id="cb29-25" data-line-number="25">  <span class="cf">else</span>{</a>
-<a class="sourceLine" id="cb29-26" data-line-number="26">    <span class="cf">if</span> (<span class="kw">dim</span>(im)[<span class="dv">2</span>]<span class="op">!=</span><span class="dv">784</span>){</a>
-<a class="sourceLine" id="cb29-27" data-line-number="27">      im =<span class="st"> </span><span class="kw">t</span>(im)</a>
-<a class="sourceLine" id="cb29-28" data-line-number="28">    } </a>
-<a class="sourceLine" id="cb29-29" data-line-number="29">    n &lt;-<span class="st"> </span><span class="kw">dim</span>(im)[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb29-30" data-line-number="30">    As &lt;-<span class="st"> </span><span class="kw">array</span>(im, <span class="dt">dim =</span> <span class="kw">c</span>(n, <span class="dv">28</span>, <span class="dv">28</span>))</a>
-<a class="sourceLine" id="cb29-31" data-line-number="31">    </a>
-<a class="sourceLine" id="cb29-32" data-line-number="32">    Cs&lt;-<span class="st"> </span><span class="kw">melt</span>(As, <span class="dt">varnames =</span> <span class="kw">c</span>(<span class="st">&quot;image&quot;</span>,<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>), <span class="dt">value.name =</span> <span class="st">&quot;intensity&quot;</span>)</a>
-<a class="sourceLine" id="cb29-33" data-line-number="33">    p&lt;-<span class="kw">ggplot</span>(Cs, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> intensity))<span class="op">+</span></a>
-<a class="sourceLine" id="cb29-34" data-line-number="34"><span class="st">      </span><span class="kw">geom_tile</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>intensity))<span class="op">+</span></a>
-<a class="sourceLine" id="cb29-35" data-line-number="35"><span class="st">      </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low=</span><span class="st">&#39;white&#39;</span>, <span class="dt">high=</span><span class="st">&#39;black&#39;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb29-36" data-line-number="36"><span class="st">      </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>image, <span class="dt">nrow =</span> <span class="kw">floor</span>(<span class="kw">sqrt</span>(n))<span class="op">+</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="kw">floor</span>(<span class="kw">sqrt</span>(n))<span class="op">+</span><span class="dv">1</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb29-37" data-line-number="37"><span class="st">      </span><span class="kw">scale_y_reverse</span>()<span class="op">+</span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb29-38" data-line-number="38">        <span class="dt">strip.background =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb29-39" data-line-number="39">        <span class="dt">strip.text.x =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb29-40" data-line-number="40">        <span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>),</a>
-<a class="sourceLine" id="cb29-41" data-line-number="41">        <span class="dt">axis.text =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb29-42" data-line-number="42">        <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>()</a>
-<a class="sourceLine" id="cb29-43" data-line-number="43">      ) </a>
-<a class="sourceLine" id="cb29-44" data-line-number="44">    </a>
-<a class="sourceLine" id="cb29-45" data-line-number="45">  }</a>
-<a class="sourceLine" id="cb29-46" data-line-number="46">  <span class="kw">return</span>(p)</a>
-<a class="sourceLine" id="cb29-47" data-line-number="47">}</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">library</span>(reshape2)</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb31-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">plot.mnist &lt;-<span class="st"> </span><span class="cf">function</span>(im){</a>
+<a class="sourceLine" id="cb31-6" data-line-number="6">  <span class="co">#im[im&lt;0]&lt;-0 # set any negative intensities to zero</span></a>
+<a class="sourceLine" id="cb31-7" data-line-number="7">  <span class="co">#im[im&gt;1]&lt;-1 # set an intensities bigger than 1 to 1.</span></a>
+<a class="sourceLine" id="cb31-8" data-line-number="8">  </a>
+<a class="sourceLine" id="cb31-9" data-line-number="9">  </a>
+<a class="sourceLine" id="cb31-10" data-line-number="10">  <span class="cf">if</span>(<span class="kw">is.vector</span>(im)){ <span class="co"># a single image</span></a>
+<a class="sourceLine" id="cb31-11" data-line-number="11">    </a>
+<a class="sourceLine" id="cb31-12" data-line-number="12">    A&lt;-<span class="kw">matrix</span>(im, <span class="dt">nr=</span><span class="dv">28</span>, <span class="dt">byrow=</span>F)</a>
+<a class="sourceLine" id="cb31-13" data-line-number="13">    C&lt;-<span class="st"> </span><span class="kw">melt</span>(A, <span class="dt">varnames =</span> <span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>), <span class="dt">value.name =</span> <span class="st">&quot;intensity&quot;</span>)</a>
+<a class="sourceLine" id="cb31-14" data-line-number="14">    p&lt;-<span class="kw">ggplot</span>(C, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> intensity))<span class="op">+</span></a>
+<a class="sourceLine" id="cb31-15" data-line-number="15"><span class="st">      </span><span class="kw">geom_tile</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>intensity))<span class="op">+</span></a>
+<a class="sourceLine" id="cb31-16" data-line-number="16"><span class="st">      </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low=</span><span class="st">&#39;white&#39;</span>, <span class="dt">high=</span><span class="st">&#39;black&#39;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb31-17" data-line-number="17"><span class="st">      </span><span class="kw">scale_y_reverse</span>()<span class="op">+</span><span class="kw">theme</span>(</a>
+<a class="sourceLine" id="cb31-18" data-line-number="18">        <span class="dt">strip.background =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb31-19" data-line-number="19">        <span class="dt">strip.text.x =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb31-20" data-line-number="20">        <span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>),</a>
+<a class="sourceLine" id="cb31-21" data-line-number="21">        <span class="dt">axis.text =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb31-22" data-line-number="22">        <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>()</a>
+<a class="sourceLine" id="cb31-23" data-line-number="23">      ) </a>
+<a class="sourceLine" id="cb31-24" data-line-number="24">  }</a>
+<a class="sourceLine" id="cb31-25" data-line-number="25">  <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb31-26" data-line-number="26">    <span class="cf">if</span> (<span class="kw">dim</span>(im)[<span class="dv">2</span>]<span class="op">!=</span><span class="dv">784</span>){</a>
+<a class="sourceLine" id="cb31-27" data-line-number="27">      im =<span class="st"> </span><span class="kw">t</span>(im)</a>
+<a class="sourceLine" id="cb31-28" data-line-number="28">    } </a>
+<a class="sourceLine" id="cb31-29" data-line-number="29">    n &lt;-<span class="st"> </span><span class="kw">dim</span>(im)[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb31-30" data-line-number="30">    As &lt;-<span class="st"> </span><span class="kw">array</span>(im, <span class="dt">dim =</span> <span class="kw">c</span>(n, <span class="dv">28</span>, <span class="dv">28</span>))</a>
+<a class="sourceLine" id="cb31-31" data-line-number="31">    </a>
+<a class="sourceLine" id="cb31-32" data-line-number="32">    Cs&lt;-<span class="st"> </span><span class="kw">melt</span>(As, <span class="dt">varnames =</span> <span class="kw">c</span>(<span class="st">&quot;image&quot;</span>,<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>), <span class="dt">value.name =</span> <span class="st">&quot;intensity&quot;</span>)</a>
+<a class="sourceLine" id="cb31-33" data-line-number="33">    p&lt;-<span class="kw">ggplot</span>(Cs, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> intensity))<span class="op">+</span></a>
+<a class="sourceLine" id="cb31-34" data-line-number="34"><span class="st">      </span><span class="kw">geom_tile</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>intensity))<span class="op">+</span></a>
+<a class="sourceLine" id="cb31-35" data-line-number="35"><span class="st">      </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low=</span><span class="st">&#39;white&#39;</span>, <span class="dt">high=</span><span class="st">&#39;black&#39;</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb31-36" data-line-number="36"><span class="st">      </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>image, <span class="dt">nrow =</span> <span class="kw">floor</span>(<span class="kw">sqrt</span>(n))<span class="op">+</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="kw">floor</span>(<span class="kw">sqrt</span>(n))<span class="op">+</span><span class="dv">1</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb31-37" data-line-number="37"><span class="st">      </span><span class="kw">scale_y_reverse</span>()<span class="op">+</span><span class="kw">theme</span>(</a>
+<a class="sourceLine" id="cb31-38" data-line-number="38">        <span class="dt">strip.background =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb31-39" data-line-number="39">        <span class="dt">strip.text.x =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb31-40" data-line-number="40">        <span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>),</a>
+<a class="sourceLine" id="cb31-41" data-line-number="41">        <span class="dt">axis.text =</span> <span class="kw">element_blank</span>(),</a>
+<a class="sourceLine" id="cb31-42" data-line-number="42">        <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>()</a>
+<a class="sourceLine" id="cb31-43" data-line-number="43">      ) </a>
+<a class="sourceLine" id="cb31-44" data-line-number="44">    </a>
+<a class="sourceLine" id="cb31-45" data-line-number="45">  }</a>
+<a class="sourceLine" id="cb31-46" data-line-number="46">  <span class="kw">return</span>(p)</a>
+<a class="sourceLine" id="cb31-47" data-line-number="47">}</a></code></pre></div>
 <ul>
 <li><p>Use this command to plot the first 10 images from the MNIST training set.</p></li>
 <li><p>Select all the 5s from the MNIST training set. Plot a selection of these digits.</p></li>

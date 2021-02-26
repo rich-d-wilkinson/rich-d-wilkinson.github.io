@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.1 Classical MDS | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.1 Classical MDS | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -135,15 +135,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="1" data-path="1-mds.html"><a href="1-mds.html"><i class="fa fa-check"></i><b>1</b> Multidimensional Scaling (MDS)</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html"><i class="fa fa-check"></i><b>1.1</b> Classical MDS</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html#example-1"><i class="fa fa-check"></i><b>1.1.1</b> Example 1</a></li>
-<li class="chapter" data-level="1.1.2" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html#example-2"><i class="fa fa-check"></i><b>1.1.2</b> Example 2</a></li>
-<li class="chapter" data-level="1.1.3" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html#example-3"><i class="fa fa-check"></i><b>1.1.3</b> Example 3</a></li>
+<li class="chapter" data-level="1.1.1" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>1.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html#example-3"><i class="fa fa-check"></i><b>1.1.2</b> Example 3</a></li>
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="1-2-principal-coordinates.html"><a href="1-2-principal-coordinates.html"><i class="fa fa-check"></i><b>1.2</b> Principal Coordinates</a></li>
 <li class="chapter" data-level="1.3" data-path="1-3-properties.html"><a href="1-3-properties.html"><i class="fa fa-check"></i><b>1.3</b> Properties</a></li>
-<li class="chapter" data-level="1.4" data-path="1-4-similarity-measures.html"><a href="1-4-similarity-measures.html"><i class="fa fa-check"></i><b>1.4</b> Similarity measures</a></li>
-<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
-<li class="chapter" data-level="1.6" data-path="1-6-computer-tasks.html"><a href="1-6-computer-tasks.html"><i class="fa fa-check"></i><b>1.6</b> Computer Tasks</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-similarity-measures.html"><a href="1-4-similarity-measures.html"><i class="fa fa-check"></i><b>1.4</b> Similarity measures</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="1-4-similarity-measures.html"><a href="1-4-similarity-measures.html#example"><i class="fa fa-check"></i><b>1.4.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-5-non-metric-mds.html"><a href="1-5-non-metric-mds.html"><i class="fa fa-check"></i><b>1.5</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="1.6" data-path="1-6-exercises.html"><a href="1-6-exercises.html"><i class="fa fa-check"></i><b>1.6</b> Exercises</a></li>
+<li class="chapter" data-level="1.7" data-path="1-7-computer-tasks.html"><a href="1-7-computer-tasks.html"><i class="fa fa-check"></i><b>1.7</b> Computer Tasks</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -218,7 +220,6 @@ Thus <span class="math inline">\(\mathbf B\)</span> is positive semi-definite.</
 <span class="math display">\[{\mathbf X}=[\mathbf x_1, \ldots , \mathbf x_n]^\top={\mathbf U}{\pmb \Lambda}^{1/2}\]</span>
 is an <span class="math inline">\(n \times k\)</span> data matrix which has <strong>Euclidean</strong> distance marrix <span class="math inline">\(\mathbf D\)</span>.</p>
 Moreover, for this data matrix <span class="math inline">\(\bar{\mathbf x}={\mathbf 0}_k\)</span> and <span class="math inline">\(\mathbf B\)</span> represents the inner product matrix with elements given by <a href="1-1-classical-mds.html#eq:bijB">(1.4)</a>.
-`
 </div></li>
 </ol>
 <p>For part 1. we may equivalently write
@@ -237,19 +238,11 @@ This illustrates why we call <span class="math inline">\(\mathbf B\)</span> the 
 <span id="cor:unnamed-chunk-5" class="corollary"><strong>Corollary 1.1  </strong></span>The distance matrix <span class="math inline">\(\mathbf D\)</span> is a Euclidean distance matrix if and only if the corresponding centred inner-product matrix <span class="math inline">\(\mathbf B\)</span> is a positive semi-definite matrix.
 </div>
 
-<div id="important-point" class="section level5 unnumbered">
-<h5>Important Point</h5>
-<p>Proposition <a href="1-1-classical-mds.html#thm:five1">1.1</a> may be useful even if <span class="math inline">\({\mathbf D}\)</span> is not a <em>Euclidean</em> distance matrix (in which case <span class="math inline">\(\mathbf B\)</span> will have some negative eigenvalues).</p>
-<p>Instead of using <span class="math inline">\(\mathbf B\)</span> in Proposition <a href="1-1-classical-mds.html#thm:five1">1.1</a> we can use its positive part. If <span class="math inline">\(\mathbf B\)</span> has spectral decomposition <span class="math inline">\(\sum_{j=1}^p \lambda_j \mathbf u_j \mathbf u_j^\top\)</span>, then its positive definite part is defined by
-<span class="math display">\[
-\mathbf B_{\text{pos}}=\sum_{j: \, \lambda_j&gt;0} \lambda_j \mathbf u_j \mathbf u_j^\top.
-\]</span>
-In other words, we sum over those <span class="math inline">\(j\)</span> such that <span class="math inline">\(\lambda_j\)</span> is positive.</p>
-<p>Then <span class="math inline">\(\mathbf B_{\text{pos}}\)</span> is positive semi-definite and so we can use part 2. of Theorem <a href="1-1-classical-mds.html#thm:five1">1.1</a> to determine a Euclidean configuration which has centred inner-product matrix <span class="math inline">\(\mathbf B_{\text{pos}}\)</span>. Then, provided the negative eigenvalues are small in absolute value relative to the positive eigenvalues, the inter-point distances of the new points in Euclidean space should provide a good approximation to the original inter-point distances <span class="math inline">\((d_{ij})\)</span>.</p>
+<p><br></br></p>
+<p>These results say that if <span class="math inline">\(\mathbf D\)</span> is a Euclidean distance matrix (which we can check by testing whether <span class="math inline">\(\mathbf B\)</span> is positive semi-definite), then we can find a set of <span class="math inline">\(n\)</span> points <span class="math inline">\(\mathbf x_1, \ldots, \mathbf x_n\in \mathbb{R}^k\)</span> which have interpoint distances <span class="math inline">\(\mathbf D\)</span>. The dimension of the points is given by the rank of <span class="math inline">\(\mathbf B\)</span>.</p>
 </div>
-</div>
-<div id="example-1" class="section level3">
-<h3><span class="header-section-number">1.1.1</span> Example 1</h3>
+<div id="example-1" class="section level4 unnumbered">
+<h4>Example 1</h4>
 <p>Consider the five point in <span class="math inline">\(\mathbb{R}^2\)</span>:
 <span class="math display">\[
 \mathbf x_1=(0,0)^\top,  \mathbf x_2 =(1,0)^\top, \quad \mathbf x_3 =(0,1)^\top
@@ -266,8 +259,9 @@ In other words, we sum over those <span class="math inline">\(j\)</span> such th
 1&amp;2&amp;\sqrt{2}&amp;0&amp;\sqrt{2}\\
 1&amp;\sqrt{2}&amp;2&amp;\sqrt{2}&amp;0
 \end{array} \right ].
-\]</span>
-Using <a href="1-1-classical-mds.html#eq:defA">(1.2)</a> first to calculate <span class="math inline">\(\mathbf A\)</span>, and then using <a href="1-1-classical-mds.html#eq:defB">(1.3)</a> to calculate <span class="math inline">\(\mathbf B\)</span>, we find that
+\]</span></p>
+<p>The aim of MDS is to construct a set of <span class="math inline">\(5\)</span> points in <span class="math inline">\(\mathbb{R}^k\)</span> for some choice of <span class="math inline">\(k\)</span>, that have interpoint distances given by <span class="math inline">\(\mathbf D\)</span>.</p>
+<p>Using <a href="1-1-classical-mds.html#eq:defA">(1.2)</a> first to calculate <span class="math inline">\(\mathbf A\)</span>, and then using <a href="1-1-classical-mds.html#eq:defB">(1.3)</a> to calculate <span class="math inline">\(\mathbf B\)</span>, we find that
 <span class="math display">\[
 \mathbf A=-\left [ \begin{array}{ccccc}
 0&amp;0.5&amp;0.5&amp;0.5&amp;0.5\\
@@ -299,20 +293,21 @@ and
 <a class="sourceLine" id="cb1-9" data-line-number="9">H &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="dv">5</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dt">nc=</span><span class="dv">1</span>)<span class="op">%*%</span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dt">nr=</span><span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb1-10" data-line-number="10">B &lt;-<span class="st"> </span>H<span class="op">%*%</span><span class="st"> </span>A<span class="op">%*%</span>H <span class="co">#check this matches  (H %*% X) %*% t(H %*% X)</span></a></code></pre></div>
 <p>You should check that <span class="math inline">\(\mathbf H\mathbf A\mathbf H\)</span> is the same as <span class="math inline">\((\mathbf H\mathbf X)(\mathbf H\mathbf X)^\top\)</span>, thus verifying part 1. of Theorem <a href="1-1-classical-mds.html#thm:five1">1.1</a>. Note that there will be very small differences (<span class="math inline">\(\sim 10^{-16}\)</span>) due to numerical errors.</p>
-<p>Can we now find a set of <span class="math inline">\(5\)</span> points in <span class="math inline">\(\mathbb{R}^2\)</span> that have a Euclidean distance matrix <span class="math inline">\(\mathbf D\)</span> if we are only given the matrix <span class="math inline">\(\mathbf B\)</span>?</p>
-<ul>
-<li>Yes, this is what part 2. of the Theorem gives us.</li>
-</ul>
+<p>How do we construct, using only the information in <span class="math inline">\(\mathbf B\)</span>, a set of <span class="math inline">\(5\)</span> points that have Euclidean interpoint distances given by <span class="math inline">\(\mathbf D\)</span>?</p>
 <p>Firstly, we need to compute the spectral decomposition of <span class="math inline">\(\mathbf B\)</span>. The eigenvalues of <span class="math inline">\(\mathbf B\)</span> are
 <span class="math display">\[
 \lambda_1=\lambda_2=2 \qquad \text{and} \qquad \lambda_3=\lambda_4=\lambda_5=0.
-\]</span>
-Note that, as expected from Proposition <a href="1-1-classical-mds.html#thm:five1">1.1</a>, <span class="math inline">\(\mathbf B\)</span> is positive semi-definite because it is a Euclidean
-distance matrix.</p>
-<p>Because we have a repeated eigenvalue (<span class="math inline">\(\lambda=2\)</span> has <em>multiplicity</em> 2), the eigenspace associated with <span class="math inline">\(\lambda=2\)</span> is a two dimensional space, and so there are many pairs of mutually orthogonal unit eigenvectors spanning this eigenspace (i.e., there is not a unique pair of eigenvectors). The sparsest choice (i.e. the one with most zero elements) is
+\]</span></p>
+<p>Thus <span class="math inline">\(\mathbf B\)</span> is positive semi-definite, and so
+by Theorem <a href="1-1-classical-mds.html#thm:five1">1.1</a>, <span class="math inline">\(\mathbf D\)</span> must be a Euclidean distance matrix. This isn’t a surprise to us because we created <span class="math inline">\(\mathbf D\)</span> ourselves in this case.</p>
+<p>There are two positive eigenvalues, and so <span class="math inline">\(\mathbf B\)</span> has rank 2, and the theorem tells us we can construct points <span class="math inline">\(\mathbf x_i \in \mathbb{R}^2\)</span>, i.e., points in 2-dimensional space.</p>
+<p>To find the points we need to find the matrix of orthogonal unit eigenvectors of <span class="math inline">\(\mathbf B\)</span>, which we denoted as <span class="math inline">\(\mathbf U\)</span> in the theorem.
+Because we have a repeated eigenvalue (<span class="math inline">\(\lambda=2\)</span> has <em>multiplicity</em> 2), the eigenspace associated with <span class="math inline">\(\lambda=2\)</span> is a two dimensional space.
+There is not a unique pair of orthogonal unit eigenvectors spanning this space (there are an infinite number of possible pairs).
+The sparsest choice (i.e. the one with most zero elements) is
 <span class="math display">\[
 \mathbf u_1= \begin{pmatrix}0 \\ 0 \\ -\frac{1}{\sqrt{2}} \\ 0 \\ -\frac{1}{\sqrt{2}} \end{pmatrix} \qquad
-\text{and} \qquad \mathbf q_2 =\begin{pmatrix}0 \\ -\frac{1}{\sqrt{2}} \\ 0 \\ \frac{1}{\sqrt{2}}\\ 0 \end{pmatrix}.
+\text{and} \qquad \mathbf u_2 =\begin{pmatrix}0 \\ -\frac{1}{\sqrt{2}} \\ 0 \\ \frac{1}{\sqrt{2}}\\ 0 \end{pmatrix}.
 \]</span></p>
 <p>Note that if we compute these in R, you may well get different eigenvectors, but the subspace described by the pair of vectors will be the same.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">eigen</span>(B)<span class="op">$</span>values <span class="co">#using B = H%*% A%*%H </span></a></code></pre></div>
@@ -334,15 +329,15 @@ distance matrix.</p>
 ## [3,] -0.7071068  0.0000000
 ## [4,]  0.0000000  0.7071068
 ## [5,]  0.7071068  0.0000000</code></pre>
-<p>We can compute the coordinates of five points in <span class="math inline">\(\mathbb{R}^2\)</span> which have Euclidean distance matrix, <span class="math inline">\(\mathbf D,\)</span> by
+<p>We can now compute the coordinates of five points in <span class="math inline">\(\mathbb{R}^2\)</span> which have Euclidean distance matrix, <span class="math inline">\(\mathbf D,\)</span> by
 <span class="math display">\[
-\mathbf Q\boldsymbol \Lambda^{1/2}=\sqrt{2}[\mathbf q_1 , \mathbf q_2].\]</span></p>
+\mathbf U\boldsymbol \Lambda^{1/2}=\sqrt{2}[\mathbf u_1 , \mathbf u_2].\]</span></p>
 <p>Note again that these coordinates are not unique as any rotation or translation of them will have the same distance matrix. In particular, when doing computations in R we may find different answers depending upon how we do the computation. So for example, if we use the eigendecompostion of <span class="math inline">\(\mathbf B= \mathbf H\mathbf A\mathbf H\)</span></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">B.eig &lt;-<span class="st"> </span><span class="kw">eigen</span>(B)</a>
 <a class="sourceLine" id="cb10-2" data-line-number="2">Y &lt;-<span class="kw">sqrt</span>(B.eig<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])<span class="op">*</span>B.eig<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
 <p>we find
 <span class="math display">\[\begin{pmatrix}0&amp;0 \\-0.978&amp;0.208 \\-0.208&amp;-0.978 \\0.978&amp;-0.208 \\0.208&amp;0.978 \\\end{pmatrix}.\]</span>
-Where as if we use the eigen decomposition of <span class="math inline">\((\mathbf H\mathbf H)(\mathbf H\mathbf X)^\top\)</span> we find a different set of points:</p>
+Where as if we use the eigen decomposition of <span class="math inline">\((\mathbf H\mathbf X)(\mathbf H\mathbf X)^\top\)</span> we find a different set of points:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">B2.eig &lt;-<span class="st"> </span><span class="kw">eigen</span>(B2)</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2">Y2 &lt;-<span class="kw">sqrt</span>(B2.eig<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])<span class="op">*</span>B2.eig<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
 <p><span class="math display">\[\begin{pmatrix}0&amp;0 \\0&amp;-1 \\-1&amp;0 \\0&amp;1 \\1&amp;0 \\\end{pmatrix}.\]</span></p>
@@ -385,8 +380,17 @@ HX.svd$u%*% diag(HX.svd$d)
 <p><img src="06-mds_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>In the Exercises you will be asked to verify that there is an orthogonal transformation which maps the original five points onto the set of five reconstructed points.</p>
 </div>
-<div id="example-2" class="section level3">
-<h3><span class="header-section-number">1.1.2</span> Example 2</h3>
+<div id="non-euclidean-distance-matrices" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Non-Euclidean distance matrices</h3>
+<p>Proposition <a href="1-1-classical-mds.html#thm:five1">1.1</a> may be useful even if <span class="math inline">\({\mathbf D}\)</span> is not a <em>Euclidean</em> distance matrix (in which case <span class="math inline">\(\mathbf B\)</span> will have some negative eigenvalues).</p>
+<p>Instead of using <span class="math inline">\(\mathbf B\)</span> in Proposition <a href="1-1-classical-mds.html#thm:five1">1.1</a> we can use its positive part. If <span class="math inline">\(\mathbf B\)</span> has spectral decomposition <span class="math inline">\(\sum_{j=1}^p \lambda_j \mathbf u_j \mathbf u_j^\top\)</span>, then its positive definite part is defined by
+<span class="math display">\[
+\mathbf B_{\text{pos}}=\sum_{j: \, \lambda_j&gt;0} \lambda_j \mathbf u_j \mathbf u_j^\top.
+\]</span>
+In other words, we sum over those <span class="math inline">\(j\)</span> such that <span class="math inline">\(\lambda_j\)</span> is positive.</p>
+<p>Then <span class="math inline">\(\mathbf B_{\text{pos}}\)</span> is positive semi-definite and so we can use part 2. of Theorem <a href="1-1-classical-mds.html#thm:five1">1.1</a> to determine a Euclidean configuration which has centred inner-product matrix <span class="math inline">\(\mathbf B_{\text{pos}}\)</span>. Then, provided the negative eigenvalues are small in absolute value relative to the positive eigenvalues, the inter-point distances of the new points in Euclidean space should provide a good approximation to the original inter-point distances <span class="math inline">\((d_{ij})\)</span>.</p>
+<div id="example-2" class="section level4">
+<h4><span class="header-section-number">1.1.1.1</span> Example 2</h4>
 <p>Let’s now look at a case for which <span class="math inline">\(\mathbf B\)</span> isn’t positive dinite. We’ll create this by modifying the distance matrix we had before:</p>
 <p><span class="math display">\[\mathbf D_2 = \begin{pmatrix}0&amp;0.5&amp;1&amp;1&amp;1 \\0.5&amp;0&amp;1.41&amp;2&amp;1.41 \\1&amp;1.41&amp;0&amp;1.41&amp;2 \\1&amp;2&amp;1.41&amp;0&amp;1.41 \\1&amp;1.41&amp;2&amp;1.41&amp;0 \\\end{pmatrix}.\]</span>
 This is a distance matrix, but is it a <em>Euclidean</em> distance matrix? I.e., is there a set of vectors <span class="math inline">\(\mathbf x_1, \ldots, \mathbf x_5\)</span> which have Euclidean distances between them given by <span class="math inline">\(\mathbf D_2\)</span>?</p>
@@ -421,8 +425,9 @@ This is a distance matrix, but is it a <em>Euclidean</em> distance matrix? I.e.,
 ## [5,]  0.05853879  1.414214e+00</code></pre>
 <p><img src="06-mds_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 </div>
+</div>
 <div id="example-3" class="section level3">
-<h3><span class="header-section-number">1.1.3</span> Example 3</h3>
+<h3><span class="header-section-number">1.1.2</span> Example 3</h3>
 <p>Finally, if we apply the <code>cmdscale</code> to the distances between UK cities from the introduction, we get the ‘coordinates’ shown below.</p>
 <p><img src="06-mds_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>This ‘map’ is essentially correct, but it is rotated <span class="math inline">\(90^\circ\)</span>.</p>

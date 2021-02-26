@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.2 The full set of canonical correlations | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.2 The full set of canonical correlations | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -399,12 +399,12 @@ and
 \]</span>
 Note that, to a good approximation, <span class="math inline">\(\eta_2\)</span> is measuring something similar to the number of draws and, approximately, <span class="math inline">\(\psi_2\)</span> is something related to the negative of total number of goals in a team’s games. So large <span class="math inline">\(\psi_2\)</span> means relatively few goals in a team’s games, and small (i.e. large negative) <span class="math inline">\(\psi_2\)</span> means a relatively large number of goals in a team’s games.</p>
 <p>Interpretation of the 2nd CC: teams that have a lot of draws tend to be in low-scoring games and/or teams that have few draws tend to be in high-scoring games.</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">eta2 =<span class="st"> </span>prem.cca<span class="op">$</span>scores<span class="op">$</span>xscores[,<span class="dv">1</span>] </a>
-<a class="sourceLine" id="cb144-2" data-line-number="2">psi2=<span class="st"> </span>prem.cca<span class="op">$</span>scores<span class="op">$</span>yscores[,<span class="dv">2</span>] </a>
-<a class="sourceLine" id="cb144-3" data-line-number="3">cca.out &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Team=</span>table<span class="op">$</span>Team, <span class="dt">eta2=</span>eta2, <span class="dt">psi2=</span>psi2)</a>
-<a class="sourceLine" id="cb144-4" data-line-number="4"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb144-5" data-line-number="5"><span class="kw">ggplot</span>(cca.out, <span class="kw">aes</span>(<span class="dt">x=</span> eta2, <span class="dt">y=</span> psi2, <span class="dt">label=</span>Team))<span class="op">+</span><span class="st">   </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb144-6" data-line-number="6"><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Team),<span class="dt">hjust=</span><span class="dv">0</span>, <span class="dt">vjust=</span><span class="dv">0</span>, <span class="dt">size=</span><span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">eta2 =<span class="st"> </span>prem.cca<span class="op">$</span>scores<span class="op">$</span>xscores[,<span class="dv">1</span>] </a>
+<a class="sourceLine" id="cb149-2" data-line-number="2">psi2=<span class="st"> </span>prem.cca<span class="op">$</span>scores<span class="op">$</span>yscores[,<span class="dv">2</span>] </a>
+<a class="sourceLine" id="cb149-3" data-line-number="3">cca.out &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Team=</span>table<span class="op">$</span>Team, <span class="dt">eta2=</span>eta2, <span class="dt">psi2=</span>psi2)</a>
+<a class="sourceLine" id="cb149-4" data-line-number="4"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb149-5" data-line-number="5"><span class="kw">ggplot</span>(cca.out, <span class="kw">aes</span>(<span class="dt">x=</span> eta2, <span class="dt">y=</span> psi2, <span class="dt">label=</span>Team))<span class="op">+</span><span class="st">   </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb149-6" data-line-number="6"><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Team),<span class="dt">hjust=</span><span class="dv">0</span>, <span class="dt">vjust=</span><span class="dv">0</span>, <span class="dt">size=</span><span class="dv">4</span>)</a></code></pre></div>
 <p><img src="05-cca_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <!--## Population CCA
 

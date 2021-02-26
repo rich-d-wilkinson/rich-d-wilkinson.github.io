@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.3 Properties | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.3 Properties | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="2-2-principal-coordinates.html"/>
+<link rel="prev" href="2-2-principal-coordinate-analysis.html"/>
 <link rel="next" href="2-4-similarity-measures.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -133,42 +133,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html"><i class="fa fa-check"></i>PART II: Dimension reduction methods</a><ul>
-<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#a-warning"><i class="fa fa-check"></i>A warning</a></li>
+<li class="chapter" data-level="1" data-path="1-linalg-decomp.html"><a href="1-linalg-decomp.html"><i class="fa fa-check"></i><b>1</b> Matrix decompositions</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-matrix-matrix.html"><a href="1-1-matrix-matrix.html"><i class="fa fa-check"></i><b>1.1</b> Matrix-matrix products</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>1.2</b> Spectral/eigen decomposition</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>1.2.1</b> Eigenvalues and eigenvectors</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>1.2.2</b> Spectral decomposition</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>1.2.3</b> Matrix square roots</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="1-pca.html"><a href="1-pca.html"><i class="fa fa-check"></i><b>1</b> Principal Component Analysis (PCA)</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html"><i class="fa fa-check"></i><b>1.1</b> PCA: an informal introduction</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#notation-recap"><i class="fa fa-check"></i><b>1.1.1</b> Notation recap</a></li>
-<li class="chapter" data-level="1.1.2" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#first-principal-component"><i class="fa fa-check"></i><b>1.1.2</b> First principal component</a></li>
-<li class="chapter" data-level="1.1.3" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#second-principal-component"><i class="fa fa-check"></i><b>1.1.3</b> Second principal component</a></li>
-<li class="chapter" data-level="1.1.4" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#geometric-interpretation-1"><i class="fa fa-check"></i><b>1.1.4</b> Geometric interpretation</a></li>
-<li class="chapter" data-level="1.1.5" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#example"><i class="fa fa-check"></i><b>1.1.5</b> Example</a></li>
-<li class="chapter" data-level="1.1.6" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#example-iris"><i class="fa fa-check"></i><b>1.1.6</b> Example: Iris</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-linalg-SVD.html"><a href="1-3-linalg-SVD.html"><i class="fa fa-check"></i><b>1.3</b> Singular Value Decomposition (SVD)</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-linalg-SVD.html"><a href="1-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>1.3.1</b> Examples</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>1.2</b> PCA: a formal description with proofs</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>1.2.1</b> Properties of principal components</a></li>
-<li class="chapter" data-level="1.2.2" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>1.2.2</b> Example: Football</a></li>
-<li class="chapter" data-level="1.2.3" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>1.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
-<li class="chapter" data-level="1.2.4" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>1.2.4</b> Population PCA</a></li>
-<li class="chapter" data-level="1.2.5" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>1.2.5</b> PCA under transformations of variables</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-svdopt.html"><a href="1-4-svdopt.html"><i class="fa fa-check"></i><b>1.4</b> SVD optimization results</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html"><i class="fa fa-check"></i><b>1.5</b> Low-rank approximation</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html#matrix-norms"><i class="fa fa-check"></i><b>1.5.1</b> Matrix norms</a></li>
+<li class="chapter" data-level="1.5.2" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html#eckart-young-mirsky-theorem"><i class="fa fa-check"></i><b>1.5.2</b> Eckart-Young-Mirsky Theorem</a></li>
+<li class="chapter" data-level="1.5.3" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html#example-image-compression"><i class="fa fa-check"></i><b>1.5.3</b> Example: image compression</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="1-3-an-alternative-view-of-pca.html"><a href="1-3-an-alternative-view-of-pca.html"><i class="fa fa-check"></i><b>1.3</b> An alternative view of PCA</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="1-3-an-alternative-view-of-pca.html"><a href="1-3-an-alternative-view-of-pca.html#example-mnist-handwritten-digits"><i class="fa fa-check"></i><b>1.3.1</b> Example: MNIST handwritten digits</a></li>
-</ul></li>
-<li class="chapter" data-level="1.4" data-path="1-4-pca-comptask.html"><a href="1-4-pca-comptask.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
-<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+<li class="chapter" data-level="1.6" data-path="1-6-tasks-ch3.html"><a href="1-6-tasks-ch3.html"><i class="fa fa-check"></i><b>1.6</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.7" data-path="1-7-exercises-ch3.html"><a href="1-7-exercises-ch3.html"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-mds.html"><a href="2-mds.html"><i class="fa fa-check"></i><b>2</b> Multidimensional Scaling (MDS)</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html"><i class="fa fa-check"></i><b>2.1</b> Classical MDS</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-1"><i class="fa fa-check"></i><b>2.1.1</b> Example 1</a></li>
-<li class="chapter" data-level="2.1.2" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-2"><i class="fa fa-check"></i><b>2.1.2</b> Example 2</a></li>
-<li class="chapter" data-level="2.1.3" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-3"><i class="fa fa-check"></i><b>2.1.3</b> Example 3</a></li>
+<li class="chapter" data-level="2.1.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>2.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-3"><i class="fa fa-check"></i><b>2.1.2</b> Example 3</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="2-2-principal-coordinates.html"><a href="2-2-principal-coordinates.html"><i class="fa fa-check"></i><b>2.2</b> Principal Coordinates</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-principal-coordinate-analysis.html"><a href="2-2-principal-coordinate-analysis.html"><i class="fa fa-check"></i><b>2.2</b> Principal Coordinate Analysis</a></li>
 <li class="chapter" data-level="2.3" data-path="2-3-properties.html"><a href="2-3-properties.html"><i class="fa fa-check"></i><b>2.3</b> Properties</a></li>
-<li class="chapter" data-level="2.4" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html"><i class="fa fa-check"></i><b>2.4</b> Similarity measures</a></li>
-<li class="chapter" data-level="2.5" data-path="2-5-exercises-1.html"><a href="2-5-exercises-1.html"><i class="fa fa-check"></i><b>2.5</b> Exercises</a></li>
-<li class="chapter" data-level="2.6" data-path="2-6-computer-tasks.html"><a href="2-6-computer-tasks.html"><i class="fa fa-check"></i><b>2.6</b> Computer Tasks</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html"><i class="fa fa-check"></i><b>2.4</b> Similarity measures</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html#example"><i class="fa fa-check"></i><b>2.4.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-5-non-metric-mds.html"><a href="2-5-non-metric-mds.html"><i class="fa fa-check"></i><b>2.5</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-exercises.html"><a href="2-6-exercises.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+<li class="chapter" data-level="2.7" data-path="2-7-computer-tasks.html"><a href="2-7-computer-tasks.html"><i class="fa fa-check"></i><b>2.7</b> Computer Tasks</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -199,7 +195,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="2-2-principal-coordinates.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-2-principal-coordinate-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="2-4-similarity-measures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

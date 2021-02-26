@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.3 Singular Value Decomposition (SVD) | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.3 Singular Value Decomposition (SVD) | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.3 Singular Value Decomposition (SVD) | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1-2-spectraleigen-decomposition.html"/>
+<link rel="next" href="1-4-svdopt.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="1-linalg-decomp.html"><a href="1-linalg-decomp.html"><i class="fa fa-check"></i><b>1</b> Matrix decompositions</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-matrix-matrix.html"><a href="1-1-matrix-matrix.html"><i class="fa fa-check"></i><b>1.1</b> Matrix-matrix products</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>1.2</b> Spectral/eigen decomposition</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>1.2.1</b> Eigenvalues and eigenvectors</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>1.2.2</b> Spectral decomposition</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>1.2.3</b> Matrix square roots</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-linalg-SVD.html"><a href="1-3-linalg-SVD.html"><i class="fa fa-check"></i><b>1.3</b> Singular Value Decomposition (SVD)</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-linalg-SVD.html"><a href="1-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>1.3.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-svdopt.html"><a href="1-4-svdopt.html"><i class="fa fa-check"></i><b>1.4</b> SVD optimization results</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html"><i class="fa fa-check"></i><b>1.5</b> Low-rank approximation</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html#matrix-norms"><i class="fa fa-check"></i><b>1.5.1</b> Matrix norms</a></li>
+<li class="chapter" data-level="1.5.2" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html#eckart-young-mirsky-theorem"><i class="fa fa-check"></i><b>1.5.2</b> Eckart-Young-Mirsky Theorem</a></li>
+<li class="chapter" data-level="1.5.3" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html#example-image-compression"><i class="fa fa-check"></i><b>1.5.3</b> Example: image compression</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="1-6-tasks-ch3.html"><a href="1-6-tasks-ch3.html"><i class="fa fa-check"></i><b>1.6</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.7" data-path="1-7-exercises-ch3.html"><a href="1-7-exercises-ch3.html"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-mds.html"><a href="2-mds.html"><i class="fa fa-check"></i><b>2</b> Multidimensional Scaling (MDS)</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html"><i class="fa fa-check"></i><b>2.1</b> Classical MDS</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>2.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>2.1.2</b> Principal Coordinate Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-properties.html"><a href="2-2-properties.html"><i class="fa fa-check"></i><b>2.2</b> Properties</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-non-classical-mds.html"><a href="2-3-non-classical-mds.html"><i class="fa fa-check"></i><b>2.3</b> Non-classical MDS</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html"><i class="fa fa-check"></i><b>2.4</b> Similarity measures</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html#example"><i class="fa fa-check"></i><b>2.4.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-5-non-metric-mds.html"><a href="2-5-non-metric-mds.html"><i class="fa fa-check"></i><b>2.5</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-exercises.html"><a href="2-6-exercises.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+<li class="chapter" data-level="2.7" data-path="2-7-computer-tasks.html"><a href="2-7-computer-tasks.html"><i class="fa fa-check"></i><b>2.7</b> Computer Tasks</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linalg-SVD" class="section level2">
+<h2><span class="header-section-number">1.3</span> Singular Value Decomposition (SVD)</h2>
+<p>The spectral decomposition theorem (Proposition <a href="1-2-spectraleigen-decomposition.html#prp:spectraldecomp">1.3</a>) gives a decomposition of any symmetric matrix.
+We now give a generalisation of this result which applies to <em>all</em> matrices.</p>
+<p>If matrix <span class="math inline">\(\mathbf A\)</span> is not a square matrix, then it cannot have eigenvectors. Instead, it has <strong>singular vectors</strong> corresponding to <strong>singular values</strong>.
+Suppose <span class="math inline">\(\bf\)</span> is a <span class="math inline">\(n\times p\)</span> matrix. Then we say <span class="math inline">\(\sigma\)</span> is a
+<strong>singular value</strong> with corresponding <strong>left</strong> and <strong>right</strong> singular vectors <span class="math inline">\(\mathbf u\)</span> and <span class="math inline">\(\mathbf v\)</span> (respectively) if
+<span class="math display">\[\mathbf A\mathbf v= \sigma \mathbf u\quad \mbox{ and }\quad \mathbf A^\top \mathbf u= \sigma \mathbf v\]</span>
+If <span class="math inline">\(\mathbf A\)</span> if a symmetric matrix then <span class="math inline">\(\mathbf u=\mathbf v\)</span> is a eigenvector and <span class="math inline">\(\sigma\)</span> is an eigenvalue.</p>
+<p>The singular value decomposition (SVD) <strong>diagonalizes</strong> <span class="math inline">\(\mathbf A\)</span> into a product of a matrix of left singular vectors <span class="math inline">\(\mathbf U\)</span>, a diagonal matrix of singular values <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, and a matrix of right singular vectors <span class="math inline">\(\mathbf V\)</span>.</p>
+<p><span class="math display">\[\mathbf A= \mathbf U\boldsymbol{\Sigma}\mathbf V^\top.\]</span></p>
+
+<div class="proposition">
+<span id="prp:SVD" class="proposition"><strong>Proposition 1.5  </strong></span><strong>(Singular value decomposition)</strong>.
+Let <span class="math inline">\(\mathbf A\)</span> be a <span class="math inline">\(n \times p\)</span> matrix of rank <span class="math inline">\(r\)</span>, where <span class="math inline">\(1 \leq r \leq \min(n,p)\)</span>. Then there exists a <span class="math inline">\(n \times r\)</span> matrix <span class="math inline">\(\mathbf U=[\mathbf u_1,\ldots , \mathbf u_r]\)</span>, a <span class="math inline">\(p \times r\)</span> matrix <span class="math inline">\(\mathbf V=[\mathbf v_1,\ldots ,{ \mathbf v}_r],\)</span> and a <span class="math inline">\(r \times r\)</span> diagonal matrix <span class="math inline">\(\boldsymbol{\Sigma}=\text{diag}\{\sigma_1,\ldots , \sigma_r\}\)</span> such that
+<span class="math display">\[
+\mathbf A=\mathbf U\boldsymbol{\Sigma}\mathbf V^\top =\sum_{i=1}^r \sigma_i \mathbf u_i \mathbf v_i^\top,
+\]</span>
+where <span class="math inline">\(\mathbf U^\top \mathbf U= \mathbf I_r = \mathbf V^\top \mathbf V\)</span> and the <span class="math inline">\(\sigma_1 \geq \ldots \geq \sigma_r &gt;0\)</span>.
+</div>
+
+<p>Note that the <span class="math inline">\(\mathbf u_i\)</span> and the <span class="math inline">\(\mathbf v_i\)</span> are necessarily unit vectors, and that we have ordered the singular values from largest to smallest.
+The scalars <span class="math inline">\(\sigma_1, \ldots , \sigma_r\)</span> are called the <strong>singular values</strong> of <span class="math inline">\(\mathbf A\)</span>, the columns of <span class="math inline">\(\mathbf U\)</span> are the <strong>left singular vectors</strong>, and the columns of <span class="math inline">\(\mathbf V\)</span> are the <strong>right singular vectors</strong>.</p>
+<p>The form of the SVD given above is called the <strong>compact singular value decomposition</strong>. Sometimes we write it in a non-compact form
+<span class="math display">\[\mathbf A= \mathbf U\boldsymbol{\Sigma}\mathbf V^\top\]</span>
+where <span class="math inline">\(\mathbf U\)</span> is a <span class="math inline">\(n \times n\)</span> orthogonal matrix <span class="math inline">\((\mathbf U^\top\mathbf U=\mathbf U\mathbf U^\top = \mathbf I_n)\)</span>, <span class="math inline">\(\mathbf V\)</span> is a <span class="math inline">\(p \times p\)</span> orthogonal matrix <span class="math inline">\((\mathbf V^\top\mathbf V=\mathbf V\mathbf V^\top = \mathbf I_p)\)</span>, and <span class="math inline">\(\boldsymbol{\Sigma}\)</span> is a <span class="math inline">\(n \times p\)</span> diagonal matrix
+<span class="math display" id="eq:sigmasvd">\[\begin{equation}
+\boldsymbol{\Sigma}= \left(\begin{array}{cccccccc}
+\sigma_1&amp;0&amp;\ldots&amp;&amp;&amp;&amp;0\\
+0&amp;\sigma_2&amp;0&amp;\ldots&amp;&amp;&amp;\\
+\vdots\\
+0&amp;0&amp;&amp;\ldots&amp;\sigma_r&amp;&amp;\\
+0&amp;0&amp;&amp;\ldots&amp;&amp;0&amp;\ldots\\
+\vdots\\
+0&amp;0&amp;&amp;\ldots&amp;&amp;&amp;0\\
+\end{array}
+\right). 
+\tag{1.1}
+\end{equation}\]</span>
+The columns of <span class="math inline">\(\mathbf U\)</span> and <span class="math inline">\(\mathbf V\)</span> form an orthonormal basis for <span class="math inline">\(\mathbb{R}^n\)</span> and <span class="math inline">\(\mathbb{R}^p\)</span> respectively. We can see that we recover the compact form of the SVD by only using the first <span class="math inline">\(r\)</span> columns of <span class="math inline">\(\mathbf U\)</span> and <span class="math inline">\(\mathbf V\)</span>, and truncating <span class="math inline">\(\boldsymbol{\Sigma}\)</span> to a <span class="math inline">\(r\times r\)</span> matrix with non-zero diagonal elements.</p>
+<p>When <span class="math inline">\(\mathbf A\)</span> is symmetric, we take <span class="math inline">\(\mathbf U=\mathbf V\)</span>, and the spectral decomposition theorem is recovered, and in this case (but not in general) the singular values of <span class="math inline">\(\mathbf A\)</span> are eigenvalues of <span class="math inline">\(\mathbf A\)</span>.</p>
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> <span class="math inline">\(\mathbf A^\top \mathbf A\)</span> is a <span class="math inline">\(p\times p\)</span> symmetric matrix, and so by the spectral decomposition theorem we can write it as <span class="math display">\[\mathbf A^\top \mathbf A= \mathbf V\boldsymbol \Lambda\mathbf V^\top\]</span>
+where <span class="math inline">\(\mathbf V\)</span> is a <span class="math inline">\(p \times p\)</span> orthogonal matrix containing the orthonormal eigenvectors of <span class="math inline">\(\mathbf A^\top \mathbf A\)</span>, and <span class="math inline">\(\boldsymbol \Lambda=\operatorname{diag}(\lambda_1, \ldots, \lambda_r)\)</span> is a diagonal matrix of eigenvalues with <span class="math inline">\(\lambda_1\geq \ldots \geq\lambda_r&gt;0\)</span> (by Corollary <a href="1-2-spectraleigen-decomposition.html#cor:nonzeroeigen">1.1</a>).</p>
+<p>For <span class="math inline">\(i=1,\dots, r\)</span>, let <span class="math inline">\(\sigma_i =\sqrt{\lambda_i}\)</span> and let <span class="math inline">\(\mathbf u_i = \frac{1}{\sigma_i} \mathbf A\mathbf v_i\)</span>. Then the vectors <span class="math inline">\(\mathbf u_i\)</span> are orthonormal:
+<span class="math display">\[\begin{align*}
+\mathbf u_i^\top \mathbf u_j &amp;=\frac{1}{\sigma_i\sigma_j} \mathbf v_i^\top \mathbf A^\top\mathbf A\mathbf v_j\\
+&amp;=\frac{\sigma_j^2}{\sigma_i\sigma_j} \mathbf v_i^\top\mathbf v_j \quad \mbox{ as }\mathbf v_j \mbox{ is an eigenvector of } \mathbf A^\top\mathbf A\\
+&amp;=\begin{cases}
+0 &amp;\mbox{ if } i\not=j\\
+1 &amp;\mbox{ if } i=j
+\end{cases}\quad \mbox{ as the } \mathbf v_i \mbox{ are orthonormal vectors.}
+\end{align*}\]</span>
+In addition
+<span class="math display">\[\mathbf A^\top\mathbf u_i = \frac{1}{\sigma_i}\mathbf A^\top\mathbf A\mathbf v_i = \frac{\sigma^2_i}{\sigma_i}\mathbf v_i = \sigma_i\mathbf v_i\]</span>
+and so <span class="math inline">\(\mathbf u_i\)</span> and <span class="math inline">\(\mathbf v_i\)</span> are left and right singular vectors.</p>
+<p>Let <span class="math inline">\(\mathbf U=[\mathbf u_1 \; \mathbf u_2 \; \ldots \; \mathbf u_r\; \ldots \; \mathbf u_n]\)</span>, where <span class="math inline">\(\mathbf u_{r+1}, \ldots, \mathbf u_n\)</span> are chosen to complete the orthonormal basis for <span class="math inline">\(\mathbb{R}^n\)</span> given <span class="math inline">\(\mathbf u_1, \ldots, \mathbf u_r\)</span>, and
+let <span class="math inline">\(\Sigma\)</span> be the <span class="math inline">\(n\times p\)</span> diagonal matrix in Equation <a href="1-3-linalg-SVD.html#eq:sigmasvd">(1.1)</a>.</p>
+Then we have shown that
+<span class="math display">\[\mathbf U= \mathbf A\mathbf V\boldsymbol{\Sigma}^{-1}\]</span>
+Thus
+<span class="math display">\[\begin{align*}
+\mathbf U&amp;= \mathbf A\mathbf V\boldsymbol{\Sigma}^{-1}\\
+\mathbf U\boldsymbol{\Sigma}&amp;= \mathbf A\mathbf V\\
+\mathbf U\boldsymbol{\Sigma}\mathbf V^\top &amp;= \mathbf A.
+\end{align*}\]</span>
+</div>
+
+<p><br></p>
+<p>Note that by construction we’ve shown that <span class="math inline">\(\mathbf A^\top\mathbf A\)</span> has eigenvalues <span class="math inline">\(\sigma^2_i\)</span> with corresponding eigenvectors <span class="math inline">\(\mathbf v_i\)</span>. We also can also show that <span class="math inline">\(\mathbf A\mathbf A^\top\)</span> has eigenvalues <span class="math inline">\(\sigma^2_i\)</span>, but with corresponding eigenvectors <span class="math inline">\(\mathbf u_i\)</span>.
+<span class="math display">\[\mathbf A\mathbf A^\top \mathbf u_i = \sigma_i\mathbf A\mathbf v_i = \sigma^2_i \mathbf u_i\]</span></p>
+
+<div class="proposition">
+<span id="prp:SVDeigen" class="proposition"><strong>Proposition 1.6  </strong></span>Let <span class="math inline">\(\mathbf A\)</span> be any matrix of rank <span class="math inline">\(r\)</span>. Then the non-zero eigenvalues of both <span class="math inline">\(\mathbf A\mathbf A^\top\)</span> and <span class="math inline">\(\mathbf A^\top \mathbf A\)</span> are <span class="math inline">\(\sigma_1^2, \ldots , \sigma_r^2\)</span>. The corresponding unit eigenvectors of <span class="math inline">\(\mathbf A\mathbf A^\top\)</span> are given by the columns of <span class="math inline">\(\mathbf U\)</span>, and the corresponding unit eigenvectors of <span class="math inline">\(\mathbf A^\top \mathbf A\)</span> are given by the columns of <span class="math inline">\(\mathbf V\)</span>.
+</div>
+
+<p><strong>Notes:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>The SVD expresses a matrix as a sum of rank-1 matrices
+<span class="math display">\[\mathbf A= \sum_{i=1}^r \sigma_i \mathbf u_i \mathbf v_i^\top.\]</span>
+We can think of these as a list of the building blocks of <span class="math inline">\(\mathbf A\)</span> ordered by their importance (<span class="math inline">\(\sigma_1\geq \sigma_2\geq\ldots\)</span>).</p></li>
+<li><p>The singular value decomposition theorem shows that every matrix is diagonal, provided one uses the proper bases for the domain and range spaces. We can <strong>diagonalize</strong> <span class="math inline">\(\mathbf A\)</span> by
+<span class="math display">\[ \mathbf U^\top\mathbf A\mathbf V=\boldsymbol{\Sigma}.\]</span><!--(Trefethen & Bau III, 1997).--></p></li>
+<li><p>The SVD reveals a great deal about a matrix. Firstly, the rank of <span class="math inline">\(\mathbf A\)</span> is the number of non-zero singular values. The left singular vectors <span class="math inline">\(\mathbf u_1, \ldots, \mathbf u_r\)</span> are an orthonormal basis for the columns space of <span class="math inline">\(\mathbf A\)</span>, <span class="math inline">\(\mathcal{C}(\mathbf A)\)</span>, and the right singular vectors <span class="math inline">\(\mathbf v_1, \ldots, \mathbf v_r\)</span> are an orthonormal basis for <span class="math inline">\(\mathcal{C}(\mathbf A^\top)\)</span>, the row space of <span class="math inline">\(\mathbf A\)</span>. The vectors <span class="math inline">\(\mathbf v_{r+1}, \ldots, \mathbf v_p\)</span> from the non-compact SVD are a basis for the kernel of <span class="math inline">\(\mathbf A\)</span> (sometimes called the null space <span class="math inline">\(\mathcal{N}(\mathbf A)\)</span>), and <span class="math inline">\(\mathbf u_{r+1}, \ldots, \mathbf u_n\)</span> are a basis for <span class="math inline">\(\mathcal{N}(\mathbf A^\top)\)</span>.</p></li>
+<li><p>The SVD has many uses in mathematics. One is as a generalized inverse of a matrix. If <span class="math inline">\(\mathbf A\)</span> is <span class="math inline">\(n \times p\)</span> with <span class="math inline">\(n\not = p\)</span>, or if it is square but not of full rank, then <span class="math inline">\(\mathbf A\)</span> cannot have an inverse. However, we say <span class="math inline">\(\mathbf A^+\)</span> is a generalized inverse if <span class="math inline">\(\mathbf A\mathbf A^+\mathbf A=\mathbf A\)</span>. One such generalized inverse can be obtained from the SVD by <span class="math inline">\(\mathbf A^+ = \mathbf V\boldsymbol{\Sigma}^{-1}\mathbf U^\top\)</span> - this is known as the Moore-Penrose pseudo-inverse.</p></li>
+</ol>
+<div id="examples" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Examples</h3>
+<p>In practice, we don’t compute SVDs of a matrix by hand: in R you can use the command <code>SVD(A)</code> to compute the SVD of matrix <code>A</code>. However, it is informative to do the calculation yourself a few times to help fix the ideas.</p>
+
+<div class="example">
+<span id="exm:svd1" class="example"><strong>Example 1.2  </strong></span>Consider the matrix <span class="math inline">\(\mathbf A= \mathbf x\mathbf y^\top\)</span>. We can see this is a rank-1 matrix, so it only has one non-zero singular value which is <span class="math inline">\(\sigma_1 = ||\mathbf x||.||\mathbf y||\)</span>. Its SVD is given by
+<span class="math display">\[\mathbf U= \frac{1}{||\mathbf x|| }\mathbf x,\quad \mathbf V= \frac{1}{||\mathbf y|| }\mathbf y, \quad \mbox{ and } \Sigma =  ||\mathbf x||.||\mathbf y||.\]</span>
+</div>
+
+
+<div class="example">
+<p><span id="exm:svd2" class="example"><strong>Example 1.3  </strong></span>Let
+<span class="math display">\[\mathbf A= \left(\begin{array}{ccc}3&amp;2&amp;2\\
+               2&amp;3&amp;-2\end{array}\right).\]</span>
+Let’s try to find the SVD of <span class="math inline">\(\mathbf A\)</span>.</p>
+<p>We know the singular values are the square roots of the eigenvalues of <span class="math inline">\(\mathbf A\mathbf A^\top\)</span> and <span class="math inline">\(\mathbf A^\top\mathbf A\)</span>. We’ll work with the former as it is only <span class="math inline">\(2\times 2\)</span>.
+<span class="math display">\[\mathbf A\mathbf A^\top =  \left(\begin{array}{cc}17&amp;8\\
+               8&amp;17\end{array}\right) \quad \mbox{ and so } \det(\mathbf A\mathbf A^\top-\lambda \mathbf I)=(17-\lambda)^2-64
+\]</span></p>
+<p>Solving <span class="math inline">\(\det(\mathbf A\mathbf A^\top-\lambda \mathbf I)=0\)</span> gives the eigenvalues to be <span class="math inline">\(\lambda=25\)</span> or <span class="math inline">\(9\)</span>. Thus the singular values of <span class="math inline">\(\mathbf A\)</span> are <span class="math inline">\(\sigma_1=\sqrt{25}=5\)</span> and <span class="math inline">\(\sigma_2=\sqrt{9}=3\)</span>, and
+<span class="math display">\[\boldsymbol{\Sigma}=\left(\begin{array}{cc}5&amp;0\\
+               0&amp;3\end{array}\right).\]</span></p>
+<p>The columns of <span class="math inline">\(\mathbf U\)</span> are the <em>unit</em> eigenvectors of <span class="math inline">\(\mathbf A\mathbf A^\top\)</span> which we can find by solving
+<span class="math display">\[\begin{align*}(\mathbf A\mathbf A^\top-25\mathbf I_2)\mathbf u&amp;=\left(\begin{array}{cc}-8&amp;8\\
+               8&amp;-8\end{array}\right)\left(\begin{array}{c}u_1\\u_2\\\end{array}\right)=\left(\begin{array}{c}0\\0\\\end{array}\right) \quad \mbox{ and }\\ (\mathbf A\mathbf A^\top-9\mathbf I_2)\mathbf u&amp;=\left(\begin{array}{cc}8&amp;8\\
+               8&amp;8\end{array}\right)\left(\begin{array}{c}u_1\\u_2\\\end{array}\right)=\left(\begin{array}{c}0\\0\\\end{array}\right).\end{align*}\]</span>
+And so, remembering that the eigenvectors used to form <span class="math inline">\(\mathbf U\)</span> need to be <em>unit</em> vectors, we can see that
+<span class="math display">\[\mathbf U=\frac{1}{\sqrt{2}}\left(\begin{array}{cc}1&amp;1\\
+               1&amp;-1\end{array}\right).\]</span>
+Finally, to compute <span class="math inline">\(\mathbf V\)</span> recall that <span class="math inline">\(\sigma_i \mathbf v_i = \mathbf A^\top \mathbf u_i\)</span> and so
+<span class="math display">\[\mathbf V= \mathbf A^\top\mathbf U\boldsymbol{\Sigma}^{-1} = \frac{1}{\sqrt{2}}\left(\begin{array}{cc}1&amp;\frac{1}{3}\\
+                                                           1&amp;\frac{-1}{3}\\
+                                                           0&amp;\frac{4}{3}\end{array}\right).
+\]</span>
+This completes the calculation, and we can see that we can express <span class="math inline">\(\mathbf A\)</span> as
+<span class="math display">\[\mathbf A= \left(\begin{array}{cc}\frac{1}{\sqrt{2}}&amp;\frac{1}{\sqrt{2}}\\
+               \frac{1}{\sqrt{2}}&amp;\frac{-1}{\sqrt{2}}\end{array}\right) \left(\begin{array}{cc}5&amp;0\\
+               0&amp;3\end{array}\right)\left(\begin{array}{ccc}\frac{1}{\sqrt{2}}&amp;\frac{1}{\sqrt{2}}&amp;0\\
+                                             \frac{1}{3\sqrt{2}}&amp; \frac{-1}{3 \sqrt{2}} &amp;\frac{4}{3\sqrt{2}}\end{array}\right)\]</span>
+or as the sum of rank-1 matrices:</p>
+<p><span class="math display">\[\mathbf A= 5\left(\begin{array}{c}\frac{1}{\sqrt{2}}\\
+               \frac{1}{\sqrt{2}}\end{array}\right) \left(\begin{array}{cc}\frac{1}{\sqrt{2}}&amp;\frac{1}{3\sqrt{2}}
+                                                           \end{array}\right)+
+   3\left(\begin{array}{c}\frac{1}{\sqrt{2}}\\
+               \frac{-1}{\sqrt{2}}\end{array}\right) \left(\begin{array}{ccc}\frac{1}{3\sqrt{2}}&amp; \frac{-1}{3 \sqrt{2}} &amp;\frac{4}{3\sqrt{2}}\end{array}\right)\]</span></p>
+<p>This is the compact form of the SVD. To find the non-compact form we need <span class="math inline">\(\mathbf V\)</span> to be a <span class="math inline">\(3 \times 3\)</span> matrix, which requires us to find a 3rd column that is orthogonal to the first two columns (thus completing an orthonormal basis for <span class="math inline">\(\mathbb{R}^3\)</span>). We can do that with the vector <span class="math inline">\(\mathbf v_3 = \frac{1}{\sqrt{17}}(2\; -2\; -1)\)</span> giving the non-compact SVD for <span class="math inline">\(\mathbf A\)</span>.</p>
+<p><span class="math display">\[\mathbf A= \left(\begin{array}{cc}\frac{1}{\sqrt{2}}&amp;\frac{1}{\sqrt{2}}\\
+               \frac{1}{\sqrt{2}}&amp;\frac{-1}{\sqrt{2}}\end{array}\right) \left(\begin{array}{ccc}5&amp;0&amp;0\\
+               0&amp;3&amp;0\end{array}\right)\left(\begin{array}{ccc}\frac{1}{\sqrt{2}}&amp; \frac{1}{3\sqrt{2}}&amp;\frac{2}{\sqrt{17}} \\
+                                             \frac{1}{\sqrt{2}}&amp; \frac{-1}{3 \sqrt{2}} &amp;\frac{-2}{\sqrt{17}}\\
+                                             0&amp;\frac{4}{3\sqrt{2}}&amp;\frac{-1}{\sqrt{17}}\end{array}\right)^\top\]</span></p>
+Let’s check our answer in R.
+</div>
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">A&lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="op">-</span><span class="dv">2</span>), <span class="dt">nr=</span><span class="dv">2</span>, <span class="dt">byrow=</span>T)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">svd</span>(A)</a></code></pre></div>
+<pre><code>## $d
+## [1] 5 3
+## 
+## $u
+##            [,1]       [,2]
+## [1,] -0.7071068 -0.7071068
+## [2,] -0.7071068  0.7071068
+## 
+## $v
+##               [,1]       [,2]
+## [1,] -7.071068e-01 -0.2357023
+## [2,] -7.071068e-01  0.2357023
+## [3,] -5.551115e-17 -0.9428090</code></pre>
+<p>The eigenvectors are only defined upto multiplication by <span class="math inline">\(-1\)</span> and so we can multiply any pair of left and right singular vectors by <span class="math inline">\(-1\)</span> and it is still a valid SVD.</p>
+<p><strong>Note:</strong> In practice this is a terrible way to compute the SVD as it is prone to numerical error. In practice an efficient iterative method is used in most software implementations (including R).</p>
+<p><br><br></p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1-2-spectraleigen-decomposition.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-4-svdopt.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

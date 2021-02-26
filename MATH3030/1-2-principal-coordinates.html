@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.2 Principal Coordinates | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.2 Principal Coordinates | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -135,15 +135,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="1" data-path="1-mds.html"><a href="1-mds.html"><i class="fa fa-check"></i><b>1</b> Multidimensional Scaling (MDS)</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html"><i class="fa fa-check"></i><b>1.1</b> Classical MDS</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html#example-1"><i class="fa fa-check"></i><b>1.1.1</b> Example 1</a></li>
-<li class="chapter" data-level="1.1.2" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html#example-2"><i class="fa fa-check"></i><b>1.1.2</b> Example 2</a></li>
-<li class="chapter" data-level="1.1.3" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html#example-3"><i class="fa fa-check"></i><b>1.1.3</b> Example 3</a></li>
+<li class="chapter" data-level="1.1.1" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>1.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html#example-3"><i class="fa fa-check"></i><b>1.1.2</b> Example 3</a></li>
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="1-2-principal-coordinates.html"><a href="1-2-principal-coordinates.html"><i class="fa fa-check"></i><b>1.2</b> Principal Coordinates</a></li>
 <li class="chapter" data-level="1.3" data-path="1-3-properties.html"><a href="1-3-properties.html"><i class="fa fa-check"></i><b>1.3</b> Properties</a></li>
-<li class="chapter" data-level="1.4" data-path="1-4-similarity-measures.html"><a href="1-4-similarity-measures.html"><i class="fa fa-check"></i><b>1.4</b> Similarity measures</a></li>
-<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
-<li class="chapter" data-level="1.6" data-path="1-6-computer-tasks.html"><a href="1-6-computer-tasks.html"><i class="fa fa-check"></i><b>1.6</b> Computer Tasks</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-similarity-measures.html"><a href="1-4-similarity-measures.html"><i class="fa fa-check"></i><b>1.4</b> Similarity measures</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="1-4-similarity-measures.html"><a href="1-4-similarity-measures.html#example"><i class="fa fa-check"></i><b>1.4.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-5-non-metric-mds.html"><a href="1-5-non-metric-mds.html"><i class="fa fa-check"></i><b>1.5</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="1.6" data-path="1-6-exercises.html"><a href="1-6-exercises.html"><i class="fa fa-check"></i><b>1.6</b> Exercises</a></li>
+<li class="chapter" data-level="1.7" data-path="1-7-computer-tasks.html"><a href="1-7-computer-tasks.html"><i class="fa fa-check"></i><b>1.7</b> Computer Tasks</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -167,6 +169,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="principal-coordinates" class="section level2">
 <h2><span class="header-section-number">1.2</span> Principal Coordinates</h2>
+<p>Theorem tells us <span class="math inline">\(k\)</span> dimensions. But if <span class="math inline">\(k&gt;2\)</span> then it doesn’t really help us. So we can always just do <span class="math inline">\(k=2\)</span>.</p>
+<p>We can use the same idea if we’re given X in some high dimensional space, and try to visualize it in a lower dimensional soace. Sound familiar? It should, this is what we did in PCA. MDS turns out to be the same.</p>
+<p>Sometimes its useful to visualize points</p>
+<p>If we know <span class="math inline">\(X\)</span> then do SVD of <span class="math inline">\(HX\)</span>.</p>
 <p>See
 <a href="https://stats.stackexchange.com/questions/14002/whats-the-difference-between-principal-component-analysis-and-multidimensional" class="uri">https://stats.stackexchange.com/questions/14002/whats-the-difference-between-principal-component-analysis-and-multidimensional</a></p>
 <p>Starting with a distance matrix <span class="math inline">\(\mathbf D\)</span>, and using the matrix <span class="math inline">\(\mathbf B\)</span>, we now show how to calculate exact or approximate Euclidean coordinates for the <span class="math inline">\(n\)</span> objects under study. We already know from Proposition <a href="1-1-classical-mds.html#thm:five1">1.1</a> how to do this when the distance matrix <span class="math inline">\(\mathbf D\)</span> is Euclidean, but we will see now that this construction works more generally. Moreover, there is a very close connection with principal components analysis.</p>

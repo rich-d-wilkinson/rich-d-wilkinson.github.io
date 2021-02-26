@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.6 Computer tasks | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.6 Computer tasks | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -277,27 +277,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Finding the eigenvalues and eigenvectors of a matrix is easy in R.</li>
 </ol>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">A=<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">6</span>),<span class="dt">nrow=</span><span class="dv">2</span>,<span class="dt">byrow=</span><span class="ot">TRUE</span>)    <span class="co"># use a to define a matrix A</span></a>
-<a class="sourceLine" id="cb61-2" data-line-number="2">Eig=<span class="kw">eigen</span>(A)                     <span class="co"># the eigenvalues and eigenvectors of A</span></a>
-<a class="sourceLine" id="cb61-3" data-line-number="3">                                   <span class="co"># are stored in the list Eig</span></a>
-<a class="sourceLine" id="cb61-4" data-line-number="4">lambda=Eig<span class="op">$</span>values                <span class="co"># extract the eigenvalues from Eig and</span></a>
-<a class="sourceLine" id="cb61-5" data-line-number="5">                                   <span class="co"># store in the vector e</span></a>
-<a class="sourceLine" id="cb61-6" data-line-number="6">lambda                           <span class="co"># you should see the eigenvalues in</span></a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">A=<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">6</span>),<span class="dt">nrow=</span><span class="dv">2</span>,<span class="dt">byrow=</span><span class="ot">TRUE</span>)    <span class="co"># use a to define a matrix A</span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2">Eig=<span class="kw">eigen</span>(A)                     <span class="co"># the eigenvalues and eigenvectors of A</span></a>
+<a class="sourceLine" id="cb63-3" data-line-number="3">                                   <span class="co"># are stored in the list Eig</span></a>
+<a class="sourceLine" id="cb63-4" data-line-number="4">lambda=Eig<span class="op">$</span>values                <span class="co"># extract the eigenvalues from Eig and</span></a>
+<a class="sourceLine" id="cb63-5" data-line-number="5">                                   <span class="co"># store in the vector e</span></a>
+<a class="sourceLine" id="cb63-6" data-line-number="6">lambda                           <span class="co"># you should see the eigenvalues in</span></a></code></pre></div>
 <pre><code>## [1] 6.302776 2.697224</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">                                   <span class="co"># descending order</span></a>
-<a class="sourceLine" id="cb63-2" data-line-number="2">Q=Eig<span class="op">$</span>vectors                    <span class="co"># extract the eigenvectors from Eig and</span></a>
-<a class="sourceLine" id="cb63-3" data-line-number="3">                                   <span class="co"># store then in the columns of Q</span></a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">                                   <span class="co"># descending order</span></a>
+<a class="sourceLine" id="cb65-2" data-line-number="2">Q=Eig<span class="op">$</span>vectors                    <span class="co"># extract the eigenvectors from Eig and</span></a>
+<a class="sourceLine" id="cb65-3" data-line-number="3">                                   <span class="co"># store then in the columns of Q</span></a></code></pre></div>
 <p>The spectral decomposition of <span class="math inline">\(\mathbf A\)</span> is
 <span class="math display">\[\mathbf A= \mathbf Q\boldsymbol \Lambda\mathbf Q^\top\]</span>
 Let’s check this in R (noting as always that there may be some numerical errors)</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">Q<span class="op">%*%</span><span class="kw">diag</span>(lambda)<span class="op">%*%</span><span class="kw">t</span>(Q)          <span class="co"># reconstruct A,</span></a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">Q<span class="op">%*%</span><span class="kw">diag</span>(lambda)<span class="op">%*%</span><span class="kw">t</span>(Q)          <span class="co"># reconstruct A,</span></a></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    3    1
 ## [2,]    1    6</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">                                   <span class="co"># where t(Q) gives the transpose of Q</span></a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">                                   <span class="co"># where t(Q) gives the transpose of Q</span></a></code></pre></div>
 <p>Since A is positive definite, we can calculate the symmetric, positive definite square root of A.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">Asqrt=Q<span class="op">%*%</span><span class="kw">diag</span>(lambda<span class="op">**</span><span class="fl">0.5</span>)<span class="op">%*%</span><span class="kw">t</span>(Q) <span class="co"># lambda**0.5 contains the square roots</span></a>
-<a class="sourceLine" id="cb67-2" data-line-number="2">Asqrt<span class="op">%*%</span>Asqrt                      <span class="co"># it is seen that A is recovered</span></a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">Asqrt=Q<span class="op">%*%</span><span class="kw">diag</span>(lambda<span class="op">**</span><span class="fl">0.5</span>)<span class="op">%*%</span><span class="kw">t</span>(Q) <span class="co"># lambda**0.5 contains the square roots</span></a>
+<a class="sourceLine" id="cb69-2" data-line-number="2">Asqrt<span class="op">%*%</span>Asqrt                      <span class="co"># it is seen that A is recovered</span></a></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    3    1
 ## [2,]    1    6</code></pre>
@@ -309,11 +309,11 @@ Let’s check this in R (noting as always that there may be some numerical error
 <ol start="2" style="list-style-type: decimal">
 <li>The singular value decomposition can be computed in R using the command <code>svd</code>. Let <span class="math inline">\(\mathbf X\)</span> be the four numerical variables in the <code>iris</code> dataset with the column mean removed</li>
 </ol>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">n=<span class="dv">150</span></a>
-<a class="sourceLine" id="cb69-2" data-line-number="2">H=<span class="kw">diag</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n))<span class="op">-</span><span class="kw">rep</span>(<span class="dv">1</span>,n)<span class="op">%*%</span><span class="kw">t</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n))<span class="op">/</span>n   <span class="co"># calculate the centering matrix H</span></a>
-<a class="sourceLine" id="cb69-3" data-line-number="3">X=H<span class="op">%*%</span><span class="st"> </span><span class="kw">as.matrix</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a>
-<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="co"># This can also be done using the command</span></a>
-<a class="sourceLine" id="cb69-5" data-line-number="5"><span class="co"># sweep(iris[,1:4], 2, colMeans(iris[,1:4]))  # do you understand why?</span></a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">n=<span class="dv">150</span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2">H=<span class="kw">diag</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n))<span class="op">-</span><span class="kw">rep</span>(<span class="dv">1</span>,n)<span class="op">%*%</span><span class="kw">t</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n))<span class="op">/</span>n   <span class="co"># calculate the centering matrix H</span></a>
+<a class="sourceLine" id="cb71-3" data-line-number="3">X=H<span class="op">%*%</span><span class="st"> </span><span class="kw">as.matrix</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a>
+<a class="sourceLine" id="cb71-4" data-line-number="4"><span class="co"># This can also be done using the command</span></a>
+<a class="sourceLine" id="cb71-5" data-line-number="5"><span class="co"># sweep(iris[,1:4], 2, colMeans(iris[,1:4]))  # do you understand why?</span></a></code></pre></div>
 <ul>
 <li><p>Compute the SVD of <span class="math inline">\(\mathbf X\)</span> in R and report its singular values.</p></li>
 <li><p>Does R report the full or compact SVD?</p></li>
@@ -326,18 +326,18 @@ Let’s check this in R (noting as always that there may be some numerical error
 <li><p>Choose an few images from the <a href="http://sipi.usc.edu/database/">USC-SIPI Image Database</a> and repeat the image compression example from the notes. Which type of images compress well do you think?</p></li>
 <li><p>We won’t discuss how the SVD is computed in practice, but there are a variety of approaches that can be used. Try the following iterative approach for computing the first singular vectors:</p></li>
 </ol>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a>
-<a class="sourceLine" id="cb70-2" data-line-number="2">v &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">dim</span>(X)[<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb70-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb70-4" data-line-number="4"><span class="cf">for</span> (iter <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">500</span>){</a>
-<a class="sourceLine" id="cb70-5" data-line-number="5">  u &lt;-<span class="st"> </span>X <span class="op">%*%</span>v</a>
-<a class="sourceLine" id="cb70-6" data-line-number="6">  u &lt;-<span class="st"> </span>u<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">sum</span>(u<span class="op">^</span><span class="dv">2</span>)) </a>
-<a class="sourceLine" id="cb70-7" data-line-number="7">  v &lt;-<span class="st"> </span><span class="kw">t</span>(X) <span class="op">%*%</span>u</a>
-<a class="sourceLine" id="cb70-8" data-line-number="8">  v &lt;-<span class="st"> </span>v<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">sum</span>(v<span class="op">^</span><span class="dv">2</span>)) </a>
-<a class="sourceLine" id="cb70-9" data-line-number="9">}</a>
-<a class="sourceLine" id="cb70-10" data-line-number="10">X.svd &lt;-<span class="st"> </span><span class="kw">svd</span>(X)</a>
-<a class="sourceLine" id="cb70-11" data-line-number="11">X.svd<span class="op">$</span>v[,<span class="dv">1</span>]<span class="op">/</span>v</a>
-<a class="sourceLine" id="cb70-12" data-line-number="12">X.svd<span class="op">$</span>u[,<span class="dv">1</span>]<span class="op">/</span>u</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a>
+<a class="sourceLine" id="cb72-2" data-line-number="2">v &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">dim</span>(X)[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb72-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb72-4" data-line-number="4"><span class="cf">for</span> (iter <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">500</span>){</a>
+<a class="sourceLine" id="cb72-5" data-line-number="5">  u &lt;-<span class="st"> </span>X <span class="op">%*%</span>v</a>
+<a class="sourceLine" id="cb72-6" data-line-number="6">  u &lt;-<span class="st"> </span>u<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">sum</span>(u<span class="op">^</span><span class="dv">2</span>)) </a>
+<a class="sourceLine" id="cb72-7" data-line-number="7">  v &lt;-<span class="st"> </span><span class="kw">t</span>(X) <span class="op">%*%</span>u</a>
+<a class="sourceLine" id="cb72-8" data-line-number="8">  v &lt;-<span class="st"> </span>v<span class="op">/</span><span class="kw">sqrt</span>(<span class="kw">sum</span>(v<span class="op">^</span><span class="dv">2</span>)) </a>
+<a class="sourceLine" id="cb72-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb72-10" data-line-number="10">X.svd &lt;-<span class="st"> </span><span class="kw">svd</span>(X)</a>
+<a class="sourceLine" id="cb72-11" data-line-number="11">X.svd<span class="op">$</span>v[,<span class="dv">1</span>]<span class="op">/</span>v</a>
+<a class="sourceLine" id="cb72-12" data-line-number="12">X.svd<span class="op">$</span>u[,<span class="dv">1</span>]<span class="op">/</span>u</a></code></pre></div>
 </div>
             </section>
 

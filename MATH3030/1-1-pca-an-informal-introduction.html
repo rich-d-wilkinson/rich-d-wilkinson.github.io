@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.1 PCA: an informal introduction | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.1 PCA: an informal introduction | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -160,13 +160,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-mds.html"><a href="2-mds.html"><i class="fa fa-check"></i><b>2</b> Multidimensional Scaling (MDS)</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html"><i class="fa fa-check"></i><b>2.1</b> Classical MDS</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-1"><i class="fa fa-check"></i><b>2.1.1</b> Example 1</a></li>
-<li class="chapter" data-level="2.1.2" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-2"><i class="fa fa-check"></i><b>2.1.2</b> Example 2</a></li>
-<li class="chapter" data-level="2.1.3" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-3"><i class="fa fa-check"></i><b>2.1.3</b> Example 3</a></li>
+<li class="chapter" data-level="2.1.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>2.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-3"><i class="fa fa-check"></i><b>2.1.2</b> Example 3</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="2-2-principal-coordinates.html"><a href="2-2-principal-coordinates.html"><i class="fa fa-check"></i><b>2.2</b> Principal Coordinates</a></li>
 <li class="chapter" data-level="2.3" data-path="2-3-properties.html"><a href="2-3-properties.html"><i class="fa fa-check"></i><b>2.3</b> Properties</a></li>
-<li class="chapter" data-level="2.4" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html"><i class="fa fa-check"></i><b>2.4</b> Similarity measures</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html"><i class="fa fa-check"></i><b>2.4</b> Similarity measures</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html#example-4"><i class="fa fa-check"></i><b>2.4.1</b> Example</a></li>
+</ul></li>
 <li class="chapter" data-level="2.5" data-path="2-5-exercises-1.html"><a href="2-5-exercises-1.html"><i class="fa fa-check"></i><b>2.5</b> Exercises</a></li>
 <li class="chapter" data-level="2.6" data-path="2-6-computer-tasks.html"><a href="2-6-computer-tasks.html"><i class="fa fa-check"></i><b>2.6</b> Computer Tasks</a></li>
 </ul></li>
@@ -614,7 +615,7 @@ We can see that the first PC is in the direction of greatest variation (shown in
 ##  [8,] -29.994240  5.9114764
 ##  [9,]  15.316435  4.1960474
 ## [10,]  12.627880 -1.5286074</code></pre>
-<p>Note that the new variables have sample mean <span class="math inline">\(\bar{\mathbf y}=\boldsymbol 0\)</span>. The sample covariance matrix is a diagonal with entries given by the eigenvalues (see part 4. of Proposition <a href="1-2-pca-a-formal-description-with-proofs.html#prp:pca1">1.1</a>). Note that there is always some numerical error (so quantities are never 0, and instead are just very small numnbers).</p>
+<p>Note that the new variables have sample mean <span class="math inline">\(\bar{\mathbf y}=\boldsymbol 0\)</span>. The sample covariance matrix is a diagonal with entries given by the eigenvalues (see part 4. of Proposition <a href="1-2-pca-a-formal-description-with-proofs.html#prp:pca2">1.2</a>). Note that there is always some numerical error (so quantities are never 0, and instead are just very small numnbers).</p>
 <p><span class="math display">\[
 \boldsymbol \Lambda= \text{diag}(\lambda_1,\lambda_2) =  \begin{pmatrix} \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2 \end{pmatrix}.
 \]</span></p>
@@ -674,7 +675,7 @@ We can see that the first PC is in the direction of greatest variation (shown in
 <p><img src="04-pca_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>The <code>ggfortify</code> package provides a nice wrapper for some of this functionality.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">library</span>(ggfortify)</a>
-<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="kw">autoplot</span>(iris.pca, <span class="dt">data =</span> iris, <span class="dt">colour =</span> <span class="st">&#39;Species&#39;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="kw">autoplot</span>(iris.pca, <span class="dt">data =</span> iris, <span class="dt">colour =</span> <span class="st">&#39;Species&#39;</span>, <span class="dt">scale=</span><span class="ot">FALSE</span>)</a></code></pre></div>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 </div>
 </div>

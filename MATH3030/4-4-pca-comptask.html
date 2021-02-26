@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.4 Computer tasks | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.4 Computer tasks | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -304,9 +304,9 @@ We will focus on the 5 continuous variables, all measured in mm:</p>
 <li>BD = body depth.</li>
 </ul>
 <p>The sample size is <span class="math inline">\(200\)</span>.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
-<a class="sourceLine" id="cb124-2" data-line-number="2">?crabs <span class="co"># read the help page to find out about the dataset</span></a>
-<a class="sourceLine" id="cb124-3" data-line-number="3">X=crabs[,<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>]     <span class="co"># construct data matrix X with columns FL, RW, CL, CW, BD</span></a></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb126-2" data-line-number="2">?crabs <span class="co"># read the help page to find out about the dataset</span></a>
+<a class="sourceLine" id="cb126-3" data-line-number="3">X=crabs[,<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>]     <span class="co"># construct data matrix X with columns FL, RW, CL, CW, BD</span></a></code></pre></div>
 <ul>
 <li>Carry out PCA on the data in <span class="math inline">\(X\)</span> using the covariance matrix, including obtaining a scree plot and plotting the PC scores.</li>
 </ul>
@@ -342,8 +342,8 @@ for some <span class="math inline">\(p\times p\)</span> orthogonal matrix <span 
 You can generate a random orthogonal matrix using the following commands</p></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="kw">library</span>(pracma)</a>
-<a class="sourceLine" id="cb125-2" data-line-number="2">U &lt;-<span class="st"> </span><span class="kw">randortho</span>(<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1"><span class="kw">library</span>(pracma)</a>
+<a class="sourceLine" id="cb127-2" data-line-number="2">U &lt;-<span class="st"> </span><span class="kw">randortho</span>(<span class="dv">5</span>)</a></code></pre></div>
 <p>Check the effect of each transformation on the principal components (the loadings/eigenvectors), the principal component scores, and the variance of the principal components (the eigenvalues).</p>
 </div>
 <div id="exercise-3" class="section level5 unnumbered">

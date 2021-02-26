@@ -436,11 +436,9 @@ We could just apply standard univariate techniques to each variable in turn, but
 A picture is worth a thousand words
 \end{quote}
 
-\begin{figure}
-\centering
-\includegraphics{figs/Minard.jpg}
-\caption{\label{fig:unnamed-chunk-5}Charles Joseph Minard's famous map of Napoleon's 1812 invasion of Russian. It displays \href{https://en.wikipedia.org/wiki/Charles_Joseph_Minard\#The_map_of_Napoleon's_Russian_campaign}{six types of data in two dimensions}.}
-\end{figure}
+\textbackslash{}begin\{figure\}
+\includegraphics[width=27.82in]{figs/Minard} \textbackslash{}caption\{Charles Joseph Minard's famous map of Napoleon's 1812 invasion of Russian. It displays \href{https://en.wikipedia.org/wiki/Charles_Joseph_Minard\#The_map_of_Napoleon's_Russian_campaign}{six types of data in two dimensions}.\}\label{fig:unnamed-chunk-5}
+\textbackslash{}end\{figure\}
 
 Before trying any form of statistical analysis, it is always a good idea to do some form of exploratory data analysis to understand the challenges presented by the data. As a minimum, this usually involves finding out whether each variable is continuous, discrete, or categorical, doing some basic visualization (plots), and perhaps computing a few summary statistics such as the mean and variance.
 
@@ -453,9 +451,7 @@ With multivariate data, finding the right kind of plot is not always simple, and
 When \(p=1\) or \(p=2\) we can simply draw histograms and scatter plots (respectively) to view the distribution. For \(p \geq 3\) the task is harder. One solution is a matrix of pair-wise scatter plots using the \texttt{pairs} command in R. The graph below shows the relationship between goals scored (F), goals against (A) and points (PT) for 20 teams during a recent Premiership season.
 
 \begin{figure}
-\centering
-\includegraphics{figs/pairs.png}
-\caption{\label{fig:unnamed-chunk-6}Scatter plots of goals for (F), goals against (A) and points (PT) for a recent Premier League Season}
+\includegraphics[width=30.56in]{figs/pairs} \caption{Scatter plots of goals for (F), goals against (A) and points (PT) for a recent Premier League Season}\label{fig:unnamed-chunk-6}
 \end{figure}
 
 We can instantly see that points and goals scored are positively correlated, and that points and goals conceded (A) are negatively correlated (this is not a surprise of course).
@@ -908,6 +904,15 @@ Work with the `mtcars2` dataframe when you use `ggplot2`.
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(mvtnorm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'mvtnorm' was built under R version 3.6.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{mu =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)}
 \NormalTok{Sigma=}\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{nr=}\DecValTok{2}\NormalTok{)}
 \NormalTok{X <-}\StringTok{ }\KeywordTok{rmvnorm}\NormalTok{(}\DataTypeTok{n=}\DecValTok{100}\NormalTok{, }\DataTypeTok{mean=}\NormalTok{mu, }\DataTypeTok{sigma=}\NormalTok{Sigma)}
@@ -2525,13 +2530,13 @@ or as the sum of rank-1 matrices:
    3\left(\begin{array}{c}\frac{1}{\sqrt{2}}\\
                \frac{-1}{\sqrt{2}}\end{array}\right) \left(\begin{array}{ccc}\frac{1}{3\sqrt{2}}& \frac{-1}{3 \sqrt{2}} &\frac{4}{3\sqrt{2}}\end{array}\right)\]
 
-This is the compact form of the SVD. To find the non-compact form we need \(\mathbf V\) to be a \(3 \times 3\) matrix, which requires us to find a 3rd column that is orthogonal to the first two columns (thus completing an orthonormal basis for \(\mathbb{R}^3\)). We can do that with the vector \(\mathbf v_3 = \frac{1}{\sqrt{17}}(2\; -2\; -3)\) giving the non-compact SVD for \(\mathbf A\).
+This is the compact form of the SVD. To find the non-compact form we need \(\mathbf V\) to be a \(3 \times 3\) matrix, which requires us to find a 3rd column that is orthogonal to the first two columns (thus completing an orthonormal basis for \(\mathbb{R}^3\)). We can do that with the vector \(\mathbf v_3 = \frac{1}{\sqrt{17}}(2\; -2\; -1)\) giving the non-compact SVD for \(\mathbf A\).
 
 \[\mathbf A= \left(\begin{array}{cc}\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
                \frac{1}{\sqrt{2}}&\frac{-1}{\sqrt{2}}\end{array}\right) \left(\begin{array}{ccc}5&0&0\\
                0&3&0\end{array}\right)\left(\begin{array}{ccc}\frac{1}{\sqrt{2}}& \frac{1}{3\sqrt{2}}&\frac{2}{\sqrt{17}} \\
                                              \frac{1}{\sqrt{2}}& \frac{-1}{3 \sqrt{2}} &\frac{-2}{\sqrt{17}}\\
-                                             0&\frac{4}{3\sqrt{2}}&\frac{-3}{\sqrt{17}}\end{array}\right)^\top\]
+                                             0&\frac{4}{3\sqrt{2}}&\frac{-1}{\sqrt{17}}\end{array}\right)^\top\]
 
 Let's check our answer in R.
 \end{example}
@@ -3592,7 +3597,7 @@ R also has a built-in function for doing PCA.
 ## [10,]  12.627880 -1.5286074
 \end{verbatim}
 
-Note that the new variables have sample mean \(\bar{\mathbf y}=\boldsymbol 0\). The sample covariance matrix is a diagonal with entries given by the eigenvalues (see part 4. of Proposition \ref{prp:pca1}). Note that there is always some numerical error (so quantities are never 0, and instead are just very small numnbers).
+Note that the new variables have sample mean \(\bar{\mathbf y}=\boldsymbol 0\). The sample covariance matrix is a diagonal with entries given by the eigenvalues (see part 4. of Proposition \ref{prp:pca2}). Note that there is always some numerical error (so quantities are never 0, and instead are just very small numnbers).
 
 \[
 \boldsymbol \Lambda= \text{diag}(\lambda_1,\lambda_2) =  \begin{pmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{pmatrix}.
@@ -3755,7 +3760,7 @@ The \texttt{ggfortify} package provides a nice wrapper for some of this function
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(ggfortify)}
-\KeywordTok{autoplot}\NormalTok{(iris.pca, }\DataTypeTok{data =}\NormalTok{ iris, }\DataTypeTok{colour =} \StringTok{'Species'}\NormalTok{)}
+\KeywordTok{autoplot}\NormalTok{(iris.pca, }\DataTypeTok{data =}\NormalTok{ iris, }\DataTypeTok{colour =} \StringTok{'Species'}\NormalTok{, }\DataTypeTok{scale=}\OtherTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3766,7 +3771,7 @@ The \texttt{ggfortify} package provides a nice wrapper for some of this function
 
 Let's now summarize what we've said so far and prove some results about principal component analysis.
 
-Let \(\mathbf x_1, \ldots , \mathbf x_n\) denote a sample of vectors in \(\mathbb{R}^p\) with sample mean vector \(\bar{\mathbf x}\) and sample covariance matrix \(\mathbf S\). Suppose \(\mathbf S=\mathbf X^\top \mathbf H\mathbf X\) has spectral decomposition (see Proposition \ref{prp:spectraldecomp})
+Let \(\mathbf x_1, \ldots , \mathbf x_n\) denote a sample of vectors in \(\mathbb{R}^p\) with sample mean vector \(\bar{\mathbf x}\) and sample covariance matrix \(\mathbf S\). Suppose \(\mathbf S=\frac{1}{n}\mathbf X^\top \mathbf H\mathbf X\) has spectral decomposition (see Proposition \ref{prp:spectraldecomp})
 \begin{equation}
 \mathbf S=\mathbf V\boldsymbol \Lambda\mathbf V^\top = \sum_{j=1}^p  \lambda_j \mathbf v_j \mathbf v_j^\top,
 \label{eq:pcaspect}
@@ -3806,8 +3811,8 @@ We now proceed inductively and assume the result is true for \(k=1, \ldots, j-1\
 where we now have \(j\) Lagrange multipliers \(\lambda, \mu_1, \ldots, \mu_{j-1}\) - one for each constraint.
 Differentiating with respect to \(\mathbf u\) and setting equal to zero gives
 \[0 = 2\mathbf S\mathbf u- 2\lambda \mathbf u- \sum_{k=1}^{j-1} \mu_k\mathbf v_k=0 \]
-If we left multiply by \(\mathbf v_l\) we get
-\[2\mathbf v_l^\top \mathbf S\mathbf u- \lambda \mathbf v_l \mathbf u- \sum \mu_k \mathbf v_l^\top \mathbf v_k =0\]
+If we left multiply by \(\mathbf v_l^\top\) we get
+\[2\mathbf v_l^\top \mathbf S\mathbf u- 2\lambda \mathbf v_l \mathbf u- \sum \mu_k \mathbf v_l^\top \mathbf v_k =0\]
 We know \(\mathbf v_l\) is an eigenvector of \(\mathbf S\) and so \(\mathbf S\mathbf v_l=\lambda_l \mathbf v_l\) and hence \(\mathbf v_k \mathbf S\mathbf u=0\) as \(\mathbf v_l^\top \mathbf u=0\). Also \[\mathbf v_l^\top\mathbf v_k=\begin{cases}1 &\mbox{ if } k=l\\
 0 &\mbox{ otherwise, }\end{cases}\] and thus we've shown that \(\mu_l=0\) for \(l=1, \ldots, j-1\). So again we have that \[\mathbf S\mathbf u= \lambda \mathbf u\]
 i.e., \(\mathbf u\) must be a unit eigenvector of \(\mathbf S\). It only remains to show \emph{which} eigenvector it is. Because \(\mathbf u\) must be orthogonal to \(\mathbf v_1, \ldots, \mathbf v_{j-1}\),
@@ -3968,7 +3973,7 @@ Now that we have reduced the dimension to \(p=2\), we can visualise the differen
 
 \includegraphics{04-pca_files/figure-latex/unnamed-chunk-26-1.pdf}
 
-We might interpret the PCs as follows. The first PC seems to measure the difference in goals scored and conceded between teams. Low values of PC1 indicate good peformance, and high values poor performance. Teams are rewarded with -0.79 for each positive goal difference, and -0.5 for each goal scored, whilst being penalised by 0.28 for every goal they concede. So a team with a large negative positive PC1 score tends to score lots of goals and concede few. If we rank teams by their PC1 score, and compare this with the rankings using 3 points for a win and 1 point for a draw we get a different ranking of the teams.
+We might interpret the PCs as follows. The first PC seems to measure the difference in goals scored and conceded between teams. Low values of PC1 indicate good peformance, and high values poor performance. Teams are rewarded with -0.79 for each positive goal difference, and -0.5 for each goal scored, whilst being penalised by 0.28 for every goal they concede. So a team with a large negative PC1 score tends to score lots of goals and concede few. If we rank teams by their PC1 score, and compare this with the rankings using 3 points for a win and 1 point for a draw we get a different ranking of the teams.
 
 \begin{tabular}{lrr}
 \toprule
@@ -4233,7 +4238,7 @@ is the orthogonal projection of \(\mathbf x\) onto \(\mathcal{C}(\mathbf U)\), w
 
 So it remains to find the optimal choice for \(\mathbf U\) by minimizing
 \begin{align*}
-||\mathbf X^\top - \mathbf U\mathbf U^\top \mathbf X^\top||_F &=||\mathbf X- \mathbf X\mathbf U\mathbf U^\top ||_F\\
+||\mathbf X^\top - \mathbf U\mathbf U^\top \mathbf X^\top||_F^2 &=||\mathbf X- \mathbf X\mathbf U\mathbf U^\top ||_F^2\\
 &= \operatorname{tr}((\mathbf X- \mathbf X\mathbf U\mathbf U^\top)^\top(\mathbf X- \mathbf X\mathbf U\mathbf U^\top))\\
 &= \operatorname{tr}(\mathbf X^\top \mathbf X) - 2 \operatorname{tr}(\mathbf U\mathbf U^\top \mathbf X^\top\mathbf X) +  \operatorname{tr}(\mathbf U\mathbf U^\top \mathbf X^\top\mathbf X\mathbf U\mathbf U^\top)\\
 &= \operatorname{tr}(\mathbf X^\top \mathbf X)  - \operatorname{tr}(\mathbf U^\top \mathbf X^\top \mathbf X\mathbf U) 
@@ -4561,15 +4566,15 @@ Download the final Premier League table for the 2018-19 season from
 \end{enumerate}
 
 \[\mathbf x_1 =\begin{pmatrix}1\\-1\end{pmatrix},\; \mathbf x_2 =\begin{pmatrix}-1\\1\end{pmatrix},
-\;\mathbf x_3 =\begin{pmatrix}2\\2\end{pmatrix},\;\mathbf x_3 =\begin{pmatrix}-2\\-2\end{pmatrix}\]
+\;\mathbf x_3 =\begin{pmatrix}2\\2\end{pmatrix}\]
 
 \begin{itemize}
 \item
   What is the orthogonal projection of these points onto \[\mathbf u_1 = \begin{pmatrix}1\\0\end{pmatrix}\] and onto \[\mathbf u_2 =\frac{1}{\sqrt{5}}\begin{pmatrix}1\\2\end{pmatrix}?\]
 \item
-  Compute the sample variance matrix of the three data points, and compute its spectral decomposition.
+  Compute the sample variance matrix of the data points, and compute its spectral decomposition.
 \item
-  What vector \(\mathbf u\) would maximize the variance of these projection?
+  Which unit vector \(\mathbf u\) would maximize the variance of these projections?
 \item
   What vector \(\mathbf u\) would minimize
   \[\sum_{i=1}^4 ||\mathbf x_i -\mathbf u\mathbf u^\top \mathbf x_i||^2_2?\]
@@ -5037,12 +5042,21 @@ Leicester City & -0.5049886 & -0.9374949\\
 \bottomrule
 \end{tabular}
 
-A scatter plotof the two canonical correlation variables shows the strong correlation between them.
+A scatter plot of the two canonical correlation variables shows the strong correlation between them.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{cca.out <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Team=}\NormalTok{table}\OperatorTok{$}\NormalTok{Team, }\DataTypeTok{eta=}\NormalTok{eta, }\DataTypeTok{psi=}\NormalTok{psi)}
 \KeywordTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 3.6.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{ggplot}\NormalTok{(cca.out, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{ eta, }\DataTypeTok{y=}\NormalTok{ psi, }\DataTypeTok{label=}\NormalTok{Team))}\OperatorTok{+}\StringTok{   }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
 \KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{Team),}\DataTypeTok{hjust=}\DecValTok{0}\NormalTok{, }\DataTypeTok{vjust=}\DecValTok{0}\NormalTok{, }\DataTypeTok{size=}\DecValTok{4}\NormalTok{)}
 \end{Highlighting}
@@ -5119,6 +5133,13 @@ We can also do this with the \texttt{CCA} package in R. The command \texttt{matc
 ## [5,] -0.9374949  0.03833851
 ## [6,] -0.4722204 -0.16380075
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#prem.cca}
+\CommentTok{#plt.cc(prem.cca, var.label = TRUE, ind.names = table$Team)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{the-full-set-of-canonical-correlations}{%
 \section{The full set of canonical correlations}\label{the-full-set-of-canonical-correlations}}
@@ -5428,35 +5449,50 @@ other set, the \(\mathbf y\)-set, is given by FL, RW and BD.
 \NormalTok{X=}\KeywordTok{as.matrix}\NormalTok{(crabs[}\DecValTok{4}\OperatorTok{:}\DecValTok{8}\NormalTok{])    }
 \NormalTok{n=}\DecValTok{200}                                      \CommentTok{# sample size}
 \NormalTok{H=}\KeywordTok{diag}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,n))}\OperatorTok{-}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,n)}\OperatorTok{%*%}\KeywordTok{t}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,n))}\OperatorTok{/}\NormalTok{n  }\CommentTok{# n times n centering matrix}
-\NormalTok{X1=X[,}\DecValTok{3}\OperatorTok{:}\DecValTok{4}\NormalTok{]                                 }\CommentTok{# store CL and CW in X1}
-\NormalTok{Y1=}\KeywordTok{cbind}\NormalTok{(X[,}\DecValTok{1}\NormalTok{],X[,}\DecValTok{2}\NormalTok{],X[,}\DecValTok{5}\NormalTok{])                }\CommentTok{# store FL, RW and BD in Y1}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\NormalTok{X1 =}\StringTok{ }\NormalTok{crabs }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(CL, CW)  }\OperatorTok{%>%}\NormalTok{as.matrix            }
+\CommentTok{# store CL and CW in X1}
+\NormalTok{Y1 =}\StringTok{ }\NormalTok{crabs }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(FL, RW, BD) }\OperatorTok{%>%}\StringTok{ }\NormalTok{as.matrix            }
+\CommentTok{# store FL, RW and BD in Y1}
 \NormalTok{Sxx=}\KeywordTok{t}\NormalTok{(X1)}\OperatorTok{%*%}\NormalTok{H}\OperatorTok{%*%}\NormalTok{X1}\OperatorTok{/}\NormalTok{n                       }\CommentTok{# find x-variable variance matrix}
 \NormalTok{Syy=}\KeywordTok{t}\NormalTok{(Y1)}\OperatorTok{%*%}\NormalTok{H}\OperatorTok{%*%}\NormalTok{Y1}\OperatorTok{/}\NormalTok{n                       }\CommentTok{# find y-variable variance matrix}
 \NormalTok{Sxy=}\KeywordTok{t}\NormalTok{(X1)}\OperatorTok{%*%}\NormalTok{H}\OperatorTok{%*%}\NormalTok{Y1}\OperatorTok{/}\NormalTok{n                       }\CommentTok{# find cross-covariance matrix}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
 \item
   calculate \({\bf S}_{\bf x x}^{-1/2}\) and \({\bf S}_{\bf yy}^{-1/2}\) by first computing the spectral decomposition of \(\mathbf S_{xx}\) and \(\mathbf S_{yy}\).
 \item
   Now calculate the matrix \(\mathbf Q\) and compute its singular value decomposition.
-\end{itemize}
+\end{enumerate}
 
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\setcounter{enumi}{2}
 \item
   Compute the first pair of CC vectors and CC variables \(\eta_1\) and \(\psi_1\). What is the 1st canonical correlation?
 \item
   Plot \(\psi_1\) vs \(\eta_1\). What does the plot tell you (if anything)?
 \item
   Repeat the above to find the second pair of CC vectors, and the second set of CC variables/scores, and plot these against each other and against the first CC scores. Is there any interesting structure in any of the plots? Which plots suggest random scatter?
-\end{itemize}
+\end{enumerate}
 
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\setcounter{enumi}{5}
 \tightlist
 \item
   Finally, repeat the analysis above using the \texttt{cc} command and \texttt{plt.cc} from the package \texttt{CCA} which you will need to download.
-\end{itemize}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cca<-}\KeywordTok{cc}\NormalTok{(X1,Y1)}
+\KeywordTok{plt.cc}\NormalTok{(cca, }\DataTypeTok{var.label=}\OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{exercise-2-1}{%
 \paragraph{Exercise 2}\label{exercise-2-1}}
@@ -5475,14 +5511,15 @@ Read the data into R (hint: try the \texttt{read.csv} command).
 
 If you are not sure what the name of YOURDIRECTORY is where the file is located, then a useful command to find out is \texttt{file.choose()}
 
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
 \item
   Check that you can reproduce, and agree with, the calculations done in this chapter.
 \item
   Consider now doing CCA with \(\mathbf x=(W,D)\) and \(\mathbf y=(G,GA, L)\). Note that if you knew \(W\) and \(D\), you could calculate \(L\). Without doing any computation, what do you expect the first canoncial correlation to be? What will the first pair of CC vectors be (upto a multiplicative constant)?
 \item
   Check your intuition by doing the calculation in R:
-\end{itemize}
+\end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5492,11 +5529,50 @@ If you are not sure what the name of YOURDIRECTORY is where the file is located,
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercise-3-1}{%
-\paragraph{Exercise 3}\label{exercise-3-1}}
-\addcontentsline{toc}{paragraph}{Exercise 3}
+\hypertarget{task-3}{%
+\paragraph{Task 3}\label{task-3}}
+\addcontentsline{toc}{paragraph}{Task 3}
 
-{[}Note: these commands were also used on the Boston Housing data in lectures and I have provided the html output on the Moodle page, which could be helpful{]}.
+We will now look data measured from 600 first year university students. Measurements were made on three psychological variables:
+
+\begin{itemize}
+\tightlist
+\item
+  Locus of Control: the degree to someone believes that they, as opposed to external forces, have control over the outcome of events in their lives.
+\item
+  Self Concept: an indication of whether a person tends to hold a generally positive and consistent or negative and variable self-view.
+\item
+  Motivation: how motivated an individual is
+\end{itemize}
+
+which will form our \(\mathbf X\) variables. The \(\mathbf Y\) variables are four academic scores (standardized test scores)
+
+\begin{itemize}
+\tightlist
+\item
+  Reading
+\item
+  Writing
+\item
+  Math
+\item
+  Science
+\end{itemize}
+
+and gender (1=Male, 0 = Female) We are interested in how the set of psychological variables relates to the academic variables and gender.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mm <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"https://stats.idre.ucla.edu/stat/data/mmreg.csv"}\NormalTok{)}
+\KeywordTok{colnames}\NormalTok{(mm) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Control"}\NormalTok{, }\StringTok{"Concept"}\NormalTok{, }\StringTok{"Motivation"}\NormalTok{, }\StringTok{"Read"}\NormalTok{, }\StringTok{"Write"}\NormalTok{, }\StringTok{"Math"}\NormalTok{,}
+    \StringTok{"Science"}\NormalTok{, }\StringTok{"Sex"}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(mm)}
+\NormalTok{psych <-}\StringTok{ }\NormalTok{mm[, }\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{]}
+\NormalTok{acad <-}\StringTok{ }\NormalTok{mm[, }\DecValTok{4}\OperatorTok{:}\DecValTok{7}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Conduct CCA on these data. Provide an interpretation of your results.
 
 \hypertarget{exercises-2}{%
 \section{Exercises}\label{exercises-2}}
@@ -5509,7 +5585,8 @@ If you are not sure what the name of YOURDIRECTORY is where the file is located,
   Suppose that \(\mathbf z= (\mathbf x^\top \mathbf y^\top)^\top\) is a random vector, where both \(\mathbf x\) and \(\mathbf y\) are sub-vectors of dimension \(p\), so that \(\mathbf z\) is \((2p)\times 1\). Define
   \[{\mathbb{V}\operatorname{ar}}(\mathbf z)=\boldsymbol{\Sigma}_{\mathbf z\mathbf z}=\begin{pmatrix} \boldsymbol{\Sigma}_{\mathbf x\mathbf x} & \boldsymbol{\Sigma}_{\mathbf x\mathbf y}\\\boldsymbol{\Sigma}_{\mathbf y\mathbf x} & \boldsymbol{\Sigma}_{\mathbf y\mathbf y}  \end{pmatrix}.\]
 
-  \begin{itemize}
+  \begin{enumerate}
+  \def\labelenumii{\roman{enumii}.}
   \tightlist
   \item
     Suppose that \(\mathbf y= \mathbf T\mathbf x\) where \(\mathbf T\) is a fixed matrix. Find \(\boldsymbol{\Sigma}_{\mathbf x\mathbf y}\) and \(\boldsymbol{\Sigma}_{\mathbf y\mathbf y}\) in terms of \(\boldsymbol{\Sigma}_{\mathbf x\mathbf x}\) and \(\mathbf T\).
@@ -5517,14 +5594,15 @@ If you are not sure what the name of YOURDIRECTORY is where the file is located,
     Assuming now that \(\mathbf T\) is an orthogonal matrix and \(\boldsymbol{\Sigma}_{\mathbf x\mathbf x}\) is of full rank, determine the singular values of the matrix \(\mathbf Q=\boldsymbol{\Sigma}_{\mathbf x\mathbf x}^{-1/2}\boldsymbol{\Sigma}_ {\mathbf x\mathbf y}\boldsymbol{\Sigma}_{\mathbf y\mathbf y}^{-1/2}\), and hence write down the canonical correlation coefficients.
   \item
     Suppose now that \(\mathbf T\) is non-singular but not orthogonal. Comment on whether the answer to part (b) changes.
-  \end{itemize}
+  \end{enumerate}
 \item
   We will now prove Proposition \ref{prp:svdopt3} by induction.
   The case for \(k=1\) was proved in Section \ref{cca1} in Proposition \ref{prp:svdmax2}. Assume the result is true for \(k\). Consider the objective
   \[\mathcal{L} = \mathbf a^\top \mathbf Q\mathbf b+ \sum_{i=1}^k \gamma_i\mathbf a^\top \mathbf a_i + \sum_{i=1}^k \mu_i\mathbf b^\top \mathbf b_i + \frac{\lambda_1}{2}(1-\mathbf a^\top\mathbf a)+ \frac{\lambda_2}{2}(1-\mathbf b^\top\mathbf b)\]
   where \(\lambda_i, \mu_i, \gamma_i\) are Lagrangian multipliers.
 
-  \begin{itemize}
+  \begin{enumerate}
+  \def\labelenumii{\roman{enumii}.}
   \item
     By differentiating with respect to \(\mathbf a\) and \(\mathbf b\) and setting the derivative to zero show that
     \begin{align}
@@ -5538,7 +5616,7 @@ If you are not sure what the name of YOURDIRECTORY is where the file is located,
     By left multiplying \eqref{eq:ex3a} by \(\mathbf a_i^\top\) show that \(\gamma_i=0\) for \(i=1, \ldots, k\). Show similarly that \(\mu_i =0\) for \(i=1, \ldots, k\).
   \item
     Finally, by copying the proof of Proposition \ref{prp:svdmax2}, prove Proposition \ref{prp:svdopt3}.
-  \end{itemize}
+  \end{enumerate}
 \item
   Show the mean of the cc variables \(\eta_k\) and \(\psi_k\) is zero. Prove Proposition \ref{prp:ccavar} giving the variance of covariance the cc variables.
 \end{enumerate}

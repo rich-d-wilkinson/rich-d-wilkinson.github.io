@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.1 The first pair of canonical variables | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.1 The first pair of canonical variables | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -452,11 +452,11 @@ to stress that <span class="math inline">\(\mathbf a_1\)</span> and <span class=
 <div id="premcca" class="section level3">
 <h3><span class="header-section-number">5.1.2</span> Example: Premier league football</h3>
 <p>Lets again return to the Premier League from the previous chapter.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb127-2" data-line-number="2">prem1920 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/2019_2020EPL.csv&#39;</span>) </a>
-<a class="sourceLine" id="cb127-3" data-line-number="3"><span class="co"># the data can be downloaded from https://www.rotowire.com/soccer/league-table.php</span></a>
-<a class="sourceLine" id="cb127-4" data-line-number="4">table &lt;-<span class="st"> </span>prem1920 <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Team, W, D, L, G, GA, GD) </a>
-<a class="sourceLine" id="cb127-5" data-line-number="5">knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(table,<span class="dv">5</span>), <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">escape=</span><span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb129-2" data-line-number="2">prem1920 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&#39;data/2019_2020EPL.csv&#39;</span>) </a>
+<a class="sourceLine" id="cb129-3" data-line-number="3"><span class="co"># the data can be downloaded from https://www.rotowire.com/soccer/league-table.php</span></a>
+<a class="sourceLine" id="cb129-4" data-line-number="4">table &lt;-<span class="st"> </span>prem1920 <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Team, W, D, L, G, GA, GD) </a>
+<a class="sourceLine" id="cb129-5" data-line-number="5">knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(table,<span class="dv">5</span>), <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">escape=</span><span class="ot">FALSE</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -524,18 +524,18 @@ to stress that <span class="math inline">\(\mathbf a_1\)</span> and <span class=
 <li>what linear combination of <span class="math inline">\(W\)</span> and <span class="math inline">\(D\)</span>, and of <span class="math inline">\(G\)</span> and <span class="math inline">\(GA\)</span> are most strongly correlated?</li>
 </ul>
 <p>Firstly, we need to compute the three covariance matrices needed for CCA. These are easily computed in R:</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">X &lt;-<span class="st"> </span>table[,<span class="kw">c</span>(<span class="st">&#39;W&#39;</span>,<span class="st">&#39;D&#39;</span>)] <span class="co"># W and D</span></a>
-<a class="sourceLine" id="cb128-2" data-line-number="2">Y &lt;-<span class="st"> </span>table[,<span class="kw">c</span>(<span class="st">&#39;G&#39;</span>,<span class="st">&#39;GA&#39;</span>)] <span class="co"># G and GA</span></a>
-<a class="sourceLine" id="cb128-3" data-line-number="3">S_xx &lt;-<span class="st"> </span><span class="kw">cov</span>(X)</a>
-<a class="sourceLine" id="cb128-4" data-line-number="4">S_yy &lt;-<span class="st"> </span><span class="kw">cov</span>(Y)</a>
-<a class="sourceLine" id="cb128-5" data-line-number="5">S_xy &lt;-<span class="st"> </span><span class="kw">cov</span>(X,Y)</a></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">X &lt;-<span class="st"> </span>table[,<span class="kw">c</span>(<span class="st">&#39;W&#39;</span>,<span class="st">&#39;D&#39;</span>)] <span class="co"># W and D</span></a>
+<a class="sourceLine" id="cb130-2" data-line-number="2">Y &lt;-<span class="st"> </span>table[,<span class="kw">c</span>(<span class="st">&#39;G&#39;</span>,<span class="st">&#39;GA&#39;</span>)] <span class="co"># G and GA</span></a>
+<a class="sourceLine" id="cb130-3" data-line-number="3">S_xx &lt;-<span class="st"> </span><span class="kw">cov</span>(X)</a>
+<a class="sourceLine" id="cb130-4" data-line-number="4">S_yy &lt;-<span class="st"> </span><span class="kw">cov</span>(Y)</a>
+<a class="sourceLine" id="cb130-5" data-line-number="5">S_xy &lt;-<span class="st"> </span><span class="kw">cov</span>(X,Y)</a></code></pre></div>
 <p>giving</p>
 <p><span class="math display">\[\mathbf S_{xx} =\begin{pmatrix}40.4&amp;-9.66 \\-9.66&amp;10.7 \\\end{pmatrix}, \quad \mathbf S_{yy} =\begin{pmatrix}354&amp;-155 \\-155&amp;141 \\\end{pmatrix}, \quad \mathbf S_{xy}=\mathbf S_{yx}^\top =\begin{pmatrix}108&amp;-60 \\-28.9&amp;-2.36 \\\end{pmatrix}.\]</span></p>
 <p>We now want to calculate the matrix <span class="math inline">\(\mathbf Q\)</span> in <a href="5-1-cca1.html#eq:svdcca">(5.7)</a> and then find its singular valued decomposition. We first need to find <span class="math inline">\(\mathbf S_{\mathbf x\mathbf x}^{-1/2}\)</span> and <span class="math inline">\(\mathbf S_{\mathbf y\mathbf y}^{-1/2}\)</span>. Using R to do the computations we obtain the spectral decompositions</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">eigen_xx &lt;-<span class="st"> </span><span class="kw">eigen</span>(S_xx)</a>
-<a class="sourceLine" id="cb129-2" data-line-number="2">Vx &lt;-<span class="st"> </span>eigen_xx<span class="op">$</span>vectors</a>
-<a class="sourceLine" id="cb129-3" data-line-number="3">S_xx_invsqrt &lt;-<span class="st"> </span>Vx <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(<span class="dv">1</span><span class="op">/</span><span class="kw">sqrt</span>(eigen_xx<span class="op">$</span>values)) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(Vx)</a>
-<a class="sourceLine" id="cb129-4" data-line-number="4"><span class="co"># check S_xx %*% S_xx_invsqrt %*% S_xx_invsqrt is the identity matrix</span></a></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">eigen_xx &lt;-<span class="st"> </span><span class="kw">eigen</span>(S_xx)</a>
+<a class="sourceLine" id="cb131-2" data-line-number="2">Vx &lt;-<span class="st"> </span>eigen_xx<span class="op">$</span>vectors</a>
+<a class="sourceLine" id="cb131-3" data-line-number="3">S_xx_invsqrt &lt;-<span class="st"> </span>Vx <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(<span class="dv">1</span><span class="op">/</span><span class="kw">sqrt</span>(eigen_xx<span class="op">$</span>values)) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(Vx)</a>
+<a class="sourceLine" id="cb131-4" data-line-number="4"><span class="co"># check S_xx %*% S_xx_invsqrt %*% S_xx_invsqrt is the identity matrix</span></a></code></pre></div>
 <p><span class="math display">\[\mathbf S_{xx} =\mathbf Q\boldsymbol \Lambda\mathbf Q^\top=\begin{pmatrix}-0.959&amp;-0.285 \\0.285&amp;-0.959 \\\end{pmatrix} \begin{pmatrix}43.2&amp;0 \\0&amp;7.82 \\\end{pmatrix} \begin{pmatrix}-0.959&amp;0.285 \\-0.285&amp;-0.959 \\\end{pmatrix}\]</span></p>
 <p>and so</p>
 <p><span class="math display">\[\begin{align*}
@@ -544,9 +544,9 @@ to stress that <span class="math inline">\(\mathbf a_1\)</span> and <span class=
 &amp;= \begin{pmatrix}0.169&amp;0.0561 \\0.0561&amp;0.341 \\\end{pmatrix}.
 \end{align*}\]</span></p>
 <p>Similarly, we find</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">eigen_yy &lt;-<span class="st"> </span><span class="kw">eigen</span>(S_yy)</a>
-<a class="sourceLine" id="cb130-2" data-line-number="2">Vy &lt;-<span class="st"> </span>eigen_yy<span class="op">$</span>vectors</a>
-<a class="sourceLine" id="cb130-3" data-line-number="3">S_yy_invsqrt &lt;-<span class="st"> </span>Vy <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(<span class="dv">1</span><span class="op">/</span><span class="kw">sqrt</span>(eigen_yy<span class="op">$</span>values)) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(Vy)</a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">eigen_yy &lt;-<span class="st"> </span><span class="kw">eigen</span>(S_yy)</a>
+<a class="sourceLine" id="cb132-2" data-line-number="2">Vy &lt;-<span class="st"> </span>eigen_yy<span class="op">$</span>vectors</a>
+<a class="sourceLine" id="cb132-3" data-line-number="3">S_yy_invsqrt &lt;-<span class="st"> </span>Vy <span class="op">%*%</span><span class="st"> </span><span class="kw">diag</span>(<span class="dv">1</span><span class="op">/</span><span class="kw">sqrt</span>(eigen_yy<span class="op">$</span>values)) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(Vy)</a></code></pre></div>
 <p><span class="math display">\[\begin{align*}
 \mathbf S_{\mathbf y\mathbf y}^{-1/2}= \begin{pmatrix}0.0657&amp;0.0337 \\0.0337&amp;0.112 \\\end{pmatrix}.
 \end{align*}\]</span></p>
@@ -564,8 +564,8 @@ to stress that <span class="math inline">\(\mathbf a_1\)</span> and <span class=
 \end{align}\]</span></p>
 <p>So the 1st CC coefficient is <span class="math inline">\(0.955\)</span>, which is close to its maximum value of <span class="math inline">\(1\)</span>. The 1st CC weight vectors are
 given by</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">a1 =<span class="st"> </span>S_xx_invsqrt<span class="op">%*%</span><span class="st"> </span>Q_svd<span class="op">$</span>u[,<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb131-2" data-line-number="2">b1 =<span class="st"> </span>S_yy_invsqrt<span class="op">%*%</span><span class="st"> </span>Q_svd<span class="op">$</span>v[,<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">a1 =<span class="st"> </span>S_xx_invsqrt<span class="op">%*%</span><span class="st"> </span>Q_svd<span class="op">$</span>u[,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb133-2" data-line-number="2">b1 =<span class="st"> </span>S_yy_invsqrt<span class="op">%*%</span><span class="st"> </span>Q_svd<span class="op">$</span>v[,<span class="dv">1</span>]</a></code></pre></div>
 <p><span class="math display">\[\begin{align*}
 \mathbf a_1&amp;=\mathbf S_{\mathbf x\mathbf x}^{-1/2}\mathbf u_1\\
 &amp;=\begin{pmatrix}0.169&amp;0.0561 \\0.0561&amp;0.341 \\\end{pmatrix}\begin{pmatrix}-0.99 \\-0.143 \\\end{pmatrix}\\
@@ -611,10 +611,10 @@ and
 <p>We can see that <span class="math inline">\(\psi_1\)</span> is measuring something similar to goal difference <span class="math inline">\(G-GA\)</span>, as usually defined, but it gives higher weight to goals conceded than goals conceded (<span class="math inline">\(0.0541\)</span> versus <span class="math inline">\(0.0234\)</span>).</p>
 <p><span class="math inline">\(\eta_1\)</span> is measuring something similar to number of points <span class="math inline">\(3W+D\)</span>, as usually defined, but the ratio of points for a win to points for a draw is lower, at around 2:1, as opposed to the usual ratio 3:1.</p>
 <p>The full list of the first canonical correlation variables is thus</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">Xcent &lt;-<span class="st"> </span><span class="kw">sweep</span>(X,<span class="dv">2</span>, <span class="kw">colMeans</span>(X)) <span class="co"># column centre the matrix</span></a>
-<a class="sourceLine" id="cb132-2" data-line-number="2">Ycent &lt;-<span class="st"> </span><span class="kw">sweep</span>(Y,<span class="dv">2</span>, <span class="kw">colMeans</span>(Y)) <span class="co"># column centre the matrix</span></a>
-<a class="sourceLine" id="cb132-3" data-line-number="3">eta =<span class="st"> </span><span class="kw">as.matrix</span>(Xcent)<span class="op">%*%</span>a1</a>
-<a class="sourceLine" id="cb132-4" data-line-number="4">psi =<span class="st"> </span><span class="kw">as.matrix</span>(Ycent)<span class="op">%*%</span>b1</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1">Xcent &lt;-<span class="st"> </span><span class="kw">sweep</span>(X,<span class="dv">2</span>, <span class="kw">colMeans</span>(X)) <span class="co"># column centre the matrix</span></a>
+<a class="sourceLine" id="cb134-2" data-line-number="2">Ycent &lt;-<span class="st"> </span><span class="kw">sweep</span>(Y,<span class="dv">2</span>, <span class="kw">colMeans</span>(Y)) <span class="co"># column centre the matrix</span></a>
+<a class="sourceLine" id="cb134-3" data-line-number="3">eta =<span class="st"> </span><span class="kw">as.matrix</span>(Xcent)<span class="op">%*%</span>a1</a>
+<a class="sourceLine" id="cb134-4" data-line-number="4">psi =<span class="st"> </span><span class="kw">as.matrix</span>(Ycent)<span class="op">%*%</span>b1</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -651,27 +651,28 @@ and
 </tr>
 </tbody>
 </table>
-<p>A scatter plotof the two canonical correlation variables shows the strong correlation between them.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">cca.out &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Team=</span>table<span class="op">$</span>Team, <span class="dt">eta=</span>eta, <span class="dt">psi=</span>psi)</a>
-<a class="sourceLine" id="cb133-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb133-3" data-line-number="3"><span class="kw">ggplot</span>(cca.out, <span class="kw">aes</span>(<span class="dt">x=</span> eta, <span class="dt">y=</span> psi, <span class="dt">label=</span>Team))<span class="op">+</span><span class="st">   </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb133-4" data-line-number="4"><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Team),<span class="dt">hjust=</span><span class="dv">0</span>, <span class="dt">vjust=</span><span class="dv">0</span>, <span class="dt">size=</span><span class="dv">4</span>)</a></code></pre></div>
+<p>A scatter plot of the two canonical correlation variables shows the strong correlation between them.</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">cca.out &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Team=</span>table<span class="op">$</span>Team, <span class="dt">eta=</span>eta, <span class="dt">psi=</span>psi)</a>
+<a class="sourceLine" id="cb135-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.6.2</code></pre>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="kw">ggplot</span>(cca.out, <span class="kw">aes</span>(<span class="dt">x=</span> eta, <span class="dt">y=</span> psi, <span class="dt">label=</span>Team))<span class="op">+</span><span class="st">   </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb137-2" data-line-number="2"><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Team),<span class="dt">hjust=</span><span class="dv">0</span>, <span class="dt">vjust=</span><span class="dv">0</span>, <span class="dt">size=</span><span class="dv">4</span>)</a></code></pre></div>
 <p><img src="05-cca_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <!--WHAT HAPPENS IF WE INCLUDE L? THen S_XX is not invertible.-->
 <p>We can also do this with the <code>CCA</code> package in R. The command <code>matcor(X,Y)</code> gives the correlation matrices, and the command <code>cc</code> performs CCA. See if you can find the outputs computed above in the output of the <code>cc</code> command.</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="kw">library</span>(CCA)</a>
-<a class="sourceLine" id="cb134-2" data-line-number="2">prem.cca &lt;-<span class="st"> </span><span class="kw">cc</span>(X,Y)</a>
-<a class="sourceLine" id="cb134-3" data-line-number="3">prem.cca<span class="op">$</span>cor <span class="co"># the canonical correlations</span></a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="kw">library</span>(CCA)</a>
+<a class="sourceLine" id="cb138-2" data-line-number="2">prem.cca &lt;-<span class="st"> </span><span class="kw">cc</span>(X,Y)</a>
+<a class="sourceLine" id="cb138-3" data-line-number="3">prem.cca<span class="op">$</span>cor <span class="co"># the canonical correlations</span></a></code></pre></div>
 <pre><code>## [1] 0.9550749 0.7054825</code></pre>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1">prem.cca<span class="op">$</span>xcoef <span class="co"># the canonical correlation vectors for X</span></a></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1">prem.cca<span class="op">$</span>xcoef <span class="co"># the canonical correlation vectors for X</span></a></code></pre></div>
 <pre><code>##         [,1]      [,2]
 ## W -0.1750356 0.0313256
 ## D -0.1042828 0.3293057</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1">prem.cca<span class="op">$</span>ycoef  <span class="co"># the canonical correlation vectors for Y</span></a></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1">prem.cca<span class="op">$</span>ycoef  <span class="co"># the canonical correlation vectors for Y</span></a></code></pre></div>
 <pre><code>##           [,1]        [,2]
 ## G  -0.02342507 -0.07003113
 ## GA  0.05412069 -0.10372100</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="kw">head</span>(prem.cca<span class="op">$</span>scores<span class="op">$</span>xscores) <span class="co"># the canonical correlation variables </span></a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="kw">head</span>(prem.cca<span class="op">$</span>scores<span class="op">$</span>xscores) <span class="co"># the canonical correlation variables </span></a></code></pre></div>
 <pre><code>##            [,1]       [,2]
 ## [1,] -2.4340723 -1.4903651
 ## [2,] -1.3838590 -1.6783187
@@ -679,7 +680,7 @@ and
 ## [4,] -0.6464941 -0.8783550
 ## [5,] -0.5049886 -0.2823947
 ## [6,] -0.4677660  0.6428713</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="kw">head</span>(prem.cca<span class="op">$</span>scores<span class="op">$</span>yscores) <span class="co"># the canonical correlation variables </span></a></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="kw">head</span>(prem.cca<span class="op">$</span>scores<span class="op">$</span>yscores) <span class="co"># the canonical correlation variables </span></a></code></pre></div>
 <pre><code>##            [,1]        [,2]
 ## [1,] -1.7921117 -0.39245373
 ## [2,] -2.0820965 -1.79042487
@@ -687,6 +688,8 @@ and
 ## [4,] -0.2807761 -1.45009678
 ## [5,] -0.9374949  0.03833851
 ## [6,] -0.4722204 -0.16380075</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1"><span class="co">#prem.cca</span></a>
+<a class="sourceLine" id="cb148-2" data-line-number="2"><span class="co">#plt.cc(prem.cca, var.label = TRUE, ind.names = table$Team)</span></a></code></pre></div>
 </div>
 </div>
             </section>

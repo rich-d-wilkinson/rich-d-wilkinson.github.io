@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.1 Classical MDS | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.1 Classical MDS | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="2-mds.html"/>
-<link rel="next" href="2-2-principal-coordinates.html"/>
+<link rel="next" href="2-2-properties.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -133,42 +133,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html"><i class="fa fa-check"></i>PART II: Dimension reduction methods</a><ul>
-<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#a-warning"><i class="fa fa-check"></i>A warning</a></li>
+<li class="chapter" data-level="1" data-path="1-linalg-decomp.html"><a href="1-linalg-decomp.html"><i class="fa fa-check"></i><b>1</b> Matrix decompositions</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-matrix-matrix.html"><a href="1-1-matrix-matrix.html"><i class="fa fa-check"></i><b>1.1</b> Matrix-matrix products</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>1.2</b> Spectral/eigen decomposition</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>1.2.1</b> Eigenvalues and eigenvectors</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>1.2.2</b> Spectral decomposition</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>1.2.3</b> Matrix square roots</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="1-pca.html"><a href="1-pca.html"><i class="fa fa-check"></i><b>1</b> Principal Component Analysis (PCA)</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html"><i class="fa fa-check"></i><b>1.1</b> PCA: an informal introduction</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#notation-recap"><i class="fa fa-check"></i><b>1.1.1</b> Notation recap</a></li>
-<li class="chapter" data-level="1.1.2" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#first-principal-component"><i class="fa fa-check"></i><b>1.1.2</b> First principal component</a></li>
-<li class="chapter" data-level="1.1.3" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#second-principal-component"><i class="fa fa-check"></i><b>1.1.3</b> Second principal component</a></li>
-<li class="chapter" data-level="1.1.4" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#geometric-interpretation-1"><i class="fa fa-check"></i><b>1.1.4</b> Geometric interpretation</a></li>
-<li class="chapter" data-level="1.1.5" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#example"><i class="fa fa-check"></i><b>1.1.5</b> Example</a></li>
-<li class="chapter" data-level="1.1.6" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#example-iris"><i class="fa fa-check"></i><b>1.1.6</b> Example: Iris</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-linalg-SVD.html"><a href="1-3-linalg-SVD.html"><i class="fa fa-check"></i><b>1.3</b> Singular Value Decomposition (SVD)</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-linalg-SVD.html"><a href="1-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>1.3.1</b> Examples</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>1.2</b> PCA: a formal description with proofs</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>1.2.1</b> Properties of principal components</a></li>
-<li class="chapter" data-level="1.2.2" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>1.2.2</b> Example: Football</a></li>
-<li class="chapter" data-level="1.2.3" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>1.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
-<li class="chapter" data-level="1.2.4" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>1.2.4</b> Population PCA</a></li>
-<li class="chapter" data-level="1.2.5" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>1.2.5</b> PCA under transformations of variables</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-svdopt.html"><a href="1-4-svdopt.html"><i class="fa fa-check"></i><b>1.4</b> SVD optimization results</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html"><i class="fa fa-check"></i><b>1.5</b> Low-rank approximation</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html#matrix-norms"><i class="fa fa-check"></i><b>1.5.1</b> Matrix norms</a></li>
+<li class="chapter" data-level="1.5.2" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html#eckart-young-mirsky-theorem"><i class="fa fa-check"></i><b>1.5.2</b> Eckart-Young-Mirsky Theorem</a></li>
+<li class="chapter" data-level="1.5.3" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html#example-image-compression"><i class="fa fa-check"></i><b>1.5.3</b> Example: image compression</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="1-3-an-alternative-view-of-pca.html"><a href="1-3-an-alternative-view-of-pca.html"><i class="fa fa-check"></i><b>1.3</b> An alternative view of PCA</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="1-3-an-alternative-view-of-pca.html"><a href="1-3-an-alternative-view-of-pca.html#example-mnist-handwritten-digits"><i class="fa fa-check"></i><b>1.3.1</b> Example: MNIST handwritten digits</a></li>
-</ul></li>
-<li class="chapter" data-level="1.4" data-path="1-4-pca-comptask.html"><a href="1-4-pca-comptask.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
-<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+<li class="chapter" data-level="1.6" data-path="1-6-tasks-ch3.html"><a href="1-6-tasks-ch3.html"><i class="fa fa-check"></i><b>1.6</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.7" data-path="1-7-exercises-ch3.html"><a href="1-7-exercises-ch3.html"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-mds.html"><a href="2-mds.html"><i class="fa fa-check"></i><b>2</b> Multidimensional Scaling (MDS)</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html"><i class="fa fa-check"></i><b>2.1</b> Classical MDS</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-1"><i class="fa fa-check"></i><b>2.1.1</b> Example 1</a></li>
-<li class="chapter" data-level="2.1.2" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-2"><i class="fa fa-check"></i><b>2.1.2</b> Example 2</a></li>
-<li class="chapter" data-level="2.1.3" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-3"><i class="fa fa-check"></i><b>2.1.3</b> Example 3</a></li>
+<li class="chapter" data-level="2.1.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>2.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>2.1.2</b> Principal Coordinate Analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="2-2-principal-coordinates.html"><a href="2-2-principal-coordinates.html"><i class="fa fa-check"></i><b>2.2</b> Principal Coordinates</a></li>
-<li class="chapter" data-level="2.3" data-path="2-3-properties.html"><a href="2-3-properties.html"><i class="fa fa-check"></i><b>2.3</b> Properties</a></li>
-<li class="chapter" data-level="2.4" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html"><i class="fa fa-check"></i><b>2.4</b> Similarity measures</a></li>
-<li class="chapter" data-level="2.5" data-path="2-5-exercises-1.html"><a href="2-5-exercises-1.html"><i class="fa fa-check"></i><b>2.5</b> Exercises</a></li>
-<li class="chapter" data-level="2.6" data-path="2-6-computer-tasks.html"><a href="2-6-computer-tasks.html"><i class="fa fa-check"></i><b>2.6</b> Computer Tasks</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-properties.html"><a href="2-2-properties.html"><i class="fa fa-check"></i><b>2.2</b> Properties</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-non-classical-mds.html"><a href="2-3-non-classical-mds.html"><i class="fa fa-check"></i><b>2.3</b> Non-classical MDS</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html"><i class="fa fa-check"></i><b>2.4</b> Similarity measures</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html#example"><i class="fa fa-check"></i><b>2.4.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-5-non-metric-mds.html"><a href="2-5-non-metric-mds.html"><i class="fa fa-check"></i><b>2.5</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-exercises.html"><a href="2-6-exercises.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+<li class="chapter" data-level="2.7" data-path="2-7-computer-tasks.html"><a href="2-7-computer-tasks.html"><i class="fa fa-check"></i><b>2.7</b> Computer Tasks</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -205,33 +201,35 @@ d_{ij}=\vert \vert \mathbf x_i -\mathbf x_j \vert \vert_2 =\sqrt{(\mathbf x_i-\m
 \]</span>
 </div>
 
-<p>Two other matrices play key roles in MDS.</p>
+<p>In classical MDS, we don’t work directly with the distance matrix, but with a similarity matrix.</p>
 
 <div class="definition">
-<p><span id="def:unnamed-chunk-3" class="definition"><strong>Definition 2.3  </strong></span>Given a distance matrix <span class="math inline">\({\mathbf D}=\{d_{ij}\}_{i,j=1}^n\)</span>, define <span class="math inline">\(\mathbf A\)</span> to be the matrix of negative square distances divided by two:
-<span class="math display" id="eq:defA">\[\begin{equation}
-\mathbf A=\{a_{ij}\}_{i,j=1}^n,  \quad \text{where} \qquad a_{ij}=-\frac{1}{2}d_{ij}^2.
-\tag{2.2}
-\end{equation}\]</span></p>
-The <strong>centred inner-product matrix</strong> (also called the centred-Gram matrix) is
+<p><span id="def:unnamed-chunk-3" class="definition"><strong>Definition 2.3  </strong></span>Given a distance matrix <span class="math inline">\({\mathbf D}=\{d_{ij}\}_{i,j=1}^n\)</span>,
+the <strong>centred inner-product matrix</strong> (also called the <strong>centred-Gram matrix</strong>) is
 <span class="math display" id="eq:defB">\[\begin{equation}
 {\mathbf B}={\mathbf H} \mathbf A{\mathbf H},
-\tag{2.3}
+\tag{2.2}
 \end{equation}\]</span>
 where
-<span class="math display">\[\begin{equation*}
-{\mathbf H}={\mathbf I}_n -n^{-1}{\mathbf 1}_n {\mathbf 1}_n^\top
-\end{equation*}\]</span>
-is the <span class="math inline">\(n \times n\)</span> <strong>centering matrix</strong> (see Section <a href="#centering-matrix"><strong>??</strong></a>).
+<span class="math inline">\(\mathbf A\)</span> is the matrix of negative square distances divided by two:
+<span class="math display" id="eq:defA">\[\begin{equation}
+\mathbf A=\{a_{ij}\}_{i,j=1}^n,  \quad \text{where} \qquad a_{ij}=-\frac{1}{2}d_{ij}^2
+\tag{2.3}
+\end{equation}\]</span>
+and <span class="math inline">\(\mathbf H\)</span> is the <span class="math inline">\(n \times n\)</span> <strong>centering matrix</strong> (see Section <a href="#centering-matrix"><strong>??</strong></a>).</p>
+<p>Another way of writing <span class="math inline">\(\mathbf A\)</span> is as
+<span class="math display">\[\mathbf A= -\frac{1}{2}\mathbf D\odot \mathbf D\]</span>
+where <span class="math inline">\(\odot\)</span> denotes the <a href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard (or element-wise) product</a> of two matrices.</p>
 </div>
 
-<p>The reason we call <span class="math inline">\(\mathbf B\)</span> the centred inner product matrix will become clear later.</p>
+<p>We can think of <span class="math inline">\(\mathbf B\)</span> as a <strong>similarity matrix</strong> for the data.
+The reason for this, and for why we call <span class="math inline">\(\mathbf B\)</span> the centred inner product matrix will become clear later.</p>
 <div id="main-result" class="section level4 unnumbered">
 <h4>Main result</h4>
 <p>We now present the key result for classical MDS. It says that a distance matrix <span class="math inline">\(\mathbf D\)</span> is a <em>Euclidean</em> distance matrix if and only if the corresponding centred inner product matrix <span class="math inline">\(\mathbf B\)</span> is positive semi-definite. It also tells us how given data <span class="math inline">\(\mathbf X\)</span> we can compute <span class="math inline">\(\mathbf B\)</span> directly from <span class="math inline">\(\mathbf X\)</span>. Conversely, and more importantly, it tells us how given <span class="math inline">\(\mathbf B\)</span> we can compute some data points <span class="math inline">\(\mathbf X\)</span> that have corresponding Euclidean distance matrix <span class="math inline">\(\mathbf D\)</span>.</p>
 
 <div class="theorem">
-<p><span id="thm:five1" class="theorem"><strong>Theorem 2.1  </strong></span>Let <span class="math inline">\(\mathbf D\)</span> denote an <span class="math inline">\(n \times n\)</span> distance matrix with corresponding centered inner-product matrix <span class="math inline">\(\mathbf B=\mathbf H\mathbf A\mathbf H.\)</span></p>
+<p><span id="thm:five1" class="theorem"><strong>Theorem 2.1  </strong></span>Let <span class="math inline">\(\mathbf D\)</span> denote an <span class="math inline">\(n \times n\)</span> distance matrix with corresponding centred inner-product matrix <span class="math inline">\(\mathbf B=-\frac{1}{2}\mathbf H(\mathbf D\odot\mathbf D)\mathbf H.\)</span></p>
 <ol style="list-style-type: decimal">
 <li><p>If <span class="math inline">\(\mathbf D\)</span> is a <strong>Euclidean</strong> distance matrix for the sample of <span class="math inline">\(n\)</span> vectors <span class="math inline">\(\mathbf x_1,\ldots , \mathbf x_n\)</span>, then
 <span class="math display" id="eq:bijB">\[\begin{equation}
@@ -239,11 +237,10 @@ is the <span class="math inline">\(n \times n\)</span> <strong>centering matrix<
 \tag{2.4}
 \end{equation}\]</span>
 Thus <span class="math inline">\(\mathbf B\)</span> is positive semi-definite.</p></li>
-<li><p>Suppose <span class="math inline">\(\mathbf B\)</span> is positive semi-definite with eigenvalues <span class="math inline">\(\lambda_1 \geq \lambda_2 \cdots \geq \lambda_k \geq 0\)</span> and that it has spectral decomposition <span class="math inline">\(\mathbf B={\mathbf U} {\pmb \Lambda}{\mathbf U}^\top\)</span>, where <span class="math inline">\({\pmb \Lambda}=\text{diag}\{\lambda_1 \ldots \lambda_k\}\)</span> and <span class="math inline">\(\mathbf U\)</span> is <span class="math inline">\(n \times k\)</span> and satisfies <span class="math inline">\({\mathbf U}^\top {\mathbf U}={\mathbf I}_k\)</span>. Then
+<li><p>Suppose <span class="math inline">\(\mathbf B\)</span> is positive semi-definite with eigenvalues <span class="math inline">\(\lambda_1 \geq \lambda_2 \cdots \geq \lambda_k &gt; 0\)</span> and that it has spectral decomposition <span class="math inline">\(\mathbf B={\mathbf U} {\pmb \Lambda}{\mathbf U}^\top\)</span>, where <span class="math inline">\({\pmb \Lambda}=\text{diag}\{\lambda_1 \ldots \lambda_k\}\)</span> and <span class="math inline">\(\mathbf U\)</span> is <span class="math inline">\(n \times k\)</span> and satisfies <span class="math inline">\({\mathbf U}^\top {\mathbf U}={\mathbf I}_k\)</span>. Then
 <span class="math display">\[{\mathbf X}=[\mathbf x_1, \ldots , \mathbf x_n]^\top={\mathbf U}{\pmb \Lambda}^{1/2}\]</span>
 is an <span class="math inline">\(n \times k\)</span> data matrix which has <strong>Euclidean</strong> distance marrix <span class="math inline">\(\mathbf D\)</span>.</p>
 Moreover, for this data matrix <span class="math inline">\(\bar{\mathbf x}={\mathbf 0}_k\)</span> and <span class="math inline">\(\mathbf B\)</span> represents the inner product matrix with elements given by <a href="2-1-classical-mds.html#eq:bijB">(2.4)</a>.
-`
 </div></li>
 </ol>
 <p>For part 1. we may equivalently write
@@ -252,29 +249,23 @@ b_{ij}=(\mathbf x_i-\bar{\mathbf x})^\top (\mathbf x_j - \bar{\mathbf x}), \qqua
 \end{equation}\]</span>
 where <span class="math inline">\(\bar{\mathbf x}=n^{-1}\sum_{i=1}^n \mathbf x_i\)</span> is the sample mean vector.
 This illustrates why we call <span class="math inline">\(\mathbf B\)</span> the <em>centred inner-product</em> matrix: <span class="math inline">\(\mathbf H\mathbf X\)</span> is the centred data matrix, and <span class="math inline">\((\mathbf H\mathbf X)(\mathbf H\mathbf X)^\top\)</span> thus contains the inner product of each pair of centred vectors.</p>
+<p>Note that we can think of <span class="math inline">\(\mathbf B\)</span> as a matrix of similarities. The inner product <span class="math display">\[\langle \mathbf x_i-\bar{\mathbf x}, \;\mathbf x_j - \bar{\mathbf x} \rangle=(\mathbf x_i-\bar{\mathbf x})^\top (\mathbf x_j - \bar{\mathbf x})\]</span> is large if <span class="math inline">\(\mathbf x_i\)</span> is similar to <span class="math inline">\(\mathbf x_j\)</span>, and small if they are very different. It may help to think back to the geometric interpretation of inner products from Section <a href="#normed"><strong>??</strong></a>.</p>
 
 <div class="proof">
  <span class="proof"><em>Proof. </em></span> You will prove this result in the example sheets.
 </div>
 
+<p><br></br></p>
 
 <div class="corollary">
 <span id="cor:unnamed-chunk-5" class="corollary"><strong>Corollary 2.1  </strong></span>The distance matrix <span class="math inline">\(\mathbf D\)</span> is a Euclidean distance matrix if and only if the corresponding centred inner-product matrix <span class="math inline">\(\mathbf B\)</span> is a positive semi-definite matrix.
 </div>
 
-<div id="important-point" class="section level5 unnumbered">
-<h5>Important Point</h5>
-<p>Proposition <a href="2-1-classical-mds.html#thm:five1">2.1</a> may be useful even if <span class="math inline">\({\mathbf D}\)</span> is not a <em>Euclidean</em> distance matrix (in which case <span class="math inline">\(\mathbf B\)</span> will have some negative eigenvalues).</p>
-<p>Instead of using <span class="math inline">\(\mathbf B\)</span> in Proposition <a href="2-1-classical-mds.html#thm:five1">2.1</a> we can use its positive part. If <span class="math inline">\(\mathbf B\)</span> has spectral decomposition <span class="math inline">\(\sum_{j=1}^p \lambda_j \mathbf u_j \mathbf u_j^\top\)</span>, then its positive definite part is defined by
-<span class="math display">\[
-\mathbf B_{\text{pos}}=\sum_{j: \, \lambda_j&gt;0} \lambda_j \mathbf u_j \mathbf u_j^\top.
-\]</span>
-In other words, we sum over those <span class="math inline">\(j\)</span> such that <span class="math inline">\(\lambda_j\)</span> is positive.</p>
-<p>Then <span class="math inline">\(\mathbf B_{\text{pos}}\)</span> is positive semi-definite and so we can use part 2. of Theorem <a href="2-1-classical-mds.html#thm:five1">2.1</a> to determine a Euclidean configuration which has centred inner-product matrix <span class="math inline">\(\mathbf B_{\text{pos}}\)</span>. Then, provided the negative eigenvalues are small in absolute value relative to the positive eigenvalues, the inter-point distances of the new points in Euclidean space should provide a good approximation to the original inter-point distances <span class="math inline">\((d_{ij})\)</span>.</p>
+<p><br></br></p>
+<p>These results say that if <span class="math inline">\(\mathbf D\)</span> is a Euclidean distance matrix (which we can check by testing whether <span class="math inline">\(\mathbf B\)</span> is positive semi-definite), then we can find a set of <span class="math inline">\(n\)</span> points <span class="math inline">\(\mathbf x_1, \ldots, \mathbf x_n\in \mathbb{R}^k\)</span> which have interpoint distances <span class="math inline">\(\mathbf D\)</span>. The dimension of the points is given by the rank of <span class="math inline">\(\mathbf B\)</span>.</p>
 </div>
-</div>
-<div id="example-1" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Example 1</h3>
+<div id="example-1" class="section level4 unnumbered">
+<h4>Example 1</h4>
 <p>Consider the five point in <span class="math inline">\(\mathbb{R}^2\)</span>:
 <span class="math display">\[
 \mathbf x_1=(0,0)^\top,  \mathbf x_2 =(1,0)^\top, \quad \mathbf x_3 =(0,1)^\top
@@ -291,8 +282,9 @@ In other words, we sum over those <span class="math inline">\(j\)</span> such th
 1&amp;2&amp;\sqrt{2}&amp;0&amp;\sqrt{2}\\
 1&amp;\sqrt{2}&amp;2&amp;\sqrt{2}&amp;0
 \end{array} \right ].
-\]</span>
-Using <a href="2-1-classical-mds.html#eq:defA">(2.2)</a> first to calculate <span class="math inline">\(\mathbf A\)</span>, and then using <a href="2-1-classical-mds.html#eq:defB">(2.3)</a> to calculate <span class="math inline">\(\mathbf B\)</span>, we find that
+\]</span></p>
+<p>The aim of MDS is to construct a set of <span class="math inline">\(5\)</span> points in <span class="math inline">\(\mathbb{R}^k\)</span> for some choice of <span class="math inline">\(k\)</span>, that have interpoint distances given by <span class="math inline">\(\mathbf D\)</span>.</p>
+<p>Using <a href="2-1-classical-mds.html#eq:defA">(2.3)</a> first to calculate <span class="math inline">\(\mathbf A\)</span>, and then using <a href="2-1-classical-mds.html#eq:defB">(2.2)</a> to calculate <span class="math inline">\(\mathbf B\)</span>, we find that
 <span class="math display">\[
 \mathbf A=-\left [ \begin{array}{ccccc}
 0&amp;0.5&amp;0.5&amp;0.5&amp;0.5\\
@@ -313,73 +305,74 @@ and
 \end{array} \right ].
 \]</span></p>
 <p>In R we can compute these as follows:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb57-2" data-line-number="2">              <span class="dv">1</span>,<span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb57-3" data-line-number="3">              <span class="dv">0</span>,<span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb57-4" data-line-number="4">              <span class="dv">-1</span>,<span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb57-5" data-line-number="5">              <span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>), <span class="dt">nc=</span><span class="dv">2</span>, <span class="dt">byrow=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb57-6" data-line-number="6">D &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(X, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T))</a>
-<a class="sourceLine" id="cb57-7" data-line-number="7">A &lt;-<span class="st"> </span><span class="op">-</span>D<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span> </a>
-<a class="sourceLine" id="cb57-8" data-line-number="8"><span class="co"># note D^2 does element wise operations, different to D%*%D</span></a>
-<a class="sourceLine" id="cb57-9" data-line-number="9">H &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="dv">5</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dt">nc=</span><span class="dv">1</span>)<span class="op">%*%</span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dt">nr=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb57-10" data-line-number="10">B &lt;-<span class="st"> </span>H<span class="op">%*%</span><span class="st"> </span>A<span class="op">%*%</span>H <span class="co">#check this matches  (H %*% X) %*% t(H %*% X)</span></a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">              <span class="dv">1</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">              <span class="dv">0</span>,<span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">              <span class="dv">-1</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">              <span class="dv">0</span>,<span class="op">-</span><span class="dv">1</span>), <span class="dt">nc=</span><span class="dv">2</span>, <span class="dt">byrow=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">D &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(X, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T))</a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">A &lt;-<span class="st"> </span><span class="op">-</span>D<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span> </a>
+<a class="sourceLine" id="cb15-8" data-line-number="8"><span class="co"># note D^2 does element wise operations, different to D%*%D</span></a>
+<a class="sourceLine" id="cb15-9" data-line-number="9">H &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="dv">5</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span> <span class="op">*</span><span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dt">nc=</span><span class="dv">1</span>)<span class="op">%*%</span><span class="kw">matrix</span>(<span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="dt">nr=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb15-10" data-line-number="10">B &lt;-<span class="st"> </span>H<span class="op">%*%</span><span class="st"> </span>A<span class="op">%*%</span>H <span class="co">#check this matches  (H %*% X) %*% t(H %*% X)</span></a></code></pre></div>
 <p>You should check that <span class="math inline">\(\mathbf H\mathbf A\mathbf H\)</span> is the same as <span class="math inline">\((\mathbf H\mathbf X)(\mathbf H\mathbf X)^\top\)</span>, thus verifying part 1. of Theorem <a href="2-1-classical-mds.html#thm:five1">2.1</a>. Note that there will be very small differences (<span class="math inline">\(\sim 10^{-16}\)</span>) due to numerical errors.</p>
-<p>Can we now find a set of <span class="math inline">\(5\)</span> points in <span class="math inline">\(\mathbb{R}^2\)</span> that have a Euclidean distance matrix <span class="math inline">\(\mathbf D\)</span> if we are only given the matrix <span class="math inline">\(\mathbf B\)</span>?</p>
-<ul>
-<li>Yes, this is what part 2. of the Theorem gives us.</li>
-</ul>
+<p>How do we construct, using only the information in <span class="math inline">\(\mathbf B\)</span>, a set of <span class="math inline">\(5\)</span> points that have Euclidean interpoint distances given by <span class="math inline">\(\mathbf D\)</span>?</p>
 <p>Firstly, we need to compute the spectral decomposition of <span class="math inline">\(\mathbf B\)</span>. The eigenvalues of <span class="math inline">\(\mathbf B\)</span> are
 <span class="math display">\[
 \lambda_1=\lambda_2=2 \qquad \text{and} \qquad \lambda_3=\lambda_4=\lambda_5=0.
-\]</span>
-Note that, as expected from Proposition <a href="2-1-classical-mds.html#thm:five1">2.1</a>, <span class="math inline">\(\mathbf B\)</span> is positive semi-definite because it is a Euclidean
-distance matrix.</p>
-<p>Because we have a repeated eigenvalue (<span class="math inline">\(\lambda=2\)</span> has <em>multiplicity</em> 2), the eigenspace associated with <span class="math inline">\(\lambda=2\)</span> is a two dimensional space, and so there are many pairs of mutually orthogonal unit eigenvectors spanning this eigenspace (i.e., there is not a unique pair of eigenvectors). The sparsest choice (i.e. the one with most zero elements) is
+\]</span></p>
+<p>Thus <span class="math inline">\(\mathbf B\)</span> is positive semi-definite, and so
+by Theorem <a href="2-1-classical-mds.html#thm:five1">2.1</a>, <span class="math inline">\(\mathbf D\)</span> must be a Euclidean distance matrix. This isn’t a surprise to us because we created <span class="math inline">\(\mathbf D\)</span> ourselves in this case.</p>
+<p>There are two positive eigenvalues, and so <span class="math inline">\(\mathbf B\)</span> has rank 2, and the theorem tells us we can construct points <span class="math inline">\(\mathbf x_i \in \mathbb{R}^2\)</span>, i.e., points in 2-dimensional space.</p>
+<p>To find the points we need to find the matrix of orthogonal unit eigenvectors of <span class="math inline">\(\mathbf B\)</span>, which we denoted as <span class="math inline">\(\mathbf U\)</span> in the theorem.
+Because we have a repeated eigenvalue (<span class="math inline">\(\lambda=2\)</span> has <em>multiplicity</em> 2), the eigenspace associated with <span class="math inline">\(\lambda=2\)</span> is a two dimensional space.
+There is not a unique pair of orthogonal unit eigenvectors spanning this space (there are an infinite number of possible pairs).
+The sparsest choice (i.e. the one with most zero elements) is
 <span class="math display">\[
 \mathbf u_1= \begin{pmatrix}0 \\ 0 \\ -\frac{1}{\sqrt{2}} \\ 0 \\ -\frac{1}{\sqrt{2}} \end{pmatrix} \qquad
-\text{and} \qquad \mathbf q_2 =\begin{pmatrix}0 \\ -\frac{1}{\sqrt{2}} \\ 0 \\ \frac{1}{\sqrt{2}}\\ 0 \end{pmatrix}.
+\text{and} \qquad \mathbf u_2 =\begin{pmatrix}0 \\ -\frac{1}{\sqrt{2}} \\ 0 \\ \frac{1}{\sqrt{2}}\\ 0 \end{pmatrix}.
 \]</span></p>
 <p>Note that if we compute these in R, you may well get different eigenvectors, but the subspace described by the pair of vectors will be the same.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">eigen</span>(B)<span class="op">$</span>values <span class="co">#using B = H%*% A%*%H </span></a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">eigen</span>(B)<span class="op">$</span>values <span class="co">#using B = H%*% A%*%H </span></a></code></pre></div>
 <pre><code>## [1]  2.000000e+00  2.000000e+00  1.207037e-15  3.331224e-16 -2.775558e-17</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">eigen</span>(B)<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">eigen</span>(B)<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
 <pre><code>##            [,1]       [,2]
 ## [1,]  0.0000000  0.0000000
 ## [2,] -0.6916609  0.1469869
 ## [3,] -0.1469869 -0.6916609
 ## [4,]  0.6916609 -0.1469869
 ## [5,]  0.1469869  0.6916609</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">B2 &lt;-<span class="st"> </span>(H <span class="op">%*%</span><span class="st"> </span>X) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(H <span class="op">%*%</span><span class="st"> </span>X) <span class="co"># alternative way of computing B</span></a>
-<a class="sourceLine" id="cb62-2" data-line-number="2"><span class="kw">eigen</span>(B2)<span class="op">$</span>values</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">B2 &lt;-<span class="st"> </span>(H <span class="op">%*%</span><span class="st"> </span>X) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(H <span class="op">%*%</span><span class="st"> </span>X) <span class="co"># alternative way of computing B</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw">eigen</span>(B2)<span class="op">$</span>values</a></code></pre></div>
 <pre><code>## [1] 2.000000e+00 2.000000e+00 1.110223e-15 1.110223e-15 0.000000e+00</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="kw">eigen</span>(B2)<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">eigen</span>(B2)<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
 <pre><code>##            [,1]       [,2]
 ## [1,]  0.0000000  0.0000000
 ## [2,]  0.0000000 -0.7071068
 ## [3,] -0.7071068  0.0000000
 ## [4,]  0.0000000  0.7071068
 ## [5,]  0.7071068  0.0000000</code></pre>
-<p>We can compute the coordinates of five points in <span class="math inline">\(\mathbb{R}^2\)</span> which have Euclidean distance matrix, <span class="math inline">\(\mathbf D,\)</span> by
+<p>We can now compute the coordinates of five points in <span class="math inline">\(\mathbb{R}^2\)</span> which have Euclidean distance matrix, <span class="math inline">\(\mathbf D,\)</span> by
 <span class="math display">\[
-\mathbf Q\boldsymbol \Lambda^{1/2}=\sqrt{2}[\mathbf q_1 , \mathbf q_2].\]</span></p>
+\mathbf U\boldsymbol \Lambda^{1/2}=\sqrt{2}[\mathbf u_1 , \mathbf u_2].\]</span></p>
 <p>Note again that these coordinates are not unique as any rotation or translation of them will have the same distance matrix. In particular, when doing computations in R we may find different answers depending upon how we do the computation. So for example, if we use the eigendecompostion of <span class="math inline">\(\mathbf B= \mathbf H\mathbf A\mathbf H\)</span></p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">B.eig &lt;-<span class="st"> </span><span class="kw">eigen</span>(B)</a>
-<a class="sourceLine" id="cb66-2" data-line-number="2">Y &lt;-<span class="kw">sqrt</span>(B.eig<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])<span class="op">*</span>B.eig<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">B.eig &lt;-<span class="st"> </span><span class="kw">eigen</span>(B)</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">Y &lt;-<span class="kw">sqrt</span>(B.eig<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])<span class="op">*</span>B.eig<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
 <p>we find
 <span class="math display">\[\begin{pmatrix}0&amp;0 \\-0.978&amp;0.208 \\-0.208&amp;-0.978 \\0.978&amp;-0.208 \\0.208&amp;0.978 \\\end{pmatrix}.\]</span>
-Where as if we use the eigen decomposition of <span class="math inline">\((\mathbf H\mathbf H)(\mathbf H\mathbf X)^\top\)</span> we find a different set of points:</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">B2.eig &lt;-<span class="st"> </span><span class="kw">eigen</span>(B2)</a>
-<a class="sourceLine" id="cb67-2" data-line-number="2">Y2 &lt;-<span class="kw">sqrt</span>(B2.eig<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])<span class="op">*</span>B2.eig<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
+Where as if we use the eigen decomposition of <span class="math inline">\((\mathbf H\mathbf X)(\mathbf H\mathbf X)^\top\)</span> we find a different set of points:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">B2.eig &lt;-<span class="st"> </span><span class="kw">eigen</span>(B2)</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">Y2 &lt;-<span class="kw">sqrt</span>(B2.eig<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])<span class="op">*</span>B2.eig<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a></code></pre></div>
 <p><span class="math display">\[\begin{pmatrix}0&amp;0 \\0&amp;-1 \\-1&amp;0 \\0&amp;1 \\1&amp;0 \\\end{pmatrix}.\]</span></p>
 <p>The distance matrices for both sets of points are equal to <span class="math inline">\(\mathbf D\)</span></p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">signif</span>(<span class="kw">dist</span>(Y, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T),<span class="dv">2</span>) <span class="co"># should agree with D.</span></a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">signif</span>(<span class="kw">dist</span>(Y, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T),<span class="dv">2</span>) <span class="co"># should agree with D.</span></a></code></pre></div>
 <pre><code>##     1   2   3   4   5
 ## 1 0.0 1.0 1.0 1.0 1.0
 ## 2 1.0 0.0 1.4 2.0 1.4
 ## 3 1.0 1.4 0.0 1.4 2.0
 ## 4 1.0 2.0 1.4 0.0 1.4
 ## 5 1.0 1.4 2.0 1.4 0.0</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw">signif</span>(<span class="kw">dist</span>(Y2, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T),<span class="dv">2</span>) <span class="co"># should agree with D.</span></a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">signif</span>(<span class="kw">dist</span>(Y2, <span class="dt">upper=</span>T, <span class="dt">diag=</span>T),<span class="dv">2</span>) <span class="co"># should agree with D.</span></a></code></pre></div>
 <pre><code>##     1   2   3   4   5
 ## 1 0.0 1.0 1.0 1.0 1.0
 ## 2 1.0 0.0 1.4 2.0 1.4
@@ -403,30 +396,45 @@ HX.svd$u%*% diag(HX.svd$d)
 ```
 -->
 <p>Finally, note that as always, there is an R command that will do all of this work for us</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">Y.mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(D, <span class="dt">eig=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">Y.mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(D, <span class="dt">eig=</span><span class="ot">TRUE</span>) <span class="co">#Classical MultiDimensional Scaling - cmdscale</span></a></code></pre></div>
 <p>giving the set of points
-<span class="math display">\[\begin{pmatrix}0&amp;0 \\1&amp;0 \\0&amp;-1 \\-1&amp;0 \\0&amp;1 \\\end{pmatrix}\]</span></p>
+<span class="math display">\[\begin{pmatrix}0&amp;0 \\1&amp;0 \\0&amp;-1 \\-1&amp;0 \\0&amp;1 \\\end{pmatrix}.\]</span></p>
 <p>If we plot the original data points <span class="math inline">\(\mathbf X\)</span>, along with the three sets of reconstructed data points <code>Y</code>, <code>Y2</code>, and <code>Y.mds</code> we can see that they are essentially the same, apart from being rotatated or reordered.</p>
 <p><img src="06-mds_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>In the Exercises you will be asked to verify that there is an orthogonal transformation which maps the original five points onto the set of five reconstructed points.</p>
 </div>
-<div id="example-2" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Example 2</h3>
-<p>Let’s now look at a case for which <span class="math inline">\(\mathbf B\)</span> isn’t positive dinite. We’ll create this by modifying the distance matrix we had before:</p>
+<div id="example-2" class="section level4">
+<h4><span class="header-section-number">2.1.0.1</span> Example 2</h4>
+<p>If we apply the <code>cmdscale</code> to the distances between UK cities from the introduction, we get the ‘coordinates’ shown below.</p>
+<p><img src="06-mds_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>This ‘map’ is essentially correct, but it is rotated <span class="math inline">\(90^\circ\)</span> and the ‘coordinates’ have mean zero.</p>
+</div>
+<div id="non-euclidean-distance-matrices" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Non-Euclidean distance matrices</h3>
+<p>Proposition <a href="2-1-classical-mds.html#thm:five1">2.1</a> may be useful even if <span class="math inline">\({\mathbf D}\)</span> is not a <em>Euclidean</em> distance matrix (in which case <span class="math inline">\(\mathbf B\)</span> will have some negative eigenvalues). For example, this can occur if the distances between points is measured with errror.</p>
+<p>Instead of using <span class="math inline">\(\mathbf B\)</span> in Proposition <a href="2-1-classical-mds.html#thm:five1">2.1</a> we can use its positive part. If <span class="math inline">\(\mathbf B\)</span> has spectral decomposition <span class="math inline">\(\sum_{j=1}^p \lambda_j \mathbf u_j \mathbf u_j^\top\)</span>, then its positive definite part is defined by
+<span class="math display">\[
+\mathbf B_{\text{pos}}=\sum_{j: \, \lambda_j&gt;0} \lambda_j \mathbf u_j \mathbf u_j^\top.
+\]</span>
+In other words, we sum over those <span class="math inline">\(j\)</span> such that <span class="math inline">\(\lambda_j\)</span> is positive.</p>
+<p>Then <span class="math inline">\(\mathbf B_{\text{pos}}\)</span> is positive semi-definite and so we can use part 2. of Theorem <a href="2-1-classical-mds.html#thm:five1">2.1</a> to determine a Euclidean configuration which has centred inner-product matrix <span class="math inline">\(\mathbf B_{\text{pos}}\)</span>. Then, provided the negative eigenvalues are small in absolute value relative to the positive eigenvalues, the inter-point distances of the new points in Euclidean space should provide a good approximation to the original inter-point distances <span class="math inline">\((d_{ij})\)</span>.</p>
+<div id="example-3" class="section level4">
+<h4><span class="header-section-number">2.1.1.1</span> Example 3</h4>
+<p>Let’s now look at a case for which <span class="math inline">\(\mathbf B\)</span> isn’t positive difinite. We’ll create this by modifying the distance matrix we had before:</p>
 <p><span class="math display">\[\mathbf D_2 = \begin{pmatrix}0&amp;0.5&amp;1&amp;1&amp;1 \\0.5&amp;0&amp;1.41&amp;2&amp;1.41 \\1&amp;1.41&amp;0&amp;1.41&amp;2 \\1&amp;2&amp;1.41&amp;0&amp;1.41 \\1&amp;1.41&amp;2&amp;1.41&amp;0 \\\end{pmatrix}.\]</span>
 This is a distance matrix, but is it a <em>Euclidean</em> distance matrix? I.e., is there a set of vectors <span class="math inline">\(\mathbf x_1, \ldots, \mathbf x_5\)</span> which have Euclidean distances between them given by <span class="math inline">\(\mathbf D_2\)</span>?</p>
 <p>If we look at the eigenvalues of the centred inner-product matrix <span class="math inline">\(\mathbf B\)</span> associated with <span class="math inline">\(\mathbf D_2\)</span>, then we find that it has negative eigenvalues, and is thus not positive semi-definite. Thus by Theorem <a href="2-1-classical-mds.html#thm:five1">2.1</a> <span class="math inline">\(\mathbf D_2\)</span> is not a <em>Euclidean</em> distance matrix.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1">D2 &lt;-<span class="st"> </span>D</a>
-<a class="sourceLine" id="cb73-2" data-line-number="2">D2[<span class="dv">2</span>,<span class="dv">1</span>]&lt;-<span class="fl">0.5</span></a>
-<a class="sourceLine" id="cb73-3" data-line-number="3">D2[<span class="dv">1</span>,<span class="dv">2</span>]&lt;-D2[<span class="dv">2</span>,<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb73-4" data-line-number="4">A2 &lt;-<span class="st"> </span><span class="op">-</span>D2<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span> </a>
-<a class="sourceLine" id="cb73-5" data-line-number="5"><span class="co"># note D^2 does element wise operations, different to D%*%D</span></a>
-<a class="sourceLine" id="cb73-6" data-line-number="6">B2 &lt;-<span class="st"> </span>H<span class="op">%*%</span><span class="st"> </span>A2<span class="op">%*%</span>H <span class="co">#check this matches  (H %*% X) %*% t(H %*% X)</span></a>
-<a class="sourceLine" id="cb73-7" data-line-number="7"><span class="kw">eigen</span>(B2)<span class="op">$</span>values</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">D2 &lt;-<span class="st"> </span>D</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">D2[<span class="dv">2</span>,<span class="dv">1</span>]&lt;-<span class="fl">0.5</span></a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">D2[<span class="dv">1</span>,<span class="dv">2</span>]&lt;-D2[<span class="dv">2</span>,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb31-4" data-line-number="4">A2 &lt;-<span class="st"> </span><span class="op">-</span>D2<span class="op">^</span><span class="dv">2</span><span class="op">/</span><span class="dv">2</span> </a>
+<a class="sourceLine" id="cb31-5" data-line-number="5"><span class="co"># note D^2 does element wise operations, different to D%*%D</span></a>
+<a class="sourceLine" id="cb31-6" data-line-number="6">B2 &lt;-<span class="st"> </span>H<span class="op">%*%</span><span class="st"> </span>A2<span class="op">%*%</span>H <span class="co">#check this matches  (H %*% X) %*% t(H %*% X)</span></a>
+<a class="sourceLine" id="cb31-7" data-line-number="7"><span class="kw">eigen</span>(B2)<span class="op">$</span>values</a></code></pre></div>
 <pre><code>## [1]  2.026016e+00  2.000000e+00  1.004310e-01 -7.216450e-16 -2.764470e-01</code></pre>
 <p>We can still use classical multidimensional scaling to find a set of points <span class="math inline">\(\mathbf x_1, \ldots, \mathbf x_5\)</span> that have distances approximately given by <span class="math inline">\(\mathbf D_2\)</span>.
 <code>cmdscale</code> allows us to specify the dimension of the points <span class="math inline">\(\mathbf x_i\)</span>. If we pick <span class="math inline">\(\dim(\mathbf x)=2\)</span> then it gives us the set of points</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">cmdscale</span>(D2, <span class="dt">k=</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">cmdscale</span>(D2, <span class="dt">k=</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>##          [,1]          [,2]
 ## 1 -0.13881300  1.449541e-15
 ## 2 -0.97216111  1.011091e-14
@@ -435,22 +443,114 @@ This is a distance matrix, but is it a <em>Euclidean</em> distance matrix? I.e.,
 ## 5  0.04112656  1.000000e+00</code></pre>
 <p>which have a distance matrix that approximates <span class="math inline">\(\mathbf D_2\)</span>, but does not equal it. By using a different number of dimensions, we may be able to get a set of points have a distance matrix closer to <span class="math inline">\(\mathbf D\)</span>, but we will not be able to find a set of <span class="math inline">\(5\)</span> points that have a distance matrix exactly equal to <span class="math inline">\(\mathbf D_2\)</span>.</p>
 <p>To do this ourselves (i.e., not using <code>cmdscale</code>) we can use the commands</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1">U &lt;-<span class="st"> </span><span class="kw">eigen</span>(B2)<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb77-2" data-line-number="2">Lambda_sqrt &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="kw">eigen</span>(B2)<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb77-3" data-line-number="3">U <span class="op">%*%</span><span class="st"> </span>Lambda_sqrt</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">U &lt;-<span class="st"> </span><span class="kw">eigen</span>(B2)<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">Lambda_sqrt &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="kw">eigen</span>(B2)<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">U <span class="op">%*%</span><span class="st"> </span>Lambda_sqrt</a></code></pre></div>
 <pre><code>##             [,1]          [,2]
 ## [1,] -0.19758391 -7.490239e-16
 ## [2,] -1.38375651 -5.393269e-15
 ## [3,]  0.05853879 -1.414214e+00
 ## [4,]  1.46426283  5.197828e-15
 ## [5,]  0.05853879  1.414214e+00</code></pre>
-<p><img src="06-mds_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-</div>
-<div id="example-3" class="section level3">
-<h3><span class="header-section-number">2.1.3</span> Example 3</h3>
-<p>Finally, if we apply the <code>cmdscale</code> to the distances between UK cities from the introduction, we get the ‘coordinates’ shown below.</p>
 <p><img src="06-mds_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<p>This ‘map’ is essentially correct, but it is rotated <span class="math inline">\(90^\circ\)</span>.</p>
+</div>
+</div>
+<div id="principal-coordinate-analysis" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Principal Coordinate Analysis</h3>
+<p>Theorem <a href="2-1-classical-mds.html#thm:five1">2.1</a> tells us that if the centred inner-product matrix
+<span class="math inline">\(\mathbf B\)</span> is positive semi-definite with rank <span class="math inline">\(k\)</span>, then we can find a set of <span class="math inline">\(n\)</span> points <span class="math inline">\(\mathbf x_1,\ldots, \mathbf x_n \in \mathbb{R}^k\)</span> that have distance matrix <span class="math inline">\(\mathbf D\)</span>. However, if <span class="math inline">\(k\)</span> is large this may not be much use to us. The most common motivation for doing MDS is in order to find a way to visualise a dataset and to understand its structure. Thus, we are usually only interested in finding a set of points in <span class="math inline">\(\mathbb{R}^2\)</span> or <span class="math inline">\(\mathbb{R}^3\)</span> that have a distance matrix approximately equal to <span class="math inline">\(\mathbf D\)</span> so that we can visualize the points and look for patterns.</p>
+<p>Classical MDS (sometimes also called Principal Coordinate Analysis (PCoA)<!--or Torgerson Scaling-->) tries to find a set of points that has approximately the same inner-product matrix, i.e., the same similarities as the original data. So we want to find <span class="math inline">\(\mathbf z_1, \ldots, \mathbf z_n \in \mathbb{R}^r\)</span> (where typically <span class="math inline">\(r=2\)</span>) which have inner-product <span class="math inline">\(\mathbf B\)</span>.</p>
+<p>We can choose the <span class="math inline">\(\mathbf z_i\)</span> to have sample mean <span class="math inline">\(\boldsymbol 0\)</span>. Then the corresponding inner product matrix is
+<span class="math display">\[\mathbf B_\mathbf z= \mathbf Z\mathbf Z^\top \qquad \mbox{ where } \qquad \mathbf Z= 
+\begin{pmatrix} - &amp; \mathbf z_1^\top &amp;-\\
+ - &amp; \mathbf z_2^\top&amp; -\\
+ \vdots &amp; \vdots &amp; \vdots\\
+  - &amp; \mathbf z_n^\top  &amp;-\\
+\end{pmatrix}.\]</span></p>
+<p>We want to choose <span class="math inline">\(\mathbf Z\)</span> so that <span class="math inline">\(\mathbf Z\mathbf Z^\top \approx \mathbf B\)</span>. One way to judge close is by looking at the sum of square differences</p>
+<p><span class="math display">\[\sum_{i=1}^n\sum_{j=1}^n (B_{ij}-\mathbf z_i^\top \mathbf z_j)^2 = ||\mathbf B- \mathbf Z\mathbf Z^\top||^2_F\]</span></p>
+<p>Note that if <span class="math inline">\(\mathbf Z\)</span> is <span class="math inline">\(n \times r\)</span> then <span class="math inline">\(\mathbf Z\mathbf Z^\top\)</span> is a rank <span class="math inline">\(r\)</span> matrix. If <span class="math inline">\(\mathbf B\)</span>, which is a <span class="math inline">\(n\times n\)</span> symmetric matrix, has spectral decomposition
+<span class="math inline">\(\mathbf B= \mathbf U\boldsymbol \Lambda\mathbf U^\top\)</span>, then we know from the Eckart-Young-Mirsky Theorem (<a href="1-5-low-rank-approximation.html#thm:Eckart-Young">1.1</a>) that the best rank <span class="math inline">\(r\)</span> approximation to <span class="math inline">\(\mathbf B\)</span> (in terms of the Frobenius norm <span class="math inline">\(||\cdot||_F\)</span>) is
+<span class="math display">\[\mathbf B_r = \mathbf U_r \boldsymbol \Lambda_r \mathbf U_r^\top\]</span>
+where
+<span class="math display">\[\mathbf U_r = \begin{pmatrix} |&amp;\ldots &amp;|\\
+\mathbf u_1 &amp;\ldots &amp; \mathbf u_r\\
+|&amp;\ldots &amp;|\end{pmatrix} \quad\mbox{ and }\quad \boldsymbol \Lambda_r = \operatorname{diag}(\lambda_1, \ldots, \lambda_r)\]</span>
+are the truncated eigenvector and eigenvalue matrices.
+If we let
+<span class="math display">\[\mathbf Z= \mathbf U_r \boldsymbol \Lambda_r^{\frac{1}{2}}\]</span>
+then this gives us the set of <span class="math inline">\(n\)</span> points in <span class="math inline">\(\mathbb{R}^r\)</span> that give the best approximation to the inner product matrix <span class="math inline">\(\mathbf B\)</span>. These are known as the r leading <strong>principal coordinates</strong> of the data.</p>
+<p>So to summarize, classical MDS works by transforming a distance matrix <span class="math inline">\(\mathbf D\)</span> into an inner product matrix <span class="math inline">\(\mathbf B\)</span>, and then finding a truncated spectral decomposition for <span class="math inline">\(\mathbf B\)</span>.</p>
+<p><span class="math display">\[\mathbf D\longrightarrow \mathbf B\longrightarrow \mathbf Z=\mathbf U\boldsymbol \Lambda^{\frac{1}{2}}\]</span></p>
+<div id="link-with-pca" class="section level4">
+<h4><span class="header-section-number">2.1.2.1</span> Link with PCA</h4>
+<p>Although MDS only requires either a distance matrix <span class="math inline">\(\mathbf D\)</span> or similarity matrix as input, sometimes we will have access to the data matrix <span class="math inline">\(\mathbf X\)</span> and will want to reduce the dimension and
+find a set of points in <span class="math inline">\(\mathbb{R}^2\)</span> that have approximately the same inter-point distances as <span class="math inline">\(\mathbf X\)</span>. In this case, it is easy to see that classical MDS is the same as PCA.</p>
+<p>In PCA, we find the SVD of <span class="math inline">\(\mathbf H\mathbf X= \mathbf U\boldsymbol{\Sigma}\mathbf V^\top\)</span> and then if we want a set of points in <span class="math inline">\(r\)</span> dimensions, we use the first <span class="math inline">\(r\)</span> principal component scores
+<span class="math display">\[\mathbf Y_r=\mathbf U_{r}\boldsymbol{\Sigma}_r.\]</span>
+In MDS, we work with the centred Gram matrix
+<span class="math inline">\(\mathbf B=\mathbf H\mathbf X\mathbf X^\top \mathbf H\)</span>. Using the SVD for <span class="math inline">\(\mathbf H\mathbf X\)</span> we can see that this has spectral decomposition
+<span class="math display">\[\mathbf H\mathbf X\mathbf X^\top \mathbf H= \mathbf U\boldsymbol{\Sigma}^2 \mathbf U^\top\]</span>
+where <span class="math inline">\(\boldsymbol{\Sigma}^2 =\boldsymbol \Lambda\)</span> is the diagonal matrix of eigenvalues of <span class="math inline">\(\mathbf B\)</span>.<br />
+Thus we can see that the principal coordinates are
+<span class="math display">\[\mathbf Z= \mathbf U\boldsymbol \Lambda^\frac{1}{2} = \mathbf U\boldsymbol{\Sigma}=\mathbf Y.\]</span></p>
+
+<div class="proposition">
+<span id="prp:mds0" class="proposition"><strong>Proposition 2.1  </strong></span> Let <span class="math inline">\(\mathbf X\)</span> be an <span class="math inline">\(n \times p\)</span> data matrix with associated Euclidean distance matrix
+<span class="math display">\[
+d_{ij}^2 = (\mathbf x_i -\mathbf x_j)^\top(\mathbf x_i -\mathbf x_j),
+\]</span>
+where <span class="math inline">\(\mathbf x_1^\top, \ldots , \mathbf x_n^\top\)</span> are the rows of <span class="math inline">\(\mathbf X\)</span>. Then the centred PC scores based on the first <span class="math inline">\(k\)</span> principal components of <span class="math inline">\(\mathbf X\)</span> are equal to the principal coordinates of the <span class="math inline">\(n\)</span> points in <span class="math inline">\(k\)</span> dimensions based on the distance matrix <span class="math inline">\(\mathbf D\)</span>.
+</div>
+
+<!--In MDS, we work with the 
+
+ link with PCA 
+
+
+
+tells us $k$ dimensions. But if $k>2$ then it doesn't really help us. So we can always just do $k=2$. 
+
+
+We can use the same idea if we're given X in some high dimensional space, and try to visualize it in a lower dimensional soace. Sound familiar? It should, this is what we did in PCA. MDS turns out to be the same.
+
+Sometimes its useful to visualize points
+
+
+If we know $X$ then do SVD of $HX$.
+
+
+See 
+https://stats.stackexchange.com/questions/14002/whats-the-difference-between-principal-component-analysis-and-multidimensional
+
+Starting with a distance matrix $\bD$, and using the matrix $\bB$, we now show how to calculate exact or approximate Euclidean coordinates for the $n$ objects under study.  We already know from Proposition \@ref(thm:five1)  how to do this when the distance matrix $\bD$ is Euclidean, but we will see now that this construction works more generally.  Moreover, there is a very close connection with principal components analysis.
+
+
+- **Step 1**: Given a distance matrix $\stackrel{n \times n}{\bD}$, calculate $\bA$ according to \@ref(eq:defA).
+
+- **Step 2**:  Calculate $\bB=(b_{ij})_{i,j=1}^n$ in \@ref(eq:defB) using
+$$
+b_{ij}=a_{ij}-\bar{a}_{i+}-\bar{a}_{+j}+\bar{a}_{++}, \qquad i,j=1, \ldots ,n,
+$$
+where
+$$
+\bar{a}_{i+}=n^{-1}\sum_{j=1}^n a_{ij}, \quad \bar{a}_{+j}=n^{-1}\sum_{i=1}^n a_{ij}\quad
+\text{and} \quad \bar{a}_{++}=n^{-2}\sum_{i,j=1}^n a_{ij}.
+$$
+
+- **Step 3**:  Assume that the $k$ largest eigenvalues of $\bB=(b_{ij})_{i,j=1}^n$, $\lambda_1 > \lambda_2 > \cdots > \lambda_k$ are all positive and have associated unit eigenvectors $\bv_1, \ldots , \bv_k$.
+
+- **Step 4**: Define $\bV=[\bv_1 , \ldots , \bv_k]$ and
+$$
+\bX \equiv [\bx_1, \ldots , \bx_n]^\top = \bV\bLambda^{1/2}=[\sqrt{\lambda_1}\bv_1, \ldots, \sqrt{\lambda_k}\bv_k].
+$$
+
+Then $\bx_i \in \mathbb{R}^k$, $i=1, \ldots, n$, are the principal coordinates of the $n$ points in $k$ dimensions.
+
+It turns out that there is a very close connection between principal coordinate and principal components.
+
+-->
+</div>
 </div>
 </div>
             </section>
@@ -459,7 +559,7 @@ This is a distance matrix, but is it a <em>Euclidean</em> distance matrix? I.e.,
         </div>
       </div>
 <a href="2-mds.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="2-2-principal-coordinates.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2-2-properties.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.4 Computer tasks | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.4 Computer tasks | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -160,13 +160,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-mds.html"><a href="2-mds.html"><i class="fa fa-check"></i><b>2</b> Multidimensional Scaling (MDS)</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html"><i class="fa fa-check"></i><b>2.1</b> Classical MDS</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-1"><i class="fa fa-check"></i><b>2.1.1</b> Example 1</a></li>
-<li class="chapter" data-level="2.1.2" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-2"><i class="fa fa-check"></i><b>2.1.2</b> Example 2</a></li>
-<li class="chapter" data-level="2.1.3" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-3"><i class="fa fa-check"></i><b>2.1.3</b> Example 3</a></li>
+<li class="chapter" data-level="2.1.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>2.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-3"><i class="fa fa-check"></i><b>2.1.2</b> Example 3</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="2-2-principal-coordinates.html"><a href="2-2-principal-coordinates.html"><i class="fa fa-check"></i><b>2.2</b> Principal Coordinates</a></li>
 <li class="chapter" data-level="2.3" data-path="2-3-properties.html"><a href="2-3-properties.html"><i class="fa fa-check"></i><b>2.3</b> Properties</a></li>
-<li class="chapter" data-level="2.4" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html"><i class="fa fa-check"></i><b>2.4</b> Similarity measures</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html"><i class="fa fa-check"></i><b>2.4</b> Similarity measures</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html#example-4"><i class="fa fa-check"></i><b>2.4.1</b> Example</a></li>
+</ul></li>
 <li class="chapter" data-level="2.5" data-path="2-5-exercises-1.html"><a href="2-5-exercises-1.html"><i class="fa fa-check"></i><b>2.5</b> Exercises</a></li>
 <li class="chapter" data-level="2.6" data-path="2-6-computer-tasks.html"><a href="2-6-computer-tasks.html"><i class="fa fa-check"></i><b>2.6</b> Computer Tasks</a></li>
 </ul></li>
@@ -225,7 +226,7 @@ We will focus on the 5 continuous variables, all measured in mm:</p>
 <p>The sample size is <span class="math inline">\(200\)</span>.</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
 <a class="sourceLine" id="cb54-2" data-line-number="2">?crabs <span class="co"># read the help page to find out about the dataset</span></a>
-<a class="sourceLine" id="cb54-3" data-line-number="3">X=crabs[<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>]     <span class="co"># construct data matrix X with columns FL, RW, CL, CW, BD</span></a></code></pre></div>
+<a class="sourceLine" id="cb54-3" data-line-number="3">X=crabs[,<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>]     <span class="co"># construct data matrix X with columns FL, RW, CL, CW, BD</span></a></code></pre></div>
 <ul>
 <li>Carry out PCA on the data in <span class="math inline">\(X\)</span> using the covariance matrix, including obtaining a scree plot and plotting the PC scores.</li>
 </ul>
@@ -271,7 +272,7 @@ You can generate a random orthogonal matrix using the following commands</p></li
 <a href="https://www.rotowire.com/soccer/league-table.php?season=2018">https://www.rotowire.com/soccer/league-table.php?season=2018</a>. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.</p>
 <ul>
 <li><p>Load the data into R using the command <code>read.csv</code>. Note that you may need to manually delete the first row of the csv file before doing this. (<em>I haven’t given you the command here, as learning how to do this yourself is important</em>).</p></li>
-<li><p>Repeat the analysis from section <a href="1-2-pca-a-formal-description-with-proofs.html#pca:football">1.2.2</a>. Does the meaning of the principal components change? Was the 2018-19 league season notable different to the 2019-20 season (which is the season analysed in the notes)?</p></li>
+<li><p>Repeat the analysis from section <a href="1-2-pca-a-formal-description-with-proofs.html#pca:football">1.2.2</a>. Does the meaning of the principal components change? Was the 2018-19 league season notably different to the 2019-20 season (which is the season analysed in the notes)?</p></li>
 </ul>
 </div>
 </div>

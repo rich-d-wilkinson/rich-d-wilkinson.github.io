@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.2 PCA: a formal description with proofs | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.2 PCA: a formal description with proofs | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -160,13 +160,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-mds.html"><a href="2-mds.html"><i class="fa fa-check"></i><b>2</b> Multidimensional Scaling (MDS)</a><ul>
 <li class="chapter" data-level="2.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html"><i class="fa fa-check"></i><b>2.1</b> Classical MDS</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-1"><i class="fa fa-check"></i><b>2.1.1</b> Example 1</a></li>
-<li class="chapter" data-level="2.1.2" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-2"><i class="fa fa-check"></i><b>2.1.2</b> Example 2</a></li>
-<li class="chapter" data-level="2.1.3" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-3"><i class="fa fa-check"></i><b>2.1.3</b> Example 3</a></li>
+<li class="chapter" data-level="2.1.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>2.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#example-3"><i class="fa fa-check"></i><b>2.1.2</b> Example 3</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="2-2-principal-coordinates.html"><a href="2-2-principal-coordinates.html"><i class="fa fa-check"></i><b>2.2</b> Principal Coordinates</a></li>
 <li class="chapter" data-level="2.3" data-path="2-3-properties.html"><a href="2-3-properties.html"><i class="fa fa-check"></i><b>2.3</b> Properties</a></li>
-<li class="chapter" data-level="2.4" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html"><i class="fa fa-check"></i><b>2.4</b> Similarity measures</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html"><i class="fa fa-check"></i><b>2.4</b> Similarity measures</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html#example-4"><i class="fa fa-check"></i><b>2.4.1</b> Example</a></li>
+</ul></li>
 <li class="chapter" data-level="2.5" data-path="2-5-exercises-1.html"><a href="2-5-exercises-1.html"><i class="fa fa-check"></i><b>2.5</b> Exercises</a></li>
 <li class="chapter" data-level="2.6" data-path="2-6-computer-tasks.html"><a href="2-6-computer-tasks.html"><i class="fa fa-check"></i><b>2.6</b> Computer Tasks</a></li>
 </ul></li>
@@ -232,8 +233,8 @@ We now proceed inductively and assume the result is true for <span class="math i
 where we now have <span class="math inline">\(j\)</span> Lagrange multipliers <span class="math inline">\(\lambda, \mu_1, \ldots, \mu_{j-1}\)</span> - one for each constraint.
 Differentiating with respect to <span class="math inline">\(\mathbf u\)</span> and setting equal to zero gives
 <span class="math display">\[0 = 2\mathbf S\mathbf u- 2\lambda \mathbf u- \sum_{k=1}^{j-1} \mu_k\mathbf v_k=0 \]</span>
-If we left multiply by <span class="math inline">\(\mathbf v_l\)</span> we get
-<span class="math display">\[2\mathbf v_l^\top \mathbf S\mathbf u- \lambda \mathbf v_l \mathbf u- \sum \mu_k \mathbf v_l^\top \mathbf v_k =0\]</span>
+If we left multiply by <span class="math inline">\(\mathbf v_l^\top\)</span> we get
+<span class="math display">\[2\mathbf v_l^\top \mathbf S\mathbf u- 2\lambda \mathbf v_l \mathbf u- \sum \mu_k \mathbf v_l^\top \mathbf v_k =0\]</span>
 We know <span class="math inline">\(\mathbf v_l\)</span> is an eigenvector of <span class="math inline">\(\mathbf S\)</span> and so <span class="math inline">\(\mathbf S\mathbf v_l=\lambda_l \mathbf v_l\)</span> and hence <span class="math inline">\(\mathbf v_k \mathbf S\mathbf u=0\)</span> as <span class="math inline">\(\mathbf v_l^\top \mathbf u=0\)</span>. Also <span class="math display">\[\mathbf v_l^\top\mathbf v_k=\begin{cases}1 &amp;\mbox{ if } k=l\\
 0 &amp;\mbox{ otherwise, }\end{cases}\]</span> and thus we’ve shown that <span class="math inline">\(\mu_l=0\)</span> for <span class="math inline">\(l=1, \ldots, j-1\)</span>. So again we have that <span class="math display">\[\mathbf S\mathbf u= \lambda \mathbf u\]</span>
 i.e., <span class="math inline">\(\mathbf u\)</span> must be a unit eigenvector of <span class="math inline">\(\mathbf S\)</span>. It only remains to show <em>which</em> eigenvector it is. Because <span class="math inline">\(\mathbf u\)</span> must be orthogonal to <span class="math inline">\(\mathbf v_1, \ldots, \mathbf v_{j-1}\)</span>,

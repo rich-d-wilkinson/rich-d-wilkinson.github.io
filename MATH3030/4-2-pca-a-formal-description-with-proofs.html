@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.2 PCA: a formal description with proofs | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.20.6 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.2 PCA: a formal description with proofs | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -274,7 +274,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="pca-a-formal-description-with-proofs" class="section level2">
 <h2><span class="header-section-number">4.2</span> PCA: a formal description with proofs</h2>
 <p>Let’s now summarize what we’ve said so far and prove some results about principal component analysis.</p>
-<p>Let <span class="math inline">\(\mathbf x_1, \ldots , \mathbf x_n\)</span> denote a sample of vectors in <span class="math inline">\(\mathbb{R}^p\)</span> with sample mean vector <span class="math inline">\(\bar{\mathbf x}\)</span> and sample covariance matrix <span class="math inline">\(\mathbf S\)</span>. Suppose <span class="math inline">\(\mathbf S=\mathbf X^\top \mathbf H\mathbf X\)</span> has spectral decomposition (see Proposition <a href="3-2-spectraleigen-decomposition.html#prp:spectraldecomp">3.3</a>)
+<p>Let <span class="math inline">\(\mathbf x_1, \ldots , \mathbf x_n\)</span> denote a sample of vectors in <span class="math inline">\(\mathbb{R}^p\)</span> with sample mean vector <span class="math inline">\(\bar{\mathbf x}\)</span> and sample covariance matrix <span class="math inline">\(\mathbf S\)</span>. Suppose <span class="math inline">\(\mathbf S=\frac{1}{n}\mathbf X^\top \mathbf H\mathbf X\)</span> has spectral decomposition (see Proposition <a href="3-2-spectraleigen-decomposition.html#prp:spectraldecomp">3.3</a>)
 <span class="math display" id="eq:pcaspect">\[\begin{equation}
 \mathbf S=\mathbf V\boldsymbol \Lambda\mathbf V^\top = \sum_{j=1}^p  \lambda_j \mathbf v_j \mathbf v_j^\top,
 \tag{4.2}
@@ -313,8 +313,8 @@ We now proceed inductively and assume the result is true for <span class="math i
 where we now have <span class="math inline">\(j\)</span> Lagrange multipliers <span class="math inline">\(\lambda, \mu_1, \ldots, \mu_{j-1}\)</span> - one for each constraint.
 Differentiating with respect to <span class="math inline">\(\mathbf u\)</span> and setting equal to zero gives
 <span class="math display">\[0 = 2\mathbf S\mathbf u- 2\lambda \mathbf u- \sum_{k=1}^{j-1} \mu_k\mathbf v_k=0 \]</span>
-If we left multiply by <span class="math inline">\(\mathbf v_l\)</span> we get
-<span class="math display">\[2\mathbf v_l^\top \mathbf S\mathbf u- \lambda \mathbf v_l \mathbf u- \sum \mu_k \mathbf v_l^\top \mathbf v_k =0\]</span>
+If we left multiply by <span class="math inline">\(\mathbf v_l^\top\)</span> we get
+<span class="math display">\[2\mathbf v_l^\top \mathbf S\mathbf u- 2\lambda \mathbf v_l \mathbf u- \sum \mu_k \mathbf v_l^\top \mathbf v_k =0\]</span>
 We know <span class="math inline">\(\mathbf v_l\)</span> is an eigenvector of <span class="math inline">\(\mathbf S\)</span> and so <span class="math inline">\(\mathbf S\mathbf v_l=\lambda_l \mathbf v_l\)</span> and hence <span class="math inline">\(\mathbf v_k \mathbf S\mathbf u=0\)</span> as <span class="math inline">\(\mathbf v_l^\top \mathbf u=0\)</span>. Also <span class="math display">\[\mathbf v_l^\top\mathbf v_k=\begin{cases}1 &amp;\mbox{ if } k=l\\
 0 &amp;\mbox{ otherwise, }\end{cases}\]</span> and thus we’ve shown that <span class="math inline">\(\mu_l=0\)</span> for <span class="math inline">\(l=1, \ldots, j-1\)</span>. So again we have that <span class="math display">\[\mathbf S\mathbf u= \lambda \mathbf u\]</span>
 i.e., <span class="math inline">\(\mathbf u\)</span> must be a unit eigenvector of <span class="math inline">\(\mathbf S\)</span>. It only remains to show <em>which</em> eigenvector it is. Because <span class="math inline">\(\mathbf u\)</span> must be orthogonal to <span class="math inline">\(\mathbf v_1, \ldots, \mathbf v_{j-1}\)</span>,
@@ -741,7 +741,7 @@ Leicester City
 </table>
 <p>Now that we have reduced the dimension to <span class="math inline">\(p=2\)</span>, we can visualise the differences between the teams.</p>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
-<p>We might interpret the PCs as follows. The first PC seems to measure the difference in goals scored and conceded between teams. Low values of PC1 indicate good peformance, and high values poor performance. Teams are rewarded with -0.79 for each positive goal difference, and -0.5 for each goal scored, whilst being penalised by 0.28 for every goal they concede. So a team with a large negative positive PC1 score tends to score lots of goals and concede few. If we rank teams by their PC1 score, and compare this with the rankings using 3 points for a win and 1 point for a draw we get a different ranking of the teams.</p>
+<p>We might interpret the PCs as follows. The first PC seems to measure the difference in goals scored and conceded between teams. Low values of PC1 indicate good peformance, and high values poor performance. Teams are rewarded with -0.79 for each positive goal difference, and -0.5 for each goal scored, whilst being penalised by 0.28 for every goal they concede. So a team with a large negative PC1 score tends to score lots of goals and concede few. If we rank teams by their PC1 score, and compare this with the rankings using 3 points for a win and 1 point for a draw we get a different ranking of the teams.</p>
 <table>
 <thead>
 <tr>
