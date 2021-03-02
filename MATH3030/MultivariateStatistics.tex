@@ -233,7 +233,7 @@
 \newcommand{\var}{{\mathbb{V}\operatorname{ar}}}
 \newcommand{\cor}{{\mathbb{C}\operatorname{or}}}
 
-\textbf{Warning:} these lecture notes are still in preparation. Chapters 1-5 have been finished. Chapters 6-10 are still being worked on.
+\textbf{Warning:} these lecture notes are still in preparation. Chapters 1-7 have been finished. Chapters 8-10 are still being worked on.
 
 This module is concerned with the analysis of multivariate data, in which the response is a vector of random variables rather than a single random variable.
 
@@ -4256,8 +4256,8 @@ So to summarize, the optimization problem
  \end{align*}
 is equivalent to (and has the same as) the PCA optimization problem.
 
-\hypertarget{example-mnist-handwritten-digits}{%
-\subsection{Example: MNIST handwritten digits}\label{example-mnist-handwritten-digits}}
+\hypertarget{pca-mnist}{%
+\subsection{Example: MNIST handwritten digits}\label{pca-mnist}}
 
 Let's consider the MNIST dataset of handwritten digits discussed in Chapter \ref{stat-prelim}. Recall this is a collection of 60,000 digits, each of which has been converted to a \(28\times 28\) pixel greyscale image (so \(p=784\)).
 I've made a clean version of the dataset available on Moodle, so you can try this analysis for yourself. Let's look at just the 3s. I've created a plotting function \texttt{plot.mnist}, which is in the code file on Moodle.
@@ -5345,7 +5345,7 @@ where
 \[
 \sigma_1=\vert \vert \mathbf Q\vert \vert_F = (\mathbf Q^\top \mathbf Q)^{\frac{1}{2}} \qquad \text{and} \qquad \mathbf u_1=\mathbf Q/\vert \vert \mathbf Q\vert \vert_F.
 \]
-
+Note that \(\mathbf v=1\) here.
 Consequently, the first canoncial correlation vector for \(\mathbf x\) is
 \begin{align*}
 \mathbf a&=\mathbf S_{\mathbf x\mathbf x}^{-1/2}\mathbf u_1 =\mathbf S_{\mathbf x\mathbf x}^{-1/2} \frac{\mathbf Q}{||\mathbf Q||_F}\\
@@ -5353,7 +5353,7 @@ Consequently, the first canoncial correlation vector for \(\mathbf x\) is
 &=\frac{1}{\vert \vert \mathbf S_{\mathbf x\mathbf x}^{-1/2}\mathbf S_{\mathbf xy}\vert \vert_F}\mathbf S_{\mathbf x\mathbf x}^{-1}\mathbf S_{\mathbf xy}\\
 &= c (\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y
 \end{align*}
-where \$c \$ is a scalar constant.
+where \(c\) is a scalar constant.
 
 Thus, we can see that the first canonical correlation vector \(\mathbf a\) is a scalar multiple of
 \[
@@ -5434,9 +5434,9 @@ If either of \(\mathbf T\) or \(\mathbf R\) in \eqref{eq:transformations} is not
 \hypertarget{computer-tasks-1}{%
 \section{Computer tasks}\label{computer-tasks-1}}
 
-\hypertarget{exercise-1-1}{%
-\paragraph{Exercise 1}\label{exercise-1-1}}
-\addcontentsline{toc}{paragraph}{Exercise 1}
+\hypertarget{task-1}{%
+\paragraph{Task 1}\label{task-1}}
+\addcontentsline{toc}{paragraph}{Task 1}
 
 Consider again the crabs dataset you looked at in the exercises in the chapter on PCA (see \ref{pca-comptask}).
 We now consider a canonical correlation analysis in which one set of variables, the \(\mathbf x\)-set, is given by CL and CW and the
@@ -5494,9 +5494,9 @@ other set, the \(\mathbf y\)-set, is given by FL, RW and BD.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercise-2-1}{%
-\paragraph{Exercise 2}\label{exercise-2-1}}
-\addcontentsline{toc}{paragraph}{Exercise 2}
+\hypertarget{task-2}{%
+\paragraph{Task 2}\label{task-2}}
+\addcontentsline{toc}{paragraph}{Task 2}
 
 The full Premier League dataset is available at
 \href{https://www.rotowire.com/soccer/league-table.php?season=2019}{https://www.rotowire.com/soccer/league-table.php?season=2018}. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.
@@ -5620,6 +5620,1118 @@ Conduct CCA on these data. Provide an interpretation of your results.
 \item
   Show the mean of the cc variables \(\eta_k\) and \(\psi_k\) is zero. Prove Proposition \ref{prp:ccavar} giving the variance of covariance the cc variables.
 \end{enumerate}
+
+\hypertarget{mds}{%
+\chapter{Multidimensional Scaling (MDS)}\label{mds}}
+
+In PCA, we start with \(n\) data points \(\mathbf x_i \in \mathbb{R}^p\), and then try to find a low dimensional projection of these points, e.g., \(\mathbf y_1, \ldots, \mathbf y_n \in \mathbb{R}^r\) with \(r<p\), in such a way that they minimize the reconstruction error (or maximize the variance).
+
+The focus in \textbf{Multidimensional Scaling (MDS)} is somewhat different. Instead of being given the data \(\mathbf X\), our starting point is often a matrix of \textbf{distances} or \textbf{dissimilarities} between the data points, \(\mathbf D\). For example, if we have data on \(n\) different experimental units, then we would be given the distances \(d_{ij}\) between any pair of experimental units \(i\) and \(j\). We compile these into a \(n\times n\) \textbf{distance matrix} \(\mathbf D=(d_{ij}: \, i,j=1, \ldots , n)\).
+
+The goal of MDS is to find a set of points in a low-dimensional Euclidean space \(\mathbb{R}^r\), usually \(\mathbb{R}\) or \(\mathbb{R}^2\), whose inter-point distances (or dissimilarities) are as close as possible to the \(d_{ij}\). That is, we want to find \(\mathbf y_1, \ldots, \mathbf y_n \in \mathbb{R}^r\) whose distance matrix is approximately \(\mathbf D\), i.e., for which
+\[\operatorname{distance}(\mathbf y_i, \mathbf y_j) \approx d_{ij}.\]
+In other words, we are trying to create a spatial representation of the data, \(\mathbf y_1, \ldots, \mathbf y_n\), from a distance matrix \(\mathbf D\). The vectors \(\mathbf y_i\) have no meaning by themselves, but by visualising their spatial pattern we can hope to learn something about the dataset represented by \(\mathbf D\).
+
+If we define the errors in terms of a square distance, then we can write the goal of MDS as the following optimization problem:
+\begin{align}
+\mbox{Find} \quad& \mathbf y_1, \ldots, \mathbf y_k \in \mathbb{R}^r\\
+\mbox{to minimize} \quad &\sum_{i=1}^n \sum_{j=1}^n (d_{ij} - d(\mathbf y_i, \mathbf y_j))^2.\label{eq:mdsopt}
+\end{align}
+
+As an illustrative example, consider the location of some of England's cities.
+
+\includegraphics{06-mds_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+If we are told their latitude and longitude, it is easy to calculate the distances between the cities. I.e., given the latitude and longitude of each city, \(\mathbf x_i\), we can compute the distance matrix between pairs of cities \(\mathbf D\):
+
+\begin{table}[H]
+\centering\begingroup\fontsize{7}{9}\selectfont
+
+\begin{tabular}{lrrrrrrrrrrrrr}
+\toprule
+  & London & Birmingham & Manchester & Leeds & Newcastle & Liverpool & Portsmouth & Southampton & Nottingham & Bristol & Sheffield & Norwich & Plymouth\\
+\midrule
+London & 0 & 163 & 262 & 273 & 403 & 286 & 103 & 112 & 175 & 170 & 228 & 159 & 308\\
+Birmingham & 163 & 0 & 114 & 149 & 282 & 125 & 195 & 179 & 73 & 124 & 105 & 217 & 281\\
+Manchester & 262 & 114 & 0 & 58 & 174 & 50 & 308 & 293 & 94 & 227 & 53 & 255 & 369\\
+Leeds & 273 & 149 & 58 & 0 & 135 & 105 & 335 & 323 & 98 & 271 & 47 & 230 & 420\\
+Newcastle & 403 & 282 & 174 & 135 & 0 & 199 & 469 & 458 & 231 & 401 & 181 & 328 & 542\\
+\addlinespace
+Liverpool & 286 & 125 & 50 & 105 & 199 & 0 & 317 & 299 & 132 & 219 & 101 & 299 & 346\\
+Portsmouth & 103 & 195 & 308 & 335 & 469 & 317 & 0 & 24 & 239 & 127 & 288 & 261 & 221\\
+Southampton & 112 & 179 & 293 & 323 & 458 & 299 & 24 & 0 & 229 & 103 & 276 & 268 & 202\\
+Nottingham & 175 & 73 & 94 & 98 & 231 & 132 & 239 & 229 & 0 & 193 & 53 & 169 & 353\\
+Bristol & 170 & 124 & 227 & 271 & 401 & 219 & 127 & 103 & 193 & 0 & 228 & 296 & 162\\
+\addlinespace
+Sheffield & 228 & 105 & 53 & 47 & 181 & 101 & 288 & 276 & 53 & 228 & 0 & 203 & 382\\
+Norwich & 159 & 217 & 255 & 230 & 328 & 299 & 261 & 268 & 169 & 296 & 203 & 0 & 453\\
+Plymouth & 308 & 281 & 369 & 420 & 542 & 346 & 221 & 202 & 353 & 162 & 382 & 453 & 0\\
+\bottomrule
+\end{tabular}
+\endgroup{}
+\end{table}
+
+But can we do the reverse and construct a map from the distance matrix? This is the aim of multidimensional scaling:
+MDS constructs a set of points, \(\mathbf y_1, \ldots, \mathbf y_n\), that have distances between them given by the distance matrix \(\mathbf D\). In other words, it creates a map with a set of coordinates for which the distances between points are approximately the same as in the real data.
+
+Of course, this illustrative example is not very interesting, as the original data (the city locations) are only two-dimensional, but in problems with high dimensional data, finding a way to
+represent the points in a low-dimensional space will make visualization and statistical analysis easier. We shall see, perhaps unsurprisingly, that there is a close connection between MDS and PCA.
+
+\hypertarget{notation-2}{%
+\subsubsection*{Notation}\label{notation-2}}
+\addcontentsline{toc}{subsubsection}{Notation}
+
+There are many ways to compute distances between points. For example, you may have studied metrics previously, which are distance functions that satisfy certain axioms. In MDS, we do not need to work with distances that are metrics (although sometimes we do), and instead we only require that distances satisfy a weaker set of conditions:
+
+\begin{definition}
+\protect\hypertarget{def:distanceD}{}{\label{def:distanceD} }The \(n \times n\) matrix \(\mathbf D=(d_{ij})_{i,j=1}^n\) is a \textbf{distance matrix} (sometimes called a \textbf{dissimilarity matrix}) if
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(d_{ij}\geq 0\) for all \(i, j=1,\ldots,n\).
+\item
+  \(d_{ii}=0\) for \(i=1,\ldots, n\) and
+\item
+  \(\mathbf D=\mathbf D^\top\), i.e., \(\mathbf D\) is symmetric (\(d_{ij}=d_{ji}\)).
+\item
+  \(d_{ij}=0\) implies \(\mathbf x_i=\mathbf x_j\)
+\end{enumerate}
+\end{definition}
+
+Note that we do not require distances to necessarily satisfy the triangle inequality
+\begin{equation}
+d_{ik} \leq d_{ij}+d_{jk}.
+\label{eq:triangle}
+\end{equation}
+A distance function which always satisfies the triangle inequality is called a \textbf{metric distance}
+or just a \textbf{metric}. A distance function which does not always satisfy the triangle inequality is called a
+\textbf{non-metric} distance.
+
+There are many ways to measure distance. Two common choices of metric distances are
+
+\begin{itemize}
+\tightlist
+\item
+  Euclidean distance \(||\mathbf x-\mathbf x'||_2\), also know as the `crow flies' distance.
+\item
+  \(L_1\) distance \(||\mathbf x-\mathbf x'||_1\), sometimes called the Manhattan or taxicab metric.
+\end{itemize}
+
+But for the city data, we could also consider distance by road, i.e., we could measure the minimum distance by road between each pair of cities. This would satisfy the axioms for being a distance, but is not a metric distance
+
+The choice of which distance is appropriate is problem specific (see section \ref{similarity} for an example). The focus in this chapter is on Euclidean distance, as this leads to an explicit mathematical solution to the optimization problem \eqref{eq:mdsopt}. However, note that MDS techniques have also been developed for non-Euclidean distances.
+
+\hypertarget{classical-mds}{%
+\section{Classical MDS}\label{classical-mds}}
+
+Classical MDS is based upon \textbf{Euclidean distances}:
+\[d(\mathbf x, \mathbf x') = ||\mathbf x-\mathbf x'||_2 = \sqrt{(\mathbf x-\mathbf x')^\top (\mathbf x-\mathbf x')}.\]
+
+Since Euclidean distances satisfy the triangle
+inequality \eqref{eq:triangle}, it follows that Euclidean distance is a metric distance. In general, any distance derived from a norm is a metric distance.
+
+\begin{definition}
+\protect\hypertarget{def:euclideanD}{}{\label{def:euclideanD} }Suppose \(\mathbf D\) is an \(n\times n\) distance matrix. We say \(\mathbf D\) is a \textbf{Euclidean distance matrix}
+if there is a set of points \(\mathbf x_1,\ldots , \mathbf x_n \in \mathbb{R}^p\) for some \(p\), such that
+\[
+d_{ij}=\vert \vert \mathbf x_i -\mathbf x_j \vert \vert_2 =\sqrt{(\mathbf x_i-\mathbf x_j)^\top (\mathbf x_i-\mathbf x_j)}.
+\]
+\end{definition}
+
+In classical MDS, we don't work directly with the distance matrix, but with the centred inner product matrix.
+
+\begin{definition}
+\protect\hypertarget{def:unnamed-chunk-3}{}{\label{def:unnamed-chunk-3} }Given a distance matrix \({\mathbf D}=\{d_{ij}\}_{i,j=1}^n\),
+the \textbf{centred inner-product matrix} (also called the \textbf{centred-Gram matrix}) is
+\begin{equation}
+{\mathbf B}={\mathbf H} \mathbf A{\mathbf H},
+\label{eq:defB}
+\end{equation}
+where
+\(\mathbf A\) is the matrix of negative square distances divided by two:
+\begin{equation}
+\mathbf A=\{a_{ij}\}_{i,j=1}^n,  \quad \text{where} \qquad a_{ij}=-\frac{1}{2}d_{ij}^2
+\label{eq:defA}
+\end{equation}
+and \(\mathbf H\) is the \(n \times n\) \textbf{centering matrix} (see Section \ref{centering-matrix}).
+
+Another way of writing \(\mathbf A\) is as
+\[\mathbf A= -\frac{1}{2}\mathbf D\odot \mathbf D\]
+where \(\odot\) denotes the \href{https://en.wikipedia.org/wiki/Hadamard_product_(matrices)}{Hadamard (or element-wise) product} of two matrices.
+\end{definition}
+
+We can think of \(\mathbf B\) as a matrix of similarities for the data.
+The reason for this, and for why we call \(\mathbf B\) the centred inner product matrix will become clear after we state the main result of this chapter.
+
+\hypertarget{main-result-1}{%
+\subsubsection*{Main result}\label{main-result-1}}
+\addcontentsline{toc}{subsubsection}{Main result}
+
+We now present the key result for classical MDS. It says that a distance matrix \(\mathbf D\) is a \emph{Euclidean} distance matrix if and only if the corresponding centred inner product matrix \(\mathbf B\) is positive semi-definite. It also tells us how given data \(\mathbf X\) we can compute \(\mathbf B\) directly from \(\mathbf X\). Conversely, and more importantly, it tells us how given \(\mathbf B\) we can compute some data points \(\mathbf X\) that have corresponding Euclidean distance matrix \(\mathbf D\).
+
+\begin{theorem}
+\protect\hypertarget{thm:five1}{}{\label{thm:five1} }Let \(\mathbf D\) denote an \(n \times n\) distance matrix with corresponding centred inner-product matrix \(\mathbf B=-\frac{1}{2}\mathbf H(\mathbf D\odot\mathbf D)\mathbf H.\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  If \(\mathbf D\) is a \textbf{Euclidean} distance matrix for the sample of \(n\) vectors \(\mathbf x_1,\ldots , \mathbf x_n\), then
+  \begin{equation}
+  \mathbf B= ({\mathbf H} {\mathbf X})({\mathbf H} {\mathbf X})^\top.
+  \label{eq:bijB}
+  \end{equation}
+  Thus \(\mathbf B\) is positive semi-definite.
+\item
+  Suppose \(\mathbf B\) is positive semi-definite with eigenvalues \(\lambda_1 \geq \lambda_2 \cdots \geq \lambda_k > 0\) and that it has spectral decomposition \(\mathbf B={\mathbf U} {\pmb \Lambda}{\mathbf U}^\top\), where \({\pmb \Lambda}=\text{diag}\{\lambda_1 \ldots \lambda_k\}\) and \(\mathbf U\) is \(n \times k\) and satisfies \({\mathbf U}^\top {\mathbf U}={\mathbf I}_k\). Then
+  \[{\mathbf X}=[\mathbf x_1, \ldots , \mathbf x_n]^\top={\mathbf U}{\pmb \Lambda}^{1/2}\]
+  is an \(n \times k\) data matrix which has \textbf{Euclidean} distance marrix \(\mathbf D\).
+
+  Moreover, for this data matrix \(\bar{\mathbf x}={\mathbf 0}_k\) and \(\mathbf B\) represents the inner product matrix with elements given by \eqref{eq:bijB}.
+\end{enumerate}
+\end{theorem}
+
+For part 1. we may equivalently write
+\begin{equation}
+b_{ij}=(\mathbf x_i-\bar{\mathbf x})^\top (\mathbf x_j - \bar{\mathbf x}), \qquad i,j=1,\ldots , n,
+\end{equation}
+where \(\bar{\mathbf x}=n^{-1}\sum_{i=1}^n \mathbf x_i\) is the sample mean vector.
+This illustrates why we call \(\mathbf B\) the \emph{centred inner-product} matrix: \(\mathbf H\mathbf X\) is the centred data matrix, and \((\mathbf H\mathbf X)(\mathbf H\mathbf X)^\top\) thus contains the inner product of each pair of centred vectors.
+
+We think of \(\mathbf B\) as a matrix of pair-wise \textbf{similarities} between the data points. The inner product \[\langle \mathbf x_i-\bar{\mathbf x}, \;\mathbf x_j - \bar{\mathbf x} \rangle=(\mathbf x_i-\bar{\mathbf x})^\top (\mathbf x_j - \bar{\mathbf x})\] is large if \(\mathbf x_i\) is similar to \(\mathbf x_j\), and small if they are very different. It may help to think back to the geometric interpretation of inner products from Section \ref{normed}.
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}You will prove this result in the example sheets.
+\end{proof}
+
+\begin{corollary}
+\protect\hypertarget{cor:unnamed-chunk-5}{}{\label{cor:unnamed-chunk-5} }The distance matrix \(\mathbf D\) is a Euclidean distance matrix if and only if the corresponding centred inner-product matrix \(\mathbf B\) is a positive semi-definite matrix.
+\end{corollary}
+
+These results say that if \(\mathbf D\) is a Euclidean distance matrix (which we can check by testing whether \(\mathbf B\) is positive semi-definite), then we can find a set of \(n\) points \(\mathbf x_1, \ldots, \mathbf x_n\in \mathbb{R}^k\) which have interpoint distances \(\mathbf D\). The dimension of the points is given by the rank of \(\mathbf B\).
+
+\hypertarget{example-1}{%
+\subsubsection*{Example 1}\label{example-1}}
+\addcontentsline{toc}{subsubsection}{Example 1}
+
+Consider the five point in \(\mathbb{R}^2\):
+\[
+\mathbf x_1=(0,0)^\top,  \mathbf x_2 =(1,0)^\top, \quad \mathbf x_3 =(0,1)^\top
+\]
+\[
+\mathbf x_4 =(-1,0)^\top \quad \text{and} \quad \mathbf x_5=(0,-1)^\top.
+\]
+
+The resulting distance matrix is
+\[
+\mathbf D=\left [ \begin{array}{ccccc}
+0&1&1&1&1\\
+1&0&\sqrt{2}&2&\sqrt{2}\\
+1&\sqrt{2}&0&\sqrt{2}&2\\
+1&2&\sqrt{2}&0&\sqrt{2}\\
+1&\sqrt{2}&2&\sqrt{2}&0
+\end{array} \right ].
+\]
+
+The aim of MDS is to construct a set of \(5\) points in \(\mathbb{R}^k\) for some choice of \(k\), that have interpoint distances given by \(\mathbf D\).
+
+Using \eqref{eq:defA} first to calculate \(\mathbf A\), and then using \eqref{eq:defB} to calculate \(\mathbf B\), we find that
+\[
+\mathbf A=-\left [ \begin{array}{ccccc}
+0&0.5&0.5&0.5&0.5\\
+0.5&0&1&2&1\\
+0.5&1&0&1&2\\
+0.5&2&1&0&1\\
+0.5&1&2&1&0
+\end{array} \right ]
+\]
+and
+\[
+\mathbf B=\left [ \begin{array}{ccccc}
+ 0& 0&0&0&0\\
+0&1&0&-1&0\\
+0&0&1&0&-1\\
+0&-1&0&1&0\\
+0&0&-1&0&1
+\end{array} \right ].
+\]
+
+In R we can compute these as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+              \DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+              \DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}
+              \DecValTok{-1}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+              \DecValTok{0}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{), }\DataTypeTok{nc=}\DecValTok{2}\NormalTok{, }\DataTypeTok{byrow=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{D <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{dist}\NormalTok{(X, }\DataTypeTok{upper=}\NormalTok{T, }\DataTypeTok{diag=}\NormalTok{T))}
+\NormalTok{A <-}\StringTok{ }\OperatorTok{-}\NormalTok{D}\OperatorTok{^}\DecValTok{2}\OperatorTok{/}\DecValTok{2} 
+\CommentTok{# note D^2 does element wise operations, different to D%*%D}
+\NormalTok{H <-}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\DecValTok{5}\NormalTok{) }\OperatorTok{-}\StringTok{ }\DecValTok{1}\OperatorTok{/}\DecValTok{5} \OperatorTok{*}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{), }\DataTypeTok{nc=}\DecValTok{1}\NormalTok{)}\OperatorTok{%*%}\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{), }\DataTypeTok{nr=}\DecValTok{1}\NormalTok{)}
+\NormalTok{B <-}\StringTok{ }\NormalTok{H}\OperatorTok{%*%}\StringTok{ }\NormalTok{A}\OperatorTok{%*%}\NormalTok{H }\CommentTok{#check this matches  (H %*% X) %*% t(H %*% X)}
+\end{Highlighting}
+\end{Shaded}
+
+You should check that \(\mathbf H\mathbf A\mathbf H\) is the same as \((\mathbf H\mathbf X)(\mathbf H\mathbf X)^\top\), thus verifying part 1. of Theorem \ref{thm:five1}. Note that there will be very small differences (\(\sim 10^{-16}\)) due to numerical errors.
+
+How do we construct, using only the information in \(\mathbf B\), a set of \(5\) points that have Euclidean interpoint distances given by \(\mathbf D\)?
+Firstly, we need to compute the spectral decomposition of \(\mathbf B\). The eigenvalues of \(\mathbf B\) are
+\[
+\lambda_1=\lambda_2=2 \qquad \text{and} \qquad \lambda_3=\lambda_4=\lambda_5=0.
+\]
+
+Thus \(\mathbf B\) is positive semi-definite, and so
+by Theorem \ref{thm:five1}, \(\mathbf D\) must be a Euclidean distance matrix. This isn't a surprise to us because we created \(\mathbf D\) ourselves in this case.
+
+There are two positive eigenvalues, and so \(\mathbf B\) has rank 2, and the theorem tells us we can construct points \(\mathbf x_i \in \mathbb{R}^2\), i.e., points in 2-dimensional space.
+
+To find the points we need to find the matrix of orthogonal unit eigenvectors of \(\mathbf B\), which we denoted as \(\mathbf U\) in the theorem.
+Because we have a repeated eigenvalue (\(\lambda=2\) has \emph{multiplicity} 2), the eigenspace associated with \(\lambda=2\) is a two dimensional space.
+There is not a unique pair of orthogonal unit eigenvectors spanning this space (there are an infinite number of possible pairs).
+The sparsest choice (i.e.~the one with most zero elements) is
+\[
+\mathbf u_1= \begin{pmatrix}0 \\ 0 \\ -\frac{1}{\sqrt{2}} \\ 0 \\ -\frac{1}{\sqrt{2}} \end{pmatrix} \qquad
+\text{and} \qquad \mathbf u_2 =\begin{pmatrix}0 \\ -\frac{1}{\sqrt{2}} \\ 0 \\ \frac{1}{\sqrt{2}}\\ 0 \end{pmatrix}.
+\]
+
+Note that if we compute these in R, you may well get different eigenvectors, but the subspace described by the pair of vectors will be the same.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{eigen}\NormalTok{(B)}\OperatorTok{$}\NormalTok{values }\CommentTok{#using B = H%*% A%*%H }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  2.000000e+00  2.000000e+00  1.207037e-15  3.331224e-16 -2.775558e-17
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{eigen}\NormalTok{(B)}\OperatorTok{$}\NormalTok{vectors[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]       [,2]
+## [1,]  0.0000000  0.0000000
+## [2,] -0.6916609  0.1469869
+## [3,] -0.1469869 -0.6916609
+## [4,]  0.6916609 -0.1469869
+## [5,]  0.1469869  0.6916609
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B2 <-}\StringTok{ }\NormalTok{(H }\OperatorTok{%*%}\StringTok{ }\NormalTok{X) }\OperatorTok{%*%}\StringTok{ }\KeywordTok{t}\NormalTok{(H }\OperatorTok{%*%}\StringTok{ }\NormalTok{X) }\CommentTok{# alternative way of computing B}
+\KeywordTok{eigen}\NormalTok{(B2)}\OperatorTok{$}\NormalTok{values}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.000000e+00 2.000000e+00 1.110223e-15 1.110223e-15 0.000000e+00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{eigen}\NormalTok{(B2)}\OperatorTok{$}\NormalTok{vectors[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]       [,2]
+## [1,]  0.0000000  0.0000000
+## [2,]  0.0000000 -0.7071068
+## [3,] -0.7071068  0.0000000
+## [4,]  0.0000000  0.7071068
+## [5,]  0.7071068  0.0000000
+\end{verbatim}
+
+We can now compute the coordinates of five points in \(\mathbb{R}^2\) which have Euclidean distance matrix, \(\mathbf D,\) by
+\[
+\mathbf U\boldsymbol \Lambda^{1/2}=\sqrt{2}[\mathbf u_1 , \mathbf u_2].\]
+
+Note again that these coordinates are not unique as any rotation or translation of them will have the same distance matrix. In particular, when doing computations in R we may find different answers depending upon how we do the computation. So for example, if we use the eigendecompostion of \(\mathbf B= \mathbf H\mathbf A\mathbf H\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B.eig <-}\StringTok{ }\KeywordTok{eigen}\NormalTok{(B)}
+\NormalTok{Y <-}\KeywordTok{sqrt}\NormalTok{(B.eig}\OperatorTok{$}\NormalTok{values[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{])}\OperatorTok{*}\NormalTok{B.eig}\OperatorTok{$}\NormalTok{vectors[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+we find
+\[\begin{pmatrix}0&0 \\-0.978&0.208 \\-0.208&-0.978 \\0.978&-0.208 \\0.208&0.978 \\\end{pmatrix}.\]
+Whereas if we use the eigen decomposition of \((\mathbf H\mathbf X)(\mathbf H\mathbf X)^\top\) we find a different set of points:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B2.eig <-}\StringTok{ }\KeywordTok{eigen}\NormalTok{(B2)}
+\NormalTok{Y2 <-}\KeywordTok{sqrt}\NormalTok{(B2.eig}\OperatorTok{$}\NormalTok{values[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{])}\OperatorTok{*}\NormalTok{B2.eig}\OperatorTok{$}\NormalTok{vectors[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\[\begin{pmatrix}0&0 \\0&-1 \\-1&0 \\0&1 \\1&0 \\\end{pmatrix}.\]
+
+The distance matrices for both sets of points are equal to \(\mathbf D\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{signif}\NormalTok{(}\KeywordTok{dist}\NormalTok{(Y, }\DataTypeTok{upper=}\NormalTok{T, }\DataTypeTok{diag=}\NormalTok{T),}\DecValTok{2}\NormalTok{) }\CommentTok{# should agree with D.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     1   2   3   4   5
+## 1 0.0 1.0 1.0 1.0 1.0
+## 2 1.0 0.0 1.4 2.0 1.4
+## 3 1.0 1.4 0.0 1.4 2.0
+## 4 1.0 2.0 1.4 0.0 1.4
+## 5 1.0 1.4 2.0 1.4 0.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{signif}\NormalTok{(}\KeywordTok{dist}\NormalTok{(Y2, }\DataTypeTok{upper=}\NormalTok{T, }\DataTypeTok{diag=}\NormalTok{T),}\DecValTok{2}\NormalTok{) }\CommentTok{# should agree with D.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     1   2   3   4   5
+## 1 0.0 1.0 1.0 1.0 1.0
+## 2 1.0 0.0 1.4 2.0 1.4
+## 3 1.0 1.4 0.0 1.4 2.0
+## 4 1.0 2.0 1.4 0.0 1.4
+## 5 1.0 1.4 2.0 1.4 0.0
+\end{verbatim}
+
+Finally, note that as always, there is an R command that will do all of this work for us
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Y.mds <-}\StringTok{ }\KeywordTok{cmdscale}\NormalTok{(D, }\DataTypeTok{eig=}\OtherTok{TRUE}\NormalTok{) }\CommentTok{#Classical MultiDimensional Scaling - cmdscale}
+\end{Highlighting}
+\end{Shaded}
+
+giving the set of points
+\[\begin{pmatrix}0&0 \\1&0 \\0&-1 \\-1&0 \\0&1 \\\end{pmatrix}.\]
+
+If we plot the original data points \(\mathbf X\), along with the three sets of reconstructed data points \texttt{Y}, \texttt{Y2}, and \texttt{Y.mds} we can see that they are essentially the same, apart from being rotatated or reordered.
+
+\includegraphics{06-mds_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+\hypertarget{example-2}{%
+\subsubsection*{Example 2}\label{example-2}}
+\addcontentsline{toc}{subsubsection}{Example 2}
+
+If we apply the \texttt{cmdscale} to the distances between UK cities from the introduction, we get the `coordinates' shown below.
+
+\includegraphics{06-mds_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+This `map' is essentially correct, but it is rotated \(90^\circ\) and the `coordinates' have mean zero.
+
+\hypertarget{non-euclidean-distance-matrices}{%
+\subsection{Non-Euclidean distance matrices}\label{non-euclidean-distance-matrices}}
+
+Proposition \ref{thm:five1} may be useful even if \({\mathbf D}\) is not a \emph{Euclidean} distance matrix (in which case \(\mathbf B\) will have some negative eigenvalues). For example, this can occur if the distances between points is measured with errror.
+
+In this case, instead of using \(\mathbf B\) in Proposition \ref{thm:five1} we can use its positive part. If \(\mathbf B\) has spectral decomposition \(\sum_{j=1}^p \lambda_j \mathbf u_j \mathbf u_j^\top\), then its positive definite part is defined by
+\[
+\mathbf B_{\text{pos}}=\sum_{j: \, \lambda_j>0} \lambda_j \mathbf u_j \mathbf u_j^\top.
+\]
+In other words, we sum over those \(j\) such that \(\lambda_j\) is positive.
+
+Then \(\mathbf B_{\text{pos}}\) is positive semi-definite and so we can use part 2. of Theorem \ref{thm:five1} to determine a Euclidean configuration of points which has centred inner-product matrix \(\mathbf B_{\text{pos}}\). Then, provided the negative eigenvalues are small in absolute value relative to the positive eigenvalues, the inter-point distances of the new points in Euclidean space should provide a good approximation to the original inter-point distances \((d_{ij})\).
+
+\hypertarget{example-3}{%
+\subsubsection*{Example 3}\label{example-3}}
+\addcontentsline{toc}{subsubsection}{Example 3}
+
+Let's now look at a case for which \(\mathbf B\) isn't positive definite. We'll create this by modifying the distance matrix we had before:
+
+\[\mathbf D_2 = \begin{pmatrix}0&0.5&1&1&1 \\0.5&0&1.41&2&1.41 \\1&1.41&0&1.41&2 \\1&2&1.41&0&1.41 \\1&1.41&2&1.41&0 \\\end{pmatrix}.\]
+This is a distance matrix, but is it a \emph{Euclidean} distance matrix? I.e., is there a set of vectors \(\mathbf x_1, \ldots, \mathbf x_5\) which have Euclidean distances between them given by \(\mathbf D_2\)?
+
+If we look at the eigenvalues of the centred inner-product matrix \(\mathbf B\) associated with \(\mathbf D_2\), then we find that it has negative eigenvalues, and is thus not positive semi-definite. Thus by Theorem \ref{thm:five1} \(\mathbf D_2\) is not a \emph{Euclidean} distance matrix.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{D2 <-}\StringTok{ }\NormalTok{D}
+\NormalTok{D2[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]<-}\FloatTok{0.5}
+\NormalTok{D2[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]<-D2[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{A2 <-}\StringTok{ }\OperatorTok{-}\NormalTok{D2}\OperatorTok{^}\DecValTok{2}\OperatorTok{/}\DecValTok{2} 
+\NormalTok{B2 <-}\StringTok{ }\NormalTok{H}\OperatorTok{%*%}\StringTok{ }\NormalTok{A2}\OperatorTok{%*%}\NormalTok{H }
+\KeywordTok{eigen}\NormalTok{(B2)}\OperatorTok{$}\NormalTok{values}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  2.026016e+00  2.000000e+00  1.004310e-01 -7.216450e-16 -2.764470e-01
+\end{verbatim}
+
+We can still use classical multidimensional scaling to find a set of points \(\mathbf x_1, \ldots, \mathbf x_5\) that have distances approximately given by \(\mathbf D_2\).
+\texttt{cmdscale} allows us to specify the dimension of the points \(\mathbf x_i\). If we pick \(\dim(\mathbf x)=2\) then it gives us the set of points
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cmdscale}\NormalTok{(D2, }\DataTypeTok{k=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]          [,2]
+## 1 -0.13881300  1.449541e-15
+## 2 -0.97216111  1.011091e-14
+## 3  0.04112656 -1.000000e+00
+## 4  1.02872100 -1.018790e-14
+## 5  0.04112656  1.000000e+00
+\end{verbatim}
+
+which have a distance matrix that approximates \(\mathbf D_2\), but does not equal it. By using a different number of dimensions, we may be able to get a set of points that have a distance matrix closer to \(\mathbf D\), but we will not be able to find a set of \(5\) points that have a distance matrix exactly equal to \(\mathbf D_2\).
+
+To do this ourselves (i.e., not using \texttt{cmdscale}) we can use the commands
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{U <-}\StringTok{ }\KeywordTok{eigen}\NormalTok{(B2)}\OperatorTok{$}\NormalTok{vectors[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{Lambda_sqrt <-}\StringTok{ }\KeywordTok{diag}\NormalTok{(}\KeywordTok{eigen}\NormalTok{(B2)}\OperatorTok{$}\NormalTok{values[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{])}
+\NormalTok{U }\OperatorTok{%*%}\StringTok{ }\NormalTok{Lambda_sqrt}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             [,1]          [,2]
+## [1,] -0.19758391 -7.490239e-16
+## [2,] -1.38375651 -5.393269e-15
+## [3,]  0.05853879 -1.414214e+00
+## [4,]  1.46426283  5.197828e-15
+## [5,]  0.05853879  1.414214e+00
+\end{verbatim}
+
+\includegraphics{06-mds_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\hypertarget{principal-coordinate-analysis}{%
+\subsection{Principal Coordinate Analysis}\label{principal-coordinate-analysis}}
+
+Theorem \ref{thm:five1} tells us that if the centred inner-product matrix
+\(\mathbf B\) is positive semi-definite with rank \(k\), then we can find a set of \(n\) points \(\mathbf x_1,\ldots, \mathbf x_n \in \mathbb{R}^k\) that have distance matrix \(\mathbf D\). However, if \(k\) is large this may not be much use to us. The most common motivation for doing MDS is in order to find a way to visualise a dataset and to understand its structure. Thus, we are usually only interested in finding a set of points in \(\mathbb{R}^2\) or \(\mathbb{R}^3\) that have a distance matrix approximately equal to \(\mathbf D\) so that we can visualize the points and look for patterns.
+
+Classical MDS (sometimes also called Principal Coordinate Analysis (PCoA)) tries to find a set of points that has approximately the same inner-product matrix, i.e., the same similarities, as the original data, but typically with the points in a low dimensional space. So we want to find \(\mathbf z_1, \ldots, \mathbf z_n \in \mathbb{R}^r\) (where typically \(r=2\)) which have inner-product close to \(\mathbf B\).
+
+As we are choosing the points \(\mathbf z_i\), we can choose them so that they have sample mean of \(\boldsymbol 0\). Then the coresponding inner product matrix is
+\[\mathbf B_\mathbf z= \mathbf Z\mathbf Z^\top \qquad \mbox{ where } \qquad \mathbf Z= 
+\begin{pmatrix} - & \mathbf z_1^\top &-\\
+ - & \mathbf z_2^\top& -\\
+ \vdots & \vdots & \vdots\\
+  - & \mathbf z_n^\top  &-\\
+\end{pmatrix}.\]
+
+We want to choose \(\mathbf Z\) so that \(\mathbf Z\mathbf Z^\top \approx \mathbf B\). One way to judge how close \(\mathbf B\) is to \(\mathbf Z\mathbf Z^\top\) is to looking at the sum of square differences between the elements, which is the matrix Frobenius norm:
+
+\[\sum_{i=1}^n\sum_{j=1}^n (B_{ij}-\mathbf z_i^\top \mathbf z_j)^2 = ||\mathbf B- \mathbf Z\mathbf Z^\top||^2_F\]
+
+Note that if \(\mathbf Z\) is \(n \times r\) then \(\mathbf Z\mathbf Z^\top\) is a rank \(r\) matrix. If \(\mathbf B\), which is a \(n\times n\) symmetric matrix, has spectral decomposition
+\(\mathbf B= \mathbf U\boldsymbol \Lambda\mathbf U^\top\), then we know from the Eckart-Young-Mirsky Theorem (\ref{thm:Eckart-Young}) that the best rank \(r\) approximation to \(\mathbf B\) (in terms of the Frobenius norm \(||\cdot||_F\)) is
+\[\mathbf B_r = \mathbf U_r \boldsymbol \Lambda_r \mathbf U_r^\top\]
+where
+\[\mathbf U_r = \begin{pmatrix} |&\ldots &|\\
+\mathbf u_1 &\ldots & \mathbf u_r\\
+|&\ldots &|\end{pmatrix} \quad\mbox{ and }\quad \boldsymbol \Lambda_r = \operatorname{diag}(\lambda_1, \ldots, \lambda_r)\]
+are the truncated eigenvector and eigenvalue matrices.
+If we let
+\[\mathbf Z= \mathbf U_r \boldsymbol \Lambda_r^{\frac{1}{2}}\]
+then this gives us the set of \(n\) points in \(\mathbb{R}^r\) that give the best approximation to the inner product matrix \(\mathbf B\). These are known as the r leading \textbf{principal coordinates} of the data. We will see an example of this in the next section.
+
+\hypertarget{link-with-pca}{%
+\subsubsection*{Link with PCA}\label{link-with-pca}}
+\addcontentsline{toc}{subsubsection}{Link with PCA}
+
+Although MDS only requires either a distance matrix \(\mathbf D\) or similarity matrix as input, sometimes we will have access to the data matrix \(\mathbf X\) and will want to reduce the dimension and
+find a set of points in \(\mathbb{R}^2\) that have approximately the same inter-point distances as \(\mathbf X\). In this case, it is easy to see that classical MDS is the same as PCA.
+
+In PCA, we find the SVD of \(\mathbf H\mathbf X= \mathbf U\boldsymbol{\Sigma}\mathbf V^\top\) and then if we want a set of points in \(r\) dimensions, we use the first \(r\) principal component scores
+\[\mathbf Y_r=\mathbf U_{r}\boldsymbol{\Sigma}_r.\]
+In MDS, we work with the centred Gram matrix
+\(\mathbf B=\mathbf H\mathbf X\mathbf X^\top \mathbf H\), which has spectral decomposition
+\[\mathbf H\mathbf X\mathbf X^\top \mathbf H= \mathbf U\boldsymbol{\Sigma}^2 \mathbf U^\top\]
+where \(\boldsymbol{\Sigma}^2 =\boldsymbol \Lambda\) is the diagonal matrix of eigenvalues of \(\mathbf B\). Thus we can see that the principal coordinates are
+\[\mathbf Z= \mathbf U\boldsymbol \Lambda^\frac{1}{2} = \mathbf U\boldsymbol{\Sigma}=\mathbf Y.\]
+
+\begin{proposition}
+\protect\hypertarget{prp:mds0}{}{\label{prp:mds0} } Let \(\mathbf X\) be an \(n \times p\) data matrix with associated Euclidean distance matrix
+\[
+d_{ij}^2 = (\mathbf x_i -\mathbf x_j)^\top(\mathbf x_i -\mathbf x_j),
+\]
+where \(\mathbf x_1^\top, \ldots , \mathbf x_n^\top\) are the rows of \(\mathbf X\). Then the centred PC scores based on the first \(k\) principal components of \(\mathbf X\) are equal to the principal coordinates of the \(n\) points in \(k\) dimensions based on the distance matrix \(\mathbf D\).
+\end{proposition}
+
+\hypertarget{similarity}{%
+\section{Similarity measures}\label{similarity}}
+
+So far we have presented classical MDS as starting with a distance (or dissimilarity) matrix \(\mathbf D=(d_{ij})_{i,j=1}^n\). In this setting, the larger \(d_{ij}\) is, the more distant, or dissimilar, object \(i\) is from object \(j\).
+We then convert \(\mathbf D\) to a centred inner product matrix \(\mathbf B\), where we think of \(\mathbf B\) as being a similarity matrix. Finally we find a truncated spectral decomposition for \(\mathbf B\):
+
+\[\mathbf D\longrightarrow \mathbf B\longrightarrow \mathbf Z=\mathbf U\boldsymbol \Lambda^{\frac{1}{2}}.\]
+
+Rather than using similarity matrix \(\mathbf B\) derived from \(\mathbf D\), we can use a more general concept of \textbf{similarity} in MDS.
+
+\begin{definition}
+\protect\hypertarget{def:unnamed-chunk-21}{}{\label{def:unnamed-chunk-21} }A \textbf{similarity matrix} is defined to be an \(n \times n\) matrix \({\mathbf F}=(f_{ij})_{i,j=1}^n\) with the following properties:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Symmetry, i.e. \(f_{ij} =f_{ji}\), \(i,j=1, \ldots , n\).
+\item
+  \(f_{ij} \leq f_{ii}\) for all \(i,j=1, \ldots , n\).
+\end{enumerate}
+\end{definition}
+
+Note that when working with similarities \(f_{ij}\), the larger \(f_{ij}\) is, the more similar objects \(i\) and \(j\) are.
+
+\begin{itemize}
+\item
+  Condition 1. implies that object \(i\) is as similar to object \(j\) as object \(j\) is to object \(i\) (symmetry).
+\item
+  Condition 2. implies that an object is at least as similar to itself as it is to any other object.
+\end{itemize}
+
+In this section, we consider the analysis of measures of \textbf{similarity} as opposed to measures of dissimilarity. We begin by showing that we can convert a positive semi-definite similarity matrix \(\mathbf F\) into a distance matrix \(\mathbf D\) and then into a centred inner product matrix \(\mathbf B\), allowing us to use the classical MDS approach from the previous section.
+
+\begin{proposition}
+\protect\hypertarget{prp:mds2}{}{\label{prp:mds2} }Suppose that \(\mathbf F\) is a positive semi-definite similarity matrix. Then the matrix \(\mathbf D\) with elements
+\begin{equation}
+d_{ij}=\left ( f_{ii}+f_{jj} -2f_{ij} \right )^{1/2}, \qquad i,j=1, \ldots , n
+\label{eq:defD}
+\end{equation}
+is a Euclidean distance matrix. Its centred inner product matrix, \(\mathbf B= -\frac{1}{2}\mathbf H(\mathbf D\odot\mathbf D)\mathbf H\), can be computed via
+\begin{equation}
+\mathbf B=\mathbf H\mathbf F\mathbf H.
+\label{eq:BHFH}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}
+Firstly, note that as \(\mathbf F\) is a similarity matrix, \(f_{ii}+f_{jj}-2f_{ij}\geq 0\) by condition 2., and so the \(d_{ij}\) are all well-defined (i.e.~real, not imaginary).
+
+We will now show that Equation \eqref{eq:BHFH} holds. Let \(\mathbf A= -\frac{1}{2}\mathbf D\odot \mathbf D\) as in Equation \eqref{eq:defA}. Then
+\[
+a_{ij}=-\frac{1}{2}d_{ij}^2 =f_{ij}-\frac{1}{2}(f_{ii}+f_{jj}).
+\]
+
+Define
+\[
+t=n^{-1}\sum_{i=1}^n f_{ii}.
+\]
+Then, summing over \(j=1, \ldots , n\) for fixed \(i\),
+\[
+\bar{a}_{i+}=n^{-1}\sum_{j=1}^n a_{ij} = \bar{f}_{i+}-\frac{1}{2}(f_{ii}+t);
+\]
+similarly,
+\[
+\bar{a}_{+j}=n^{-1}\sum_{i=1}^n a_{ij}=\bar{f}_{+j}-\frac{1}{2}(f_{jj}+t),
+\]
+and also
+\[
+\bar{a}_{++}=n^{-2}\sum_{i,j=1}^n a_{ij}=\bar{f}_{++}-\frac{1}{2}(t+t).
+\]
+Recall property (vii) from Section \ref{centering-matrix}:
+\[
+b_{ij}=a_{ij}-\bar{a}_{i+}-\bar{a}_{+j}+\bar{a}_{++}
+\]
+noting that \(\mathbf A\) is symmetric. Thus
+\begin{align*} 
+b_{ij}&=f_{ij}-\frac{1}{2}(f_{ii}+f_{jj})-\bar{f}_{i+}+\frac{1}{2}(f_{ii}+t)\\
+& \qquad -\bar{f}_{+j}+\frac{1}{2}(f_{jj}+t) +\bar{f}_{++}-t\\
+& =\qquad f_{ij}-\bar{f}_{i+}-\bar{f}_{+j}+\bar{f}_{++}.
+\end{align*}
+Consequently, \(\mathbf B=\mathbf H\mathbf F\mathbf H\), again using property (vii) from Section \ref{centering-matrix}.
+
+So we've shown that \(\mathbf B= \mathbf H\mathbf F\mathbf H\). It only remains to show \(\mathbf D\) is Euclidean. Since \(\mathbf F\) is positive semi-definite by assumption, and \(\mathbf H^\top =\mathbf H\), it follows that \(\mathbf B=\mathbf H\mathbf F\mathbf H\) must also be positive semi-definite. So by Theorem \ref{thm:five1} \(\mathbf D\) is a Euclidean distance matrix.
+\end{proof}
+
+\hypertarget{binary-attributes}{%
+\subsection{Binary attributes}\label{binary-attributes}}
+
+One important class of problems is when the similarity between any two objects is measured by the number of common attributes. The underlying data on each object is a binary vector of 0s and 1s indicating absence or presence of an attribute. These binary vectors are then converted to similarities by comparing which attributes two objects have in common.
+
+We illustrate this through two examples.
+
+\hypertarget{example-4}{%
+\subsubsection*{Example 4}\label{example-4}}
+\addcontentsline{toc}{subsubsection}{Example 4}
+
+Suppose there are 4 attributes we wish to consider.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Attribute 1: Carnivore? If yes, put \(x_1=1\); if no, put \(x_1=0\).
+\item
+  Attribute 2: Mammal? If yes, put \(x_2=1\); if no, put \(x_2=0\).
+\item
+  Attribute 3: Natural habitat in Africa? If yes, put \(x_3=1\); if no, put \(x_3=0\).
+\item
+  Attribute 4: Can climb trees? If yes, put \(x_4=1\); if no, put \(x_4=0\).
+\end{enumerate}
+
+Consider a lion. Each of the attributes is present so \(x_1=x_2=x_3=x_4=1\). Its attribute vector is \(\begin{pmatrix} 1&1&1&1\end{pmatrix}^\top\).
+
+What about a tiger? In this case, 3 of the attributes are present (1, 2 and 4) but 3 is absent.
+So for a tiger, \(x_1=x_2=x_4=1\) and \(x_3=0\) or in vector form, its attributes are \(\begin{pmatrix} 1&1&0&1\end{pmatrix}^\top\).
+
+How might we measure the similarity of lions and tigers based on the presence or absence of these four attributes?
+
+First form a \(2 \times 2\) table as follows.
+\[
+\begin{array}{cccc}
+&1 &0\\
+1& a & b\\
+0& c & d
+\end{array}
+\]
+Here \(a\) counts the number of attributes common to both lion and tiger; \(b\) counts the number of attributes the lion has but the tiger does not have; \(c\) counts the number of attributes the tigher has that the lion does not have; and \(d\) counts the number of attributes which neither the lion nor the tiger has.
+In the above, \(a=3\), \(b=1\) and \(c=d=0\).
+
+How might we make use of the information in the \(2 \times 2\) table to construct a measure of similarity? There are two commonly used measures of similarity.
+
+The \textbf{simple matching coefficient (SMC)} counts mutual absence or presence and compares it to the total number of attributes:
+\begin{equation}
+\frac{a+d}{a+b+c+d}.
+\label{eq:smc}
+\end{equation}
+It has a value of \(0.75\) for this example.
+
+The \textbf{Jaccard similarity coefficient} only counts mutual presence and compares this to the number of attributes that are present in at least one of the two objects:
+\[
+\frac{a}{a+b+c}.
+\]
+This is also 0.75 in this example.
+
+Although the Jaccard index and SMC are the same in this case, this is not true in general.
+The difference between the two similarities can matter. For example, consider a market basket analysis where we compare shoppers. If a shop sells \(p\) different products, we might record the products purchased by each shopper (their `basket') as a vector of length \(p\), with a \(1\) in position \(i\) if the shopper purchased object \(i\), and \(0\) otherewise.
+
+The basket of most shoppers might only contain a small fraction of all the available products (i.e.~mostly 0s in the attribute vector). In this case the SMC will usually be high when comparing any two shoppers, even when their baskets are very different, as the attribute vectors are mostly \(0\)s. In this case, the Jaccard index will be a more appropriate measure of similarity as it only looks at the difference between shoppers on the basis of the goods in their combined baskets. For example, consider a shop with 100 products and two customers.
+If customer A bought bread and beer and customer B bought peanuts and beer, then the Jaccard similarity coefficient is \(1/3\), but the SMC is \((1+97)/100=0.98\).
+
+In situations where 0 and 1 carry equivalent information with greater balance across the two groups, the SMC may be a better measure of similarity. For example, vectors of demographic variables stored in dummy variables, such as gender, would be better compared with the SMC than with the Jaccard index since the impact of gender on similarity should be equal, independently of whether male is defined as a 0 and female as a 1 or the other way around.
+
+There are many other possible ways of measuring similarity. For example, we could consider weighted versions of the above if we wish to weight different attributes differently.
+
+\hypertarget{example-5}{%
+\subsubsection*{Example 5}\label{example-5}}
+\addcontentsline{toc}{subsubsection}{Example 5}
+
+Let us now consider a similar but more complex example with 6 unspecified attributes (not the same attributes as in Example 1) and 5 types of living creature, with the following data matrix, consisting of zeros and ones.
+\[
+\begin{array}{lcccccc}
+&1&2&3&4&5&6\\
+Lion&1&1&0&0&1&1\\
+Giraffe&1&1&1&0&0&1\\
+Cow&1&0&0&1&0&1\\
+Sheep&0&0&0&1&0&1\\
+Human&0&0&0&0&1&0
+\end{array}
+\]
+Suppose we decide to use the simple matching coefficient \eqref{eq:smc} to measure similarity. Then the following similarity matrix is obtained.
+\[
+\mathbf F=\begin{array}{lccccc}
+&\text{Lion}&\text{Giraffe}&\text{Cow}&\text{Sheep}&\text{Human}\\
+Lion&1&2/3&1/2&1/2&1/2\\
+Giraffe&2/3&1&1/2&1/2&1/6\\
+Cow&1/2&1/2&1&1&1/3\\
+Sheep&1/2&1/2&1&1&1/3\\
+Human&1/2&1/6&1/3&1/3&1
+\end{array}
+\]
+It is easily checked from the definition that \({\mathbf F}=(f_{ij})_{i,j=1}^5\) is a similarity matrix.
+
+Let's see how we would do this in R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{animal <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{), }
+                 \DataTypeTok{nr=}\DecValTok{5}\NormalTok{, }\DataTypeTok{byrow=}\OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{rownames}\NormalTok{(animal) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Lion"}\NormalTok{, }\StringTok{"Giraffe"}\NormalTok{, }\StringTok{"Cow"}\NormalTok{, }\StringTok{"Sheep"}\NormalTok{, }\StringTok{"Human"}\NormalTok{)}
+\KeywordTok{colnames}\NormalTok{(animal)<-}\KeywordTok{paste}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{, }\DataTypeTok{sep=}\StringTok{""}\NormalTok{)}
+
+\NormalTok{SMC <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x,y)\{}
+  \KeywordTok{sum}\NormalTok{(x}\OperatorTok{==}\NormalTok{y)}\OperatorTok{/}\KeywordTok{length}\NormalTok{(x)}
+\NormalTok{\}}
+\CommentTok{# SMC(animal[1,], animal[2,]) # check this gives what you expect}
+
+\NormalTok{n=}\KeywordTok{dim}\NormalTok{(animal)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{F_SMC =}\StringTok{ }\KeywordTok{outer}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\NormalTok{n,}\DecValTok{1}\OperatorTok{:}\NormalTok{n,}
+              \KeywordTok{Vectorize}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(i,j)\{}
+                \KeywordTok{SMC}\NormalTok{(animal[i,], animal[j,])}
+\NormalTok{                \}}
+\NormalTok{                ))}
+\CommentTok{# we could do this as a double loop, but I've used the outer function}
+\CommentTok{# here.}
+\end{Highlighting}
+\end{Shaded}
+
+We can use the \texttt{dist} function in R to compute this more easily. The \texttt{dist} function requires us to specify which metric to use. Here, we use the \(L_1\) distance, which is also known as the \href{https://en.wikipedia.org/wiki/Taxicab_geometry}{Manhattan distance}. We have to subtract this from the largest possible distance, which is 6 in this case, to get the similarity, and then divide by 6 to get the SMC.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{6}\OperatorTok{-}\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{dist}\NormalTok{(animal, }\DataTypeTok{method=}\StringTok{"manhattan"}\NormalTok{, }\DataTypeTok{diag =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{upper =} \OtherTok{TRUE}\NormalTok{)))}\OperatorTok{/}\DecValTok{6}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Lion   Giraffe       Cow     Sheep     Human
+## Lion    1.0000000 0.6666667 0.5000000 0.3333333 0.5000000
+## Giraffe 0.6666667 1.0000000 0.5000000 0.3333333 0.1666667
+## Cow     0.5000000 0.5000000 1.0000000 0.8333333 0.3333333
+## Sheep   0.3333333 0.3333333 0.8333333 1.0000000 0.5000000
+## Human   0.5000000 0.1666667 0.3333333 0.5000000 1.0000000
+\end{verbatim}
+
+The Jaccard index can be computed as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{jaccard =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y) \{}
+\NormalTok{  bt =}\StringTok{ }\KeywordTok{table}\NormalTok{(y, x)}
+  \KeywordTok{return}\NormalTok{((bt[}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{])}\OperatorTok{/}\NormalTok{(bt[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{bt[}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{] }\OperatorTok{+}\StringTok{ }\NormalTok{bt[}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{]))}
+\NormalTok{\}}
+
+\CommentTok{# jaccard(animal[1,], animal[2,]) # check this gives what you expect}
+\NormalTok{F_jaccard =}\StringTok{ }\KeywordTok{outer}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\NormalTok{n,}\DecValTok{1}\OperatorTok{:}\NormalTok{n, }\KeywordTok{Vectorize}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(i,j)\{}
+  \KeywordTok{jaccard}\NormalTok{(animal[i,], animal[j,])}
+\NormalTok{  \}}
+\NormalTok{  ))}
+\end{Highlighting}
+\end{Shaded}
+
+Again, we can compute this using \texttt{dist}, but this time using the binary distance metric. See the help page \texttt{?dist} to understand why.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\OperatorTok{-}\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{dist}\NormalTok{(animal, }\DataTypeTok{method=}\StringTok{"binary"}\NormalTok{, }\DataTypeTok{diag=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{upper=}\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         Lion Giraffe       Cow     Sheep Human
+## Lion    1.00     0.6 0.4000000 0.2000000  0.25
+## Giraffe 0.60     1.0 0.4000000 0.2000000  0.00
+## Cow     0.40     0.4 1.0000000 0.6666667  0.00
+## Sheep   0.20     0.2 0.6666667 1.0000000  0.00
+## Human   0.25     0.0 0.0000000 0.0000000  1.00
+\end{verbatim}
+
+To do MDS on these data, we need to first convert from a similarity matrix \(F\) to a distance matrix \(D\). We can use the following function to do this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FtoD <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(FF)\{}
+\NormalTok{  n =}\StringTok{ }\KeywordTok{dim}\NormalTok{(FF)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  D <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DataTypeTok{nr=}\NormalTok{n,}\DataTypeTok{nc=}\NormalTok{n)}
+  \ControlFlowTok{for}\NormalTok{(ii }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{n)\{}
+    \ControlFlowTok{for}\NormalTok{(jj }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{n)\{}
+\NormalTok{      D[ii,jj] <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(FF[ii,ii]}\OperatorTok{+}\NormalTok{FF[jj,jj]}\OperatorTok{-}\DecValTok{2}\OperatorTok{*}\NormalTok{FF[ii,jj])}
+\NormalTok{    \}}
+\NormalTok{  \}}
+  \KeywordTok{return}\NormalTok{(D)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Let's now do MDS, and compare the results from using the SMC and Jaccard index.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mds1<-}\KeywordTok{cmdscale}\NormalTok{(}\KeywordTok{FtoD}\NormalTok{(F_SMC))}
+\NormalTok{mds2<-}\KeywordTok{cmdscale}\NormalTok{(}\KeywordTok{FtoD}\NormalTok{(F_jaccard))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{06-mds_files/figure-latex/unnamed-chunk-29-1.pdf}
+
+So we can see the choice of index has made a difference to the results.
+
+\hypertarget{example-classical-mds-with-the-mnist-data}{%
+\subsection{Example: Classical MDS with the MNIST data}\label{example-classical-mds-with-the-mnist-data}}
+
+In section \ref{pca-mnist} we saw the results of doing PCA on the MNIST handwritten digits. In the final part of that section, we did PCA on a selection of all the digits, and plotted the two leading PC scores, coloured by which digit they represented.
+
+Let's now do MDS on the same data. We know that if we use the Euclidean distance between the image vectors, then we will be doing the same thing as PCA. So let's instead first convert each pixel in the image to binary, with a value of 0 if the intensity is less than 0.3, and 1 otherwise. We can then compute a similarity matrix using the SMC and Jaccard indices.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{load}\NormalTok{(}\StringTok{'mnist.rda'}\NormalTok{)}
+\NormalTok{X<-}\StringTok{ }\NormalTok{mnist}\OperatorTok{$}\NormalTok{train}\OperatorTok{$}\NormalTok{x[}\DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{,]}
+
+\NormalTok{Y<-}\StringTok{ }\NormalTok{(X}\OperatorTok{>}\FloatTok{0.3}\NormalTok{)}\OperatorTok{*}\FloatTok{1.}  \CommentTok{# multiply by 1 to convert from T/F to a 1/0}
+
+\NormalTok{n=}\KeywordTok{dim}\NormalTok{(Y)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{p=}\KeywordTok{dim}\NormalTok{(Y)[}\DecValTok{2}\NormalTok{]}
+
+\NormalTok{F_SMC=(p}\OperatorTok{-}\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{dist}\NormalTok{(Y, }\DataTypeTok{method=}\StringTok{"manhattan"}\NormalTok{, }\DataTypeTok{diag =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{upper =} \OtherTok{TRUE}\NormalTok{)))}\OperatorTok{/}\NormalTok{p}
+\NormalTok{F_Jaccard =}\StringTok{ }\DecValTok{1}\OperatorTok{-}\KeywordTok{as.matrix}\NormalTok{(}\KeywordTok{dist}\NormalTok{(Y, }\DataTypeTok{method=}\StringTok{"binary"}\NormalTok{, }\DataTypeTok{diag=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{upper=}\OtherTok{TRUE}\NormalTok{))}
+
+\NormalTok{mds1=}\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{cmdscale}\NormalTok{(}\KeywordTok{FtoD}\NormalTok{(F_SMC)))}
+\NormalTok{mds2=}\KeywordTok{data.frame}\NormalTok{(}\KeywordTok{cmdscale}\NormalTok{(}\KeywordTok{FtoD}\NormalTok{(F_Jaccard)))}
+\end{Highlighting}
+\end{Shaded}
+
+We will do as we did before, and plot the coordinates coloured by the digit each point is supposed to represent. Note that we have not used these digit labels at any point.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Digit =}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(mnist}\OperatorTok{$}\NormalTok{train}\OperatorTok{$}\NormalTok{y[}\DecValTok{1}\OperatorTok{:}\DecValTok{1000}\NormalTok{])}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{ggplot}\NormalTok{(mds1, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{X1, }\DataTypeTok{y=}\NormalTok{X2, }\DataTypeTok{colour=}\NormalTok{Digit, }\DataTypeTok{label=}\NormalTok{Digit))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{Digit))}\OperatorTok{+}\StringTok{ }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"MDS for MNIST using the SMC"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{06-mds_files/figure-latex/unnamed-chunk-31-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(mds2, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{X1, }\DataTypeTok{y=}\NormalTok{X2, }\DataTypeTok{colour=}\NormalTok{Digit, }\DataTypeTok{label=}\NormalTok{Digit))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_text}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label=}\NormalTok{Digit))}\OperatorTok{+}\StringTok{ }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"MDS for MNIST using the Jaccard index"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{06-mds_files/figure-latex/unnamed-chunk-31-2.pdf}
+
+You can see that we get two different representations of the data that differ from each other, and from the PCA representation we computed in Chapter \ref{pca}.
+
+\hypertarget{non-metric-mds}{%
+\section{Non-metric MDS}\label{non-metric-mds}}
+
+In this chapter we have focused on classical MDS, which looks for points that have \textbf{Euclidean} distances close to the desired distances, where we measured close by minimizing the sum of squared errors (cf Equation \eqref{eq:mdsopt}).
+
+There is a much wider class of multidimensional scaling methods that do not use Euclidean distances, and do not judge the approximation quality using squared errors. These MDS methods can sometimes produce sets of coordinates that are more useful than classical MDS. However, it is only for classical MDS that there is a closed form solution. More general MDS methods rely upon numerical optimization to find a solution to the optimization problem. If you are interested, take a look at the R commands \texttt{isoMDS}, \texttt{Shepard}, and \texttt{sammon} from the \texttt{MASS} R package. Sammon mapping, for example, looks to preserve
+
+More generally still, there has been a lot of work on non-linear dimension reduction methods that try to find a low dimensional manifold upon which the data lie. Have a look \href{https://colah.github.io/posts/2014-10-Visualizing-MNIST/}{here} for some amazing visualizations and results using the MNIST dataset. These methods are not always easy to work with, and can require detailed user supervision in order to work well.
+
+\hypertarget{exercises-3}{%
+\section{Exercises}\label{exercises-3}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  In this question we will prove part 1. Theorem \ref{thm:five1}.
+
+  \begin{enumerate}
+  \def\labelenumii{\roman{enumii}.}
+  \item
+    Define
+    \[
+    b_{ij}=(\mathbf x_i-\bar{\mathbf x})^\top (\mathbf x_j-\bar{\mathbf x}), \quad i,j=1, \ldots , n,
+    \]
+    and write \(\mathbf B=(b_{ij})_{i,j=1}^n\). Prove that \[\mathbf B=(\mathbf H\mathbf X)(\mathbf H\mathbf X)^\top,\] where
+    \(\mathbf H\) is the \(n \times n\) centering matrix and \(\mathbf X= (\mathbf x_1, \ldots , \mathbf x_n)^\top\) is the data matrix.
+  \item
+    Show that \(\mathbf B\) is positive semi-definite, i.e., explain why, for
+    all \(n \times 1\) vectors \(\mathbf a\),
+    \[
+    \mathbf a^\top \mathbf B\mathbf a=\mathbf a^\top (\mathbf H\mathbf X) (\mathbf H\mathbf X)^\top \mathbf a\geq 0. 
+    \]
+  \end{enumerate}
+\item
+  In this question we will prove part 2. of Theorem \ref{thm:five1}
+
+  \begin{enumerate}
+  \def\labelenumii{\roman{enumii}.}
+  \item
+    Prove Property 7. of Section \ref{centering-matrix}. Specifically: if \(\mathbf A\) is a symmetric \(n \times n\) matrix, show that
+    \[\mathbf B= \mathbf H\mathbf A\mathbf H\]
+    has elements given by
+    \[
+    b_{ij}=a_{ij}-\bar{a}_{i+}-\bar{a}_{+j}+\bar{a}_{++},  \qquad i,j=1, \ldots , n,
+    \]
+    where\\
+    \[\bar{a}_{i+}= \frac{1}{n} \sum_{j=1}^n a_{ij}, \quad \bar{a}_{+j}=\frac{1}{n} \sum_{i=1}^n a_{ij}, \quad\mbox{and} \quad\bar{a}_{++} = \frac{1}{n^2} \sum_{i,j=1}^n a_{ij}.\]
+  \item
+    Assume that \(\mathbf B\) is positive semi-definite with \(k\) strictly positive eigenvalues and let
+    \[
+    \mathbf B= \sum_{j=1}^k \lambda_j \mathbf u_j\mathbf u_j^\top =\mathbf U\boldsymbol \Lambda\mathbf U^\top,
+    \]
+    where \(\boldsymbol \Lambda=\text{diag}\{\lambda_1, \ldots , \lambda_k\}\) and \(\mathbf U\) is \(n \times k\) and satisfies \(\mathbf U^\top \mathbf U=\mathbf I_k\).
+    Now define a `new' \(n \times k\) data matrix
+    \[
+    \mathbf X=[\mathbf x_1, \ldots , \mathbf x_n]^\top=\mathbf U\boldsymbol \Lambda^{1/2}.
+    \]
+    Show that \(b_{ij}=\mathbf x_i^\top \mathbf x_j\) for all \(i,j=1, \ldots , n\).\\
+    \textbf{Hint}: check that for \(\mathbf X\) defined as above, \(\mathbf X\mathbf X^\top =\mathbf B\).
+  \item
+    We now need to show that \(\mathbf D=(d_{ij})\) represents the set of inter-point distances for this new data matrix. Recall that \(a_{ij}=-d_{ij}^2/2\). Deduce that
+    \[
+    (\mathbf x_i -\mathbf x_j)^\top (\mathbf x_i-\mathbf x_j)= b_{ii} + b_{jj}-2b_{ij};
+    \]
+    and so, using the first part of this question, show that
+    \[
+    (\mathbf x_i -\mathbf x_j)^\top (\mathbf x_i-\mathbf x_j)=-2a_{ij}=d_{ij}^2.
+    \]
+    Hence the new inter-point distances are the same as the original ones.
+  \end{enumerate}
+\item
+  Suppose \(\mathbf X\) is a \(n \times p\) column centred data matrix. PCA looks at the spectral decomposition of the covariance matrix \(\frac{1}{n}\mathbf X^\top \mathbf X\), whereas MDS uses the spectral decomposition of the the Gram matrix \(\mathbf X\mathbf X^\top\). Using the SVD for \(\mathbf X=\mathbf U\boldsymbol{\Sigma}\mathbf V^\top\), explain the relationship between these two methods.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Answer Q4 part (c) from the 2018-19 exam paper.
+\end{enumerate}
+
+\hypertarget{computer-tasks-2}{%
+\section{Computer Tasks}\label{computer-tasks-2}}
+
+\hypertarget{task-1-1}{%
+\paragraph{Task 1}\label{task-1-1}}
+\addcontentsline{toc}{paragraph}{Task 1}
+
+The \texttt{eurodist} dataset in R gives the road distances between 21 European cities. Note that this is stored as a \texttt{dist} type of object, as outputted by the \texttt{dist} command, i.e.~as a lower tri-diagonal matrix. \texttt{cmdscale} will take this directly as input.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(eurodist)}
+\NormalTok{eurodist}
+\NormalTok{?eurodist}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\item
+  Perform multidimensional scaling on this data, and find a two-dimensional set of points which has interpoint distances approximately equal to the data.
+\item
+  Plot these coordinates and label them with the city names. Does your plot look like the map of Europe?
+\item
+  Is the distance matrix \texttt{eurodist} a Euclidean data matrix and how do you know? If it is not Euclidean, why do you think that might be?
+\item
+  Create the Euclidean distance matrix from your set of 2-dimensional points. What is the Frobenius norm between this matrix and the original distance matrix? Use \texttt{cmdscale} to create a set of points in 3 dimensional space and recompute the distance matrix.
+\end{enumerate}
+
+\hypertarget{task-2-1}{%
+\paragraph{Task 2}\label{task-2-1}}
+\addcontentsline{toc}{paragraph}{Task 2}
+
+Consider the synthetic data of 9 binary attributes on 11 cases.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df=}\KeywordTok{structure}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\DataTypeTok{a =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DataTypeTok{b =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }
+\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DataTypeTok{c =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }
+\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DataTypeTok{d =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DataTypeTok{e =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }
+\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DataTypeTok{f =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }
+\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{), }\DataTypeTok{g =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DataTypeTok{h =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }
+\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{), }\DataTypeTok{i =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }
+\DecValTok{0}\NormalTok{)), }\DataTypeTok{class =} \StringTok{"data.frame"}\NormalTok{, }\DataTypeTok{row.names =} \KeywordTok{c}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\OperatorTok{-}\NormalTok{11L), }\DataTypeTok{.Names =} \KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }
+\StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{, }\StringTok{"d"}\NormalTok{, }\StringTok{"e"}\NormalTok{, }\StringTok{"f"}\NormalTok{, }\StringTok{"g"}\NormalTok{, }\StringTok{"h"}\NormalTok{, }\StringTok{"i"}\NormalTok{))}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    a b c d e f g h i
+## 1  0 0 0 1 0 0 0 1 0
+## 2  0 0 0 0 0 0 1 0 0
+## 3  0 0 0 0 1 1 1 0 0
+## 4  0 0 0 0 0 0 1 0 0
+## 5  1 0 1 0 0 0 0 0 0
+## 6  0 0 0 0 0 0 0 0 1
+## 7  0 1 0 1 0 0 0 0 0
+## 8  1 0 1 0 0 0 0 1 0
+## 9  0 1 0 0 0 0 0 1 1
+## 10 0 0 1 1 0 0 0 0 1
+## 11 0 1 0 0 1 1 0 0 0
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\item
+  Compute the Jaccard index and SMC similarity matrices for these data.
+\item
+  Perform classical MDS for both similarity matrices, producing a plot of the coordinates (in 2d). Are the results similar?
+\end{enumerate}
+
+\hypertarget{task-3-1}{%
+\paragraph{Task 3}\label{task-3-1}}
+\addcontentsline{toc}{paragraph}{Task 3}
+
+In this question we will look at data from 1888 on the fertility and socio-economic status of 47 French speaking provinces in Switzerland.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(swiss)}
+\KeywordTok{head}\NormalTok{(swiss)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Fertility Agriculture Examination Education Catholic
+## Courtelary        80.2        17.0          15        12     9.96
+## Delemont          83.1        45.1           6         9    84.84
+## Franches-Mnt      92.5        39.7           5         5    93.40
+## Moutier           85.8        36.5          12         7    33.77
+## Neuveville        76.9        43.5          17        15     5.16
+## Porrentruy        76.1        35.3           9         7    90.57
+##              Infant.Mortality
+## Courtelary               22.2
+## Delemont                 22.2
+## Franches-Mnt             20.2
+## Moutier                  20.3
+## Neuveville               20.6
+## Porrentruy               26.6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?swiss}
+\end{Highlighting}
+\end{Shaded}
+
+We will use MDS to find which provinces are similar to each other.
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\item
+  Compute the Euclidean distance matrix for these data.
+\item
+  Use MDS to create a 2-dimensional representation of the data and plot these points, labelling them with the province name.
+\item
+  Use MDS to create a 3-dimensional representation of the data. You can plot this using the \texttt{plot3d} command from the \texttt{rgl} package. See, for example, \href{https://rpubs.com/aagarwal29/179912}{here}.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(rgl)}
+\KeywordTok{plot3d}\NormalTok{(mds3)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  MDS can be also used to reveal a hidden pattern in a correlation matrix. Find the correlation matrix, \(\mathbf R\), of the swiss data. Perform MDS using \(1-\mathbf R\) as the distance matrix and plot the results. Positively correlated covariates are close together on the same side of the plot.
+\end{enumerate}
+
+\hypertarget{task-4-if-you-have-time}{%
+\paragraph{Task 4 (if you have time\ldots{})}\label{task-4-if-you-have-time}}
+\addcontentsline{toc}{paragraph}{Task 4 (if you have time\ldots{})}
+
+Try MDS on the MNIST data but looking for a 3d representation. Colour the points by their digit label, and create some interactive 3d plots. Does this find useful structure in the data? And is it more informative than the 2d plots we created in the notes.
+
+Read the description of more advance methods \href{https://colah.github.io/posts/2014-10-Visualizing-MNIST/}{here}. Pick one and find an R package that implements it and try it on the MNIST data.
+
+\textbf{Warning:} The MNIST dataset is large, and so computations can take a long time if you use the full dataset. Thus I usually work with a selection of just 1000 images, which is enough to find interesting patterns in most cases.
 
 \hypertarget{part-iii-inference-using-the-multivariate-normal-distribution-mvn}{%
 \chapter*{Part III: Inference using the Multivariate Normal Distribution (MVN)}\label{part-iii-inference-using-the-multivariate-normal-distribution-mvn}}
@@ -6288,8 +7400,8 @@ Thus to conduct the hypothesis test, we compute \(\zeta^2\) for the observed dat
 The multivariate equivalent of a confidence interval is a \textbf{confidence region} and the \(100(1-\alpha)\)\% confidence region for \({\boldsymbol{\mu}}\) is \(\{ \mathbf a: \zeta^2 \leq \chi^2_{p,\alpha} \}\).
 This confidence region will be the interior of an ellipse or ellipsoid.
 
-\hypertarget{example-1}{%
-\subsubsection*{Example}\label{example-1}}
+\hypertarget{example-6}{%
+\subsubsection*{Example}\label{example-6}}
 \addcontentsline{toc}{subsubsection}{Example}
 
 Consider again the exam marks for first year maths students in the two modules PRB and STA. The scatterplot below shows the module marks for \(n=203\) students on probability (PRB, \(x_1\)) and statistics (STA, \(x_2\)), with the sample mean vector \(\begin{pmatrix}62.1 \\62.7 \\\end{pmatrix}\) marked on as a red `+'.
@@ -6616,8 +7728,8 @@ The critical value for \(\alpha=0.05\) is
 
 Therefore \(\delta^2 < F_{p,n+m-p-1}\), so we do not reject the null hypothesis at the 5\% level.
 
-\hypertarget{exercises-3}{%
-\section{Exercises}\label{exercises-3}}
+\hypertarget{exercises-4}{%
+\section{Exercises}\label{exercises-4}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6669,8 +7781,8 @@ Therefore \(\delta^2 < F_{p,n+m-p-1}\), so we do not reject the null hypothesis 
   Conduct a suitable hypothesis test. State your conclusion in words. What assumptions have you made in constructing the test? Do any of these assumptions seem suspect with these data?
 \end{enumerate}
 
-\hypertarget{computer-tasks-2}{%
-\section{Computer tasks}\label{computer-tasks-2}}
+\hypertarget{computer-tasks-3}{%
+\section{Computer tasks}\label{computer-tasks-3}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
