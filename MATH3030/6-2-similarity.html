@@ -304,7 +304,13 @@ We then convert <span class="math inline">\(\mathbf D\)</span> to a centred inne
 <li><p>Condition 1. implies that object <span class="math inline">\(i\)</span> is as similar to object <span class="math inline">\(j\)</span> as object <span class="math inline">\(j\)</span> is to object <span class="math inline">\(i\)</span> (symmetry).</p></li>
 <li><p>Condition 2. implies that an object is at least as similar to itself as it is to any other object.</p></li>
 </ul>
-<p>In this section, we consider the analysis of measures of <strong>similarity</strong> as opposed to measures of dissimilarity. We begin by showing that we can convert a positive semi-definite similarity matrix <span class="math inline">\(\mathbf F\)</span> into a distance matrix <span class="math inline">\(\mathbf D\)</span> and then into a centred inner product matrix <span class="math inline">\(\mathbf B\)</span>, allowing us to use the classical MDS approach from the previous section.</p>
+<p>One common choice of similarity between two vectors is the <strong>cosine</strong> similarity, which is defined to be the cosine of the angle between the vectors. Equivalently, it is the inner product of the vectors after they have been normalised to have length one:</p>
+<p><span class="math display">\[\cos \theta = \frac{\mathbf x^\top \mathbf y}{||\mathbf x||_2 ||\mathbf y||_2}=\langle \frac{\mathbf x}{||\mathbf x||_2}, \; \frac{\mathbf y}{||\mathbf y||_2}\rangle\]</span>
+This is symmetric (so satisfies property 1. for similarities), and the similarity of a vector <span class="math inline">\(\mathbf x\)</span> with itself is <span class="math inline">\(1\)</span>, and thus property 2. is also satisfied (as <span class="math inline">\(\cos \theta \leq 1\)</span>).</p>
+<p>Note that because the cosine similarity uses the inner product of normalised vectors, it only gives a relative comparison of two vectors, not an absolute one: the cosine similarity between <span class="math inline">\(\mathbf x\)</span> and <span class="math inline">\(\mathbf y\)</span> is the same as the similarity between <span class="math inline">\(\mathbf x\)</span> and <span class="math inline">\(a\mathbf y\)</span> for any positive constant <span class="math inline">\(a\)</span>. Thus we should only use this measure of similarity when absolute differences are unimportant.</p>
+<div id="mds-with-similarity-matrices" class="section level4 unnumbered">
+<h4>MDS with similarity matrices</h4>
+<p>In this section, we consider MDS using measures of <strong>similarity</strong> as opposed to measures of distance/dissimilarity. We begin by showing that we can convert a positive semi-definite similarity matrix <span class="math inline">\(\mathbf F\)</span> into a distance matrix <span class="math inline">\(\mathbf D\)</span> and then into a centred inner product matrix <span class="math inline">\(\mathbf B\)</span>, allowing us to use the classical MDS approach from the previous section.</p>
 
 <div class="proposition">
 <span id="prp:mds2" class="proposition"><strong>Proposition 6.2  </strong></span>Suppose that <span class="math inline">\(\mathbf F\)</span> is a positive semi-definite similarity matrix. Then the matrix <span class="math inline">\(\mathbf D\)</span> with elements
@@ -322,7 +328,8 @@ is a Euclidean distance matrix. Its centred inner product matrix, <span class="m
 
 <div class="proof">
 <p> <span class="proof"><em>Proof. </em></span> 
-Firstly, note that as <span class="math inline">\(\mathbf F\)</span> is a similarity matrix, <span class="math inline">\(f_{ii}+f_{jj}-2f_{ij}\geq 0\)</span> by condition 2., and so the <span class="math inline">\(d_{ij}\)</span> are all well-defined (i.e. real, not imaginary).</p>
+Firstly, note that as <span class="math inline">\(\mathbf F\)</span> is a similarity matrix, <span class="math inline">\(f_{ii}+f_{jj}-2f_{ij}\geq 0\)</span> by condition 2., and so the <span class="math inline">\(d_{ij}\)</span> are all well-defined (i.e. real, not imaginary).
+It is easy to see that <span class="math inline">\(\mathbf D\)</span> is a distance matrix as defined in Definition <a href="6-mds.html#def:distanceD">6.1</a>.</p>
 <p>We will now show that Equation <a href="6-2-similarity.html#eq:BHFH">(6.7)</a> holds. Let <span class="math inline">\(\mathbf A= -\frac{1}{2}\mathbf D\odot \mathbf D\)</span> as in Equation <a href="6-1-classical-mds.html#eq:defA">(6.4)</a>. Then
 <span class="math display">\[
 a_{ij}=-\frac{1}{2}d_{ij}^2 =f_{ij}-\frac{1}{2}(f_{ii}+f_{jj}).
@@ -357,6 +364,11 @@ Consequently, <span class="math inline">\(\mathbf B=\mathbf H\mathbf F\mathbf H\
 So we’ve shown that <span class="math inline">\(\mathbf B= \mathbf H\mathbf F\mathbf H\)</span>. It only remains to show <span class="math inline">\(\mathbf D\)</span> is Euclidean. Since <span class="math inline">\(\mathbf F\)</span> is positive semi-definite by assumption, and <span class="math inline">\(\mathbf H^\top =\mathbf H\)</span>, it follows that <span class="math inline">\(\mathbf B=\mathbf H\mathbf F\mathbf H\)</span> must also be positive semi-definite. So by Theorem <a href="6-1-classical-mds.html#thm:five1">6.1</a> <span class="math inline">\(\mathbf D\)</span> is a Euclidean distance matrix.
 </div>
 
+<p><br></br></p>
+<p>This tells us how to do MDS with a similarity matrix <span class="math inline">\(\mathbf F\)</span>. We first apply double centering to the matrix to get
+<span class="math display">\[\mathbf B=\mathbf H\mathbf F\mathbf H\]</span>
+and then we find the spectral decomposition of <span class="math inline">\(\mathbf B\)</span> just as we did in the previous section.</p>
+</div>
 <div id="binary-attributes" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> Binary attributes</h3>
 <p>One important class of problems is when the similarity between any two objects is measured by the number of common attributes. The underlying data on each object is a binary vector of 0s and 1s indicating absence or presence of an attribute. These binary vectors are then converted to similarities by comparing which attributes two objects have in common.</p>
@@ -430,26 +442,26 @@ Human&amp;1/2&amp;1/6&amp;1/3&amp;1/3&amp;1
 \]</span>
 It is easily checked from the definition that <span class="math inline">\({\mathbf F}=(f_{ij})_{i,j=1}^5\)</span> is a similarity matrix.</p>
 <p>Let’s see how we would do this in R.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1">animal &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>), </a>
-<a class="sourceLine" id="cb177-2" data-line-number="2">                 <span class="dt">nr=</span><span class="dv">5</span>, <span class="dt">byrow=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb177-3" data-line-number="3"><span class="kw">rownames</span>(animal) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lion&quot;</span>, <span class="st">&quot;Giraffe&quot;</span>, <span class="st">&quot;Cow&quot;</span>, <span class="st">&quot;Sheep&quot;</span>, <span class="st">&quot;Human&quot;</span>)</a>
-<a class="sourceLine" id="cb177-4" data-line-number="4"><span class="kw">colnames</span>(animal)&lt;-<span class="kw">paste</span>(<span class="st">&quot;A&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb177-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb177-6" data-line-number="6">SMC &lt;-<span class="st"> </span><span class="cf">function</span>(x,y){</a>
-<a class="sourceLine" id="cb177-7" data-line-number="7">  <span class="kw">sum</span>(x<span class="op">==</span>y)<span class="op">/</span><span class="kw">length</span>(x)</a>
-<a class="sourceLine" id="cb177-8" data-line-number="8">}</a>
-<a class="sourceLine" id="cb177-9" data-line-number="9"><span class="co"># SMC(animal[1,], animal[2,]) # check this gives what you expect</span></a>
-<a class="sourceLine" id="cb177-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb177-11" data-line-number="11">n=<span class="kw">dim</span>(animal)[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb177-12" data-line-number="12">F_SMC =<span class="st"> </span><span class="kw">outer</span>(<span class="dv">1</span><span class="op">:</span>n,<span class="dv">1</span><span class="op">:</span>n,</a>
-<a class="sourceLine" id="cb177-13" data-line-number="13">              <span class="kw">Vectorize</span>(<span class="cf">function</span>(i,j){</a>
-<a class="sourceLine" id="cb177-14" data-line-number="14">                <span class="kw">SMC</span>(animal[i,], animal[j,])</a>
-<a class="sourceLine" id="cb177-15" data-line-number="15">                }</a>
-<a class="sourceLine" id="cb177-16" data-line-number="16">                ))</a>
-<a class="sourceLine" id="cb177-17" data-line-number="17"><span class="co"># we could do this as a double loop, but I&#39;ve used the outer function</span></a>
-<a class="sourceLine" id="cb177-18" data-line-number="18"><span class="co"># here.</span></a></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1">animal &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>), </a>
+<a class="sourceLine" id="cb179-2" data-line-number="2">                 <span class="dt">nr=</span><span class="dv">5</span>, <span class="dt">byrow=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb179-3" data-line-number="3"><span class="kw">rownames</span>(animal) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Lion&quot;</span>, <span class="st">&quot;Giraffe&quot;</span>, <span class="st">&quot;Cow&quot;</span>, <span class="st">&quot;Sheep&quot;</span>, <span class="st">&quot;Human&quot;</span>)</a>
+<a class="sourceLine" id="cb179-4" data-line-number="4"><span class="kw">colnames</span>(animal)&lt;-<span class="kw">paste</span>(<span class="st">&quot;A&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb179-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb179-6" data-line-number="6">SMC &lt;-<span class="st"> </span><span class="cf">function</span>(x,y){</a>
+<a class="sourceLine" id="cb179-7" data-line-number="7">  <span class="kw">sum</span>(x<span class="op">==</span>y)<span class="op">/</span><span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb179-8" data-line-number="8">}</a>
+<a class="sourceLine" id="cb179-9" data-line-number="9"><span class="co"># SMC(animal[1,], animal[2,]) # check this gives what you expect</span></a>
+<a class="sourceLine" id="cb179-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb179-11" data-line-number="11">n=<span class="kw">dim</span>(animal)[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb179-12" data-line-number="12">F_SMC =<span class="st"> </span><span class="kw">outer</span>(<span class="dv">1</span><span class="op">:</span>n,<span class="dv">1</span><span class="op">:</span>n,</a>
+<a class="sourceLine" id="cb179-13" data-line-number="13">              <span class="kw">Vectorize</span>(<span class="cf">function</span>(i,j){</a>
+<a class="sourceLine" id="cb179-14" data-line-number="14">                <span class="kw">SMC</span>(animal[i,], animal[j,])</a>
+<a class="sourceLine" id="cb179-15" data-line-number="15">                }</a>
+<a class="sourceLine" id="cb179-16" data-line-number="16">                ))</a>
+<a class="sourceLine" id="cb179-17" data-line-number="17"><span class="co"># we could do this as a double loop, but I&#39;ve used the outer function</span></a>
+<a class="sourceLine" id="cb179-18" data-line-number="18"><span class="co"># here.</span></a></code></pre></div>
 <p>We can use the <code>dist</code> function in R to compute this more easily. The <code>dist</code> function requires us to specify which metric to use. Here, we use the <span class="math inline">\(L_1\)</span> distance, which is also known as the <a href="https://en.wikipedia.org/wiki/Taxicab_geometry">Manhattan distance</a>. We have to subtract this from the largest possible distance, which is 6 in this case, to get the similarity, and then divide by 6 to get the SMC.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1">(<span class="dv">6</span><span class="op">-</span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(animal, <span class="dt">method=</span><span class="st">&quot;manhattan&quot;</span>, <span class="dt">diag =</span> <span class="ot">TRUE</span>, <span class="dt">upper =</span> <span class="ot">TRUE</span>)))<span class="op">/</span><span class="dv">6</span></a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1">(<span class="dv">6</span><span class="op">-</span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(animal, <span class="dt">method=</span><span class="st">&quot;manhattan&quot;</span>, <span class="dt">diag =</span> <span class="ot">TRUE</span>, <span class="dt">upper =</span> <span class="ot">TRUE</span>)))<span class="op">/</span><span class="dv">6</span></a></code></pre></div>
 <pre><code>##              Lion   Giraffe       Cow     Sheep     Human
 ## Lion    1.0000000 0.6666667 0.5000000 0.3333333 0.5000000
 ## Giraffe 0.6666667 1.0000000 0.5000000 0.3333333 0.1666667
@@ -457,18 +469,18 @@ It is easily checked from the definition that <span class="math inline">\({\math
 ## Sheep   0.3333333 0.3333333 0.8333333 1.0000000 0.5000000
 ## Human   0.5000000 0.1666667 0.3333333 0.5000000 1.0000000</code></pre>
 <p>The Jaccard index can be computed as follows:</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1">jaccard =<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
-<a class="sourceLine" id="cb180-2" data-line-number="2">  bt =<span class="st"> </span><span class="kw">table</span>(y, x)</a>
-<a class="sourceLine" id="cb180-3" data-line-number="3">  <span class="kw">return</span>((bt[<span class="dv">2</span>, <span class="dv">2</span>])<span class="op">/</span>(bt[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">+</span><span class="st"> </span>bt[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>bt[<span class="dv">2</span>, <span class="dv">2</span>]))</a>
-<a class="sourceLine" id="cb180-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb180-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb180-6" data-line-number="6"><span class="co"># jaccard(animal[1,], animal[2,]) # check this gives what you expect</span></a>
-<a class="sourceLine" id="cb180-7" data-line-number="7">F_jaccard =<span class="st"> </span><span class="kw">outer</span>(<span class="dv">1</span><span class="op">:</span>n,<span class="dv">1</span><span class="op">:</span>n, <span class="kw">Vectorize</span>(<span class="cf">function</span>(i,j){</a>
-<a class="sourceLine" id="cb180-8" data-line-number="8">  <span class="kw">jaccard</span>(animal[i,], animal[j,])</a>
-<a class="sourceLine" id="cb180-9" data-line-number="9">  }</a>
-<a class="sourceLine" id="cb180-10" data-line-number="10">  ))</a></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1">jaccard =<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
+<a class="sourceLine" id="cb182-2" data-line-number="2">  bt =<span class="st"> </span><span class="kw">table</span>(y, x)</a>
+<a class="sourceLine" id="cb182-3" data-line-number="3">  <span class="kw">return</span>((bt[<span class="dv">2</span>, <span class="dv">2</span>])<span class="op">/</span>(bt[<span class="dv">1</span>, <span class="dv">2</span>] <span class="op">+</span><span class="st"> </span>bt[<span class="dv">2</span>, <span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>bt[<span class="dv">2</span>, <span class="dv">2</span>]))</a>
+<a class="sourceLine" id="cb182-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb182-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb182-6" data-line-number="6"><span class="co"># jaccard(animal[1,], animal[2,]) # check this gives what you expect</span></a>
+<a class="sourceLine" id="cb182-7" data-line-number="7">F_jaccard =<span class="st"> </span><span class="kw">outer</span>(<span class="dv">1</span><span class="op">:</span>n,<span class="dv">1</span><span class="op">:</span>n, <span class="kw">Vectorize</span>(<span class="cf">function</span>(i,j){</a>
+<a class="sourceLine" id="cb182-8" data-line-number="8">  <span class="kw">jaccard</span>(animal[i,], animal[j,])</a>
+<a class="sourceLine" id="cb182-9" data-line-number="9">  }</a>
+<a class="sourceLine" id="cb182-10" data-line-number="10">  ))</a></code></pre></div>
 <p>Again, we can compute this using <code>dist</code>, but this time using the binary distance metric. See the help page <code>?dist</code> to understand why.</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1"><span class="dv">1</span><span class="op">-</span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(animal, <span class="dt">method=</span><span class="st">&quot;binary&quot;</span>, <span class="dt">diag=</span><span class="ot">TRUE</span>, <span class="dt">upper=</span><span class="ot">TRUE</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1"><span class="dv">1</span><span class="op">-</span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(animal, <span class="dt">method=</span><span class="st">&quot;binary&quot;</span>, <span class="dt">diag=</span><span class="ot">TRUE</span>, <span class="dt">upper=</span><span class="ot">TRUE</span>))</a></code></pre></div>
 <pre><code>##         Lion Giraffe       Cow     Sheep Human
 ## Lion    1.00     0.6 0.4000000 0.2000000  0.25
 ## Giraffe 0.60     1.0 0.4000000 0.2000000  0.00
@@ -476,19 +488,19 @@ It is easily checked from the definition that <span class="math inline">\({\math
 ## Sheep   0.20     0.2 0.6666667 1.0000000  0.00
 ## Human   0.25     0.0 0.0000000 0.0000000  1.00</code></pre>
 <p>To do MDS on these data, we need to first convert from a similarity matrix <span class="math inline">\(F\)</span> to a distance matrix <span class="math inline">\(D\)</span>. We can use the following function to do this:</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1">FtoD &lt;-<span class="st"> </span><span class="cf">function</span>(FF){</a>
-<a class="sourceLine" id="cb183-2" data-line-number="2">  n =<span class="st"> </span><span class="kw">dim</span>(FF)[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb183-3" data-line-number="3">  D &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nr=</span>n,<span class="dt">nc=</span>n)</a>
-<a class="sourceLine" id="cb183-4" data-line-number="4">  <span class="cf">for</span>(ii <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
-<a class="sourceLine" id="cb183-5" data-line-number="5">    <span class="cf">for</span>(jj <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
-<a class="sourceLine" id="cb183-6" data-line-number="6">      D[ii,jj] &lt;-<span class="st"> </span><span class="kw">sqrt</span>(FF[ii,ii]<span class="op">+</span>FF[jj,jj]<span class="op">-</span><span class="dv">2</span><span class="op">*</span>FF[ii,jj])</a>
-<a class="sourceLine" id="cb183-7" data-line-number="7">    }</a>
-<a class="sourceLine" id="cb183-8" data-line-number="8">  }</a>
-<a class="sourceLine" id="cb183-9" data-line-number="9">  <span class="kw">return</span>(D)</a>
-<a class="sourceLine" id="cb183-10" data-line-number="10">}</a></code></pre></div>
-<p>Let’s now do MDS, and compare the results from using the SMC and Jaccard index.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1">mds1&lt;-<span class="kw">cmdscale</span>(<span class="kw">FtoD</span>(F_SMC))</a>
-<a class="sourceLine" id="cb184-2" data-line-number="2">mds2&lt;-<span class="kw">cmdscale</span>(<span class="kw">FtoD</span>(F_jaccard))</a></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1">FtoD &lt;-<span class="st"> </span><span class="cf">function</span>(FF){</a>
+<a class="sourceLine" id="cb185-2" data-line-number="2">  n =<span class="st"> </span><span class="kw">dim</span>(FF)[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb185-3" data-line-number="3">  D &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">nr=</span>n,<span class="dt">nc=</span>n)</a>
+<a class="sourceLine" id="cb185-4" data-line-number="4">  <span class="cf">for</span>(ii <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb185-5" data-line-number="5">    <span class="cf">for</span>(jj <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n){</a>
+<a class="sourceLine" id="cb185-6" data-line-number="6">      D[ii,jj] &lt;-<span class="st"> </span><span class="kw">sqrt</span>(FF[ii,ii]<span class="op">+</span>FF[jj,jj]<span class="op">-</span><span class="dv">2</span><span class="op">*</span>FF[ii,jj])</a>
+<a class="sourceLine" id="cb185-7" data-line-number="7">    }</a>
+<a class="sourceLine" id="cb185-8" data-line-number="8">  }</a>
+<a class="sourceLine" id="cb185-9" data-line-number="9">  <span class="kw">return</span>(D)</a>
+<a class="sourceLine" id="cb185-10" data-line-number="10">}</a></code></pre></div>
+<p>Let’s now do MDS, and compare the results from using the SMC and Jaccard index. We could do this by computing <span class="math inline">\(\mathbf B= \mathbf H\mathbf F\mathbf H\)</span> and finding its spectral decomposition, but we will let R do the work for us, and use the <code>cmdscale</code> command which takes a distance matrix as input. So let’s write a function to convert from a similarity matrix to a distance matrix.</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1">mds1&lt;-<span class="kw">cmdscale</span>(<span class="kw">FtoD</span>(F_SMC))</a>
+<a class="sourceLine" id="cb186-2" data-line-number="2">mds2&lt;-<span class="kw">cmdscale</span>(<span class="kw">FtoD</span>(F_jaccard))</a></code></pre></div>
 <p><img src="06-mds_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>So we can see the choice of index has made a difference to the results.</p>
 </div>
@@ -497,27 +509,27 @@ It is easily checked from the definition that <span class="math inline">\({\math
 <h3><span class="header-section-number">6.2.2</span> Example: Classical MDS with the MNIST data</h3>
 <p>In section <a href="4-3-an-alternative-view-of-pca.html#pca-mnist">4.3.1</a> we saw the results of doing PCA on the MNIST handwritten digits. In the final part of that section, we did PCA on a selection of all the digits, and plotted the two leading PC scores, coloured by which digit they represented.</p>
 <p>Let’s now do MDS on the same data. We know that if we use the Euclidean distance between the image vectors, then we will be doing the same thing as PCA. So let’s instead first convert each pixel in the image to binary, with a value of 0 if the intensity is less than 0.3, and 1 otherwise. We can then compute a similarity matrix using the SMC and Jaccard indices.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&#39;mnist.rda&#39;</span>)</a>
-<a class="sourceLine" id="cb185-2" data-line-number="2">X&lt;-<span class="st"> </span>mnist<span class="op">$</span>train<span class="op">$</span>x[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>,]</a>
-<a class="sourceLine" id="cb185-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb185-4" data-line-number="4">Y&lt;-<span class="st"> </span>(X<span class="op">&gt;</span><span class="fl">0.3</span>)<span class="op">*</span><span class="fl">1.</span>  <span class="co"># multiply by 1 to convert from T/F to a 1/0</span></a>
-<a class="sourceLine" id="cb185-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb185-6" data-line-number="6">n=<span class="kw">dim</span>(Y)[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb185-7" data-line-number="7">p=<span class="kw">dim</span>(Y)[<span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb185-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb185-9" data-line-number="9">F_SMC=(p<span class="op">-</span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(Y, <span class="dt">method=</span><span class="st">&quot;manhattan&quot;</span>, <span class="dt">diag =</span> <span class="ot">TRUE</span>, <span class="dt">upper =</span> <span class="ot">TRUE</span>)))<span class="op">/</span>p</a>
-<a class="sourceLine" id="cb185-10" data-line-number="10">F_Jaccard =<span class="st"> </span><span class="dv">1</span><span class="op">-</span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(Y, <span class="dt">method=</span><span class="st">&quot;binary&quot;</span>, <span class="dt">diag=</span><span class="ot">TRUE</span>, <span class="dt">upper=</span><span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb185-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb185-12" data-line-number="12">mds1=<span class="kw">data.frame</span>(<span class="kw">cmdscale</span>(<span class="kw">FtoD</span>(F_SMC)))</a>
-<a class="sourceLine" id="cb185-13" data-line-number="13">mds2=<span class="kw">data.frame</span>(<span class="kw">cmdscale</span>(<span class="kw">FtoD</span>(F_Jaccard)))</a></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&#39;mnist.rda&#39;</span>)</a>
+<a class="sourceLine" id="cb187-2" data-line-number="2">X&lt;-<span class="st"> </span>mnist<span class="op">$</span>train<span class="op">$</span>x[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>,]</a>
+<a class="sourceLine" id="cb187-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb187-4" data-line-number="4">Y&lt;-<span class="st"> </span>(X<span class="op">&gt;</span><span class="fl">0.3</span>)<span class="op">*</span><span class="fl">1.</span>  <span class="co"># multiply by 1 to convert from T/F to a 1/0</span></a>
+<a class="sourceLine" id="cb187-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb187-6" data-line-number="6">n=<span class="kw">dim</span>(Y)[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb187-7" data-line-number="7">p=<span class="kw">dim</span>(Y)[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb187-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb187-9" data-line-number="9">F_SMC=(p<span class="op">-</span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(Y, <span class="dt">method=</span><span class="st">&quot;manhattan&quot;</span>, <span class="dt">diag =</span> <span class="ot">TRUE</span>, <span class="dt">upper =</span> <span class="ot">TRUE</span>)))<span class="op">/</span>p</a>
+<a class="sourceLine" id="cb187-10" data-line-number="10">F_Jaccard =<span class="st"> </span><span class="dv">1</span><span class="op">-</span><span class="kw">as.matrix</span>(<span class="kw">dist</span>(Y, <span class="dt">method=</span><span class="st">&quot;binary&quot;</span>, <span class="dt">diag=</span><span class="ot">TRUE</span>, <span class="dt">upper=</span><span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb187-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb187-12" data-line-number="12">mds1=<span class="kw">data.frame</span>(<span class="kw">cmdscale</span>(<span class="kw">FtoD</span>(F_SMC)))</a>
+<a class="sourceLine" id="cb187-13" data-line-number="13">mds2=<span class="kw">data.frame</span>(<span class="kw">cmdscale</span>(<span class="kw">FtoD</span>(F_Jaccard)))</a></code></pre></div>
 <p>We will do as we did before, and plot the coordinates coloured by the digit each point is supposed to represent. Note that we have not used these digit labels at any point.</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1">Digit =<span class="st"> </span><span class="kw">as.factor</span>(mnist<span class="op">$</span>train<span class="op">$</span>y[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>])</a>
-<a class="sourceLine" id="cb186-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb186-3" data-line-number="3"><span class="kw">ggplot</span>(mds1, <span class="kw">aes</span>(<span class="dt">x=</span>X1, <span class="dt">y=</span>X2, <span class="dt">colour=</span>Digit, <span class="dt">label=</span>Digit))<span class="op">+</span></a>
-<a class="sourceLine" id="cb186-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Digit))<span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;MDS for MNIST using the SMC&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1">Digit =<span class="st"> </span><span class="kw">as.factor</span>(mnist<span class="op">$</span>train<span class="op">$</span>y[<span class="dv">1</span><span class="op">:</span><span class="dv">1000</span>])</a>
+<a class="sourceLine" id="cb188-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb188-3" data-line-number="3"><span class="kw">ggplot</span>(mds1, <span class="kw">aes</span>(<span class="dt">x=</span>X1, <span class="dt">y=</span>X2, <span class="dt">colour=</span>Digit, <span class="dt">label=</span>Digit))<span class="op">+</span></a>
+<a class="sourceLine" id="cb188-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Digit))<span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;MDS for MNIST using the SMC&quot;</span>) </a></code></pre></div>
 <p><img src="06-mds_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1"><span class="kw">ggplot</span>(mds2, <span class="kw">aes</span>(<span class="dt">x=</span>X1, <span class="dt">y=</span>X2, <span class="dt">colour=</span>Digit, <span class="dt">label=</span>Digit))<span class="op">+</span></a>
-<a class="sourceLine" id="cb187-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Digit))<span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;MDS for MNIST using the Jaccard index&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1"><span class="kw">ggplot</span>(mds2, <span class="kw">aes</span>(<span class="dt">x=</span>X1, <span class="dt">y=</span>X2, <span class="dt">colour=</span>Digit, <span class="dt">label=</span>Digit))<span class="op">+</span></a>
+<a class="sourceLine" id="cb189-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Digit))<span class="op">+</span><span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">&quot;MDS for MNIST using the Jaccard index&quot;</span>) </a></code></pre></div>
 <p><img src="06-mds_files/figure-html/unnamed-chunk-31-2.png" width="672" /></p>
 <p>You can see that we get two different representations of the data that differ from each other, and from the PCA representation we computed in Chapter <a href="4-pca.html#pca">4</a>.</p>
 </div>

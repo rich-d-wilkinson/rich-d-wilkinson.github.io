@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="1-2-similarity-measures.html"/>
-<link rel="next" href="1-4-exercises.html"/>
+<link rel="prev" href="1-2-similarity.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -138,13 +138,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1.1" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>1.1.1</b> Non-Euclidean distance matrices</a></li>
 <li class="chapter" data-level="1.1.2" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Principal Coordinate Analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-2-similarity-measures.html"><a href="1-2-similarity-measures.html"><i class="fa fa-check"></i><b>1.2</b> Similarity measures</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="1-2-similarity-measures.html"><a href="1-2-similarity-measures.html#binary-attributes"><i class="fa fa-check"></i><b>1.2.1</b> Binary attributes</a></li>
-<li class="chapter" data-level="1.2.2" data-path="1-2-similarity-measures.html"><a href="1-2-similarity-measures.html#example-classical-mds-with-the-mnist-data"><i class="fa fa-check"></i><b>1.2.2</b> Example: Classical MDS with the MNIST data</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-similarity.html"><a href="1-2-similarity.html"><i class="fa fa-check"></i><b>1.2</b> Similarity measures</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-similarity.html"><a href="1-2-similarity.html#binary-attributes"><i class="fa fa-check"></i><b>1.2.1</b> Binary attributes</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-similarity.html"><a href="1-2-similarity.html#example-classical-mds-with-the-mnist-data"><i class="fa fa-check"></i><b>1.2.2</b> Example: Classical MDS with the MNIST data</a></li>
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="1-3-non-metric-mds.html"><a href="1-3-non-metric-mds.html"><i class="fa fa-check"></i><b>1.3</b> Non-metric MDS</a></li>
-<li class="chapter" data-level="1.4" data-path="1-4-exercises.html"><a href="1-4-exercises.html"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
-<li class="chapter" data-level="1.5" data-path="1-5-computer-tasks.html"><a href="1-5-computer-tasks.html"><i class="fa fa-check"></i><b>1.5</b> Computer Tasks</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -169,7 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="non-metric-mds" class="section level2">
 <h2><span class="header-section-number">1.3</span> Non-metric MDS</h2>
 <p>In this chapter we have focused on classical MDS, which looks for points that have <strong>Euclidean</strong> distances close to the desired distances, where we measured close by minimizing the sum of squared errors (cf Equation <a href="1-mds.html#eq:mdsopt">(1.1)</a>).</p>
-<p>There is a much wider class of multidimensional scaling methods that do not use Euclidean distances, and do not judge the approximation quality using squared errors. These MDS methods can sometimes produce sets of coordinates that are more useful than classical MDS. However, it is only for classical MDS that there is a closed form solution. More general MDS methods rely upon numerical optimization to find a solution to the optimization problem. If you are interested, take a look at the R commands <code>isoMDS</code>, <code>Shepard</code>, and <code>sammon</code> from the <code>MASS</code> R package.</p>
+<p>There is a much wider class of multidimensional scaling methods that do not use Euclidean distances, and do not judge the approximation quality using squared errors. These MDS methods can sometimes produce sets of coordinates that are more useful than classical MDS. However, it is only for classical MDS that there is a closed form solution. More general MDS methods rely upon numerical optimization to find a solution to the optimization problem. If you are interested, take a look at the R commands <code>isoMDS</code>, <code>Shepard</code>, and <code>sammon</code> from the <code>MASS</code> R package. Sammon mapping, for example, puts a greater emphasis on preserving smaller distances.</p>
 <p>More generally still, there has been a lot of work on non-linear dimension reduction methods that try to find a low dimensional manifold upon which the data lie. Have a look <a href="https://colah.github.io/posts/2014-10-Visualizing-MNIST/">here</a> for some amazing visualizations and results using the MNIST dataset. These methods are not always easy to work with, and can require detailed user supervision in order to work well.</p>
 <!--Something on general distances...
 
@@ -189,13 +187,14 @@ Recall that we have distinguished between metric distances (``metrics''), which 
   -->
 
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="1-2-similarity-measures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="1-4-exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="1-2-similarity.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

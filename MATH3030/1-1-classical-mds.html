@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="1-mds.html"/>
-<link rel="next" href="1-2-similarity-measures.html"/>
+<link rel="next" href="1-2-similarity.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -138,13 +138,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1.1" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>1.1.1</b> Non-Euclidean distance matrices</a></li>
 <li class="chapter" data-level="1.1.2" data-path="1-1-classical-mds.html"><a href="1-1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Principal Coordinate Analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-2-similarity-measures.html"><a href="1-2-similarity-measures.html"><i class="fa fa-check"></i><b>1.2</b> Similarity measures</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="1-2-similarity-measures.html"><a href="1-2-similarity-measures.html#binary-attributes"><i class="fa fa-check"></i><b>1.2.1</b> Binary attributes</a></li>
-<li class="chapter" data-level="1.2.2" data-path="1-2-similarity-measures.html"><a href="1-2-similarity-measures.html#example-classical-mds-with-the-mnist-data"><i class="fa fa-check"></i><b>1.2.2</b> Example: Classical MDS with the MNIST data</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-similarity.html"><a href="1-2-similarity.html"><i class="fa fa-check"></i><b>1.2</b> Similarity measures</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-similarity.html"><a href="1-2-similarity.html#binary-attributes"><i class="fa fa-check"></i><b>1.2.1</b> Binary attributes</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-similarity.html"><a href="1-2-similarity.html#example-classical-mds-with-the-mnist-data"><i class="fa fa-check"></i><b>1.2.2</b> Example: Classical MDS with the MNIST data</a></li>
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="1-3-non-metric-mds.html"><a href="1-3-non-metric-mds.html"><i class="fa fa-check"></i><b>1.3</b> Non-metric MDS</a></li>
-<li class="chapter" data-level="1.4" data-path="1-4-exercises.html"><a href="1-4-exercises.html"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
-<li class="chapter" data-level="1.5" data-path="1-5-computer-tasks.html"><a href="1-5-computer-tasks.html"><i class="fa fa-check"></i><b>1.5</b> Computer Tasks</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -181,7 +179,7 @@ d_{ij}=\vert \vert \mathbf x_i -\mathbf x_j \vert \vert_2 =\sqrt{(\mathbf x_i-\m
 \]</span>
 </div>
 
-<p>In classical MDS, we don’t work directly with the distance matrix, but with a similarity matrix.</p>
+<p>In classical MDS, we don’t work directly with the distance matrix, but with the centred inner product matrix.</p>
 
 <div class="definition">
 <p><span id="def:unnamed-chunk-3" class="definition"><strong>Definition 1.3  </strong></span>Given a distance matrix <span class="math inline">\({\mathbf D}=\{d_{ij}\}_{i,j=1}^n\)</span>,
@@ -202,7 +200,7 @@ and <span class="math inline">\(\mathbf H\)</span> is the <span class="math inli
 where <span class="math inline">\(\odot\)</span> denotes the <a href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices)">Hadamard (or element-wise) product</a> of two matrices.</p>
 </div>
 
-<p>We can think of <span class="math inline">\(\mathbf B\)</span> as a <strong>similarity matrix</strong> for the data.
+<p>We can think of <span class="math inline">\(\mathbf B\)</span> as a matrix of similarities for the data.
 The reason for this, and for why we call <span class="math inline">\(\mathbf B\)</span> the centred inner product matrix will become clear after we state the main result of this chapter.</p>
 <div id="main-result" class="section level4 unnumbered">
 <h4>Main result</h4>
@@ -400,7 +398,7 @@ In other words, we sum over those <span class="math inline">\(j\)</span> such th
 <p>Then <span class="math inline">\(\mathbf B_{\text{pos}}\)</span> is positive semi-definite and so we can use part 2. of Theorem <a href="1-1-classical-mds.html#thm:five1">1.1</a> to determine a Euclidean configuration of points which has centred inner-product matrix <span class="math inline">\(\mathbf B_{\text{pos}}\)</span>. Then, provided the negative eigenvalues are small in absolute value relative to the positive eigenvalues, the inter-point distances of the new points in Euclidean space should provide a good approximation to the original inter-point distances <span class="math inline">\((d_{ij})\)</span>.</p>
 <div id="example-3" class="section level4 unnumbered">
 <h4>Example 3</h4>
-<p>Let’s now look at a case for which <span class="math inline">\(\mathbf B\)</span> isn’t positive difinite. We’ll create this by modifying the distance matrix we had before:</p>
+<p>Let’s now look at a case for which <span class="math inline">\(\mathbf B\)</span> isn’t positive definite. We’ll create this by modifying the distance matrix we had before:</p>
 <p><span class="math display">\[\mathbf D_2 = \begin{pmatrix}0&amp;0.5&amp;1&amp;1&amp;1 \\0.5&amp;0&amp;1.41&amp;2&amp;1.41 \\1&amp;1.41&amp;0&amp;1.41&amp;2 \\1&amp;2&amp;1.41&amp;0&amp;1.41 \\1&amp;1.41&amp;2&amp;1.41&amp;0 \\\end{pmatrix}.\]</span>
 This is a distance matrix, but is it a <em>Euclidean</em> distance matrix? I.e., is there a set of vectors <span class="math inline">\(\mathbf x_1, \ldots, \mathbf x_5\)</span> which have Euclidean distances between them given by <span class="math inline">\(\mathbf D_2\)</span>?</p>
 <p>If we look at the eigenvalues of the centred inner-product matrix <span class="math inline">\(\mathbf B\)</span> associated with <span class="math inline">\(\mathbf D_2\)</span>, then we find that it has negative eigenvalues, and is thus not positive semi-definite. Thus by Theorem <a href="1-1-classical-mds.html#thm:five1">1.1</a> <span class="math inline">\(\mathbf D_2\)</span> is not a <em>Euclidean</em> distance matrix.</p>
@@ -423,14 +421,20 @@ This is a distance matrix, but is it a <em>Euclidean</em> distance matrix? I.e.,
 <p>which have a distance matrix that approximates <span class="math inline">\(\mathbf D_2\)</span>, but does not equal it. By using a different number of dimensions, we may be able to get a set of points that have a distance matrix closer to <span class="math inline">\(\mathbf D\)</span>, but we will not be able to find a set of <span class="math inline">\(5\)</span> points that have a distance matrix exactly equal to <span class="math inline">\(\mathbf D_2\)</span>.</p>
 <p>To do this ourselves (i.e., not using <code>cmdscale</code>) we can use the commands</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">U &lt;-<span class="st"> </span><span class="kw">eigen</span>(B2)<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">Lambda_sqrt &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="kw">eigen</span>(B2)<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb21-3" data-line-number="3">U <span class="op">%*%</span><span class="st"> </span>Lambda_sqrt</a></code></pre></div>
-<pre><code>##             [,1]          [,2]
-## [1,] -0.19758391 -7.490239e-16
-## [2,] -1.38375651 -5.393269e-15
-## [3,]  0.05853879 -1.414214e+00
-## [4,]  1.46426283  5.197828e-15
-## [5,]  0.05853879  1.414214e+00</code></pre>
+<a class="sourceLine" id="cb21-2" data-line-number="2">Lambda_sqrt &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="kw">sqrt</span>(<span class="kw">eigen</span>(B2)<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]))</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">Y &lt;-<span class="st"> </span>U <span class="op">%*%</span><span class="st"> </span>Lambda_sqrt</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="kw">dist</span>(Y)</a></code></pre></div>
+<pre><code>##           1         2         3         4
+## 2 0.8333481                              
+## 3 1.0160602 1.4236404                    
+## 4 1.1675340 2.0008821 1.4054689          
+## 5 1.0160602 1.4236404 2.0000000 1.4054689</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">dist</span>(<span class="kw">cmdscale</span>(D2,<span class="dt">k=</span><span class="dv">2</span>))</a></code></pre></div>
+<pre><code>##           1         2         3         4
+## 2 0.8333481                              
+## 3 1.0160602 1.4236404                    
+## 4 1.1675340 2.0008821 1.4054689          
+## 5 1.0160602 1.4236404 2.0000000 1.4054689</code></pre>
 <p><img src="06-mds_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 </div>
 </div>
@@ -539,7 +543,7 @@ Scaling, translation, uniqueness of solution? Mean of solution???
         </div>
       </div>
 <a href="1-mds.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="1-2-similarity-measures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="1-2-similarity.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

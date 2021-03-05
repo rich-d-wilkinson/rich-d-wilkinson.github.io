@@ -290,6 +290,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 LOOK AT 
 http://simbad-fp7.eu/images/tutorial/02-ECCV2012Tutorial.pdf
 -->
+<p>The videos for this chapter are available at:</p>
+<ul>
+<li><a href="https://mediaspace.nottingham.ac.uk/media/MDSA+Introduction/1_k5ofxt3k">6.0 Introduction to MDS</a></li>
+<li><a href="https://mediaspace.nottingham.ac.uk/media/MDSA+Classical+MDS/1_0lz9sce2">6.1 Classical MDS</a></li>
+<li><a href="https://mediaspace.nottingham.ac.uk/media/MDSA+Example+1/1_y5cp5ea6">6.1 Example 1</a></li>
+<li><a href="https://mediaspace.nottingham.ac.uk/media/MDSA+Non-Euclidean+distance+matrices/1_nsh2vdgr">6.1.1 Non-Euclidean distance matrices</a></li>
+<li><a href="https://mediaspace.nottingham.ac.uk/media/MDSA+Principal+Coordinate+Analysis/1_r07on81w">6.1.2 Principal Coordinate Analysis</a></li>
+<li><a href="https://mediaspace.nottingham.ac.uk/media/MDSA+Similarity+matrices/1_wwuwwxk4">6.2 Similarity measures</a></li>
+<li><a href="https://mediaspace.nottingham.ac.uk/media/MDSA+Binary+Attributes/1_jfx45kk0">6.2.1 Binary attributes</a></li>
+<li><a href="https://mediaspace.nottingham.ac.uk/media/MDSA+Non+metric+MDS/1_jqzo1xi4">6.3 Non-metric MDS</a></li>
+</ul>
 <p>In PCA, we start with <span class="math inline">\(n\)</span> data points <span class="math inline">\(\mathbf x_i \in \mathbb{R}^p\)</span>, and then try to find a low dimensional projection of these points, e.g., <span class="math inline">\(\mathbf y_1, \ldots, \mathbf y_n \in \mathbb{R}^r\)</span> with <span class="math inline">\(r&lt;p\)</span>, in such a way that they minimize the reconstruction error (or maximize the variance).</p>
 <p>The focus in <strong>Multidimensional Scaling (MDS)</strong> is somewhat different. Instead of being given the data <span class="math inline">\(\mathbf X\)</span>, our starting point is often a matrix of <strong>distances</strong> or <strong>dissimilarities</strong> between the data points, <span class="math inline">\(\mathbf D\)</span>. For example, if we have data on <span class="math inline">\(n\)</span> different experimental units, then we would be given the distances <span class="math inline">\(d_{ij}\)</span> between any pair of experimental units <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>. We compile these into a <span class="math inline">\(n\times n\)</span> <strong>distance matrix</strong> <span class="math inline">\(\mathbf D=(d_{ij}: \, i,j=1, \ldots , n)\)</span>.</p>
 <p>The goal of MDS is to find a set of points in a low-dimensional Euclidean space <span class="math inline">\(\mathbb{R}^r\)</span>, usually <span class="math inline">\(\mathbb{R}\)</span> or <span class="math inline">\(\mathbb{R}^2\)</span>, whose inter-point distances (or dissimilarities) are as close as possible to the <span class="math inline">\(d_{ij}\)</span>. That is, we want to find <span class="math inline">\(\mathbf y_1, \ldots, \mathbf y_n \in \mathbb{R}^r\)</span> whose distance matrix is approximately <span class="math inline">\(\mathbf D\)</span>, i.e., for which
@@ -937,8 +948,8 @@ represent the points in a low-dimensional space will make visualization and stat
 <ol style="list-style-type: decimal">
 <li><span class="math inline">\(d_{ij}\geq 0\)</span> for all <span class="math inline">\(i, j=1,\ldots,n\)</span>.</li>
 <li><span class="math inline">\(d_{ii}=0\)</span> for <span class="math inline">\(i=1,\ldots, n\)</span> and</li>
-<li><span class="math inline">\(\mathbf D=\mathbf D^\top\)</span>, i.e., <span class="math inline">\(\mathbf D\)</span> is symmetric (<span class="math inline">\(d_{ij}=d_{ji}\)</span>).</li>
-<li><span class="math inline">\(d_{ij}=0\)</span> implies <span class="math inline">\(\mathbf x_i=\mathbf x_j\)</span>
+<li><span class="math inline">\(\mathbf D=\mathbf D^\top\)</span>, i.e., <span class="math inline">\(\mathbf D\)</span> is symmetric (<span class="math inline">\(d_{ij}=d_{ji}\)</span>).
+<!--4.  $d_{ij}=0$ implies $\bx_i=\bx_j$--> <!-- I don't think this is neeeded anywhjere. And the proof of similarity matrices can't prove this part -->
 </div></li>
 </ol>
 <p>Note that we do not require distances to necessarily satisfy the triangle inequality

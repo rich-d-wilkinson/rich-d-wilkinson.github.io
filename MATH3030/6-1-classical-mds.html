@@ -541,14 +541,20 @@ This is a distance matrix, but is it a <em>Euclidean</em> distance matrix? I.e.,
 <p>which have a distance matrix that approximates <span class="math inline">\(\mathbf D_2\)</span>, but does not equal it. By using a different number of dimensions, we may be able to get a set of points that have a distance matrix closer to <span class="math inline">\(\mathbf D\)</span>, but we will not be able to find a set of <span class="math inline">\(5\)</span> points that have a distance matrix exactly equal to <span class="math inline">\(\mathbf D_2\)</span>.</p>
 <p>To do this ourselves (i.e., not using <code>cmdscale</code>) we can use the commands</p>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1">U &lt;-<span class="st"> </span><span class="kw">eigen</span>(B2)<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb175-2" data-line-number="2">Lambda_sqrt &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="kw">eigen</span>(B2)<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb175-3" data-line-number="3">U <span class="op">%*%</span><span class="st"> </span>Lambda_sqrt</a></code></pre></div>
-<pre><code>##             [,1]          [,2]
-## [1,] -0.19758391 -7.490239e-16
-## [2,] -1.38375651 -5.393269e-15
-## [3,]  0.05853879 -1.414214e+00
-## [4,]  1.46426283  5.197828e-15
-## [5,]  0.05853879  1.414214e+00</code></pre>
+<a class="sourceLine" id="cb175-2" data-line-number="2">Lambda_sqrt &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="kw">sqrt</span>(<span class="kw">eigen</span>(B2)<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]))</a>
+<a class="sourceLine" id="cb175-3" data-line-number="3">Y &lt;-<span class="st"> </span>U <span class="op">%*%</span><span class="st"> </span>Lambda_sqrt</a>
+<a class="sourceLine" id="cb175-4" data-line-number="4"><span class="kw">dist</span>(Y)</a></code></pre></div>
+<pre><code>##           1         2         3         4
+## 2 0.8333481                              
+## 3 1.0160602 1.4236404                    
+## 4 1.1675340 2.0008821 1.4054689          
+## 5 1.0160602 1.4236404 2.0000000 1.4054689</code></pre>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1"><span class="kw">dist</span>(<span class="kw">cmdscale</span>(D2,<span class="dt">k=</span><span class="dv">2</span>))</a></code></pre></div>
+<pre><code>##           1         2         3         4
+## 2 0.8333481                              
+## 3 1.0160602 1.4236404                    
+## 4 1.1675340 2.0008821 1.4054689          
+## 5 1.0160602 1.4236404 2.0000000 1.4054689</code></pre>
 <p><img src="06-mds_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 </div>
 </div>

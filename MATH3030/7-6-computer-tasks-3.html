@@ -289,20 +289,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Download the wine dataset from the <a href="https://archive.ics.uci.edu/ml/datasets/wine">UCI Machine Learning Repository</a></li>
 </ol>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1"><span class="kw">download.file</span>(<span class="dt">url=</span><span class="st">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data&quot;</span>, <span class="dt">destfile=</span><span class="st">&quot;wine.data&quot;</span>)</a>
-<a class="sourceLine" id="cb214-2" data-line-number="2">wine &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;wine.data&quot;</span>, <span class="dt">header=</span><span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb214-3" data-line-number="3"><span class="kw">colnames</span>(wine) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Type&quot;</span>, <span class="st">&quot;Alcohol&quot;</span>, <span class="st">&quot;Malic&quot;</span>,</a>
-<a class="sourceLine" id="cb214-4" data-line-number="4"><span class="st">&quot;Ash&quot;</span>,</a>
-<a class="sourceLine" id="cb214-5" data-line-number="5"><span class="st">&quot;Alcalinity&quot;</span>,</a>
-<a class="sourceLine" id="cb214-6" data-line-number="6"><span class="st">&quot;Magnesium&quot;</span>,</a>
-<a class="sourceLine" id="cb214-7" data-line-number="7"><span class="st">&quot;Phenols&quot;</span>,</a>
-<a class="sourceLine" id="cb214-8" data-line-number="8"><span class="st">&quot;Flavanoids&quot;</span>,</a>
-<a class="sourceLine" id="cb214-9" data-line-number="9"><span class="st">&quot;Nonflavanoids&quot;</span>,</a>
-<a class="sourceLine" id="cb214-10" data-line-number="10"><span class="st">&quot;Proanthocyanins&quot;</span>,</a>
-<a class="sourceLine" id="cb214-11" data-line-number="11"><span class="st">&quot;Color&quot;</span>,</a>
-<a class="sourceLine" id="cb214-12" data-line-number="12"><span class="st">&quot;Hue&quot;</span>,</a>
-<a class="sourceLine" id="cb214-13" data-line-number="13"><span class="st">&quot;Dilution&quot;</span>,</a>
-<a class="sourceLine" id="cb214-14" data-line-number="14"><span class="st">&quot;Proline&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1"><span class="kw">download.file</span>(<span class="dt">url=</span><span class="st">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data&quot;</span>, <span class="dt">destfile=</span><span class="st">&quot;wine.data&quot;</span>)</a>
+<a class="sourceLine" id="cb216-2" data-line-number="2">wine &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;wine.data&quot;</span>, <span class="dt">header=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb216-3" data-line-number="3"><span class="kw">colnames</span>(wine) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Type&quot;</span>, <span class="st">&quot;Alcohol&quot;</span>, <span class="st">&quot;Malic&quot;</span>,</a>
+<a class="sourceLine" id="cb216-4" data-line-number="4"><span class="st">&quot;Ash&quot;</span>,</a>
+<a class="sourceLine" id="cb216-5" data-line-number="5"><span class="st">&quot;Alcalinity&quot;</span>,</a>
+<a class="sourceLine" id="cb216-6" data-line-number="6"><span class="st">&quot;Magnesium&quot;</span>,</a>
+<a class="sourceLine" id="cb216-7" data-line-number="7"><span class="st">&quot;Phenols&quot;</span>,</a>
+<a class="sourceLine" id="cb216-8" data-line-number="8"><span class="st">&quot;Flavanoids&quot;</span>,</a>
+<a class="sourceLine" id="cb216-9" data-line-number="9"><span class="st">&quot;Nonflavanoids&quot;</span>,</a>
+<a class="sourceLine" id="cb216-10" data-line-number="10"><span class="st">&quot;Proanthocyanins&quot;</span>,</a>
+<a class="sourceLine" id="cb216-11" data-line-number="11"><span class="st">&quot;Color&quot;</span>,</a>
+<a class="sourceLine" id="cb216-12" data-line-number="12"><span class="st">&quot;Hue&quot;</span>,</a>
+<a class="sourceLine" id="cb216-13" data-line-number="13"><span class="st">&quot;Dilution&quot;</span>,</a>
+<a class="sourceLine" id="cb216-14" data-line-number="14"><span class="st">&quot;Proline&quot;</span>)</a></code></pre></div>
 <p>Let’s assume this selection of wines is a random sample from the population of all possible wines. Conduct a multivariate hypothesis test to see whether the average wine has an alcohol content different from 13 and an Malic acide content different from 2?</p>
 <p>Test whether the alcohol and Malic acid content are significantly different between wines of type 1 and wines of type 2.</p>
 <ol start="2" style="list-style-type: decimal">
@@ -323,11 +323,11 @@ or in vector form:
 Why must <span class="math inline">\(x\)</span> be in the range <span class="math inline">\((-c,c)\)</span>? Suppose <span class="math inline">\(c=10\)</span>. In this case you can plot a circle using the following commands</li>
 </ul></li>
 </ol>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>) </a>
-<a class="sourceLine" id="cb215-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">sqrt</span>(<span class="dv">10</span><span class="op">^</span><span class="dv">2</span><span class="op">-</span>x<span class="op">^</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb215-3" data-line-number="3">x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="dv">10</span>, <span class="kw">rev</span>(x) )</a>
-<a class="sourceLine" id="cb215-4" data-line-number="4">y &lt;-<span class="st"> </span><span class="kw">c</span>(y, <span class="dv">0</span>, <span class="op">-</span><span class="kw">rev</span>(y))</a>
-<a class="sourceLine" id="cb215-5" data-line-number="5"><span class="kw">plot</span>(x,y,<span class="dt">type=</span><span class="st">&#39;l&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>) </a>
+<a class="sourceLine" id="cb217-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">sqrt</span>(<span class="dv">10</span><span class="op">^</span><span class="dv">2</span><span class="op">-</span>x<span class="op">^</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb217-3" data-line-number="3">x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="dv">10</span>, <span class="kw">rev</span>(x) )</a>
+<a class="sourceLine" id="cb217-4" data-line-number="4">y &lt;-<span class="st"> </span><span class="kw">c</span>(y, <span class="dv">0</span>, <span class="op">-</span><span class="kw">rev</span>(y))</a>
+<a class="sourceLine" id="cb217-5" data-line-number="5"><span class="kw">plot</span>(x,y,<span class="dt">type=</span><span class="st">&#39;l&#39;</span>)</a></code></pre></div>
 <pre><code> Explain why this works. **Note** if your plotting window is not square, your circle will look like an ellipse!
 
 - Secondly, let&#39;s now plot the ellipse 
