@@ -4814,7 +4814,7 @@ Left multiplying the first equation by \(\mathbf a^\top\) and the second by \(\m
 
 Substituting \(\mathbf a=\mathbf Q\mathbf b/\lambda\) into \eqref{eq:ccaevp2} gives
 \[\mathbf Q^\top\mathbf Q\mathbf b= \lambda^2\mathbf b,\]
-and so we can see that \(\mathbf b\) is an eigenvalue of \(\mathbf Q^\top \mathbf Q\), and thus we must have \(\mathbf b= \mathbf v_i\) for some \(i\), i.e., \(\mathbf b\) is one of the right singular vectors of \(\mathbf Q\). Similarly, substituting \(\mathbf b= \mathbf Q^\top \mathbf a/\lambda\) into \eqref{eq:ccaevp1} gives
+and so we can see that \(\mathbf b\) is an eigenvector of \(\mathbf Q^\top \mathbf Q\), and thus we must have \(\mathbf b= \mathbf v_i\) for some \(i\), i.e., \(\mathbf b\) is one of the right singular vectors of \(\mathbf Q\). Similarly, substituting \(\mathbf b= \mathbf Q^\top \mathbf a/\lambda\) into \eqref{eq:ccaevp1} gives
 \[\mathbf Q\mathbf Q^\top \mathbf a= \lambda^2\mathbf a.\]
 So \(\mathbf a=\mathbf u_j\) for some \(j\), i.e., \(\mathbf a\) is one of the left singular vectors of \(\mathbf Q\).
 
@@ -6110,7 +6110,7 @@ We can still use classical multidimensional scaling to find a set of points \(\m
 ## 5  0.04112656  1.000000e+00
 \end{verbatim}
 
-which have a distance matrix that approximates \(\mathbf D_2\), but does not equal it. By using a different number of dimensions, we may be able to get a set of points that have a distance matrix closer to \(\mathbf D\), but we will not be able to find a set of \(5\) points that have a distance matrix exactly equal to \(\mathbf D_2\).
+which have a distance matrix that approximates \(\mathbf D_2\), but does not equal it. By using a different number of dimensions, we may be able to get a set of points that have a distance matrix closer to \(\mathbf D_2\), but we will not be able to find a set of \(5\) points that have a distance matrix exactly equal to \(\mathbf D_2\).
 
 To do this ourselves (i.e., not using \texttt{cmdscale}) we can use the commands
 
@@ -6628,7 +6628,7 @@ More generally still, there has been a lot of work on non-linear dimension reduc
     Hence the new inter-point distances are the same as the original ones.
   \end{enumerate}
 \item
-  Suppose \(\mathbf X\) is a \(n \times p\) column centred data matrix. PCA looks at the spectral decomposition of the covariance matrix \(\frac{1}{n}\mathbf X^\top \mathbf X\), whereas MDS uses the spectral decomposition of the the Gram matrix \(\mathbf X\mathbf X^\top\). Using the SVD for \(\mathbf X=\mathbf U\boldsymbol{\Sigma}\mathbf V^\top\), explain the relationship between these two methods.
+  Suppose \(\mathbf X\) is a \(n \times p\) column centred data matrix. PCA looks at the spectral decomposition of the covariance matrix \(\frac{1}{n}\mathbf X^\top \mathbf X\), whereas MDS uses the spectral decomposition of the Gram matrix \(\mathbf X\mathbf X^\top\). Using the SVD for \(\mathbf X=\mathbf U\boldsymbol{\Sigma}\mathbf V^\top\), explain the relationship between these two methods.
 \end{enumerate}
 
 \begin{enumerate}
@@ -6829,21 +6829,21 @@ The videos for this chapter, in the order I recommend you watch, are available a
 \begin{itemize}
 \tightlist
 \item
-  \href{https://mediaspace.nottingham.ac.uk/media/Multivariate+Normal+Random+VariablesA+Introduction/1_pdjxphay}{6.1 Introduction to the multivariate normal distribution}
+  \href{https://mediaspace.nottingham.ac.uk/media/Multivariate+Normal+Random+VariablesA+Introduction/1_pdjxphay}{7.1 Introduction to the multivariate normal distribution}
 \item
-  \href{https://mediaspace.nottingham.ac.uk/media/Multivariate+Normal+Random+VariablesA++Properties/1_j9mh4v7r}{6.1 Properties of the MVN distribution}
+  \href{https://mediaspace.nottingham.ac.uk/media/Multivariate+Normal+Random+VariablesA++Properties/1_j9mh4v7r}{7.1 Properties of the MVN distribution}
 \item
-  \href{https://mediaspace.nottingham.ac.uk/media/Multivariate+Normal+Random+VariablesA++Confidence+Ellipses/1_dlvgqoi3}{6.1.4 Confidence ellipses for the MVN}
+  \href{https://mediaspace.nottingham.ac.uk/media/Multivariate+Normal+Random+VariablesA++Confidence+Ellipses/1_dlvgqoi3}{7.1.4 Confidence ellipses for the MVN}
 \item
-  \href{https://mediaspace.nottingham.ac.uk/media/MVN_HypothesistestIntro.mp4/1_b1gstf1h}{6.4 Introduction to hypothesis testing}
+  \href{https://mediaspace.nottingham.ac.uk/media/MVN_HypothesistestIntro.mp4/1_b1gstf1h}{7.4 Introduction to hypothesis testing}
 \item
-  \href{https://mediaspace.nottingham.ac.uk/media/MVN_Wishart/1_3kpedgb6}{6.2 Wishart distribution}
+  \href{https://mediaspace.nottingham.ac.uk/media/MVN_Wishart/1_3kpedgb6}{7.2 Wishart distribution}
 \item
-  \href{https://mediaspace.nottingham.ac.uk/media/MVN_WishartProperties/1_yfgzcsyb}{6.2.1 Properties of the Wishart distribution}
+  \href{https://mediaspace.nottingham.ac.uk/media/MVN_WishartProperties/1_yfgzcsyb}{7.2.1 Properties of the Wishart distribution}
 \item
-  \href{https://mediaspace.nottingham.ac.uk/media/MVN_Hotelling.mp4/1_5evjeyu8}{6.3 Hotelling's \(T^2\) distribution}
+  \href{https://mediaspace.nottingham.ac.uk/media/MVN_Hotelling.mp4/1_5evjeyu8}{7.3 Hotelling's \(T^2\) distribution}
 \item
-  \href{https://mediaspace.nottingham.ac.uk/media/Multivariate+NormalsA+Hypothesis+testing/1_bhk20k5z}{6.4 Hypothesis tests with Hotelling's \(T^2\) distribution}
+  \href{https://mediaspace.nottingham.ac.uk/media/Multivariate+NormalsA+Hypothesis+testing/1_bhk20k5z}{7.4 Hypothesis tests with Hotelling's \(T^2\) distribution}
 \end{itemize}
 
 \hypertarget{definition-and-properties-of-the-mvn}{%
@@ -6888,12 +6888,21 @@ If \(p=2\) we can plot \(f(\mathbf x)\) using contour plots. Below, I've generat
 and covariance matrices
 \[\boldsymbol{\Sigma}_1=\boldsymbol{\Sigma}_2=\begin{pmatrix}1&0 \\0&1 \\\end{pmatrix}, \quad \boldsymbol{\Sigma}_3=\begin{pmatrix}1&0 \\0&0.05 \\\end{pmatrix}, \quad \boldsymbol{\Sigma}_4=\begin{pmatrix}1&0.9 \\0.9&1 \\\end{pmatrix}.\]
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-2-1.pdf}
+\begin{verbatim}
+## mixtools package, version 1.2.0, Released 2020-02-05
+## This package is based upon work supported by the National Science Foundation under Grant No. SES-0518772.
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 3.6.2
+\end{verbatim}
+
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-3-1.pdf}
 
 \textbf{Note} that the top left and bottom right plots have the \textbf{same marginal distribtions} for components \(x_1\) and \(x_2\), namely
 \[x_1 \sim N(0, 1)\quad x_2 \sim N(0, 1)\]
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-3-1.pdf} \includegraphics{07-mvn_files/figure-latex/unnamed-chunk-3-2.pdf}
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-4-1.pdf} \includegraphics{07-mvn_files/figure-latex/unnamed-chunk-4-2.pdf}
 
 The contours on each plot are obtained by finding values of \(\mathbf x\) for which \(f(\mathbf x)=c\). The constant \(c\) is chosen so that the the shapes (which we'll see below are ellipses)
 enclose 66\% and 95\% of the data.
@@ -6997,7 +7006,7 @@ To see that this is the equation of an ellipse, note that a standard ellipse in 
 and recall that a standard ellipse has axes of symmetry given by the \(x\)-axis and \(y\)-axis
 (if \(a>b\), the \(x\)-axis is the major axis, and the \(y\)-axis the minor axis). For example, \(a=10, b=3\) gives the ellipse:
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-10-1.pdf}
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-11-1.pdf}
 
 If we define
 \({\mathbf A}=\left( \begin{array}{cc} a^2&0\\ 0&b^2 \end{array} \right)\) and write \({\mathbf x}=\binom{x}{y}\),
@@ -7117,7 +7126,7 @@ We can sample from the Wishart distribution in R using the \texttt{rWishart} com
 
 Visualizing these by plotting the ellipses with \(\mathbf x^\top \mathbf M_i \mathbf x=c\) for some constant \(c\), we can see the variability in these random matrices:
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-15-1.pdf}
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-16-1.pdf}
 
 \begin{proposition}
 \protect\hypertarget{prp:wishartmean}{}{\label{prp:wishartmean} }Let \(\mathbf M\sim W_p(\boldsymbol{\Sigma}, n)\). Then
@@ -7457,7 +7466,7 @@ This confidence region will be the interior of an ellipse or ellipsoid.
 
 Consider again the exam marks for first year maths students in the two modules PRB and STA. The scatterplot below shows the module marks for \(n=203\) students on probability (PRB, \(x_1\)) and statistics (STA, \(x_2\)), with the sample mean vector \(\begin{pmatrix}62.1 \\62.7 \\\end{pmatrix}\) marked on as a red `+'.
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-28-1.pdf}
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-29-1.pdf}
 
 The target for the module mean for a large population of students should be exactly 60 for both modules. We now conduct a hypothesis test to see if the lecturers have missed the target and made the exam too difficult. We will test the hypotheses \(H_0\) versus \(H_1\) at the 5\% level where
 \[
@@ -7490,7 +7499,7 @@ Under \(H_0\), \(\zeta^2\sim \chi^2_2\). and so the critical value is \(\chi^2_{
 
 The plot below shows the density of a \(\chi^2_2\) random variable. The vertical red line shows the critical value, the vertical black line the observed value, and the shaded region shows the critical region. As \(\zeta^2 < \chi^2_{p,0.05}\) we can see that we do not reject the null hypothesis at the 5\% level.
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-31-1.pdf}
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-32-1.pdf}
 
 The \(p\)-value is
 
@@ -7505,7 +7514,7 @@ The \(p\)-value is
 ## [1,] 0.05389049
 \end{verbatim}
 
-which is area of the red shaded region.
+which is the area of the red shaded region.
 
 Note that if we had conducted separate univariate hypothesis tests of \(H_0: \mu_1 = 60\) and \(H_0: \mu_2 = 60\) then the test statistics would have been:
 \begin{eqnarray*}
@@ -7516,7 +7525,7 @@ The critical value would have been \(Z_{0.025} = 1.960\) and both null hypothese
 
 The \(95\)\% confidence region is the interior of an ellipse, centred on \(\bar{\mathbf x}\), with the angle of the major-axis governed by \(\boldsymbol{\Sigma}\) (given by the eigenvectors of \(\boldsymbol{\Sigma}\)). We can see from the plot below that \((60,60)^\top\), marked with a cross, lies just inside the confidence region.
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-33-1.pdf}
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-34-1.pdf}
 
 \hypertarget{onesample}{%
 \subsection{\texorpdfstring{\(\boldsymbol{\Sigma}\) unknown: 1 sample}{\textbackslash{}boldsymbol\{\textbackslash{}Sigma\} unknown: 1 sample}}\label{onesample}}
@@ -7526,7 +7535,7 @@ In the previous section we considered a hypothesis test of
 
 More specifically, we use the test statistic:
 \[\gamma^2 = \frac{n-p}{p} (\bar{\mathbf x}-\mathbf a)^\top \mathbf S^{-1} (\bar{\mathbf x}-\mathbf a),\]
-Corollary \ref{cor:csix6} tellsus that when \(H_0\) is true,
+Corollary \ref{cor:csix6} tells us that when \(H_0\) is true,
 \[\gamma^2 \sim F_{p,n-p}.\]
 As before, depending upon our approach we either
 
@@ -7644,7 +7653,7 @@ Notice again the difference to the two univariate tests
 
 The \(95\)\% confidence region is the interior of an ellipse, centred on \(\bar{\mathbf x}\), with the angle of the major-axis governed by \(\mathbf S\). The confidence region is very slightly larger than when \(\boldsymbol{\Sigma}\) was known.
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-39-1.pdf}
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-40-1.pdf}
 
 \hypertarget{boldsymbolsigma-unknown-2-samples}{%
 \subsection{\texorpdfstring{\(\boldsymbol{\Sigma}\) unknown: 2 samples}{\textbackslash{}boldsymbol\{\textbackslash{}Sigma\} unknown: 2 samples}}\label{boldsymbolsigma-unknown-2-samples}}
@@ -7726,7 +7735,7 @@ As in the one sample case, we can convert Hotelling's two-sample \(T^2\) statist
 
 There are two different maths undergraduate programmes at the University of Nottingham: a 3-year (G100) and a 4-year (G103) programme. For the exam marks example, is there a significant difference between students registered on the two different programmes? Let \(\mathbf x_1,\ldots, \mathbf x_{131}\) be the exam marks of the G100 students and let \(\mathbf y_1,\ldots, \mathbf y_{72}\) be the exam marks of the G103 students. The data is shown below, with the sample means marked as large `+' signs.
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-42-1.pdf}
+\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-43-1.pdf}
 
 Let \({\boldsymbol{\mu}}_1\) and \({\boldsymbol{\mu}}_2\) be the population means for G100 and G103 respectively. Our hypotheses are
 \[H_0: {\boldsymbol{\mu}}_1 = {\boldsymbol{\mu}}_2 \qquad \text{vs.} \qquad H_1: {\boldsymbol{\mu}}_1 \neq {\boldsymbol{\mu}}_2.\]
@@ -7799,7 +7808,8 @@ Therefore \(\delta^2 < F_{p,n+m-p-1}\), so we do not reject the null hypothesis 
 \item
   A survey of \(n=25\) families records the head length of the first (\(x_1\)) and second (\(x_2\)) sons. The sample mean is \(\bar{\mathbf x} = (185.72, 183.84)^\top\). Assume that the observations are sampled from \(N_2({\boldsymbol{\mu}},\boldsymbol{\Sigma})\) where \(\boldsymbol{\Sigma}= \text{diag}(100,100)\).
 
-  \begin{itemize}
+  \begin{enumerate}
+  \def\labelenumii{\roman{enumii}.}
   \tightlist
   \item
     Conduct a hypothesis test of \({\boldsymbol{\mu}}= (182,182)^\top\).
@@ -7808,20 +7818,21 @@ Therefore \(\delta^2 < F_{p,n+m-p-1}\), so we do not reject the null hypothesis 
   \item
     Repeat the hypothesis test and sketch the confidence region if we assume that
     \[\boldsymbol{\Sigma}= \begin{pmatrix} 100 & 50 \\ 50 & 100 \end{pmatrix}.\]
-  \end{itemize}
+  \end{enumerate}
 \item
   Let \(\mathbf x_1, \ldots, \mathbf x_{20}\) be a random sample of vectors from a \(N_3({\boldsymbol{\mu}},\boldsymbol{\Sigma})\) population where \({\boldsymbol{\mu}}\) and \(\boldsymbol{\Sigma}\) are unknown. The sample mean and sample covariance matrix are given by
   \[\bar{\mathbf x} = \begin{pmatrix} 0.358 \\ -1.056 \\ -1.795 \end{pmatrix} \qquad
   \mathbf S= \begin{pmatrix} 0.522 & 0.556 & -2.285 \\ 0.556 & 3.258 & -0.765 \\ -2.285 & -0.765 & 14.093 \end{pmatrix}.\]
 
-  \begin{itemize}
+  \begin{enumerate}
+  \def\labelenumii{\roman{enumii}.}
   \tightlist
   \item
     Use Hotelling's \(T^2\) distribution to perform a significance test of the hypothesis \(H_0: {\boldsymbol{\mu}}= (0,-1,-1)^T\). Note that \(\mathbf S= \mathbf V\boldsymbol \Lambda\mathbf V^T\) where \(\boldsymbol \Lambda= \text{diag}(14.531, 3.253,0.090)\) and
     \[\mathbf V= \begin{pmatrix} -0.163 & -0.121 & -0.979 \\ -0.075 & -0.988 & 0.135 \\ 0.984 & -0.095 & -0.152 \end{pmatrix}.\]
   \item
     Let \({\boldsymbol{\mu}}= (\mu_1,\mu_2,\mu_3)^\top\). Perform separate (univariate) \(t\)-tests of the following hypotheses: \(\mu_1 = 0\); \(\mu_2 = -1\); \(\mu_3 = -1\). Compare the results of the individual tests with the combined test based on Hotelling's \(T^2\) distribution in (a). Comment briefly.
-  \end{itemize}
+  \end{enumerate}
 \item
   Two measurements were collected on each of 36 flea-beetles; 18 of the beetles were from a species called Chaetocnema concinna and the other 18 were from another species called Chaetocnema heikertingeri. The first variable consisted of the sum of widths (in micrometres) of the first joints of the first two tarsi (``feet''); and the second variable consisted of the corresponding sum for the second joints. It is of interest to know
   whether or not the population means of the two species are different.
@@ -7835,12 +7846,11 @@ Therefore \(\delta^2 < F_{p,n+m-p-1}\), so we do not reject the null hypothesis 
 \hypertarget{computer-tasks-3}{%
 \section{Computer tasks}\label{computer-tasks-3}}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Download the wine dataset from the \href{https://archive.ics.uci.edu/ml/datasets/wine}{UCI Machine Learning Repository}
-\end{enumerate}
+\hypertarget{task-1-2}{%
+\subsubsection*{Task 1}\label{task-1-2}}
+\addcontentsline{toc}{subsubsection}{Task 1}
+
+Download the wine dataset from the \href{https://archive.ics.uci.edu/ml/datasets/wine}{UCI Machine Learning Repository}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7861,65 +7871,116 @@ Therefore \(\delta^2 < F_{p,n+m-p-1}\), so we do not reject the null hypothesis 
 \end{Highlighting}
 \end{Shaded}
 
-Let's assume this selection of wines is a random sample from the population of all possible wines. Conduct a multivariate hypothesis test to see whether the average wine has an alcohol content different from 13 and an Malic acide content different from 2?
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\item
+  Let's assume this selection of wines is a random sample from the population of all possible wines. Conduct a multivariate hypothesis test to see whether the average wine has an alcohol content different from 13 and an malic acid content different from 2?
+\item
+  Test whether the alcohol and malic acid content are significantly different between wines of type 1 and wines of type 2.
+\end{enumerate}
 
-Test whether the alcohol and Malic acid content are significantly different between wines of type 1 and wines of type 2.
+\hypertarget{task-2-2}{%
+\paragraph{Task 2}\label{task-2-2}}
+\addcontentsline{toc}{paragraph}{Task 2}
+
+The command \texttt{rWishart} can be used to simulate from a Wishart distribution. Alternatively, to sample from \(W_p(\boldsymbol{\Sigma},n)\), you can sample \(\mathbf x_1, \ldots, \mathbf x_n \sim N_p(\boldsymbol 0, \boldsymbol{\Sigma})\) and set \(\mathbf M= \sum \mathbf x_i \mathbf x_i^\top\).
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
+\def\labelenumi{\roman{enumi}.}
 \item
-  The command \texttt{rWishart} can be used to simulate from a Wishart distribution. Alternatively, to sample from \(W_p(\boldsymbol{\Sigma},n)\), you can sample \(\mathbf x_1, \ldots, \mathbf x_n \sim N_p(\boldsymbol 0, \boldsymbol{\Sigma})\) and set \(\mathbf M= \sum \mathbf x_i \mathbf x_i^\top\).
-
-  \begin{itemize}
-  \item
-    Generate 10,000 samples \(M_1, \ldots,\) from a \(W_2(\boldsymbol{\Sigma}, 10)\) distribution with \(\boldsymbol{\Sigma}= \operatorname{diag}(2,1)\) using these two approaches. Compute the mean and variance of the two samples and check these accord with Proposition \ref{prp:wishartmean}.
-  \item
-    Set \(\mathbf a= (1\; 1)^\top\). Check empirically that \(\mathbf a^\top \mathbf M\mathbf a\sim 3 \chi^2_10\). \textbf{Hint} plot the theoretical densities on top of a histogram of the sampled quantities.
-  \item
-    Suppose \(\mathbf x_1, \ldots, \mathbf x_{10} \sim N_2(\boldsymbol 0, \operatorname{diag}(2,1))\). Empirically check that Proposition \ref{prp:six12} is true by computing the covariance matrix of a large number of such samples, and comparing this to the mean and variance of the Wishart distribution specified in the proposition.
-  \item
-    Similarly, validate Corollary \ref{cor:csix6} by comparing the distribution of \(\gamma^2\) with a \(F_{p, n-p}\) distribution.
-  \end{itemize}
+  Generate 10,000 samples \(M_1, \ldots,\) from a \(W_2(\boldsymbol{\Sigma}, 10)\) distribution with \(\boldsymbol{\Sigma}= \operatorname{diag}(2,1)\) using these two approaches. Compute the mean and variance of the two samples and check these accord with Proposition \ref{prp:wishartmean}.
 \item
-  Explain why the confidence regions for the population mean discussed in Section \ref{onesample} are ellipses. What are the major and minor axes of these ellipses?
-
-  Download the exam data from Moodle. We will now work through how to plot the confidence regions shown.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Firstly, let's plot a circle with equation
-    \[x^2+y^2=c^2\]
-    or in vector form:
-    \[\mathbf x^\top\mathbf x=c^2.\]
-    Why must \(x\) be in the range \((-c,c)\)? Suppose \(c=10\). In this case you can plot a circle using the following commands
-  \end{itemize}
+  Set \(\mathbf a= (1\; 1)^\top\). Check empirically that \(\mathbf a^\top \mathbf M\mathbf a\sim 3 \chi^2_{10}\).
+  \textbf{Hint} plot the theoretical densities on top of a histogram of the sampled quantities.
+\item
+  Suppose \(\mathbf x_1, \ldots, \mathbf x_{10} \sim N_2(\boldsymbol 0, \operatorname{diag}(2,1))\). Empirically check that Proposition \ref{prp:six12} is true by computing the covariance matrix of a large number of such samples, and comparing this to the mean and variance of the Wishart distribution specified in the proposition.
+\item
+  Similarly, validate Corollary \ref{cor:csix6} by comparing the distribution of \(\gamma^2\) with a \(F_{p, n-p}\) distribution.
 \end{enumerate}
+
+\hypertarget{task-3-2}{%
+\paragraph{Task 3}\label{task-3-2}}
+\addcontentsline{toc}{paragraph}{Task 3}
+
+Download the exam data from Moodle.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\OperatorTok{-}\DecValTok{10}\NormalTok{, }\DecValTok{10}\NormalTok{,}\DecValTok{1}\OperatorTok{/}\DecValTok{1000}\NormalTok{) }
-\NormalTok{y <-}\StringTok{ }\OperatorTok{-}\KeywordTok{sqrt}\NormalTok{(}\DecValTok{10}\OperatorTok{^}\DecValTok{2}\OperatorTok{-}\NormalTok{x}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
-\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(x, }\DecValTok{10}\NormalTok{, }\KeywordTok{rev}\NormalTok{(x) )}
-\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(y, }\DecValTok{0}\NormalTok{, }\OperatorTok{-}\KeywordTok{rev}\NormalTok{(y))}
-\KeywordTok{plot}\NormalTok{(x,y,}\DataTypeTok{type=}\StringTok{'l'}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(dplyr)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
- Explain why this works. **Note** if your plotting window is not square, your circle will look like an ellipse!
-
-- Secondly, let's now plot the ellipse 
-$$\bx^\top \bS^{-1}\bx=c^2$$
-We can do this by noting that $\bu = \bS^{-1/2}\bx$ obeys the equation
-$$\bu^\top\bu=c^2,$$
-i.e., a circle. Thus you can plot an ellipse by using the code above to generate a circle, and then transforming it to be an ellipse. Plot the ellipse for $\bS$ given by the sample covariance matrix of the data.
-
-- Thirdly, we can plot the ellipse
-  $$(\bx-\mu)^\top \bS^{-1}(\bx-\mu)=c^2$$
-by shifting the ellipse to be centered around $\mu$. Thus plot the 95\% confidence region for the population mean for the exam data.
+## Warning: package 'dplyr' was built under R version 3.6.2
 \end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{load}\NormalTok{(}\DataTypeTok{file=}\StringTok{'exam.rda'}\NormalTok{)}
+\NormalTok{N<-}\KeywordTok{dim}\NormalTok{(exam)[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+We will now work through how to plot the confidence regions shown in the notes.
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\tightlist
+\item
+  Firstly, let's plot a circle with equation
+  \[x^2+y^2=c^2\]
+  or in vector form:
+  \[\mathbf x^\top\mathbf x=c^2.\]
+  Why must \(x\) be in the range \((-c,c)\)? Suppose \(c=10\). In this case you can plot a circle using the following commands
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{theta <-}\StringTok{ }\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{2}\OperatorTok{*}\NormalTok{pi, }\FloatTok{0.01}\NormalTok{)}
+\NormalTok{x<-}\StringTok{ }\DecValTok{10}\OperatorTok{*}\KeywordTok{cos}\NormalTok{(theta)}
+\NormalTok{y <-}\StringTok{ }\DecValTok{10}\OperatorTok{*}\KeywordTok{sin}\NormalTok{(theta)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{pty=}\StringTok{"s"}\NormalTok{)  }\CommentTok{# ensures the plot window is square}
+\KeywordTok{plot}\NormalTok{(x,y,}\DataTypeTok{type=}\StringTok{'l'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Explain why this works. \textbf{Note} if your plotting window is not square, your circle will look like an ellipse!
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Let's now plot the ellipse
+  \[\mathbf x^\top \mathbf S^{-1}\mathbf x=c^2\]
+  where \(\mathbf S\) is the covariance matrix for the exam data.
+
+  We can do this by noting that \(\mathbf u= \mathbf S^{-1/2}\mathbf x\) obeys the equation
+  \[\mathbf u^\top\mathbf u=c^2,\]
+  i.e., a circle. Thus you can plot an ellipse by using the code above to generate a circle, and then transforming it to be an ellipse. Plot the ellipse for \(\mathbf S\) given by the sample covariance matrix of the data.
+\item
+  What are the major and minor axes of these ellipses?
+\item
+  Finally, we can plot the ellipse
+  \[(\mathbf x-{\boldsymbol{\mu}})^\top \mathbf S^{-1}(\mathbf x-{\boldsymbol{\mu}})=c^2\]
+  by shifting the ellipse to be centered around \({\boldsymbol{\mu}}\). Thus plot the 95\% confidence region for the population mean \({\boldsymbol{\mu}}\) for the exam data. You will need to use Corollary \ref{cor:csix6} to determine the value of \(c\).
+\end{enumerate}
 
 \bibliography{book.bib,packages.bib}
 

@@ -322,10 +322,13 @@ Thus, by the factorisation theorem for probability densities, the components of 
 <span class="math display">\[{\boldsymbol{\mu}}_1={\boldsymbol{\mu}}_3={\boldsymbol{\mu}}_4=\begin{pmatrix}0 \\0 \\\end{pmatrix}, \quad {\boldsymbol{\mu}}_2=\begin{pmatrix}1 \\-1 \\\end{pmatrix}\]</span>
 and covariance matrices
 <span class="math display">\[\boldsymbol{\Sigma}_1=\boldsymbol{\Sigma}_2=\begin{pmatrix}1&amp;0 \\0&amp;1 \\\end{pmatrix}, \quad \boldsymbol{\Sigma}_3=\begin{pmatrix}1&amp;0 \\0&amp;0.05 \\\end{pmatrix}, \quad \boldsymbol{\Sigma}_4=\begin{pmatrix}1&amp;0.9 \\0.9&amp;1 \\\end{pmatrix}.\]</span></p>
-<p><img src="07-mvn_files/figure-html/unnamed-chunk-2-1.png" width="960" /></p>
+<pre><code>## mixtools package, version 1.2.0, Released 2020-02-05
+## This package is based upon work supported by the National Science Foundation under Grant No. SES-0518772.</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.6.2</code></pre>
+<p><img src="07-mvn_files/figure-html/unnamed-chunk-3-1.png" width="960" /></p>
 <p><strong>Note</strong> that the top left and bottom right plots have the <strong>same marginal distribtions</strong> for components <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>, namely
 <span class="math display">\[x_1 \sim N(0, 1)\quad x_2 \sim N(0, 1)\]</span></p>
-<p><img src="07-mvn_files/figure-html/unnamed-chunk-3-1.png" width="672" /><img src="07-mvn_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<p><img src="07-mvn_files/figure-html/unnamed-chunk-4-1.png" width="672" /><img src="07-mvn_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 <p>The contours on each plot are obtained by finding values of <span class="math inline">\(\mathbf x\)</span> for which <span class="math inline">\(f(\mathbf x)=c\)</span>. The constant <span class="math inline">\(c\)</span> is chosen so that the the shapes (which we’ll see below are ellipses)
 enclose 66% and 95% of the data.</p>
 </div>
@@ -514,7 +517,7 @@ To see that this is the equation of an ellipse, note that a standard ellipse in 
 \end{equation}\]</span>
 and recall that a standard ellipse has axes of symmetry given by the <span class="math inline">\(x\)</span>-axis and <span class="math inline">\(y\)</span>-axis
 (if <span class="math inline">\(a&gt;b\)</span>, the <span class="math inline">\(x\)</span>-axis is the major axis, and the <span class="math inline">\(y\)</span>-axis the minor axis). For example, <span class="math inline">\(a=10, b=3\)</span> gives the ellipse:</p>
-<p><img src="07-mvn_files/figure-html/unnamed-chunk-10-1.png" width="432" /></p>
+<p><img src="07-mvn_files/figure-html/unnamed-chunk-11-1.png" width="432" /></p>
 <p>If we define
 <span class="math inline">\({\mathbf A}=\left( \begin{array}{cc} a^2&amp;0\\ 0&amp;b^2 \end{array} \right)\)</span> and write <span class="math inline">\({\mathbf x}=\binom{x}{y}\)</span>,
 then Equation <a href="7-1-definition-and-properties-of-the-mvn.html#eq:ellipse">(7.2)</a> can be written in the form

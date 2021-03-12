@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Discriminant analysis | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Discriminant analysis | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Discriminant analysis | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="part-iv-classification-and-clustering.html"/>
+<link rel="next" href="2-1-lda-ML.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><a href="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><i class="fa fa-check"></i>Part III: Inference using the Multivariate Normal Distribution (MVN)</a></li>
+<li class="chapter" data-level="1" data-path="1-multinormal.html"><a href="1-multinormal.html"><i class="fa fa-check"></i><b>1</b> The Multivariate Normal Distribution</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-definition-and-properties-of-the-mvn.html"><a href="1-1-definition-and-properties-of-the-mvn.html"><i class="fa fa-check"></i><b>1.1</b> Definition and Properties of the MVN</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-definition-and-properties-of-the-mvn.html"><a href="1-1-definition-and-properties-of-the-mvn.html#basics"><i class="fa fa-check"></i><b>1.1.1</b> Basics</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-definition-and-properties-of-the-mvn.html"><a href="1-1-definition-and-properties-of-the-mvn.html#transformations"><i class="fa fa-check"></i><b>1.1.2</b> Transformations</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1-1-definition-and-properties-of-the-mvn.html"><a href="1-1-definition-and-properties-of-the-mvn.html#independence"><i class="fa fa-check"></i><b>1.1.3</b> Independence</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1-1-definition-and-properties-of-the-mvn.html"><a href="1-1-definition-and-properties-of-the-mvn.html#confidence-ellipses"><i class="fa fa-check"></i><b>1.1.4</b> Confidence ellipses</a></li>
+<li class="chapter" data-level="1.1.5" data-path="1-1-definition-and-properties-of-the-mvn.html"><a href="1-1-definition-and-properties-of-the-mvn.html#sampling-results-for-the-mvn"><i class="fa fa-check"></i><b>1.1.5</b> Sampling results for the MVN</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-the-wishart-distribution.html"><a href="1-2-the-wishart-distribution.html"><i class="fa fa-check"></i><b>1.2</b> The Wishart distribution</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-the-wishart-distribution.html"><a href="1-2-the-wishart-distribution.html#properties"><i class="fa fa-check"></i><b>1.2.1</b> Properties</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-the-wishart-distribution.html"><a href="1-2-the-wishart-distribution.html#cochrans-theorem"><i class="fa fa-check"></i><b>1.2.2</b> Cochran’s theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-hotellings-t2-distribution.html"><a href="1-3-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>1.3</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-inference-based-on-the-mvn.html"><a href="1-4-inference-based-on-the-mvn.html"><i class="fa fa-check"></i><b>1.4</b> Inference based on the MVN</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="1-4-inference-based-on-the-mvn.html"><a href="1-4-inference-based-on-the-mvn.html#onesampleSigma"><i class="fa fa-check"></i><b>1.4.1</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> known</a></li>
+<li class="chapter" data-level="1.4.2" data-path="1-4-inference-based-on-the-mvn.html"><a href="1-4-inference-based-on-the-mvn.html#onesample"><i class="fa fa-check"></i><b>1.4.2</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 1 sample</a></li>
+<li class="chapter" data-level="1.4.3" data-path="1-4-inference-based-on-the-mvn.html"><a href="1-4-inference-based-on-the-mvn.html#boldsymbolsigma-unknown-2-samples"><i class="fa fa-check"></i><b>1.4.3</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 2 samples</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+<li class="chapter" data-level="1.6" data-path="1-6-computer-tasks.html"><a href="1-6-computer-tasks.html"><i class="fa fa-check"></i><b>1.6</b> Computer tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="2" data-path="2-lda.html"><a href="2-lda.html"><i class="fa fa-check"></i><b>2</b> Discriminant analysis</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html"><i class="fa fa-check"></i><b>2.1</b> Maximum likelihood (ML) discriminant rule</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html#multivariate-gaussian-populations"><i class="fa fa-check"></i><b>2.1.1</b> Multivariate Gaussian populations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>2.1.2</b> More than two populations</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html#bayes-classifier"><i class="fa fa-check"></i><b>2.1.3</b> Bayes classifier</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-sample-lda.html"><a href="2-2-sample-lda.html"><i class="fa fa-check"></i><b>2.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-FLDA.html"><a href="2-3-FLDA.html"><i class="fa fa-check"></i><b>2.3</b> Fisher’s linear discriminant rule</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-probability-of-misclassification.html"><a href="2-4-probability-of-misclassification.html"><i class="fa fa-check"></i><b>2.4</b> Probability of misclassification</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-computer-tasks-1.html"><a href="2-5-computer-tasks-1.html"><i class="fa fa-check"></i><b>2.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-exercises-1.html"><a href="2-6-exercises-1.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lda" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Discriminant analysis</h1>
+<p>Videos</p>
+<ul>
+<li>Intro 5 mins</li>
+<li>ML classification 20 mins</li>
+<li>More than 2 classes 10 mins.</li>
+<li>Bayes 10 mins</li>
+<li>Sample ML + example 15</li>
+<li>Fisher’s LDA 15</li>
+<li>LDA for dimension reduction 15</li>
+<li>probability of misclassification???</li>
+<li>MNIST ???</li>
+</ul>
+<p>To add</p>
+<ul>
+<li><p>Read and update Fisher’s LDA. Explain Fisher’s DA for two classes first?</p></li>
+<li><p>ADD LDA DOES CLASSIFICATION AND DIMENSION REDUCTION.
+CAN WE WRITE LDA AS A DIMENSION REDUCTION PROBLEM?</p></li>
+<li><p>Plot comparing PCA with LDA</p></li>
+<li><p>Bayes rule</p></li>
+<li><p>QDA? Or using quadratic features.</p></li>
+<li><p>Plot of decision boundary for iris projected into 2d space????</p></li>
+<li><p>We look at 3 discriminant rules: ML, Bayes, Fisher</p></li>
+<li><p>Regularised LDA?</p></li>
+<li><p>LDA on MNIST
+We consider the situation in which there are <span class="math inline">\(g\)</span> populations/classes <span class="math inline">\(\Pi_1, \ldots , \Pi_g\)</span>. Each subject/case belongs to precisely one population. For example</p></li>
+<li><p>for the iris data the populations are the 3 species {Setosa, Versicolor, Viriginica}. Each iris has a single species label.</p></li>
+<li><p>for the MNIST data, the populations are the digits 0 to 9. Each image represents a single digit.</p></li>
+</ul>
+<p>Suppose we are given measurements <span class="math inline">\(\mathbf x_i\)</span> on each subject, and population/class label <span class="math inline">\(y_i\)</span>. The aim of classification is to build a model to predict the class label <span class="math inline">\(y\)</span> from a set of measurements <span class="math inline">\(\mathbf x\)</span>. For our examples:</p>
+<ul>
+<li><p>iris: the measurements <span class="math inline">\(\mathbf x\in \mathbb{R}^{4}\)</span> are the sepal and petal width and lengths. The class label <span class="math inline">\(y_i\)</span> is the species.</p></li>
+<li><p>mnist: <span class="math inline">\(\mathbf x_i\in \mathbb{R}^{784}\)</span> is a vector of pixel intensities. The class label <span class="math inline">\(y_i\)</span> is the digit the image represents.</p></li>
+</ul>
+<p>In discriminant analysis, we assume (or estimate) a different distribution for <span class="math inline">\(\mathbf x\)</span> for each population. I.e., each population is modelled as having a distribution with pdf <span class="math inline">\(f_j(\mathbf x)\)</span>, <span class="math inline">\(\mathbf x\in \mathbb R^p\)</span>, <span class="math inline">\(j=1,\ldots , g\)</span>.</p>
+<p>If <span class="math inline">\(\mathbf z\in \mathbb R^p\)</span> is a ‘new’ observation assumed to come from one of <span class="math inline">\(\Pi_1, \ldots , \Pi_g\)</span>, the aim of discriminant analysis is to allocate <span class="math inline">\(\mathbf z\)</span> to one of <span class="math inline">\(\Pi_1, \ldots , \Pi_g\)</span> with <strong>as small a
+probability of error as possible</strong>.</p>
+<!--For example, $\bz$ might contain numerical measures of a person's \\
+financial history.  A credit rating agency might then want to \\
+classify this customer as ''safe'' or ''risky'' based on knowledge of \\
+previous customers.-->
+<p>A <strong>discriminant rule</strong>, <span class="math inline">\(d\)</span>, corresponds to a partition of <span class="math inline">\(\mathbb R^p\)</span> into disjoint regions <span class="math inline">\(\mathcal R_1, \ldots, \mathcal R_g\)</span>, where
+<span class="math display">\[\bigcup_{j=1}^g \mathcal R_j = \mathbb R^p, \qquad \mathcal R_j \cap \mathcal R_k = \emptyset, j \neq k.\]</span>
+The rule <span class="math inline">\(d\)</span> is then defined by</p>
+<blockquote>
+<p><span class="math inline">\(d\)</span>: allocate <span class="math inline">\(\mathbf z\)</span> to <span class="math inline">\(\Pi_j\)</span> if and only if <span class="math inline">\(\mathbf z\in \mathcal R_j\)</span>.</p>
+</blockquote>
+<p>We will consider three possible approaches to this problem.</p>
+<ol style="list-style-type: decimal">
+<li>The simplest case, where the <span class="math inline">\(f_j(\mathbf x)\)</span> are known exactly, is described in Section <a href="2-1-lda-ML.html#lda-ML">2.1</a>.</li>
+<li>If we have to estimate the parameters of the distributions <span class="math inline">\(f_j(\mathbf x)\)</span> then we use the sample version described in Section <a href="2-2-sample-lda.html#sample-lda">2.2</a>. For example, we often assume a multivariate Gaussian distribution for each <span class="math inline">\(f_j\)</span> but allow the mean and variance to vary between populations.</li>
+<li>Finally, if we do not know the distribution of the populations, <span class="math inline">\(\Pi_j\)</span>, then an alternative approach, described in Section <a href="2-3-FLDA.html#FLDA">2.3</a>, may be used.</li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="part-iv-classification-and-clustering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-1-lda-ML.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

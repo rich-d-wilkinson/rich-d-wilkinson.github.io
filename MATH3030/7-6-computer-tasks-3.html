@@ -286,76 +286,82 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="computer-tasks-3" class="section level2">
 <h2><span class="header-section-number">7.6</span> Computer tasks</h2>
-<ol style="list-style-type: decimal">
-<li>Download the wine dataset from the <a href="https://archive.ics.uci.edu/ml/datasets/wine">UCI Machine Learning Repository</a></li>
+<div id="task-1-2" class="section level4 unnumbered">
+<h4>Task 1</h4>
+<p>Download the wine dataset from the <a href="https://archive.ics.uci.edu/ml/datasets/wine">UCI Machine Learning Repository</a></p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1"><span class="kw">download.file</span>(<span class="dt">url=</span><span class="st">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data&quot;</span>, <span class="dt">destfile=</span><span class="st">&quot;wine.data&quot;</span>)</a>
+<a class="sourceLine" id="cb218-2" data-line-number="2">wine &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;wine.data&quot;</span>, <span class="dt">header=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb218-3" data-line-number="3"><span class="kw">colnames</span>(wine) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Type&quot;</span>, <span class="st">&quot;Alcohol&quot;</span>, <span class="st">&quot;Malic&quot;</span>,</a>
+<a class="sourceLine" id="cb218-4" data-line-number="4"><span class="st">&quot;Ash&quot;</span>,</a>
+<a class="sourceLine" id="cb218-5" data-line-number="5"><span class="st">&quot;Alcalinity&quot;</span>,</a>
+<a class="sourceLine" id="cb218-6" data-line-number="6"><span class="st">&quot;Magnesium&quot;</span>,</a>
+<a class="sourceLine" id="cb218-7" data-line-number="7"><span class="st">&quot;Phenols&quot;</span>,</a>
+<a class="sourceLine" id="cb218-8" data-line-number="8"><span class="st">&quot;Flavanoids&quot;</span>,</a>
+<a class="sourceLine" id="cb218-9" data-line-number="9"><span class="st">&quot;Nonflavanoids&quot;</span>,</a>
+<a class="sourceLine" id="cb218-10" data-line-number="10"><span class="st">&quot;Proanthocyanins&quot;</span>,</a>
+<a class="sourceLine" id="cb218-11" data-line-number="11"><span class="st">&quot;Color&quot;</span>,</a>
+<a class="sourceLine" id="cb218-12" data-line-number="12"><span class="st">&quot;Hue&quot;</span>,</a>
+<a class="sourceLine" id="cb218-13" data-line-number="13"><span class="st">&quot;Dilution&quot;</span>,</a>
+<a class="sourceLine" id="cb218-14" data-line-number="14"><span class="st">&quot;Proline&quot;</span>)</a></code></pre></div>
+<ol style="list-style-type: lower-roman">
+<li><p>Let’s assume this selection of wines is a random sample from the population of all possible wines. Conduct a multivariate hypothesis test to see whether the average wine has an alcohol content different from 13 and an malic acid content different from 2?</p></li>
+<li><p>Test whether the alcohol and malic acid content are significantly different between wines of type 1 and wines of type 2.</p></li>
 </ol>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1"><span class="kw">download.file</span>(<span class="dt">url=</span><span class="st">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data&quot;</span>, <span class="dt">destfile=</span><span class="st">&quot;wine.data&quot;</span>)</a>
-<a class="sourceLine" id="cb216-2" data-line-number="2">wine &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;wine.data&quot;</span>, <span class="dt">header=</span><span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb216-3" data-line-number="3"><span class="kw">colnames</span>(wine) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Type&quot;</span>, <span class="st">&quot;Alcohol&quot;</span>, <span class="st">&quot;Malic&quot;</span>,</a>
-<a class="sourceLine" id="cb216-4" data-line-number="4"><span class="st">&quot;Ash&quot;</span>,</a>
-<a class="sourceLine" id="cb216-5" data-line-number="5"><span class="st">&quot;Alcalinity&quot;</span>,</a>
-<a class="sourceLine" id="cb216-6" data-line-number="6"><span class="st">&quot;Magnesium&quot;</span>,</a>
-<a class="sourceLine" id="cb216-7" data-line-number="7"><span class="st">&quot;Phenols&quot;</span>,</a>
-<a class="sourceLine" id="cb216-8" data-line-number="8"><span class="st">&quot;Flavanoids&quot;</span>,</a>
-<a class="sourceLine" id="cb216-9" data-line-number="9"><span class="st">&quot;Nonflavanoids&quot;</span>,</a>
-<a class="sourceLine" id="cb216-10" data-line-number="10"><span class="st">&quot;Proanthocyanins&quot;</span>,</a>
-<a class="sourceLine" id="cb216-11" data-line-number="11"><span class="st">&quot;Color&quot;</span>,</a>
-<a class="sourceLine" id="cb216-12" data-line-number="12"><span class="st">&quot;Hue&quot;</span>,</a>
-<a class="sourceLine" id="cb216-13" data-line-number="13"><span class="st">&quot;Dilution&quot;</span>,</a>
-<a class="sourceLine" id="cb216-14" data-line-number="14"><span class="st">&quot;Proline&quot;</span>)</a></code></pre></div>
-<p>Let’s assume this selection of wines is a random sample from the population of all possible wines. Conduct a multivariate hypothesis test to see whether the average wine has an alcohol content different from 13 and an Malic acide content different from 2?</p>
-<p>Test whether the alcohol and Malic acid content are significantly different between wines of type 1 and wines of type 2.</p>
-<ol start="2" style="list-style-type: decimal">
-<li><p>The command <code>rWishart</code> can be used to simulate from a Wishart distribution. Alternatively, to sample from <span class="math inline">\(W_p(\boldsymbol{\Sigma},n)\)</span>, you can sample <span class="math inline">\(\mathbf x_1, \ldots, \mathbf x_n \sim N_p(\boldsymbol 0, \boldsymbol{\Sigma})\)</span> and set <span class="math inline">\(\mathbf M= \sum \mathbf x_i \mathbf x_i^\top\)</span>.</p>
-<ul>
+<div id="task-2-2" class="section level5 unnumbered">
+<h5>Task 2</h5>
+<p>The command <code>rWishart</code> can be used to simulate from a Wishart distribution. Alternatively, to sample from <span class="math inline">\(W_p(\boldsymbol{\Sigma},n)\)</span>, you can sample <span class="math inline">\(\mathbf x_1, \ldots, \mathbf x_n \sim N_p(\boldsymbol 0, \boldsymbol{\Sigma})\)</span> and set <span class="math inline">\(\mathbf M= \sum \mathbf x_i \mathbf x_i^\top\)</span>.</p>
+<ol style="list-style-type: lower-roman">
 <li><p>Generate 10,000 samples <span class="math inline">\(M_1, \ldots,\)</span> from a <span class="math inline">\(W_2(\boldsymbol{\Sigma}, 10)\)</span> distribution with <span class="math inline">\(\boldsymbol{\Sigma}= \operatorname{diag}(2,1)\)</span> using these two approaches. Compute the mean and variance of the two samples and check these accord with Proposition <a href="7-2-the-wishart-distribution.html#prp:wishartmean">7.6</a>.</p></li>
-<li><p>Set <span class="math inline">\(\mathbf a= (1\; 1)^\top\)</span>. Check empirically that <span class="math inline">\(\mathbf a^\top \mathbf M\mathbf a\sim 3 \chi^2_10\)</span>. <strong>Hint</strong> plot the theoretical densities on top of a histogram of the sampled quantities.</p></li>
-<li>Suppose <span class="math inline">\(\mathbf x_1, \ldots, \mathbf x_{10} \sim N_2(\boldsymbol 0, \operatorname{diag}(2,1))\)</span>. Empirically check that Proposition <a href="7-2-the-wishart-distribution.html#prp:six12">7.10</a> is true by computing the covariance matrix of a large number of such samples, and comparing this to the mean and variance of the Wishart distribution specified in the proposition.</li>
+<li><p>Set <span class="math inline">\(\mathbf a= (1\; 1)^\top\)</span>. Check empirically that <span class="math inline">\(\mathbf a^\top \mathbf M\mathbf a\sim 3 \chi^2_{10}\)</span>.
+<strong>Hint</strong> plot the theoretical densities on top of a histogram of the sampled quantities.</p></li>
+<li><p>Suppose <span class="math inline">\(\mathbf x_1, \ldots, \mathbf x_{10} \sim N_2(\boldsymbol 0, \operatorname{diag}(2,1))\)</span>. Empirically check that Proposition <a href="7-2-the-wishart-distribution.html#prp:six12">7.10</a> is true by computing the covariance matrix of a large number of such samples, and comparing this to the mean and variance of the Wishart distribution specified in the proposition.</p></li>
 <li><p>Similarly, validate Corollary <a href="7-3-hotellings-t2-distribution.html#cor:csix6">7.4</a> by comparing the distribution of <span class="math inline">\(\gamma^2\)</span> with a <span class="math inline">\(F_{p, n-p}\)</span> distribution.</p></li>
-</ul></li>
-<li><p>Explain why the confidence regions for the population mean discussed in Section <a href="7-4-inference-based-on-the-mvn.html#onesample">7.4.2</a> are ellipses. What are the major and minor axes of these ellipses?</p>
-<p>Download the exam data from Moodle. We will now work through how to plot the confidence regions shown.</p>
-<ul>
+</ol>
+</div>
+<div id="task-3-2" class="section level5 unnumbered">
+<h5>Task 3</h5>
+<p>Download the exam data from Moodle.</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1"><span class="kw">load</span>(<span class="dt">file=</span><span class="st">&#39;exam.rda&#39;</span>)</a>
+<a class="sourceLine" id="cb224-2" data-line-number="2">N&lt;-<span class="kw">dim</span>(exam)[<span class="dv">1</span>]</a></code></pre></div>
+<p>We will now work through how to plot the confidence regions shown in the notes.</p>
+<ol style="list-style-type: lower-roman">
 <li>Firstly, let’s plot a circle with equation
 <span class="math display">\[x^2+y^2=c^2\]</span>
 or in vector form:
 <span class="math display">\[\mathbf x^\top\mathbf x=c^2.\]</span>
 Why must <span class="math inline">\(x\)</span> be in the range <span class="math inline">\((-c,c)\)</span>? Suppose <span class="math inline">\(c=10\)</span>. In this case you can plot a circle using the following commands</li>
-</ul></li>
 </ol>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>) </a>
-<a class="sourceLine" id="cb217-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">sqrt</span>(<span class="dv">10</span><span class="op">^</span><span class="dv">2</span><span class="op">-</span>x<span class="op">^</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb217-3" data-line-number="3">x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="dv">10</span>, <span class="kw">rev</span>(x) )</a>
-<a class="sourceLine" id="cb217-4" data-line-number="4">y &lt;-<span class="st"> </span><span class="kw">c</span>(y, <span class="dv">0</span>, <span class="op">-</span><span class="kw">rev</span>(y))</a>
-<a class="sourceLine" id="cb217-5" data-line-number="5"><span class="kw">plot</span>(x,y,<span class="dt">type=</span><span class="st">&#39;l&#39;</span>)</a></code></pre></div>
-<pre><code> Explain why this works. **Note** if your plotting window is not square, your circle will look like an ellipse!
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" data-line-number="1">theta &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>pi, <span class="fl">0.01</span>)</a>
+<a class="sourceLine" id="cb225-2" data-line-number="2">x&lt;-<span class="st"> </span><span class="dv">10</span><span class="op">*</span><span class="kw">cos</span>(theta)</a>
+<a class="sourceLine" id="cb225-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">*</span><span class="kw">sin</span>(theta)</a>
+<a class="sourceLine" id="cb225-4" data-line-number="4"><span class="kw">par</span>(<span class="dt">pty=</span><span class="st">&quot;s&quot;</span>)  <span class="co"># ensures the plot window is square</span></a>
+<a class="sourceLine" id="cb225-5" data-line-number="5"><span class="kw">plot</span>(x,y,<span class="dt">type=</span><span class="st">&#39;l&#39;</span>)</a></code></pre></div>
+<p>Explain why this works. <strong>Note</strong> if your plotting window is not square, your circle will look like an ellipse!</p>
+<ol start="2" style="list-style-type: lower-roman">
+<li><p>Let’s now plot the ellipse
+<span class="math display">\[\mathbf x^\top \mathbf S^{-1}\mathbf x=c^2\]</span>
+where <span class="math inline">\(\mathbf S\)</span> is the covariance matrix for the exam data.</p>
+<p>We can do this by noting that <span class="math inline">\(\mathbf u= \mathbf S^{-1/2}\mathbf x\)</span> obeys the equation
+<span class="math display">\[\mathbf u^\top\mathbf u=c^2,\]</span>
+i.e., a circle. Thus you can plot an ellipse by using the code above to generate a circle, and then transforming it to be an ellipse. Plot the ellipse for <span class="math inline">\(\mathbf S\)</span> given by the sample covariance matrix of the data.</p></li>
+<li><p>What are the major and minor axes of these ellipses?</p></li>
+<li><p>Finally, we can plot the ellipse
+<span class="math display">\[(\mathbf x-{\boldsymbol{\mu}})^\top \mathbf S^{-1}(\mathbf x-{\boldsymbol{\mu}})=c^2\]</span>
+by shifting the ellipse to be centered around <span class="math inline">\({\boldsymbol{\mu}}\)</span>. Thus plot the 95% confidence region for the population mean <span class="math inline">\({\boldsymbol{\mu}}\)</span> for the exam data. You will need to use Corollary <a href="7-3-hotellings-t2-distribution.html#cor:csix6">7.4</a> to determine the value of <span class="math inline">\(c\)</span>.</p></li>
+</ol>
 
-- Secondly, let&#39;s now plot the ellipse 
-$$\bx^\top \bS^{-1}\bx=c^2$$
-We can do this by noting that $\bu = \bS^{-1/2}\bx$ obeys the equation
-$$\bu^\top\bu=c^2,$$
-i.e., a circle. Thus you can plot an ellipse by using the code above to generate a circle, and then transforming it to be an ellipse. Plot the ellipse for $\bS$ given by the sample covariance matrix of the data.
-
-- Thirdly, we can plot the ellipse
-  $$(\bx-\mu)^\top \bS^{-1}(\bx-\mu)=c^2$$
-by shifting the ellipse to be centered around $\mu$. Thus plot the 95\% confidence region for the population mean for the exam data.</code></pre>
-<!--```{r, echo=FALSE, warning=FALSE, message=FALSE, cache=TRUE}
-const2 <-  qf(0.95, 2,201)*2/(N-2)
-u1 <- seq(-sqrt(const2), sqrt(const2),1/1000)
-#u1 <- c(u1, )
-u2 <- -sqrt(const2-u1^2)
-u1 <- c(u1, sqrt(const2), rev(u1) )
-u2 <- c(u2, 0, -rev(u2))
-u <- rbind(u1,u2)
-library(expm)
-S <- cov(X)*(N-1)/N
-S12 <- sqrtm(S)
-a <- S12%*% u+c(xbar)
-plot(X)
-lines(a[1,], a[2,], lty=2, col=2, cex=2)
-points(60,60, col=2, pch="+", cex=2)
-```-->
-
+</div>
+</div>
 </div>
 <!-- </div> -->
             </section>
