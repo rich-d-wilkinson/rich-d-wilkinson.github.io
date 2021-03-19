@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9.2 Bayes discriminant rule | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9.2 Bayes discriminant rule | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9.2 Bayes discriminant rule | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="9-1-lda-ML.html"/>
+<link rel="next" href="9-3-FLDA.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-notation.html"><a href="1-1-notation.html"><i class="fa fa-check"></i><b>1.1</b> Notation</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-notation.html"><a href="1-1-notation.html#example-datasets"><i class="fa fa-check"></i><b>1.1.1</b> Example datasets</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-notation.html"><a href="1-1-notation.html#aims-of-multivariate-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Aims of multivariate data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>1.2</b> Exploratory data analysis (EDA)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#data-visualization"><i class="fa fa-check"></i><b>1.2.1</b> Data visualization</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#summary-statistics"><i class="fa fa-check"></i><b>1.2.2</b> Summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-randvec.html"><a href="1-3-randvec.html"><i class="fa fa-check"></i><b>1.3</b> Random vectors and matrices</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-randvec.html"><a href="1-3-randvec.html#estimators"><i class="fa fa-check"></i><b>1.3.1</b> Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-computer-tasks.html"><a href="1-4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-linalg-prelim.html"><a href="2-linalg-prelim.html"><i class="fa fa-check"></i><b>2</b> Review of linear algebra</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html"><i class="fa fa-check"></i><b>2.1</b> Basics</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#notation-1"><i class="fa fa-check"></i><b>2.1.1</b> Notation</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#elementary-matrix-operations"><i class="fa fa-check"></i><b>2.1.2</b> Elementary matrix operations</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#special-matrices"><i class="fa fa-check"></i><b>2.1.3</b> Special matrices</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#vectordiff"><i class="fa fa-check"></i><b>2.1.4</b> Vector Differentiation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html"><i class="fa fa-check"></i><b>2.2</b> Vector spaces</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#linear-independence"><i class="fa fa-check"></i><b>2.2.1</b> Linear independence</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#colsspace"><i class="fa fa-check"></i><b>2.2.2</b> Row and column spaces</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#linear-transformations"><i class="fa fa-check"></i><b>2.2.3</b> Linear transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html"><i class="fa fa-check"></i><b>2.3</b> Inner product spaces</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#normed"><i class="fa fa-check"></i><b>2.3.1</b> Distances, and angles</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#orthogonal-matrices"><i class="fa fa-check"></i><b>2.3.2</b> Orthogonal matrices</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#projection-matrix"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-4-centering-matrix.html"><a href="2-4-centering-matrix.html"><i class="fa fa-check"></i><b>2.4</b> The Centering Matrix</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-tasks-ch2.html"><a href="2-5-tasks-ch2.html"><i class="fa fa-check"></i><b>2.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-exercises-ch2.html"><a href="2-6-exercises-ch2.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-linalg-decomp.html"><a href="3-linalg-decomp.html"><i class="fa fa-check"></i><b>3</b> Matrix decompositions</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-matrix-matrix.html"><a href="3-1-matrix-matrix.html"><i class="fa fa-check"></i><b>3.1</b> Matrix-matrix products</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>3.2</b> Spectral/eigen decomposition</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>3.2.1</b> Eigenvalues and eigenvectors</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>3.2.2</b> Spectral decomposition</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html"><i class="fa fa-check"></i><b>3.3</b> Singular Value Decomposition (SVD)</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.3.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-svdopt.html"><a href="3-4-svdopt.html"><i class="fa fa-check"></i><b>3.4</b> SVD optimization results</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-low-rank-approximation.html"><a href="3-5-low-rank-approximation.html"><i class="fa fa-check"></i><b>3.5</b> Low-rank approximation</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="3-5-low-rank-approximation.html"><a href="3-5-low-rank-approximation.html#matrix-norms"><i class="fa fa-check"></i><b>3.5.1</b> Matrix norms</a></li>
+<li class="chapter" data-level="3.5.2" data-path="3-5-low-rank-approximation.html"><a href="3-5-low-rank-approximation.html#eckart-young-mirsky-theorem"><i class="fa fa-check"></i><b>3.5.2</b> Eckart-Young-Mirsky Theorem</a></li>
+<li class="chapter" data-level="3.5.3" data-path="3-5-low-rank-approximation.html"><a href="3-5-low-rank-approximation.html#example-image-compression"><i class="fa fa-check"></i><b>3.5.3</b> Example: image compression</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="3-6-tasks-ch3.html"><a href="3-6-tasks-ch3.html"><i class="fa fa-check"></i><b>3.6</b> Computer tasks</a></li>
+<li class="chapter" data-level="3.7" data-path="3-7-exercises-ch3.html"><a href="3-7-exercises-ch3.html"><i class="fa fa-check"></i><b>3.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html"><i class="fa fa-check"></i>PART II: Dimension reduction methods</a><ul>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#a-warning"><i class="fa fa-check"></i>A warning</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-pca.html"><a href="4-pca.html"><i class="fa fa-check"></i><b>4</b> Principal Component Analysis (PCA)</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html"><i class="fa fa-check"></i><b>4.1</b> PCA: an informal introduction</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#notation-recap"><i class="fa fa-check"></i><b>4.1.1</b> Notation recap</a></li>
+<li class="chapter" data-level="4.1.2" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#first-principal-component"><i class="fa fa-check"></i><b>4.1.2</b> First principal component</a></li>
+<li class="chapter" data-level="4.1.3" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#second-principal-component"><i class="fa fa-check"></i><b>4.1.3</b> Second principal component</a></li>
+<li class="chapter" data-level="4.1.4" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#geometric-interpretation-1"><i class="fa fa-check"></i><b>4.1.4</b> Geometric interpretation</a></li>
+<li class="chapter" data-level="4.1.5" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#example"><i class="fa fa-check"></i><b>4.1.5</b> Example</a></li>
+<li class="chapter" data-level="4.1.6" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#example-iris"><i class="fa fa-check"></i><b>4.1.6</b> Example: Iris</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>4.2</b> PCA: a formal description with proofs</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>4.2.1</b> Properties of principal components</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>4.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>4.2.4</b> Population PCA</a></li>
+<li class="chapter" data-level="4.2.5" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>4.2.5</b> PCA under transformations of variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-an-alternative-view-of-pca.html"><a href="4-3-an-alternative-view-of-pca.html"><i class="fa fa-check"></i><b>4.3</b> An alternative view of PCA</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-an-alternative-view-of-pca.html"><a href="4-3-an-alternative-view-of-pca.html#pca-mnist"><i class="fa fa-check"></i><b>4.3.1</b> Example: MNIST handwritten digits</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-4-pca-comptask.html"><a href="4-4-pca-comptask.html"><i class="fa fa-check"></i><b>4.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-exercises-1.html"><a href="4-5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis (CCA)</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html"><i class="fa fa-check"></i><b>5.1</b> The first pair of canonical variables</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>5.1.1</b> The first canonical components</a></li>
+<li class="chapter" data-level="5.1.2" data-path="5-1-cca1.html"><a href="5-1-cca1.html#premcca"><i class="fa fa-check"></i><b>5.1.2</b> Example: Premier league football</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>5.2.1</b> Example continued</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5-3-properties.html"><a href="5-3-properties.html"><i class="fa fa-check"></i><b>5.3</b> Properties</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="5-3-properties.html"><a href="5-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>5.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="5-3-properties.html"><a href="5-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>5.3.2</b> Invariance/equivariance properties of CCA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5-4-computer-tasks-1.html"><a href="5-4-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-exercises-2.html"><a href="5-5-exercises-2.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling (MDS)</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-classical-mds.html"><a href="6-1-classical-mds.html"><i class="fa fa-check"></i><b>6.1</b> Classical MDS</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-1-classical-mds.html"><a href="6-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>6.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-1-classical-mds.html"><a href="6-1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>6.1.2</b> Principal Coordinate Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-2-similarity.html"><a href="6-2-similarity.html"><i class="fa fa-check"></i><b>6.2</b> Similarity measures</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-similarity.html"><a href="6-2-similarity.html#binary-attributes"><i class="fa fa-check"></i><b>6.2.1</b> Binary attributes</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-similarity.html"><a href="6-2-similarity.html#example-classical-mds-with-the-mnist-data"><i class="fa fa-check"></i><b>6.2.2</b> Example: Classical MDS with the MNIST data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-3-non-metric-mds.html"><a href="6-3-non-metric-mds.html"><i class="fa fa-check"></i><b>6.3</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="6.4" data-path="6-4-exercises-3.html"><a href="6-4-exercises-3.html"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
+<li class="chapter" data-level="6.5" data-path="6-5-computer-tasks-2.html"><a href="6-5-computer-tasks-2.html"><i class="fa fa-check"></i><b>6.5</b> Computer Tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><a href="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><i class="fa fa-check"></i>Part III: Inference using the Multivariate Normal Distribution (MVN)</a></li>
+<li class="chapter" data-level="7" data-path="7-multinormal.html"><a href="7-multinormal.html"><i class="fa fa-check"></i><b>7</b> The Multivariate Normal Distribution</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html"><i class="fa fa-check"></i><b>7.1</b> Definition and Properties of the MVN</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#basics"><i class="fa fa-check"></i><b>7.1.1</b> Basics</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#transformations"><i class="fa fa-check"></i><b>7.1.2</b> Transformations</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#independence"><i class="fa fa-check"></i><b>7.1.3</b> Independence</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#confidence-ellipses"><i class="fa fa-check"></i><b>7.1.4</b> Confidence ellipses</a></li>
+<li class="chapter" data-level="7.1.5" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#sampling-results-for-the-mvn"><i class="fa fa-check"></i><b>7.1.5</b> Sampling results for the MVN</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html"><i class="fa fa-check"></i><b>7.2</b> The Wishart distribution</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html#properties-1"><i class="fa fa-check"></i><b>7.2.1</b> Properties</a></li>
+<li class="chapter" data-level="7.2.2" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html#cochrans-theorem"><i class="fa fa-check"></i><b>7.2.2</b> Cochran’s theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7-3-hotellings-t2-distribution.html"><a href="7-3-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>7.3</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
+<li class="chapter" data-level="7.4" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html"><i class="fa fa-check"></i><b>7.4</b> Inference based on the MVN</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#onesampleSigma"><i class="fa fa-check"></i><b>7.4.1</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> known</a></li>
+<li class="chapter" data-level="7.4.2" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#onesample"><i class="fa fa-check"></i><b>7.4.2</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 1 sample</a></li>
+<li class="chapter" data-level="7.4.3" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#boldsymbolsigma-unknown-2-samples"><i class="fa fa-check"></i><b>7.4.3</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 2 samples</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="7-5-exercises-4.html"><a href="7-5-exercises-4.html"><i class="fa fa-check"></i><b>7.5</b> Exercises</a></li>
+<li class="chapter" data-level="7.6" data-path="7-6-computer-tasks-3.html"><a href="7-6-computer-tasks-3.html"><i class="fa fa-check"></i><b>7.6</b> Computer tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-lm.html"><a href="8-lm.html"><i class="fa fa-check"></i><b>8</b> The Multivariate Linear Model</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-1-the-standard-univariate-linear-model.html"><a href="8-1-the-standard-univariate-linear-model.html"><i class="fa fa-check"></i><b>8.1</b> The standard univariate linear model</a></li>
+<li class="chapter" data-level="8.2" data-path="8-2-multivariate-linear-model.html"><a href="8-2-multivariate-linear-model.html"><i class="fa fa-check"></i><b>8.2</b> Multivariate Linear Model</a></li>
+<li class="chapter" data-level="8.3" data-path="8-3-one-way-manova.html"><a href="8-3-one-way-manova.html"><i class="fa fa-check"></i><b>8.3</b> One-way MANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="9" data-path="9-lda.html"><a href="9-lda.html"><i class="fa fa-check"></i><b>9</b> Discriminant analysis</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="9-lda.html"><a href="9-lda.html#linear-discriminant-analysis"><i class="fa fa-check"></i><b>9.0.1</b> Linear discriminant analysis</a></li>
+<li class="chapter" data-level="9.1" data-path="9-1-lda-ML.html"><a href="9-1-lda-ML.html"><i class="fa fa-check"></i><b>9.1</b> Maximum likelihood (ML) discriminant rule</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="9-1-lda-ML.html"><a href="9-1-lda-ML.html#multivariate-normal-populations"><i class="fa fa-check"></i><b>9.1.1</b> Multivariate normal populations</a></li>
+<li class="chapter" data-level="9.1.2" data-path="9-1-lda-ML.html"><a href="9-1-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>9.1.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="9.1.3" data-path="9-1-lda-ML.html"><a href="9-1-lda-ML.html#two-populations"><i class="fa fa-check"></i><b>9.1.3</b> Two populations</a></li>
+<li class="chapter" data-level="9.1.4" data-path="9-1-lda-ML.html"><a href="9-1-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>9.1.4</b> More than two populations</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="9-2-lda-Bayes.html"><a href="9-2-lda-Bayes.html"><i class="fa fa-check"></i><b>9.2</b> Bayes discriminant rule</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="9-2-lda-Bayes.html"><a href="9-2-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>9.2.1</b> Example: LDA using the Iris data</a></li>
+<li class="chapter" data-level="9.2.2" data-path="9-2-lda-Bayes.html"><a href="9-2-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>9.2.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="9.2.3" data-path="9-2-lda-Bayes.html"><a href="9-2-lda-Bayes.html#prediction-accuracy"><i class="fa fa-check"></i><b>9.2.3</b> Prediction accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="9-3-FLDA.html"><a href="9-3-FLDA.html"><i class="fa fa-check"></i><b>9.3</b> Fisher’s linear discriminant rule</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="9-3-FLDA.html"><a href="9-3-FLDA.html#iris-example-continued-1"><i class="fa fa-check"></i><b>9.3.1</b> Iris example continued</a></li>
+<li class="chapter" data-level="9.3.2" data-path="9-3-FLDA.html"><a href="9-3-FLDA.html#links-between-methods"><i class="fa fa-check"></i><b>9.3.2</b> Links between methods</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lda-Bayes" class="section level2">
+<h2><span class="header-section-number">9.2</span> Bayes discriminant rule</h2>
+<p>In the previous section, we implicitly assumed that each subject is equally likely to be from any of the <span class="math inline">\(g\)</span> populations. This is the simplest case but is an unrealistic assumption in practice.</p>
+<p>For example, suppose we want to classify photos on the internet as either being a photo of <em>Bill Evans</em> or <em>not Bill Evans</em>. Most photos on the internet are not of Bill Evans, and so we want to take this into account in the classifier, i.e., we want to take the base rate of occurence of each population into account.</p>
+<p>Suppose <em>a priori</em> that the probability an observation is from population <span class="math inline">\(k\)</span> is <span class="math inline">\(\pi_k\)</span>, with
+<span class="math display">\[\sum_{k=1}^g \pi_k=1.\]</span>
+Then given a probability model <span class="math inline">\(f_k(\mathbf x)\)</span> for observations <span class="math inline">\(\mathbf x\)</span> from population <span class="math inline">\(k\)</span>, our posterior probability for observation <span class="math inline">\(\mathbf x\)</span> being from population <span class="math inline">\(k\)</span> is
+<span class="math display">\[{\mathbb{P}}(y=k \mid \mathbf x) = \frac{f_k(\mathbf x)\pi_k}{\sum_{j=1}^g f_k(\mathbf x)\pi_k}\]</span>
+by Bayes theorem.</p>
+
+<div class="definition">
+<span id="def:bayesclassifier" class="definition"><strong>Definition 9.2  </strong></span>The <strong>Bayes classifier</strong> assigns <span class="math inline">\(\mathbf x\)</span> to the population for which the posterior probability is highest:
+<span class="math display">\[d^{Bayes}(\mathbf x) =\arg \max_k {\mathbb{P}}(y=k \mid \mathbf x).\]</span>
+</div>
+
+<p>As before, if we assume each population has a multivariate normal distribution, then this simplifies.</p>
+
+<div class="proposition">
+<p><span id="prp:ldabayes" class="proposition"><strong>Proposition 9.3  </strong></span>If cases in population <span class="math inline">\(\Pi_k\)</span> have a <span class="math inline">\(N_p({\boldsymbol{\mu}}_k,\boldsymbol{\Sigma})\)</span> distribution, then the <strong>Bayes</strong> discriminant rule is
+<span class="math display">\[d(\mathbf x)= \arg\min_{k} \frac{1}{2}(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}_k)- \log \pi_k.\]</span></p>
+Equivalently, if
+<span class="math display">\[\delta_k(\mathbf x) = {\boldsymbol{\mu}}_k^\top \boldsymbol{\Sigma}^{-1} \mathbf x-\frac{1}{2}{\boldsymbol{\mu}}_k^\top \Sigma^{-1} {\boldsymbol{\mu}}_k +\log \pi_k\]</span>
+then
+<span class="math display">\[d(\mathbf x) = \arg \max \delta_k(\mathbf x).\]</span>
+I.e. this is a linear discriminant rule.
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> See the exercises.
+</div>
+
+<p><br></br></p>
+<p>Note that if <span class="math inline">\(\pi_k=\frac{1}{g}\)</span> for all <span class="math inline">\(k\)</span>, then we can ignore <span class="math inline">\(\pi_k\)</span> in the maximization, and the Bayes discriminant rule is exactly the same as the ML discriminant rule.</p>
+<p>For two populations, the Bayes analogue of Corollary <a href="9-1-lda-ML.html#cor:nine2c">9.1</a> is that we classify <span class="math inline">\(\mathbf x\)</span> to population 1 if
+<span class="math display">\[\mathbf a^\top(\mathbf x-\mathbf h)&gt; \log\frac{\pi_2}{\pi_1}.\]</span>
+The effect of the prior probabilities on the populations is to shift the decision boundary to be further away from the more likely class. For example, if in Example 2 we had <span class="math inline">\(\pi_1 = 0.9\)</span> and <span class="math inline">\(\pi_2=0.1\)</span> we get the decision boundary at <span class="math inline">\(x_1 = -2.19722\)</span> as shown in Figure <a href="9-2-lda-Bayes.html#fig:ldaidentityBayes">9.5</a>.</p>
+<div class="figure"><span id="fig:ldaidentityBayes"></span>
+<img src="09-lda_files/figure-html/ldaidentityBayes-1.png" alt="LDA when the covariance matrix is the identity, with class prior pi1=0.9" width="672" />
+<p class="caption">
+Figure 9.5: LDA when the covariance matrix is the identity, with class prior pi1=0.9
+</p>
+</div>
+<p>In practice, we may not know the population probabilities <span class="math inline">\(\pi_k\)</span>. If so, we can estimate them from the data using
+<span class="math display">\[\hat{\pi}_k = \frac{n_k}{n}\]</span>
+and substitute <span class="math inline">\(\hat{\pi}_k\)</span> for <span class="math inline">\(\pi_k\)</span> (as well as substituting <span class="math inline">\(\hat{{\boldsymbol{\mu}}}_k\)</span>, <span class="math inline">\(\widehat{\boldsymbol{\Sigma}}\)</span> etc).</p>
+<p>The <code>lda</code> command from the <code>MASS</code> library uses the Bayes discriminant rule, but gives you the option of setting <span class="math inline">\(\pi_k\)</span> if known, but otherwise estimates the class probabilities.</p>
+<div id="example-lda-using-the-iris-data" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Example: LDA using the Iris data</h3>
+<p>Let’s consider doing LDA with the iris data. To begin with, lets use just the setosa and virginica species so that we only have <span class="math inline">\(g=2\)</span> populations, <span class="math inline">\(\Pi_{setosa}\)</span> and <span class="math inline">\(\Pi_{virginica}\)</span>. We will also just use the sepal measurements so that <span class="math inline">\(p=2\)</span>. If we plot the data, we can see that the two populations should be easy to classify using just these two measurements:</p>
+<p><img src="09-lda_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>The sample means and variances for each group are</p>
+<p><span class="math display">\[\begin{eqnarray*}
+\hat{{\boldsymbol{\mu}}}_s = \begin{pmatrix}5.01 \\3.43 \\\end{pmatrix} &amp;\qquad&amp; \hat{{\boldsymbol{\mu}}}_v = \begin{pmatrix}6.59 \\2.97 \\\end{pmatrix} \\
+\mathbf S_s = \begin{pmatrix}0.124&amp;0.0992 \\0.0992&amp;0.144 \\\end{pmatrix} &amp;\qquad&amp; \mathbf S_v =\begin{pmatrix}0.404&amp;0.0938 \\0.0938&amp;0.104 \\\end{pmatrix}
+\end{eqnarray*}\]</span>
+where the <span class="math inline">\(s\)</span> subscript gives the values for setosa, and <span class="math inline">\(v\)</span> for virginica.</p>
+<p>We have data on <span class="math inline">\(n=50\)</span> flowers in each population. Hence,
+<span class="math display">\[\begin{eqnarray*}
+\widehat{\boldsymbol{\Sigma}} &amp;=&amp; \frac{1}{50+50-2} \left(50 \mathbf S_s + 50 \mathbf S_v \right)= \begin{pmatrix}0.27&amp;0.0985 \\0.0985&amp;0.126 \\\end{pmatrix}, \\
+\hat{{\boldsymbol{\mu}}}_s - \hat{{\boldsymbol{\mu}}}_v &amp;=&amp; \begin{pmatrix}-1.58 \\0.454 \\\end{pmatrix}, \\
+\hat{\mathbf h} &amp;=&amp; \frac{1}{2} (\hat{{\boldsymbol{\mu}}}_s + \hat{{\boldsymbol{\mu}}}_v) = \begin{pmatrix}5.797 \\3.201 \\\end{pmatrix},
+\end{eqnarray*}\]</span>
+and
+<span class="math display">\[\hat{\mathbf a} = \widehat{\boldsymbol{\Sigma}}^{-1} (\hat{{\boldsymbol{\mu}}}_s - \hat{{\boldsymbol{\mu}}}_v) = \begin{pmatrix}5.18&amp;-4.04 \\-4.04&amp;11.1 \\\end{pmatrix} \begin{pmatrix}-1.58 \\0.454 \\\end{pmatrix} = \begin{pmatrix}-10.031 \\11.407 \\\end{pmatrix}.\]</span></p>
+<p>We can find these values in R as follows:</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb219-2" data-line-number="2"><span class="co"># select two measurements and two species</span></a>
+<a class="sourceLine" id="cb219-3" data-line-number="3">iris3 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species <span class="op">!=</span><span class="st"> &quot;versicolor&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb219-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Sepal.Length, Sepal.Width, Species)</a>
+<a class="sourceLine" id="cb219-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb219-6" data-line-number="6">S_vir =<span class="st"> </span>iris3 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species<span class="op">==</span><span class="st">&quot;virginica&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb219-7" data-line-number="7"><span class="st">  </span><span class="kw">select</span>(Sepal.Length, Sepal.Width) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb219-8" data-line-number="8"><span class="st">  </span>cov</a>
+<a class="sourceLine" id="cb219-9" data-line-number="9">S_set =<span class="st"> </span>iris3 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species<span class="op">==</span><span class="st">&quot;setosa&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb219-10" data-line-number="10"><span class="st">  </span><span class="kw">select</span>(Sepal.Length, Sepal.Width) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb219-11" data-line-number="11"><span class="st">  </span>cov</a>
+<a class="sourceLine" id="cb219-12" data-line-number="12">S_u =<span class="st"> </span>(<span class="dv">50</span><span class="op">*</span>S_vir<span class="op">+</span><span class="dv">50</span><span class="op">*</span>S_set)<span class="op">/</span><span class="dv">98</span></a>
+<a class="sourceLine" id="cb219-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb219-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb219-15" data-line-number="15"><span class="co"># Or more easily using a package</span></a>
+<a class="sourceLine" id="cb219-16" data-line-number="16"><span class="kw">library</span>(vcvComp)</a>
+<a class="sourceLine" id="cb219-17" data-line-number="17">S_u =<span class="st"> </span><span class="kw">cov.W</span>(iris3[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], iris3[,<span class="dv">3</span>]) </a></code></pre></div>
+<p>The sample ML discriminant rule allocates a new observation <span class="math inline">\(\mathbf x= (x_1, x_2)^\top\)</span> to <span class="math inline">\(\Pi_{\mbox{setosa}}\)</span> if and only if
+<span class="math display">\[ \hat{\mathbf a}^\top (\mathbf x- \hat{\mathbf h}) = \begin{pmatrix}-10.031&amp;11.407 \\\end{pmatrix} \begin{pmatrix} x_1 - 5.797 \\ x_2 - 3.201 \end{pmatrix} &gt; 0.\]</span></p>
+<p>If we draw on the line defined by
+<span class="math display">\[\mathbf a^\top (\mathbf x-\mathbf h)=0\]</span>
+which can be written as
+<span class="math display">\[x_2 = \frac{1}{a_2}(\mathbf a^\top\mathbf h-a_1x_1) = -1.8963517 - -0.8793085 x_1\]</span>
+we can see this line clearly separates the two species of iris.</p>
+<p><img src="09-lda_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>If a new iris had a sepal length of 5.8 and a sepal width of 2.5 (marked as a black cross on the plot above) then</p>
+<p><span class="math display">\[ \hat{\mathbf a}^\top (\mathbf x- \hat{\mathbf h}) = \begin{pmatrix}-10.031&amp;11.407 \\\end{pmatrix} \begin{pmatrix} 5.8 - 5.797 \\ 2.5 - 3.201 \end{pmatrix} =-8.0267032 &lt; 0,\]</span>
+and so we would allocate this iris to the virginia population, <span class="math inline">\(\Pi_{virginica}\)</span>.</p>
+<p>As you would expect, there is an R command to do this for us: <code>lda</code> (for Linear Discriminant Analysis). This is in the <code>MASS</code> R package.</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb220-2" data-line-number="2">iris.lda1 &lt;-<span class="st"> </span><span class="kw">lda</span>(Species <span class="op">~</span><span class="st"> </span>., iris3)</a>
+<a class="sourceLine" id="cb220-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb220-4" data-line-number="4"><span class="co"># lda(Species ~ Sepal.Length+Sepal.Width, iris3) </span></a>
+<a class="sourceLine" id="cb220-5" data-line-number="5">  <span class="co">#  does the same thing</span></a>
+<a class="sourceLine" id="cb220-6" data-line-number="6">iris.lda1</a></code></pre></div>
+<pre><code>## Call:
+## lda(Species ~ ., data = iris3)
+## 
+## Prior probabilities of groups:
+##    setosa virginica 
+##       0.5       0.5 
+## 
+## Group means:
+##           Sepal.Length Sepal.Width
+## setosa           5.006       3.428
+## virginica        6.588       2.974
+## 
+## Coefficients of linear discriminants:
+##                    LD1
+## Sepal.Length  2.208596
+## Sepal.Width  -2.511742</code></pre>
+<p>You can see that this has printed the group means, and the lda coefficients. The coefficients are different to the ones we computed for <span class="math inline">\(\mathbf a\)</span>, but have the same ratio, which is all that matters (because the discriminant planes are perpendicular to <span class="math inline">\(\mathbf a\)</span> - multiplying <span class="math inline">\(\mathbf a\)</span> by a constant does not change the plane).</p>
+<p>The output also includes estimates of the prior probabilities for the two species, which are estimated to be
+<span class="math display">\[\hat{\pi}_s = \frac{1}{2}, \quad \hat{\pi}_v = \frac{1}{2}\]</span>
+as there were 50 irises from each population in the training data.</p>
+<p>We can use the <code>predict</code> command to predict the species for a new observation <span class="math inline">\(\mathbf x\)</span>. Using the example from before of an iris with a sepal length of 5.8 and a sepal width of 2.5 we find the Bayes classifier predicts this is a virginica iris.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1">irisnew =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Sepal.Length=</span><span class="fl">5.8</span>, <span class="dt">Sepal.Width=</span><span class="fl">2.5</span>)</a>
+<a class="sourceLine" id="cb222-2" data-line-number="2"><span class="kw">predict</span>(iris.lda1,irisnew)</a></code></pre></div>
+<pre><code>## $class
+## [1] virginica
+## Levels: setosa versicolor virginica
+## 
+## $posterior
+##         setosa virginica
+## 1 0.0002771946 0.9997228
+## 
+## $x
+##        LD1
+## 1 1.767357</code></pre>
+<p>Note that we are also given estimates of the probability that <span class="math inline">\(\mathbf x\)</span> lies in each of the populations. These are computed using
+<span class="math display">\[\frac{f_k(\mathbf x)\pi_k}{\sum_{j=1}^g f_j(\mathbf x)\pi_j}\]</span>
+with the parameter estimates substituted for the unknown parameters.</p>
+<div id="using-the-entire-dataset" class="section level4 unnumbered">
+<h4>Using the entire dataset</h4>
+<p>Let’s now use all 150 observations (with three populations: setosa, virginica, versicolor), and all four measurements.</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1">lda.iris &lt;-<span class="st"> </span><span class="kw">lda</span>(Species <span class="op">~</span><span class="st"> </span>.,iris)</a>
+<a class="sourceLine" id="cb224-2" data-line-number="2">lda.iris </a></code></pre></div>
+<pre><code>## Call:
+## lda(Species ~ ., data = iris)
+## 
+## Prior probabilities of groups:
+##     setosa versicolor  virginica 
+##  0.3333333  0.3333333  0.3333333 
+## 
+## Group means:
+##            Sepal.Length Sepal.Width Petal.Length Petal.Width
+## setosa            5.006       3.428        1.462       0.246
+## versicolor        5.936       2.770        4.260       1.326
+## virginica         6.588       2.974        5.552       2.026
+## 
+## Coefficients of linear discriminants:
+##                     LD1         LD2
+## Sepal.Length  0.8293776  0.02410215
+## Sepal.Width   1.5344731  2.16452123
+## Petal.Length -2.2012117 -0.93192121
+## Petal.Width  -2.8104603  2.83918785
+## 
+## Proportion of trace:
+##    LD1    LD2 
+## 0.9912 0.0088</code></pre>
+<p>We will delay discussion of what the reported coefficients mean, and how to visualize LDA, until after we have seen Fisher’s linear discriminant analysis in the next section. But we can use the <code>klaR</code> package to visualize a little of what LDA does. The <code>partimat</code> command provides an array of figures that show the discriminant regions based on every combination of two variables (i.e., it does LDA for each pair of variables).</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="kw">library</span>(klaR)</a>
+<a class="sourceLine" id="cb226-2" data-line-number="2"><span class="kw">library</span>(plyr)</a>
+<a class="sourceLine" id="cb226-3" data-line-number="3">Species_new=<span class="st"> </span><span class="kw">revalue</span>(iris<span class="op">$</span>Species, <span class="kw">c</span>(<span class="st">&quot;versicolor&quot;</span>=<span class="st">&quot;color&quot;</span>))</a>
+<a class="sourceLine" id="cb226-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb226-5" data-line-number="5"><span class="kw">partimat</span>(Species_new <span class="op">~</span><span class="st"> </span>Sepal.Length <span class="op">+</span><span class="st"> </span>Sepal.Width <span class="op">+</span><span class="st"> </span>Petal.Length <span class="op">+</span><span class="st"> </span>Petal.Width,</a>
+<a class="sourceLine" id="cb226-6" data-line-number="6">         <span class="dt">data=</span>iris, <span class="dt">method=</span><span class="st">&quot;lda&quot;</span>)</a></code></pre></div>
+<p><img src="09-lda_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>Note that I renamed the <em>versicolor</em> species as <em>color</em> so that the different species appear more clearly in the plots.</p>
+</div>
+</div>
+<div id="quadratic-discriminant-analysis-qda" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> Quadratic Discriminant Analysis (QDA)</h3>
+<p>We have seen that in the case where the populations all share a common covariance matrix, <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, that the decision boundaries are linear (i.e., hyperplanes). We also saw in example <a href="9-1-lda-ML.html#exm:exnine1">9.2</a> in a one-dimensional example that when the two populations had different variances we have a quadratic decision boundary.</p>
+<p>In general, if we allow the variances to differ between populations, so that we model population <span class="math inline">\(k\)</span> as <span class="math display">\[\mathbf x\sim N_p({\boldsymbol{\mu}}_k, \boldsymbol{\Sigma}_k),\]</span>
+then we get the Bayes discriminant rule
+<span class="math display">\[
+d(\mathbf x)=\arg\max_k \left(-\frac{1}{2} \log |\boldsymbol{\Sigma}_k| - \frac{1}{2}(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}_k^{-1} (\mathbf x-{\boldsymbol{\mu}}_k)+\log \pi_k\right). \]</span></p>
+<p>We can no ignore the quadratic term in <span class="math inline">\(\mathbf x\)</span> as it depends upon the population indicator <span class="math inline">\(k\)</span>. We also have to include the determinant of <span class="math inline">\(\boldsymbol{\Sigma}_k\)</span>. Thus in this case we get a quadratic decision boundary rather than a linear one.</p>
+<div id="iris-example-continued" class="section level4">
+<h4><span class="header-section-number">9.2.2.1</span> Iris example continued</h4>
+<p>The <code>qda</code> function in the <code>MASS</code> package implements quadratic discriminant analysis.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1">qda.iris &lt;-<span class="st"> </span><span class="kw">qda</span>(Species_new <span class="op">~</span><span class="st"> </span>Sepal.Length <span class="op">+</span><span class="st"> </span>Sepal.Width <span class="op">+</span><span class="st"> </span>Petal.Length <span class="op">+</span><span class="st"> </span>Petal.Width, iris)</a></code></pre></div>
+<p>We can again use the <code>partimat</code> command to look at the decision boundaries if we do QDA for each pair of variables in turn.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" data-line-number="1"><span class="kw">partimat</span>(Species <span class="op">~</span><span class="st"> </span>Sepal.Length <span class="op">+</span><span class="st"> </span>Sepal.Width <span class="op">+</span><span class="st"> </span>Petal.Length <span class="op">+</span><span class="st"> </span>Petal.Width,         <span class="dt">data=</span>iris, <span class="dt">method=</span><span class="st">&quot;qda&quot;</span>)</a></code></pre></div>
+<p><img src="09-lda_files/figure-html/qda-1.png" width="672" /></p>
+</div>
+</div>
+<div id="prediction-accuracy" class="section level3">
+<h3><span class="header-section-number">9.2.3</span> Prediction accuracy</h3>
+<p>To assess the predictive accuracy of our discriminant rules, we often split the data into two parts, a <strong>training set</strong>, and a <strong>test set</strong>. Let’s do this randomly by chosing 100 of the irises to be in our training set, and use the other 50 irises in the test set. We will then train the classifiers on the training set, and predict the species labels for test dataset. We can then count how many predictions were correct.</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb229-2" data-line-number="2">test.ind &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="dv">150</span>, <span class="dt">size=</span><span class="dv">50</span>)</a>
+<a class="sourceLine" id="cb229-3" data-line-number="3">iris.test &lt;-<span class="st"> </span>iris[test.ind,]</a>
+<a class="sourceLine" id="cb229-4" data-line-number="4">iris.train &lt;-<span class="st"> </span>iris[<span class="op">-</span>test.ind,]</a>
+<a class="sourceLine" id="cb229-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb229-6" data-line-number="6">lda1 &lt;-<span class="st"> </span><span class="kw">lda</span>(Species<span class="op">~</span>., iris.train)</a>
+<a class="sourceLine" id="cb229-7" data-line-number="7">qda1 &lt;-<span class="st"> </span><span class="kw">qda</span>(Species<span class="op">~</span>., iris.train)</a>
+<a class="sourceLine" id="cb229-8" data-line-number="8">test.ldapred &lt;-<span class="st"> </span><span class="kw">predict</span>(lda1, iris.test)</a>
+<a class="sourceLine" id="cb229-9" data-line-number="9">test.qdapred &lt;-<span class="st"> </span><span class="kw">predict</span>(qda1, iris.test)</a>
+<a class="sourceLine" id="cb229-10" data-line-number="10">(lda.accuracy &lt;-<span class="st"> </span><span class="kw">sum</span>(test.ldapred<span class="op">$</span>class<span class="op">==</span>iris.test<span class="op">$</span>Species))<span class="op">/</span><span class="dv">50</span></a></code></pre></div>
+<pre><code>## [1] 0.98</code></pre>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1">(qda.accuracy &lt;-<span class="st"> </span><span class="kw">sum</span>(test.qdapred<span class="op">$</span>class<span class="op">==</span>iris.test<span class="op">$</span>Species))<span class="op">/</span><span class="dv">50</span></a></code></pre></div>
+<pre><code>## [1] 0.98</code></pre>
+<p>So in this case we find that LDA and QDA both have an accuracy of 4900%, which is the result of a single wrong prediction. We can see more clearly what has gone wrong by using the <code>table</code> command.</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1"><span class="kw">table</span>(iris.test<span class="op">$</span>Species, test.ldapred<span class="op">$</span>class)</a></code></pre></div>
+<pre><code>##             
+##              setosa versicolor virginica
+##   setosa         17          0         0
+##   versicolor      0         15         0
+##   virginica       0          1        17</code></pre>
+<p>So in this case one of the virginica irises was predicted incorrectly to be versicolor.</p>
+<p>Here we randomly split the data into test and training sets. With small datasets such as this (<span class="math inline">\(n=150\)</span>), we instead sometimes use <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)">cross validation</a> to assess the accuracy of each method. To do this, we split the data up into test and training sets multiple times randomly, and assess the prediction error on each random split.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="9-1-lda-ML.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="9-3-FLDA.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

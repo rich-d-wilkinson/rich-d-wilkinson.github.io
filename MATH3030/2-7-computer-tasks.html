@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.7 Computer Tasks | Multivariate Statistics</title>
+  <title>2.7 Computer tasks | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.7 Computer Tasks | Multivariate Statistics" />
+  <meta property="og:title" content="2.7 Computer tasks | Multivariate Statistics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.7 Computer Tasks | Multivariate Statistics" />
+  <meta name="twitter:title" content="2.7 Computer tasks | Multivariate Statistics" />
   
   <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="2-6-exercises.html"/>
-
+<link rel="prev" href="2-6-mnist.html"/>
+<link rel="next" href="2-8-exercises.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,8 +49,6 @@
 
 
 
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -133,38 +131,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="1" data-path="1-linalg-decomp.html"><a href="1-linalg-decomp.html"><i class="fa fa-check"></i><b>1</b> Matrix decompositions</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-matrix-matrix.html"><a href="1-1-matrix-matrix.html"><i class="fa fa-check"></i><b>1.1</b> Matrix-matrix products</a></li>
-<li class="chapter" data-level="1.2" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>1.2</b> Spectral/eigen decomposition</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>1.2.1</b> Eigenvalues and eigenvectors</a></li>
-<li class="chapter" data-level="1.2.2" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>1.2.2</b> Spectral decomposition</a></li>
-<li class="chapter" data-level="1.2.3" data-path="1-2-spectraleigen-decomposition.html"><a href="1-2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>1.2.3</b> Matrix square roots</a></li>
+<li class="chapter" data-level="1" data-path="1-cca.html"><a href="1-cca.html"><i class="fa fa-check"></i><b>1</b> Canonical Correlation Analysis (CCA)</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-cca1.html"><a href="1-1-cca1.html"><i class="fa fa-check"></i><b>1.1</b> The first pair of canonical variables</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-cca1.html"><a href="1-1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>1.1.1</b> The first canonical components</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-cca1.html"><a href="1-1-cca1.html#premcca"><i class="fa fa-check"></i><b>1.1.2</b> Example: Premier league football</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="1-3-linalg-SVD.html"><a href="1-3-linalg-SVD.html"><i class="fa fa-check"></i><b>1.3</b> Singular Value Decomposition (SVD)</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="1-3-linalg-SVD.html"><a href="1-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>1.3.1</b> Examples</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-the-full-set-of-canonical-correlations.html"><a href="1-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>1.2</b> The full set of canonical correlations</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-the-full-set-of-canonical-correlations.html"><a href="1-2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>1.2.1</b> Example continued</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="1-4-svdopt.html"><a href="1-4-svdopt.html"><i class="fa fa-check"></i><b>1.4</b> SVD optimization results</a></li>
-<li class="chapter" data-level="1.5" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html"><i class="fa fa-check"></i><b>1.5</b> Low-rank approximation</a><ul>
-<li class="chapter" data-level="1.5.1" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html#matrix-norms"><i class="fa fa-check"></i><b>1.5.1</b> Matrix norms</a></li>
-<li class="chapter" data-level="1.5.2" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html#eckart-young-mirsky-theorem"><i class="fa fa-check"></i><b>1.5.2</b> Eckart-Young-Mirsky Theorem</a></li>
-<li class="chapter" data-level="1.5.3" data-path="1-5-low-rank-approximation.html"><a href="1-5-low-rank-approximation.html#example-image-compression"><i class="fa fa-check"></i><b>1.5.3</b> Example: image compression</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-properties.html"><a href="1-3-properties.html"><i class="fa fa-check"></i><b>1.3</b> Properties</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-properties.html"><a href="1-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>1.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-3-properties.html"><a href="1-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>1.3.2</b> Invariance/equivariance properties of CCA</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="1-6-tasks-ch3.html"><a href="1-6-tasks-ch3.html"><i class="fa fa-check"></i><b>1.6</b> Computer tasks</a></li>
-<li class="chapter" data-level="1.7" data-path="1-7-exercises-ch3.html"><a href="1-7-exercises-ch3.html"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="2-mds.html"><a href="2-mds.html"><i class="fa fa-check"></i><b>2</b> Multidimensional Scaling (MDS)</a><ul>
-<li class="chapter" data-level="2.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html"><i class="fa fa-check"></i><b>2.1</b> Classical MDS</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>2.1.1</b> Non-Euclidean distance matrices</a></li>
-<li class="chapter" data-level="2.1.2" data-path="2-1-classical-mds.html"><a href="2-1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>2.1.2</b> Principal Coordinate Analysis</a></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="2" data-path="2-lda.html"><a href="2-lda.html"><i class="fa fa-check"></i><b>2</b> Discriminant analysis</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-intro-delete-title-later.html"><a href="2-1-intro-delete-title-later.html"><i class="fa fa-check"></i><b>2.1</b> Intro - delete title later</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-intro-delete-title-later.html"><a href="2-1-intro-delete-title-later.html#linear-discriminant-analysis"><i class="fa fa-check"></i><b>2.1.1</b> Linear discriminant analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="2-2-properties.html"><a href="2-2-properties.html"><i class="fa fa-check"></i><b>2.2</b> Properties</a></li>
-<li class="chapter" data-level="2.3" data-path="2-3-non-classical-mds.html"><a href="2-3-non-classical-mds.html"><i class="fa fa-check"></i><b>2.3</b> Non-classical MDS</a></li>
-<li class="chapter" data-level="2.4" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html"><i class="fa fa-check"></i><b>2.4</b> Similarity measures</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="2-4-similarity-measures.html"><a href="2-4-similarity-measures.html#example"><i class="fa fa-check"></i><b>2.4.1</b> Example</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-lda-ML.html"><a href="2-2-lda-ML.html"><i class="fa fa-check"></i><b>2.2</b> Maximum likelihood (ML) discriminant rule</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-lda-ML.html"><a href="2-2-lda-ML.html#multivariate-gaussian-populations"><i class="fa fa-check"></i><b>2.2.1</b> Multivariate Gaussian populations</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-lda-ML.html"><a href="2-2-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>2.2.2</b> The sample ML discriminant rule</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="2-5-non-metric-mds.html"><a href="2-5-non-metric-mds.html"><i class="fa fa-check"></i><b>2.5</b> Non-metric MDS</a></li>
-<li class="chapter" data-level="2.6" data-path="2-6-exercises.html"><a href="2-6-exercises.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
-<li class="chapter" data-level="2.7" data-path="2-7-computer-tasks.html"><a href="2-7-computer-tasks.html"><i class="fa fa-check"></i><b>2.7</b> Computer Tasks</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-lda-Bayes.html"><a href="2-3-lda-Bayes.html"><i class="fa fa-check"></i><b>2.3</b> Bayes discriminant rule</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-lda-Bayes.html"><a href="2-3-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>2.3.1</b> Example: LDA using the Iris data</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-3-lda-Bayes.html"><a href="2-3-lda-Bayes.html#links-between-lda-fishers-discriminant-analysis-cca-and-linear-models"><i class="fa fa-check"></i><b>2.3.2</b> Links between LDA, Fisher’s Discriminant Analysis, CCA, and linear models</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-3-lda-Bayes.html"><a href="2-3-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>2.3.3</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="2.3.4" data-path="2-3-lda-Bayes.html"><a href="2-3-lda-Bayes.html#could-do-prediction-accuracy-here"><i class="fa fa-check"></i><b>2.3.4</b> Could do prediction accuracy here?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-4-FLDA.html"><a href="2-4-FLDA.html"><i class="fa fa-check"></i><b>2.4</b> Fisher’s linear discriminant rule</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-probability-of-misclassification.html"><a href="2-5-probability-of-misclassification.html"><i class="fa fa-check"></i><b>2.5</b> Probability of misclassification</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-mnist.html"><a href="2-6-mnist.html"><i class="fa fa-check"></i><b>2.6</b> MNIST</a></li>
+<li class="chapter" data-level="2.7" data-path="2-7-computer-tasks.html"><a href="2-7-computer-tasks.html"><i class="fa fa-check"></i><b>2.7</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.8" data-path="2-8-exercises.html"><a href="2-8-exercises.html"><i class="fa fa-check"></i><b>2.8</b> Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -187,41 +186,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="computer-tasks" class="section level2">
-<h2><span class="header-section-number">2.7</span> Computer Tasks</h2>
-<ol style="list-style-type: decimal">
-<li><p>Look at this computational trick <a href="https://www.robots.ox.ac.uk/~albanie/notes/Euclidean_distance_trick.pdf" class="uri">https://www.robots.ox.ac.uk/~albanie/notes/Euclidean_distance_trick.pdf</a>
-for computing the distance matrix.</p></li>
-<li><p>Do UK map?</p></li>
-</ol>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">mds &lt;-<span class="st"> </span><span class="kw">cmdscale</span>(distances)</a>
-<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="kw">plot</span>(mds[,<span class="dv">2</span>], mds[,<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="kw">text</span>(mds[,<span class="dv">2</span>], mds[,<span class="dv">1</span>], <span class="dt">labels=</span>city<span class="op">$</span>Name, <span class="dt">pos=</span><span class="dv">3</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">cmdscale</a></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li><a href="http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/122-multidimensional-scaling-essentials-algorithms-and-r-code/" class="uri">http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/122-multidimensional-scaling-essentials-algorithms-and-r-code/</a>
-Visualizing a correlation matrix using Multidimensional Scaling</li>
-</ol>
-<p>MDS can be also used to reveal a hidden pattern in a correlation matrix.</p>
-<p>Correlation actually measures similarity, but it is easy to transform it to a measure of dissimilarity. Distance between objects can be calculated as 1 - res.cor.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">res.cor &lt;-<span class="st"> </span><span class="kw">cor</span>(mtcars, <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</a>
-<a class="sourceLine" id="cb59-2" data-line-number="2">mds.cor &lt;-<span class="kw">cmdscale</span>((<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>res.cor) ) </a>
-<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="kw">colnames</span>(mds.cor) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Dim.1&quot;</span>, <span class="st">&quot;Dim.2&quot;</span>)</a>
-<a class="sourceLine" id="cb59-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb59-5" data-line-number="5"><span class="kw">library</span>(ggpubr)</a>
-<a class="sourceLine" id="cb59-6" data-line-number="6"><span class="kw">ggscatter</span>(mds.cor, <span class="dt">x =</span> <span class="st">&quot;Dim.1&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Dim.2&quot;</span>, </a>
-<a class="sourceLine" id="cb59-7" data-line-number="7">          <span class="dt">label =</span> <span class="kw">rownames</span>(swiss),</a>
-<a class="sourceLine" id="cb59-8" data-line-number="8">          <span class="dt">size =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb59-9" data-line-number="9">          <span class="dt">repel =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<h2><span class="header-section-number">2.7</span> Computer tasks</h2>
+
+<p>Open RStudio and open an R markdown document for carrying out this computer practical. Save the file, carry out the tasks and regularly make sure
+you can successfully knit the file, as you will need to do that for the forthcoming coursework.</p>
+
+<p>Consider the famous dataset known either as Fisher’s or Anderson’s iris data set which gives the measurements in centimetres of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are {}, {}, and {}.</p>
+
+<p>We will carry out discriminant analysis of the classic iris dataset, but just between the first two species initially. Later we’ll consider all three groups.
+Note that the sample ML discriminant rule is the same as Fisher’s linear discriminant analysis when there are <span class="math inline">\(g=2\)</span> groups.</p>
+
+
+<p>We are going to select 70% of the data at random as the training data, and then evaluate the performance of the discriminant rule on the
+remaining 30% test data.</p>
+<p>Select the test and training data by taking a random sample of 70% of the rows for training, and the rest for testing.</p>
+
+<p>We can see that the two groups are quite different, but there is some overlap.</p>
+<p>Let’s look at the form of the classification region, with the linear boundary between the classes. Observations
+that are misclassified in the training set are shown in red.</p>
+<p>We give a table of classifications for the training set.</p>
+
+<p>This is not really a fair evaluation of the method, because we have classified the training data using the training data. A fairer way
+of evaluating the rule is to compare how the test dataset is classified, versus the true species values.</p>
+
+<p>These tables of results are known as `confusion matrices’.</p>
+
+<p>A new iris flower is found which is thought to be one of these two species (versicolor or virginica). It has the following measurements:</p>
+<p>Sepal.Length = 6.1,
+Sepal.Width = 2.9,
+Petal.Length = 4.2,
+Petal.Width = 1.3.</p>
+<p>How would we classify this new flower, given the full dataset is available as training data from these two species?</p>
+
+<p>So, the predicted class is in out$class, so it is classified as versicolor (group 2)</p>
+
+<p>Now we consider Fisher’s linear discriminant on all three (<span class="math inline">\(g=3\)</span>) groups</p>
+
+<p>Now plot the classification regions, with three classes:</p>
 
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="2-6-exercises.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="2-6-mnist.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-8-exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

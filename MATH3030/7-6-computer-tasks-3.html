@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="7-5-exercises-4.html"/>
-
+<link rel="next" href="8-lm.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -264,6 +264,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5" data-path="7-5-exercises-4.html"><a href="7-5-exercises-4.html"><i class="fa fa-check"></i><b>7.5</b> Exercises</a></li>
 <li class="chapter" data-level="7.6" data-path="7-6-computer-tasks-3.html"><a href="7-6-computer-tasks-3.html"><i class="fa fa-check"></i><b>7.6</b> Computer tasks</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="8-lm.html"><a href="8-lm.html"><i class="fa fa-check"></i><b>8</b> The Multivariate Linear Model</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-1-the-standard-univariate-linear-model.html"><a href="8-1-the-standard-univariate-linear-model.html"><i class="fa fa-check"></i><b>8.1</b> The standard univariate linear model</a></li>
+<li class="chapter" data-level="8.2" data-path="8-2-multivariate-linear-model.html"><a href="8-2-multivariate-linear-model.html"><i class="fa fa-check"></i><b>8.2</b> Multivariate Linear Model</a></li>
+<li class="chapter" data-level="8.3" data-path="8-3-one-way-manova.html"><a href="8-3-one-way-manova.html"><i class="fa fa-check"></i><b>8.3</b> One-way MANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="9" data-path="9-lda.html"><a href="9-lda.html"><i class="fa fa-check"></i><b>9</b> Discriminant analysis</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="9-lda.html"><a href="9-lda.html#linear-discriminant-analysis"><i class="fa fa-check"></i><b>9.0.1</b> Linear discriminant analysis</a></li>
+<li class="chapter" data-level="9.1" data-path="9-1-lda-ML.html"><a href="9-1-lda-ML.html"><i class="fa fa-check"></i><b>9.1</b> Maximum likelihood (ML) discriminant rule</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="9-1-lda-ML.html"><a href="9-1-lda-ML.html#multivariate-normal-populations"><i class="fa fa-check"></i><b>9.1.1</b> Multivariate normal populations</a></li>
+<li class="chapter" data-level="9.1.2" data-path="9-1-lda-ML.html"><a href="9-1-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>9.1.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="9.1.3" data-path="9-1-lda-ML.html"><a href="9-1-lda-ML.html#two-populations"><i class="fa fa-check"></i><b>9.1.3</b> Two populations</a></li>
+<li class="chapter" data-level="9.1.4" data-path="9-1-lda-ML.html"><a href="9-1-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>9.1.4</b> More than two populations</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="9-2-lda-Bayes.html"><a href="9-2-lda-Bayes.html"><i class="fa fa-check"></i><b>9.2</b> Bayes discriminant rule</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="9-2-lda-Bayes.html"><a href="9-2-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>9.2.1</b> Example: LDA using the Iris data</a></li>
+<li class="chapter" data-level="9.2.2" data-path="9-2-lda-Bayes.html"><a href="9-2-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>9.2.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="9.2.3" data-path="9-2-lda-Bayes.html"><a href="9-2-lda-Bayes.html#prediction-accuracy"><i class="fa fa-check"></i><b>9.2.3</b> Prediction accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="9-3-FLDA.html"><a href="9-3-FLDA.html"><i class="fa fa-check"></i><b>9.3</b> Fisher’s linear discriminant rule</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="9-3-FLDA.html"><a href="9-3-FLDA.html#iris-example-continued-1"><i class="fa fa-check"></i><b>9.3.1</b> Iris example continued</a></li>
+<li class="chapter" data-level="9.3.2" data-path="9-3-FLDA.html"><a href="9-3-FLDA.html#links-between-methods"><i class="fa fa-check"></i><b>9.3.2</b> Links between methods</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
 
@@ -289,20 +313,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="task-1-2" class="section level4 unnumbered">
 <h4>Task 1</h4>
 <p>Download the wine dataset from the <a href="https://archive.ics.uci.edu/ml/datasets/wine">UCI Machine Learning Repository</a></p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1"><span class="kw">download.file</span>(<span class="dt">url=</span><span class="st">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data&quot;</span>, <span class="dt">destfile=</span><span class="st">&quot;wine.data&quot;</span>)</a>
-<a class="sourceLine" id="cb218-2" data-line-number="2">wine &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;wine.data&quot;</span>, <span class="dt">header=</span><span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb218-3" data-line-number="3"><span class="kw">colnames</span>(wine) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Type&quot;</span>, <span class="st">&quot;Alcohol&quot;</span>, <span class="st">&quot;Malic&quot;</span>,</a>
-<a class="sourceLine" id="cb218-4" data-line-number="4"><span class="st">&quot;Ash&quot;</span>,</a>
-<a class="sourceLine" id="cb218-5" data-line-number="5"><span class="st">&quot;Alcalinity&quot;</span>,</a>
-<a class="sourceLine" id="cb218-6" data-line-number="6"><span class="st">&quot;Magnesium&quot;</span>,</a>
-<a class="sourceLine" id="cb218-7" data-line-number="7"><span class="st">&quot;Phenols&quot;</span>,</a>
-<a class="sourceLine" id="cb218-8" data-line-number="8"><span class="st">&quot;Flavanoids&quot;</span>,</a>
-<a class="sourceLine" id="cb218-9" data-line-number="9"><span class="st">&quot;Nonflavanoids&quot;</span>,</a>
-<a class="sourceLine" id="cb218-10" data-line-number="10"><span class="st">&quot;Proanthocyanins&quot;</span>,</a>
-<a class="sourceLine" id="cb218-11" data-line-number="11"><span class="st">&quot;Color&quot;</span>,</a>
-<a class="sourceLine" id="cb218-12" data-line-number="12"><span class="st">&quot;Hue&quot;</span>,</a>
-<a class="sourceLine" id="cb218-13" data-line-number="13"><span class="st">&quot;Dilution&quot;</span>,</a>
-<a class="sourceLine" id="cb218-14" data-line-number="14"><span class="st">&quot;Proline&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1"><span class="kw">download.file</span>(<span class="dt">url=</span><span class="st">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data&quot;</span>, <span class="dt">destfile=</span><span class="st">&quot;wine.data&quot;</span>)</a>
+<a class="sourceLine" id="cb216-2" data-line-number="2">wine &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;wine.data&quot;</span>, <span class="dt">header=</span><span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb216-3" data-line-number="3"><span class="kw">colnames</span>(wine) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Type&quot;</span>, <span class="st">&quot;Alcohol&quot;</span>, <span class="st">&quot;Malic&quot;</span>,</a>
+<a class="sourceLine" id="cb216-4" data-line-number="4"><span class="st">&quot;Ash&quot;</span>,</a>
+<a class="sourceLine" id="cb216-5" data-line-number="5"><span class="st">&quot;Alcalinity&quot;</span>,</a>
+<a class="sourceLine" id="cb216-6" data-line-number="6"><span class="st">&quot;Magnesium&quot;</span>,</a>
+<a class="sourceLine" id="cb216-7" data-line-number="7"><span class="st">&quot;Phenols&quot;</span>,</a>
+<a class="sourceLine" id="cb216-8" data-line-number="8"><span class="st">&quot;Flavanoids&quot;</span>,</a>
+<a class="sourceLine" id="cb216-9" data-line-number="9"><span class="st">&quot;Nonflavanoids&quot;</span>,</a>
+<a class="sourceLine" id="cb216-10" data-line-number="10"><span class="st">&quot;Proanthocyanins&quot;</span>,</a>
+<a class="sourceLine" id="cb216-11" data-line-number="11"><span class="st">&quot;Color&quot;</span>,</a>
+<a class="sourceLine" id="cb216-12" data-line-number="12"><span class="st">&quot;Hue&quot;</span>,</a>
+<a class="sourceLine" id="cb216-13" data-line-number="13"><span class="st">&quot;Dilution&quot;</span>,</a>
+<a class="sourceLine" id="cb216-14" data-line-number="14"><span class="st">&quot;Proline&quot;</span>)</a></code></pre></div>
 <ol style="list-style-type: lower-roman">
 <li><p>Let’s assume this selection of wines is a random sample from the population of all possible wines. Conduct a multivariate hypothesis test to see whether the average wine has an alcohol content different from 13 and an malic acid content different from 2?</p></li>
 <li><p>Test whether the alcohol and malic acid content are significantly different between wines of type 1 and wines of type 2.</p></li>
@@ -321,18 +345,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="task-3-2" class="section level5 unnumbered">
 <h5>Task 3</h5>
 <p>Download the exam data from Moodle.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.6.2</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1"><span class="kw">load</span>(<span class="dt">file=</span><span class="st">&#39;exam.rda&#39;</span>)</a>
-<a class="sourceLine" id="cb224-2" data-line-number="2">N&lt;-<span class="kw">dim</span>(exam)[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb217-2" data-line-number="2"><span class="kw">load</span>(<span class="dt">file=</span><span class="st">&#39;exam.rda&#39;</span>)</a>
+<a class="sourceLine" id="cb217-3" data-line-number="3">N&lt;-<span class="kw">dim</span>(exam)[<span class="dv">1</span>]</a></code></pre></div>
 <p>We will now work through how to plot the confidence regions shown in the notes.</p>
 <ol style="list-style-type: lower-roman">
 <li>Firstly, let’s plot a circle with equation
@@ -341,11 +356,11 @@ or in vector form:
 <span class="math display">\[\mathbf x^\top\mathbf x=c^2.\]</span>
 Why must <span class="math inline">\(x\)</span> be in the range <span class="math inline">\((-c,c)\)</span>? Suppose <span class="math inline">\(c=10\)</span>. In this case you can plot a circle using the following commands</li>
 </ol>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" data-line-number="1">theta &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>pi, <span class="fl">0.01</span>)</a>
-<a class="sourceLine" id="cb225-2" data-line-number="2">x&lt;-<span class="st"> </span><span class="dv">10</span><span class="op">*</span><span class="kw">cos</span>(theta)</a>
-<a class="sourceLine" id="cb225-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">*</span><span class="kw">sin</span>(theta)</a>
-<a class="sourceLine" id="cb225-4" data-line-number="4"><span class="kw">par</span>(<span class="dt">pty=</span><span class="st">&quot;s&quot;</span>)  <span class="co"># ensures the plot window is square</span></a>
-<a class="sourceLine" id="cb225-5" data-line-number="5"><span class="kw">plot</span>(x,y,<span class="dt">type=</span><span class="st">&#39;l&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1">theta &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span>pi, <span class="fl">0.01</span>)</a>
+<a class="sourceLine" id="cb218-2" data-line-number="2">x&lt;-<span class="st"> </span><span class="dv">10</span><span class="op">*</span><span class="kw">cos</span>(theta)</a>
+<a class="sourceLine" id="cb218-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">*</span><span class="kw">sin</span>(theta)</a>
+<a class="sourceLine" id="cb218-4" data-line-number="4"><span class="kw">par</span>(<span class="dt">pty=</span><span class="st">&quot;s&quot;</span>)  <span class="co"># ensures the plot window is square</span></a>
+<a class="sourceLine" id="cb218-5" data-line-number="5"><span class="kw">plot</span>(x,y,<span class="dt">type=</span><span class="st">&#39;l&#39;</span>)</a></code></pre></div>
 <p>Explain why this works. <strong>Note</strong> if your plotting window is not square, your circle will look like an ellipse!</p>
 <ol start="2" style="list-style-type: lower-roman">
 <li><p>Let’s now plot the ellipse
@@ -369,8 +384,8 @@ by shifting the ellipse to be centered around <span class="math inline">\({\bold
           </div>
         </div>
       </div>
-<a href="7-5-exercises-4.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="7-5-exercises-4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="8-lm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

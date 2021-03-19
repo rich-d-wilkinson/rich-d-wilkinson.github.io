@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.4 Fisher’s linear discriminant rule | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.4 Fisher’s linear discriminant rule | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.4 Fisher’s linear discriminant rule | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="2-3-lda-Bayes.html"/>
+<link rel="next" href="2-5-probability-of-misclassification.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="1-cca.html"><a href="1-cca.html"><i class="fa fa-check"></i><b>1</b> Canonical Correlation Analysis (CCA)</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-cca1.html"><a href="1-1-cca1.html"><i class="fa fa-check"></i><b>1.1</b> The first pair of canonical variables</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-cca1.html"><a href="1-1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>1.1.1</b> The first canonical components</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-cca1.html"><a href="1-1-cca1.html#premcca"><i class="fa fa-check"></i><b>1.1.2</b> Example: Premier league football</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-the-full-set-of-canonical-correlations.html"><a href="1-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>1.2</b> The full set of canonical correlations</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-the-full-set-of-canonical-correlations.html"><a href="1-2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>1.2.1</b> Example continued</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-properties.html"><a href="1-3-properties.html"><i class="fa fa-check"></i><b>1.3</b> Properties</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-properties.html"><a href="1-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>1.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-3-properties.html"><a href="1-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>1.3.2</b> Invariance/equivariance properties of CCA</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="2" data-path="2-lda.html"><a href="2-lda.html"><i class="fa fa-check"></i><b>2</b> Discriminant analysis</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-intro-delete-title-later.html"><a href="2-1-intro-delete-title-later.html"><i class="fa fa-check"></i><b>2.1</b> Intro - delete title later</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-intro-delete-title-later.html"><a href="2-1-intro-delete-title-later.html#linear-discriminant-analysis"><i class="fa fa-check"></i><b>2.1.1</b> Linear discriminant analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-lda-ML.html"><a href="2-2-lda-ML.html"><i class="fa fa-check"></i><b>2.2</b> Maximum likelihood (ML) discriminant rule</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-lda-ML.html"><a href="2-2-lda-ML.html#multivariate-gaussian-populations"><i class="fa fa-check"></i><b>2.2.1</b> Multivariate Gaussian populations</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-lda-ML.html"><a href="2-2-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>2.2.2</b> The sample ML discriminant rule</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-lda-Bayes.html"><a href="2-3-lda-Bayes.html"><i class="fa fa-check"></i><b>2.3</b> Bayes discriminant rule</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-lda-Bayes.html"><a href="2-3-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>2.3.1</b> Example: LDA using the Iris data</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-3-lda-Bayes.html"><a href="2-3-lda-Bayes.html#links-between-lda-fishers-discriminant-analysis-cca-and-linear-models"><i class="fa fa-check"></i><b>2.3.2</b> Links between LDA, Fisher’s Discriminant Analysis, CCA, and linear models</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-3-lda-Bayes.html"><a href="2-3-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>2.3.3</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="2.3.4" data-path="2-3-lda-Bayes.html"><a href="2-3-lda-Bayes.html#could-do-prediction-accuracy-here"><i class="fa fa-check"></i><b>2.3.4</b> Could do prediction accuracy here?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-4-FLDA.html"><a href="2-4-FLDA.html"><i class="fa fa-check"></i><b>2.4</b> Fisher’s linear discriminant rule</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-probability-of-misclassification.html"><a href="2-5-probability-of-misclassification.html"><i class="fa fa-check"></i><b>2.5</b> Probability of misclassification</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-mnist.html"><a href="2-6-mnist.html"><i class="fa fa-check"></i><b>2.6</b> MNIST</a></li>
+<li class="chapter" data-level="2.7" data-path="2-7-computer-tasks.html"><a href="2-7-computer-tasks.html"><i class="fa fa-check"></i><b>2.7</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.8" data-path="2-8-exercises.html"><a href="2-8-exercises.html"><i class="fa fa-check"></i><b>2.8</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="FLDA" class="section level2">
+<h2><span class="header-section-number">2.4</span> Fisher’s linear discriminant rule</h2>
+<p>USEFUL AS DIMENNION REUDCTION</p>
+<p>Thus far we have assumed that observations from population <span class="math inline">\(\Pi_j\)</span> have a <span class="math inline">\(N_p ( \boldsymbol{\mu}_j, {\mathbf \Sigma})\)</span> distribution, and then used the MVN log-likelihood to derive the discriminant functions <span class="math inline">\(\delta_j(\mathbf x)\)</span>. The famous statistician R. A. Fisher took an alternative approach and looked for a linear discriminant functions without assuming any particular distribution for each population <span class="math inline">\(\Pi_j\)</span>.</p>
+<div id="variance-decomposition" class="section level4 unnumbered">
+<h4>Variance decomposition</h4>
+<p>Suppose we have a training sample <span class="math inline">\(\mathbf x_{1,j}, \ldots, \mathbf x_{n_j,j}\)</span> from <span class="math inline">\(\Pi_j\)</span> for <span class="math inline">\(j=1,\ldots,g\)</span>.
+Fisher’s approach starts by splitting the total covariance matrix of the data (i.e. ignoring class labels) into two parts.</p>
+<p><span class="math display">\[\begin{align*}
+n\mathbf S=\mathbf X^\top\mathbf H\mathbf X&amp;= \sum_{j=1}^g\sum_{i=1}^{n_j} (\mathbf x_{i,j} - \bar{\mathbf x})(\mathbf x_{i,j} - \bar{\mathbf x})^\top\\
+&amp;=\sum_{j=1}^g\sum_{i=1}^{n_j} (\mathbf x_{i,j} - \hat{{\boldsymbol{\mu}}}_j+\hat{{\boldsymbol{\mu}}}_j-\bar{\mathbf x})(\mathbf x_{i,j} - \hat{{\boldsymbol{\mu}}}_j+\hat{{\boldsymbol{\mu}}}_j-\bar{\mathbf x})^\top\\
+&amp;= \sum_{j=1}^g\sum_{i=1}^{n_j} (\mathbf x_{i,j} - \hat{{\boldsymbol{\mu}}}_j)(\mathbf x_{i,j} - \hat{{\boldsymbol{\mu}}}_j)^\top+
+\sum_{j=1}^g n_j (\hat{{\boldsymbol{\mu}}}_j-\bar{\mathbf x})(\hat{{\boldsymbol{\mu}}}_j-\bar{\mathbf x})^\top\\
+&amp;=\mathbf W+\mathbf B
+\end{align*}\]</span>
+where <span class="math inline">\(\hat{{\boldsymbol{\mu}}}_j=\frac{1}{n_j} \sum \mathbf x_{i,j} = \bar{\mathbf x}_{+,j}\)</span> is the sample mean of the <span class="math inline">\(j\)</span>th group, <span class="math inline">\(\bar{\mathbf x} = \frac{1}{n} \sum_{j=1}^g \sum_{i=1}^{n_j} \mathbf x_{ij}\)</span> is the overall mean, and <span class="math inline">\(n=\sum_{j=1}^g n_j\)</span>.</p>
+<p>MAKE nW+nB??????</p>
+<p>This has split the total sum of squares matrix into a <strong>within-class</strong> sum of squares matrix
+<span class="math display">\[ \mathbf W= \sum_{j=1}^g \sum_{i=1}^{n_j} (\mathbf x_{ij} - \hat{{\boldsymbol{\mu}}}_j) (\mathbf x_{ij} - \hat{{\boldsymbol{\mu}}}_j)^\top  = \sum_{j=1}^g n_j \mathbf S_j \]</span>
+and a <strong>between-class</strong> sum of squares matrix
+<span class="math display">\[ \mathbf B= \sum_{j=1}^g n_j (\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x}) (\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x})^\top.\]</span></p>
+<p>Note that</p>
+<ol style="list-style-type: decimal">
+<li><p>The <span class="math inline">\(\frac{1}{n} \mathbf W\)</span> is an estimator of <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, the shared covariance matrix in the MVN distributions for each population (c.f. Equation.
+<a href="2-2-lda-ML.html#eq:ldawithin">(2.4)</a>).</p></li>
+<li><p>If <span class="math inline">\(\mathbf M\)</span> is a <span class="math inline">\(n \times p\)</span> matrix of estimated class centroids for each observation
+<span class="math display">\[\mathbf M= \begin{pmatrix} -&amp; \hat{{\boldsymbol{\mu}}}_1 &amp;-\\
+&amp;\vdots &amp;\\
+-&amp; \hat{{\boldsymbol{\mu}}}_1 &amp;-\\
+-&amp; \hat{{\boldsymbol{\mu}}}_2 &amp;-\\
+&amp;\vdots&amp;\\
+-&amp; \hat{{\boldsymbol{\mu}}}_g &amp;-\\
+&amp;\vdots &amp;\\
+-&amp; \hat{{\boldsymbol{\mu}}}_g &amp;-\end{pmatrix}\]</span>
+then <span class="math inline">\(\frac{1}{n}\mathbf B=\frac{1}{n}\mathbf M^\top\mathbf H\mathbf M\)</span> is the covariance matrix of <span class="math inline">\(\mathbf M\)</span>.</p></li>
+</ol>
+<p>We thus think of this as splitting the total covariance matrix (ignoring class information) into <strong>within-class</strong> and <strong>between-class</strong> covariance matrices:
+<span class="math display">\[\mathbf S= \frac{1}{n}\mathbf W+ \frac{1}{n}\mathbf B\]</span></p>
+<p>where <span class="math inline">\(\bar{\mathbf x}_j= \frac{1}{n_j} \sum_{i=1}^{n_j} \mathbf x_{ij}\)</span> is the sample mean of the <span class="math inline">\(j\)</span>th group. A</p>
+</div>
+<div id="fishers-criterion" class="section level4 unnumbered">
+<h4>Fisher’s criterion</h4>
+<p>Fisher’s approach was to find a projection of the data <span class="math inline">\(z_i = \mathbf a^\top \mathbf x_i\)</span> or
+<span class="math display">\[\mathbf z= \mathbf X\mathbf a\]</span>
+that maximizes the between-class variance relative to the within-class variance.</p>
+<p>Using the variance decomposition from above, we can see that the total variance of <span class="math inline">\(\mathbf z\)</span> is
+<span class="math display">\[\begin{align*}
+\frac{1}{n}\mathbf z^\top \mathbf H\mathbf z&amp;= \frac{1}{n}\mathbf a^\top \mathbf X^\top\mathbf H\mathbf X\mathbf a\\
+&amp;=\frac{1}{n} \mathbf a^\top \mathbf S\mathbf a\\
+&amp;= \frac{1}{n} \mathbf a^\top\mathbf W\mathbf a+\frac{1}{n} \mathbf a^\top\mathbf B\mathbf a\\
+\end{align*}\]</span>
+decomposed into the within-class variance of <span class="math inline">\(\mathbf z\)</span> and the between-class variance <span class="math inline">\(\mathbf z\)</span>.</p>
+<p>Fisher’s criterion is to choose a vector, <span class="math inline">\(\mathbf a\)</span>, to maximise the ratio of the <strong>between-class</strong> variance relative to the <strong>within-class</strong> variance of <span class="math inline">\(\mathbf z=\mathbf X\mathbf a\)</span>, i.e., to solve
+<span class="math display" id="eq:ldaFisheropt">\[\begin{equation}
+\max_{\mathbf a}\frac{\mathbf a^\top \mathbf B\mathbf a}{\mathbf a^\top \mathbf W\mathbf a}, \tag{2.5}
+\end{equation}\]</span></p>
+<p>The idea behind this is that this choice of <span class="math inline">\(\mathbf a\)</span> will make the classes most easily separable.</p>
+<p>FIGURE FIGURE???</p>
+<p>An equivalent optimization problem is</p>
+</div>
+<div id="solving-the-optimization-problem" class="section level4 unnumbered">
+<h4>Solving the optimization problem</h4>
+<p>How do we solve the optimization problem <a href="2-4-FLDA.html#eq:ldaFisheropt">(2.5)</a> and find the optimal choice of <span class="math inline">\(\mathbf a\)</span>?</p>
+
+<div class="proposition">
+<span id="prp:nine2" class="proposition"><strong>Proposition 2.4  </strong></span>A vector <span class="math inline">\(\mathbf a\)</span> that solves <span class="math display">\[\max_{\mathbf a}\frac{\mathbf a^\top \mathbf B\mathbf a}{\mathbf a^\top \mathbf W\mathbf a}\]</span> is an eigenvector of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> corresponding to the largest eigenvalue.
+</div>
+
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> 
+Firstly, note that an equivalent optimization problem is</p>
+<p><span class="math display">\[\begin{align*}
+\mbox{Maximize } &amp;\mathbf a^\top \mathbf B\mathbf a\\
+ \mbox{ subject to } &amp;\mathbf a^\top \mathbf W\mathbf a=1
+\end{align*}\]</span></p>
+<p>as we can rescale <span class="math inline">\(\mathbf a\)</span> without changing the objective <a href="2-4-FLDA.html#eq:ldaFisheropt">(2.5)</a>. This looks a lot like the optimization problems we saw in the chapters on PCA and CCA.</p>
+<p>To solve this, note that if we write <span class="math inline">\(\mathbf b=\mathbf W^{\frac{1}{2}}\mathbf a\)</span> then the optimization problem becomes</p>
+<p><span class="math display">\[\begin{align*}
+\mbox{Maximize } &amp;\mathbf b^\top \mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\mathbf b\\
+ \mbox{ subject to } &amp;\mathbf b^\top \mathbf b=1.
+\end{align*}\]</span>
+Proposition <a href="#prp:two8"><strong>??</strong></a> tells us that the maximum is obtained when <span class="math inline">\(\mathbf b=\mathbf v_1\)</span>, where <span class="math inline">\(\mathbf v_1\)</span> is the eigenvector of <span class="math inline">\(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\)</span> corresponding to the largest eigenvalue <span class="math inline">\(\lambda_1\)</span>.</p>
+<p>Converting back to <span class="math inline">\(\mathbf a\)</span> gives the solution to the original optimization problem <a href="2-4-FLDA.html#eq:ldaFisheropt">(2.5)</a> to be
+<span class="math display">\[\mathbf a= \mathbf W^{-\frac{1}{2}}\mathbf v_1\]</span></p>
+<p>Note that this is an eigenvalue of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span></p>
+<p><span class="math display">\[\begin{align*}
+\mathbf W^{-1}\mathbf B\mathbf a&amp;= \mathbf W^{-1}\mathbf B\mathbf W^{-\frac{1}{2}}\mathbf v_1 \\
+&amp;= \mathbf W^{-\frac{1}{2}}\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\mathbf v_1\\
+&amp;= \lambda_1\mathbf W^{-\frac{1}{2}}\mathbf v_1\\
+&amp;= \lambda_1 \mathbf a
+\end{align*}\]</span></p>
+Finally, to complete the proof we should check that <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> doesn’t have any larger eigenvalues, but we can do this by showing that its eigenvalues are the same as the eigenvalues of <span class="math inline">\(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\)</span>. This is left as an exercise (note we’ve already done one direction - all you need to do is show that if <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> has eigenvalue <span class="math inline">\(\lambda\)</span> then so does <span class="math inline">\(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\)</span>).
+</div>
+
+<!--Assume $\bW$ is positive definite and note that $\bW$ is symmetric, so we can use the spectral decomposition theorem and write $\bW = \bQ \ba \bQ^\top$.
+
+Define $\bgamma = \bW^{1/2} \ba$.  Then $\ba = \bW^{-1/2} \bgamma$ where
+$\bW^{-1/2}=\bQ \ba^{-1/2} \bQ^\top$ and
+\begin{eqnarray*}
+\max_{\ba \colon \ba^\top \ba=1} \left\{ \frac{\ba^\top \bB \ba}{\ba^\top \bW \ba} \right\}
+&=& \max_{\bgamma \colon \bgamma \neq \bzero} \left\{ \frac{\bgamma^\top \bW^{-1/2} \bB \bW^{-1/2} \bgamma} {\bgamma^\top \bW^{-1/2} \bW \bW^{-1/2} \bgamma} \right\} \\
+&=& \max_{\bgamma \colon \bgamma \neq \bzero} \left\{ \frac{ \bgamma^\top \bW^{-1/2} \bB \bW^{-1/2} \bgamma}{\bgamma^\top \bI_p \bgamma} \right\} \\
+&=& \max_{\bgamma \colon \bgamma^\top \bgamma =1} \left\{ \bgamma^\top \bW^{-1/2} \bB \bW^{-1/2} \bgamma \right\}
+\end{eqnarray*}
+
+This is similar to the PCA situation in \S 3.2 where we chose $\bu$ to be the eigenvector corresponding to the largest eigenvalue of $\bS$ to maximise $\bu^\top \bS \bu$.  Hence, we choose $\bgamma$ to be the eigenvector corresponding to the largest eigenvalue of $\bW^{-1/2} \bB \bW^{-1/2}$.
+
+If $\bgamma$ is an eigenvector of $\bW^{-1/2} \bB \bW^{-1/2}$ then, by definition,
+$$\bW^{-1/2} \bB \bW^{-1/2} \bgamma = \rho \bgamma$$
+ where $\rho$ is the corresponding eigenvalue.  Pre-multiplying both sides by $\bW^{-1/2}$ gives
+\begin{eqnarray*}
+\bW^{-1} \bB (\bW^{-1/2} \bgamma) &=& \rho \bW^{-1/2} \bgamma \\
+\bW^{-1} \bB \ba &=& \rho \ba.
+\end{eqnarray*}
+
+So, the $\ba$ we require is the unit eigenvector corresponding to the largest
+eigenvalue of $\bW^{-1} \bB$. -->
+<p><br> </br></p>
+</div>
+<div id="fishers-discriminant-rule" class="section level4 unnumbered">
+<h4>Fisher’s discriminant rule</h4>
+<p>WHAT IF WE HAVE MORE THAN ONE dimension??</p>
+<p>The function <span class="math inline">\(L(\mathbf z)=\mathbf a^\top \mathbf z\)</span> is called Fisher’s linear discriminant function. Once <span class="math inline">\(L(\mathbf z)\)</span> has been obtained, we allocate <span class="math inline">\(\mathbf z\)</span> to the <span class="math inline">\(\Pi_j\)</span> whose discriminant score <span class="math inline">\(L(\bar{\mathbf x}_j)\)</span> is closest to <span class="math inline">\(L(\mathbf z)\)</span>, that is, allocate <span class="math inline">\(\mathbf z\)</span> to <span class="math inline">\(\Pi_j\)</span> iff
+<span class="math display">\[ | \mathbf a^\top \mathbf z- \mathbf a^\top \bar{\mathbf x}_j | = \min\limits_{1 \leq k \leq g} | \mathbf a^\top \mathbf z- \mathbf a^\top \bar{\mathbf x}_k |. \]</span></p>
+<p>When <span class="math inline">\(g=2\)</span>, Fisher’s rule and the sample ML rule with <span class="math inline">\(\boldsymbol{\Sigma}_1=\boldsymbol{\Sigma}_2=\boldsymbol{\Sigma}\)</span> turn out to be the same. Note that in
+the sample ML rule we assumed that the two groups are from <span class="math inline">\(N_p({\boldsymbol{\mu}}_i, \boldsymbol{\Sigma})\)</span>
+populations, but Fisher’s rule makes no such assumption.</p>
+
+<div class="proposition">
+<span id="prp:nine3" class="proposition"><strong>Proposition 2.5  </strong></span>If <span class="math inline">\(g=2\)</span> then Fisher’s rule and the sample ML rule described in 9.3 are equivalent.
+</div>
+
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> First, note that
+<span class="math display">\[\begin{eqnarray*}
+\bar{\mathbf x}_1 - \bar{\mathbf x} &amp;=&amp; \bar{\mathbf x}_1 - \left(\frac{n_1 \bar{\mathbf x}_1 + n_2 \bar{\mathbf x}_2}{n_1+n_2} \right)
+= \frac{ (n_1+n_2) \bar{\mathbf x}_1 - n_1 \bar{\mathbf x}_1 - n_2 \bar{\mathbf x}_2 }{n_1+n_2} \\
+&amp;=&amp; \frac{ n_2 (\bar{\mathbf x}_1 - \bar{\mathbf x}_2) }{n_1 + n_2} = \frac{n_2 \mathbf d}{n_1+n_2}
+\end{eqnarray*}\]</span>
+where <span class="math inline">\(\mathbf d= \bar{\mathbf x}_1 - \bar{\mathbf x}_2\)</span>. By analogy <span class="math inline">\(\bar{\mathbf x}_2 - \bar{\mathbf x} = \frac{n_1 (-\mathbf d)}{n_1+n_2}\)</span>. Therefore,
+<span class="math display">\[\begin{eqnarray*}
+\mathbf B&amp;=&amp; n_1 (\bar{\mathbf x}_1 - \bar{\mathbf x})(\bar{\mathbf x}_1 - \bar{\mathbf x})^\top + n_2 (\bar{\mathbf x}_2 - \bar{\mathbf x})(\bar{\mathbf x}_2 - \bar{\mathbf x})^\top \\
+&amp;=&amp; \frac{n_1 n_2^2}{(n_1+n_2)^2} \mathbf d\mathbf d^\top + \frac{n_2 n_1^2}{(n_1+n_2)^2} (-\mathbf d)(-\mathbf d)^\top \\
+&amp;=&amp; \frac{n_1 n_2 (n_1 + n_2)}{(n_1+n_2)^2} \mathbf d\mathbf d^\top = \frac{n_1 n_2}{n_1+n_2} \mathbf d\mathbf d^\top.
+\end{eqnarray*}\]</span>
+Let <span class="math inline">\(c = \frac{n_1 n_2}{n_1+n_2}\)</span>. Now <span class="math inline">\(\mathbf a\)</span> is an eigenvector of <span class="math inline">\(\mathbf W^{-1} \mathbf B= c \mathbf W^{-1} \mathbf d\mathbf d^\top\)</span>. Also, the non-zero eigenvalues of <span class="math inline">\(c \mathbf W^{-1} \mathbf d\mathbf d^\top\)</span> are the same as the non-zero eigenvalues of <span class="math inline">\(c \mathbf d^\top \mathbf W^{-1} \mathbf d\)</span>, which is scalar and so itself is the only non-zero eigenvalue. The eigenvector, <span class="math inline">\(\mathbf a\)</span>, must then satisfy
+<span class="math display">\[ c \mathbf W^{-1} \mathbf d\mathbf d^\top \mathbf a= c \mathbf d^\top \mathbf W^{-1} \mathbf d\mathbf a. \]</span>
+If we choose <span class="math inline">\(\mathbf a= \mathbf W^{-1} \mathbf d\)</span> then the equation is satisfied. Hence <span class="math inline">\(\mathbf a= \mathbf W^{-1} (\bar{\mathbf x}_1 - \bar{\mathbf x}_2)\)</span>.</p>
+Let <span class="math inline">\(r = \mathbf a^\top \mathbf z\)</span>, <span class="math inline">\(s = \mathbf a^\top \bar{\mathbf x}_1\)</span> and <span class="math inline">\(t = \mathbf a^\top \bar{\mathbf x}_2\)</span>, then Fisher’s rule allocates <span class="math inline">\(\mathbf z\)</span> to <span class="math inline">\(\Pi_1\)</span> if and only if
+<span class="math display">\[\begin{eqnarray*}
+&amp;&amp;| r-s | &lt; | r-t | \\
+&amp;\iff &amp; (r-s)^2 &lt; (r-t)^2 \\
+&amp;\iff &amp; r^2 - 2rs + s^2 &lt; r^2 - 2rt + t^2 \\
+&amp;\iff &amp; 0 &lt; 2r(s-t) + t^2 - s^2 \\
+&amp; \iff &amp; 0 &lt; 2r(s-t) + (t-s)(t+s) \\
+&amp; \iff &amp; 0 &lt; (s-t)(2r-t-s)
+\end{eqnarray*}\]</span>
+Now <span class="math inline">\(s-t = \mathbf a^\top (\bar{\mathbf x}_1 - \bar{\mathbf x}_2) = \mathbf d^\top \mathbf W^{-1} \mathbf d\)</span> which is a quadratic form and must therefore be positive, because <span class="math inline">\(\mathbf W\)</span> is assumed to be positive definite. Hence Fisher’s rule allocates <span class="math inline">\(\mathbf z\)</span> to <span class="math inline">\(\Pi_1\)</span> if
+<span class="math display">\[\begin{eqnarray*}
+&amp;&amp; (2r-s-t) &gt; 0\\
+&amp;\iff &amp; r - \frac{1}{2}(s+t) &gt; 0 \\
+&amp;\iff &amp; \mathbf a^\top \left(\mathbf z- \frac{1}{2}(\bar{\mathbf x}_1 + \bar{\mathbf x}_2) \right)&gt; 0 \\
+&amp;\iff &amp; (\bar{\mathbf x}_1 - \bar{\mathbf x}_2)^\top \mathbf W^{-1} \left(\mathbf z- \frac{1}{2}(\bar{\mathbf x}_1 + \bar{\mathbf x}_2) \right)&gt; 0 \\
+&amp;\iff &amp; (\bar{\mathbf x}_1 - \bar{\mathbf x}_2)^\top \widehat{\boldsymbol{\Sigma}}^{-1} \left(\mathbf z- \frac{1}{2}(\bar{\mathbf x}_1 + \bar{\mathbf x}_2) \right)&gt; 0
+\end{eqnarray*}\]</span>
+where the last line follows since <span class="math inline">\(\mathbf W= (n_1 + n_2 - 2)\widehat{\boldsymbol{\Sigma}}\)</span>. This is equivalent to the sample ML rule for <span class="math inline">\(g=2\)</span>.
+</div>
+
+<p>For <span class="math inline">\(g &gt; 2\)</span>, the sample ML rule and Fisher’s linear rule will not, in general, be the same. Fisher’s rule is linear when <span class="math inline">\(g&gt;2\)</span> and is easier to implement than ML rules when there are several populations. It is often reasonable to use Fisher’s rule for non-normal populations. In particular, Fisher’s rule requires fewer assumptions than ML rules. However, the ML rule is `optimal’ in some sense when its assumptions are valid.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">library</span>(vcvComp)</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2">B=<span class="kw">cov.B</span>(iris3[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], iris3[,<span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb55-3" data-line-number="3">W=<span class="kw">cov.W</span>(iris3[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>], iris3[,<span class="dv">3</span>]) <span class="co"># check this</span></a>
+<a class="sourceLine" id="cb55-4" data-line-number="4">(iris.eig &lt;-<span class="st"> </span><span class="kw">eigen</span>(<span class="kw">solve</span>(W)<span class="op">%*%</span><span class="st"> </span>B))</a></code></pre></div>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 10.73851  0.00000
+## 
+## $vectors
+##            [,1]      [,2]
+## [1,]  0.6603352 0.2758444
+## [2,] -0.7509710 0.9612023</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="co"># note this is a rank 1 matrix</span></a>
+<a class="sourceLine" id="cb57-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb57-3" data-line-number="3">a =<span class="st"> </span>iris.eig<span class="op">$</span>vectors[,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb57-4" data-line-number="4">a[<span class="dv">1</span>]<span class="op">/</span>a[<span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## [1] -0.8793085</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">coef</span>(iris.lda1)[<span class="dv">1</span>]<span class="op">/</span><span class="kw">coef</span>(iris.lda1)[<span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## [1] -0.8793085</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">library</span>(vcvComp)</a>
+<a class="sourceLine" id="cb61-2" data-line-number="2">B=<span class="kw">cov.B</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], iris[,<span class="dv">5</span>])</a>
+<a class="sourceLine" id="cb61-3" data-line-number="3">W=<span class="kw">cov.W</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], iris[,<span class="dv">5</span>]) <span class="co"># check this</span></a>
+<a class="sourceLine" id="cb61-4" data-line-number="4">(iris.eig &lt;-<span class="st"> </span><span class="kw">eigen</span>(<span class="kw">solve</span>(W)<span class="op">%*%</span><span class="st"> </span>B))</a></code></pre></div>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 4.732214e+01 4.195248e-01 1.426781e-14 6.229462e-16
+## 
+## $vectors
+##            [,1]         [,2]       [,3]       [,4]
+## [1,]  0.2087418 -0.006531964 -0.4157360 -0.7486283
+## [2,]  0.3862037 -0.586610553 -0.1604104  0.4258825
+## [3,] -0.5540117  0.252561540 -0.2331638  0.4442065
+## [4,] -0.7073504 -0.769453092  0.8643302 -0.2466988</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="co"># note this is a rank 2 matrix</span></a>
+<a class="sourceLine" id="cb63-2" data-line-number="2">V &lt;-<span class="st"> </span>iris.eig<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb63-3" data-line-number="3">Z &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])<span class="op">%*%</span><span class="st"> </span>V</a>
+<a class="sourceLine" id="cb63-4" data-line-number="4">iris.pca =<span class="st"> </span><span class="kw">prcomp</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a>
+<a class="sourceLine" id="cb63-5" data-line-number="5">iris<span class="op">$</span>PC1=iris.pca<span class="op">$</span>x[,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb63-6" data-line-number="6">iris<span class="op">$</span>PC2=iris.pca<span class="op">$</span>x[,<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb63-7" data-line-number="7"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb63-8" data-line-number="8"><span class="kw">qplot</span>(PC1, PC2, <span class="dt">colour=</span>Species, <span class="dt">data=</span>iris,<span class="dt">main =</span><span class="st">&quot;PCA for the iris data&quot;</span>)</a></code></pre></div>
+<p><img src="09-lda_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="kw">qplot</span>(Z[,<span class="dv">1</span>], Z[,<span class="dv">2</span>], <span class="dt">colour=</span>iris<span class="op">$</span>Species, <span class="dt">main=</span><span class="st">&#39;LDA for the iris data&#39;</span>)</a></code></pre></div>
+<p><img src="09-lda_files/figure-html/unnamed-chunk-30-2.png" width="672" />
+We can also plot the classification regions</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">M &lt;-<span class="st">  </span><span class="kw">aggregate</span>(iris[, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], <span class="kw">list</span>(iris<span class="op">$</span>Species), mean)[,<span class="dv">2</span><span class="op">:</span><span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb65-2" data-line-number="2">MV &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(M)<span class="op">%*%</span>V</a>
+<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="kw">library</span>(pracma)</a>
+<a class="sourceLine" id="cb65-4" data-line-number="4">xplt &lt;-<span class="st"> </span><span class="kw">meshgrid</span>(<span class="kw">seq</span>(<span class="op">-</span><span class="dv">3</span>,<span class="dv">2</span>,<span class="fl">0.02</span>), <span class="kw">seq</span>(<span class="op">-</span><span class="dv">3</span>,<span class="dv">0</span>,<span class="fl">0.02</span>))</a>
+<a class="sourceLine" id="cb65-5" data-line-number="5">Xplt &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="kw">c</span>(xplt<span class="op">$</span>X), <span class="kw">c</span>(xplt<span class="op">$</span>Y))</a>
+<a class="sourceLine" id="cb65-6" data-line-number="6">Yplt &lt;-<span class="st"> </span><span class="kw">apply</span>(Xplt, <span class="dv">1</span>, <span class="cf">function</span>(x){</a>
+<a class="sourceLine" id="cb65-7" data-line-number="7">  <span class="kw">which.min</span>(<span class="kw">as.matrix</span>(<span class="kw">dist</span>(<span class="kw">rbind</span>(MV, x), <span class="dt">upper=</span><span class="ot">TRUE</span>, <span class="dt">diag=</span><span class="ot">TRUE</span>))[<span class="dv">4</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb65-8" data-line-number="8">})</a>
+<a class="sourceLine" id="cb65-9" data-line-number="9"><span class="kw">plot</span>(Z[,<span class="dv">1</span>], Z[,<span class="dv">2</span>], <span class="dt">col=</span>iris<span class="op">$</span>Species)</a>
+<a class="sourceLine" id="cb65-10" data-line-number="10"><span class="kw">points</span>(MV[,<span class="dv">1</span>], MV[,<span class="dv">2</span>], <span class="dt">pch=</span><span class="dv">16</span>,<span class="dt">cex=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb65-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb65-12" data-line-number="12"><span class="kw">points</span>(Xplt[,<span class="dv">1</span>], Xplt[,<span class="dv">2</span>], <span class="dt">col=</span>Yplt, <span class="dt">cex=</span><span class="fl">0.1</span>)</a></code></pre></div>
+<p><img src="09-lda_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+</div>
+<div id="multiple-projections" class="section level4 unnumbered">
+<h4>Multiple projections</h4>
+<p>tr (AWA….)</p>
+<p>Can do at most g-1 …..??????
+Gives us way to illustrate visualise……</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2-3-lda-Bayes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-5-probability-of-misclassification.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

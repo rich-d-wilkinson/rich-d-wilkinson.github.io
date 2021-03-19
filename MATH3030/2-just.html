@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 JUST | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 JUST | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 JUST | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1-3-lda-Bayes.html"/>
+<link rel="next" href="2-1-FLDA.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="1" data-path="1-lda.html"><a href="1-lda.html"><i class="fa fa-check"></i><b>1</b> Discriminant analysis</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-intro-delete-title-later.html"><a href="1-1-intro-delete-title-later.html"><i class="fa fa-check"></i><b>1.1</b> Intro - delete title later</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-intro-delete-title-later.html"><a href="1-1-intro-delete-title-later.html#linear-discriminant-analysis"><i class="fa fa-check"></i><b>1.1.1</b> Linear discriminant analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html"><i class="fa fa-check"></i><b>1.2</b> Maximum likelihood (ML) discriminant rule</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html#multivariate-normal-populations"><i class="fa fa-check"></i><b>1.2.1</b> Multivariate normal populations</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>1.2.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html#two-populations"><i class="fa fa-check"></i><b>1.2.3</b> Two populations</a></li>
+<li class="chapter" data-level="1.2.4" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>1.2.4</b> More than two populations</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-lda-Bayes.html"><a href="1-3-lda-Bayes.html"><i class="fa fa-check"></i><b>1.3</b> Bayes discriminant rule</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-lda-Bayes.html"><a href="1-3-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>1.3.1</b> Example: LDA using the Iris data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-just.html"><a href="2-just.html"><i class="fa fa-check"></i><b>2</b> JUST</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="2-just.html"><a href="2-just.html#could-do-prediction-accuracy-here"><i class="fa fa-check"></i><b>2.0.1</b> Could do prediction accuracy here?</a></li>
+<li class="chapter" data-level="2.0.2" data-path="2-just.html"><a href="2-just.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>2.0.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="2.1" data-path="2-1-FLDA.html"><a href="2-1-FLDA.html"><i class="fa fa-check"></i><b>2.1</b> Fisher’s linear discriminant rule</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-probability-of-misclassification.html"><a href="2-2-probability-of-misclassification.html"><i class="fa fa-check"></i><b>2.2</b> Probability of misclassification</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-probability-of-misclassification.html"><a href="2-2-probability-of-misclassification.html#links-between-lda-fishers-discriminant-analysis-cca-and-linear-models"><i class="fa fa-check"></i><b>2.2.1</b> Links between LDA, Fisher’s Discriminant Analysis, CCA, and linear models</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-mnist.html"><a href="2-3-mnist.html"><i class="fa fa-check"></i><b>2.3</b> MNIST</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-computer-tasks.html"><a href="2-4-computer-tasks.html"><i class="fa fa-check"></i><b>2.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-exercises.html"><a href="2-5-exercises.html"><i class="fa fa-check"></i><b>2.5</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="just" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> JUST</h1>
+<div id="using-the-entire-dataset" class="section level4 unnumbered">
+<h4>Using the entire dataset</h4>
+<p>Let’s now use all 150 observations (with three populations: setosa, virginica, vertosa), and all four measurements.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">lda.iris &lt;-<span class="st"> </span><span class="kw">lda</span>(Species <span class="op">~</span><span class="st"> </span>.,iris)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">lda.iris </a></code></pre></div>
+<pre><code>## Call:
+## lda(Species ~ ., data = iris)
+## 
+## Prior probabilities of groups:
+##     setosa versicolor  virginica 
+##  0.3333333  0.3333333  0.3333333 
+## 
+## Group means:
+##            Sepal.Length Sepal.Width Petal.Length Petal.Width
+## setosa            5.006       3.428        1.462       0.246
+## versicolor        5.936       2.770        4.260       1.326
+## virginica         6.588       2.974        5.552       2.026
+## 
+## Coefficients of linear discriminants:
+##                     LD1         LD2
+## Sepal.Length  0.8293776  0.02410215
+## Sepal.Width   1.5344731  2.16452123
+## Petal.Length -2.2012117 -0.93192121
+## Petal.Width  -2.8104603  2.83918785
+## 
+## Proportion of trace:
+##    LD1    LD2 
+## 0.9912 0.0088</code></pre>
+<p>We will delay discussion of what the reported coefficients mean, and how to visualize lda, until after we have seen Fisher’s linear discriminant analysis in the next section.</p>
+<p>But we can use the <code>klaR</code> package to visualize a little of what LDA does. The <code>partimat</code> command provides an array of figures which shows the classification based on every combination of two variables (i.e. it does LDA for each pair of variables).</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">library</span>(klaR)</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">library</span>(plyr)</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">iris<span class="op">$</span>Species_new=<span class="st"> </span><span class="kw">revalue</span>(iris<span class="op">$</span>Species, <span class="kw">c</span>(<span class="st">&quot;versicolor&quot;</span>=<span class="st">&quot;color&quot;</span>))</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="kw">partimat</span>(Species_new <span class="op">~</span><span class="st"> </span>Sepal.Length <span class="op">+</span><span class="st"> </span>Sepal.Width <span class="op">+</span><span class="st"> </span>Petal.Length <span class="op">+</span><span class="st"> </span>Petal.Width,</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6">         <span class="dt">data=</span>iris, <span class="dt">method=</span><span class="st">&quot;lda&quot;</span>)</a></code></pre></div>
+<p><img src="09-lda_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>Note that I renamed the <em>versicolor</em> species as <em>color</em> so that the differt species appear more clearly in the plots.</p>
+</div>
+<div id="could-do-prediction-accuracy-here" class="section level3">
+<h3><span class="header-section-number">2.0.1</span> Could do prediction accuracy here?</h3>
+<!--##### Example: Student marks
+
+Consider the G11PRB and G11STA module marks for $n_1 = 98$ students on G100 and $n_2 = 46$ students on G103.  The sample means and variances for each group are given by
+\begin{eqnarray*}
+\bar{\bx}_1 = \begin{pmatrix} 60.582 \\ 62.786 \end{pmatrix} &\qquad& \bar{\bx}_2 = \begin{pmatrix} 64.761 \\ 60.457 \end{pmatrix} \\
+\bS_1 = \begin{pmatrix} 201.04 & 129.56 \\ 129.56 & 316.21 \end{pmatrix} &\qquad& \bS_2 = \begin{pmatrix} 229.88 & 177.02 \\ 177.02 & 354.16 \end{pmatrix}
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+\bS_u &=& \frac{1}{98+46-2} \lb 98 \bS_1 + 46 \bS_2 \rb = \begin{pmatrix} 213.21 & 146.76 \\ 146.76 & 332.96 \end{pmatrix}, \\
+\bar{\bx}_1 - \bar{\bx}_2 &=& \begin{pmatrix} -4.179 \\ 2.329 \end{pmatrix}, \\
+\hat{\bh} &=& \frac{1}{2} (\bar{\bx}_1 + \bar{\bx}_2) = \begin{pmatrix} 62.671 \\ 61.621 \end{pmatrix},
+\end{eqnarray*}
+and
+$$\hat{\ba} = \bS_u^{-1} (\bar{\bx}_1 - \bar{\bx}_2) = \begin{pmatrix} 0.0067 & -0.0030 \\ -0.0030 & 0.0043 \end{pmatrix} \begin{pmatrix} -4.179 \\ 2.329 \end{pmatrix} = \begin{pmatrix} -0.035 \\ 0.022 \end{pmatrix}.$$
+
+The sample ML discriminant rule allocates a new observation\\
+ $\bx = (z_1, z_2)^\top$ to $\Pi_1$ if and only if
+$$ \hat{\ba}^\top (\bx - \hat{\bh}) = \begin{pmatrix} -0.035 & 0.022 \end{pmatrix} \begin{pmatrix} z_1 - 62.671 \\ z_2 - 61.621 \end{pmatrix} > 0.$$
+
+For example, if a student on this year's course scores 80 on G11PRB and 60 on G11STA then
+$$ \hat{\ba}^\top (\bx - \hat{\bh}) = \begin{pmatrix} -0.035 & 0.022 \end{pmatrix} \begin{pmatrix} 80 - 62.671 \\ 60 - 61.621 \end{pmatrix} = -0.644 < 0,$$
+and so we would allocate this student to G103.  The boundary, where $\hat{\ba}^\top (\bx - \hat{\bh}) = 0$, is shown below.
+
+FIX
+<!--
+\begin{center}
+\includegraphics[width=12cm,angle=0]{sample_mldr1.pdf}
+\end{center}
+-->
+<!--Note that the boundary line passes half-way between the two sample means.  In this example it is difficult to discriminate accurately between G100 and G103 because there is a large overlap between the two populations.
+
+We could extend the example to include, say, students on GL11.  Here the boundary between the three populations is piece-wise linear and they meet at a common point.
+
+FIX-->
+<!--
+\begin{center}
+\includegraphics[width=12cm,angle=0]{sample_mldr2.pdf}
+\end{center}
+-->
+</div>
+<div id="quadratic-discriminant-analysis-qda" class="section level3">
+<h3><span class="header-section-number">2.0.2</span> Quadratic Discriminant Analysis (QDA)</h3>
+<p>We have seen that in the case where the populations all share a common covariance matrix, <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, that the decision boundaries are linear (i.e. hyperplanes). We also saw in example <a href="#ex:exnine1"><strong>??</strong></a> in a one-dimensional example that when the two populations had different variances we found a quadratic decision boundary.</p>
+<p>In general, if we allow the variances to differ between populations, so that we model <span class="math inline">\(\mathbf x\sim N_p(\mu_k, \boldsymbol{\Sigma}_k)\)</span> for population <span class="math inline">\(k\)</span>, then
+we can no longer ignore the determinant of the covariance matrix in the likelihood (see Equation <a href="1-2-lda-ML.html#eq:mvnlike">(1.3)</a>). In this case, the decision rule is
+<span class="math display">\[
+d(\mathbf x)=\arg\max_k \left(-\frac{1}{2} \log |\boldsymbol{\Sigma}_k| - \frac{1}{2}(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}_k^{-1} (\mathbf x-{\boldsymbol{\mu}}_k)+\log \pi_k\right). \]</span></p>
+<p>We cannot ignore the quadratic term in <span class="math inline">\(\mathbf x\)</span> here as it depends upon the population indicator <span class="math inline">\(k\)</span>. Thus in this case we get a quadratic decision boundary rather than a linear one.</p>
+<p>The <code>qda</code> function in the <code>MASS</code> package implements quadratic discriminant analysis…..
+But you can often get similar result by just including quadratic terms in LDA……..</p>
+<div id="iris-example-continued" class="section level4">
+<h4><span class="header-section-number">2.0.2.1</span> Iris example continued</h4>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">qda.iris &lt;-<span class="st"> </span><span class="kw">qda</span>(Species <span class="op">~</span><span class="st"> </span>Sepal.Length <span class="op">+</span><span class="st"> </span>Sepal.Width <span class="op">+</span><span class="st"> </span>Petal.Length <span class="op">+</span><span class="st"> </span>Petal.Width, iris)</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">qda.iris <span class="co">#s</span></a></code></pre></div>
+<pre><code>## Call:
+## qda(Species ~ Sepal.Length + Sepal.Width + Petal.Length + Petal.Width, 
+##     data = iris)
+## 
+## Prior probabilities of groups:
+##     setosa versicolor  virginica 
+##  0.3333333  0.3333333  0.3333333 
+## 
+## Group means:
+##            Sepal.Length Sepal.Width Petal.Length Petal.Width
+## setosa            5.006       3.428        1.462       0.246
+## versicolor        5.936       2.770        4.260       1.326
+## virginica         6.588       2.974        5.552       2.026</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">partimat</span>(Species <span class="op">~</span><span class="st"> </span>Sepal.Length <span class="op">+</span><span class="st"> </span>Sepal.Width <span class="op">+</span><span class="st"> </span>Petal.Length <span class="op">+</span><span class="st"> </span>Petal.Width, <span class="dt">data=</span>iris, <span class="dt">method=</span><span class="st">&quot;qda&quot;</span>)</a></code></pre></div>
+<p><img src="09-lda_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1-3-lda-Bayes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-1-FLDA.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

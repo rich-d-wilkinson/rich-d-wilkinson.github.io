@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.1 Intro - delete title later | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.1 Intro - delete title later | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.1 Intro - delete title later | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1-lda.html"/>
+<link rel="next" href="1-2-lda-ML.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="1" data-path="1-lda.html"><a href="1-lda.html"><i class="fa fa-check"></i><b>1</b> Discriminant analysis</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-intro-delete-title-later.html"><a href="1-1-intro-delete-title-later.html"><i class="fa fa-check"></i><b>1.1</b> Intro - delete title later</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-intro-delete-title-later.html"><a href="1-1-intro-delete-title-later.html#linear-discriminant-analysis"><i class="fa fa-check"></i><b>1.1.1</b> Linear discriminant analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html"><i class="fa fa-check"></i><b>1.2</b> Maximum likelihood (ML) discriminant rule</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html#multivariate-normal-populations"><i class="fa fa-check"></i><b>1.2.1</b> Multivariate normal populations</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>1.2.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html#two-populations"><i class="fa fa-check"></i><b>1.2.3</b> Two populations</a></li>
+<li class="chapter" data-level="1.2.4" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>1.2.4</b> More than two populations</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-lda-Bayes.html"><a href="1-3-lda-Bayes.html"><i class="fa fa-check"></i><b>1.3</b> Bayes discriminant rule</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-lda-Bayes.html"><a href="1-3-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>1.3.1</b> Example: LDA using the Iris data</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-3-lda-Bayes.html"><a href="1-3-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>1.3.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="1.3.3" data-path="1-3-lda-Bayes.html"><a href="1-3-lda-Bayes.html#prediction-accuracy"><i class="fa fa-check"></i><b>1.3.3</b> Prediction accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-FLDA.html"><a href="1-4-FLDA.html"><i class="fa fa-check"></i><b>1.4</b> Fisher’s linear discriminant rule</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="1-4-FLDA.html"><a href="1-4-FLDA.html#iris-example-continued-1"><i class="fa fa-check"></i><b>1.4.1</b> Iris example continued</a></li>
+<li class="chapter" data-level="1.4.2" data-path="1-4-FLDA.html"><a href="1-4-FLDA.html#links-between-lda-fishers-discriminant-analysis-cca-and-linear-models"><i class="fa fa-check"></i><b>1.4.2</b> Links between LDA, Fisher’s Discriminant Analysis, CCA, and linear models</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="1-5-mnist.html"><a href="1-5-mnist.html"><i class="fa fa-check"></i><b>1.5</b> MNIST</a></li>
+<li class="chapter" data-level="1.6" data-path="1-6-computer-tasks.html"><a href="1-6-computer-tasks.html"><i class="fa fa-check"></i><b>1.6</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.7" data-path="1-7-exercises.html"><a href="1-7-exercises.html"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro---delete-title-later" class="section level2">
+<h2><span class="header-section-number">1.1</span> Intro - delete title later</h2>
+<p>We consider the situation in which there are <span class="math inline">\(g\)</span> populations/classes <span class="math inline">\(\Pi_1, \ldots , \Pi_g\)</span>. Each subject/case belongs to precisely one population. For example</p>
+<ul>
+<li><p>for the iris data the populations are the 3 species {Setosa, Versicolor, Viriginica}. Each iris has a single species label.</p></li>
+<li><p>for the MNIST data, the populations are the digits 0 to 9. Each image represents a single digit.</p></li>
+</ul>
+<p>Suppose we are given measurements <span class="math inline">\(\mathbf x_i\)</span> on each subject, and population/class label <span class="math inline">\(y_i\)</span>.
+The aim of <strong>classification</strong> is to build a model to predict the class label <span class="math inline">\(y\)</span> from a set of measurements <span class="math inline">\(\mathbf x\)</span>. For our examples:</p>
+<ul>
+<li><p>iris: the measurements <span class="math inline">\(\mathbf x_i\in \mathbb{R}^{4}\)</span> are the sepal and petal width and lengths. The class label <span class="math inline">\(y_i\)</span> is the species.</p></li>
+<li><p>mnist: <span class="math inline">\(\mathbf x_i\in \mathbb{R}^{784}\)</span> is a vector of pixel intensities. The class label <span class="math inline">\(y_i\)</span> is the digit the image represents.</p></li>
+</ul>
+<p>If <span class="math inline">\(\mathbf x\in \mathbb R^p\)</span> is a ‘new’ observation assumed to come from one of <span class="math inline">\(\Pi_1, \ldots , \Pi_g\)</span>, the aim of discriminant analysis is to allocate <span class="math inline">\(\mathbf x\)</span> to one of <span class="math inline">\(\Pi_1, \ldots , \Pi_g\)</span> with <strong>as small a
+probability of error as possible</strong>.</p>
+<!--For example, $\bz$ might contain numerical measures of a person's \\
+financial history.  A credit rating agency might then want to \\
+classify this customer as ''safe'' or ''risky'' based on knowledge of \\
+previous customers.-->
+<p>A <strong>discriminant rule</strong>, <span class="math inline">\(d\)</span>, corresponds to a partition of <span class="math inline">\(\mathbb R^p\)</span> into disjoint regions <span class="math inline">\(\mathcal R_1, \ldots, \mathcal R_g\)</span>, where
+<span class="math display">\[\bigcup_{j=1}^g \mathcal R_j = \mathbb R^p, \qquad \mathcal R_j \cap \mathcal R_k = \emptyset, j \neq k.\]</span>
+The rule <span class="math inline">\(d\)</span> is then defined by</p>
+<blockquote>
+<p><span class="math inline">\(d\)</span>: allocate <span class="math inline">\(\mathbf x\)</span> to <span class="math inline">\(\Pi_j\)</span> if and only if <span class="math inline">\(\mathbf x\in \mathcal R_j\)</span>.</p>
+</blockquote>
+<p>The way we find a rule <span class="math inline">\(d\)</span>, is by defining discriminant functions, <span class="math inline">\(\delta_j(\mathbf x)\)</span>, for each population <span class="math inline">\(j=1, \ldots, g\)</span>. We classify <span class="math inline">\(\mathbf x\)</span> to population <span class="math inline">\(j\)</span> if <span class="math inline">\(\delta_j(\mathbf x)&gt;\delta_i(\mathbf x)\)</span> for <span class="math inline">\(i \not = j\)</span>. We can write this as</p>
+<p><span class="math display">\[d(\mathbf x) = \arg \max_j \delta_j(\mathbf x),\]</span>
+i.e., <span class="math inline">\(d\)</span> is a map from <span class="math inline">\(\mathbb{R}^p\)</span> to <span class="math inline">\(\{1, \ldots, g\}\)</span></p>
+<div id="linear-discriminant-analysis" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> Linear discriminant analysis</h3>
+<p>We will focus on discriminant functions that are <strong>affine</strong> functions of the data. That is they are linear projections of the data plus a constant of the form
+<span class="math display" id="eq:ldadiscrim">\[\begin{equation}
+\delta_j(\mathbf x) = \mathbf v_j^\top \mathbf x+ c_j.  \tag{1.1}
+\end{equation}\]</span></p>
+<p>In later sections we will discuss how to choose the discriminant rules <span class="math inline">\(\delta_j(\mathbf x)\)</span>, i.e., how to choose the <em>parameters</em> <span class="math inline">\(\mathbf v_j\)</span> and <span class="math inline">\(c_j\)</span>. But first we focus on what the
+discriminant regions look like and how to classify points given a discriminant rule.</p>
+<div id="geometry-of-lda" class="section level4 unnumbered">
+<h4>Geometry of LDA</h4>
+
+<div class="proposition">
+<span id="prp:ldaconvex" class="proposition"><strong>Proposition 1.1  </strong></span>The discriminant regions <span class="math inline">\(\mathcal{R}_j\)</span> corresponding to affine discriminant functions are convex and connected.
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> You will prove this in the exercises.
+</div>
+
+<p><br> </br></p>
+<!--UPDATE
+1. When the populations are modelled by multivariate normal distributions with shared covariance function. We will see that maximizing the likelihood leads to a linear discriminant rule.
+
+2. When the ... Naive Bayes
+
+3. ... Fisher. Dimension reduciton....
+
+
+
+In this chapter we start by considering the classification problem. But another question we might ask (which we will look at in Section \@ref(FLDA)), is what is the best linear projection of the data for distinguishing between different populations? 
+
+
+REWRITE NO LONGER SUITABLE
+
+1. The simplest case, where the $f_j(\bx)$ are known exactly, is described in Section \@ref(lda-ML).
+2. If we have to estimate the parameters of the distributions $f_j(\bx)$ then we use the sample version described in Section \@ref(sample-lda). For example, we often assume a multivariate Gaussian distribution for each $f_j$ but allow the mean and variance to vary between populations.
+3. Finally, if we do not know the distribution of the populations, $\Pi_j$, then an alternative approach, described in Section \@ref(FLDA), may be used.
+
+
+
+END FIX FIX
+
+-->
+<p>Recall that the equation of a hyperplane of dimension <span class="math inline">\(p-1\)</span> in <span class="math inline">\(\mathbb{R}^p\)</span> requires us to specify a point on the plane, <span class="math inline">\(\mathbf x_0\)</span>, and a vector from the origin that is perpendicular/orthogonal to the plane, <span class="math inline">\(\mathbf n\)</span>. The hyperplane can then be described as
+<span class="math display">\[
+\mathcal{H}(\mathbf n, \mathbf x_0) =\{\mathbf x\in \mathbb{R}^p:\, \mathbf n^\top (\mathbf x-\mathbf x_0)  =0\}
+\]</span></p>
+<p>The orthogonal distance from the origin to the plane is
+<span class="math display">\[\frac{1}{||\mathbf n||}\mathbf x_0^\top \mathbf n.\]</span></p>
+<!-- FIGURE?? -->
+<p>Affine discriminant functions <a href="1-1-intro-delete-title-later.html#eq:ldadiscrim">(1.1)</a> divide <span class="math inline">\(\mathbb{R}^p\)</span> into regions using <span class="math inline">\((p-1)\)</span>-dimensional hyperplanes, which results in decision regions that have linear boundaries.</p>
+<p>To see this, consider the cases where there are just two populations (<span class="math inline">\(g=2\)</span>). We classify a point <span class="math inline">\(\mathbf x\)</span> as population 1 if <span class="math inline">\(\delta_1(\mathbf x) &gt; \delta_2(\mathbf x)\)</span>, and the decision boundary is at
+<span class="math display">\[\delta_1(\mathbf x) = \delta_2(\mathbf x).\]</span></p>
+<p>If <span class="math inline">\(\mathbf x\)</span> is on the decision boundary then</p>
+<p><span class="math display">\[(\mathbf v_1-\mathbf v_2)^\top \mathbf x+ c_1 -c_2=0.\]</span>
+This can be seen to be the equation of a hyperplane with normal vecor <span class="math inline">\(\mathbf v_1-\mathbf v_2\)</span>. The orthogonal distance of the plane from the origin is
+<span class="math display">\[\frac{c_2-c_1}{||\mathbf v_1-\mathbf v_2||}.\]</span>
+<!--= \frac{(\bv_1-\bv_2)^\top \bx}{||\bv_1-\bv_2||}.$$--></p>
+
+<div class="example">
+<p><span id="exm:ldaex1" class="example"><strong>Example 1.1  </strong></span>
+Let’s consider the case of 3 populations with data in <span class="math inline">\(\mathbb{R}^2\)</span>. Suppose the discriminant functions have</p>
+<p><span class="math display">\[\mathbf v_1 = \begin{pmatrix}1\\1\end{pmatrix}, \quad \mathbf v_2 = \begin{pmatrix}2\\0\end{pmatrix}, \quad\mathbf v_3 = \begin{pmatrix}1\\-1\end{pmatrix}\]</span>
+and
+<span class="math display">\[c_1=1, \quad c_2=-1, \quad c_3=0.\]</span></p>
+<p>Then</p>
+<ul>
+<li><p>the decision boundary between population 1 and 2 is the line with equation
+<span class="math display">\[y=x-2\]</span>
+and has orthogonal distance <span class="math inline">\(\sqrt{2}\)</span> from the origin;</p></li>
+<li><p>the decision boundary between population 1 and 3 is the line with equation
+<span class="math display">\[y=-\frac{1}{2}\]</span>
+which has orthogonal distance <span class="math inline">\(\frac{1}{2}\)</span> from the origin;</p></li>
+<li><p>the decision boundary between population 2 and 3 is the line with equation
+<span class="math display">\[y=-x+1.\]</span>
+which has orthogonal distance <span class="math inline">\(\frac{1}{\sqrt{2}}\)</span> from the origin.</p></li>
+</ul>
+<p>If we plot these, then you can see that this results in the decision regions shown in Figure <a href="1-1-intro-delete-title-later.html#fig:ldaeg1">1.1</a>.</p>
+</div>
+
+<div class="figure"><span id="fig:ldaeg1"></span>
+<img src="09-lda_files/figure-html/ldaeg1-1.png" alt="Discriminant regions for Example 1." width="960" />
+<p class="caption">
+Figure 1.1: Discriminant regions for Example 1.
+</p>
+</div>
+<p>In the following sections we consider several different approaches to deciding upon a suitable choice of <span class="math inline">\(\mathbf v_j\)</span> and <span class="math inline">\(c_j\)</span> in Equation <a href="1-1-intro-delete-title-later.html#eq:ldadiscrim">(1.1)</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>By assuming the populations have a multivariate normal distribution. This is the focus of section <a href="1-2-lda-ML.html#lda-ML">1.2</a>, where we assume each population is equally likely. We generalise this approach in Section <a href="1-3-lda-Bayes.html#lda-Bayes">1.3</a> to consider the situation where observations are more likely to be some from populations than from others.</p></li>
+<li><p>By looking for linear projections of the data that maximize the spread between the different populations, i.e., that are best for distinguishing between different populations. This leads to <strong>Fisher’s discriminant rule</strong> which we cover in Section <a href="1-4-FLDA.html#FLDA">1.4</a>, and it does not require us to make assumptions about the distribution of the underlying populations.</p></li>
+</ol>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1-lda.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-2-lda-ML.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

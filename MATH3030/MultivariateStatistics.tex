@@ -175,6 +175,7 @@
 \newcommand{\bG}{\mathbf G}
 \newcommand{\bH}{\mathbf H}
 \newcommand{\bI}{\mathbf I}
+\newcommand{\bL}{\mathbf L}
 \newcommand{\bM}{\mathbf M}
 \newcommand{\bP}{\mathbf P}
 \newcommand{\bQ}{\mathbf Q}
@@ -196,6 +197,7 @@
 \newcommand{\be}{\mathbf e}
 \newcommand{\bh}{\mathbf h}
 \newcommand{\bk}{\mathbf k}
+\newcommand{\bn}{\mathbf n}
 \newcommand{\bp}{\mathbf p}
 \newcommand{\bq}{\mathbf q}
 \newcommand{\br}{\mathbf r}
@@ -233,7 +235,7 @@
 \newcommand{\var}{{\mathbb{V}\operatorname{ar}}}
 \newcommand{\cor}{{\mathbb{C}\operatorname{or}}}
 
-\textbf{Warning:} these lecture notes are still in preparation. Chapters 1-7 have been finished. Chapters 8-10 are still being worked on.
+\textbf{Warning:} these lecture notes are still in preparation. Chapters 1-8 have been finished. Chapters 9-10 are still being worked on.
 
 This module is concerned with the analysis of multivariate data, in which the response is a vector of random variables rather than a single random variable.
 
@@ -5015,7 +5017,7 @@ and
  \psi_1 = -0.0234(G-\bar{G}) +0.0541(GA-\bar{GA}).
 \]
 
-We can see that \(\psi_1\) is measuring something similar to goal difference \(G-GA\), as usually defined, but it gives higher weight to goals conceded than goals conceded (\(0.0541\) versus \(0.0234\)).
+We can see that \(\psi_1\) is measuring something similar to goal difference \(G-GA\), as usually defined, but it gives higher weight to goals conceded than goals scored (\(0.0541\) versus \(0.0234\)).
 
 \(\eta_1\) is measuring something similar to number of points \(3W+D\), as usually defined, but the ratio of points for a win to points for a draw is lower, at around 2:1, as opposed to the usual ratio 3:1.
 
@@ -5807,7 +5809,7 @@ We now present the key result for classical MDS. It says that a distance matrix 
 \item
   Suppose \(\mathbf B\) is positive semi-definite with eigenvalues \(\lambda_1 \geq \lambda_2 \cdots \geq \lambda_k > 0\) and that it has spectral decomposition \(\mathbf B={\mathbf U} {\pmb \Lambda}{\mathbf U}^\top\), where \({\pmb \Lambda}=\text{diag}\{\lambda_1 \ldots \lambda_k\}\) and \(\mathbf U\) is \(n \times k\) and satisfies \({\mathbf U}^\top {\mathbf U}={\mathbf I}_k\). Then
   \[{\mathbf X}=[\mathbf x_1, \ldots , \mathbf x_n]^\top={\mathbf U}{\pmb \Lambda}^{1/2}\]
-  is an \(n \times k\) data matrix which has \textbf{Euclidean} distance marrix \(\mathbf D\).
+  is an \(n \times k\) data matrix which has \textbf{Euclidean} distance matrix \(\mathbf D\).
 
   Moreover, for this data matrix \(\bar{\mathbf x}={\mathbf 0}_k\) and \(\mathbf B\) represents the inner product matrix with elements given by \eqref{eq:bijB}.
 \end{enumerate}
@@ -6865,6 +6867,7 @@ In particular, note that the marginal distribution of each element of \(\mathbf 
 \protect\hypertarget{def:mvnpdf}{}{\label{def:mvnpdf} }If the population covariance matrix \(\boldsymbol{\Sigma}\) (\(p \times p\)) is positive definite (i.e.~full rank), so that \(\boldsymbol{\Sigma}^{-1}\) exists,
 then the \textbf{probability density function} (pdf) of the MVN distribution is given by
 \[ f(\mathbf x) = \frac{1}{| 2 \pi \boldsymbol{\Sigma}|^{1/2}} \exp \left(-\frac{1}{2}(\mathbf x- {\boldsymbol{\mu}})^\top \boldsymbol{\Sigma}^{-1} (\mathbf x- {\boldsymbol{\mu}}) \right).\]
+Here, I've used the notation \(|\mathbf A| = \det(\mathbf A)\).\\
 \end{definition}
 
 If \(p=1\), so that \(\mathbf x= x\), \({\boldsymbol{\mu}}= \mu\) and \(\boldsymbol{\Sigma}= \sigma^2\), say, then the pdf simplifies to
@@ -6878,8 +6881,8 @@ If \(p>1\) and \(\boldsymbol{\Sigma}= \operatorname{diag}(\sigma_1^2, \ldots, \s
 \begin{eqnarray*}
 f(\mathbf x) &=& \frac{1}{((2 \pi)^{p}\prod_{i=1}^p \sigma_i^2)^{1/2}} \exp \left(-\frac{1}{2}(\mathbf x- {\boldsymbol{\mu}})^\top \boldsymbol{\Sigma}^{-1}(\mathbf x- {\boldsymbol{\mu}}) \right)\\
 &=& \frac{1}{(2 \pi)^{p/2}\prod_{i=1}^p \sigma_i} \exp \left(-\frac{1}{2} \sum_{i=1}^p \frac{(x_i - \mu_i)^2}{\sigma_i^2} \right)\\
-&=& \left(\frac{1}{\sqrt{2 \pi\sigma_i^2}} \exp \left(-\frac{1}{2\sigma_1^2} (x_1 - \mu_1)^2 \right)\right)\\
- && \qquad \qquad \times \ldots \left(\frac{1}{\sqrt{2 \pi}} \exp \left(-\frac{1}{2\sigma_p^2} (x_p - \mu_p)^2 \right)\right)
+&=& \left(\frac{1}{\sqrt{2 \pi\sigma_1^2}} \exp \left(-\frac{1}{2\sigma_1^2} (x_1 - \mu_1)^2 \right)\right)\\
+ && \qquad \qquad \times \ldots \left(\frac{1}{\sqrt{2 \pi \sigma_p^2}} \exp \left(-\frac{1}{2\sigma_p^2} (x_p - \mu_p)^2 \right)\right)
 \end{eqnarray*}
 Thus, by the factorisation theorem for probability densities, the components of \(\mathbf x\) have independent univariate normal distributions: \(x_i \sim N(\mu_i, \sigma_i^2)\).
 
@@ -6887,15 +6890,6 @@ If \(p=2\) we can plot \(f(\mathbf x)\) using contour plots. Below, I've generat
 \[{\boldsymbol{\mu}}_1={\boldsymbol{\mu}}_3={\boldsymbol{\mu}}_4=\begin{pmatrix}0 \\0 \\\end{pmatrix}, \quad {\boldsymbol{\mu}}_2=\begin{pmatrix}1 \\-1 \\\end{pmatrix}\]
 and covariance matrices
 \[\boldsymbol{\Sigma}_1=\boldsymbol{\Sigma}_2=\begin{pmatrix}1&0 \\0&1 \\\end{pmatrix}, \quad \boldsymbol{\Sigma}_3=\begin{pmatrix}1&0 \\0&0.05 \\\end{pmatrix}, \quad \boldsymbol{\Sigma}_4=\begin{pmatrix}1&0.9 \\0.9&1 \\\end{pmatrix}.\]
-
-\begin{verbatim}
-## mixtools package, version 1.2.0, Released 2020-02-05
-## This package is based upon work supported by the National Science Foundation under Grant No. SES-0518772.
-\end{verbatim}
-
-\begin{verbatim}
-## Warning: package 'ggplot2' was built under R version 3.6.2
-\end{verbatim}
 
 \includegraphics{07-mvn_files/figure-latex/unnamed-chunk-3-1.pdf}
 
@@ -6980,7 +6974,7 @@ Proposition \ref{prp:six4} means that zero correlation implies independence for 
 \textbf{Note:} It is important that \(\mathbf x\) and \(\mathbf y\) are \textbf{jointly} multivariate normal. For example, suppose \(x \sim N(0, 1)\). Let
 \[z=\begin{cases}
 1 \mbox{ with probability } \frac{1}{2}\\
-0 \mbox{ otherwise}
+-1 \mbox{ otherwise}
 \end{cases}
 \]
 and let \(y=zx\). Then clearly \(y\) is also a normal random variable: \(y \sim N(0,1)\). In addition, note that
@@ -7907,32 +7901,6 @@ Download the exam data from Moodle.
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(dplyr)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: package 'dplyr' was built under R version 3.6.2
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Attaching package: 'dplyr'
-\end{verbatim}
-
-\begin{verbatim}
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-\end{verbatim}
-
-\begin{verbatim}
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \KeywordTok{load}\NormalTok{(}\DataTypeTok{file=}\StringTok{'exam.rda'}\NormalTok{)}
 \NormalTok{N<-}\KeywordTok{dim}\NormalTok{(exam)[}\DecValTok{1}\NormalTok{]}
 \end{Highlighting}
@@ -7981,6 +7949,1472 @@ Explain why this works. \textbf{Note} if your plotting window is not square, you
   \[(\mathbf x-{\boldsymbol{\mu}})^\top \mathbf S^{-1}(\mathbf x-{\boldsymbol{\mu}})=c^2\]
   by shifting the ellipse to be centered around \({\boldsymbol{\mu}}\). Thus plot the 95\% confidence region for the population mean \({\boldsymbol{\mu}}\) for the exam data. You will need to use Corollary \ref{cor:csix6} to determine the value of \(c\).
 \end{enumerate}
+
+\hypertarget{lm}{%
+\chapter{The Multivariate Linear Model}\label{lm}}
+
+ADD TOTAL LEAST SQUARES (with SVD) + std least squares with SVD?
+
+In the standard linear model, the response variable, \(y\), is univariate and the mean of \(y\), \(\mu=E[y]\), is modelled as a linear function of the elements of a covariate vector \(\mathbf x=(x_1, \ldots , x_q)^\top \in \mathbb{R}^q\), i.e.~it is assumed that
+\[
+\mu = \boldsymbol \beta^\top \mathbf x,
+\]
+where \(\boldsymbol \beta\in \mathbb{R}^q\) is an unknown parameter vector to be estimated. In this chapter we consider a generalisation of the standard linear model in which the response, \(\mathbf y\), is now a \(p \times 1\) vector. In this setting, the linear model takes the form
+\[
+{\pmb \mu}=\mathbf B^\top \mathbf x,
+\]
+where the mean vector \({\boldsymbol{\mu}}\) is \(p \times 1\), the covariate vector \(\mathbf x\) is \(q \times 1\) and the parameter vector \(\mathbf B\) is \(q \times p\). The reason for having \(\mathbf B^\top\) above rather than simply \(\mathbf B\) will become clear later in the chapter.
+
+\hypertarget{the-standard-univariate-linear-model}{%
+\section{The standard univariate linear model}\label{the-standard-univariate-linear-model}}
+
+In this section we give a brief review of the standard linear model in which the response is univariate. Then, in subsequent sections, we discuss the multivariate linear model, i.e.~multiple regression with a vector response which has a general covariance matrix.
+
+Consider the univariate linear model in which
+\begin{equation}
+y_i = \mathbf x_i^\top \boldsymbol \beta+\epsilon_i, \qquad i=1, \ldots , n,
+\label{eq:slm1}
+\end{equation}
+where \(\stackrel{q \times 1}{\boldsymbol \beta}\) is a parameter vector and \(\mathbf x_i\) is a \(q \times 1\) covariate vector for experimental unit \(i\). We can also write \eqref{eq:slm1} in equivalent vector-matrix form
+\begin{equation}
+\mathbf y=\mathbf X\boldsymbol \beta+{\pmb \epsilon},
+\label{eq:slm2}
+\end{equation}
+where \(\stackrel{n \times q}{\mathbf X}=[\mathbf x_1 , \ldots , \mathbf x_n]^\top\) is the matrix of covariates,
+\(\stackrel{n \times 1}{\mathbf y}\) is the vector of univariate responses and \(\stackrel{n \times 1}{\pmb \epsilon}\) is the vector of univariate `error' terms.
+
+It is assumed throughout this chapter that \(\mathbf X\) has full rank \(p\), so that \((\mathbf X^\top \mathbf X)^{-1}\) exists.
+
+Most or all of the following assumptions are usually made in the standard linear model:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  For each \(i=1, \ldots , n\), \(E[\epsilon_i]=0\).
+\item
+  The \(\epsilon_i\) are uncorrelated, i.e.~for \(i \neq j\), \(\text{Cov}(\epsilon_i, \epsilon_j)=0\).
+\item
+  The \(\epsilon_i\) have constant variance, i.e. \(\text{Var}(\epsilon_i)=\sigma^2\), i.e. \(\sigma^2\) does not depend on \(i\).
+\item
+  The \(\epsilon_i\) are IID \(N(0, \sigma^2)\).
+\end{enumerate}
+
+It is clear that assumption 4. implies each of assumptions 1-3. However, note that the least squares approach to be discussed below makes sense under assumptions 1-3 alone. The attraction of assumption 4. is that it enables us to perform exact inference since the relevant distributions are known exactly, and the estimators of \(\boldsymbol \beta\) and \(\sigma^2\) are maximum likelihood estimators (MLEs). We shall assume 4. and its multivariate analogue, see \eqref{eq:MVNassumption} below, throughout this chapter.
+
+The log-likelihood for models \eqref{eq:slm1} and \eqref{eq:slm2} under the Gaussian assumption 4. is given by
+\begin{align*}
+\ell(\boldsymbol \beta, \sigma^2)&=-\frac{n}{2}\log (\sigma^2)--\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} \sum_{i=1}^n (y_i-\mathbf x_i^\top \boldsymbol \beta)^2\\
+& \qquad = -\frac{n}{2}\log (\sigma^2)-\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} (\mathbf y- \mathbf X\boldsymbol \beta)^\top (\mathbf y- \mathbf X\boldsymbol \beta).
+\end{align*}
+Applying the results in \S 2.10 to the second expression above,
+\[
+\frac{\partial \ell}{\partial \boldsymbol \beta}(\boldsymbol \beta, \sigma^2)=\frac{1}{\sigma^2}\mathbf X^\top (\mathbf y- \mathbf X\boldsymbol \beta)
+\]
+and
+\[
+\frac{\partial \ell}{\partial \sigma^2}(\boldsymbol \beta, \sigma^2)=-\frac{n}{2}\frac{1}{\sigma^2}+\frac{1}{2\sigma^4}
+ (\mathbf y- \mathbf X\boldsymbol \beta)^\top (\mathbf y- \mathbf X\boldsymbol \beta).
+\]
+Setting \(\partial \ell(\hat{\boldsymbol \beta}, \hat{\sigma}^2))/\partial \boldsymbol \beta={\mathbf 0}_q\), the zero vector, and assuming that \(\mathbf X^\top \mathbf X\) is invertible, implies that
+\begin{equation}
+\hat{\boldsymbol \beta}=\left (\mathbf X^\top \mathbf X\right )^{-1}\mathbf X^\top \mathbf y.
+\label{eq:uni1}
+\end{equation}
+Also, setting \(\partial \ell(\hat{\boldsymbol \beta}, \hat{\sigma}^2))/\partial \sigma^2=0\) gives
+\begin{equation}
+\hat{\sigma}^2 = \frac{1}{n}\mathbf y^\top \mathbf P\mathbf y,
+\label{eq:uni2}
+\end{equation}
+where
+\begin{equation}
+\mathbf P=\mathbf I_n - \mathbf X\left ( \mathbf X^\top \mathbf X\right)^{-1}\mathbf X^\top
+\label{eq:defP}
+\end{equation}
+is a projection matrix. The maximised log-likelihood is given by
+\begin{align*}
+\ell(\hat{\boldsymbol \beta}, \hat{\sigma}^2)&= -\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi) -\frac{1}{2\hat{\sigma}^2}(\mathbf y- \mathbf X\hat{\boldsymbol \beta})^\top (\mathbf y- \mathbf X\hat{\boldsymbol \beta})\\
+&= -\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi)-\frac{n}{2\mathbf y^\top \mathbf P\mathbf y}\mathbf y^\top \mathbf P\mathbf y\\
+&=-\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi)-\frac{n}{2}.
+\end{align*}
+
+Under the IID Gaussian assumption for the \(\epsilon_i\),
+\[
+\hat{\boldsymbol \beta} \sim N_q\left \{\boldsymbol \beta, \sigma^2 (\mathbf X^\top \mathbf X)^{-1}\right\},
+\]
+and
+\[
+n\hat{\sigma}^2/\sigma^2 \sim \chi_{n-q}^2.
+\]
+
+Before moving on, we briefly discuss an important case of the standard linear model - the one-way analysis of variance.
+Here, there are \(t\) groups, say, with \(n_j\) observations in group \(j\), and the model takes the form
+\begin{equation}
+y_{ij}=\mu_j +\epsilon_{ij}, \qquad i=1, \ldots , n_j; \quad j=1, \ldots t,
+\label{eq:ANOVA1}
+\end{equation}
+where the \(\epsilon_{ij}\) are IID \(N(0,\sigma^2)\) random variables, and \(\mu_j\) is the mean of population \(j\). Note that we are assuming that \(\text{Var}(y_{ij})=\sigma^2\)
+is constant across populations \(j=1, \ldots , t\).
+
+Define
+\[
+\bar{y}_{+j}=n_j^{-1}\sum_{i=1}^{n_j}y_{ij}, \qquad j=1, \ldots , t; \qquad \bar{y}_{++}=n^{-1}\sum_{j=1}^t \sum_{i=1}^{n_j}y_{ij},
+\]
+where \(n=\sum_{j=1}^t n_j\). It is easily checked that, under model \eqref{eq:ANOVA1}, the MLE of \(\mu_j\) is \(\bar{y}_{+j}\).
+Consider the null hypothesis
+\[
+H_0:\, \mu_1= \cdots = \mu_t.
+\]
+The total sum of squares, \(T\), defined below,
+has the following decomposition:
+\begin{align}
+T&\equiv \sum_{j=1}^t \sum_{i=1}^{n_j} (y_{ij}-\bar{y}_{++})^2 \nonumber\\
+&=\sum_{j=1}^t \sum_{i=1}^{n_j} (y_{ij}-\bar{y}_{+j} + \bar{y}_{+j} -\bar{y}_{++})^2 \nonumber\\
+&\sum_{j=1}^t \sum_{i=1}^{n_j} \big \{(y_{ij}-\bar{y}_{+j})^2 + (\bar{y}_{+j} -\bar{y}_{++})^2 + 2 (y_{ij}-\bar{y}_{+j}) (\bar{y}_{+j} -\bar{y}_{++})\big \} \nonumber\\
+&=\sum_{j=1}^t \sum_{i=1}^{n_j} (y_{ij}-\bar{y}_{+j})^2 +\sum_{j=1}^t n_j (\bar{y}_{+j}-\bar{y}_{++})^2 \nonumber\\
+&=W + B,
+(\#eq:T=B+W)
+\end{align}
+using the fact that sum over \(i\) of the product term above is \(0\). In the above,
+\(W\) stands for \texttt{within\textquotesingle{}\ sum\ of\ squares,\ also\ known\ as\ the\ residual\ sum\ of\ squares,\ and\ \$B\$\ stands\ for}between' sum of squares. The MLE of \(\sigma^2\) is given by \(W/n\). Standard theory tells us that under model \eqref{eq:ANOVA1}, \(W \sim \sigma^2 \chi_{n-t}^2\). Moreover, under \(H_0\), \(B \sim \sigma^2 \chi_{t-1}^2\), \(W\) and \(B\) are independent, and therefore \(T \sim \sigma^2 \chi_{n-1}^2\).
+To test \(H_0\) we use the fact that, under \(H_0\),
+\begin{equation}
+f=\frac{B/(t-1)}{W/(n-t)}
+\label{eq:Fstat}
+\end{equation}
+has an \(F_{t-1, n-t}\) distribution. We reject \(H_0\) when \(f\) is `large' compared with an \(F_{t-1,n-t}\) random variable.
+
+In Example Sheet 3 you are asked to show that the `twice the log-likelihood ratio statistic' for testing \(H_0\) against the general alternative with \(\mu_1, \ldots , \mu_t\) is given by
+\begin{equation}
+n_+ \log \left ( 1+ \frac{B}{W}  \right )=n_+ \log (1+W^{-1}B),
+\label{eq:ANOVA2}
+\end{equation}
+which is an increasing function of the statistic \eqref{eq:Fstat}. Consequently, we can think of the classical \(F\) test as being equivalent to a likelihood ratio test.
+
+\hypertarget{multivariate-linear-model}{%
+\section{Multivariate Linear Model}\label{multivariate-linear-model}}
+
+In the standard linear model the responses \(y_i\) are univariate. In the multivariate linear model, the responses are \(p \times 1\) vectors \(\mathbf y_i\). Here, the linear model takes the form
+\begin{equation}
+\mathbf y_i=\mathbf B^\top \mathbf x_i +{\pmb \epsilon}_i, \qquad i=1, \ldots , n,
+\label{eq:mlm1}
+\end{equation}
+where \(\stackrel{q \times p}{\mathbf B}\) is a parameter matrix, the \(\mathbf x_i\) are \(q \times 1\) covariate vectors as in \S 8.2, and the \({\pmb \epsilon}_i\) are \(p \times 1\) error vectors. The model \eqref{eq:mlm1} may be written in matrix form as
+\begin{equation}
+\mathbf Y= \mathbf X\mathbf B+\mathbf E,
+\label{eq:mlm2}
+\end{equation}
+where \(\stackrel{n \times p}{\mathbf Y}=[\mathbf y_1, \ldots , \mathbf y_n]^\top\) is the data matrix for the \(y\)-variables, \(\mathbf X=[\mathbf x_1, \ldots , \mathbf x_n]^\top\) is the \(n \times q\) data matrix for the \(x\)-variables, defined as in \S 8.2, and \(\stackrel{n \times p}{\mathbf E}=[{\pmb \epsilon}_1, \ldots , {\pmb \epsilon}_n]^\top\).
+
+By analogy with assumption 4. in \S 8.2, it is assumed that
+\begin{equation}
+{\pmb \epsilon_1}, \ldots , {\pmb \epsilon}_n \quad \text{are
+IID}\quad N_p({\mathbf 0}_p, \boldsymbol{\Sigma}).
+\label{eq:MVNassumption}
+\end{equation}
+
+Under this MVN assumption, the log-likelihood function \(\ell(\mathbf B, \boldsymbol{\Sigma})\) for the parameter matrices \(\mathbf B\) and \(\boldsymbol{\Sigma}\) is given by
+\begin{align}
+\ell(\mathbf B, \boldsymbol{\Sigma})&=-\frac{np}{2}\log(2\pi) -\frac{n}{2}\log(\vert \boldsymbol{\Sigma}\vert) \nonumber \\
+& \qquad \qquad -\frac{1}{2}\text{tr}\left \{
+(\mathbf Y-\mathbf X\mathbf B) \boldsymbol{\Sigma}^{-1} (\mathbf Y- \mathbf X\mathbf B)^\top\right \}.
+\label{eq:MVNlik}
+\end{align}
+
+\begin{proposition}
+\protect\hypertarget{prp:eight1}{}{\label{prp:eight1} }The maximum likelihood estimators of \(\mathbf B\) and \(\boldsymbol{\Sigma}\) in \eqref{eq:MVNlik}
+are given by
+\begin{equation}
+\hat{\mathbf B}= (\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf Y
+\label{eq:MVbeta}
+\end{equation}
+and
+\begin{equation}
+\hat{\boldsymbol{\Sigma}}=\frac{1}{n}\mathbf Y^\top \mathbf P\mathbf Y,
+\label{eq:RSS}
+\end{equation}
+where \(\mathbf P\) is the matrix defined in \eqref{eq:defP}. The maximised log-likelihood is given by
+\begin{equation}
+\ell(\hat{\mathbf B}, \hat{\boldsymbol{\Sigma}})=- \frac{n}{2} \log(\vert \hat{\boldsymbol{\Sigma}} \vert )-\frac{np}{2}\log(2\pi) -\frac{np}{2}.
+\label{eq:maxlik}
+\end{equation}
+\end{proposition}
+
+\textbf{Remark:} note how similar \eqref{eq:MVbeta} and \eqref{eq:RSS} are to their univariate counterparts \eqref{eq:uni1} and \eqref{eq:uni2}, respectively; the only thing that is different is that \(\mathbf Y\) is now an \(n \times p\) matrix rather than an \(n \times 1\) vector.
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}\textbf{of \eqref{eq:MVbeta}\}.} Recall that \(\mathbf P\) defined in \eqref{eq:defP} is a projection matrix, i.e. \(\mathbf P^\top =\mathbf P\) and \(\mathbf P^2 = \mathbf P\).
+Moreover,
+\begin{equation}
+\mathbf P\mathbf X=\mathbf X-\mathbf X(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf X=\mathbf X-\mathbf X={\mathbf 0}_{n,q}
+\label{eq:orthog27a}
+\end{equation}
+and
+\begin{equation}
+\mathbf X^\top \mathbf P=\mathbf X^\top - \mathbf X^\top \mathbf X(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top =\mathbf X^\top -\mathbf X^\top ={\mathbf 0}_{q,n}.
+\label{eq:orthog27b}
+\end{equation}
+Now write
+\begin{align*}
+\mathbf Y-\mathbf X\mathbf B&=\mathbf Y-\mathbf X\hat{\mathbf B} +\mathbf X\hat{\mathbf B}-\mathbf X\mathbf B\\
+&=\mathbf Y-\mathbf X(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf Y+\mathbf X(\hat{\mathbf B}-\mathbf B)\\
+&=\mathbf P\mathbf Y+\mathbf X(\hat{\mathbf B}-\mathbf B).
+\end{align*}
+Then, using \eqref{eq:orthog27a} and \eqref{eq:orthog27b},
+\begin{align}
+(\mathbf Y&- \mathbf X\mathbf B)^\top (\mathbf Y- \mathbf X\mathbf B) \nonumber \\
+&=\{\mathbf P\mathbf Y+ \mathbf X(\hat{\mathbf B}-\mathbf B)\}^\top \{\mathbf P\mathbf Y+\mathbf X(\hat{\mathbf B}-\mathbf B)\}\nonumber \\
+&=\mathbf Y^\top \mathbf P\mathbf Y+ \mathbf Y^\top \mathbf P\mathbf X(\hat{\mathbf B}-\mathbf B)\nonumber \\
+& \qquad \qquad + (\hat{\mathbf B}-\mathbf B)^\top \mathbf X^\top \mathbf P\mathbf Y+(\hat{\mathbf B}-\mathbf B)^\top \mathbf X^\top \mathbf X(\hat{\mathbf B}-\mathbf B)
+\nonumber\\
+&=\mathbf Y^\top \mathbf P\mathbf Y+ (\hat{\mathbf B}-\mathbf B)^\top \mathbf X^\top \mathbf X(\hat{\mathbf B}-\mathbf B).
+\label{eq:decomp87}
+\end{align}
+As noted in Chapter 2, for any compatible matrices \(\mathbf W\) and \(\mathbf Z\), we have \(\text{tr}(\mathbf W\mathbf Z)=\text{tr}(\mathbf Z\mathbf W)\). So, using \eqref{eq:decomp87}, it follows that the trace term in \eqref{eq:MVNlik} may be written
+\begin{align}
+&\text{tr}\left \{ (\mathbf Y-\mathbf X\mathbf B)\boldsymbol{\Sigma}^{-1} (\mathbf Y- \mathbf X\mathbf B)^\top \right \}\nonumber \\
+&=\text{tr}\left \{\boldsymbol{\Sigma}^{-1} (\mathbf Y-\mathbf X\mathbf B)^\top (\mathbf Y- \mathbf X\mathbf B) \right \}\nonumber \\
+&=\text{tr}\left \{  \boldsymbol{\Sigma}^{-1} ( \mathbf Y-\mathbf X\hat{\mathbf B}+\mathbf X\hat{\mathbf B} -\mathbf X\mathbf B)^\top
+( \mathbf Y-\mathbf X\hat{\mathbf B}+\mathbf X\hat{\mathbf B} -\mathbf X\mathbf B)       \right \}\nonumber \\
+&= \text{tr}\left [\boldsymbol{\Sigma}^{-1} \{\mathbf Y^\top \mathbf P\mathbf Y+(\hat{\mathbf B}-\mathbf B)^\top \mathbf X^\top \mathbf X(\hat{\mathbf B}-\mathbf B)  \}\right ]
+\nonumber\\
+&=\text{tr} \left (\boldsymbol{\Sigma}^{-1}\mathbf Y^\top \mathbf P\mathbf Y\right ) + \text{tr}\left \{
+\mathbf X(\hat{\mathbf B}-\mathbf B) \boldsymbol{\Sigma}^{-1} (\hat{\mathbf B}-\mathbf B)^\top  \mathbf X^\top  \right \}
+\label{eq:twobits}
+\end{align}
+The first term on the RHS of \eqref{eq:twobits} does not depend on \(\mathbf B\). In the second term, the matrix inside the trace is non-negative definite for all \(\mathbf B\), and therefore the second term in \eqref{eq:twobits} is non-negative, and has a minimum value of \(0\), achieved uniquely when \(\mathbf B=\hat{\mathbf B}\). Therefore, for fixed \(\boldsymbol{\Sigma}\), \eqref{eq:MVNlik} is maximised when \(\mathbf B=\hat{\mathbf B}\), as defined in \eqref{eq:MVbeta}. \hfill \(\square\)
+
+To prove \eqref{eq:RSS}, we require the following result, whose proof is omitted because it is a bit too technical.
+\end{proof}
+\begin{proof}
+\iffalse{} {Proof. } \fi{}Suppose that \(\mathbf A\) is a fixed symmetric positive definite \(p \times p\) matrix and define the function
+\[
+G(\boldsymbol{\Sigma}) \equiv -\frac{n}{2} \log \left (\vert \boldsymbol{\Sigma}\vert\right)  -\frac{1}{2}\text{tr} \left (\boldsymbol{\Sigma}^{-1} \mathbf A\right).
+\]
+Then \(G(\boldsymbol{\Sigma})\) is maximised over symmetric positive definite \(p \times p\) matrices \(\boldsymbol{\Sigma}\) at
+\(\hat{\boldsymbol{\Sigma}}=n^{-1}\mathbf A\), and the maximum value of \(G\) is given by
+\[
+G(\hat{\boldsymbol{\Sigma}})= -\frac{n}{2} \log \left (\vert n^{-1} \mathbf A\vert \right ) -np/2.
+\]
+\end{proof}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}\textbf{of \eqref{eq:RSS} and \eqref{eq:maxlik}\}.} Again using the result \(\text{tr}(\mathbf W\mathbf Z)=\text{tr}(\mathbf Z\mathbf W)\) for compatible matrices \(\mathbf W\) and \(\mathbf Z\), we have
+\[
+\text{tr}\{(\mathbf Y-\mathbf X\hat{\mathbf B}) \boldsymbol{\Sigma}^{-1}(\mathbf Y-\mathbf X\hat{\mathbf B})^\top\}=\text{tr}(\boldsymbol{\Sigma}^{-1}(\mathbf P\mathbf Y)^\top \mathbf P\mathbf Y)=\text{tr}(\boldsymbol{\Sigma}^{-1} \mathbf Y^\top \mathbf P\mathbf Y),
+\]
+because \(\mathbf P\) is a projection matrix. Consequently,
+\[
+\ell(\hat{\mathbf B},\boldsymbol{\Sigma})=-\frac{np}{2}\log(2\pi)-\frac{n}{2}\log \vert \boldsymbol{\Sigma}\vert -\frac{1}{2} \text{tr}
+\left \{ \boldsymbol{\Sigma}^{-1}\mathbf Y^\top \mathbf P\mathbf Y\right \},
+\]
+and we want to maximise \(\ell(\hat{\mathbf B}, \boldsymbol{\Sigma})\) over symmetric positive definite matrices \(\boldsymbol{\Sigma}\). So take \(\mathbf A=\mathbf Y^\top \mathbf P\mathbf Y\). Then, using Proposition \ref{prp:eight2}, \(\hat{\boldsymbol{\Sigma}} = n^{-1}\mathbf Y^\top \mathbf P\mathbf Y\), which agrees with \eqref{eq:RSS}.
+
+To prove \eqref{eq:maxlik}, note that
+\begin{align*}
+\text{tr}\{(\mathbf Y-\mathbf X\hat{\mathbf B}) \hat{\boldsymbol{\Sigma}}^{-1}(\mathbf Y-\mathbf X\hat{\mathbf B})^\top \}
+&=\text{tr}\{\hat{\boldsymbol{\Sigma}}^{-1} (\mathbf P\mathbf Y)^\top \mathbf P\mathbf Y\}\\
+&= n \text{tr}\{(\mathbf Y^\top \mathbf P\mathbf Y)^{-1} \mathbf Y^\top \mathbf P\mathbf Y\}\\
+&=n\text{tr}(\mathbf I_p)=np,
+\end{align*}
+so \eqref{eq:maxlik} follows after substitution of \(\mathbf B=\hat{\mathbf B}\) and \(\boldsymbol{\Sigma}=\hat{\boldsymbol{\Sigma}}\) into \eqref{eq:MVNlik}.
+\end{proof}
+
+We now determine the joint distribution of \(\hat{\mathbf B}\) and \(\hat{\boldsymbol{\Sigma}}\).
+
+\begin{proposition}
+\protect\hypertarget{prp:eight3}{}{\label{prp:eight3} }Assume that \eqref{eq:mlm2} and \eqref{eq:MVNassumption} both hold and assume that \(\mathbf X\) has full rank \(q\), where \(q < n\). Then the following results hold.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The MLE of \(\mathbf B\), \(\hat{\mathbf B}\) defined in \eqref{eq:MVbeta}, and the MLE of \(\boldsymbol{\Sigma}\), \(\hat{\boldsymbol{\Sigma}}\) defined in \eqref{eq:RSS},
+  are independent. Moreover, the elements of \(\hat{\mathbf B}\) are jointly multivariate normal, while \(n\hat{\boldsymbol{\Sigma}} \sim W_p(\boldsymbol{\Sigma}, n-q)\).
+\item
+  The MLE \(\hat{\mathbf B}\) satisfies \(E[\hat{\mathbf B}]=\mathbf B\), i.e. \(\hat{\mathbf B}\) is unbiased for \(\mathbf B\).
+\end{enumerate}
+
+3.Write \(\hat{\mathbf b}_{[j]}\) for column \(j\) of \(\hat{\mathbf B}\), \(j=1, \ldots , p\), so that \(\hat{\mathbf B}=[\hat{\mathbf b}_{[1]}, \ldots , \hat{\mathbf b}_{[p]}]\).
+Then for \(j,k=1, \ldots , p\),
+\[
+\text{Cov}(\hat{\mathbf b}_{[j]}, \hat{\mathbf b}_{[k]})=\sigma_{jk} (\mathbf X^\top \mathbf X)^{-1}.
+\]
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}\emph{of Proposition \ref{prp:eight3}}
+First, observe that \(\hat{\boldsymbol{\Sigma}}\) is a function of the elements of \(\mathbf P\mathbf Y\), namely
+\[
+\hat{\boldsymbol{\Sigma}}=n^{-1} \mathbf Y^\top \mathbf P^\top \mathbf P\mathbf Y=n^{-1}\mathbf Y^\top \mathbf P\mathbf Y,
+\]
+because \(\mathbf P\) is a projection matrix. Moreover, under the MVN assumption \eqref{eq:MVNassumption}, \(\mathbf P\mathbf Y\) and
+\(\hat{\mathbf B}\) are jointly MVN, so to prove part 1. it will be sufficient to prove that each column of \(\hat{\mathbf B}\) is uncorrelated with
+each column of \(\mathbf P\mathbf Y\). Write \(\mathbf y_{[j]}\) for column \(j\) of \(\mathbf Y\). Then
+\[
+\mathbf Y=[\mathbf y_{[1]}, \ldots , \mathbf y_{[p]}], \qquad \mathbf P\mathbf Y=[\mathbf P\mathbf y_{[1]}, \ldots , \mathbf P\mathbf y_{[p]}],
+\]
+and
+\[
+\hat{\mathbf B}\equiv [\hat{\mathbf b}_{[1]}, \ldots , \hat{\mathbf b}_{[p]}] =[(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y_{[1]}, \ldots , (\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y_{[p]}],
+\]
+where, as before, \(\hat{\mathbf b}_{[j]}\) is column \(j\) of \(\hat{\mathbf B}\). The covariance between column \(j\) of \(\hat{\mathbf B}\) and column \(k\) of \(\mathbf P\mathbf Y\) is given by
+\begin{align*}
+\text{Cov}(\hat{\mathbf b}_{[j]}, \mathbf P\mathbf y_{[k]})&= \text{Cov}\{(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y_{[j]}, \mathbf P\mathbf y_{[k]}\}\\
+&=(\mathbf X^\top \mathbf X)^{-1} \mathbf X^\top \text{Cov}(\mathbf y_{[j]}, \mathbf y_{[k]})\mathbf P\\
+&=(\mathbf X^\top \mathbf X)^{-1} \mathbf X^\top \sigma_{jk}\mathbf I_n\mathbf P\\
+&=\sigma_{jk}(\mathbf X^\top \mathbf X)^{-1} \mathbf X^\top (\mathbf I_n - \mathbf X(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top)={\mathbf 0}_{q,n},
+\end{align*}
+where \(\boldsymbol{\Sigma}=(\sigma_{jk})_{j,k=1}^p\). In the above we have used the definition of \(\mathbf P\) in \eqref{eq:defP} and the fact that
+\begin{equation}
+\text{Cov}(\mathbf y_{[j]}, \mathbf y_{[k]})=\sigma_{jk}\mathbf I_n
+\label{eq:energise}
+\end{equation}
+due to the independence of the rows of \(\mathbf Y\). Therefore \(\hat{\mathbf B}\) and \(\mathbf P\mathbf Y\) are independent by Proposition \ref{prp:six4}, and
+by Proposition \ref{thm:six11} (Cochran's theorem), \(n\hat{\boldsymbol{\Sigma}} \sim W_p(\boldsymbol{\Sigma}, n-q)\) which concludes the proof of part 1.
+
+Part 2. follows because, taking the expectation of \eqref{eq:MVbeta} we find that
+\begin{align*}
+E[\hat{\mathbf B}]&=E[(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf Y]\\
+&=(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top E[\mathbf Y]\\
+&=(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf X\mathbf B=\mathbf B.
+\end{align*}
+
+For part 3., using \eqref{eq:energise} again,
+\begin{align*}
+\text{Cov}(\hat{\mathbf b}_{[j]}, \hat{\mathbf b}_{[k]})&=\text{Cov}\{(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y_{[j]}, (\mathbf X^\top \mathbf X)^{-1} \mathbf X^\top \mathbf y_{[k]}\}\\
+&=(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \text{Cov}(\mathbf y_{[j]}, \mathbf y_{[k]}) \mathbf X(\mathbf X^\top \mathbf X)^{-1}\\
+&=(\mathbf X^\top \mathbf X)^{-1} \mathbf X^\top \sigma_{jk}\mathbf I_n\mathbf X(\mathbf X^\top \mathbf X)^{-1}=\sigma_{jk}(\mathbf X^\top \mathbf X)^{-1},
+\end{align*}
+as required.\\
+\end{proof}
+
+We now investigate the situation where we wish to test \eqref{eq:mlm2} against a sub-model. Specifically, we consider the null hypothesis
+\[
+H_0: \, \mathbf B=\begin{pmatrix}\mathbf B^\ast \\{\mathbf 0}_{q-r,p} \end{pmatrix}, \qquad \boldsymbol{\Sigma}\quad \text{unrestricted},
+\]
+where \(\mathbf B^\ast\) is \(r \times p\) with \(1 \leq r <q\). The alternative hypothesis is
+\[
+H_1: \, \stackrel{q \times p}{\mathbf B} \quad \text{unrestricted}, \qquad \boldsymbol{\Sigma}\quad
+\text{unrestricted},
+\]
+i.e.~model \eqref{eq:mlm2} under the MVN assumption \eqref{eq:MVNassumption}. Note that \(H_0\) is nested within \(H_1\).
+Let us write \(\hat{\mathbf B}_j\) and \(\hat{\boldsymbol{\Sigma}}_j\) for the MLEs of \(\mathbf B\) and \(\boldsymbol{\Sigma}\) under hypothesis \(H_j\), \(j=0,1\). Then, using \eqref{eq:maxlik} in Proposition \ref{prp:eight1} to calculate the maximised likelihood under \(H_0\) and \(H_1\), we obtain the Wilks statistic, \(\omega_{0,1}\) (equals ``twice the different in maximised log likelihoods''):
+\begin{align*}
+\omega_{0,1}&=2\{\ell(\hat{\mathbf B}_1, \hat{\boldsymbol{\Sigma}}_1)-\ell(\hat{\mathbf B}_0, \hat{\Sigma}_0)\}\\
+&= - n\log(\vert \hat{\boldsymbol{\Sigma}}_1\vert) + n\log (\vert \hat{\boldsymbol{\Sigma}}_0\vert)
+=n\log \left ( \frac{\vert \hat{\boldsymbol{\Sigma}}_0 \vert}{\vert \hat{\boldsymbol{\Sigma}}_1\vert}  \right).
+\end{align*}
+
+In the univariate case there is a simple, explicit transformation from the Wilks statistic \(\omega_{0,1}\) to the classical \(F_{q-r,n-q}\) distribution for testing \(H_0\) against \(H_1\). In the multivariate case, the exact distribution of \(\omega_{0,1}\) under \(H_0\) does not have a simple relationship with an \(F\)-distribution, and the situation is a lot more complicated.
+
+When \(n\) is large, however, we can use the large sample log-likelihood ratio test, which implies that, under \(H_0\),
+\(\omega_{0,1}\) is approximately \(\chi^2\), and we should reject \(H_0\) when \(\omega_{0,1}\) is sufficiently large.
+
+The relevant degrees of freedom of the \(\chi^2\) are now calculated.
+
+Under \(H_0\), the number of free parameters is
+\[
+rp + \frac{1}{2}p(p+1),
+\]
+while under \(H_1\) there are
+\[
+qp +\frac{1}{2}p(p+1)
+\]
+free parameters. So the difference is \((q-r)p\), and so we should refer \(\omega_{0,1}\) to \(\chi_{(q-r)p}^2\).
+
+\hypertarget{one-way-manova}{%
+\section{One-way MANOVA}\label{one-way-manova}}
+
+We now consider the multivariate version of the one-way ANOVA considered at the end of \S 8.2, known as one-way MANOVA. The model is defined by
+\begin{equation}
+ \mathbf y_{ij} = {\boldsymbol{\mu}}_j + {\pmb \epsilon}_{ij}, \qquad  i=1, \ldots , n_j; \quad j=1, \ldots, t,
+ \label{eq:MANOVA1}
+ \end{equation}
+where the \({\pmb \epsilon}_{ij}\) are IID \(N_p({\mathbf 0}_p, \boldsymbol{\Sigma})\), and the \(\mathbf y_{ij}\) and \({\boldsymbol{\mu}}_j\) are also
+\(p \times 1\) vectors. It is assumed that \(\text{Var}({\pmb \epsilon}_i)=\boldsymbol{\Sigma}\) is constant across the \(t\) populations.
+
+One possibility is to use the linear model framework developed in \S 8.3. In this case, \(\mathbf X\) is a matrix with each element equal to zero or one. However, it is also feasible to do the calculations directly. This is what we shall do.
+
+The log-likelihood of model \eqref{eq:MANOVA1} is given by
+\begin{align}
+ \ell({\boldsymbol{\mu}}_1, \ldots , {\boldsymbol{\mu}}_t)&=-\frac{np}{2}\log(2\pi)-\frac{n}{2}\log(\vert \boldsymbol{\Sigma}\vert)\nonumber\\
+ & \qquad \qquad -\frac{1}{2}\sum_{j=1}^t \sum_{i=1}^{n_j}
+ (\mathbf y_{ij}-{\boldsymbol{\mu}}_j)^\top \boldsymbol{\Sigma}^{-1} (\mathbf y_{ij}-{\boldsymbol{\mu}}_j),
+ \label{eq:MANOVAlik}
+ \end{align}
+where \(n=n_1 + n_2 +\cdots + n_t\).
+
+Using results in \S 2.10, the partial derivative, or gradient, of \eqref{eq:MANOVAlik} with respect to the vector \({\boldsymbol{\mu}}_k\) is given by
+\begin{align*}
+ \frac{\partial \ell}{\partial {\boldsymbol{\mu}}_k}({\boldsymbol{\mu}}_1, \ldots , {\boldsymbol{\mu}}_t, \boldsymbol{\Sigma})&=\sum_{i=1}^{n_j} \boldsymbol{\Sigma}^{-1}(\mathbf y_{ik}-{\boldsymbol{\mu}}_k)\\
+ &=n_k \boldsymbol{\Sigma}^{-1} (\bar{\mathbf y}_{+k}-{\boldsymbol{\mu}}_k).
+ \end{align*}
+where \(\bar{\mathbf y}_{+k}\) is the sample mean of group \(k\), i.e.
+\[
+\bar{\mathbf y}_{+k}=n_k^{-1}\sum_{i=1}^{n_k} \mathbf y_{ik}.
+\]
+So, setting \(\partial \ell/\partial {\boldsymbol{\mu}}_k={\mathbf 0}_p\) implies \(\hat{{\boldsymbol{\mu}}}_k=\bar{\mathbf y}_{+k}\).
+Therefore
+\begin{align*}
+\ell(\hat{{\boldsymbol{\mu}}}_1, \ldots , \hat{{\boldsymbol{\mu}}}_t, \boldsymbol{\Sigma})&= -\frac{np}{2}\log(2\pi)-\frac{n}{2}\log(\vert \boldsymbol{\Sigma}\vert)\\
+&\qquad \qquad - \frac{1}{2} \sum_{j=1}^t \sum_{i=1}^{n_j} (\mathbf y_{ij}-\bar{\mathbf y}_{+j})^\top \boldsymbol{\Sigma}^{-1}
+(\mathbf y_{ij}-\bar{\mathbf y}_{+j})\\
+&=-\frac{n p}{2}\log(2\pi) -\frac{n}{2}\log(\vert \boldsymbol{\Sigma}\vert)-\frac{1}{2}\text{tr}(\boldsymbol{\Sigma}^{-1}\mathbf W),
+\end{align*}
+where \(\mathbf W\), defined by
+\[
+\mathbf W=\sum_{j=1}^t \sum_{i=1}^{n_j} (\mathbf y_{ij}-\bar{\mathbf y}_{+j})(\mathbf y_{ij}-\bar{\mathbf y}_{+j})^\top,
+\]
+is the matrix version of the `within' sum of squares considered in \S 8.2. Using Proposition \ref{prp:eight2}, we deduce that
+\[
+\hat{\boldsymbol{\Sigma}}=n^{-1}\mathbf W.
+\]
+Consequently,
+\[
+\ell(\hat{{\boldsymbol{\mu}}}_1, \ldots , \hat{{\boldsymbol{\mu}}}_t,\hat{\boldsymbol{\Sigma}})=-\frac{n}{2}\log(\vert \hat{\boldsymbol{\Sigma}}\vert)-\frac{np}{2}- \frac{np}{2}\log(2\pi).
+\]
+
+Now consider the key null hypothesis for a one-way MANOVA:
+\[
+H_0: \, {\boldsymbol{\mu}}_1=\cdots ={\boldsymbol{\mu}}_t, \qquad \boldsymbol{\Sigma}\quad \text{unrestricted}.
+\]
+Under \(H_0\), the \(\mathbf y_{ij}\) are IID \(N_p({\boldsymbol{\mu}}, \boldsymbol{\Sigma})\), so the log-likelihood under \(H_0\) is
+\begin{align*}
+\ell_0({\boldsymbol{\mu}}, \boldsymbol{\Sigma}) & \equiv \ell ({\boldsymbol{\mu}}, \ldots ,{\boldsymbol{\mu}}, \boldsymbol{\Sigma})\\
+&=-\frac{np}{2}\log(2\pi) - \frac{n}{2}\log(\vert \boldsymbol{\Sigma}\vert)-\frac{1}{2}\sum_{j=1}^t \sum_{i=1}^{n_j} (\mathbf y_{ij}-{\boldsymbol{\mu}})^\top \boldsymbol{\Sigma}^{-1}(\mathbf y_{ij}-{\boldsymbol{\mu}}),
+\end{align*}
+and so the MLE of \({\boldsymbol{\mu}}\) under \(H_0\) is given by
+\[
+\hat{{\boldsymbol{\mu}}}_0=\frac{1}{n} \sum_{j=1}^t \sum_{i=1}^{n_j} \mathbf y_{ij} =\bar{\mathbf y}_{++},
+\]
+and, using Proposition \ref{prp:eight2} again, it is seen that the MLE of \(\boldsymbol{\Sigma}\) under \(H_0\) is
+\[
+\hat{\boldsymbol{\Sigma}}_0=n^{-1}\mathbf T,
+\]
+where \(\mathbf T\) is the matrix analogue of the total sum of squares, i.e.
+\[
+\mathbf T=\sum_{j=1}^t \sum_{i=1}^{n_j} (\mathbf y_{ij}-\bar{\mathbf y}_{++})(\mathbf y_{ij}-\bar{\mathbf y}_{++})^\top.
+\]
+
+The Wilks statistic, \(\omega_0\), for testing \(H_0\) against the general alternative \eqref{eq:MANOVA1} is then
+\begin{align}
+\omega_0=2\{\ell(\hat{{\boldsymbol{\mu}}}_1, \ldots , \hat{{\boldsymbol{\mu}}}_t, \hat{\boldsymbol{\Sigma}})-\ell_0(\hat{{\boldsymbol{\mu}}}_0, \hat{\boldsymbol{\Sigma}}_0)\}&=n\log \left (\vert \hat{\boldsymbol{\Sigma}}_0 \vert / \vert \hat{\boldsymbol{\Sigma}}\vert  \right ) \nonumber \\
+&=n \log\left ( \vert \mathbf T\vert/\vert \mathbf W\vert \right ).
+\label{eq:MANOVA2}
+\end{align}
+The degrees of freedom under \(H_0\) are \(p+p(p+1)/2\) and the degrees of freedom under \eqref{eq:MANOVA1} are \(pt+p(p+1)/2\), so the difference is \(p(t-1)\). Consequently, when the \(n_j\) are all large, we should refer \(\omega_0\) to
+\(\chi_{p(t-1)}^2\) and reject \(H_0\) when \(\omega_0\) is sufficiently large.
+
+It is not immediately obvious that \eqref{eq:MANOVA2} is a natural generalisation of \eqref{eq:ANOVA2}. However, in Example Sheet 4 you are asked to prove that
+\[
+\mathbf T=\mathbf W+\mathbf B,
+\]
+where \(\mathbf B\) is the matrix analogue of the `between' sum of squares \(B\) in @ref(eq:T=B+W), i.e.
+\[
+\mathbf B= \sum_{j=1}^t  n_j (\bar{\mathbf y}_{+j}-\bar{\mathbf y}_{++})(\bar{\mathbf y}_{+j}-\bar{\mathbf y}_{++})^\top.
+\]
+Consequently,
+\begin{align*}
+\omega_0&=n \log (\vert \mathbf T\vert /\vert \mathbf W\vert)
+=n \log (\vert \mathbf W^{-1} \vert \vert \mathbf W+ \mathbf B\vert)\\
+&=n \log (\vert \mathbf W^{-1}(\mathbf W+\mathbf B)\vert)
+=n \log (\vert \mathbf I_p +\mathbf W^{-1} \mathbf B\vert),
+\end{align*}
+which \textit{is} a natural generalisation of \eqref{eq:ANOVA2}.
+
+\hypertarget{part-iv-classification-and-clustering}{%
+\chapter*{Part IV: Classification and Clustering}\label{part-iv-classification-and-clustering}}
+\addcontentsline{toc}{chapter}{Part IV: Classification and Clustering}
+
+In Part IV, we focus on different methods of classification,
+i.e.~allocating the observations in a sample to different subsets (or
+groups). We distinguish between \textbf{supervised} and \textbf{unsupervised} learning methods.
+
+In \textbf{supervised learning}, our training data consists of the measurements \(\mathbf x_i\) on each case, and a class label \(y_i\). Our aim is to learn the mapping from \(\mathbf x\) to \(y\). Linear regression is an example of a supervised learning method.
+
+In Chapter \ref{lda}, we focus on another supervised learning approach called \textbf{discriminant analysis} which aims to allocate observations to distinct groups. We are given a training set containing data with cases and their group label, and we must use this training sample to set up a suitable classification rule (classifing cases to groups). An important type of situation where discriminant analysis is used is in screening tests. Here, several variables may be measured on each individual, and we want to decide whether each individual is \emph{negative} for some disease, in which case no further investigations are required, or \emph{positive}, in which case further tests are required.
+
+In \textbf{unsupervised learning}, we do not have labelled data (ie there is no \(y\)), we only have the measurements \(\mathbf x\). The method has to find or invent its own representation of the data structure. PCA and MDS are both unsupervised learning methods. In Chapter \ref{cluster}, we will consider \textbf{cluster analysis},
+in which we group observations into clusters (or similar subsets).
+Here, data labels (\(y\) variables) are not available and the number of clusters will
+not typically be known in advance. The idea is to form clusters in such a way that experimental units within clusters are as similar as possible, in a suitable sense,
+and experimental units in different clusters are as dissimilar as possible.
+
+\hypertarget{lda}{%
+\chapter{Discriminant analysis}\label{lda}}
+
+The videos for this chapter are available at the links below:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/LDAA+Introduction/1_v282qg5y}{Introduction}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/LDAA+Maximum+likelihood+discriminant+rule/1_zqo5q14s}{Maximum likelihood discriminant rule}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/LDAA+2+populations/1_v273b9lp}{Two populations}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/LDAA+Bayes+discriminant+rule/1_x48emgqz}{Bayes discriminant rule}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/LDAA+Iris+example/1_cb9grj25}{Example: Iris data}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/LDAA+Fisher\%27s+LDA/1_yl7qpbw9}{Fisher's LDA}\\
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/LDAA+Fisher\%27s+LDA+on+the+iris+data+\%2B+links+with+ML+LDA/1_vsc58wzc}{Iris example revisited + links to other methods}
+\end{itemize}
+
+We consider the situation in which there are \(g\) populations/classes \(\Pi_1, \ldots , \Pi_g\). Each subject/case belongs to precisely one population. For example
+
+\begin{itemize}
+\item
+  for the iris data the populations are the 3 species \{Setosa, Versicolor, Viriginica\}. Each iris has a single species label.
+\item
+  for the MNIST data, the populations are the digits 0 to 9. Each image represents a single digit.
+\end{itemize}
+
+Suppose we are given measurements \(\mathbf x_i\) on each subject, and population/class label \(y_i\).
+The aim of \textbf{classification} is to build a model to predict the class label \(y\) from a set of measurements \(\mathbf x\). For our examples:
+
+\begin{itemize}
+\item
+  iris: the measurements \(\mathbf x_i\in \mathbb{R}^{4}\) are the sepal and petal width and lengths. The class label \(y_i\) is the species.
+\item
+  mnist: \(\mathbf x_i\in \mathbb{R}^{784}\) is a vector of pixel intensities. The class label \(y_i\) is the digit the image represents.
+\end{itemize}
+
+If \(\mathbf x\in \mathbb R^p\) is a `new' observation assumed to come from one of \(\Pi_1, \ldots , \Pi_g\), the aim of discriminant analysis is to allocate \(\mathbf x\) to one of \(\Pi_1, \ldots , \Pi_g\) with \textbf{as small a
+probability of error as possible}.
+
+A \textbf{discriminant rule}, \(d\), corresponds to a partition of \(\mathbb R^p\) into disjoint regions \(\mathcal R_1, \ldots, \mathcal R_g\), where
+\[\bigcup_{j=1}^g \mathcal R_j = \mathbb R^p, \qquad \mathcal R_j \cap \mathcal R_k = \emptyset, j \neq k.\]
+The rule \(d\) is then defined by
+
+\begin{quote}
+\(d\): allocate \(\mathbf x\) to \(\Pi_j\) if and only if \(\mathbf x\in \mathcal R_j\).
+\end{quote}
+
+The way we find a rule \(d\), is by defining discriminant functions, \(\delta_j(\mathbf x)\), for each population \(j=1, \ldots, g\). We classify \(\mathbf x\) to population \(j\) if \(\delta_j(\mathbf x)>\delta_i(\mathbf x)\) for \(i \not = j\). We can write this as
+
+\[d(\mathbf x) = \arg \max_j \delta_j(\mathbf x),\]
+i.e., \(d\) is a map from \(\mathbb{R}^p\) to \(\{1, \ldots, g\}\)
+
+\hypertarget{linear-discriminant-analysis}{%
+\subsection{Linear discriminant analysis}\label{linear-discriminant-analysis}}
+
+We will focus on discriminant functions that are \textbf{affine} functions of the data. That is they are linear projections of the data plus a constant of the form
+\begin{equation}
+\delta_j(\mathbf x) = \mathbf v_j^\top \mathbf x+ c_j.  \label{eq:ldadiscrim}
+\end{equation}
+
+In later sections we will discuss how to choose the discriminant rules \(\delta_j(\mathbf x)\), i.e., how to choose the \emph{parameters} \(\mathbf v_j\) and \(c_j\). But first we focus on what the
+discriminant regions look like and how to classify points given a discriminant rule.
+
+\hypertarget{geometry-of-lda}{%
+\subsubsection*{Geometry of LDA}\label{geometry-of-lda}}
+\addcontentsline{toc}{subsubsection}{Geometry of LDA}
+
+\begin{proposition}
+\protect\hypertarget{prp:ldaconvex}{}{\label{prp:ldaconvex} }The discriminant regions \(\mathcal{R}_j\) corresponding to affine discriminant functions are convex and connected.
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}You will prove this in the exercises.
+\end{proof}
+
+Recall that the equation of a hyperplane of dimension \(p-1\) in \(\mathbb{R}^p\) requires us to specify a point on the plane, \(\mathbf x_0\), and a vector from the origin that is perpendicular/orthogonal to the plane, \(\mathbf n\). The hyperplane can then be described as
+\[
+\mathcal{H}(\mathbf n, \mathbf x_0) =\{\mathbf x\in \mathbb{R}^p:\, \mathbf n^\top (\mathbf x-\mathbf x_0)  =0\}
+\]
+
+The orthogonal distance from the origin to the plane is
+\[\frac{1}{||\mathbf n||}\mathbf x_0^\top \mathbf n.\]
+
+Affine discriminant functions \eqref{eq:ldadiscrim} divide \(\mathbb{R}^p\) into regions using \((p-1)\)-dimensional hyperplanes, which results in decision regions that have linear boundaries.
+
+To see this, consider the cases where there are just two populations (\(g=2\)). We classify a point \(\mathbf x\) as population 1 if \(\delta_1(\mathbf x) > \delta_2(\mathbf x)\), and the decision boundary is at
+\[\delta_1(\mathbf x) = \delta_2(\mathbf x).\]
+
+If \(\mathbf x\) is on the decision boundary then
+
+\[(\mathbf v_1-\mathbf v_2)^\top \mathbf x+ c_1 -c_2=0.\]
+This can be seen to be the equation of a hyperplane with normal vecor \(\mathbf v_1-\mathbf v_2\). The orthogonal distance of the plane from the origin is
+\[\frac{c_2-c_1}{||\mathbf v_1-\mathbf v_2||}.\]
+
+\begin{example}
+\protect\hypertarget{exm:ldaex1}{}{\label{exm:ldaex1} }
+Let's consider the case of 3 populations with data in \(\mathbb{R}^2\). Suppose the discriminant functions have
+
+\[\mathbf v_1 = \begin{pmatrix}1\\1\end{pmatrix}, \quad \mathbf v_2 = \begin{pmatrix}2\\0\end{pmatrix}, \quad\mathbf v_3 = \begin{pmatrix}1\\-1\end{pmatrix}\]
+and
+\[c_1=1, \quad c_2=-1, \quad c_3=0.\]
+
+Then
+
+\begin{itemize}
+\item
+  the decision boundary between population 1 and 2 is the line with equation
+  \[y=x-2\]
+  and has orthogonal distance \(\sqrt{2}\) from the origin;
+\item
+  the decision boundary between population 1 and 3 is the line with equation
+  \[y=-\frac{1}{2}\]
+  which has orthogonal distance \(\frac{1}{2}\) from the origin;
+\item
+  the decision boundary between population 2 and 3 is the line with equation
+  \[y=-x+1.\]
+  which has orthogonal distance \(\frac{1}{\sqrt{2}}\) from the origin.
+\end{itemize}
+
+If we plot these, then you can see that this results in the decision regions shown in Figure \ref{fig:ldaeg1}.
+\end{example}
+
+\begin{figure}
+\centering
+\includegraphics{09-lda_files/figure-latex/ldaeg1-1.pdf}
+\caption{\label{fig:ldaeg1}Discriminant regions for Example 1.}
+\end{figure}
+
+In the following sections we consider several different approaches to deciding upon a suitable choice of \(\mathbf v_j\) and \(c_j\) in Equation \eqref{eq:ldadiscrim}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  By assuming the populations have a multivariate normal distribution. This is the focus of section \ref{lda-ML}, where we assume each population is equally likely. We generalise this approach in Section \ref{lda-Bayes} to consider the situation where observations are more likely to be some from populations than from others.
+\item
+  By looking for linear projections of the data that maximize the spread between the different populations, i.e., that are best for distinguishing between different populations. This leads to \textbf{Fisher's discriminant rule} which we cover in Section \ref{FLDA}, and it does not require us to make assumptions about the distribution of the underlying populations.
+\end{enumerate}
+
+\hypertarget{lda-ML}{%
+\section{Maximum likelihood (ML) discriminant rule}\label{lda-ML}}
+
+A popular way to develop a discriminant rule is to start by assuming (or estimating) a different distribution for \(\mathbf x\in \mathbb R^p\) for each population. For example, suppose that the observations in population \(j\) have a distribution with pdf \(f_j(\mathbf x)\), for \(j=1,\ldots , g\).
+
+We will begin by supposing the different population distributions \(f_1(\mathbf x), \ldots, f_g(\mathbf x)\) are \textbf{known}, and in particular, that they are multivariate normal distributions.
+
+\begin{definition}
+\protect\hypertarget{def:maxlik}{}{\label{def:maxlik} }The \textbf{maximum likelihood} (ML) discriminant rule
+allocates \(\mathbf x\) to the population with the largest likelihood at \(\mathbf x\), i.e.~it allocates \(\mathbf x\) to \(\Pi_j\) where
+\[ f_j(\mathbf x)= \max\limits_{1 \leq k \leq g} f_k(\mathbf x). \]
+We can write the discriminant rule as
+\[d(\mathbf x) = \arg \max_{k} f_k(\mathbf x).\]
+\end{definition}
+
+\begin{example}
+\protect\hypertarget{exm:exnine1}{}{\label{exm:exnine1} }Consider the univariate case with \(g=2\) where \(\Pi_1\) is the \(N(\mu_1,\sigma_1^2)\) distribution and \(\Pi_2\) is the \(N(\mu_2,\sigma_2^2)\) distribution. The ML discriminant rule allocates \(x\) to \(\Pi_1\) if and only if
+\[
+f_1(x) > f_2(x) ,
+\]
+which is equivalent to
+\[
+\frac{1}{(2\pi\sigma_1^2)^{1/2}} \exp \left(-\frac{1}{2\sigma_1^2} (x-\mu_1)^2 \right)
+> \frac{1}{(2\pi\sigma_2^2)^{1/2}} \exp \left(-\frac{1}{2\sigma_2^2} (x-\mu_2)^2 \right).
+\]
+Collecting terms together on the left hand side (LHS) gives
+\begin{eqnarray}
+&&  \qquad \frac{\sigma_2}{\sigma_1} \exp \left(-\frac{1}{2\sigma_1^2} (x - \mu_1)^2 +\frac{1}{2\sigma_2^2} (x - \mu_2)^2 \right)> 1 \\
+&\iff& \qquad \log \left(\frac{\sigma_2}{\sigma_1} \right)-\frac{1}{2\sigma_1^2} (x - \mu_1)^2 + \frac{1}{2\sigma_2^2} (x - \mu_2)^2 > 0 \\
+& \iff & \qquad x^2 \left(\frac{1}{\sigma_2^2} - \frac{1}{\sigma_1^2} \right)
++ x \left(\frac{2 \mu_1}{\sigma_1^2} - \frac{2 \mu_2}{\sigma_2^2} \right)+ \frac{\mu_2^2}{\sigma_2^2} - \frac{\mu_1^2}{\sigma_1^2} + 2 \log \frac{\sigma_2}{\sigma_1} > 0. \label{eq:lda1d}
+\end{eqnarray}
+Suppose, for example, that \(\mu_1 = \sigma_1 = 1\) and \(\mu_2 = \sigma_2 = 2\), then this reduces to the quadratic expression
+\[ -\frac{3}{4}x^2 + x + 2 \log 2 > 0.\]
+Suppose that our new observation is \(x=0\), say. Then the LHS is \(2 \log 2\) which is greater than zero and so we would allocate \(x\) to population 1.
+
+Using the quadratic equation formula we find that \(f_1(x)=f_2(x)\) when
+\[x = \frac{-1 \pm \sqrt{1+6 \log 2}}{-3/2} = \frac{2}{3} \pm \frac{2}{3} \sqrt{1 + 6 \log 2},\] i.e.~at \(x = -0.85\) and \(x = 2.18\). Our discriminant rule is thus to allocate \(x\) to \(\Pi_1\) if \(-0.85 < x < 2.18\) and to allocate it to \(\Pi_2\) otherwise. This is illustrated in Figure \ref{fig:lda-oned}.
+\end{example}
+
+\begin{figure}
+\centering
+\includegraphics{09-lda_files/figure-latex/lda-oned-1.pdf}
+\caption{\label{fig:lda-oned}Discriminant rule for the two Gaussians example.}
+\end{figure}
+
+Note that this has not resulted in connected convex discriminant regions \(\mathcal{R}_i\). This is because our discriminant functions were not linear functions of \(\mathbf x\) - thus we did not find a linear discriminant rule.
+
+Note also that if \(\sigma_1=\sigma_2\) then the \(x^2\) term in Equation \eqref{eq:lda1d} cancels, and we are left with a linear discriminant rule. For example, if \(\sigma_2=1\) with the other parameters as before, then we classify \(x\) to population 1 if
+
+\[ 2x \left(\mu_1 -  \mu_2 \right)+ \mu_2^2 - \mu_1^2 = -2x+3 > 0.
+\]
+i.e., if \(x<\frac{3}{2}\). In this case, we do get discriminant regions \(\mathcal{R}_j\) which are connected and convex.
+
+\begin{figure}
+\centering
+\includegraphics{09-lda_files/figure-latex/lda-onedb-1.pdf}
+\caption{\label{fig:lda-onedb}Discriminant rule for the two Gaussians example when sigma\_2=1}
+\end{figure}
+
+\hypertarget{multivariate-normal-populations}{%
+\subsection{Multivariate normal populations}\label{multivariate-normal-populations}}
+
+Now we consider the case of \(g\) multivariate normal populations. We shall assume that for population \(k\)
+\[\mathbf x\sim N_p({\boldsymbol{\mu}}_k, \boldsymbol{\Sigma})\]
+i.e., we allow the mean of each population to vary, but have assumed a common covariance matrix between groups. We call the \({\boldsymbol{\mu}}_k\) the \textbf{population means} or \textbf{centroids}.
+
+\begin{proposition}
+\protect\hypertarget{prp:nine1}{}{\label{prp:nine1} }If cases in population \(\Pi_k\) have a \(N_p({\boldsymbol{\mu}}_k,\boldsymbol{\Sigma})\) distribution, then the ML discriminant rule is
+\[d(\mathbf x)= \arg\min_{k}(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}_k).\]
+
+Equivalently, if \(\delta_k(\mathbf x) = 2{\boldsymbol{\mu}}_k^\top \boldsymbol{\Sigma}^{-1} \mathbf x- {\boldsymbol{\mu}}_k^\top \Sigma^{-1} {\boldsymbol{\mu}}_k\). Then
+\[d(\mathbf x) = \arg \max \delta_k(\mathbf x).\]
+I.e. this is a linear discriminant rule.
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{} The \(k\)th likelihood is
+\begin{equation}
+f_k(\mathbf x) = | 2 \pi \boldsymbol{\Sigma}|^{-1/2} \exp \left(-\frac{1}{2} (\mathbf x- {\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x- {\boldsymbol{\mu}}_k) \right).\label{eq:mvnlike}
+\end{equation}
+This is maximised when the exponent is minimised, due to the minus sign in the exponent and because \(\boldsymbol{\Sigma}\) is positive definite.
+
+\begin{align*}
+(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}_k) &= \mathbf x^\top \boldsymbol{\Sigma}\mathbf x
+-2{\boldsymbol{\mu}}_k^\top \boldsymbol{\Sigma}^{-1}\mathbf x+{\boldsymbol{\mu}}_k^\top \boldsymbol{\Sigma}^{-1}{\boldsymbol{\mu}}_k\\
+&= \mathbf x^\top \boldsymbol{\Sigma}\mathbf x-\delta_k(\mathbf x)
+\end{align*}
+Thus,
+\[\arg \min_k (\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}_k) = \arg\max_k \delta_k(\mathbf x)\]
+as \(\mathbf x^\top \boldsymbol{\Sigma}\mathbf x\) does not depend on \(k\).
+\end{proof}
+
+\hypertarget{sample-lda}{%
+\subsection{The sample ML discriminant rule}\label{sample-lda}}
+
+To use the ML discriminant rule, we need to know the model parameters for each group, \({\boldsymbol{\mu}}_k\), as well as the common covariance matrix \(\boldsymbol{\Sigma}\). We will usually not know these parameters, and instead must estimate them from \textbf{training} data. We then substitute these estimates into the discriminant rule. Training data typically consists of samples \(\mathbf x_{1,k}, \ldots, \mathbf x_{n_k,k}\) known to be from population \(\Pi_k\), where \(n_k\) is the number of observations from population \(\Pi_k\).
+
+We estimate the unknown population means by the sample mean for each population
+\[\hat{{\boldsymbol{\mu}}}_k =\frac{1}{n_k} \sum_{i=1}^{n_k} \mathbf x_{i,k}.\]
+
+To estimate the shared covariance matrix, \(\boldsymbol{\Sigma}\), first calculate the sample covariance matrix for the \(k\)th group:
+\[\mathbf S_j=\frac{1}{n_j-1}\sum_{i=1}^{n_j} (\mathbf x_{i,j}-\hat{{\boldsymbol{\mu}}}_j)(\mathbf x_{i,j}-\hat{{\boldsymbol{\mu}}}_j)^\top\]
+
+Then
+\begin{equation}
+\widehat{\boldsymbol{\Sigma}} = \frac{1}{n-g} \sum_{k=1}^g n_k \mathbf S_k \label{eq:ldawithin}
+ \end{equation}
+is an unbiased estimate of \(\boldsymbol{\Sigma}\) where \(n = n_1 + n_2 + \ldots + n_g\). Note that this is not the same as the total covariance matrix (i.e.~ignoring the class labels).
+
+The sample ML discriminant rule is then defined by substituting these estimates into \ref{prp:nine1}.
+
+\hypertarget{two-populations}{%
+\subsection{Two populations}\label{two-populations}}
+
+\begin{corollary}
+\protect\hypertarget{cor:nine2c}{}{\label{cor:nine2c} }When \(g=2\), the rule allocates \(\mathbf x\) to \(\Pi_1\) if and only if
+\[\mathbf a^\top (\mathbf x- \mathbf h) > 0, \]
+where \(\mathbf a= \boldsymbol{\Sigma}^{-1} ({\boldsymbol{\mu}}_1 - {\boldsymbol{\mu}}_2)\) and \(\mathbf h= \frac{1}{2} ({\boldsymbol{\mu}}_1 + {\boldsymbol{\mu}}_2)\).
+\end{corollary}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}From Proposition \ref{prp:nine1} we know that we classify to population 1 if and only if
+\[\delta_1(\mathbf x)>\delta_2(\mathbf x),\]
+i.e., if
+\[2{\boldsymbol{\mu}}_1^\top \boldsymbol{\Sigma}^{-1} \mathbf x-{\boldsymbol{\mu}}_1\boldsymbol{\Sigma}^{-1}{\boldsymbol{\mu}}_1> 2{\boldsymbol{\mu}}_2^\top \boldsymbol{\Sigma}^{-1} \mathbf x-{\boldsymbol{\mu}}_2 \boldsymbol{\Sigma}^{-1}{\boldsymbol{\mu}}_2\]
+Rearranging we see this is true if and only if
+\[({\boldsymbol{\mu}}_1-{\boldsymbol{\mu}}_2)^\top \boldsymbol{\Sigma}^{-1} \mathbf x> \frac{1}{2}({\boldsymbol{\mu}}_1-{\boldsymbol{\mu}}_2)^\top\boldsymbol{\Sigma}^{-1}({\boldsymbol{\mu}}_1+{\boldsymbol{\mu}}_2).\]
+Using the expressions for \(\mathbf a\) and \(\mathbf h\) gives
+\[\mathbf a^\top \mathbf x> \mathbf a^\top \mathbf h\]
+from which the desired result follows.
+\end{proof}
+
+If we think about the situation where \(\boldsymbol{\Sigma}= \mathbf I\), then we can make sense of this rule geometrically. If the variance of the two populations is the identity matrix, then we can simply classify to the nearest population mean/centroid, and the decision boundary is thus the perpendicular bisector of the two centroids. Moreover,
+
+\begin{itemize}
+\item
+  \(\mathbf a= {\boldsymbol{\mu}}_1-{\boldsymbol{\mu}}_2\) is the vector between the two population centroids, and thus will be perpendicular to the decision boundary.
+\item
+  \(\mathbf h= \frac{1}{2}({\boldsymbol{\mu}}_1+{\boldsymbol{\mu}}_2)\) is the midpoint of the two population centroids, and thus \(\mathbf h\) will lie on the decision boundary.
+\item
+  An equation for the decision boundary is \(\mathbf a^\top (\mathbf x- \mathbf h)=0\).
+\item
+  For a general point \(\mathbf x\in \mathbb{R}^p\), the vector \(\mathbf x-\mathbf h\) is a vector from the decision boundary (i.e.~from \(\mathbf h\)) to \(\mathbf x\).
+\item
+  Thinking of the scalar product, we can see that \(\mathbf a^\top (\mathbf x- \mathbf h)\) is proportional to the cosine of the angle between \(\mathbf a\) and \(\mathbf x-\mathbf h\). The point \(\mathbf x\) will be closer to \({\boldsymbol{\mu}}_1\) than \({\boldsymbol{\mu}}_2\) if the angle between \(\mathbf a\) and \(\mathbf x-\mathbf h\) is between \(-90^\circ\) and \(90^\circ\), or equivalently, if the cosine of the angle is greater than 0.
+\item
+  Thus we classify \(\mathbf x\) to population 1 if \(\mathbf a^\top (\mathbf x- \mathbf h)>0\), and to population 2 if \(\mathbf a^\top (\mathbf x- \mathbf h)<0\).
+\end{itemize}
+
+This situation is illustrated in Figure \ref{fig:ldaidentity}.
+
+If we have more than \(2\) populations, then for \(\boldsymbol{\Sigma}=\mathbf I\), the decision boundaries are the perpendicular bisectors between the population centroids (the \({\boldsymbol{\mu}}_i\)) and we simply classify to the nearest centroid.
+
+When \(\boldsymbol{\Sigma}\not =\mathbf I\), we think of \(\boldsymbol{\Sigma}\) as distorting space. Instead of measuring distance using the Euclidean distance, we instead adjust distances to account for \(\boldsymbol{\Sigma}\). The decision boundaries are then no longer the perpendicular bisectors of the centroids.
+
+\hypertarget{example-2-1}{%
+\paragraph{Example 2}\label{example-2-1}}
+\addcontentsline{toc}{paragraph}{Example 2}
+
+Consider the bivariate case (\(p=2\)) with \(g=2\) groups, where \(\Pi_1\) is the \(N_2({\boldsymbol{\mu}}_1,\mathbf I_2)\) distribution and \(\Pi_2\) is the \(N_2({\boldsymbol{\mu}}_2,\mathbf I_2)\) distribution. Suppose \({\boldsymbol{\mu}}_1 = \begin{pmatrix} c \\ 0 \end{pmatrix}\) and \({\boldsymbol{\mu}}_2 = \begin{pmatrix} -c \\ 0 \end{pmatrix}\) for some constant \(c>0\). Here, \(\mathbf a= \boldsymbol{\Sigma}^{-1} ({\boldsymbol{\mu}}_1 - {\boldsymbol{\mu}}_2) = \begin{pmatrix} 2c \\ 0 \end{pmatrix}\) and \(\mathbf h= \frac{1}{2}( {\boldsymbol{\mu}}_1 + {\boldsymbol{\mu}}_2 ) = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\).
+
+The ML discriminant rule allocates \(\mathbf x\) to \(\Pi_1\) if \(\mathbf a^\top (\mathbf x- \mathbf h) = \mathbf a^\top \mathbf x> 0\). If we write \(\mathbf x= \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}\) then \(\mathbf a^\top \mathbf x= 2cx_1\), which is greater than zero if \(x_1 > 0\). Hence we allocate \(\mathbf x\) to \(\Pi_1\) if \(x_1 > 0\) and allocate \(\mathbf x\) to \(\Pi_2\) if \(x_1 \leq 0\).
+
+\includegraphics{09-lda_files/figure-latex/ldaidentity-1.pdf}
+
+\hypertarget{example-3-1}{%
+\paragraph{Example 3}\label{example-3-1}}
+\addcontentsline{toc}{paragraph}{Example 3}
+
+Let's now generalise the previous example, making no assumptions about \(\boldsymbol{\Sigma}\), but still assuming \({\boldsymbol{\mu}}_1=-{\boldsymbol{\mu}}_2\). If we write \(\mathbf a= \begin{pmatrix} a_1 \\ a_2 \end{pmatrix}\) and \(\mathbf h= \frac{1}{2}( {\boldsymbol{\mu}}_1 + {\boldsymbol{\mu}}_2 ) = \boldsymbol 0\). Then the ML discriminant rule allocates \(\mathbf x\) to \(\Pi_1\) if \(\mathbf a^\top \mathbf x> 0\). If we write \(\mathbf x= \begin{pmatrix} x \\ y \end{pmatrix}\) then the boundary separating \(\mathcal R_1\) and \(\mathcal R_2\) is given by \(\mathbf a^\top \mathbf x= \begin{pmatrix} a_1 & a_2 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = a_1 x + a_2 y = 0\), i.e. \(y = -\frac{a_1}{a_2} x\). This is a straight line through the origin with gradient \(-a_1/a_2\).
+
+For \({\boldsymbol{\mu}}_1 =\begin{pmatrix}1 \\1 \\\end{pmatrix}\) and \(\boldsymbol{\Sigma}= \begin{pmatrix}1&-0.9 \\-0.9&1 \\\end{pmatrix}\) we find \(\mathbf a= \begin{pmatrix}20 \\20 \\\end{pmatrix}\), which gives the line \(y = -1 x\).
+
+\includegraphics{09-lda_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+If the variance of the \(y\) component is very small compared to the variance of the \(x\) component, then we begin to classify solely on the basis of \(y\). For example, if
+\({\boldsymbol{\mu}}_1 =\begin{pmatrix}2 \\1 \\\end{pmatrix}\) and \(\boldsymbol{\Sigma}= \begin{pmatrix}1&0.09 \\0.09&0.1 \\\end{pmatrix}\) we find \(\mathbf a= \begin{pmatrix}2.39 \\17.8 \\\end{pmatrix}\), which gives the line \(y = -0.13 x\). I.e., a line that is getting close to being horizontal.
+
+\includegraphics{09-lda_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\hypertarget{more-than-two-populations}{%
+\subsection{More than two populations}\label{more-than-two-populations}}
+
+When \(g>2\), the boundaries for the ML rule will be piece-wise linear. In the exercises you will look at an example with 3 populations in two dimensions.
+
+\hypertarget{lda-Bayes}{%
+\section{Bayes discriminant rule}\label{lda-Bayes}}
+
+In the previous section, we implicitly assumed that each subject is equally likely to be from any of the \(g\) populations. This is the simplest case but is an unrealistic assumption in practice.
+
+For example, suppose we want to classify photos on the internet as either being a photo of \emph{Bill Evans} or \emph{not Bill Evans}. Most photos on the internet are not of Bill Evans, and so we want to take this into account in the classifier, i.e., we want to take the base rate of occurence of each population into account.
+
+Suppose \emph{a priori} that the probability an observation is from population \(k\) is \(\pi_k\), with
+\[\sum_{k=1}^g \pi_k=1.\]
+Then given a probability model \(f_k(\mathbf x)\) for observations \(\mathbf x\) from population \(k\), our posterior probability for observation \(\mathbf x\) being from population \(k\) is
+\[{\mathbb{P}}(y=k \mid \mathbf x) = \frac{f_k(\mathbf x)\pi_k}{\sum_{j=1}^g f_k(\mathbf x)\pi_k}\]
+by Bayes theorem.
+
+\begin{definition}
+\protect\hypertarget{def:bayesclassifier}{}{\label{def:bayesclassifier} }The \textbf{Bayes classifier} assigns \(\mathbf x\) to the population for which the posterior probability is highest:
+\[d^{Bayes}(\mathbf x) =\arg \max_k {\mathbb{P}}(y=k \mid \mathbf x).\]
+\end{definition}
+
+As before, if we assume each population has a multivariate normal distribution, then this simplifies.
+
+\begin{proposition}
+\protect\hypertarget{prp:ldabayes}{}{\label{prp:ldabayes} }If cases in population \(\Pi_k\) have a \(N_p({\boldsymbol{\mu}}_k,\boldsymbol{\Sigma})\) distribution, then the \textbf{Bayes} discriminant rule is
+\[d(\mathbf x)= \arg\min_{k} \frac{1}{2}(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}_k)- \log \pi_k.\]
+
+Equivalently, if
+\[\delta_k(\mathbf x) = {\boldsymbol{\mu}}_k^\top \boldsymbol{\Sigma}^{-1} \mathbf x-\frac{1}{2}{\boldsymbol{\mu}}_k^\top \Sigma^{-1} {\boldsymbol{\mu}}_k +\log \pi_k\]
+then
+\[d(\mathbf x) = \arg \max \delta_k(\mathbf x).\]
+I.e. this is a linear discriminant rule.
+\end{proposition}
+\begin{proof}
+\iffalse{} {Proof. } \fi{}See the exercises.
+\end{proof}
+
+Note that if \(\pi_k=\frac{1}{g}\) for all \(k\), then we can ignore \(\pi_k\) in the maximization, and the Bayes discriminant rule is exactly the same as the ML discriminant rule.
+
+For two populations, the Bayes analogue of Corollary \ref{cor:nine2c} is that we classify \(\mathbf x\) to population 1 if
+\[\mathbf a^\top(\mathbf x-\mathbf h)> \log\frac{\pi_2}{\pi_1}.\]
+The effect of the prior probabilities on the populations is to shift the decision boundary to be further away from the more likely class. For example, if in Example 2 we had \(\pi_1 = 0.9\) and \(\pi_2=0.1\) we get the decision boundary at \(x_1 = -2.19722\) as shown in Figure \ref{fig:ldaidentityBayes}.
+
+\begin{figure}
+\centering
+\includegraphics{09-lda_files/figure-latex/ldaidentityBayes-1.pdf}
+\caption{\label{fig:ldaidentityBayes}LDA when the covariance matrix is the identity, with class prior pi1=0.9}
+\end{figure}
+
+In practice, we may not know the population probabilities \(\pi_k\). If so, we can estimate them from the data using
+\[\hat{\pi}_k = \frac{n_k}{n}\]
+and substitute \(\hat{\pi}_k\) for \(\pi_k\) (as well as substituting \(\hat{{\boldsymbol{\mu}}}_k\), \(\widehat{\boldsymbol{\Sigma}}\) etc).
+
+The \texttt{lda} command from the \texttt{MASS} library uses the Bayes discriminant rule, but gives you the option of setting \(\pi_k\) if known, but otherwise estimates the class probabilities.
+
+\hypertarget{example-lda-using-the-iris-data}{%
+\subsection{Example: LDA using the Iris data}\label{example-lda-using-the-iris-data}}
+
+Let's consider doing LDA with the iris data. To begin with, lets use just the setosa and virginica species so that we only have \(g=2\) populations, \(\Pi_{setosa}\) and \(\Pi_{virginica}\). We will also just use the sepal measurements so that \(p=2\). If we plot the data, we can see that the two populations should be easy to classify using just these two measurements:
+
+\includegraphics{09-lda_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+The sample means and variances for each group are
+
+\begin{eqnarray*}
+\hat{{\boldsymbol{\mu}}}_s = \begin{pmatrix}5.01 \\3.43 \\\end{pmatrix} &\qquad& \hat{{\boldsymbol{\mu}}}_v = \begin{pmatrix}6.59 \\2.97 \\\end{pmatrix} \\
+\mathbf S_s = \begin{pmatrix}0.124&0.0992 \\0.0992&0.144 \\\end{pmatrix} &\qquad& \mathbf S_v =\begin{pmatrix}0.404&0.0938 \\0.0938&0.104 \\\end{pmatrix}
+\end{eqnarray*}
+where the \(s\) subscript gives the values for setosa, and \(v\) for virginica.
+
+We have data on \(n=50\) flowers in each population. Hence,
+\begin{eqnarray*}
+\widehat{\boldsymbol{\Sigma}} &=& \frac{1}{50+50-2} \left(50 \mathbf S_s + 50 \mathbf S_v \right)= \begin{pmatrix}0.27&0.0985 \\0.0985&0.126 \\\end{pmatrix}, \\
+\hat{{\boldsymbol{\mu}}}_s - \hat{{\boldsymbol{\mu}}}_v &=& \begin{pmatrix}-1.58 \\0.454 \\\end{pmatrix}, \\
+\hat{\mathbf h} &=& \frac{1}{2} (\hat{{\boldsymbol{\mu}}}_s + \hat{{\boldsymbol{\mu}}}_v) = \begin{pmatrix}5.797 \\3.201 \\\end{pmatrix},
+\end{eqnarray*}
+and
+\[\hat{\mathbf a} = \widehat{\boldsymbol{\Sigma}}^{-1} (\hat{{\boldsymbol{\mu}}}_s - \hat{{\boldsymbol{\mu}}}_v) = \begin{pmatrix}5.18&-4.04 \\-4.04&11.1 \\\end{pmatrix} \begin{pmatrix}-1.58 \\0.454 \\\end{pmatrix} = \begin{pmatrix}-10.031 \\11.407 \\\end{pmatrix}.\]
+
+We can find these values in R as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\CommentTok{# select two measurements and two species}
+\NormalTok{iris3 <-}\StringTok{ }\NormalTok{iris }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Species }\OperatorTok{!=}\StringTok{ "versicolor"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Sepal.Length, Sepal.Width, Species)}
+
+\NormalTok{S_vir =}\StringTok{ }\NormalTok{iris3 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Species}\OperatorTok{==}\StringTok{"virginica"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(Sepal.Length, Sepal.Width) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{cov}
+\NormalTok{S_set =}\StringTok{ }\NormalTok{iris3 }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Species}\OperatorTok{==}\StringTok{"setosa"}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(Sepal.Length, Sepal.Width) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{cov}
+\NormalTok{S_u =}\StringTok{ }\NormalTok{(}\DecValTok{50}\OperatorTok{*}\NormalTok{S_vir}\OperatorTok{+}\DecValTok{50}\OperatorTok{*}\NormalTok{S_set)}\OperatorTok{/}\DecValTok{98}
+
+
+\CommentTok{# Or more easily using a package}
+\KeywordTok{library}\NormalTok{(vcvComp)}
+\NormalTok{S_u =}\StringTok{ }\KeywordTok{cov.W}\NormalTok{(iris3[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{], iris3[,}\DecValTok{3}\NormalTok{]) }
+\end{Highlighting}
+\end{Shaded}
+
+The sample ML discriminant rule allocates a new observation \(\mathbf x= (x_1, x_2)^\top\) to \(\Pi_{\mbox{setosa}}\) if and only if
+\[ \hat{\mathbf a}^\top (\mathbf x- \hat{\mathbf h}) = \begin{pmatrix}-10.031&11.407 \\\end{pmatrix} \begin{pmatrix} x_1 - 5.797 \\ x_2 - 3.201 \end{pmatrix} > 0.\]
+
+If we draw on the line defined by
+\[\mathbf a^\top (\mathbf x-\mathbf h)=0\]
+which can be written as
+\[x_2 = \frac{1}{a_2}(\mathbf a^\top\mathbf h-a_1x_1) = -1.8963517 - -0.8793085 x_1\]
+we can see this line clearly separates the two species of iris.
+
+\includegraphics{09-lda_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+If a new iris had a sepal length of 5.8 and a sepal width of 2.5 (marked as a black cross on the plot above) then
+
+\[ \hat{\mathbf a}^\top (\mathbf x- \hat{\mathbf h}) = \begin{pmatrix}-10.031&11.407 \\\end{pmatrix} \begin{pmatrix} 5.8 - 5.797 \\ 2.5 - 3.201 \end{pmatrix} =-8.0267032 < 0,\]
+and so we would allocate this iris to the virginia population, \(\Pi_{virginica}\).
+
+As you would expect, there is an R command to do this for us: \texttt{lda} (for Linear Discriminant Analysis). This is in the \texttt{MASS} R package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(MASS)}
+\NormalTok{iris.lda1 <-}\StringTok{ }\KeywordTok{lda}\NormalTok{(Species }\OperatorTok{~}\StringTok{ }\NormalTok{., iris3)}
+
+\CommentTok{# lda(Species ~ Sepal.Length+Sepal.Width, iris3) }
+  \CommentTok{#  does the same thing}
+\NormalTok{iris.lda1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Call:
+## lda(Species ~ ., data = iris3)
+## 
+## Prior probabilities of groups:
+##    setosa virginica 
+##       0.5       0.5 
+## 
+## Group means:
+##           Sepal.Length Sepal.Width
+## setosa           5.006       3.428
+## virginica        6.588       2.974
+## 
+## Coefficients of linear discriminants:
+##                    LD1
+## Sepal.Length  2.208596
+## Sepal.Width  -2.511742
+\end{verbatim}
+
+You can see that this has printed the group means, and the lda coefficients. The coefficients are different to the ones we computed for \(\mathbf a\), but have the same ratio, which is all that matters (because the discriminant planes are perpendicular to \(\mathbf a\) - multiplying \(\mathbf a\) by a constant does not change the plane).
+
+The output also includes estimates of the prior probabilities for the two species, which are estimated to be
+\[\hat{\pi}_s = \frac{1}{2}, \quad \hat{\pi}_v = \frac{1}{2}\]
+as there were 50 irises from each population in the training data.
+
+We can use the \texttt{predict} command to predict the species for a new observation \(\mathbf x\). Using the example from before of an iris with a sepal length of 5.8 and a sepal width of 2.5 we find the Bayes classifier predicts this is a virginica iris.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{irisnew =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Sepal.Length=}\FloatTok{5.8}\NormalTok{, }\DataTypeTok{Sepal.Width=}\FloatTok{2.5}\NormalTok{)}
+\KeywordTok{predict}\NormalTok{(iris.lda1,irisnew)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $class
+## [1] virginica
+## Levels: setosa versicolor virginica
+## 
+## $posterior
+##         setosa virginica
+## 1 0.0002771946 0.9997228
+## 
+## $x
+##        LD1
+## 1 1.767357
+\end{verbatim}
+
+Note that we are also given estimates of the probability that \(\mathbf x\) lies in each of the populations. These are computed using
+\[\frac{f_k(\mathbf x)\pi_k}{\sum_{j=1}^g f_j(\mathbf x)\pi_j}\]
+with the parameter estimates substituted for the unknown parameters.
+
+\hypertarget{using-the-entire-dataset}{%
+\subsubsection*{Using the entire dataset}\label{using-the-entire-dataset}}
+\addcontentsline{toc}{subsubsection}{Using the entire dataset}
+
+Let's now use all 150 observations (with three populations: setosa, virginica, versicolor), and all four measurements.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lda.iris <-}\StringTok{ }\KeywordTok{lda}\NormalTok{(Species }\OperatorTok{~}\StringTok{ }\NormalTok{.,iris)}
+\NormalTok{lda.iris }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Call:
+## lda(Species ~ ., data = iris)
+## 
+## Prior probabilities of groups:
+##     setosa versicolor  virginica 
+##  0.3333333  0.3333333  0.3333333 
+## 
+## Group means:
+##            Sepal.Length Sepal.Width Petal.Length Petal.Width
+## setosa            5.006       3.428        1.462       0.246
+## versicolor        5.936       2.770        4.260       1.326
+## virginica         6.588       2.974        5.552       2.026
+## 
+## Coefficients of linear discriminants:
+##                     LD1         LD2
+## Sepal.Length  0.8293776  0.02410215
+## Sepal.Width   1.5344731  2.16452123
+## Petal.Length -2.2012117 -0.93192121
+## Petal.Width  -2.8104603  2.83918785
+## 
+## Proportion of trace:
+##    LD1    LD2 
+## 0.9912 0.0088
+\end{verbatim}
+
+We will delay discussion of what the reported coefficients mean, and how to visualize LDA, until after we have seen Fisher's linear discriminant analysis in the next section. But we can use the \texttt{klaR} package to visualize a little of what LDA does. The \texttt{partimat} command provides an array of figures that show the discriminant regions based on every combination of two variables (i.e., it does LDA for each pair of variables).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(klaR)}
+\KeywordTok{library}\NormalTok{(plyr)}
+\NormalTok{Species_new=}\StringTok{ }\KeywordTok{revalue}\NormalTok{(iris}\OperatorTok{$}\NormalTok{Species, }\KeywordTok{c}\NormalTok{(}\StringTok{"versicolor"}\NormalTok{=}\StringTok{"color"}\NormalTok{))}
+
+\KeywordTok{partimat}\NormalTok{(Species_new }\OperatorTok{~}\StringTok{ }\NormalTok{Sepal.Length }\OperatorTok{+}\StringTok{ }\NormalTok{Sepal.Width }\OperatorTok{+}\StringTok{ }\NormalTok{Petal.Length }\OperatorTok{+}\StringTok{ }\NormalTok{Petal.Width,}
+         \DataTypeTok{data=}\NormalTok{iris, }\DataTypeTok{method=}\StringTok{"lda"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{09-lda_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+Note that I renamed the \emph{versicolor} species as \emph{color} so that the different species appear more clearly in the plots.
+
+\hypertarget{quadratic-discriminant-analysis-qda}{%
+\subsection{Quadratic Discriminant Analysis (QDA)}\label{quadratic-discriminant-analysis-qda}}
+
+We have seen that in the case where the populations all share a common covariance matrix, \(\boldsymbol{\Sigma}\), that the decision boundaries are linear (i.e., hyperplanes). We also saw in example \ref{exm:exnine1} in a one-dimensional example that when the two populations had different variances we have a quadratic decision boundary.
+
+In general, if we allow the variances to differ between populations, so that we model population \(k\) as \[\mathbf x\sim N_p({\boldsymbol{\mu}}_k, \boldsymbol{\Sigma}_k),\]
+then we get the Bayes discriminant rule
+\[
+d(\mathbf x)=\arg\max_k \left(-\frac{1}{2} \log |\boldsymbol{\Sigma}_k| - \frac{1}{2}(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}_k^{-1} (\mathbf x-{\boldsymbol{\mu}}_k)+\log \pi_k\right). \]
+
+We can no ignore the quadratic term in \(\mathbf x\) as it depends upon the population indicator \(k\). We also have to include the determinant of \(\boldsymbol{\Sigma}_k\). Thus in this case we get a quadratic decision boundary rather than a linear one.
+
+\hypertarget{iris-example-continued}{%
+\subsubsection{Iris example continued}\label{iris-example-continued}}
+
+The \texttt{qda} function in the \texttt{MASS} package implements quadratic discriminant analysis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{qda.iris <-}\StringTok{ }\KeywordTok{qda}\NormalTok{(Species_new }\OperatorTok{~}\StringTok{ }\NormalTok{Sepal.Length }\OperatorTok{+}\StringTok{ }\NormalTok{Sepal.Width }\OperatorTok{+}\StringTok{ }\NormalTok{Petal.Length }\OperatorTok{+}\StringTok{ }\NormalTok{Petal.Width, iris)}
+\end{Highlighting}
+\end{Shaded}
+
+We can again use the \texttt{partimat} command to look at the decision boundaries if we do QDA for each pair of variables in turn.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{partimat}\NormalTok{(Species }\OperatorTok{~}\StringTok{ }\NormalTok{Sepal.Length }\OperatorTok{+}\StringTok{ }\NormalTok{Sepal.Width }\OperatorTok{+}\StringTok{ }\NormalTok{Petal.Length }\OperatorTok{+}\StringTok{ }\NormalTok{Petal.Width,         }\DataTypeTok{data=}\NormalTok{iris, }\DataTypeTok{method=}\StringTok{"qda"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{09-lda_files/figure-latex/qda-1.pdf}
+
+\hypertarget{prediction-accuracy}{%
+\subsection{Prediction accuracy}\label{prediction-accuracy}}
+
+To assess the predictive accuracy of our discriminant rules, we often split the data into two parts, a \textbf{training set}, and a \textbf{test set}. Let's do this randomly by chosing 100 of the irises to be in our training set, and use the other 50 irises in the test set. We will then train the classifiers on the training set, and predict the species labels for test dataset. We can then count how many predictions were correct.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\NormalTok{test.ind <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\DecValTok{150}\NormalTok{, }\DataTypeTok{size=}\DecValTok{50}\NormalTok{)}
+\NormalTok{iris.test <-}\StringTok{ }\NormalTok{iris[test.ind,]}
+\NormalTok{iris.train <-}\StringTok{ }\NormalTok{iris[}\OperatorTok{-}\NormalTok{test.ind,]}
+
+\NormalTok{lda1 <-}\StringTok{ }\KeywordTok{lda}\NormalTok{(Species}\OperatorTok{~}\NormalTok{., iris.train)}
+\NormalTok{qda1 <-}\StringTok{ }\KeywordTok{qda}\NormalTok{(Species}\OperatorTok{~}\NormalTok{., iris.train)}
+\NormalTok{test.ldapred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(lda1, iris.test)}
+\NormalTok{test.qdapred <-}\StringTok{ }\KeywordTok{predict}\NormalTok{(qda1, iris.test)}
+\NormalTok{(lda.accuracy <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(test.ldapred}\OperatorTok{$}\NormalTok{class}\OperatorTok{==}\NormalTok{iris.test}\OperatorTok{$}\NormalTok{Species))}\OperatorTok{/}\DecValTok{50}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.98
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(qda.accuracy <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(test.qdapred}\OperatorTok{$}\NormalTok{class}\OperatorTok{==}\NormalTok{iris.test}\OperatorTok{$}\NormalTok{Species))}\OperatorTok{/}\DecValTok{50}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.98
+\end{verbatim}
+
+So in this case we find that LDA and QDA both have an accuracy of 4900\%, which is the result of a single wrong prediction. We can see more clearly what has gone wrong by using the \texttt{table} command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{table}\NormalTok{(iris.test}\OperatorTok{$}\NormalTok{Species, test.ldapred}\OperatorTok{$}\NormalTok{class)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             
+##              setosa versicolor virginica
+##   setosa         17          0         0
+##   versicolor      0         15         0
+##   virginica       0          1        17
+\end{verbatim}
+
+So in this case one of the virginica irises was predicted incorrectly to be versicolor.
+
+Here we randomly split the data into test and training sets. With small datasets such as this (\(n=150\)), we instead sometimes use \href{https://en.wikipedia.org/wiki/Cross-validation_(statistics)}{cross validation} to assess the accuracy of each method. To do this, we split the data up into test and training sets multiple times randomly, and assess the prediction error on each random split.
+
+\hypertarget{FLDA}{%
+\section{Fisher's linear discriminant rule}\label{FLDA}}
+
+Thus far we have assumed that observations from population \(\Pi_j\) have a \(N_p ( \boldsymbol{\mu}_j, {\mathbf \Sigma})\) distribution, and then used the MVN log-likelihood to derive the discriminant functions \(\delta_j(\mathbf x)\). The famous statistician R. A. Fisher took an alternative approach and looked for a linear discriminant functions without assuming any particular distribution for each population \(\Pi_j\).
+
+This way of thinking leads to a form of dimension reduction. We find a projection of the data into a lower dimensional space that is optimal for classifying the data into the different populations.
+
+\hypertarget{variance-decomposition}{%
+\subsubsection*{Variance decomposition}\label{variance-decomposition}}
+\addcontentsline{toc}{subsubsection}{Variance decomposition}
+
+Suppose we have a training sample \(\mathbf x_{1,j}, \ldots, \mathbf x_{n_j,j}\) from \(\Pi_j\) for \(j=1,\ldots,g\).
+Fisher's approach starts by splitting the total covariance matrix of the data (i.e.~ignoring class labels) into two parts.
+
+\begin{align*}
+n\mathbf S=\mathbf X^\top\mathbf H\mathbf X&= \sum_{j=1}^g\sum_{i=1}^{n_j} (\mathbf x_{i,j} - \bar{\mathbf x})(\mathbf x_{i,j} - \bar{\mathbf x})^\top\\
+&=\sum_{j=1}^g\sum_{i=1}^{n_j} (\mathbf x_{i,j} - \hat{{\boldsymbol{\mu}}}_j+\hat{{\boldsymbol{\mu}}}_j-\bar{\mathbf x})(\mathbf x_{i,j} - \hat{{\boldsymbol{\mu}}}_j+\hat{{\boldsymbol{\mu}}}_j-\bar{\mathbf x})^\top\\
+&= \sum_{j=1}^g\sum_{i=1}^{n_j} (\mathbf x_{i,j} - \hat{{\boldsymbol{\mu}}}_j)(\mathbf x_{i,j} - \hat{{\boldsymbol{\mu}}}_j)^\top+
+\sum_{j=1}^g n_j (\hat{{\boldsymbol{\mu}}}_j-\bar{\mathbf x})(\hat{{\boldsymbol{\mu}}}_j-\bar{\mathbf x})^\top\\
+&=n\mathbf W+n\mathbf B
+\end{align*}
+where \(\hat{{\boldsymbol{\mu}}}_j=\frac{1}{n_j} \sum \mathbf x_{i,j} = \bar{\mathbf x}_{+,j}\) is the sample mean of the \(j\)th group, \(\bar{\mathbf x} = \frac{1}{n} \sum_{j=1}^g \sum_{i=1}^{n_j} \mathbf x_{ij}\) is the overall mean, and \(n=\sum_{j=1}^g n_j\).
+
+This has split the total covariance matrix into a \textbf{within-class} covariance matrix
+\[ \mathbf W= \frac{1}{n}\sum_{j=1}^g \sum_{i=1}^{n_j} (\mathbf x_{ij} - \hat{{\boldsymbol{\mu}}}_j) (\mathbf x_{ij} - \hat{{\boldsymbol{\mu}}}_j)^\top  = \frac{1}{n}\sum_{j=1}^g n_j \mathbf S_j \]
+and a \textbf{between-class} covariance matrix
+\[ \mathbf B= \frac{1}{n}\sum_{j=1}^g n_j (\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x}) (\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x})^\top\]
+i.e.
+\[\mathbf S= \mathbf W+ \mathbf B.\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\mathbf W\) is an estimator of \(\boldsymbol{\Sigma}\), the shared covariance matrix in the MVN distributions for each population (c.f. Equation.
+  \eqref{eq:ldawithin}).
+\item
+  If \(\mathbf M\) is a \(n \times p\) matrix of estimated class centroids for each observation
+  \[\mathbf M= \begin{pmatrix} -& \hat{{\boldsymbol{\mu}}}_1 &-\\
+  &\vdots &\\
+  -& \hat{{\boldsymbol{\mu}}}_1 &-\\
+  -& \hat{{\boldsymbol{\mu}}}_2 &-\\
+  &\vdots&\\
+  -& \hat{{\boldsymbol{\mu}}}_g &-\\
+  &\vdots &\\
+  -& \hat{{\boldsymbol{\mu}}}_g &-\end{pmatrix}\]
+  then \(\mathbf B=\frac{1}{n}\mathbf M^\top\mathbf H\mathbf M\) is the covariance matrix of \(\mathbf M\).
+\end{enumerate}
+
+\hypertarget{fishers-criterion}{%
+\subsubsection*{Fisher's criterion}\label{fishers-criterion}}
+\addcontentsline{toc}{subsubsection}{Fisher's criterion}
+
+Fisher's approach was to find a projection of the data \(z_i = \mathbf a^\top \mathbf x_i\) or
+\[\mathbf z= \mathbf X\mathbf a\]
+in vector form,
+that maximizes the between-class variance relative to the within-class variance.
+
+Using the variance decomposition from above, we can see that the total variance of \(\mathbf z\) is
+\begin{align*}
+{\mathbb{V}\operatorname{ar}}(z_i)&= {\mathbb{V}\operatorname{ar}}(\mathbf a^\top \mathbf x_i)\\
+&=\mathbf a^\top {\mathbb{V}\operatorname{ar}}(\mathbf x_i) \mathbf a\\
+&=\mathbf a^\top \mathbf S\mathbf a\\
+&= \mathbf a^\top\mathbf W\mathbf a+ \mathbf a^\top\mathbf B\mathbf a\\
+\end{align*}
+which we have decomposed into the within-class variance of \(\mathbf z\) and the between-class variance \(\mathbf z\).
+
+Fisher's criterion is to choose a vector, \(\mathbf a\), to maximise the ratio of the \textbf{between-class} variance relative to the \textbf{within-class} variance of \(\mathbf z=\mathbf X\mathbf a\), i.e., to solve
+\begin{equation}
+\max_{\mathbf a}\frac{\mathbf a^\top \mathbf B\mathbf a}{\mathbf a^\top \mathbf W\mathbf a}, \label{eq:ldaFisheropt}
+\end{equation}
+
+The idea is that this choice of \(\mathbf a\) will make the classes most easily separable.
+
+\hypertarget{solving-the-optimization-problem}{%
+\subsubsection*{Solving the optimization problem}\label{solving-the-optimization-problem}}
+\addcontentsline{toc}{subsubsection}{Solving the optimization problem}
+
+How do we solve the optimization problem \eqref{eq:ldaFisheropt} and find the optimal choice of \(\mathbf a\)?
+
+\begin{proposition}
+\protect\hypertarget{prp:nine2}{}{\label{prp:nine2} }A vector \(\mathbf a\) that solves \[\max_{\mathbf a}\frac{\mathbf a^\top \mathbf B\mathbf a}{\mathbf a^\top \mathbf W\mathbf a}\] is an eigenvector of \(\mathbf W^{-1}\mathbf B\) corresponding to the largest eigenvalue of \(\mathbf W^{-1}\mathbf B\).
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}
+Firstly, note that an equivalent optimization problem is
+
+\begin{align*}
+\mbox{Maximize } &\mathbf a^\top \mathbf B\mathbf a\\
+ \mbox{ subject to } &\mathbf a^\top \mathbf W\mathbf a=1
+\end{align*}
+
+as we can rescale \(\mathbf a\) without changing the objective \eqref{eq:ldaFisheropt}. This looks a lot like the optimization problems we saw in the chapters on PCA and CCA.
+
+To solve this, note that if we write \(\mathbf b=\mathbf W^{\frac{1}{2}}\mathbf a\) then the optimization problem becomes
+
+\begin{align*}
+\mbox{Maximize } &\mathbf b^\top \mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\mathbf b\\
+ \mbox{ subject to } &\mathbf b^\top \mathbf b=1.
+\end{align*}
+Proposition \ref{prp:two8} tells us that the maximum is obtained when \(\mathbf b=\mathbf v_1\), where \(\mathbf v_1\) is the eigenvector of \(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\) corresponding to the largest eigenvalue of \(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\), \(\lambda_1\) say.
+
+Converting back to \(\mathbf a\) gives the solution to the original optimization problem \eqref{eq:ldaFisheropt} to be
+\[\mathbf a= \mathbf W^{-\frac{1}{2}}\mathbf v_1\]
+
+Note that this is an eigenvalue of \(\mathbf W^{-1}\mathbf B\)
+
+\begin{align*}
+\mathbf W^{-1}\mathbf B\mathbf a&= \mathbf W^{-1}\mathbf B\mathbf W^{-\frac{1}{2}}\mathbf v_1 \\
+&= \mathbf W^{-\frac{1}{2}}\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\mathbf v_1\\
+&= \lambda_1\mathbf W^{-\frac{1}{2}}\mathbf v_1\\
+&= \lambda_1 \mathbf a
+\end{align*}
+
+Finally, to complete the proof we should check that \(\mathbf W^{-1}\mathbf B\) doesn't have any larger eigenvalues, but we can do this by showing that its eigenvalues are the same as the eigenvalues of \(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\). This is left as an exercise (note we've already done one direction - all you need to do is show that if \(\mathbf W^{-1}\mathbf B\) has eigenvalue \(\lambda\) then so does \(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\)).
+\end{proof}
+
+\hypertarget{fishers-discriminant-rule}{%
+\subsubsection*{Fisher's discriminant rule}\label{fishers-discriminant-rule}}
+\addcontentsline{toc}{subsubsection}{Fisher's discriminant rule}
+
+The function \(L(\mathbf x)=\mathbf a^\top \mathbf x\) is called Fisher's linear discriminant function. Once \(L(\mathbf x)\) has been obtained, we allocate \(\mathbf x\) to the population \(\Pi_k\) whose discriminant score \(L(\hat{{\boldsymbol{\mu}}}_k)\) is closest to \(L(\mathbf x)\), that is, we use the discriminant rule \[ d^{Fisher}(\mathbf x) = \arg \min_k |L(\mathbf x) - L({\boldsymbol{\mu}}_k)| = \arg \min_k | \mathbf a^\top \mathbf x- \mathbf a^\top \hat{{\boldsymbol{\mu}}}_k |. \]
+
+This is of the same form as saw in the earlier sections. If we let \(\delta_k(\mathbf x)= -|\mathbf a^\top (\mathbf x-\hat{{\boldsymbol{\mu}}}_k)|\) then we see that
+\(d^{Fisher}(\mathbf x) = \arg \max_k \delta_k(\mathbf x)\) as before.
+
+If there are only two populations (and suppose \(L({\boldsymbol{\mu}}_1)> L({\boldsymbol{\mu}}_2)\)), this is equivalent to classifying to population 1 if \(L(\mathbf x)>t\) and to population 2 otherwise, where \(t = \frac{1}{2}(L({\boldsymbol{\mu}}_1)+L({\boldsymbol{\mu}}_2))\).
+
+This is visualized in Figure \ref{fig:flda} for the iris data. The black points are the setosa data, and the green the viriginica. The diagonal black line is in the direction \(\mathbf a\). Along that line we have plotted the projection of the data points onto the line (\(\mathbf x^\top \mathbf a\)), with the mean of each population and their projections marked with \(+\). The red line is perpendicular to \(\mathbf a\), and joins the midpoint of the two population means, \(\mathbf h= \frac{\hat{{\boldsymbol{\mu}}}_s+\hat{{\boldsymbol{\mu}}}_v}{2}\), with the projection of that point onto \(\mathbf a\). The red diamond marks the decision boundary for the projected points, i.e., if the point is to the left of this we classify as setosa, otherwise viriginica. It is half way between the projection of the two population means.
+
+In Figure \ref{fig:flda} \(\mathbf a\) is chosen to be Fisher's optimal vector (the first eigenvector of \(\mathbf W^{-1}\mathbf B\)). This is the projection that is optimal for maximizing the ratio of the between-group to within-group variance, i.e., it optimally separates the two populations in the projection. In Figure \ref{fig:fldapca} \(\mathbf a\) is instead chosen to be the first principal component, i.e., the first eigenvector of the covariance matrix. This is the projection that maximizes the variance of the projected points (as done in PCA). Note that this is different to the LDA projection, and does not separate the two populations as cleanly as the LDA projection did.
+
+\begin{figure}
+\centering
+\includegraphics{09-lda_files/figure-latex/flda-1.pdf}
+\caption{\label{fig:flda}Visualization of Fishers discriminant analysis.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{09-lda_files/figure-latex/fldapca-1.pdf}
+\caption{\label{fig:fldapca}Projection onto the first principal component.}
+\end{figure}
+
+\hypertarget{multiple-projections}{%
+\subsubsection*{Multiple projections}\label{multiple-projections}}
+\addcontentsline{toc}{subsubsection}{Multiple projections}
+
+To summarize what we've found so far, we have seen that the vector \(\mathbf a\) which maximizes
+\[\frac{\mathbf a^\top \mathbf B\mathbf a}{\mathbf a^\top \mathbf W\mathbf a} \]
+is the first eigenvector of \(\mathbf W^{-1}\mathbf B\). As we did with PCA and CCA, we can continue and find a second, third, etc projection of the data. We're not going to go through the details of the derivation, but we can consider the projection matrix
+\[\mathbf A= \begin{pmatrix}|& \ldots &|\\
+\mathbf a_1 & \ldots & \mathbf a_r\\
+|& \ldots &| \end{pmatrix}\]
+which has columns equal to the first \(r\) eigenvectors of \(\mathbf W^{-1}\mathbf B\).
+
+Recall that \[\mathbf B= \frac{1}{n}\sum_{j=1}^g n_j (\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x}) (\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x})^\top\] is the variance of the \(g\) population means. The points \(\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x}\) lie in a \(g-1\) dimensional subspace of \(\mathbb{R}^p\) (they must sum to \(\boldsymbol 0\)), and so \(\mathbf B\) and also \(\mathbf W^{-1}\mathbf B\) has rank at most \(\min(g-1,p)\). Thus we can find at most \(\min(g-1,p)\) projections of the data for maximizing the separation between the classes.
+
+To classify points using \(r\) different projections, we use the vector discriminant function
+
+\[\mathbf L(\mathbf x) = \mathbf A^\top \mathbf x\]
+and use the discriminant rule
+\[d^{Fisher}(\mathbf x) = \arg \min_k ||\mathbf L(\mathbf x) - \mathbf L({\boldsymbol{\mu}}_k)||_2,\]
+i.e., we compute the \(r\) dimensional projection of the data and then find the which (projected) population mean it is closest to.
+
+Note the dimension reduction here. We have gone from an observation \(\mathbf x\in \mathcal{R}^p\) to a projected point \(\mathbf A^\top\mathbf x\in \mathcal{F}^t\). We are free to choose \(r\), which can result in useful ways of visualizing the data.
+
+\hypertarget{iris-example-continued-1}{%
+\subsection{Iris example continued}\label{iris-example-continued-1}}
+
+Let's continue the iris example we had before, using the full dataset of 150 observations on 3 species, with 4 measurements on each flower.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(vcvComp)}
+\NormalTok{B=}\KeywordTok{cov.B}\NormalTok{(iris[,}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{], iris[,}\DecValTok{5}\NormalTok{])}
+\NormalTok{W=}\KeywordTok{cov.W}\NormalTok{(iris[,}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{], iris[,}\DecValTok{5}\NormalTok{]) }
+\NormalTok{iris.eig <-}\StringTok{ }\KeywordTok{eigen}\NormalTok{(}\KeywordTok{solve}\NormalTok{(W)}\OperatorTok{%*%}\StringTok{ }\NormalTok{B)}
+\NormalTok{iris.eig}\OperatorTok{$}\NormalTok{values}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.732214e+01 4.195248e-01 1.426781e-14 6.229462e-16
+\end{verbatim}
+
+We can see that \(\mathbf W^{-1}\mathbf B\) only has two positive eigenvalues, and so is rank 2. We expected this, as we said the rank of \(\mathbf W^{-1}\mathbf B\) must be less than \(\min(g-1,p)= \min(2,4)=2\). We can plot these projections and look at the separation achieved.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{V <-}\StringTok{ }\NormalTok{iris.eig}\OperatorTok{$}\NormalTok{vectors[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}
+\NormalTok{Z <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(iris[,}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{])}\OperatorTok{%*%}\StringTok{ }\NormalTok{V}
+\NormalTok{ggplot2}\OperatorTok{::}\KeywordTok{qplot}\NormalTok{(Z[,}\DecValTok{1}\NormalTok{], Z[,}\DecValTok{2}\NormalTok{], }\DataTypeTok{colour=}\NormalTok{iris}\OperatorTok{$}\NormalTok{Species, }\DataTypeTok{xlab=}\StringTok{'LD1'}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{'LD2'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{09-lda_files/figure-latex/ldairis2d-1.pdf}
+\caption{\label{fig:ldairis2d}2-dimensional LDA projection of the iris data}
+\end{figure}
+
+We can see that the first projected coordinate is doing nearly all of the useful work in separating the three populations. We can see this in the eigenvalues (c.f. the scree plots used in PCA) which can be used to understand the importance of each projected coordinate in separating the populations (this is the \texttt{Proportion\ of\ trace} reported in the \texttt{lda} output).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris.eig}\OperatorTok{$}\NormalTok{values[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(iris.eig}\OperatorTok{$}\NormalTok{values)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.991212605 0.008787395
+\end{verbatim}
+
+R will automatically plot this projection for us:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{pty=}\StringTok{"s"}\NormalTok{)}
+\NormalTok{iris.lda <-}\StringTok{ }\KeywordTok{lda}\NormalTok{(Species }\OperatorTok{~}\NormalTok{., iris)}
+\KeywordTok{plot}\NormalTok{(iris.lda,}\DataTypeTok{col=}\KeywordTok{as.integer}\NormalTok{(iris}\OperatorTok{$}\NormalTok{Species)}\OperatorTok{+}\DecValTok{1}\NormalTok{, }\DataTypeTok{abbrev=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{09-lda_files/figure-latex/ldairis2db-1.pdf}
+\caption{\label{fig:ldairis2db}2-dimensional LDA projection of the iris data using the built-in R plotting function}
+\end{figure}
+
+Although this looks different to Figure \ref{fig:ldairis2d}, the projection is essentially the same it has just flipped the \(y\) axis.
+
+Using the option \texttt{dimen\ =\ 1} will plot histograms of the first LDA projection for each group, which all we need in this example to separate the populations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(lda.iris, }\DataTypeTok{dimen =} \DecValTok{1}\NormalTok{, }\DataTypeTok{type =} \StringTok{"b"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{09-lda_files/figure-latex/unnamed-chunk-27-1.pdf}
+
+\hypertarget{comparison-with-pca}{%
+\paragraph{Comparison with PCA}\label{comparison-with-pca}}
+\addcontentsline{toc}{paragraph}{Comparison with PCA}
+
+We can compare the LDA projection to the 2-dimensional projection found by PCA:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris.pca =}\StringTok{ }\KeywordTok{prcomp}\NormalTok{(iris[,}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{])}
+
+\NormalTok{iris}\OperatorTok{$}\NormalTok{PC1=iris.pca}\OperatorTok{$}\NormalTok{x[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{iris}\OperatorTok{$}\NormalTok{PC2=iris.pca}\OperatorTok{$}\NormalTok{x[,}\DecValTok{2}\NormalTok{]}
+\NormalTok{ggplot2}\OperatorTok{::}\KeywordTok{qplot}\NormalTok{(PC1, PC2, }\DataTypeTok{colour=}\NormalTok{Species, }\DataTypeTok{data=}\NormalTok{iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{09-lda_files/figure-latex/ldapcairis-1.pdf}
+\caption{\label{fig:ldapcairis}2-dimensional PCA projection of the iris data}
+\end{figure}
+
+PCA hasn't separated the 3 populations as cleanly as LDA did, but that is not a surprise as that is not its aim (it aim is to maximize the variance). PCA doesn't use the population labels, and so there is no reason why it should separate the populations. But this does illustrate the importance of choosing the right multivariate statistical methods.
+
+\hypertarget{links-between-methods}{%
+\subsection{Links between methods}\label{links-between-methods}}
+
+When \(g=2\), Fisher's rule and the sample ML rule with \(\boldsymbol{\Sigma}_1=\boldsymbol{\Sigma}_2=\boldsymbol{\Sigma}\) turn out to be the same. Note that in
+the sample ML rule we assumed that the two groups are from \(N_p({\boldsymbol{\mu}}_i, \boldsymbol{\Sigma})\)
+populations, but Fisher's rule makes no such assumption.
+
+\begin{proposition}
+\protect\hypertarget{prp:nine3}{}{\label{prp:nine3} }If \(g=2\) then Fisher's rule and the sample ML rule described in Section \ref{sample-lda} are equivalent.
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}Beyond the scope of the module.
+\end{proof}
+
+For \(g > 2\), the sample ML rule and Fisher's linear rule will not, in general, be the same. Fisher's rule is linear when \(g>2\) and is easier to implement than ML rules when there are several populations. It is often reasonable to use Fisher's rule for non-normal populations. In particular, Fisher's rule requires fewer assumptions than ML rules. However, the ML rule is `optimal' in some sense when its assumptions are valid.
+
+There is also a link between LDA and linear regression when there are only two groups. If we let
+
+\[
+y_i = \begin{cases} 1 &\mbox{ if }i \mbox{ is from } \Pi_1\\
+-1 &\mbox{ otherwise}
+\end{cases}
+\]
+
+then if we fit the model
+\[\mathbf y= \mathbf X\boldsymbol \beta+ \mathbf e\]
+we find \(\boldsymbol \beta\) is in the same direction as the first eigenvector of \(\mathbf W^{-1}\mathbf B\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\NormalTok{iris3 <-}\StringTok{ }\NormalTok{iris }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Species }\OperatorTok{!=}\StringTok{ "versicolor"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Sepal.Length, Sepal.Width, Species)}
+\NormalTok{iris3}\OperatorTok{$}\NormalTok{pm1 <-}\StringTok{ }\KeywordTok{as.integer}\NormalTok{(iris3}\OperatorTok{$}\NormalTok{Species)}\OperatorTok{-}\DecValTok{2} 
+\CommentTok{# convert to +1 and -1}
+\NormalTok{iris3.lm <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(pm1}\OperatorTok{~}\NormalTok{Sepal.Width}\OperatorTok{+}\NormalTok{Sepal.Length, iris3)}
+\KeywordTok{coef}\NormalTok{(iris3.lm)[}\DecValTok{2}\NormalTok{]}\OperatorTok{/}\KeywordTok{coef}\NormalTok{(iris3.lm)[}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Sepal.Width 
+##   -1.137257
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris.lda <-}\StringTok{ }\KeywordTok{lda}\NormalTok{(Species}\OperatorTok{~}\NormalTok{Sepal.Width}\OperatorTok{+}\NormalTok{Sepal.Length, iris3)}
+\KeywordTok{coef}\NormalTok{(iris.lda)[}\DecValTok{1}\NormalTok{]}\OperatorTok{/}\KeywordTok{coef}\NormalTok{(iris.lda)[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.137257
+\end{verbatim}
 
 \bibliography{book.bib,packages.bib}
 

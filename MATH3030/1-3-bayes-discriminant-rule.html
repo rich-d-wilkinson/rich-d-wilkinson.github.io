@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.3 Bayes discriminant rule | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.3 Bayes discriminant rule | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.3 Bayes discriminant rule | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1-2-lda-ML.html"/>
+<link rel="next" href="1-4-FLDA.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="1" data-path="1-lda.html"><a href="1-lda.html"><i class="fa fa-check"></i><b>1</b> Discriminant analysis</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-intro-delete-title-later.html"><a href="1-1-intro-delete-title-later.html"><i class="fa fa-check"></i><b>1.1</b> Intro - delete title later</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-intro-delete-title-later.html"><a href="1-1-intro-delete-title-later.html#linear-discriminant-analysis"><i class="fa fa-check"></i><b>1.1.1</b> Linear discriminant analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html"><i class="fa fa-check"></i><b>1.2</b> Maximum likelihood (ML) discriminant rule</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html#multivariate-gaussian-populations"><i class="fa fa-check"></i><b>1.2.1</b> Multivariate Gaussian populations</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>1.2.2</b> The sample ML discriminant rule</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-bayes-discriminant-rule.html"><a href="1-3-bayes-discriminant-rule.html"><i class="fa fa-check"></i><b>1.3</b> Bayes discriminant rule</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-bayes-discriminant-rule.html"><a href="1-3-bayes-discriminant-rule.html#lda-with-the-iris-data"><i class="fa fa-check"></i><b>1.3.1</b> LDA with the Iris data</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-3-bayes-discriminant-rule.html"><a href="1-3-bayes-discriminant-rule.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>1.3.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-FLDA.html"><a href="1-4-FLDA.html"><i class="fa fa-check"></i><b>1.4</b> Fisher’s linear discriminant rule</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-probability-of-misclassification.html"><a href="1-5-probability-of-misclassification.html"><i class="fa fa-check"></i><b>1.5</b> Probability of misclassification</a></li>
+<li class="chapter" data-level="1.6" data-path="1-6-computer-tasks.html"><a href="1-6-computer-tasks.html"><i class="fa fa-check"></i><b>1.6</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.7" data-path="1-7-exercises.html"><a href="1-7-exercises.html"><i class="fa fa-check"></i><b>1.7</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bayes-discriminant-rule" class="section level2">
+<h2><span class="header-section-number">1.3</span> Bayes discriminant rule</h2>
+<p>In the previous section, we implicitly assumed that each subject is equally likely to be from any of the <span class="math inline">\(g\)</span> populations. This is the simplest case but is an unrealistic assumption in practice.</p>
+<p>For example, suppose we want to classify photos on the internet as either being a photo of <em>Bill Evans</em> or <em>not Bill Evans</em>. Most photos on the internet are not of Bill Evans, and so we want to take this into account in the classifier, i.e., we want to take the base rate of occurence of each population into account.</p>
+<p>Suppose <em>a priori</em> the probability an observation is from population <span class="math inline">\(k\)</span> is <span class="math inline">\(\pi_k\)</span>, with
+<span class="math display">\[\sum_{k=1}^g \pi_k=1.\]</span>
+Then given a probability model <span class="math inline">\(f_k(\mathbf x)\)</span> for observations <span class="math inline">\(\mathbf x\)</span> from population <span class="math inline">\(k\)</span>, our posterior probability for observation <span class="math inline">\(\mathbf x\)</span> being from population <span class="math inline">\(k\)</span> is
+<span class="math display">\[{\mathbb{P}}(y=k \mid \mathbf x) = \frac{f_k(\mathbf x)\pi_k}{\sum_{j=1}^g f_k(\mathbf x)\pi_k}\]</span>
+by Bayes theorem.</p>
+
+<div class="definition">
+<span id="def:bayesclassifier" class="definition"><strong>Definition 1.3  </strong></span>The Bayes classifier assigns <span class="math inline">\(\mathbf x\)</span> to the population for which the posterior probability is highest:
+<span class="math display">\[d^{Bayes}(\mathbf x) =\arg \max_k {\mathbb{P}}(y=k \mid \mathbf x).\]</span>
+</div>
+
+<p>As before, if we assume each population has a multivariate normal distribution, then this simplifies.</p>
+
+<div class="proposition">
+<p><span id="prp:ldabayes" class="proposition"><strong>Proposition 1.3  </strong></span>If cases in population <span class="math inline">\(\Pi_k\)</span> have a <span class="math inline">\(N_p({\boldsymbol{\mu}}_k,\boldsymbol{\Sigma})\)</span> distribution, then the <strong>Bayes</strong> discriminant rule is
+<span class="math display">\[d(\mathbf x)= \arg\min_{k} \frac{1}{2}(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}_k)- \log \pi_k.\]</span></p>
+Equivalently, if
+<span class="math display">\[\delta_k(\mathbf x) = {\boldsymbol{\mu}}_k^\top \boldsymbol{\Sigma}^{-1} \mathbf x-\frac{1}{2}{\boldsymbol{\mu}}_k^\top \Sigma^{-1} {\boldsymbol{\mu}}_k +\log \pi_k\]</span>
+then
+<span class="math display">\[d(\mathbf x) = \arg \max \delta_k(\mathbf x).\]</span>
+I.e. this is a linear discriminant rule.
+</div>
+
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> See the exercises….?</p>
+</div>
+
+<p>In practice, we may not know the population probabilities <span class="math inline">\(\pi_k\)</span>. If so, we can estimate them from the data using
+<span class="math display">\[\hat{\pi}_k = \frac{n_k}{n}\]</span>
+and substitute <span class="math inline">\(\hat{\pi}_k\)</span> for <span class="math inline">\(\pi_k\)</span> (as well as substituting <span class="math inline">\(\hat{{\boldsymbol{\mu}}}_k\)</span>, <span class="math inline">\(\widehat{\boldsymbol{\Sigma}}\)</span> etc).</p>
+<p>If we set <span class="math inline">\(\pi_k = \frac{1}{g}\)</span> then the Bayes discriminant rule is the same as the ML discriminant rule. The <code>MASS</code> implementation <code>lda</code> uses the Bayes discriminant rule, but gives you the option of setting <span class="math inline">\(\pi_k\)</span> if known, but otherwise estimates the class probabilities.</p>
+<div id="lda-with-the-iris-data" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> LDA with the Iris data</h3>
+<p>Let’s consider doing LDA with the iris data. To begin with, lets use just the setosa and virginica species so that we only have <span class="math inline">\(g=2\)</span> populations. We will also just use the sepal measurements so that <span class="math inline">\(p=2\)</span>. If we plot the data, we can see that the two populations should be easy to classify using just these two measurements:</p>
+<p><img src="09-lda_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>The sample means and variances for each group are</p>
+<p><span class="math display">\[\begin{eqnarray*}
+\bar{\mathbf x}_s = \begin{pmatrix}5.01 \\3.43 \\\end{pmatrix} &amp;\qquad&amp; \bar{\mathbf x}_v = \begin{pmatrix}6.59 \\2.97 \\\end{pmatrix} \\
+\mathbf S_s = \begin{pmatrix}0.124&amp;0.0992 \\0.0992&amp;0.144 \\\end{pmatrix} &amp;\qquad&amp; \mathbf S_v =\begin{pmatrix}0.404&amp;0.0938 \\0.0938&amp;0.104 \\\end{pmatrix}
+\end{eqnarray*}\]</span>
+where the <span class="math inline">\(s\)</span> subscript gives the values for setosa, and <span class="math inline">\(v\)</span> for virginica.</p>
+<p>We have data on <span class="math inline">\(n=50\)</span> flowers in each population. Hence,
+<span class="math display">\[\begin{eqnarray*}
+\widehat{\boldsymbol{\Sigma}} &amp;=&amp; \frac{1}{50+50-2} \left(50 \mathbf S_s + 50 \mathbf S_v \right)= \begin{pmatrix}0.27&amp;0.0985 \\0.0985&amp;0.126 \\\end{pmatrix}, \\
+\bar{\mathbf x}_s - \bar{\mathbf x}_v &amp;=&amp; \begin{pmatrix}-1.58 \\0.454 \\\end{pmatrix}, \\
+\hat{\mathbf h} &amp;=&amp; \frac{1}{2} (\bar{\mathbf x}_s + \bar{\mathbf x}_v) = \begin{pmatrix}5.797 \\3.201 \\\end{pmatrix},
+\end{eqnarray*}\]</span>
+and
+<span class="math display">\[\hat{\mathbf a} = \widehat{\boldsymbol{\Sigma}}^{-1} (\bar{\mathbf x}_s - \bar{\mathbf x}_v) = \begin{pmatrix}5.18&amp;-4.04 \\-4.04&amp;11.1 \\\end{pmatrix} \begin{pmatrix}-1.58 \\0.454 \\\end{pmatrix} = \begin{pmatrix}-10.031 \\11.407 \\\end{pmatrix}.\]</span></p>
+<p>The sample ML discriminant rule allocates a new observation\
+<span class="math inline">\(\mathbf x= (z_1, z_2)^\top\)</span> to <span class="math inline">\(\Pi_{\mbox{setosa}}\)</span> if and only if
+<span class="math display">\[ \hat{\mathbf a}^\top (\mathbf x- \hat{\mathbf h}) = \begin{pmatrix}-10.031&amp;11.407 \\\end{pmatrix} \begin{pmatrix} z_1 - 5.797 \\ z_2 - 3.201 \end{pmatrix} &gt; 0.\]</span></p>
+<p>If we draw on the line defined by
+<span class="math display">\[\mathbf a^\top (\mathbf x-\mathbf h)=0\]</span>
+which can be written as
+<span class="math display">\[z_2 = \frac{1}{a_2}(\mathbf a^\top\mathbf h-a_1z_1) = -1.8963517 - -0.8793085 z_1\]</span>
+we can see this line clearly separates the two species of iris.</p>
+<p><img src="09-lda_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>For example, if an iris had a sepal length of 5.8 and a sepal width of 2.5 then</p>
+<p><span class="math display">\[ \hat{\mathbf a}^\top (\mathbf x- \hat{\mathbf h}) = \begin{pmatrix}-10.031&amp;11.407 \\\end{pmatrix} \begin{pmatrix} 5.8 - 5.797 \\ 2.5 - 3.201 \end{pmatrix} =-8.0267032 &lt; 0,\]</span>
+and so we would allocate this iris to virginia.</p>
+<p>As always, there is an R command to do this work for us. The command is called <code>lda</code> and it is in the <code>MASS</code> R package.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">iris2 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species <span class="op">!=</span><span class="st"> &quot;versicolor&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Sepal.Length, Sepal.Width, Species)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">iris.lda1 &lt;-<span class="st"> </span><span class="kw">lda</span>(Species <span class="op">~</span><span class="st"> </span>., iris2)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co"># lda(Species ~ Sepal.Length+Sepal.Width, iris2) </span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">  <span class="co">#  does the same thing</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">iris.lda1</a></code></pre></div>
+<pre><code>## Call:
+## lda(Species ~ ., data = iris2)
+## 
+## Prior probabilities of groups:
+##    setosa virginica 
+##       0.5       0.5 
+## 
+## Group means:
+##           Sepal.Length Sepal.Width
+## setosa           5.006       3.428
+## virginica        6.588       2.974
+## 
+## Coefficients of linear discriminants:
+##                    LD1
+## Sepal.Length  2.208596
+## Sepal.Width  -2.511742</code></pre>
+<p>You can see that this has computed the group means, and the lda coefficients. The coefficients are different to the ones we compute for <span class="math inline">\(\mathbf a\)</span>, but have the same ratio, which is all that matters for us.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">iris.coef &lt;-<span class="st"> </span><span class="kw">coef</span>(iris.lda1)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">iris.coef[<span class="dv">1</span>]<span class="op">/</span>iris.coef[<span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## [1] -0.8793085</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">a[<span class="dv">1</span>]<span class="op">/</span>a[<span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## [1] -0.8793085</code></pre>
+<p>The output also includes the estimate of the prior probabilities….?????????????????????????????????</p>
+<p>We can make predictions about new points:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">z=<span class="kw">data.frame</span>(<span class="dt">Sepal.Length=</span><span class="fl">5.8</span>, <span class="dt">Sepal.Width=</span><span class="fl">2.5</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">predict</span>(iris.lda1, z)</a></code></pre></div>
+<pre><code>## $class
+## [1] virginica
+## Levels: setosa versicolor virginica
+## 
+## $posterior
+##         setosa virginica
+## 1 0.0002771946 0.9997228
+## 
+## $x
+##        LD1
+## 1 1.767357</code></pre>
+<p>and in this case it gives us the</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">library</span>(mvtnorm)</a></code></pre></div>
+<pre><code>## Warning: package &#39;mvtnorm&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## 
+## Attaching package: &#39;mvtnorm&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:mixtools&#39;:
+## 
+##     dmvnorm, rmvnorm</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">l_set=mvtnorm<span class="op">::</span><span class="kw">dmvnorm</span>(z, <span class="dt">mean =</span> xbar_set, <span class="dt">sigma =</span> S_set)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">l_vir=mvtnorm<span class="op">::</span><span class="kw">dmvnorm</span>(z, <span class="dt">mean =</span> xbar_vir, <span class="dt">sigma =</span> S_vir)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">c</span>(l_set,l_vir)<span class="op">/</span>(l_set<span class="op">+</span>l_vir)</a></code></pre></div>
+<pre><code>##         1         1 
+## 3.513e-09 1.000e+00</code></pre>
+<p>Note that we could also</p>
+<!--##### Example: Student marks
+
+Consider the G11PRB and G11STA module marks for $n_1 = 98$ students on G100 and $n_2 = 46$ students on G103.  The sample means and variances for each group are given by
+\begin{eqnarray*}
+\bar{\bx}_1 = \begin{pmatrix} 60.582 \\ 62.786 \end{pmatrix} &\qquad& \bar{\bx}_2 = \begin{pmatrix} 64.761 \\ 60.457 \end{pmatrix} \\
+\bS_1 = \begin{pmatrix} 201.04 & 129.56 \\ 129.56 & 316.21 \end{pmatrix} &\qquad& \bS_2 = \begin{pmatrix} 229.88 & 177.02 \\ 177.02 & 354.16 \end{pmatrix}
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+\bS_u &=& \frac{1}{98+46-2} \lb 98 \bS_1 + 46 \bS_2 \rb = \begin{pmatrix} 213.21 & 146.76 \\ 146.76 & 332.96 \end{pmatrix}, \\
+\bar{\bx}_1 - \bar{\bx}_2 &=& \begin{pmatrix} -4.179 \\ 2.329 \end{pmatrix}, \\
+\hat{\bh} &=& \frac{1}{2} (\bar{\bx}_1 + \bar{\bx}_2) = \begin{pmatrix} 62.671 \\ 61.621 \end{pmatrix},
+\end{eqnarray*}
+and
+$$\hat{\ba} = \bS_u^{-1} (\bar{\bx}_1 - \bar{\bx}_2) = \begin{pmatrix} 0.0067 & -0.0030 \\ -0.0030 & 0.0043 \end{pmatrix} \begin{pmatrix} -4.179 \\ 2.329 \end{pmatrix} = \begin{pmatrix} -0.035 \\ 0.022 \end{pmatrix}.$$
+
+The sample ML discriminant rule allocates a new observation\\
+ $\bx = (z_1, z_2)^\top$ to $\Pi_1$ if and only if
+$$ \hat{\ba}^\top (\bx - \hat{\bh}) = \begin{pmatrix} -0.035 & 0.022 \end{pmatrix} \begin{pmatrix} z_1 - 62.671 \\ z_2 - 61.621 \end{pmatrix} > 0.$$
+
+For example, if a student on this year's course scores 80 on G11PRB and 60 on G11STA then
+$$ \hat{\ba}^\top (\bx - \hat{\bh}) = \begin{pmatrix} -0.035 & 0.022 \end{pmatrix} \begin{pmatrix} 80 - 62.671 \\ 60 - 61.621 \end{pmatrix} = -0.644 < 0,$$
+and so we would allocate this student to G103.  The boundary, where $\hat{\ba}^\top (\bx - \hat{\bh}) = 0$, is shown below.
+
+FIX
+<!--
+\begin{center}
+\includegraphics[width=12cm,angle=0]{sample_mldr1.pdf}
+\end{center}
+-->
+<!--Note that the boundary line passes half-way between the two sample means.  In this example it is difficult to discriminate accurately between G100 and G103 because there is a large overlap between the two populations.
+
+We could extend the example to include, say, students on GL11.  Here the boundary between the three populations is piece-wise linear and they meet at a common point.
+
+FIX-->
+<!--
+\begin{center}
+\includegraphics[width=12cm,angle=0]{sample_mldr2.pdf}
+\end{center}
+-->
+</div>
+<div id="quadratic-discriminant-analysis-qda" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> Quadratic Discriminant Analysis (QDA)</h3>
+<p>We have seen that in the case where the populations all share a common covariance matrix, <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, that the decision boundaries are linear (i.e. hyperplanes). We also saw in example <a href="#ex:exnine1"><strong>??</strong></a> in a one-dimensional example that when the two populations had different variances we found a quadratic decision boundary.</p>
+<p>In general, if we allow the variances to differ between populations, so that we model <span class="math inline">\(\mathbf x\sim N_p(\mu_k, \boldsymbol{\Sigma}_k)\)</span> for population <span class="math inline">\(k\)</span>, then
+we can no longer ignore the determinant of the covariance matrix in the likelihood (see Equation <a href="1-2-lda-ML.html#eq:mvnlike">(1.3)</a>). In this case, the decision rule is
+<span class="math display">\[
+d(\mathbf x)=\arg\max_k \left(-\frac{1}{2} \log |\boldsymbol{\Sigma}_k| - \frac{1}{2}(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}_k^{-1} (\mathbf x-{\boldsymbol{\mu}}_k)+\log \pi_k\right). \]</span></p>
+<p>We cannot ignore the quadratic term in <span class="math inline">\(\mathbf x\)</span> here as it depends upon the population indicator <span class="math inline">\(k\)</span>. Thus in this case we get a quadratic decision boundary rather than a linear one.</p>
+<p>The <code>qda</code> function in the <code>MASS</code> package implements quadratic discriminant analysis…..
+But you can often get similar result by just including quadratic terms in LDA……..</p>
+<p>EXAMPLE WITH IRIS???????</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1-2-lda-ML.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-4-FLDA.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

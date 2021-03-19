@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="2-3-properties.html"/>
-<link rel="next" href="2-5-exercises-1.html"/>
+<link rel="prev" href="2-3-mnist.html"/>
+<link rel="next" href="2-5-exercises.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,8 +49,6 @@
 
 
 
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -133,45 +131,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html"><i class="fa fa-check"></i>PART II: Dimension reduction methods</a><ul>
-<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#a-warning"><i class="fa fa-check"></i>A warning</a></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="1" data-path="1-lda.html"><a href="1-lda.html"><i class="fa fa-check"></i><b>1</b> Discriminant analysis</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-intro-delete-title-later.html"><a href="1-1-intro-delete-title-later.html"><i class="fa fa-check"></i><b>1.1</b> Intro - delete title later</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-intro-delete-title-later.html"><a href="1-1-intro-delete-title-later.html#linear-discriminant-analysis"><i class="fa fa-check"></i><b>1.1.1</b> Linear discriminant analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="1-pca.html"><a href="1-pca.html"><i class="fa fa-check"></i><b>1</b> Principal Component Analysis (PCA)</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html"><i class="fa fa-check"></i><b>1.1</b> PCA: an informal introduction</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#notation-recap"><i class="fa fa-check"></i><b>1.1.1</b> Notation recap</a></li>
-<li class="chapter" data-level="1.1.2" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#first-principal-component"><i class="fa fa-check"></i><b>1.1.2</b> First principal component</a></li>
-<li class="chapter" data-level="1.1.3" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#second-principal-component"><i class="fa fa-check"></i><b>1.1.3</b> Second principal component</a></li>
-<li class="chapter" data-level="1.1.4" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#geometric-interpretation-1"><i class="fa fa-check"></i><b>1.1.4</b> Geometric interpretation</a></li>
-<li class="chapter" data-level="1.1.5" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#example"><i class="fa fa-check"></i><b>1.1.5</b> Example</a></li>
-<li class="chapter" data-level="1.1.6" data-path="1-1-pca-an-informal-introduction.html"><a href="1-1-pca-an-informal-introduction.html#example-iris"><i class="fa fa-check"></i><b>1.1.6</b> Example: Iris</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html"><i class="fa fa-check"></i><b>1.2</b> Maximum likelihood (ML) discriminant rule</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html#multivariate-normal-populations"><i class="fa fa-check"></i><b>1.2.1</b> Multivariate normal populations</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>1.2.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html#two-populations"><i class="fa fa-check"></i><b>1.2.3</b> Two populations</a></li>
+<li class="chapter" data-level="1.2.4" data-path="1-2-lda-ML.html"><a href="1-2-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>1.2.4</b> More than two populations</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>1.2</b> PCA: a formal description with proofs</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>1.2.1</b> Properties of principal components</a></li>
-<li class="chapter" data-level="1.2.2" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>1.2.2</b> Example: Football</a></li>
-<li class="chapter" data-level="1.2.3" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>1.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
-<li class="chapter" data-level="1.2.4" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>1.2.4</b> Population PCA</a></li>
-<li class="chapter" data-level="1.2.5" data-path="1-2-pca-a-formal-description-with-proofs.html"><a href="1-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>1.2.5</b> PCA under transformations of variables</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-lda-Bayes.html"><a href="1-3-lda-Bayes.html"><i class="fa fa-check"></i><b>1.3</b> Bayes discriminant rule</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-lda-Bayes.html"><a href="1-3-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>1.3.1</b> Example: LDA using the Iris data</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="1-3-an-alternative-view-of-pca.html"><a href="1-3-an-alternative-view-of-pca.html"><i class="fa fa-check"></i><b>1.3</b> An alternative view of PCA</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="1-3-an-alternative-view-of-pca.html"><a href="1-3-an-alternative-view-of-pca.html#pca-mnist"><i class="fa fa-check"></i><b>1.3.1</b> Example: MNIST handwritten digits</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="1-4-pca-comptask.html"><a href="1-4-pca-comptask.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
-<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+<li class="chapter" data-level="2" data-path="2-here.html"><a href="2-here.html"><i class="fa fa-check"></i><b>2</b> HERE</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="2-here.html"><a href="2-here.html#could-do-prediction-accuracy-here"><i class="fa fa-check"></i><b>2.0.1</b> Could do prediction accuracy here?</a></li>
+<li class="chapter" data-level="2.0.2" data-path="2-here.html"><a href="2-here.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>2.0.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="2.1" data-path="2-1-FLDA.html"><a href="2-1-FLDA.html"><i class="fa fa-check"></i><b>2.1</b> Fisher’s linear discriminant rule</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-probability-of-misclassification.html"><a href="2-2-probability-of-misclassification.html"><i class="fa fa-check"></i><b>2.2</b> Probability of misclassification</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-probability-of-misclassification.html"><a href="2-2-probability-of-misclassification.html#links-between-lda-fishers-discriminant-analysis-cca-and-linear-models"><i class="fa fa-check"></i><b>2.2.1</b> Links between LDA, Fisher’s Discriminant Analysis, CCA, and linear models</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="2-cca.html"><a href="2-cca.html"><i class="fa fa-check"></i><b>2</b> Canonical Correlation Analysis (CCA)</a><ul>
-<li class="chapter" data-level="2.1" data-path="2-1-cca1.html"><a href="2-1-cca1.html"><i class="fa fa-check"></i><b>2.1</b> The first pair of canonical variables</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="2-1-cca1.html"><a href="2-1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>2.1.1</b> The first canonical components</a></li>
-<li class="chapter" data-level="2.1.2" data-path="2-1-cca1.html"><a href="2-1-cca1.html#premcca"><i class="fa fa-check"></i><b>2.1.2</b> Example: Premier league football</a></li>
-</ul></li>
-<li class="chapter" data-level="2.2" data-path="2-2-the-full-set-of-canonical-correlations.html"><a href="2-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>2.2</b> The full set of canonical correlations</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="2-2-the-full-set-of-canonical-correlations.html"><a href="2-2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>2.2.1</b> Example continued</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="2-3-properties.html"><a href="2-3-properties.html"><i class="fa fa-check"></i><b>2.3</b> Properties</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="2-3-properties.html"><a href="2-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>2.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
-<li class="chapter" data-level="2.3.2" data-path="2-3-properties.html"><a href="2-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>2.3.2</b> Invariance/equivariance properties of CCA</a></li>
-</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-mnist.html"><a href="2-3-mnist.html"><i class="fa fa-check"></i><b>2.3</b> MNIST</a></li>
 <li class="chapter" data-level="2.4" data-path="2-4-computer-tasks.html"><a href="2-4-computer-tasks.html"><i class="fa fa-check"></i><b>2.4</b> Computer tasks</a></li>
-<li class="chapter" data-level="2.5" data-path="2-5-exercises-1.html"><a href="2-5-exercises-1.html"><i class="fa fa-check"></i><b>2.5</b> Exercises</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-exercises.html"><a href="2-5-exercises.html"><i class="fa fa-check"></i><b>2.5</b> Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -195,130 +179,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="computer-tasks" class="section level2">
 <h2><span class="header-section-number">2.4</span> Computer tasks</h2>
-<div id="task-1" class="section level5 unnumbered">
-<h5>Task 1</h5>
-<p>Consider again the crabs dataset you looked at in the exercises in the chapter on PCA (see <a href="1-4-pca-comptask.html#pca-comptask">1.4</a>).
-We now consider a canonical correlation analysis in which one set of variables, the <span class="math inline">\(\mathbf x\)</span>-set, is given by CL and CW and the
-other set, the <span class="math inline">\(\mathbf y\)</span>-set, is given by FL, RW and BD.</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
-<a class="sourceLine" id="cb78-2" data-line-number="2">?crabs           <span class="co"># read the help page to find out about the dataset</span></a>
-<a class="sourceLine" id="cb78-3" data-line-number="3">X=<span class="kw">as.matrix</span>(crabs[<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>])    </a>
-<a class="sourceLine" id="cb78-4" data-line-number="4">n=<span class="dv">200</span>                                      <span class="co"># sample size</span></a>
-<a class="sourceLine" id="cb78-5" data-line-number="5">H=<span class="kw">diag</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n))<span class="op">-</span><span class="kw">rep</span>(<span class="dv">1</span>,n)<span class="op">%*%</span><span class="kw">t</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n))<span class="op">/</span>n  <span class="co"># n times n centering matrix</span></a>
-<a class="sourceLine" id="cb78-6" data-line-number="6"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb78-7" data-line-number="7">X1 =<span class="st"> </span>crabs <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(CL, CW)  <span class="op">%&gt;%</span>as.matrix            </a>
-<a class="sourceLine" id="cb78-8" data-line-number="8"><span class="co"># store CL and CW in X1</span></a>
-<a class="sourceLine" id="cb78-9" data-line-number="9">Y1 =<span class="st"> </span>crabs <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(FL, RW, BD) <span class="op">%&gt;%</span><span class="st"> </span>as.matrix            </a>
-<a class="sourceLine" id="cb78-10" data-line-number="10"><span class="co"># store FL, RW and BD in Y1</span></a>
-<a class="sourceLine" id="cb78-11" data-line-number="11">Sxx=<span class="kw">t</span>(X1)<span class="op">%*%</span>H<span class="op">%*%</span>X1<span class="op">/</span>n                       <span class="co"># find x-variable variance matrix</span></a>
-<a class="sourceLine" id="cb78-12" data-line-number="12">Syy=<span class="kw">t</span>(Y1)<span class="op">%*%</span>H<span class="op">%*%</span>Y1<span class="op">/</span>n                       <span class="co"># find y-variable variance matrix</span></a>
-<a class="sourceLine" id="cb78-13" data-line-number="13">Sxy=<span class="kw">t</span>(X1)<span class="op">%*%</span>H<span class="op">%*%</span>Y1<span class="op">/</span>n                       <span class="co"># find cross-covariance matrix</span></a></code></pre></div>
-<ol style="list-style-type: lower-roman">
-<li><p>calculate <span class="math inline">\({\bf S}_{\bf x x}^{-1/2}\)</span> and <span class="math inline">\({\bf S}_{\bf yy}^{-1/2}\)</span> by first computing the spectral decomposition of <span class="math inline">\(\mathbf S_{xx}\)</span> and <span class="math inline">\(\mathbf S_{yy}\)</span>.</p></li>
-<li><p>Now calculate the matrix <span class="math inline">\(\mathbf Q\)</span> and compute its singular value decomposition.</p></li>
-</ol>
-<!--
 
-```r
-A=Cx%*%Sxy%*%Cy            # calculate the A matrix (see Chapter 5)
-U4=svd(A)$u                # extract the U matrix (our notation) in svd
-V4=svd(A)$v                # extract the V matrix (our notation) in svd
-d4=svd(A)$d                # extract the singular values in svd
-acheck=Cx%*%U4[,1]         # calculate optimal x-weights
-bcheck=Cy%*%V4[,1]         # calculate optimal y-weights
-xscores1=H%*%X1%*%acheck   # calculate centred x-scores for 1st CC
-yscores1=H%*%Y1%*%bcheck   # calculate centred y-scores for 1st CC
-plot(xscores1,yscores1)    # plot x-scores against y-scores for 1st CC
-```
--->
-<ol start="3" style="list-style-type: lower-roman">
-<li><p>Compute the first pair of CC vectors and CC variables <span class="math inline">\(\eta_1\)</span> and <span class="math inline">\(\psi_1\)</span>. What is the 1st canonical correlation?</p></li>
-<li><p>Plot <span class="math inline">\(\psi_1\)</span> vs <span class="math inline">\(\eta_1\)</span>. What does the plot tell you (if anything)?</p></li>
-<li><p>Repeat the above to find the second pair of CC vectors, and the second set of CC variables/scores, and plot these against each other and against the first CC scores. Is there any interesting structure in any of the plots? Which plots suggest random scatter?</p></li>
-</ol>
-<!--- Test the following hypotheses: (i) that both CC coefficients are zero, and (ii) that at most one of the CC coefficients is non-zero.  What do you conclude from your findings?
--->
-<ol start="6" style="list-style-type: lower-roman">
-<li>Finally, repeat the analysis above using the <code>cc</code> command and <code>plt.cc</code> from the package <code>CCA</code> which you will need to download.</li>
-</ol>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1">cca&lt;-<span class="kw">cc</span>(X1,Y1)</a>
-<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="kw">plt.cc</span>(cca, <span class="dt">var.label=</span><span class="ot">TRUE</span>)</a></code></pre></div>
-</div>
-<div id="task-2" class="section level5 unnumbered">
-<h5>Task 2</h5>
-<p>The full Premier League dataset is available at
-<a href="https://www.rotowire.com/soccer/league-table.php?season=2019">https://www.rotowire.com/soccer/league-table.php?season=2018</a>. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.</p>
-<p>Read the data into R (hint: try the <code>read.csv</code> command).</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">read.csv</span>(x , <span class="dt">file=</span><span class="st">&quot;/YOURDIRECTORY/prem_league_data.txt, sep=&quot;</span> <span class="st">&quot;, header=TRUE)</span></a></code></pre></div>
-<p>If you are not sure what the name of YOURDIRECTORY is where the file is located, then a useful command to find out is <code>file.choose()</code></p>
-<ol style="list-style-type: lower-roman">
-<li><p>Check that you can reproduce, and agree with, the calculations done in this chapter.</p></li>
-<li><p>Consider now doing CCA with <span class="math inline">\(\mathbf x=(W,D)\)</span> and <span class="math inline">\(\mathbf y=(G,GA, L)\)</span>. Note that if you knew <span class="math inline">\(W\)</span> and <span class="math inline">\(D\)</span>, you could calculate <span class="math inline">\(L\)</span>. Without doing any computation, what do you expect the first canoncial correlation to be? What will the first pair of CC vectors be (upto a multiplicative constant)?</p></li>
-<li><p>Check your intuition by doing the calculation in R:</p></li>
-</ol>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">X &lt;-<span class="st"> </span>table[,<span class="kw">c</span>(<span class="st">&#39;W&#39;</span>,<span class="st">&#39;D&#39;</span>)] </a>
-<a class="sourceLine" id="cb81-2" data-line-number="2">Y &lt;-<span class="st"> </span>table[,<span class="kw">c</span>(<span class="st">&#39;G&#39;</span>,<span class="st">&#39;GA&#39;</span>,<span class="st">&#39;L&#39;</span>)] </a>
-<a class="sourceLine" id="cb81-3" data-line-number="3"><span class="kw">cc</span>(X,Y)</a></code></pre></div>
-</div>
-<div id="task-3" class="section level5 unnumbered">
-<h5>Task 3</h5>
-<!--https://stats.idre.ucla.edu/r/dae/canonical-correlation-analysis/-->
-<p>We will now look data measured from 600 first year university students. Measurements were made on three psychological variables:</p>
-<ul>
-<li>Locus of Control: the degree to someone believes that they, as opposed to external forces, have control over the outcome of events in their lives.</li>
-<li>Self Concept: an indication of whether a person tends to hold a generally positive and consistent or negative and variable self-view.</li>
-<li>Motivation: how motivated an individual is</li>
-</ul>
-<p>which will form our <span class="math inline">\(\mathbf X\)</span> variables. The <span class="math inline">\(\mathbf Y\)</span> variables are four academic scores (standardized test scores)</p>
-<ul>
-<li>Reading</li>
-<li>Writing</li>
-<li>Math</li>
-<li>Science</li>
-</ul>
-<p>and gender (1=Male, 0 = Female) We are interested in how the set of psychological variables relates to the academic variables and gender.</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">mm &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://stats.idre.ucla.edu/stat/data/mmreg.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="kw">colnames</span>(mm) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Concept&quot;</span>, <span class="st">&quot;Motivation&quot;</span>, <span class="st">&quot;Read&quot;</span>, <span class="st">&quot;Write&quot;</span>, <span class="st">&quot;Math&quot;</span>,</a>
-<a class="sourceLine" id="cb82-3" data-line-number="3">    <span class="st">&quot;Science&quot;</span>, <span class="st">&quot;Sex&quot;</span>)</a>
-<a class="sourceLine" id="cb82-4" data-line-number="4"><span class="kw">summary</span>(mm)</a>
-<a class="sourceLine" id="cb82-5" data-line-number="5">psych &lt;-<span class="st"> </span>mm[, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb82-6" data-line-number="6">acad &lt;-<span class="st"> </span>mm[, <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>]</a></code></pre></div>
-<p>Conduct CCA on these data. Provide an interpretation of your results.</p>
-<!--
-We will carry out some canonical correlation analysis (CCA) on the Boston Housing dataset from the `mlbench` library.
+<p>Open RStudio and open an R markdown document for carrying out this computer practical. Save the file, carry out the tasks and regularly make sure
+you can successfully knit the file, as you will need to do that for the forthcoming coursework.</p>
+
+<p>Consider the famous dataset known either as Fisher’s or Anderson’s iris data set which gives the measurements in centimetres of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are {}, {}, and {}.</p>
+
+<p>We will carry out discriminant analysis of the classic iris dataset, but just between the first two species initially. Later we’ll consider all three groups.
+Note that the sample ML discriminant rule is the same as Fisher’s linear discriminant analysis when there are <span class="math inline">\(g=2\)</span> groups.</p>
 
 
-```r
-library(mlbench) # the dataset is from this package/
-library(CCA)
-data(BostonHousing2)
-library(dplyr)
-X = BostonHousing2 %>% select(crim, zn, indus, nox,rm, age)
-Y = BostonHousing2 %>% select(cmedv, lstat,  ptratio, tax, dis)
-```
+<p>We are going to select 70% of the data at random as the training data, and then evaluate the performance of the discriminant rule on the
+remaining 30% test data.</p>
+<p>Select the test and training data by taking a random sample of 70% of the rows for training, and the rest for testing.</p>
 
+<p>We can see that the two groups are quite different, but there is some overlap.</p>
+<p>Let’s look at the form of the classification region, with the linear boundary between the classes. Observations
+that are misclassified in the training set are shown in red.</p>
+<p>We give a table of classifications for the training set.</p>
 
-Conduct a canonical correlation analysis of this data. In particular,
+<p>This is not really a fair evaluation of the method, because we have classified the training data using the training data. A fairer way
+of evaluating the rule is to compare how the test dataset is classified, versus the true species values.</p>
 
-```r
-cca<-cc(X,Y)
-cca$cor   #gives the canonical correlations (singular values of A in our notes) Note the first singular value is large. 
-plt.var(cca, d1=1, d2=2, var.label = TRUE)
-```
+<p>These tables of results are known as `confusion matrices’.</p>
 
+<p>A new iris flower is found which is thought to be one of these two species (versicolor or virginica). It has the following measurements:</p>
+<p>Sepal.Length = 6.1,
+Sepal.Width = 2.9,
+Petal.Length = 4.2,
+Petal.Width = 1.3.</p>
+<p>How would we classify this new flower, given the full dataset is available as training data from these two species?</p>
 
-[Note: these commands were also used on the Boston Housing data in lectures and I have provided the html output on the Moodle page, which could be helpful]. 
+<p>So, the predicted class is in out$class, so it is classified as versicolor (group 2)</p>
 
--->
-</div>
+<p>Now we consider Fisher’s linear discriminant on all three (<span class="math inline">\(g=3\)</span>) groups</p>
+
+<p>Now plot the classification regions, with three classes:</p>
+
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="2-3-properties.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="2-5-exercises-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2-3-mnist.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-5-exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

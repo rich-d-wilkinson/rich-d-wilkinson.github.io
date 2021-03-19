@@ -264,6 +264,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5" data-path="7-5-exercises-4.html"><a href="7-5-exercises-4.html"><i class="fa fa-check"></i><b>7.5</b> Exercises</a></li>
 <li class="chapter" data-level="7.6" data-path="7-6-computer-tasks-3.html"><a href="7-6-computer-tasks-3.html"><i class="fa fa-check"></i><b>7.6</b> Computer tasks</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="8-lm.html"><a href="8-lm.html"><i class="fa fa-check"></i><b>8</b> The Multivariate Linear Model</a><ul>
+<li class="chapter" data-level="8.1" data-path="8-1-the-standard-univariate-linear-model.html"><a href="8-1-the-standard-univariate-linear-model.html"><i class="fa fa-check"></i><b>8.1</b> The standard univariate linear model</a></li>
+<li class="chapter" data-level="8.2" data-path="8-2-multivariate-linear-model.html"><a href="8-2-multivariate-linear-model.html"><i class="fa fa-check"></i><b>8.2</b> Multivariate Linear Model</a></li>
+<li class="chapter" data-level="8.3" data-path="8-3-one-way-manova.html"><a href="8-3-one-way-manova.html"><i class="fa fa-check"></i><b>8.3</b> One-way MANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="9" data-path="9-lda.html"><a href="9-lda.html"><i class="fa fa-check"></i><b>9</b> Discriminant analysis</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="9-lda.html"><a href="9-lda.html#linear-discriminant-analysis"><i class="fa fa-check"></i><b>9.0.1</b> Linear discriminant analysis</a></li>
+<li class="chapter" data-level="9.1" data-path="9-1-lda-ML.html"><a href="9-1-lda-ML.html"><i class="fa fa-check"></i><b>9.1</b> Maximum likelihood (ML) discriminant rule</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="9-1-lda-ML.html"><a href="9-1-lda-ML.html#multivariate-normal-populations"><i class="fa fa-check"></i><b>9.1.1</b> Multivariate normal populations</a></li>
+<li class="chapter" data-level="9.1.2" data-path="9-1-lda-ML.html"><a href="9-1-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>9.1.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="9.1.3" data-path="9-1-lda-ML.html"><a href="9-1-lda-ML.html#two-populations"><i class="fa fa-check"></i><b>9.1.3</b> Two populations</a></li>
+<li class="chapter" data-level="9.1.4" data-path="9-1-lda-ML.html"><a href="9-1-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>9.1.4</b> More than two populations</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="9-2-lda-Bayes.html"><a href="9-2-lda-Bayes.html"><i class="fa fa-check"></i><b>9.2</b> Bayes discriminant rule</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="9-2-lda-Bayes.html"><a href="9-2-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>9.2.1</b> Example: LDA using the Iris data</a></li>
+<li class="chapter" data-level="9.2.2" data-path="9-2-lda-Bayes.html"><a href="9-2-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>9.2.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="9.2.3" data-path="9-2-lda-Bayes.html"><a href="9-2-lda-Bayes.html#prediction-accuracy"><i class="fa fa-check"></i><b>9.2.3</b> Prediction accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="9-3-FLDA.html"><a href="9-3-FLDA.html"><i class="fa fa-check"></i><b>9.3</b> Fisher’s linear discriminant rule</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="9-3-FLDA.html"><a href="9-3-FLDA.html#iris-example-continued-1"><i class="fa fa-check"></i><b>9.3.1</b> Iris example continued</a></li>
+<li class="chapter" data-level="9.3.2" data-path="9-3-FLDA.html"><a href="9-3-FLDA.html#links-between-methods"><i class="fa fa-check"></i><b>9.3.2</b> Links between methods</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
 
@@ -356,12 +380,12 @@ is assumed known.</p>
 &amp;=5.84
 \end{align*}\]</span></p>
 <p>Under <span class="math inline">\(H_0\)</span>, <span class="math inline">\(\zeta^2\sim \chi^2_2\)</span>. and so the critical value is <span class="math inline">\(\chi^2_{2,0.05} = 5.991\)</span>.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1"><span class="kw">qchisq</span>(<span class="fl">0.95</span>, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1"><span class="kw">qchisq</span>(<span class="fl">0.95</span>, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 5.991465</code></pre>
 <p>The plot below shows the density of a <span class="math inline">\(\chi^2_2\)</span> random variable. The vertical red line shows the critical value, the vertical black line the observed value, and the shaded region shows the critical region. As <span class="math inline">\(\zeta^2 &lt; \chi^2_{p,0.05}\)</span> we can see that we do not reject the null hypothesis at the 5% level.</p>
 <p><img src="07-mvn_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <p>The <span class="math inline">\(p\)</span>-value is</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1"><span class="dv">1</span><span class="op">-</span><span class="kw">pchisq</span>(zeta2, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1"><span class="dv">1</span><span class="op">-</span><span class="kw">pchisq</span>(zeta2, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>##            [,1]
 ## [1,] 0.05389049</code></pre>
 <p>which is the area of the red shaded region.</p>
@@ -402,16 +426,16 @@ We conduct a hypothesis test at the 5% level of:
  &amp;= 2.84.
 \end{align*}\]</span>
 The critical value is <span class="math inline">\(F_{2,201,0.05}\)</span></p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1"> <span class="kw">qf</span>(<span class="fl">0.95</span>, <span class="dv">2</span>,<span class="dv">201</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1"> <span class="kw">qf</span>(<span class="fl">0.95</span>, <span class="dv">2</span>,<span class="dv">201</span>)</a></code></pre></div>
 <pre><code>## [1] 3.040828</code></pre>
 <p>so <span class="math inline">\(\gamma^2 &lt; F_{p,n-p,0.05}\)</span> and we do not reject the null hypothesis at the 5% level.</p>
 <p>The <span class="math inline">\(p\)</span>-value is</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1"><span class="dv">1</span><span class="op">-</span><span class="kw">pf</span>(gamma2, <span class="dv">2</span>, <span class="dv">201</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1"><span class="dv">1</span><span class="op">-</span><span class="kw">pf</span>(gamma2, <span class="dv">2</span>, <span class="dv">201</span>)</a></code></pre></div>
 <pre><code>##            [,1]
 ## [1,] 0.06051421</code></pre>
 <p>Thankfully, we don’t need to do all the computation ourselves whenever we want to do a test, as there are several R packages that will do the work for us:</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1"><span class="kw">library</span>(ICSNP) <span class="co"># you&#39;ll need to install this package the first time</span></a>
-<a class="sourceLine" id="cb208-2" data-line-number="2"><span class="kw">HotellingsT2</span>(X,  <span class="dt">mu =</span> mu)</a></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1"><span class="kw">library</span>(ICSNP) <span class="co"># you&#39;ll need to install this package the first time</span></a>
+<a class="sourceLine" id="cb206-2" data-line-number="2"><span class="kw">HotellingsT2</span>(X,  <span class="dt">mu =</span> mu)</a></code></pre></div>
 <pre><code>## 
 ##  Hotelling&#39;s one sample T2-test
 ## 
@@ -419,7 +443,7 @@ The critical value is <span class="math inline">\(F_{2,201,0.05}\)</span></p>
 ## T.2 = 2.8444, df1 = 2, df2 = 201, p-value = 0.06051
 ## alternative hypothesis: true location is not equal to c(60,60)</code></pre>
 <p>Notice again the difference to the two univariate tests</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" data-line-number="1"><span class="kw">t.test</span>(X[,<span class="dv">1</span>], <span class="dt">mu=</span><span class="dv">60</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1"><span class="kw">t.test</span>(X[,<span class="dv">1</span>], <span class="dt">mu=</span><span class="dv">60</span>)</a></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -431,7 +455,7 @@ The critical value is <span class="math inline">\(F_{2,201,0.05}\)</span></p>
 ## sample estimates:
 ## mean of x 
 ##  62.09852</code></pre>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1"><span class="kw">t.test</span>(X[,<span class="dv">2</span>], <span class="dt">mu=</span><span class="dv">60</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" data-line-number="1"><span class="kw">t.test</span>(X[,<span class="dv">2</span>], <span class="dt">mu=</span><span class="dv">60</span>)</a></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -552,8 +576,8 @@ Su <- (n*S100+m*S103)/(n+m-2)
 delta2 <- (n+m-2-1)/(2*(n+m-2)) *n*m/(n+m)*t((ybar-xbar))%*% solve(Su)%*%(ybar-xbar)
 ```
 -->
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1"><span class="kw">library</span>(ICSNP) <span class="co"># you&#39;ll need to install this</span></a>
-<a class="sourceLine" id="cb214-2" data-line-number="2"><span class="kw">HotellingsT2</span>(G100, G103)</a></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1"><span class="kw">library</span>(ICSNP) <span class="co"># you&#39;ll need to install this</span></a>
+<a class="sourceLine" id="cb212-2" data-line-number="2"><span class="kw">HotellingsT2</span>(G100, G103)</a></code></pre></div>
 <pre><code>## 
 ##  Hotelling&#39;s two sample T2-test
 ## 
@@ -563,7 +587,7 @@ delta2 <- (n+m-2-1)/(2*(n+m-2)) *n*m/(n+m)*t((ybar-xbar))%*% solve(Su)%*%(ybar-x
 <p>So the test statistic was computed to be <span class="math inline">\(\delta^2 = 1.06962\)</span> and the p-value is <span class="math inline">\(p= 0.345\)</span>.</p>
 <p>The critical value for <span class="math inline">\(\alpha=0.05\)</span> is
 <span class="math display">\[F_{2,n+m-2-1,\alpha} = F_{2,200,0.05} = 3.041.\]</span></p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1"><span class="kw">qf</span>(<span class="fl">0.95</span>,<span class="dv">2</span>, <span class="dv">200</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1"><span class="kw">qf</span>(<span class="fl">0.95</span>,<span class="dv">2</span>, <span class="dv">200</span>)</a></code></pre></div>
 <pre><code>## [1] 3.041056</code></pre>
 <p>Therefore <span class="math inline">\(\delta^2 &lt; F_{p,n+m-p-1}\)</span>, so we do not reject the null hypothesis at the 5% level.</p>
 

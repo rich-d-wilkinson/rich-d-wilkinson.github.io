@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>0.1 Computer tasks | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="0.1 Computer tasks | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="0.1 Computer tasks | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="part-iv-classification-and-clustering.html"/>
+<link rel="next" href="0-2-exercises.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a><ul>
+<li class="chapter" data-level="0.1" data-path="0-1-computer-tasks.html"><a href="0-1-computer-tasks.html"><i class="fa fa-check"></i><b>0.1</b> Computer tasks</a></li>
+<li class="chapter" data-level="0.2" data-path="0-2-exercises.html"><a href="0-2-exercises.html"><i class="fa fa-check"></i><b>0.2</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="computer-tasks" class="section level2">
+<h2><span class="header-section-number">0.1</span> Computer tasks</h2>
+
+<p>Open RStudio and open an R markdown document for carrying out this computer practical. Save the file, carry out the tasks and regularly make sure
+you can successfully knit the file, as you will need to do that for the forthcoming coursework.</p>
+
+<p>Consider the famous dataset known either as Fisher’s or Anderson’s iris data set which gives the measurements in centimetres of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are {}, {}, and {}.</p>
+
+<p>We will carry out discriminant analysis of the classic iris dataset, but just between the first two species initially. Later we’ll consider all three groups.
+Note that the sample ML discriminant rule is the same as Fisher’s linear discriminant analysis when there are <span class="math inline">\(g=2\)</span> groups.</p>
+
+
+<p>We are going to select 70% of the data at random as the training data, and then evaluate the performance of the discriminant rule on the
+remaining 30% test data.</p>
+<p>Select the test and training data by taking a random sample of 70% of the rows for training, and the rest for testing.</p>
+
+<p>We can see that the two groups are quite different, but there is some overlap.</p>
+<p>Let’s look at the form of the classification region, with the linear boundary between the classes. Observations
+that are misclassified in the training set are shown in red.</p>
+<p>We give a table of classifications for the training set.</p>
+
+<p>This is not really a fair evaluation of the method, because we have classified the training data using the training data. A fairer way
+of evaluating the rule is to compare how the test dataset is classified, versus the true species values.</p>
+
+<p>These tables of results are known as `confusion matrices’.</p>
+
+<p>A new iris flower is found which is thought to be one of these two species (versicolor or virginica). It has the following measurements:</p>
+<p>Sepal.Length = 6.1,
+Sepal.Width = 2.9,
+Petal.Length = 4.2,
+Petal.Width = 1.3.</p>
+<p>How would we classify this new flower, given the full dataset is available as training data from these two species?</p>
+
+<p>So, the predicted class is in out$class, so it is classified as versicolor (group 2)</p>
+
+<p>Now we consider Fisher’s linear discriminant on all three (<span class="math inline">\(g=3\)</span>) groups</p>
+
+<p>Now plot the classification regions, with three classes:</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="part-iv-classification-and-clustering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="0-2-exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
