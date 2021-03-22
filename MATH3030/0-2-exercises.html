@@ -51,6 +51,68 @@
 
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -68,8 +130,7 @@
 <li><a href="./">Applied multivariate statistics</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a><ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
 <li class="chapter" data-level="0.1" data-path="0-1-computer-tasks.html"><a href="0-1-computer-tasks.html"><i class="fa fa-check"></i><b>0.1</b> Computer tasks</a></li>
 <li class="chapter" data-level="0.2" data-path="0-2-exercises.html"><a href="0-2-exercises.html"><i class="fa fa-check"></i><b>0.2</b> Exercises</a></li>
 </ul></li>
@@ -95,11 +156,11 @@
             <section class="normal" id="section-">
 <div id="exercises" class="section level2">
 <h2><span class="header-section-number">0.2</span> Exercises</h2>
-<ol start="0" style="list-style-type: decimal">
-<li><p>Something in 2d, drawing decision boundaries with 3 populations.</p></li>
-<li><p>Prove form of Bayes classifier.</p></li>
-<li><p>Prove that <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> and <span class="math inline">\(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\)</span> have the same eigenvalues.</p></li>
-<li><p>Prove <a href="#prp:ldaconvex"><strong>??</strong></a>. Note that region <span class="math inline">\(\mathcal{R}\)</span> is convex and connected if for <span class="math inline">\(\mathbf x_1, \mathbf x_2 \in \mathcal{R}\)</span> we have
+<!--0. Something in 2d, drawing decision boundaries with 3 populations.-->
+<ol style="list-style-type: decimal">
+<li><p>Prove that the Bayes classifier can be written as given in Proposition <a href="#prp:ldabayes"><strong>??</strong></a>.</p></li>
+<li><p>Prove that <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> and <span class="math inline">\(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\)</span> have the same eigenvalues and find an expression relating their eigenvectors.</p></li>
+<li><p>Prove Proposition <a href="#prp:ldaconvex"><strong>??</strong></a>. Note that region <span class="math inline">\(\mathcal{R}\)</span> is convex and connected if for <span class="math inline">\(\mathbf x_1, \mathbf x_2 \in \mathcal{R}\)</span> we have
 <span class="math display">\[\lambda \mathbf x_1+(1-\lambda) \mathbf x_2 \in \mathcal{R} \mbox{ for all } \lambda \in [0,1].\]</span></p></li>
 </ol>
 <!--
@@ -114,27 +175,66 @@ Suppose $\bx_1, \bx_2 \in \mathcal{R}_k$. Then
 
 Thus $\bx \in \mathcal{R}_k$. 
 -->
-
-<p>Consider <span class="math inline">\(g=3\)</span> bivariate normal populations with the same covariance matrix, given by
+<ol start="4" style="list-style-type: decimal">
+<li>Consider <span class="math inline">\(g=3\)</span> bivariate normal populations with the same covariance matrix, given by
 <span class="math display">\[ {\boldsymbol{\mu}}_1 = \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \quad
 {\boldsymbol{\mu}}_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}, \quad
 {\boldsymbol{\mu}}_3 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad
 \boldsymbol{\Sigma}= \begin{pmatrix} 5 &amp; 2 \\ 2 &amp; 1 \end{pmatrix}.\]</span>
-Determine the three maximum likelihood discriminant rules and, hence, sketch the ML discriminant regions. Determine the point at which the three boundary lines meet.</p>
+Determine the three maximum likelihood discriminant rules and, hence, sketch the ML discriminant regions. Determine the point at which the three boundary lines meet.</li>
+</ol>
+<!--
+5. In the notes we looked at the We are given $n_1=n_2=50$ observations from two species of iris, {\sl I. setosa} and {\sl I. versicolor}.  The two variables are {\sl sepal length} and {\sl sepal width}.  The problem is to set up a discriminant rule for allocating a new observation $\bz=(z_1,z_2)^T$ to either {\sl I. setosa} or {\sl I. versicolor}.
 
-<p>We are given <span class="math inline">\(n_1=n_2=50\)</span> observations from two species of iris, {} and {}. The two variables are {} and {}. The problem is to set up a discriminant rule for allocating a new observation <span class="math inline">\(\mathbf z=(z_1,z_2)^T\)</span> to either {} or {}.</p>
-<p>The sample means are given by
-<span class="math display">\[\bar{\mathbf x}_1=(5.006, 3.428)^\top \qquad \text{and} \qquad \bar{\mathbf x}_2=(5.936,2.770)^\top\]</span>
+The sample means are given by
+$$\bar{\bx}_1=(5.006, 3.428)^\top \qquad \text{and} \qquad \bar{\bx}_2=(5.936,2.770)^\top$$
 and the sample covariance matrices are given by
-<span class="math display">\[\mathbf S_1 = \begin{pmatrix} 0.1218 &amp; 0.0972 \\ 0.0972 &amp; 0.1408 \end{pmatrix} \qquad \text{and} \qquad \mathbf S_2 = \begin{pmatrix} 0.2611 &amp; 0.0835 \\ 0.0835 &amp; 0.0965 \end{pmatrix}.\]</span></p>
-<p>Assuming that the population covariance matrices for the two groups are equal, determine the sample ML rule for allocating the new observation <span class="math inline">\(\mathbf z\)</span>. In particular, determine the equation of the straight line which separates the two allocation regions and plot the two regions graphically.</p>
+$$\bS_1 = \begin{pmatrix} 0.1218 & 0.0972 \\ 0.0972 & 0.1408 \end{pmatrix} \qquad \text{and} \qquad \bS_2 = \begin{pmatrix} 0.2611 & 0.0835 \\ 0.0835 & 0.0965 \end{pmatrix}.$$
 
-<p>In addition to {} and {}, <span class="math inline">\(n_3=50\)</span> observations of a third species of iris {} are taken with sample mean and covariance,
-<span class="math display">\[ \bar{\mathbf x}_3=(6.588, 2.974)^\top, \qquad \mathbf S_3 = \begin{pmatrix} 0.3963 &amp; 0.0919 \\ 0.0919 &amp; 0.1019 \end{pmatrix}. \]</span>
+Assuming that the population covariance matrices for the two groups are equal, determine the sample ML rule for allocating the new observation $\bz$.  In particular, determine the equation of the straight line which separates the two allocation regions and plot the two regions graphically.
+
+6. In addition to {\sl I. setosa} and {\sl I. versicoluor}, $n_3=50$ observations of a third species of iris {\sl I. virginica} are taken with sample mean and covariance,
+$$ \bar{\bx}_3=(6.588, 2.974)^\top, \qquad \bS_3 = \begin{pmatrix} 0.3963 & 0.0919 \\ 0.0919 & 0.1019 \end{pmatrix}. $$
 It is calculated that
-<span class="math display">\[ \frac{1}{147}(50\mathbf S_1 + 50\mathbf S_2 + 50\mathbf S_3) = \begin{pmatrix} 0.2650 &amp; 0.0927 \\ 0.0927 &amp; 0.1154 \end{pmatrix}\]</span>
-and that the largest eigenvalue of <span class="math inline">\(\mathbf W^{-1} \mathbf B\)</span> is <span class="math inline">\(4.17\)</span> with eigenvector <span class="math inline">\((1,-1.29)^\top\)</span>.</p>
-<p>Calculate Fisher’s linear discriminant function and compare the allocation regions with those given by the sample ML discriminant rule.</p>
+$$ \frac{1}{147}(50\bS_1 + 50\bS_2 + 50\bS_3) = \begin{pmatrix} 0.2650 & 0.0927 \\ 0.0927 & 0.1154 \end{pmatrix}$$
+and that the largest eigenvalue of $\bW^{-1} \bB$ is $4.17$ with eigenvector $(1,-1.29)^\top$.
+
+Calculate Fisher's linear discriminant function and compare the allocation regions with those given by the sample ML discriminant rule.
+-->
+<ol start="5" style="list-style-type: decimal">
+<li>The<code>palmerpenguins</code> R package contains size measurements of adult foraging penguins near Palmer Station, Antarctica.
+We will begin by looking at a subset of this data, looking at just the <em>Adelie</em> (<span class="math inline">\(n_1=151\)</span>) and <em>Chinstrap</em> (<span class="math inline">\(n_2=68\)</span>) penguins, and just the <em>bill length</em> and <em>bill depth</em> measurements. The sample mean and covariance for each group are</li>
+</ol>
+<p><span class="math display">\[\begin{align*}
+{\boldsymbol{\mu}}_{A}&amp;=\begin{pmatrix}38.8 \\18.3 \\\end{pmatrix} \qquad \boldsymbol{\Sigma}_A = \begin{pmatrix}7.09&amp;1.27 \\1.27&amp;1.48 \\\end{pmatrix}\\
+{\boldsymbol{\mu}}_{C}&amp;=\begin{pmatrix}48.8 \\18.4 \\\end{pmatrix}\qquad \boldsymbol{\Sigma}_C = \begin{pmatrix}11.2&amp;2.48 \\2.48&amp;1.29 \\\end{pmatrix}
+\end{align*}\]</span></p>
+<!-- 
+https://github.com/allisonhorst/palmerpenguins
+-->
+<ol style="list-style-type: lower-roman">
+<li><p>Find the ML discriminant rule for allocating a new penguin <span class="math inline">\(\mathbf z=(z_1,z_2)^T\)</span> as either <em>Adelie</em> or <em>Chinstrap</em> assuming that the population covariance matrices for the two groups are equal. In particular, determine the sample ML rule for allocating the new observation <span class="math inline">\(\mathbf z\)</span>. Find the equation of the straight line which separates the two allocation regions and plot the two regions graphically.</p></li>
+<li><p>Find the Bayes discriminant rule estimating the prior probabilities using the observed frequencies <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>. How does this differ to the ML rule?</p></li>
+<li><p>In addition to the <em>Adelie</em> and <em>Chinstrap</em> penguins, there are also <span class="math inline">\(n_3=123\)</span> measurements on <em>Gentoo</em> penguins with sample mean and covariance
+<span class="math display">\[
+{\boldsymbol{\mu}}_{G}=\begin{pmatrix}47.5 \\15 \\\end{pmatrix} \qquad \boldsymbol{\Sigma}_G = \begin{pmatrix}9.5&amp;1.95 \\1.95&amp;0.963 \\\end{pmatrix}\]</span>
+The within-group covariance matrix is
+<span class="math display">\[ \frac{1}{342}(151 \mathbf S_A + 68 \mathbf S_C + 123 \mathbf S_G) = \begin{pmatrix}9.25&amp;1.9 \\1.9&amp;1.24 \\\end{pmatrix}.\]</span>
+The eigendecomposition of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> is found in R to be</p></li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">WiB.eig</a></code></pre></div>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 9.847607 1.269243
+## 
+## $vectors
+##            [,1]      [,2]
+## [1,]  0.3470103 0.3350582
+## [2,] -0.9378613 0.9421974</code></pre>
+<p>Calculate Fisher’s linear discriminant function using just a single LDA variable, and compare the discriminant regions with those you found previously.</p>
+<ol start="4" style="list-style-type: lower-roman">
+<li>What would Fisher’s discriminant rule be if you use both LDA variables?</li>
+</ol>
 
 </div>
 <!-- </div> -->

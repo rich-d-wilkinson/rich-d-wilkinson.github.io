@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8.5 Exercises | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8.5 Exercises | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8.5 Exercises | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="8-4-computer-tasks-4.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-notation.html"><a href="1-1-notation.html"><i class="fa fa-check"></i><b>1.1</b> Notation</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-notation.html"><a href="1-1-notation.html#example-datasets"><i class="fa fa-check"></i><b>1.1.1</b> Example datasets</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-notation.html"><a href="1-1-notation.html#aims-of-multivariate-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Aims of multivariate data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>1.2</b> Exploratory data analysis (EDA)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#data-visualization"><i class="fa fa-check"></i><b>1.2.1</b> Data visualization</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#summary-statistics"><i class="fa fa-check"></i><b>1.2.2</b> Summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-randvec.html"><a href="1-3-randvec.html"><i class="fa fa-check"></i><b>1.3</b> Random vectors and matrices</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-randvec.html"><a href="1-3-randvec.html#estimators"><i class="fa fa-check"></i><b>1.3.1</b> Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-computer-tasks.html"><a href="1-4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-linalg-prelim.html"><a href="2-linalg-prelim.html"><i class="fa fa-check"></i><b>2</b> Review of linear algebra</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html"><i class="fa fa-check"></i><b>2.1</b> Basics</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#notation-1"><i class="fa fa-check"></i><b>2.1.1</b> Notation</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#elementary-matrix-operations"><i class="fa fa-check"></i><b>2.1.2</b> Elementary matrix operations</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#special-matrices"><i class="fa fa-check"></i><b>2.1.3</b> Special matrices</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#vectordiff"><i class="fa fa-check"></i><b>2.1.4</b> Vector Differentiation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html"><i class="fa fa-check"></i><b>2.2</b> Vector spaces</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#linear-independence"><i class="fa fa-check"></i><b>2.2.1</b> Linear independence</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#colsspace"><i class="fa fa-check"></i><b>2.2.2</b> Row and column spaces</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#linear-transformations"><i class="fa fa-check"></i><b>2.2.3</b> Linear transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html"><i class="fa fa-check"></i><b>2.3</b> Inner product spaces</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#normed"><i class="fa fa-check"></i><b>2.3.1</b> Distances, and angles</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#orthogonal-matrices"><i class="fa fa-check"></i><b>2.3.2</b> Orthogonal matrices</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#projection-matrix"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-4-centering-matrix.html"><a href="2-4-centering-matrix.html"><i class="fa fa-check"></i><b>2.4</b> The Centering Matrix</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-tasks-ch2.html"><a href="2-5-tasks-ch2.html"><i class="fa fa-check"></i><b>2.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-exercises-ch2.html"><a href="2-6-exercises-ch2.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-linalg-decomp.html"><a href="3-linalg-decomp.html"><i class="fa fa-check"></i><b>3</b> Matrix decompositions</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-matrix-matrix.html"><a href="3-1-matrix-matrix.html"><i class="fa fa-check"></i><b>3.1</b> Matrix-matrix products</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>3.2</b> Spectral/eigen decomposition</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>3.2.1</b> Eigenvalues and eigenvectors</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>3.2.2</b> Spectral decomposition</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html"><i class="fa fa-check"></i><b>3.3</b> Singular Value Decomposition (SVD)</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.3.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-svdopt.html"><a href="3-4-svdopt.html"><i class="fa fa-check"></i><b>3.4</b> SVD optimization results</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-low-rank-approximation.html"><a href="3-5-low-rank-approximation.html"><i class="fa fa-check"></i><b>3.5</b> Low-rank approximation</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="3-5-low-rank-approximation.html"><a href="3-5-low-rank-approximation.html#matrix-norms"><i class="fa fa-check"></i><b>3.5.1</b> Matrix norms</a></li>
+<li class="chapter" data-level="3.5.2" data-path="3-5-low-rank-approximation.html"><a href="3-5-low-rank-approximation.html#eckart-young-mirsky-theorem"><i class="fa fa-check"></i><b>3.5.2</b> Eckart-Young-Mirsky Theorem</a></li>
+<li class="chapter" data-level="3.5.3" data-path="3-5-low-rank-approximation.html"><a href="3-5-low-rank-approximation.html#example-image-compression"><i class="fa fa-check"></i><b>3.5.3</b> Example: image compression</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="3-6-tasks-ch3.html"><a href="3-6-tasks-ch3.html"><i class="fa fa-check"></i><b>3.6</b> Computer tasks</a></li>
+<li class="chapter" data-level="3.7" data-path="3-7-exercises-ch3.html"><a href="3-7-exercises-ch3.html"><i class="fa fa-check"></i><b>3.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html"><i class="fa fa-check"></i>PART II: Dimension reduction methods</a><ul>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#a-warning"><i class="fa fa-check"></i>A warning</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-pca.html"><a href="4-pca.html"><i class="fa fa-check"></i><b>4</b> Principal Component Analysis (PCA)</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html"><i class="fa fa-check"></i><b>4.1</b> PCA: an informal introduction</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#notation-recap"><i class="fa fa-check"></i><b>4.1.1</b> Notation recap</a></li>
+<li class="chapter" data-level="4.1.2" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#first-principal-component"><i class="fa fa-check"></i><b>4.1.2</b> First principal component</a></li>
+<li class="chapter" data-level="4.1.3" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#second-principal-component"><i class="fa fa-check"></i><b>4.1.3</b> Second principal component</a></li>
+<li class="chapter" data-level="4.1.4" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#geometric-interpretation-1"><i class="fa fa-check"></i><b>4.1.4</b> Geometric interpretation</a></li>
+<li class="chapter" data-level="4.1.5" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#example"><i class="fa fa-check"></i><b>4.1.5</b> Example</a></li>
+<li class="chapter" data-level="4.1.6" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#example-iris"><i class="fa fa-check"></i><b>4.1.6</b> Example: Iris</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>4.2</b> PCA: a formal description with proofs</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>4.2.1</b> Properties of principal components</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>4.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>4.2.4</b> Population PCA</a></li>
+<li class="chapter" data-level="4.2.5" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>4.2.5</b> PCA under transformations of variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-an-alternative-view-of-pca.html"><a href="4-3-an-alternative-view-of-pca.html"><i class="fa fa-check"></i><b>4.3</b> An alternative view of PCA</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="4-3-an-alternative-view-of-pca.html"><a href="4-3-an-alternative-view-of-pca.html#pca-mnist"><i class="fa fa-check"></i><b>4.3.1</b> Example: MNIST handwritten digits</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4-4-pca-comptask.html"><a href="4-4-pca-comptask.html"><i class="fa fa-check"></i><b>4.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="4.5" data-path="4-5-exercises-1.html"><a href="4-5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis (CCA)</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html"><i class="fa fa-check"></i><b>5.1</b> The first pair of canonical variables</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>5.1.1</b> The first canonical components</a></li>
+<li class="chapter" data-level="5.1.2" data-path="5-1-cca1.html"><a href="5-1-cca1.html#premcca"><i class="fa fa-check"></i><b>5.1.2</b> Example: Premier league football</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>5.2.1</b> Example continued</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5-3-properties.html"><a href="5-3-properties.html"><i class="fa fa-check"></i><b>5.3</b> Properties</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="5-3-properties.html"><a href="5-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>5.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="5-3-properties.html"><a href="5-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>5.3.2</b> Invariance/equivariance properties of CCA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5-4-computer-tasks-1.html"><a href="5-4-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="5.5" data-path="5-5-exercises-2.html"><a href="5-5-exercises-2.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling (MDS)</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-1-classical-mds.html"><a href="6-1-classical-mds.html"><i class="fa fa-check"></i><b>6.1</b> Classical MDS</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-1-classical-mds.html"><a href="6-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>6.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-1-classical-mds.html"><a href="6-1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>6.1.2</b> Principal Coordinate Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-2-similarity.html"><a href="6-2-similarity.html"><i class="fa fa-check"></i><b>6.2</b> Similarity measures</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-2-similarity.html"><a href="6-2-similarity.html#binary-attributes"><i class="fa fa-check"></i><b>6.2.1</b> Binary attributes</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-2-similarity.html"><a href="6-2-similarity.html#example-classical-mds-with-the-mnist-data"><i class="fa fa-check"></i><b>6.2.2</b> Example: Classical MDS with the MNIST data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-3-non-metric-mds.html"><a href="6-3-non-metric-mds.html"><i class="fa fa-check"></i><b>6.3</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="6.4" data-path="6-4-exercises-3.html"><a href="6-4-exercises-3.html"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
+<li class="chapter" data-level="6.5" data-path="6-5-computer-tasks-2.html"><a href="6-5-computer-tasks-2.html"><i class="fa fa-check"></i><b>6.5</b> Computer Tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><a href="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><i class="fa fa-check"></i>Part III: Inference using the Multivariate Normal Distribution (MVN)</a></li>
+<li class="chapter" data-level="7" data-path="7-multinormal.html"><a href="7-multinormal.html"><i class="fa fa-check"></i><b>7</b> The Multivariate Normal Distribution</a><ul>
+<li class="chapter" data-level="7.1" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html"><i class="fa fa-check"></i><b>7.1</b> Definition and Properties of the MVN</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#basics"><i class="fa fa-check"></i><b>7.1.1</b> Basics</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#transformations"><i class="fa fa-check"></i><b>7.1.2</b> Transformations</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#independence"><i class="fa fa-check"></i><b>7.1.3</b> Independence</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#confidence-ellipses"><i class="fa fa-check"></i><b>7.1.4</b> Confidence ellipses</a></li>
+<li class="chapter" data-level="7.1.5" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#sampling-results-for-the-mvn"><i class="fa fa-check"></i><b>7.1.5</b> Sampling results for the MVN</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html"><i class="fa fa-check"></i><b>7.2</b> The Wishart distribution</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html#properties-1"><i class="fa fa-check"></i><b>7.2.1</b> Properties</a></li>
+<li class="chapter" data-level="7.2.2" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html#cochrans-theorem"><i class="fa fa-check"></i><b>7.2.2</b> Cochran’s theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7-3-hotellings-t2-distribution.html"><a href="7-3-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>7.3</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
+<li class="chapter" data-level="7.4" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html"><i class="fa fa-check"></i><b>7.4</b> Inference based on the MVN</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#onesampleSigma"><i class="fa fa-check"></i><b>7.4.1</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> known</a></li>
+<li class="chapter" data-level="7.4.2" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#onesample"><i class="fa fa-check"></i><b>7.4.2</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 1 sample</a></li>
+<li class="chapter" data-level="7.4.3" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#boldsymbolsigma-unknown-2-samples"><i class="fa fa-check"></i><b>7.4.3</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 2 samples</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="7-5-exercises-4.html"><a href="7-5-exercises-4.html"><i class="fa fa-check"></i><b>7.5</b> Exercises</a></li>
+<li class="chapter" data-level="7.6" data-path="7-6-computer-tasks-3.html"><a href="7-6-computer-tasks-3.html"><i class="fa fa-check"></i><b>7.6</b> Computer tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="8" data-path="8-lda.html"><a href="8-lda.html"><i class="fa fa-check"></i><b>8</b> Discriminant analysis</a><ul>
+<li class="chapter" data-level="8.0.1" data-path="8-lda.html"><a href="8-lda.html#linear-discriminant-analysis"><i class="fa fa-check"></i><b>8.0.1</b> Linear discriminant analysis</a></li>
+<li class="chapter" data-level="8.1" data-path="8-1-lda-ML.html"><a href="8-1-lda-ML.html"><i class="fa fa-check"></i><b>8.1</b> Maximum likelihood (ML) discriminant rule</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="8-1-lda-ML.html"><a href="8-1-lda-ML.html#multivariate-normal-populations"><i class="fa fa-check"></i><b>8.1.1</b> Multivariate normal populations</a></li>
+<li class="chapter" data-level="8.1.2" data-path="8-1-lda-ML.html"><a href="8-1-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>8.1.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="8.1.3" data-path="8-1-lda-ML.html"><a href="8-1-lda-ML.html#two-populations"><i class="fa fa-check"></i><b>8.1.3</b> Two populations</a></li>
+<li class="chapter" data-level="8.1.4" data-path="8-1-lda-ML.html"><a href="8-1-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>8.1.4</b> More than two populations</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="8-2-lda-Bayes.html"><a href="8-2-lda-Bayes.html"><i class="fa fa-check"></i><b>8.2</b> Bayes discriminant rule</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="8-2-lda-Bayes.html"><a href="8-2-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>8.2.1</b> Example: LDA using the Iris data</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8-2-lda-Bayes.html"><a href="8-2-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>8.2.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="8.2.3" data-path="8-2-lda-Bayes.html"><a href="8-2-lda-Bayes.html#prediction-accuracy"><i class="fa fa-check"></i><b>8.2.3</b> Prediction accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8-3-FLDA.html"><a href="8-3-FLDA.html"><i class="fa fa-check"></i><b>8.3</b> Fisher’s linear discriminant rule</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="8-3-FLDA.html"><a href="8-3-FLDA.html#iris-example-continued-1"><i class="fa fa-check"></i><b>8.3.1</b> Iris example continued</a></li>
+<li class="chapter" data-level="8.3.2" data-path="8-3-FLDA.html"><a href="8-3-FLDA.html#links-between-methods"><i class="fa fa-check"></i><b>8.3.2</b> Links between methods</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="8-4-computer-tasks-4.html"><a href="8-4-computer-tasks-4.html"><i class="fa fa-check"></i><b>8.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="8.5" data-path="8-5-exercises-5.html"><a href="8-5-exercises-5.html"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exercises-5" class="section level2">
+<h2><span class="header-section-number">8.5</span> Exercises</h2>
+<!--0. Something in 2d, drawing decision boundaries with 3 populations.-->
+<ol style="list-style-type: decimal">
+<li><p>Prove that the Bayes classifier can be written as given in Proposition <a href="8-2-lda-Bayes.html#prp:ldabayes">8.3</a>.</p></li>
+<li><p>Prove that <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> and <span class="math inline">\(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\)</span> have the same eigenvalues and find an expression relating their eigenvectors.</p></li>
+<li><p>Prove Proposition <a href="8-lda.html#prp:ldaconvex">8.1</a>. Note that region <span class="math inline">\(\mathcal{R}\)</span> is convex and connected if for <span class="math inline">\(\mathbf x_1, \mathbf x_2 \in \mathcal{R}\)</span> we have
+<span class="math display">\[\lambda \mathbf x_1+(1-\lambda) \mathbf x_2 \in \mathcal{R} \mbox{ for all } \lambda \in [0,1].\]</span></p></li>
+</ol>
+<!--
+Suppose $\bx_1, \bx_2 \in \mathcal{R}_k$. Then
+\begin{align*}
+\delta_k(\bx) &=  \bv_k^\top (\lambda \bx_1+(1-\lambda) \bx_2) + c_k\\
+&=  \lambda (\bv_k^\top\bx_1+c_k)+(1-\lambda) (\bv_k^\top\bx_2 + c_k)\\
+&= \lambda \delta_k(\bx_1)+(1-\lambda) \delta_k(\bx_1)\\
+&>  \lambda \delta_j(\bx_1)+(1-\lambda) \delta_j(\bx_2) \mbox{ for } j \not = k\\
+&=\delta_j(\bx)
+\end{align*}
+
+Thus $\bx \in \mathcal{R}_k$. 
+-->
+<ol start="4" style="list-style-type: decimal">
+<li>Consider <span class="math inline">\(g=3\)</span> bivariate normal populations with the same covariance matrix, given by
+<span class="math display">\[ {\boldsymbol{\mu}}_1 = \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \quad
+{\boldsymbol{\mu}}_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}, \quad
+{\boldsymbol{\mu}}_3 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad
+\boldsymbol{\Sigma}= \begin{pmatrix} 5 &amp; 2 \\ 2 &amp; 1 \end{pmatrix}.\]</span>
+Determine the three maximum likelihood discriminant rules and, hence, sketch the ML discriminant regions. Determine the point at which the three boundary lines meet.</li>
+</ol>
+<!--
+5. In the notes we looked at the We are given $n_1=n_2=50$ observations from two species of iris, {\sl I. setosa} and {\sl I. versicolor}.  The two variables are {\sl sepal length} and {\sl sepal width}.  The problem is to set up a discriminant rule for allocating a new observation $\bz=(z_1,z_2)^T$ to either {\sl I. setosa} or {\sl I. versicolor}.
+
+The sample means are given by
+$$\bar{\bx}_1=(5.006, 3.428)^\top \qquad \text{and} \qquad \bar{\bx}_2=(5.936,2.770)^\top$$
+and the sample covariance matrices are given by
+$$\bS_1 = \begin{pmatrix} 0.1218 & 0.0972 \\ 0.0972 & 0.1408 \end{pmatrix} \qquad \text{and} \qquad \bS_2 = \begin{pmatrix} 0.2611 & 0.0835 \\ 0.0835 & 0.0965 \end{pmatrix}.$$
+
+Assuming that the population covariance matrices for the two groups are equal, determine the sample ML rule for allocating the new observation $\bz$.  In particular, determine the equation of the straight line which separates the two allocation regions and plot the two regions graphically.
+
+6. In addition to {\sl I. setosa} and {\sl I. versicoluor}, $n_3=50$ observations of a third species of iris {\sl I. virginica} are taken with sample mean and covariance,
+$$ \bar{\bx}_3=(6.588, 2.974)^\top, \qquad \bS_3 = \begin{pmatrix} 0.3963 & 0.0919 \\ 0.0919 & 0.1019 \end{pmatrix}. $$
+It is calculated that
+$$ \frac{1}{147}(50\bS_1 + 50\bS_2 + 50\bS_3) = \begin{pmatrix} 0.2650 & 0.0927 \\ 0.0927 & 0.1154 \end{pmatrix}$$
+and that the largest eigenvalue of $\bW^{-1} \bB$ is $4.17$ with eigenvector $(1,-1.29)^\top$.
+
+Calculate Fisher's linear discriminant function and compare the allocation regions with those given by the sample ML discriminant rule.
+-->
+<ol start="5" style="list-style-type: decimal">
+<li>The<code>palmerpenguins</code> R package contains size measurements of adult foraging penguins near Palmer Station, Antarctica.
+We will begin by looking at a subset of this data, looking at just the <em>Adelie</em> (<span class="math inline">\(n_1=151\)</span>) and <em>Chinstrap</em> (<span class="math inline">\(n_2=68\)</span>) penguins, and just the <em>bill length</em> and <em>bill depth</em> measurements. The sample mean and covariance for each group are</li>
+</ol>
+<p><span class="math display">\[\begin{align*}
+{\boldsymbol{\mu}}_{A}&amp;=\begin{pmatrix}38.8 \\18.3 \\\end{pmatrix} \qquad \boldsymbol{\Sigma}_A = \begin{pmatrix}7.09&amp;1.27 \\1.27&amp;1.48 \\\end{pmatrix}\\
+{\boldsymbol{\mu}}_{C}&amp;=\begin{pmatrix}48.8 \\18.4 \\\end{pmatrix}\qquad \boldsymbol{\Sigma}_C = \begin{pmatrix}11.2&amp;2.48 \\2.48&amp;1.29 \\\end{pmatrix}
+\end{align*}\]</span></p>
+<!-- 
+https://github.com/allisonhorst/palmerpenguins
+-->
+<ol style="list-style-type: lower-roman">
+<li><p>Find the ML discriminant rule for allocating a new penguin <span class="math inline">\(\mathbf z=(z_1,z_2)^T\)</span> as either <em>Adelie</em> or <em>Chinstrap</em> assuming that the population covariance matrices for the two groups are equal. In particular, determine the sample ML rule for allocating the new observation <span class="math inline">\(\mathbf z\)</span>. Find the equation of the straight line which separates the two allocation regions and plot the two regions graphically.</p></li>
+<li><p>Find the Bayes discriminant rule estimating the prior probabilities using the observed frequencies <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>. How does this differ to the ML rule?</p></li>
+<li><p>In addition to the <em>Adelie</em> and <em>Chinstrap</em> penguins, there are also <span class="math inline">\(n_3=123\)</span> measurements on <em>Gentoo</em> penguins with sample mean and covariance
+<span class="math display">\[
+{\boldsymbol{\mu}}_{G}=\begin{pmatrix}47.5 \\15 \\\end{pmatrix} \qquad \boldsymbol{\Sigma}_G = \begin{pmatrix}9.5&amp;1.95 \\1.95&amp;0.963 \\\end{pmatrix}\]</span>
+The within-group covariance matrix is
+<span class="math display">\[ \frac{1}{342}(151 \mathbf S_A + 68 \mathbf S_C + 123 \mathbf S_G) = \begin{pmatrix}9.25&amp;1.9 \\1.9&amp;1.24 \\\end{pmatrix}.\]</span>
+The eigendecomposition of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> is found in R to be</p></li>
+</ol>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1">WiB.eig</a></code></pre></div>
+<pre><code>## eigen() decomposition
+## $values
+## [1] 9.847607 1.269243
+## 
+## $vectors
+##            [,1]      [,2]
+## [1,]  0.3470103 0.3350582
+## [2,] -0.9378613 0.9421974</code></pre>
+<p>Calculate Fisher’s linear discriminant function using just a single LDA variable, and compare the discriminant regions with those you found previously.</p>
+<ol start="4" style="list-style-type: lower-roman">
+<li>What would Fisher’s discriminant rule be if you use both LDA variables?</li>
+</ol>
+
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="8-4-computer-tasks-4.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

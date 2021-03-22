@@ -149,6 +149,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.1" data-path="1-3-FLDA.html"><a href="1-3-FLDA.html#iris-example-continued-1"><i class="fa fa-check"></i><b>1.3.1</b> Iris example continued</a></li>
 <li class="chapter" data-level="1.3.2" data-path="1-3-FLDA.html"><a href="1-3-FLDA.html#links-between-methods"><i class="fa fa-check"></i><b>1.3.2</b> Links between methods</a></li>
 </ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-computer-tasks.html"><a href="1-4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -387,6 +389,7 @@ d(\mathbf x)=\arg\max_k \left(-\frac{1}{2} \log |\boldsymbol{\Sigma}_k| - \frac{
 ##   setosa         17          0         0
 ##   versicolor      0         15         0
 ##   virginica       0          1        17</code></pre>
+<p>These tables of results are known as <strong>confusion matrices</strong>.</p>
 <p>So in this case one of the virginica irises was predicted incorrectly to be versicolor.</p>
 <p>Here we randomly split the data into test and training sets. With small datasets such as this (<span class="math inline">\(n=150\)</span>), we instead sometimes use <a href="https://en.wikipedia.org/wiki/Cross-validation_(statistics)">cross validation</a> to assess the accuracy of each method. To do this, we split the data up into test and training sets multiple times randomly, and assess the prediction error on each random split.</p>
 </div>

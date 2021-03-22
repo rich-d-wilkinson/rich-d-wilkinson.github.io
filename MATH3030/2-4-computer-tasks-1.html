@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.4 Computer tasks | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.4 Computer tasks | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.4 Computer tasks | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="2-3-FLDA.html"/>
+<link rel="next" href="2-5-exercises-1.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-notation.html"><a href="1-1-notation.html"><i class="fa fa-check"></i><b>1.1</b> Notation</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-notation.html"><a href="1-1-notation.html#example-datasets"><i class="fa fa-check"></i><b>1.1.1</b> Example datasets</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-notation.html"><a href="1-1-notation.html#aims-of-multivariate-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Aims of multivariate data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>1.2</b> Exploratory data analysis (EDA)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#data-visualization"><i class="fa fa-check"></i><b>1.2.1</b> Data visualization</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#summary-statistics"><i class="fa fa-check"></i><b>1.2.2</b> Summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-randvec.html"><a href="1-3-randvec.html"><i class="fa fa-check"></i><b>1.3</b> Random vectors and matrices</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-randvec.html"><a href="1-3-randvec.html#estimators"><i class="fa fa-check"></i><b>1.3.1</b> Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-computer-tasks.html"><a href="1-4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="2" data-path="2-lda.html"><a href="2-lda.html"><i class="fa fa-check"></i><b>2</b> Discriminant analysis</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="2-lda.html"><a href="2-lda.html#linear-discriminant-analysis"><i class="fa fa-check"></i><b>2.0.1</b> Linear discriminant analysis</a></li>
+<li class="chapter" data-level="2.1" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html"><i class="fa fa-check"></i><b>2.1</b> Maximum likelihood (ML) discriminant rule</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html#multivariate-normal-populations"><i class="fa fa-check"></i><b>2.1.1</b> Multivariate normal populations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>2.1.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html#two-populations"><i class="fa fa-check"></i><b>2.1.3</b> Two populations</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>2.1.4</b> More than two populations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-lda-Bayes.html"><a href="2-2-lda-Bayes.html"><i class="fa fa-check"></i><b>2.2</b> Bayes discriminant rule</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-lda-Bayes.html"><a href="2-2-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>2.2.1</b> Example: LDA using the Iris data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-lda-Bayes.html"><a href="2-2-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>2.2.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-2-lda-Bayes.html"><a href="2-2-lda-Bayes.html#prediction-accuracy"><i class="fa fa-check"></i><b>2.2.3</b> Prediction accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-FLDA.html"><a href="2-3-FLDA.html"><i class="fa fa-check"></i><b>2.3</b> Fisher’s linear discriminant rule</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-FLDA.html"><a href="2-3-FLDA.html#iris-example-continued-1"><i class="fa fa-check"></i><b>2.3.1</b> Iris example continued</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-3-FLDA.html"><a href="2-3-FLDA.html#links-between-methods"><i class="fa fa-check"></i><b>2.3.2</b> Links between methods</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-4-computer-tasks-1.html"><a href="2-4-computer-tasks-1.html"><i class="fa fa-check"></i><b>2.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-exercises-1.html"><a href="2-5-exercises-1.html"><i class="fa fa-check"></i><b>2.5</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="computer-tasks-1" class="section level2">
+<h2><span class="header-section-number">2.4</span> Computer tasks</h2>
+<div id="task-1" class="section level5 unnumbered">
+<h5>Task 1</h5>
+<p>Let’s look again at the crabs dataset.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="kw">data</span>(crabs)</a>
+<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="kw">head</span>(crabs)</a></code></pre></div>
+<ol style="list-style-type: lower-roman">
+<li><p>Use the <code>lda</code> command to build a classifier to predict the <code>sex</code> of the crabs from the
+five numerical measurements (don’t use the index!).</p></li>
+<li><p>Test the predictive accuracy of your classifier by splitting the data into a training set and a test set. Report the predictive accuracy and find the confusion matrix.</p></li>
+<li><p>Plot the histograms of the 1d projections of the data. Note that there can only be single projected variable here as there are just <span class="math inline">\(g=2\)</span> groups.</p></li>
+<li><p>Use your classifier to predict the sex of a crab that has BD=14, FL=15.5, RW=13.3, CL=31, and CW=36. What probability does the classifier give for this crab being male?</p></li>
+<li><p>Create a new variable that indicates the species and the sex of the crab. With levels
+BM, BF, OM, OF. This can be done as follows:</p></li>
+</ol>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">crabs<span class="op">$</span>spsex &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">paste</span>(crabs<span class="op">$</span>sp, crabs<span class="op">$</span>sex, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>))</a></code></pre></div>
+<p>Build a classifier to predict the species and sex of the crabs. Test its predictive accuracy, and provide some plots showing its effectiveness etc.</p>
+</div>
+<div id="task-2" class="section level5 unnumbered">
+<h5>Task 2</h5>
+<p>In this question we will generate some data ourselves, and then see how successful LDA is at separating the populations.</p>
+<ol style="list-style-type: lower-roman">
+<li>Generate 4 populations in 2d using the MVN distribution as follows:</li>
+</ol>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">mu1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb62-2" data-line-number="2">mu2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb62-3" data-line-number="3">mu3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb62-4" data-line-number="4">mu4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb62-5" data-line-number="5">Sigma &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.5</span>,<span class="fl">0.4</span>,<span class="fl">0.4</span>,<span class="fl">0.5</span>), <span class="dt">nr=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb62-6" data-line-number="6"><span class="kw">library</span>(mvtnorm)</a>
+<a class="sourceLine" id="cb62-7" data-line-number="7">S1 &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dv">100</span>, mu1, Sigma)</a>
+<a class="sourceLine" id="cb62-8" data-line-number="8">S2 &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dv">100</span>, mu2, Sigma)</a>
+<a class="sourceLine" id="cb62-9" data-line-number="9">S3 &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dv">100</span>, mu3, Sigma)</a>
+<a class="sourceLine" id="cb62-10" data-line-number="10">S4 &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dv">100</span>, mu4, Sigma)</a>
+<a class="sourceLine" id="cb62-11" data-line-number="11">X=<span class="kw">rbind</span>(S1,S2,S3,S4)</a>
+<a class="sourceLine" id="cb62-12" data-line-number="12">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">popn=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;1&quot;</span>,<span class="dv">100</span>),<span class="kw">rep</span>(<span class="st">&quot;2&quot;</span>,<span class="dv">100</span>),<span class="kw">rep</span>(<span class="st">&quot;3&quot;</span>,<span class="dv">100</span>),<span class="kw">rep</span>(<span class="st">&quot;4&quot;</span>,<span class="dv">100</span>)), <span class="dt">X1=</span>X[,<span class="dv">1</span>], <span class="dt">X2=</span>X[,<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb62-13" data-line-number="13"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb62-14" data-line-number="14"><span class="kw">qplot</span>(<span class="dt">x=</span>X1,<span class="dt">y=</span>X2, <span class="dt">colour=</span>popn, <span class="dt">data=</span>dat)</a></code></pre></div>
+<p><img src="09-lda-ex_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: lower-roman">
+<li><p>Use LDA to train a classifier. Plot the 2d projection found, and use the <code>partimat</code> command from the <code>klaR</code> package to visualise the discriminant regions.</p></li>
+<li><p>Experiment with different population means, different number of populations, and different covariance functions. What makes populations easy/hard to separate?</p></li>
+</ol>
+</div>
+<div id="task-3" class="section level5 unnumbered">
+<h5>Task 3</h5>
+<p>With a bit of work, it is possible to get a prediction accuracy of over 80% for the MNIST data using linear discriminant analysis.</p>
+<ol style="list-style-type: lower-roman">
+<li>Create a training set of 1000 images, and try using the <code>lda</code> command to fit a linear classifier. Did it work?</li>
+</ol>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&#39;mnist.rda&#39;</span>)</a>
+<a class="sourceLine" id="cb63-2" data-line-number="2">X&lt;-<span class="st"> </span><span class="kw">as.matrix</span>(mnist<span class="op">$</span>train<span class="op">$</span>x[<span class="dv">1</span><span class="op">:</span><span class="dv">10000</span>,])</a>
+<a class="sourceLine" id="cb63-3" data-line-number="3">y&lt;-mnist<span class="op">$</span>train<span class="op">$</span>y[<span class="dv">1</span><span class="op">:</span><span class="dv">10000</span>]</a>
+<a class="sourceLine" id="cb63-4" data-line-number="4"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb63-5" data-line-number="5"><span class="kw">lda</span>(X,y)</a></code></pre></div>
+<ol start="2" style="list-style-type: lower-roman">
+<li><p>One way to fix problems such as colinearity, or in this case, zero variance, is to first use PCA on the data to rotate to set of variables with maximal variance. Do PCA on your training data using just the <span class="math inline">\(X\)</span>s (the pixel intensities) and select the <span class="math inline">\(p=100\)</span> most variable PC scores. This should leave you with a <span class="math inline">\(1000 \times 100\)</span> matrix.</p></li>
+<li><p>Do linear discriminant on the 100 PC variables you derived in the previous part. Plot the LDA projections of the data: Try plotting both the first 2 projected variables (coloured by the digit they represent), and the first 3 projected variables.
+Does using 3 dimensions help in separating the different populations?</p></li>
+<li><p>Find the predictive accuracy of your classifier using the MNIST test data. Note that you will first need to project this data onto the <span class="math inline">\(p\)</span> leading principal components. Find the confusion matrix and comment upon it.</p></li>
+</ol>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">Xtest &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(mnist<span class="op">$</span>test<span class="op">$</span>x)</a>
+<a class="sourceLine" id="cb64-2" data-line-number="2">Ytest &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(mnist<span class="op">$</span>test<span class="op">$</span>y)</a></code></pre></div>
+<ol start="22" style="list-style-type: lower-alpha">
+<li>Does the predictive accuracy change if instead of using the first <span class="math inline">\(p=100\)</span> principal component scores you use fewer or more? You can also try using larger training sets. The MNIST training data consists of <span class="math inline">\(60,000\)</span> images - depending upon your computer you may be able to repeat the analysis with all <span class="math inline">\(60,000\)</span> images. If so, how does this affect the prediction accuracy?</li>
+</ol>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2-3-FLDA.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-5-exercises-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

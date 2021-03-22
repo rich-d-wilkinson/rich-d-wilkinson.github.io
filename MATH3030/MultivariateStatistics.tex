@@ -7982,7 +7982,7 @@ The videos for this chapter are available at the links below:
 \item
   \href{https://mediaspace.nottingham.ac.uk/media/LDAA+2+populations/1_v273b9lp}{Two populations}
 \item
-  \href{https://mediaspace.nottingham.ac.uk/media/LDAA+Bayes+discriminant+rule/1_x48emgqz}{Bayes discriminant rule}
+  \href{https://mediaspace.nottingham.ac.uk/media/LDAA+Bayes+discriminant+rule+\%28with+sound\%29/1_b2uxl6cv}{Bayes discriminant rule}
 \item
   \href{https://mediaspace.nottingham.ac.uk/media/LDAA+Iris+example/1_cb9grj25}{Example: Iris data}
 \item
@@ -8618,6 +8618,8 @@ So in this case we find that LDA and QDA both have an accuracy of 4900\%, which 
 ##   virginica       0          1        17
 \end{verbatim}
 
+These tables of results are known as \textbf{confusion matrices}.
+
 So in this case one of the virginica irises was predicted incorrectly to be versicolor.
 
 Here we randomly split the data into test and training sets. With small datasets such as this (\(n=150\)), we instead sometimes use \href{https://en.wikipedia.org/wiki/Cross-validation_(statistics)}{cross validation} to assess the accuracy of each method. To do this, we split the data up into test and training sets multiple times randomly, and assess the prediction error on each random split.
@@ -8944,6 +8946,223 @@ we find \(\boldsymbol \beta\) is in the same direction as the first eigenvector 
 \begin{verbatim}
 ## [1] -1.137257
 \end{verbatim}
+
+\hypertarget{computer-tasks-4}{%
+\section{Computer tasks}\label{computer-tasks-4}}
+
+\hypertarget{task-1-3}{%
+\paragraph{Task 1}\label{task-1-3}}
+\addcontentsline{toc}{paragraph}{Task 1}
+
+Let's look again at the crabs dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(MASS)}
+\KeywordTok{data}\NormalTok{(crabs)}
+\KeywordTok{head}\NormalTok{(crabs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\item
+  Use the \texttt{lda} command to build a classifier to predict the \texttt{sex} of the crabs from the
+  five numerical measurements (don't use the index!).
+\item
+  Test the predictive accuracy of your classifier by splitting the data into a training set and a test set. Report the predictive accuracy and find the confusion matrix.
+\item
+  Plot the histograms of the 1d projections of the data. Note that there can only be single projected variable here as there are just \(g=2\) groups.
+\item
+  Use your classifier to predict the sex of a crab that has BD=14, FL=15.5, RW=13.3, CL=31, and CW=36. What probability does the classifier give for this crab being male?
+\item
+  Create a new variable that indicates the species and the sex of the crab. With levels
+  BM, BF, OM, OF. This can be done as follows:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{crabs}\OperatorTok{$}\NormalTok{spsex <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(}\KeywordTok{paste}\NormalTok{(crabs}\OperatorTok{$}\NormalTok{sp, crabs}\OperatorTok{$}\NormalTok{sex, }\DataTypeTok{sep=}\StringTok{""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Build a classifier to predict the species and sex of the crabs. Test its predictive accuracy, and provide some plots showing its effectiveness etc.
+
+\hypertarget{task-2-3}{%
+\paragraph{Task 2}\label{task-2-3}}
+\addcontentsline{toc}{paragraph}{Task 2}
+
+In this question we will generate some data ourselves, and then see how successful LDA is at separating the populations.
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\tightlist
+\item
+  Generate 4 populations in 2d using the MVN distribution as follows:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu1 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\NormalTok{mu2 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\NormalTok{mu3 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\NormalTok{mu4 <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{)}
+\NormalTok{Sigma <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.4}\NormalTok{,}\FloatTok{0.4}\NormalTok{,}\FloatTok{0.5}\NormalTok{), }\DataTypeTok{nr=}\DecValTok{2}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(mvtnorm)}
+\NormalTok{S1 <-}\StringTok{ }\KeywordTok{rmvnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, mu1, Sigma)}
+\NormalTok{S2 <-}\StringTok{ }\KeywordTok{rmvnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, mu2, Sigma)}
+\NormalTok{S3 <-}\StringTok{ }\KeywordTok{rmvnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, mu3, Sigma)}
+\NormalTok{S4 <-}\StringTok{ }\KeywordTok{rmvnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, mu4, Sigma)}
+\NormalTok{X=}\KeywordTok{rbind}\NormalTok{(S1,S2,S3,S4)}
+\NormalTok{dat <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{popn=}\KeywordTok{c}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"1"}\NormalTok{,}\DecValTok{100}\NormalTok{),}\KeywordTok{rep}\NormalTok{(}\StringTok{"2"}\NormalTok{,}\DecValTok{100}\NormalTok{),}\KeywordTok{rep}\NormalTok{(}\StringTok{"3"}\NormalTok{,}\DecValTok{100}\NormalTok{),}\KeywordTok{rep}\NormalTok{(}\StringTok{"4"}\NormalTok{,}\DecValTok{100}\NormalTok{)), }\DataTypeTok{X1=}\NormalTok{X[,}\DecValTok{1}\NormalTok{], }\DataTypeTok{X2=}\NormalTok{X[,}\DecValTok{2}\NormalTok{])}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{qplot}\NormalTok{(}\DataTypeTok{x=}\NormalTok{X1,}\DataTypeTok{y=}\NormalTok{X2, }\DataTypeTok{colour=}\NormalTok{popn, }\DataTypeTok{data=}\NormalTok{dat)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{09-lda-ex_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Use LDA to train a classifier. Plot the 2d projection found, and use the \texttt{partimat} command from the \texttt{klaR} package to visualise the discriminant regions.
+\item
+  Experiment with different population means, different number of populations, and different covariance functions. What makes populations easy/hard to separate?
+\end{enumerate}
+
+\hypertarget{task-3-3}{%
+\paragraph{Task 3}\label{task-3-3}}
+\addcontentsline{toc}{paragraph}{Task 3}
+
+With a bit of work, it is possible to get a prediction accuracy of over 80\% for the MNIST data using linear discriminant analysis.
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\tightlist
+\item
+  Create a training set of 1000 images, and try using the \texttt{lda} command to fit a linear classifier. Did it work?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{load}\NormalTok{(}\StringTok{'mnist.rda'}\NormalTok{)}
+\NormalTok{X<-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(mnist}\OperatorTok{$}\NormalTok{train}\OperatorTok{$}\NormalTok{x[}\DecValTok{1}\OperatorTok{:}\DecValTok{10000}\NormalTok{,])}
+\NormalTok{y<-mnist}\OperatorTok{$}\NormalTok{train}\OperatorTok{$}\NormalTok{y[}\DecValTok{1}\OperatorTok{:}\DecValTok{10000}\NormalTok{]}
+\KeywordTok{library}\NormalTok{(MASS)}
+\KeywordTok{lda}\NormalTok{(X,y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\setcounter{enumi}{1}
+\item
+  One way to fix problems such as colinearity, or in this case, zero variance, is to first use PCA on the data to rotate to set of variables with maximal variance. Do PCA on your training data using just the \(X\)s (the pixel intensities) and select the \(p=100\) most variable PC scores. This should leave you with a \(1000 \times 100\) matrix.
+\item
+  Do linear discriminant on the 100 PC variables you derived in the previous part. Plot the LDA projections of the data: Try plotting both the first 2 projected variables (coloured by the digit they represent), and the first 3 projected variables.
+  Does using 3 dimensions help in separating the different populations?
+\item
+  Find the predictive accuracy of your classifier using the MNIST test data. Note that you will first need to project this data onto the \(p\) leading principal components. Find the confusion matrix and comment upon it.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Xtest <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(mnist}\OperatorTok{$}\NormalTok{test}\OperatorTok{$}\NormalTok{x)}
+\NormalTok{Ytest <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(mnist}\OperatorTok{$}\NormalTok{test}\OperatorTok{$}\NormalTok{y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{21}
+\tightlist
+\item
+  Does the predictive accuracy change if instead of using the first \(p=100\) principal component scores you use fewer or more? You can also try using larger training sets. The MNIST training data consists of \(60,000\) images - depending upon your computer you may be able to repeat the analysis with all \(60,000\) images. If so, how does this affect the prediction accuracy?
+\end{enumerate}
+
+\hypertarget{exercises-5}{%
+\section{Exercises}\label{exercises-5}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Prove that the Bayes classifier can be written as given in Proposition \ref{prp:ldabayes}.
+\item
+  Prove that \(\mathbf W^{-1}\mathbf B\) and \(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\) have the same eigenvalues and find an expression relating their eigenvectors.
+\item
+  Prove Proposition \ref{prp:ldaconvex}. Note that region \(\mathcal{R}\) is convex and connected if for \(\mathbf x_1, \mathbf x_2 \in \mathcal{R}\) we have
+  \[\lambda \mathbf x_1+(1-\lambda) \mathbf x_2 \in \mathcal{R} \mbox{ for all } \lambda \in [0,1].\]
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Consider \(g=3\) bivariate normal populations with the same covariance matrix, given by
+  \[ {\boldsymbol{\mu}}_1 = \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \quad
+  {\boldsymbol{\mu}}_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}, \quad
+  {\boldsymbol{\mu}}_3 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad
+  \boldsymbol{\Sigma}= \begin{pmatrix} 5 & 2 \\ 2 & 1 \end{pmatrix}.\]
+  Determine the three maximum likelihood discriminant rules and, hence, sketch the ML discriminant regions. Determine the point at which the three boundary lines meet.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  The\texttt{palmerpenguins} R package contains size measurements of adult foraging penguins near Palmer Station, Antarctica.
+  We will begin by looking at a subset of this data, looking at just the \emph{Adelie} (\(n_1=151\)) and \emph{Chinstrap} (\(n_2=68\)) penguins, and just the \emph{bill length} and \emph{bill depth} measurements. The sample mean and covariance for each group are
+\end{enumerate}
+
+\begin{align*}
+{\boldsymbol{\mu}}_{A}&=\begin{pmatrix}38.8 \\18.3 \\\end{pmatrix} \qquad \boldsymbol{\Sigma}_A = \begin{pmatrix}7.09&1.27 \\1.27&1.48 \\\end{pmatrix}\\
+{\boldsymbol{\mu}}_{C}&=\begin{pmatrix}48.8 \\18.4 \\\end{pmatrix}\qquad \boldsymbol{\Sigma}_C = \begin{pmatrix}11.2&2.48 \\2.48&1.29 \\\end{pmatrix}
+\end{align*}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\item
+  Find the ML discriminant rule for allocating a new penguin \(\mathbf z=(z_1,z_2)^T\) as either \emph{Adelie} or \emph{Chinstrap} assuming that the population covariance matrices for the two groups are equal. In particular, determine the sample ML rule for allocating the new observation \(\mathbf z\). Find the equation of the straight line which separates the two allocation regions and plot the two regions graphically.
+\item
+  Find the Bayes discriminant rule estimating the prior probabilities using the observed frequencies \(n_1\) and \(n_2\). How does this differ to the ML rule?
+\item
+  In addition to the \emph{Adelie} and \emph{Chinstrap} penguins, there are also \(n_3=123\) measurements on \emph{Gentoo} penguins with sample mean and covariance
+  \[
+  {\boldsymbol{\mu}}_{G}=\begin{pmatrix}47.5 \\15 \\\end{pmatrix} \qquad \boldsymbol{\Sigma}_G = \begin{pmatrix}9.5&1.95 \\1.95&0.963 \\\end{pmatrix}\]
+  The within-group covariance matrix is
+  \[ \frac{1}{342}(151 \mathbf S_A + 68 \mathbf S_C + 123 \mathbf S_G) = \begin{pmatrix}9.25&1.9 \\1.9&1.24 \\\end{pmatrix}.\]
+  The eigendecomposition of \(\mathbf W^{-1}\mathbf B\) is found in R to be
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{WiB.eig}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## eigen() decomposition
+## $values
+## [1] 9.847607 1.269243
+## 
+## $vectors
+##            [,1]      [,2]
+## [1,]  0.3470103 0.3350582
+## [2,] -0.9378613 0.9421974
+\end{verbatim}
+
+Calculate Fisher's linear discriminant function using just a single LDA variable, and compare the discriminant regions with those you found previously.
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  What would Fisher's discriminant rule be if you use both LDA variables?
+\end{enumerate}
 
 \bibliography{book.bib,packages.bib}
 

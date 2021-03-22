@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="part-iv-classification-and-clustering.html"/>
+<link rel="prev" href="introduction.html"/>
 <link rel="next" href="0-2-exercises.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,6 +51,68 @@
 
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -68,8 +130,7 @@
 <li><a href="./">Applied multivariate statistics</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a><ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
 <li class="chapter" data-level="0.1" data-path="0-1-computer-tasks.html"><a href="0-1-computer-tasks.html"><i class="fa fa-check"></i><b>0.1</b> Computer tasks</a></li>
 <li class="chapter" data-level="0.2" data-path="0-2-exercises.html"><a href="0-2-exercises.html"><i class="fa fa-check"></i><b>0.2</b> Exercises</a></li>
 </ul></li>
@@ -95,50 +156,80 @@
             <section class="normal" id="section-">
 <div id="computer-tasks" class="section level2">
 <h2><span class="header-section-number">0.1</span> Computer tasks</h2>
-
-<p>Open RStudio and open an R markdown document for carrying out this computer practical. Save the file, carry out the tasks and regularly make sure
-you can successfully knit the file, as you will need to do that for the forthcoming coursework.</p>
-
-<p>Consider the famous dataset known either as Fisher’s or Anderson’s iris data set which gives the measurements in centimetres of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are {}, {}, and {}.</p>
-
-<p>We will carry out discriminant analysis of the classic iris dataset, but just between the first two species initially. Later we’ll consider all three groups.
-Note that the sample ML discriminant rule is the same as Fisher’s linear discriminant analysis when there are <span class="math inline">\(g=2\)</span> groups.</p>
-
-
-<p>We are going to select 70% of the data at random as the training data, and then evaluate the performance of the discriminant rule on the
-remaining 30% test data.</p>
-<p>Select the test and training data by taking a random sample of 70% of the rows for training, and the rest for testing.</p>
-
-<p>We can see that the two groups are quite different, but there is some overlap.</p>
-<p>Let’s look at the form of the classification region, with the linear boundary between the classes. Observations
-that are misclassified in the training set are shown in red.</p>
-<p>We give a table of classifications for the training set.</p>
-
-<p>This is not really a fair evaluation of the method, because we have classified the training data using the training data. A fairer way
-of evaluating the rule is to compare how the test dataset is classified, versus the true species values.</p>
-
-<p>These tables of results are known as `confusion matrices’.</p>
-
-<p>A new iris flower is found which is thought to be one of these two species (versicolor or virginica). It has the following measurements:</p>
-<p>Sepal.Length = 6.1,
-Sepal.Width = 2.9,
-Petal.Length = 4.2,
-Petal.Width = 1.3.</p>
-<p>How would we classify this new flower, given the full dataset is available as training data from these two species?</p>
-
-<p>So, the predicted class is in out$class, so it is classified as versicolor (group 2)</p>
-
-<p>Now we consider Fisher’s linear discriminant on all three (<span class="math inline">\(g=3\)</span>) groups</p>
-
-<p>Now plot the classification regions, with three classes:</p>
-
+<div id="task-1" class="section level5 unnumbered">
+<h5>Task 1</h5>
+<p>Let’s look again at the crabs dataset.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">data</span>(crabs)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">head</span>(crabs)</a></code></pre></div>
+<ol style="list-style-type: lower-roman">
+<li><p>Use the <code>lda</code> command to build a classifier to predict the <code>sex</code> of the crabs from the
+five numerical measurements (don’t use the index!).</p></li>
+<li><p>Test the predictive accuracy of your classifier by splitting the data into a training set and a test set. Report the predictive accuracy and find the confusion matrix.</p></li>
+<li><p>Plot the histograms of the 1d projections of the data. Note that there can only be single projected variable here as there are just <span class="math inline">\(g=2\)</span> groups.</p></li>
+<li><p>Use your classifier to predict the sex of a crab that has BD=14, FL=15.5, RW=13.3, CL=31, and CW=36. What probability does the classifier give for this crab being male?</p></li>
+<li><p>Create a new variable that indicates the species and the sex of the crab. With levels
+BM, BF, OM, OF. This can be done as follows:</p></li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">crabs<span class="op">$</span>spsex &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">paste</span>(crabs<span class="op">$</span>sp, crabs<span class="op">$</span>sex, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>))</a></code></pre></div>
+<p>Build a classifier to predict the species and sex of the crabs. Test its predictive accuracy, and provide some plots showing its effectiveness etc.</p>
+</div>
+<div id="task-2" class="section level5 unnumbered">
+<h5>Task 2</h5>
+<p>In this question we will generate some data ourselves, and then see how successful LDA is at separating the populations.</p>
+<ol style="list-style-type: lower-roman">
+<li>Generate 4 populations in 2d using the MVN distribution as follows:</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">mu1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">mu2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">mu3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">mu4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">Sigma &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.5</span>,<span class="fl">0.4</span>,<span class="fl">0.4</span>,<span class="fl">0.5</span>), <span class="dt">nr=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">library</span>(mvtnorm)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">S1 &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dv">100</span>, mu1, Sigma)</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">S2 &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dv">100</span>, mu2, Sigma)</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">S3 &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dv">100</span>, mu3, Sigma)</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">S4 &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dv">100</span>, mu4, Sigma)</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">X=<span class="kw">rbind</span>(S1,S2,S3,S4)</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">popn=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;1&quot;</span>,<span class="dv">100</span>),<span class="kw">rep</span>(<span class="st">&quot;2&quot;</span>,<span class="dv">100</span>),<span class="kw">rep</span>(<span class="st">&quot;3&quot;</span>,<span class="dv">100</span>),<span class="kw">rep</span>(<span class="st">&quot;4&quot;</span>,<span class="dv">100</span>)), <span class="dt">X1=</span>X[,<span class="dv">1</span>], <span class="dt">X2=</span>X[,<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw">qplot</span>(<span class="dt">x=</span>X1,<span class="dt">y=</span>X2, <span class="dt">colour=</span>popn, <span class="dt">data=</span>dat)</a></code></pre></div>
+<p><img src="09-lda-ex_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: lower-roman">
+<li><p>Use LDA to train a classifier. Plot the 2d projection found, and use the <code>partimat</code> command from the <code>klaR</code> package to visualise the discriminant regions.</p></li>
+<li><p>Experiment with different population means, different number of populations, and different covariance functions. What makes populations easy/hard to separate?</p></li>
+</ol>
+</div>
+<div id="task-3" class="section level5 unnumbered">
+<h5>Task 3</h5>
+<p>With a bit of work, it is possible to get a prediction accuracy of over 80% for the MNIST data using linear discriminant analysis.</p>
+<ol style="list-style-type: lower-roman">
+<li>Create a training set of 1000 images, and try using the <code>lda</code> command to fit a linear classifier. Did it work?</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&#39;mnist.rda&#39;</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">X&lt;-<span class="st"> </span><span class="kw">as.matrix</span>(mnist<span class="op">$</span>train<span class="op">$</span>x[<span class="dv">1</span><span class="op">:</span><span class="dv">10000</span>,])</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">y&lt;-mnist<span class="op">$</span>train<span class="op">$</span>y[<span class="dv">1</span><span class="op">:</span><span class="dv">10000</span>]</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">lda</span>(X,y)</a></code></pre></div>
+<ol start="2" style="list-style-type: lower-roman">
+<li><p>One way to fix problems such as colinearity, or in this case, zero variance, is to first use PCA on the data to rotate to set of variables with maximal variance. Do PCA on your training data using just the <span class="math inline">\(X\)</span>s (the pixel intensities) and select the <span class="math inline">\(p=100\)</span> most variable PC scores. This should leave you with a <span class="math inline">\(1000 \times 100\)</span> matrix.</p></li>
+<li><p>Do linear discriminant on the 100 PC variables you derived in the previous part. Plot the LDA projections of the data: Try plotting both the first 2 projected variables (coloured by the digit they represent), and the first 3 projected variables.
+Does using 3 dimensions help in separating the different populations?</p></li>
+<li><p>Find the predictive accuracy of your classifier using the MNIST test data. Note that you will first need to project this data onto the <span class="math inline">\(p\)</span> leading principal components. Find the confusion matrix and comment upon it.</p></li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">Xtest &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(mnist<span class="op">$</span>test<span class="op">$</span>x)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">Ytest &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(mnist<span class="op">$</span>test<span class="op">$</span>y)</a></code></pre></div>
+<ol start="22" style="list-style-type: lower-alpha">
+<li>Does the predictive accuracy change if instead of using the first <span class="math inline">\(p=100\)</span> principal component scores you use fewer or more? You can also try using larger training sets. The MNIST training data consists of <span class="math inline">\(60,000\)</span> images - depending upon your computer you may be able to repeat the analysis with all <span class="math inline">\(60,000\)</span> images. If so, how does this affect the prediction accuracy?</li>
+</ol>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="part-iv-classification-and-clustering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="0-2-exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

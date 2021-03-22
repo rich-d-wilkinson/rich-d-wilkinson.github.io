@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="2-2-sample-lda.html"/>
-<link rel="next" href="2-4-probability-of-misclassification.html"/>
+<link rel="prev" href="2-2-lda-Bayes.html"/>
+<link rel="next" href="2-4-computer-tasks-1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,6 +49,8 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -131,40 +133,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><a href="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><i class="fa fa-check"></i>Part III: Inference using the Multivariate Normal Distribution (MVN)</a></li>
-<li class="chapter" data-level="1" data-path="1-multinormal.html"><a href="1-multinormal.html"><i class="fa fa-check"></i><b>1</b> The Multivariate Normal Distribution</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-definition-and-properties-of-the-mvn.html"><a href="1-1-definition-and-properties-of-the-mvn.html"><i class="fa fa-check"></i><b>1.1</b> Definition and Properties of the MVN</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="1-1-definition-and-properties-of-the-mvn.html"><a href="1-1-definition-and-properties-of-the-mvn.html#basics"><i class="fa fa-check"></i><b>1.1.1</b> Basics</a></li>
-<li class="chapter" data-level="1.1.2" data-path="1-1-definition-and-properties-of-the-mvn.html"><a href="1-1-definition-and-properties-of-the-mvn.html#transformations"><i class="fa fa-check"></i><b>1.1.2</b> Transformations</a></li>
-<li class="chapter" data-level="1.1.3" data-path="1-1-definition-and-properties-of-the-mvn.html"><a href="1-1-definition-and-properties-of-the-mvn.html#independence"><i class="fa fa-check"></i><b>1.1.3</b> Independence</a></li>
-<li class="chapter" data-level="1.1.4" data-path="1-1-definition-and-properties-of-the-mvn.html"><a href="1-1-definition-and-properties-of-the-mvn.html#confidence-ellipses"><i class="fa fa-check"></i><b>1.1.4</b> Confidence ellipses</a></li>
-<li class="chapter" data-level="1.1.5" data-path="1-1-definition-and-properties-of-the-mvn.html"><a href="1-1-definition-and-properties-of-the-mvn.html#sampling-results-for-the-mvn"><i class="fa fa-check"></i><b>1.1.5</b> Sampling results for the MVN</a></li>
+<li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-notation.html"><a href="1-1-notation.html"><i class="fa fa-check"></i><b>1.1</b> Notation</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-notation.html"><a href="1-1-notation.html#example-datasets"><i class="fa fa-check"></i><b>1.1.1</b> Example datasets</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-notation.html"><a href="1-1-notation.html#aims-of-multivariate-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Aims of multivariate data analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-2-the-wishart-distribution.html"><a href="1-2-the-wishart-distribution.html"><i class="fa fa-check"></i><b>1.2</b> The Wishart distribution</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="1-2-the-wishart-distribution.html"><a href="1-2-the-wishart-distribution.html#properties"><i class="fa fa-check"></i><b>1.2.1</b> Properties</a></li>
-<li class="chapter" data-level="1.2.2" data-path="1-2-the-wishart-distribution.html"><a href="1-2-the-wishart-distribution.html#cochrans-theorem"><i class="fa fa-check"></i><b>1.2.2</b> Cochran’s theorem</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>1.2</b> Exploratory data analysis (EDA)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#data-visualization"><i class="fa fa-check"></i><b>1.2.1</b> Data visualization</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#summary-statistics"><i class="fa fa-check"></i><b>1.2.2</b> Summary statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="1-3-hotellings-t2-distribution.html"><a href="1-3-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>1.3</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
-<li class="chapter" data-level="1.4" data-path="1-4-inference-based-on-the-mvn.html"><a href="1-4-inference-based-on-the-mvn.html"><i class="fa fa-check"></i><b>1.4</b> Inference based on the MVN</a><ul>
-<li class="chapter" data-level="1.4.1" data-path="1-4-inference-based-on-the-mvn.html"><a href="1-4-inference-based-on-the-mvn.html#onesampleSigma"><i class="fa fa-check"></i><b>1.4.1</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> known</a></li>
-<li class="chapter" data-level="1.4.2" data-path="1-4-inference-based-on-the-mvn.html"><a href="1-4-inference-based-on-the-mvn.html#onesample"><i class="fa fa-check"></i><b>1.4.2</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 1 sample</a></li>
-<li class="chapter" data-level="1.4.3" data-path="1-4-inference-based-on-the-mvn.html"><a href="1-4-inference-based-on-the-mvn.html#boldsymbolsigma-unknown-2-samples"><i class="fa fa-check"></i><b>1.4.3</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 2 samples</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-randvec.html"><a href="1-3-randvec.html"><i class="fa fa-check"></i><b>1.3</b> Random vectors and matrices</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-randvec.html"><a href="1-3-randvec.html#estimators"><i class="fa fa-check"></i><b>1.3.1</b> Estimators</a></li>
 </ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-computer-tasks.html"><a href="1-4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
 <li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
-<li class="chapter" data-level="1.6" data-path="1-6-computer-tasks.html"><a href="1-6-computer-tasks.html"><i class="fa fa-check"></i><b>1.6</b> Computer tasks</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
 <li class="chapter" data-level="2" data-path="2-lda.html"><a href="2-lda.html"><i class="fa fa-check"></i><b>2</b> Discriminant analysis</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="2-lda.html"><a href="2-lda.html#linear-discriminant-analysis"><i class="fa fa-check"></i><b>2.0.1</b> Linear discriminant analysis</a></li>
 <li class="chapter" data-level="2.1" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html"><i class="fa fa-check"></i><b>2.1</b> Maximum likelihood (ML) discriminant rule</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html#multivariate-gaussian-populations"><i class="fa fa-check"></i><b>2.1.1</b> Multivariate Gaussian populations</a></li>
-<li class="chapter" data-level="2.1.2" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>2.1.2</b> More than two populations</a></li>
-<li class="chapter" data-level="2.1.3" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html#bayes-classifier"><i class="fa fa-check"></i><b>2.1.3</b> Bayes classifier</a></li>
+<li class="chapter" data-level="2.1.1" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html#multivariate-normal-populations"><i class="fa fa-check"></i><b>2.1.1</b> Multivariate normal populations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>2.1.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html#two-populations"><i class="fa fa-check"></i><b>2.1.3</b> Two populations</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-1-lda-ML.html"><a href="2-1-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>2.1.4</b> More than two populations</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="2-2-sample-lda.html"><a href="2-2-sample-lda.html"><i class="fa fa-check"></i><b>2.2</b> The sample ML discriminant rule</a></li>
-<li class="chapter" data-level="2.3" data-path="2-3-FLDA.html"><a href="2-3-FLDA.html"><i class="fa fa-check"></i><b>2.3</b> Fisher’s linear discriminant rule</a></li>
-<li class="chapter" data-level="2.4" data-path="2-4-probability-of-misclassification.html"><a href="2-4-probability-of-misclassification.html"><i class="fa fa-check"></i><b>2.4</b> Probability of misclassification</a></li>
-<li class="chapter" data-level="2.5" data-path="2-5-computer-tasks-1.html"><a href="2-5-computer-tasks-1.html"><i class="fa fa-check"></i><b>2.5</b> Computer tasks</a></li>
-<li class="chapter" data-level="2.6" data-path="2-6-exercises-1.html"><a href="2-6-exercises-1.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-lda-Bayes.html"><a href="2-2-lda-Bayes.html"><i class="fa fa-check"></i><b>2.2</b> Bayes discriminant rule</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-lda-Bayes.html"><a href="2-2-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>2.2.1</b> Example: LDA using the Iris data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-lda-Bayes.html"><a href="2-2-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>2.2.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-2-lda-Bayes.html"><a href="2-2-lda-Bayes.html#prediction-accuracy"><i class="fa fa-check"></i><b>2.2.3</b> Prediction accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-FLDA.html"><a href="2-3-FLDA.html"><i class="fa fa-check"></i><b>2.3</b> Fisher’s linear discriminant rule</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-FLDA.html"><a href="2-3-FLDA.html#iris-example-continued-1"><i class="fa fa-check"></i><b>2.3.1</b> Iris example continued</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-3-FLDA.html"><a href="2-3-FLDA.html#links-between-methods"><i class="fa fa-check"></i><b>2.3.2</b> Links between methods</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-4-computer-tasks-1.html"><a href="2-4-computer-tasks-1.html"><i class="fa fa-check"></i><b>2.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-exercises-1.html"><a href="2-5-exercises-1.html"><i class="fa fa-check"></i><b>2.5</b> Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -188,101 +192,417 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="FLDA" class="section level2">
 <h2><span class="header-section-number">2.3</span> Fisher’s linear discriminant rule</h2>
-<p>Recall that when the <span class="math inline">\(\Pi_j\)</span> are <span class="math inline">\(N_p ( \boldsymbol{\mu}_j, {\mathbf \Sigma})\)</span> populations, the ML
-discriminant rule is linear if <span class="math inline">\(g=2\)</span> but not when <span class="math inline">\(g&gt;2\)</span>. An alternative approach due to Fisher is to look for a linear discriminant function without assuming that the <span class="math inline">\(\Pi_j\)</span> are multivariate normal.</p>
-<p>Suppose we have a training sample <span class="math inline">\(\mathbf x_{1,j}, \ldots, \mathbf x_{n_j,j}\)</span> from <span class="math inline">\(\Pi_j\)</span> (<span class="math inline">\(j=1,\ldots,g\)</span>). Calculate the `within’ sum of squares matrix:
-<span class="math display">\[ \mathbf W= \sum_{j=1}^g \sum_{i=1}^{n_j} (\mathbf x_{ij} - \bar{\mathbf x}_j) (\mathbf x_{ij} - \bar{\mathbf x}_j)^\top  = \sum_{j=1}^g n_j \mathbf S_j \]</span>
-where <span class="math inline">\(\bar{\mathbf x}_j= \frac{1}{n_j} \sum_{i=1}^{n_j} \mathbf x_{ij}\)</span> is the sample mean of the <span class="math inline">\(j\)</span>th group. Also, calculate the ‘between’ sum of squares matrix
-<span class="math display">\[ \mathbf B= \sum_{j=1}^g n_j (\bar{\mathbf x}_j - \bar{\mathbf x}) (\bar{\mathbf x}_j - \bar{\mathbf x})^\top ,\]</span>
-where <span class="math inline">\(\bar{\mathbf x} = \frac{1}{n} \sum_{j=1}^g \sum_{i=1}^{n_j} \mathbf x_{ij}\)</span> is the overall mean, and <span class="math inline">\(n=\sum_{j=1}^g n_j\)</span>.</p>
-<p>Fisher’s Criterion is to choose a unit vector, <span class="math inline">\(\boldsymbol \lambda\)</span>, to maximise
-<span class="math display">\[ \frac{\boldsymbol \lambda^\top \mathbf B\boldsymbol \lambda}{\boldsymbol \lambda^\top \mathbf W\boldsymbol \lambda}, \]</span>
-the ratio of the <code>between' sum of squares to the</code>within’ sum of squares along <span class="math inline">\(\boldsymbol \lambda\)</span>.</p>
-<p>The function <span class="math inline">\(L(\mathbf z)=\boldsymbol \lambda^\top \mathbf z\)</span> is called Fisher’s linear discriminant function. Once <span class="math inline">\(L(\mathbf z)\)</span> has been obtained, we allocate <span class="math inline">\(\mathbf z\)</span> to the <span class="math inline">\(\Pi_j\)</span> whose discriminant score <span class="math inline">\(L(\bar{\mathbf x}_j)\)</span> is closest to <span class="math inline">\(L(\mathbf z)\)</span>, that is, allocate <span class="math inline">\(\mathbf z\)</span> to <span class="math inline">\(\Pi_j\)</span> iff
-<span class="math display">\[ | \boldsymbol \lambda^\top \mathbf z- \boldsymbol \lambda^\top \bar{\mathbf x}_j | = \min\limits_{1 \leq k \leq g} | \boldsymbol \lambda^\top \mathbf z- \boldsymbol \lambda^\top \bar{\mathbf x}_k |. \]</span></p>
-<p>How do we find <span class="math inline">\(\boldsymbol \lambda\)</span>?</p>
+<p>Thus far we have assumed that observations from population <span class="math inline">\(\Pi_j\)</span> have a <span class="math inline">\(N_p ( \boldsymbol{\mu}_j, {\mathbf \Sigma})\)</span> distribution, and then used the MVN log-likelihood to derive the discriminant functions <span class="math inline">\(\delta_j(\mathbf x)\)</span>. The famous statistician R. A. Fisher took an alternative approach and looked for a linear discriminant functions without assuming any particular distribution for each population <span class="math inline">\(\Pi_j\)</span>.</p>
+<p>This way of thinking leads to a form of dimension reduction. We find a projection of the data into a lower dimensional space that is optimal for classifying the data into the different populations.</p>
+<div id="variance-decomposition" class="section level4 unnumbered">
+<h4>Variance decomposition</h4>
+<p>Suppose we have a training sample <span class="math inline">\(\mathbf x_{1,j}, \ldots, \mathbf x_{n_j,j}\)</span> from <span class="math inline">\(\Pi_j\)</span> for <span class="math inline">\(j=1,\ldots,g\)</span>.
+Fisher’s approach starts by splitting the total covariance matrix of the data (i.e. ignoring class labels) into two parts.</p>
+<p><span class="math display">\[\begin{align*}
+n\mathbf S=\mathbf X^\top\mathbf H\mathbf X&amp;= \sum_{j=1}^g\sum_{i=1}^{n_j} (\mathbf x_{i,j} - \bar{\mathbf x})(\mathbf x_{i,j} - \bar{\mathbf x})^\top\\
+&amp;=\sum_{j=1}^g\sum_{i=1}^{n_j} (\mathbf x_{i,j} - \hat{{\boldsymbol{\mu}}}_j+\hat{{\boldsymbol{\mu}}}_j-\bar{\mathbf x})(\mathbf x_{i,j} - \hat{{\boldsymbol{\mu}}}_j+\hat{{\boldsymbol{\mu}}}_j-\bar{\mathbf x})^\top\\
+&amp;= \sum_{j=1}^g\sum_{i=1}^{n_j} (\mathbf x_{i,j} - \hat{{\boldsymbol{\mu}}}_j)(\mathbf x_{i,j} - \hat{{\boldsymbol{\mu}}}_j)^\top+
+\sum_{j=1}^g n_j (\hat{{\boldsymbol{\mu}}}_j-\bar{\mathbf x})(\hat{{\boldsymbol{\mu}}}_j-\bar{\mathbf x})^\top\\
+&amp;=n\mathbf W+n\mathbf B
+\end{align*}\]</span>
+where <span class="math inline">\(\hat{{\boldsymbol{\mu}}}_j=\frac{1}{n_j} \sum \mathbf x_{i,j} = \bar{\mathbf x}_{+,j}\)</span> is the sample mean of the <span class="math inline">\(j\)</span>th group, <span class="math inline">\(\bar{\mathbf x} = \frac{1}{n} \sum_{j=1}^g \sum_{i=1}^{n_j} \mathbf x_{ij}\)</span> is the overall mean, and <span class="math inline">\(n=\sum_{j=1}^g n_j\)</span>.</p>
+<p>This has split the total covariance matrix into a <strong>within-class</strong> covariance matrix
+<span class="math display">\[ \mathbf W= \frac{1}{n}\sum_{j=1}^g \sum_{i=1}^{n_j} (\mathbf x_{ij} - \hat{{\boldsymbol{\mu}}}_j) (\mathbf x_{ij} - \hat{{\boldsymbol{\mu}}}_j)^\top  = \frac{1}{n}\sum_{j=1}^g n_j \mathbf S_j \]</span>
+and a <strong>between-class</strong> covariance matrix
+<span class="math display">\[ \mathbf B= \frac{1}{n}\sum_{j=1}^g n_j (\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x}) (\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x})^\top\]</span>
+i.e.
+<span class="math display">\[\mathbf S= \mathbf W+ \mathbf B.\]</span></p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\mathbf W\)</span> is an estimator of <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, the shared covariance matrix in the MVN distributions for each population (c.f. Equation.
+<a href="2-1-lda-ML.html#eq:ldawithin">(2.4)</a>).</p></li>
+<li><p>If <span class="math inline">\(\mathbf M\)</span> is a <span class="math inline">\(n \times p\)</span> matrix of estimated class centroids for each observation
+<span class="math display">\[\mathbf M= \begin{pmatrix} -&amp; \hat{{\boldsymbol{\mu}}}_1 &amp;-\\
+&amp;\vdots &amp;\\
+-&amp; \hat{{\boldsymbol{\mu}}}_1 &amp;-\\
+-&amp; \hat{{\boldsymbol{\mu}}}_2 &amp;-\\
+&amp;\vdots&amp;\\
+-&amp; \hat{{\boldsymbol{\mu}}}_g &amp;-\\
+&amp;\vdots &amp;\\
+-&amp; \hat{{\boldsymbol{\mu}}}_g &amp;-\end{pmatrix}\]</span>
+then <span class="math inline">\(\mathbf B=\frac{1}{n}\mathbf M^\top\mathbf H\mathbf M\)</span> is the covariance matrix of <span class="math inline">\(\mathbf M\)</span>.</p></li>
+</ol>
+</div>
+<div id="fishers-criterion" class="section level4 unnumbered">
+<h4>Fisher’s criterion</h4>
+<p>Fisher’s approach was to find a projection of the data <span class="math inline">\(z_i = \mathbf a^\top \mathbf x_i\)</span> or
+<span class="math display">\[\mathbf z= \mathbf X\mathbf a\]</span>
+in vector form,
+that maximizes the between-class variance relative to the within-class variance.</p>
+<p>Using the variance decomposition from above, we can see that the total variance of <span class="math inline">\(\mathbf z\)</span> is
+<span class="math display">\[\begin{align*}
+{\mathbb{V}\operatorname{ar}}(z_i)&amp;= {\mathbb{V}\operatorname{ar}}(\mathbf a^\top \mathbf x_i)\\
+&amp;=\mathbf a^\top {\mathbb{V}\operatorname{ar}}(\mathbf x_i) \mathbf a\\
+&amp;=\mathbf a^\top \mathbf S\mathbf a\\
+&amp;= \mathbf a^\top\mathbf W\mathbf a+ \mathbf a^\top\mathbf B\mathbf a\\
+\end{align*}\]</span>
+which we have decomposed into the within-class variance of <span class="math inline">\(\mathbf z\)</span> and the between-class variance <span class="math inline">\(\mathbf z\)</span>.</p>
+<p>Fisher’s criterion is to choose a vector, <span class="math inline">\(\mathbf a\)</span>, to maximise the ratio of the <strong>between-class</strong> variance relative to the <strong>within-class</strong> variance of <span class="math inline">\(\mathbf z=\mathbf X\mathbf a\)</span>, i.e., to solve
+<span class="math display" id="eq:ldaFisheropt">\[\begin{equation}
+\max_{\mathbf a}\frac{\mathbf a^\top \mathbf B\mathbf a}{\mathbf a^\top \mathbf W\mathbf a}, \tag{2.5}
+\end{equation}\]</span></p>
+<p>The idea is that this choice of <span class="math inline">\(\mathbf a\)</span> will make the classes most easily separable.</p>
+</div>
+<div id="solving-the-optimization-problem" class="section level4 unnumbered">
+<h4>Solving the optimization problem</h4>
+<p>How do we solve the optimization problem <a href="2-3-FLDA.html#eq:ldaFisheropt">(2.5)</a> and find the optimal choice of <span class="math inline">\(\mathbf a\)</span>?</p>
 
 <div class="proposition">
-<span id="prp:nine2" class="proposition"><strong>Proposition 2.2  </strong></span>A vector <span class="math inline">\(\boldsymbol \lambda\)</span> that maximises <span class="math display">\[\frac{\boldsymbol \lambda^\top \mathbf B\boldsymbol \lambda}{\boldsymbol \lambda^\top \mathbf W\boldsymbol \lambda}\]</span> is an eigenvector of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> corresponding to the largest eigenvalue.
+<span id="prp:nine2" class="proposition"><strong>Proposition 2.4  </strong></span>A vector <span class="math inline">\(\mathbf a\)</span> that solves <span class="math display">\[\max_{\mathbf a}\frac{\mathbf a^\top \mathbf B\mathbf a}{\mathbf a^\top \mathbf W\mathbf a}\]</span> is an eigenvector of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> corresponding to the largest eigenvalue of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span>.
 </div>
 
 
 <div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> Assume <span class="math inline">\(\mathbf W\)</span> is positive definite and note that <span class="math inline">\(\mathbf W\)</span> is symmetric, so we can use the spectral decomposition theorem and write <span class="math inline">\(\mathbf W= \mathbf Q\boldsymbol \Lambda\mathbf Q^\top\)</span>.</p>
-<p>Define <span class="math inline">\(\boldsymbol \gamma= \mathbf W^{1/2} \boldsymbol \lambda\)</span>. Then <span class="math inline">\(\boldsymbol \lambda= \mathbf W^{-1/2} \boldsymbol \gamma\)</span> where
-<span class="math inline">\(\mathbf W^{-1/2}=\mathbf Q\boldsymbol \Lambda^{-1/2} \mathbf Q^\top\)</span> and
-<span class="math display">\[\begin{eqnarray*}
-\max_{\boldsymbol \lambda\colon \boldsymbol \lambda^\top \boldsymbol \lambda=1} \left\{ \frac{\boldsymbol \lambda^\top \mathbf B\boldsymbol \lambda}{\boldsymbol \lambda^\top \mathbf W\boldsymbol \lambda} \right\}
-&amp;=&amp; \max_{\boldsymbol \gamma\colon \boldsymbol \gamma\neq \boldsymbol 0} \left\{ \frac{\boldsymbol \gamma^\top \mathbf W^{-1/2} \mathbf B\mathbf W^{-1/2} \boldsymbol \gamma} {\boldsymbol \gamma^\top \mathbf W^{-1/2} \mathbf W\mathbf W^{-1/2} \boldsymbol \gamma} \right\} \\
-&amp;=&amp; \max_{\boldsymbol \gamma\colon \boldsymbol \gamma\neq \boldsymbol 0} \left\{ \frac{ \boldsymbol \gamma^\top \mathbf W^{-1/2} \mathbf B\mathbf W^{-1/2} \boldsymbol \gamma}{\boldsymbol \gamma^\top \mathbf I_p \boldsymbol \gamma} \right\} \\
-&amp;=&amp; \max_{\boldsymbol \gamma\colon \boldsymbol \gamma^\top \boldsymbol \gamma=1} \left\{ \boldsymbol \gamma^\top \mathbf W^{-1/2} \mathbf B\mathbf W^{-1/2} \boldsymbol \gamma\right\}
-\end{eqnarray*}\]</span></p>
-<p>This is similar to the PCA situation in 3.2 where we chose <span class="math inline">\(\mathbf u\)</span> to be the eigenvector corresponding to the largest eigenvalue of <span class="math inline">\(\mathbf S\)</span> to maximise <span class="math inline">\(\mathbf u^\top \mathbf S\mathbf u\)</span>. Hence, we choose <span class="math inline">\(\boldsymbol \gamma\)</span> to be the eigenvector corresponding to the largest eigenvalue of <span class="math inline">\(\mathbf W^{-1/2} \mathbf B\mathbf W^{-1/2}\)</span>.</p>
-<p>If <span class="math inline">\(\boldsymbol \gamma\)</span> is an eigenvector of <span class="math inline">\(\mathbf W^{-1/2} \mathbf B\mathbf W^{-1/2}\)</span> then, by definition,
-<span class="math display">\[\mathbf W^{-1/2} \mathbf B\mathbf W^{-1/2} \boldsymbol \gamma= \rho \boldsymbol \gamma\]</span>
-where <span class="math inline">\(\rho\)</span> is the corresponding eigenvalue. Pre-multiplying both sides by <span class="math inline">\(\mathbf W^{-1/2}\)</span> gives
-<span class="math display">\[\begin{eqnarray*}
-\mathbf W^{-1} \mathbf B(\mathbf W^{-1/2} \boldsymbol \gamma) &amp;=&amp; \rho \mathbf W^{-1/2} \boldsymbol \gamma\\
-\mathbf W^{-1} \mathbf B\boldsymbol \lambda&amp;=&amp; \rho \boldsymbol \lambda.
-\end{eqnarray*}\]</span></p>
-So, the <span class="math inline">\(\boldsymbol \lambda\)</span> we require is the unit eigenvector corresponding to the largest
-eigenvalue of <span class="math inline">\(\mathbf W^{-1} \mathbf B\)</span>.
+<p> <span class="proof"><em>Proof. </em></span> 
+Firstly, note that an equivalent optimization problem is</p>
+<p><span class="math display">\[\begin{align*}
+\mbox{Maximize } &amp;\mathbf a^\top \mathbf B\mathbf a\\
+ \mbox{ subject to } &amp;\mathbf a^\top \mathbf W\mathbf a=1
+\end{align*}\]</span></p>
+<p>as we can rescale <span class="math inline">\(\mathbf a\)</span> without changing the objective <a href="2-3-FLDA.html#eq:ldaFisheropt">(2.5)</a>. This looks a lot like the optimization problems we saw in the chapters on PCA and CCA.</p>
+<p>To solve this, note that if we write <span class="math inline">\(\mathbf b=\mathbf W^{\frac{1}{2}}\mathbf a\)</span> then the optimization problem becomes</p>
+<p><span class="math display">\[\begin{align*}
+\mbox{Maximize } &amp;\mathbf b^\top \mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\mathbf b\\
+ \mbox{ subject to } &amp;\mathbf b^\top \mathbf b=1.
+\end{align*}\]</span>
+Proposition <a href="#prp:two8"><strong>??</strong></a> tells us that the maximum is obtained when <span class="math inline">\(\mathbf b=\mathbf v_1\)</span>, where <span class="math inline">\(\mathbf v_1\)</span> is the eigenvector of <span class="math inline">\(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\)</span> corresponding to the largest eigenvalue of <span class="math inline">\(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\)</span>, <span class="math inline">\(\lambda_1\)</span> say.</p>
+<p>Converting back to <span class="math inline">\(\mathbf a\)</span> gives the solution to the original optimization problem <a href="2-3-FLDA.html#eq:ldaFisheropt">(2.5)</a> to be
+<span class="math display">\[\mathbf a= \mathbf W^{-\frac{1}{2}}\mathbf v_1\]</span></p>
+<p>Note that this is an eigenvalue of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span></p>
+<p><span class="math display">\[\begin{align*}
+\mathbf W^{-1}\mathbf B\mathbf a&amp;= \mathbf W^{-1}\mathbf B\mathbf W^{-\frac{1}{2}}\mathbf v_1 \\
+&amp;= \mathbf W^{-\frac{1}{2}}\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\mathbf v_1\\
+&amp;= \lambda_1\mathbf W^{-\frac{1}{2}}\mathbf v_1\\
+&amp;= \lambda_1 \mathbf a
+\end{align*}\]</span></p>
+Finally, to complete the proof we should check that <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> doesn’t have any larger eigenvalues, but we can do this by showing that its eigenvalues are the same as the eigenvalues of <span class="math inline">\(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\)</span>. This is left as an exercise (note we’ve already done one direction - all you need to do is show that if <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> has eigenvalue <span class="math inline">\(\lambda\)</span> then so does <span class="math inline">\(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\)</span>).
 </div>
 
+<!--Assume $\bW$ is positive definite and note that $\bW$ is symmetric, so we can use the spectral decomposition theorem and write $\bW = \bQ \ba \bQ^\top$.
+
+Define $\bgamma = \bW^{1/2} \ba$.  Then $\ba = \bW^{-1/2} \bgamma$ where
+$\bW^{-1/2}=\bQ \ba^{-1/2} \bQ^\top$ and
+\begin{eqnarray*}
+\max_{\ba \colon \ba^\top \ba=1} \left\{ \frac{\ba^\top \bB \ba}{\ba^\top \bW \ba} \right\}
+&=& \max_{\bgamma \colon \bgamma \neq \bzero} \left\{ \frac{\bgamma^\top \bW^{-1/2} \bB \bW^{-1/2} \bgamma} {\bgamma^\top \bW^{-1/2} \bW \bW^{-1/2} \bgamma} \right\} \\
+&=& \max_{\bgamma \colon \bgamma \neq \bzero} \left\{ \frac{ \bgamma^\top \bW^{-1/2} \bB \bW^{-1/2} \bgamma}{\bgamma^\top \bI_p \bgamma} \right\} \\
+&=& \max_{\bgamma \colon \bgamma^\top \bgamma =1} \left\{ \bgamma^\top \bW^{-1/2} \bB \bW^{-1/2} \bgamma \right\}
+\end{eqnarray*}
+
+This is similar to the PCA situation in \S 3.2 where we chose $\bu$ to be the eigenvector corresponding to the largest eigenvalue of $\bS$ to maximise $\bu^\top \bS \bu$.  Hence, we choose $\bgamma$ to be the eigenvector corresponding to the largest eigenvalue of $\bW^{-1/2} \bB \bW^{-1/2}$.
+
+If $\bgamma$ is an eigenvector of $\bW^{-1/2} \bB \bW^{-1/2}$ then, by definition,
+$$\bW^{-1/2} \bB \bW^{-1/2} \bgamma = \rho \bgamma$$
+ where $\rho$ is the corresponding eigenvalue.  Pre-multiplying both sides by $\bW^{-1/2}$ gives
+\begin{eqnarray*}
+\bW^{-1} \bB (\bW^{-1/2} \bgamma) &=& \rho \bW^{-1/2} \bgamma \\
+\bW^{-1} \bB \ba &=& \rho \ba.
+\end{eqnarray*}
+
+So, the $\ba$ we require is the unit eigenvector corresponding to the largest
+eigenvalue of $\bW^{-1} \bB$. -->
+<p><br> </br></p>
+</div>
+<div id="fishers-discriminant-rule" class="section level4 unnumbered">
+<h4>Fisher’s discriminant rule</h4>
+<p>The function <span class="math inline">\(L(\mathbf x)=\mathbf a^\top \mathbf x\)</span> is called Fisher’s linear discriminant function. Once <span class="math inline">\(L(\mathbf x)\)</span> has been obtained, we allocate <span class="math inline">\(\mathbf x\)</span> to the population <span class="math inline">\(\Pi_k\)</span> whose discriminant score <span class="math inline">\(L(\hat{{\boldsymbol{\mu}}}_k)\)</span> is closest to <span class="math inline">\(L(\mathbf x)\)</span>, that is, we use the discriminant rule <span class="math display">\[ d^{Fisher}(\mathbf x) = \arg \min_k |L(\mathbf x) - L({\boldsymbol{\mu}}_k)| = \arg \min_k | \mathbf a^\top \mathbf x- \mathbf a^\top \hat{{\boldsymbol{\mu}}}_k |. \]</span></p>
+<p>This is of the same form as saw in the earlier sections. If we let <span class="math inline">\(\delta_k(\mathbf x)= -|\mathbf a^\top (\mathbf x-\hat{{\boldsymbol{\mu}}}_k)|\)</span> then we see that
+<span class="math inline">\(d^{Fisher}(\mathbf x) = \arg \max_k \delta_k(\mathbf x)\)</span> as before.</p>
+<p>If there are only two populations (and suppose <span class="math inline">\(L({\boldsymbol{\mu}}_1)&gt; L({\boldsymbol{\mu}}_2)\)</span>), this is equivalent to classifying to population 1 if <span class="math inline">\(L(\mathbf x)&gt;t\)</span> and to population 2 otherwise, where <span class="math inline">\(t = \frac{1}{2}(L({\boldsymbol{\mu}}_1)+L({\boldsymbol{\mu}}_2))\)</span>.</p>
+<p>This is visualized in Figure <a href="2-3-FLDA.html#fig:flda">2.6</a> for the iris data. The black points are the setosa data, and the green the viriginica. The diagonal black line is in the direction <span class="math inline">\(\mathbf a\)</span>. Along that line we have plotted the projection of the data points onto the line (<span class="math inline">\(\mathbf x^\top \mathbf a\)</span>), with the mean of each population and their projections marked with <span class="math inline">\(+\)</span>. The red line is perpendicular to <span class="math inline">\(\mathbf a\)</span>, and joins the midpoint of the two population means, <span class="math inline">\(\mathbf h= \frac{\hat{{\boldsymbol{\mu}}}_s+\hat{{\boldsymbol{\mu}}}_v}{2}\)</span>, with the projection of that point onto <span class="math inline">\(\mathbf a\)</span>. The red diamond marks the decision boundary for the projected points, i.e., if the point is to the left of this we classify as setosa, otherwise viriginica. It is half way between the projection of the two population means.</p>
+<p>In Figure <a href="2-3-FLDA.html#fig:flda">2.6</a> <span class="math inline">\(\mathbf a\)</span> is chosen to be Fisher’s optimal vector (the first eigenvector of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span>). This is the projection that is optimal for maximizing the ratio of the between-group to within-group variance, i.e., it optimally separates the two populations in the projection. In Figure <a href="2-3-FLDA.html#fig:fldapca">2.7</a> <span class="math inline">\(\mathbf a\)</span> is instead chosen to be the first principal component, i.e., the first eigenvector of the covariance matrix. This is the projection that maximizes the variance of the projected points (as done in PCA). Note that this is different to the LDA projection, and does not separate the two populations as cleanly as the LDA projection did.</p>
+<div class="figure"><span id="fig:flda"></span>
+<img src="09-lda_files/figure-html/flda-1.png" alt="Visualization of Fishers discriminant analysis." width="960" />
+<p class="caption">
+Figure 2.6: Visualization of Fishers discriminant analysis.
+</p>
+</div>
+<div class="figure"><span id="fig:fldapca"></span>
+<img src="09-lda_files/figure-html/fldapca-1.png" alt="Projection onto the first principal component." width="960" />
+<p class="caption">
+Figure 2.7: Projection onto the first principal component.
+</p>
+</div>
+</div>
+<div id="multiple-projections" class="section level4 unnumbered">
+<h4>Multiple projections</h4>
+<p>To summarize what we’ve found so far, we have seen that the vector <span class="math inline">\(\mathbf a\)</span> which maximizes
+<span class="math display">\[\frac{\mathbf a^\top \mathbf B\mathbf a}{\mathbf a^\top \mathbf W\mathbf a} \]</span>
+is the first eigenvector of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span>. As we did with PCA and CCA, we can continue and find a second, third, etc projection of the data. We’re not going to go through the details of the derivation, but we can consider the projection matrix
+<span class="math display">\[\mathbf A= \begin{pmatrix}|&amp; \ldots &amp;|\\
+\mathbf a_1 &amp; \ldots &amp; \mathbf a_r\\
+|&amp; \ldots &amp;| \end{pmatrix}\]</span>
+which has columns equal to the first <span class="math inline">\(r\)</span> eigenvectors of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span>.</p>
+<p>Recall that <span class="math display">\[\mathbf B= \frac{1}{n}\sum_{j=1}^g n_j (\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x}) (\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x})^\top\]</span> is the variance of the <span class="math inline">\(g\)</span> population means. The points <span class="math inline">\(\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x}\)</span> lie in a <span class="math inline">\(g-1\)</span> dimensional subspace of <span class="math inline">\(\mathbb{R}^p\)</span> (they must sum to <span class="math inline">\(\boldsymbol 0\)</span>), and so <span class="math inline">\(\mathbf B\)</span> and also <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> has rank at most <span class="math inline">\(\min(g-1,p)\)</span>. Thus we can find at most <span class="math inline">\(\min(g-1,p)\)</span> projections of the data for maximizing the separation between the classes.</p>
+<p>To classify points using <span class="math inline">\(r\)</span> different projections, we use the vector discriminant function</p>
+<p><span class="math display">\[\mathbf L(\mathbf x) = \mathbf A^\top \mathbf x\]</span>
+and use the discriminant rule
+<span class="math display">\[d^{Fisher}(\mathbf x) = \arg \min_k ||\mathbf L(\mathbf x) - \mathbf L({\boldsymbol{\mu}}_k)||_2,\]</span>
+i.e., we compute the <span class="math inline">\(r\)</span> dimensional projection of the data and then find the which (projected) population mean it is closest to.</p>
+<p>Note the dimension reduction here. We have gone from an observation <span class="math inline">\(\mathbf x\in \mathcal{R}^p\)</span> to a projected point <span class="math inline">\(\mathbf A^\top\mathbf x\in \mathcal{F}^t\)</span>. We are free to choose <span class="math inline">\(r\)</span>, which can result in useful ways of visualizing the data.</p>
+</div>
+<div id="iris-example-continued-1" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Iris example continued</h3>
+<p>Let’s continue the iris example we had before, using the full dataset of 150 observations on 3 species, with 4 measurements on each flower.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">library</span>(vcvComp)</a>
+<a class="sourceLine" id="cb48-2" data-line-number="2">B=<span class="kw">cov.B</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], iris[,<span class="dv">5</span>])</a>
+<a class="sourceLine" id="cb48-3" data-line-number="3">W=<span class="kw">cov.W</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], iris[,<span class="dv">5</span>]) </a>
+<a class="sourceLine" id="cb48-4" data-line-number="4">iris.eig &lt;-<span class="st"> </span><span class="kw">eigen</span>(<span class="kw">solve</span>(W)<span class="op">%*%</span><span class="st"> </span>B)</a>
+<a class="sourceLine" id="cb48-5" data-line-number="5">iris.eig<span class="op">$</span>values</a></code></pre></div>
+<pre><code>## [1] 4.732214e+01 4.195248e-01 1.426781e-14 6.229462e-16</code></pre>
+<p>We can see that <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> only has two positive eigenvalues, and so is rank 2. We expected this, as we said the rank of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> must be less than <span class="math inline">\(\min(g-1,p)= \min(2,4)=2\)</span>. We can plot these projections and look at the separation achieved.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">V &lt;-<span class="st"> </span>iris.eig<span class="op">$</span>vectors[,<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb50-2" data-line-number="2">Z &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])<span class="op">%*%</span><span class="st"> </span>V</a>
+<a class="sourceLine" id="cb50-3" data-line-number="3">ggplot2<span class="op">::</span><span class="kw">qplot</span>(Z[,<span class="dv">1</span>], Z[,<span class="dv">2</span>], <span class="dt">colour=</span>iris<span class="op">$</span>Species, <span class="dt">xlab=</span><span class="st">&#39;LD1&#39;</span>,<span class="dt">ylab=</span><span class="st">&#39;LD2&#39;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:ldairis2d"></span>
+<img src="09-lda_files/figure-html/ldairis2d-1.png" alt="2-dimensional LDA projection of the iris data" width="672" />
+<p class="caption">
+Figure 2.8: 2-dimensional LDA projection of the iris data
+</p>
+</div>
+<p>We can see that the first projected coordinate is doing nearly all of the useful work in separating the three populations. We can see this in the eigenvalues (c.f. the scree plots used in PCA) which can be used to understand the importance of each projected coordinate in separating the populations (this is the <code>Proportion of trace</code> reported in the <code>lda</code> output).</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">iris.eig<span class="op">$</span>values[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]<span class="op">/</span><span class="kw">sum</span>(iris.eig<span class="op">$</span>values)</a></code></pre></div>
+<pre><code>## [1] 0.991212605 0.008787395</code></pre>
+<p>R will automatically plot this projection for us:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">pty=</span><span class="st">&quot;s&quot;</span>)</a>
+<a class="sourceLine" id="cb53-2" data-line-number="2">iris.lda &lt;-<span class="st"> </span><span class="kw">lda</span>(Species <span class="op">~</span>., iris)</a>
+<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="kw">plot</span>(iris.lda,<span class="dt">col=</span><span class="kw">as.integer</span>(iris<span class="op">$</span>Species)<span class="op">+</span><span class="dv">1</span>, <span class="dt">abbrev=</span><span class="dv">1</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:ldairis2db"></span>
+<img src="09-lda_files/figure-html/ldairis2db-1.png" alt="2-dimensional LDA projection of the iris data using the built-in R plotting function" width="672" />
+<p class="caption">
+Figure 2.9: 2-dimensional LDA projection of the iris data using the built-in R plotting function
+</p>
+</div>
+<p>Although this looks different to Figure <a href="2-3-FLDA.html#fig:ldairis2d">2.8</a>, the projection is essentially the same it has just flipped the <span class="math inline">\(y\)</span> axis.</p>
+<!--```{r}
+qplot(Z[,1], -Z[,2], colour=iris$Species, main='LDA for the iris data', ylim=c(0,4))
+```
+-->
+<p>Using the option <code>dimen = 1</code> will plot histograms of the first LDA projection for each group, which all we need in this example to separate the populations.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">plot</span>(lda.iris, <span class="dt">dimen =</span> <span class="dv">1</span>, <span class="dt">type =</span> <span class="st">&quot;b&quot;</span>)</a></code></pre></div>
+<p><img src="09-lda_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<div id="comparison-with-pca" class="section level5 unnumbered">
+<h5>Comparison with PCA</h5>
+<p>We can compare the LDA projection to the 2-dimensional projection found by PCA:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">iris.pca =<span class="st"> </span><span class="kw">prcomp</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb55-3" data-line-number="3">iris<span class="op">$</span>PC1=iris.pca<span class="op">$</span>x[,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb55-4" data-line-number="4">iris<span class="op">$</span>PC2=iris.pca<span class="op">$</span>x[,<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb55-5" data-line-number="5">ggplot2<span class="op">::</span><span class="kw">qplot</span>(PC1, PC2, <span class="dt">colour=</span>Species, <span class="dt">data=</span>iris)</a></code></pre></div>
+<div class="figure"><span id="fig:ldapcairis"></span>
+<img src="09-lda_files/figure-html/ldapcairis-1.png" alt="2-dimensional PCA projection of the iris data" width="672" />
+<p class="caption">
+Figure 2.10: 2-dimensional PCA projection of the iris data
+</p>
+</div>
+<p>PCA hasn’t separated the 3 populations as cleanly as LDA did, but that is not a surprise as that is not its aim (it aim is to maximize the variance). PCA doesn’t use the population labels, and so there is no reason why it should separate the populations. But this does illustrate the importance of choosing the right multivariate statistical methods.</p>
+<!--
+We can also plot the classification regions
+
+```r
+library(pracma)
+xplt <- meshgrid(seq(-3,2,0.02), seq(-3,0,0.02))
+Xplt <- cbind(c(xplt$X), c(xplt$Y))
+Yplt <- apply(Xplt, 1, function(x){
+  which.min(as.matrix(dist(rbind(MV, x), upper=TRUE, diag=TRUE))[4,1:3])
+})
+plot(Z[,1], Z[,2], col=iris$Species)
+points(MV[,1], MV[,2], pch=3,cex=2, col=1:3)
+
+points(Xplt[,1], Xplt[,2], col=Yplt, cex=0.1)
+```
+-->
+<!--
+
+
+
+## Probability of misclassification
+
+NOT INCLUDING THIS AS MORE MODERN TREATMENT WOULD ESTIMATE CLASSIFICATION ERROS USING Cross validation
+
+
+Let $p_{jk}$ denote the probability of allocating an observation to population $\Pi_j$, when in fact it comes from $\Pi_k$.  Therefore $p_{kk}$ is the probability of correctly classifying this observation and $1-p_{kk}$ is the probability of misclassification.
+
+One way of estimating $p_{jk}$ is to consider the number of observations from the training data that are misclassified.  For example, if $n_k$ observations come from population $k$ and $n_{jk}$ is the number of observations from population $k$ classified as from population $j$, then
+$$ \hat{p}_{jk} = \frac{n_{jk}}{n_k} $$
+is an estimate of $p_{jk}$.
+
+When $g=2$, $\Pi_j$ is $N_p(\bmu_j, \bSigma)$ and we use the ML rule, we obtain an explicit expression for $p_{12}$ and $p_{21}$ as follows.
+
+Recall that we allocate $\bz$ to $\Pi_1$ if and only if  $U = \ba^\top (\bz-\bh)>0$ where $\ba = \bSigma^{-1} (\bmu_1 - \bmu_2)$ and $\bh = \frac{1}{2} (\bmu_1 + \bmu_2)$.
+
+Suppose $\bz$ is from $\Pi_2$. Then $\bz \sim N_p(\bmu_2,\bSigma)$, so
+\begin{eqnarray*}
+E[U] &=& E[\ba^\top (\bz-\bh)] = \ba^\top (E[\bz] -\bh) = \ba^\top (\bmu_2-\bh); \\
+\text{Var}(U) &=& \text{Var}(\ba^\top \bz - \ba^\top \bh) = \text{Var}(\ba^\top \bz) = \ba^\top \bSigma \ba.
+\end{eqnarray*}
+Hence, when $\bz$ is from $\Pi_2$, $U \sim N(\ba^\top (\bmu_2 - \bh), \ba^\top \bSigma \ba)$.
+
+Define $\Delta^2 = (\bmu_1-\bmu_2)^\top \bSigma^{-1} (\bmu_1-\bmu_2)$, Then
+\begin{eqnarray*}
+\ba^\top (\bmu_2-\bh) &=& \ba^\top \lb \bmu_2 - \frac{1}{2}\bmu_1 - \frac{1}{2}\bmu_2 \rb = \frac{1}{2} \ba^\top (\bmu_2 - \bmu_1) \\
+&=& \frac{1}{2} (\bmu_1 - \bmu_2)^\top \bSigma^{-1} (\bmu_2 - \bmu_1) \\
+&=& -\frac{1}{2} (\bmu_1 - \bmu_2)^\top \bSigma^{-1} (\bmu_1 - \bmu_2) = -\frac{1}{2}\Delta^2.
+\end{eqnarray*}
+and
+$$ \ba^\top \bSigma \ba = (\bmu_1 - \bmu_2)^\top \bSigma^{-1} \bSigma \bSigma^{-1} (\bmu_1 - \bmu_2) = \Delta ^2. $$
+Hence  $U \sim N( -\frac{1}{2}\Delta^2, \Delta^2)$ when $\bz$ is from $\Pi_2$.
+
+
+Now $\bz$ is allocated to $\Pi_1$ if $U>0$.  The probability of this event when $\bz$ is in fact from $\Pi_2$ is
+\begin{eqnarray*}
+p_{12} = P(U>0) &=& P \lb \frac{ U - (-\Delta^2/2) }{\Delta} > \frac{0 - (-\Delta^2/2) }{\Delta} \rb \\
+&=& P \lb Z > \frac{\Delta^2}{2\Delta} = \frac{\Delta}{2}  \bigg| Z \sim N(0,1) \rb \\
+&=& P \lb Z < -\frac{\Delta}{2} \rb
+\end{eqnarray*}
+which can be found from statistical tables.  A similar argument shows that $p_{21}=p_{12}$.
+
+If we are using the sample ML rule then we can replace $\Delta^2$ with
+$$D^2 = (\bar{\bx}_1 - \bar{\bx}_2)^\top \widehat{\bSigma}^{-1} (\bar{\bx}_1 - \bar{\bx}_2)$$
+and $\hat{p}_{12} = P(Z<-D/2)$.
+
+-->
+</div>
+</div>
+<div id="links-between-methods" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Links between methods</h3>
 <p>When <span class="math inline">\(g=2\)</span>, Fisher’s rule and the sample ML rule with <span class="math inline">\(\boldsymbol{\Sigma}_1=\boldsymbol{\Sigma}_2=\boldsymbol{\Sigma}\)</span> turn out to be the same. Note that in
 the sample ML rule we assumed that the two groups are from <span class="math inline">\(N_p({\boldsymbol{\mu}}_i, \boldsymbol{\Sigma})\)</span>
 populations, but Fisher’s rule makes no such assumption.</p>
 
 <div class="proposition">
-<span id="prp:nine3" class="proposition"><strong>Proposition 2.3  </strong></span>If <span class="math inline">\(g=2\)</span> then Fisher’s rule and the sample ML rule described in 9.3 are equivalent.
+<span id="prp:nine3" class="proposition"><strong>Proposition 2.5  </strong></span>If <span class="math inline">\(g=2\)</span> then Fisher’s rule and the sample ML rule described in Section <a href="2-1-lda-ML.html#sample-lda">2.1.2</a> are equivalent.
 </div>
 
 
 <div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> First, note that
-<span class="math display">\[\begin{eqnarray*}
-\bar{\mathbf x}_1 - \bar{\mathbf x} &amp;=&amp; \bar{\mathbf x}_1 - \left(\frac{n_1 \bar{\mathbf x}_1 + n_2 \bar{\mathbf x}_2}{n_1+n_2} \right)
-= \frac{ (n_1+n_2) \bar{\mathbf x}_1 - n_1 \bar{\mathbf x}_1 - n_2 \bar{\mathbf x}_2 }{n_1+n_2} \\
-&amp;=&amp; \frac{ n_2 (\bar{\mathbf x}_1 - \bar{\mathbf x}_2) }{n_1 + n_2} = \frac{n_2 \mathbf d}{n_1+n_2}
-\end{eqnarray*}\]</span>
-where <span class="math inline">\(\mathbf d= \bar{\mathbf x}_1 - \bar{\mathbf x}_2\)</span>. By analogy <span class="math inline">\(\bar{\mathbf x}_2 - \bar{\mathbf x} = \frac{n_1 (-\mathbf d)}{n_1+n_2}\)</span>. Therefore,
-<span class="math display">\[\begin{eqnarray*}
-\mathbf B&amp;=&amp; n_1 (\bar{\mathbf x}_1 - \bar{\mathbf x})(\bar{\mathbf x}_1 - \bar{\mathbf x})^\top + n_2 (\bar{\mathbf x}_2 - \bar{\mathbf x})(\bar{\mathbf x}_2 - \bar{\mathbf x})^\top \\
-&amp;=&amp; \frac{n_1 n_2^2}{(n_1+n_2)^2} \mathbf d\mathbf d^\top + \frac{n_2 n_1^2}{(n_1+n_2)^2} (-\mathbf d)(-\mathbf d)^\top \\
-&amp;=&amp; \frac{n_1 n_2 (n_1 + n_2)}{(n_1+n_2)^2} \mathbf d\mathbf d^\top = \frac{n_1 n_2}{n_1+n_2} \mathbf d\mathbf d^\top.
-\end{eqnarray*}\]</span>
-Let <span class="math inline">\(c = \frac{n_1 n_2}{n_1+n_2}\)</span>. Now <span class="math inline">\(\boldsymbol \lambda\)</span> is an eigenvector of <span class="math inline">\(\mathbf W^{-1} \mathbf B= c \mathbf W^{-1} \mathbf d\mathbf d^\top\)</span>. Also, the non-zero eigenvalues of <span class="math inline">\(c \mathbf W^{-1} \mathbf d\mathbf d^\top\)</span> are the same as the non-zero eigenvalues of <span class="math inline">\(c \mathbf d^\top \mathbf W^{-1} \mathbf d\)</span>, which is scalar and so itself is the only non-zero eigenvalue. The eigenvector, <span class="math inline">\(\boldsymbol \lambda\)</span>, must then satisfy
-<span class="math display">\[ c \mathbf W^{-1} \mathbf d\mathbf d^\top \boldsymbol \lambda= c \mathbf d^\top \mathbf W^{-1} \mathbf d\boldsymbol \lambda. \]</span>
-If we choose <span class="math inline">\(\boldsymbol \lambda= \mathbf W^{-1} \mathbf d\)</span> then the equation is satisfied. Hence <span class="math inline">\(\boldsymbol \lambda= \mathbf W^{-1} (\bar{\mathbf x}_1 - \bar{\mathbf x}_2)\)</span>.</p>
-Let <span class="math inline">\(r = \boldsymbol \lambda^\top \mathbf z\)</span>, <span class="math inline">\(s = \boldsymbol \lambda^\top \bar{\mathbf x}_1\)</span> and <span class="math inline">\(t = \boldsymbol \lambda^\top \bar{\mathbf x}_2\)</span>, then Fisher’s rule allocates <span class="math inline">\(\mathbf z\)</span> to <span class="math inline">\(\Pi_1\)</span> if and only if
-<span class="math display">\[\begin{eqnarray*}
-&amp;&amp;| r-s | &lt; | r-t | \\
-&amp;\iff &amp; (r-s)^2 &lt; (r-t)^2 \\
-&amp;\iff &amp; r^2 - 2rs + s^2 &lt; r^2 - 2rt + t^2 \\
-&amp;\iff &amp; 0 &lt; 2r(s-t) + t^2 - s^2 \\
-&amp; \iff &amp; 0 &lt; 2r(s-t) + (t-s)(t+s) \\
-&amp; \iff &amp; 0 &lt; (s-t)(2r-t-s)
-\end{eqnarray*}\]</span>
-Now <span class="math inline">\(s-t = \boldsymbol \lambda^\top (\bar{\mathbf x}_1 - \bar{\mathbf x}_2) = \mathbf d^\top \mathbf W^{-1} \mathbf d\)</span> which is a quadratic form and must therefore be positive, because <span class="math inline">\(\mathbf W\)</span> is assumed to be positive definite. Hence Fisher’s rule allocates <span class="math inline">\(\mathbf z\)</span> to <span class="math inline">\(\Pi_1\)</span> if
-<span class="math display">\[\begin{eqnarray*}
-&amp;&amp; (2r-s-t) &gt; 0\\
-&amp;\iff &amp; r - \frac{1}{2}(s+t) &gt; 0 \\
-&amp;\iff &amp; \boldsymbol \lambda^\top \left(\mathbf z- \frac{1}{2}(\bar{\mathbf x}_1 + \bar{\mathbf x}_2) \right)&gt; 0 \\
-&amp;\iff &amp; (\bar{\mathbf x}_1 - \bar{\mathbf x}_2)^\top \mathbf W^{-1} \left(\mathbf z- \frac{1}{2}(\bar{\mathbf x}_1 + \bar{\mathbf x}_2) \right)&gt; 0 \\
-&amp;\iff &amp; (\bar{\mathbf x}_1 - \bar{\mathbf x}_2)^\top \mathbf S_u^{-1} \left(\mathbf z- \frac{1}{2}(\bar{\mathbf x}_1 + \bar{\mathbf x}_2) \right)&gt; 0
-\end{eqnarray*}\]</span>
-where the last line follows since <span class="math inline">\(\mathbf W= (n_1 + n_2 - 2)\mathbf S_u\)</span>. This is equivalent to the sample ML rule for <span class="math inline">\(g=2\)</span>.
+ <span class="proof"><em>Proof. </em></span> Beyond the scope of the module.
 </div>
 
-<p>For <span class="math inline">\(g &gt; 2\)</span>, the sample ML rule and Fisher’s linear rule will not, in general, be the same. Fisher’s rule is linear when <span class="math inline">\(g&gt;2\)</span> and is easier to implement than ML rules when there are several populations. It is often reasonable to use Fisher’s rule for non-normal populations. In particular, Fisher’s rule requires fewer assumptions than ML rules. However, the ML rule is `optimal’ in some sense when its assumptions are valid.</p>
+<p><br></br></p>
+<!--
+\BeginKnitrBlock{proof}<div class="proof">\iffalse{} <span class="proof"><em>Proof. </em></span>  \fi{}First, note that
+\begin{eqnarray*}
+\hat{\bmu}_1 - \bar{\bx} &=& \hat{\bmu}_1 - \lb \frac{n_1 \hat{\bmu}_1 + n_2 \hat{\bmu}_2}{n_1+n_2} \rb \\
+&=& \frac{ n_2 (\hat{\bmu}_1 - \hat{\bmu}_2) }{n_1 + n_2} = \frac{n_2 \bd}{n_1+n_2}
+\end{eqnarray*}
+where $\bd = \hat{\bmu}_1 - \hat{\bmu}_2$.  Similarly $\hat{\bmu}_2 - \bar{\bx} = -\frac{n_1 \bd}{n_1+n_2}$.  Therefore,
+\begin{eqnarray*}
+\bB &=& n_1 (\hat{\bmu}_1 - \bar{\bx})(\hat{\bmu}_1 - \bar{\bx})^\top + n_2 (\hat{\bmu}_2 - \bar{\bx})(\hat{\bmu}_2 - \bar{\bx})^\top \\
+&=& \frac{n_1 n_2^2}{(n_1+n_2)^2} \bd\bd^\top + \frac{n_2 n_1^2}{(n_1+n_2)^2} (-\bd)(-\bd)^\top \\
+&=&  \frac{n_1 n_2}{n_1+n_2} \bd\bd^\top.
+\end{eqnarray*}
+Let $c = \frac{n_1 n_2}{n_1+n_2}$.  
+
+In Fisher's discriminant analysis we choose $\ba$ to be an eigenvector of $$\bW^{-1} \bB = c \bW^{-1} \bd \bd^\top.$$
+Note that the non-zero eigenvalues of $c \bW^{-1} \bd \bd^\top$ are the same as the non-zero eigenvalues of $c \bd^\top \bW^{-1} \bd$, which is scalar and so itself is the only non-zero eigenvalue.  The eigenvector, $\ba$, must then satisfy
+$$ c \bW^{-1} \bd \bd^\top \ba = c \bd^\top \bW^{-1} \bd \ba. $$
+If we choose $\ba = \bW^{-1} \bd$ then the equation is satisfied.  Hence $\ba = \bW^{-1} (\hat{\bmu}_1 - \hat{\bmu}_2)$.
+
+Let $r = \ba^\top \bz$, $s = \ba^\top \hat{\bmu}_1$ and $t = \ba^\top \hat{\bmu}_2$, then Fisher's rule allocates $\bz$ to $\Pi_1$ if and only if
+\begin{eqnarray*}
+&&| r-s | < | r-t | \\
+&\iff & (r-s)^2 < (r-t)^2 \\
+&\iff & r^2 - 2rs + s^2 < r^2 - 2rt + t^2 \\
+&\iff & 0 < 2r(s-t) + t^2 - s^2 \\
+& \iff & 0 < 2r(s-t) + (t-s)(t+s) \\
+& \iff & 0 < (s-t)(2r-t-s)
+\end{eqnarray*}
+Now $s-t = \ba^\top (\hat{\bmu}_1 - \hat{\bmu}_2) = \bd^\top \bW^{-1} \bd$ which is a quadratic form and must therefore be positive, because $\bW$ is assumed to be positive definite.  Hence Fisher's rule allocates $\bz$ to $\Pi_1$ if
+\begin{eqnarray*}
+&& (2r-s-t) > 0\\
+&\iff & r - \frac{1}{2}(s+t) > 0 \\
+&\iff & \ba^\top \lb \bz - \frac{1}{2}(\hat{\bmu}_1 + \hat{\bmu}_2) \rb > 0 \\
+&\iff & (\hat{\bmu}_1 - \hat{\bmu}_2)^\top \bW^{-1} \lb \bz - \frac{1}{2}(\hat{\bmu}_1 + \hat{\bmu}_2) \rb > 0 \\
+&\iff & (\hat{\bmu}_1 - \hat{\bmu}_2)^\top \widehat{\bSigma}^{-1} \lb \bz - \frac{1}{2}(\hat{\bmu}_1 + \hat{\bmu}_2) \rb > 0
+\end{eqnarray*}
+where the last line follows since $\bW = (n_1 + n_2 - 2)\widehat{\bSigma}$.  This is equivalent to the sample ML rule for $g=2$.</div>\EndKnitrBlock{proof}
+-->
+<p>For <span class="math inline">\(g &gt; 2\)</span>, the sample ML rule and Fisher’s linear rule will not, in general, be the same. Fisher’s rule is linear when <span class="math inline">\(g&gt;2\)</span> and is easier to implement than ML rules when there are several populations. It is often reasonable to use Fisher’s rule for non-normal populations. In particular, Fisher’s rule requires fewer assumptions than ML rules. However, the ML rule is ‘optimal’ in some sense when its assumptions are valid.</p>
+<p>There is also a link between LDA and linear regression when there are only two groups. If we let</p>
+<p><span class="math display">\[
+y_i = \begin{cases} 1 &amp;\mbox{ if }i \mbox{ is from } \Pi_1\\
+-1 &amp;\mbox{ otherwise}
+\end{cases}
+\]</span></p>
+<p>then if we fit the model
+<span class="math display">\[\mathbf y= \mathbf X\boldsymbol \beta+ \mathbf e\]</span>
+we find <span class="math inline">\(\boldsymbol \beta\)</span> is in the same direction as the first eigenvector of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span>.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb56-2" data-line-number="2">iris3 &lt;-<span class="st"> </span>iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species <span class="op">!=</span><span class="st"> &quot;versicolor&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Sepal.Length, Sepal.Width, Species)</a>
+<a class="sourceLine" id="cb56-4" data-line-number="4">iris3<span class="op">$</span>pm1 &lt;-<span class="st"> </span><span class="kw">as.integer</span>(iris3<span class="op">$</span>Species)<span class="op">-</span><span class="dv">2</span> </a>
+<a class="sourceLine" id="cb56-5" data-line-number="5"><span class="co"># convert to +1 and -1</span></a>
+<a class="sourceLine" id="cb56-6" data-line-number="6">iris3.lm &lt;-<span class="st"> </span><span class="kw">lm</span>(pm1<span class="op">~</span>Sepal.Width<span class="op">+</span>Sepal.Length, iris3)</a>
+<a class="sourceLine" id="cb56-7" data-line-number="7"><span class="kw">coef</span>(iris3.lm)[<span class="dv">2</span>]<span class="op">/</span><span class="kw">coef</span>(iris3.lm)[<span class="dv">3</span>]</a></code></pre></div>
+<pre><code>## Sepal.Width 
+##   -1.137257</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">iris.lda &lt;-<span class="st"> </span><span class="kw">lda</span>(Species<span class="op">~</span>Sepal.Width<span class="op">+</span>Sepal.Length, iris3)</a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="kw">coef</span>(iris.lda)[<span class="dv">1</span>]<span class="op">/</span><span class="kw">coef</span>(iris.lda)[<span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## [1] -1.137257</code></pre>
+<!-- also a link to CCA 
+https://sites.stat.washington.edu/wxs/Stat592-w2011/Slides/cancorr-notes.pdf
+
+-->
+<!--## MNIST
+
+Try penalized LDA?
+https://cran.r-project.org/web/packages/penalizedLDA/penalizedLDA.pdf
+-->
+<!--##### Example: Student marks
+
+Consider the G11PRB and G11STA module marks for $n_1 = 98$ students on G100 and $n_2 = 46$ students on G103.  The sample means and variances for each group are given by
+\begin{eqnarray*}
+\bar{\bx}_1 = \begin{pmatrix} 60.582 \\ 62.786 \end{pmatrix} &\qquad& \bar{\bx}_2 = \begin{pmatrix} 64.761 \\ 60.457 \end{pmatrix} \\
+\bS_1 = \begin{pmatrix} 201.04 & 129.56 \\ 129.56 & 316.21 \end{pmatrix} &\qquad& \bS_2 = \begin{pmatrix} 229.88 & 177.02 \\ 177.02 & 354.16 \end{pmatrix}
+\end{eqnarray*}
+Hence,
+\begin{eqnarray*}
+\bS_u &=& \frac{1}{98+46-2} \lb 98 \bS_1 + 46 \bS_2 \rb = \begin{pmatrix} 213.21 & 146.76 \\ 146.76 & 332.96 \end{pmatrix}, \\
+\bar{\bx}_1 - \bar{\bx}_2 &=& \begin{pmatrix} -4.179 \\ 2.329 \end{pmatrix}, \\
+\hat{\bh} &=& \frac{1}{2} (\bar{\bx}_1 + \bar{\bx}_2) = \begin{pmatrix} 62.671 \\ 61.621 \end{pmatrix},
+\end{eqnarray*}
+and
+$$\hat{\ba} = \bS_u^{-1} (\bar{\bx}_1 - \bar{\bx}_2) = \begin{pmatrix} 0.0067 & -0.0030 \\ -0.0030 & 0.0043 \end{pmatrix} \begin{pmatrix} -4.179 \\ 2.329 \end{pmatrix} = \begin{pmatrix} -0.035 \\ 0.022 \end{pmatrix}.$$
+
+The sample ML discriminant rule allocates a new observation\\
+ $\bx = (z_1, z_2)^\top$ to $\Pi_1$ if and only if
+$$ \hat{\ba}^\top (\bx - \hat{\bh}) = \begin{pmatrix} -0.035 & 0.022 \end{pmatrix} \begin{pmatrix} z_1 - 62.671 \\ z_2 - 61.621 \end{pmatrix} > 0.$$
+
+For example, if a student on this year's course scores 80 on G11PRB and 60 on G11STA then
+$$ \hat{\ba}^\top (\bx - \hat{\bh}) = \begin{pmatrix} -0.035 & 0.022 \end{pmatrix} \begin{pmatrix} 80 - 62.671 \\ 60 - 61.621 \end{pmatrix} = -0.644 < 0,$$
+and so we would allocate this student to G103.  The boundary, where $\hat{\ba}^\top (\bx - \hat{\bh}) = 0$, is shown below.
+
+FIX
+<!--
+\begin{center}
+\includegraphics[width=12cm,angle=0]{sample_mldr1.pdf}
+\end{center}
+-->
+<!--Note that the boundary line passes half-way between the two sample means.  In this example it is difficult to discriminate accurately between G100 and G103 because there is a large overlap between the two populations.
+
+We could extend the example to include, say, students on GL11.  Here the boundary between the three populations is piece-wise linear and they meet at a common point.
+
+FIX-->
+<!--
+\begin{center}
+\includegraphics[width=12cm,angle=0]{sample_mldr2.pdf}
+\end{center}
+-->
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="2-2-sample-lda.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="2-4-probability-of-misclassification.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="2-2-lda-Bayes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-4-computer-tasks-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
