@@ -252,9 +252,9 @@ f_k(\mathbf x) = | 2 \pi \boldsymbol{\Sigma}|^{-1/2} \exp \left(-\frac{1}{2} (\m
 \end{equation}\]</span>
 This is maximised when the exponent is minimised, due to the minus sign in the exponent and because <span class="math inline">\(\boldsymbol{\Sigma}\)</span> is positive definite.</p>
 <span class="math display">\[\begin{align*}
-(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}_k) &amp;= \mathbf x^\top \boldsymbol{\Sigma}\mathbf x
+(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}_k) &amp;= \mathbf x^\top \boldsymbol{\Sigma}^{-1}\mathbf x
 -2{\boldsymbol{\mu}}_k^\top \boldsymbol{\Sigma}^{-1}\mathbf x+{\boldsymbol{\mu}}_k^\top \boldsymbol{\Sigma}^{-1}{\boldsymbol{\mu}}_k\\
-&amp;= \mathbf x^\top \boldsymbol{\Sigma}\mathbf x-\delta_k(\mathbf x)
+&amp;= \mathbf x^\top \boldsymbol{\Sigma}^{-1}\mathbf x-\delta_k(\mathbf x)
 \end{align*}\]</span>
 Thus,
 <span class="math display">\[\arg \min_k (\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}_k) = \arg\max_k \delta_k(\mathbf x)\]</span>

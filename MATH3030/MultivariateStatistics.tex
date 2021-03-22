@@ -7986,7 +7986,7 @@ The videos for this chapter are available at the links below:
 \item
   \href{https://mediaspace.nottingham.ac.uk/media/LDAA+Iris+example/1_cb9grj25}{Example: Iris data}
 \item
-  \href{https://mediaspace.nottingham.ac.uk/media/LDAA+Fisher\%27s+LDA/1_yl7qpbw9}{Fisher's LDA}\\
+  \href{https://mediaspace.nottingham.ac.uk/media/LDAA+Fisher\%27s+discriminant+rule+\%28with+sound\%29/1_p68ggh8a}{Fisher's LDA}\\
 \item
   \href{https://mediaspace.nottingham.ac.uk/media/LDAA+Fisher\%27s+LDA+on+the+iris+data+\%2B+links+with+ML+LDA/1_vsc58wzc}{Iris example revisited + links to other methods}
 \end{itemize}
@@ -8196,9 +8196,9 @@ f_k(\mathbf x) = | 2 \pi \boldsymbol{\Sigma}|^{-1/2} \exp \left(-\frac{1}{2} (\m
 This is maximised when the exponent is minimised, due to the minus sign in the exponent and because \(\boldsymbol{\Sigma}\) is positive definite.
 
 \begin{align*}
-(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}_k) &= \mathbf x^\top \boldsymbol{\Sigma}\mathbf x
+(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}_k) &= \mathbf x^\top \boldsymbol{\Sigma}^{-1}\mathbf x
 -2{\boldsymbol{\mu}}_k^\top \boldsymbol{\Sigma}^{-1}\mathbf x+{\boldsymbol{\mu}}_k^\top \boldsymbol{\Sigma}^{-1}{\boldsymbol{\mu}}_k\\
-&= \mathbf x^\top \boldsymbol{\Sigma}\mathbf x-\delta_k(\mathbf x)
+&= \mathbf x^\top \boldsymbol{\Sigma}^{-1}\mathbf x-\delta_k(\mathbf x)
 \end{align*}
 Thus,
 \[\arg \min_k (\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}_k) = \arg\max_k \delta_k(\mathbf x)\]
@@ -9058,7 +9058,7 @@ With a bit of work, it is possible to get a prediction accuracy of over 80\% for
 \def\labelenumi{\roman{enumi}.}
 \setcounter{enumi}{1}
 \item
-  One way to fix problems such as colinearity, or in this case, zero variance, is to first use PCA on the data to rotate to set of variables with maximal variance. Do PCA on your training data using just the \(X\)s (the pixel intensities) and select the \(p=100\) most variable PC scores. This should leave you with a \(1000 \times 100\) matrix.
+  One way to fix problems such as colinearity, or in this case, zero variance, is to first use PCA on the data to rotate to a set of variables with maximal variance. Do PCA on your training data using just the \(X\)s (the pixel intensities) and select the \(p=100\) most variable PC scores. This should leave you with a \(1000 \times 100\) matrix.
 \item
   Do linear discriminant on the 100 PC variables you derived in the previous part. Plot the LDA projections of the data: Try plotting both the first 2 projected variables (coloured by the digit they represent), and the first 3 projected variables.
   Does using 3 dimensions help in separating the different populations?
