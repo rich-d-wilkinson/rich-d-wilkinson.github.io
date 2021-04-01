@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="1-2-hierarchical-clustering-methods.html"/>
-
+<link rel="next" href="1-4-computer-tasks.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -132,10 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Applied multivariate statistics</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
-<li class="chapter" data-level="0.1" data-path="0-1-computer-tasks.html"><a href="0-1-computer-tasks.html"><i class="fa fa-check"></i><b>0.1</b> Computer tasks</a></li>
-<li class="chapter" data-level="0.2" data-path="0-2-exercises.html"><a href="0-2-exercises.html"><i class="fa fa-check"></i><b>0.2</b> Exercises</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="1" data-path="1-cluster.html"><a href="1-cluster.html"><i class="fa fa-check"></i><b>1</b> Cluster Analysis</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-likelihood-based-clustering.html"><a href="1-1-likelihood-based-clustering.html"><i class="fa fa-check"></i><b>1.1</b> Likelihood-based clustering</a><ul>
 <li class="chapter" data-level="1.1.1" data-path="1-1-likelihood-based-clustering.html"><a href="1-1-likelihood-based-clustering.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>1.1.1</b> Maximum-likelihood estimation</a></li>
@@ -144,8 +141,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1.4" data-path="1-1-likelihood-based-clustering.html"><a href="1-1-likelihood-based-clustering.html#estimating-g"><i class="fa fa-check"></i><b>1.1.4</b> Estimating <span class="math inline">\(g\)</span>??????</a></li>
 <li class="chapter" data-level="1.1.5" data-path="1-1-likelihood-based-clustering.html"><a href="1-1-likelihood-based-clustering.html#non-normal-clusters"><i class="fa fa-check"></i><b>1.1.5</b> Non-normal clusters?</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-2-hierarchical-clustering-methods.html"><a href="1-2-hierarchical-clustering-methods.html"><i class="fa fa-check"></i><b>1.2</b> Hierarchical clustering methods</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-hierarchical-clustering-methods.html"><a href="1-2-hierarchical-clustering-methods.html"><i class="fa fa-check"></i><b>1.2</b> Hierarchical clustering methods</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-hierarchical-clustering-methods.html"><a href="1-2-hierarchical-clustering-methods.html#distance-measures"><i class="fa fa-check"></i><b>1.2.1</b> Distance measures</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-hierarchical-clustering-methods.html"><a href="1-2-hierarchical-clustering-methods.html#toy-example"><i class="fa fa-check"></i><b>1.2.2</b> Toy Example</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-hierarchical-clustering-methods.html"><a href="1-2-hierarchical-clustering-methods.html#comparison-of-methods"><i class="fa fa-check"></i><b>1.2.3</b> Comparison of methods</a></li>
+</ul></li>
 <li class="chapter" data-level="1.3" data-path="1-3-further-points.html"><a href="1-3-further-points.html"><i class="fa fa-check"></i><b>1.3</b> Further Points</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-computer-tasks.html"><a href="1-4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -169,20 +172,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="further-points" class="section level2">
 <h2><span class="header-section-number">1.3</span> Further Points</h2>
-<p>In this chapter we have focused on just two approaches to Cluster Analysis: likelihood-based methods, especially those based on the multivariate Gaussian model; and hierarchical clustering methods, especially single linkage and complete linkage approaches.</p>
-<p>There are many algorithms for performing Cluster Analysis, but there is no generally accepted ‘’best’’ method. Moreover, different algorithms (or even the same algorithm with a different initialisation) do not necessarily produce the same results on a given dataset, and there is often a fairly large subjective element in the assessment of any particular method.</p>
+<p>In this chapter we have focused on just two approaches to Cluster Analysis: likelihood-based methods, especially those based on the multivariate Gaussian model; and hierarchical agglomerative clustering methods.</p>
+<p>There are many algorithms for performing Cluster Analysis, but there is no generally accepted <em>best</em> method. Different algorithms (or even the same algorithm with a different initialisation) do not necessarily produce the same results on a given dataset, and there is often a fairly large subjective element in the assessment of any particular method. Moreover, the choice of which underlying distance function to use can also lead to different conclusions.</p>
 <p>One way to test a clustering algorithm is to apply it on data with a known group structure. Experience suggests that this will only produce good results when the groups are very distinct. When, on the other hand, there is a lot of overlap between groups, clustering algorithms are not likely to perform particularly well.</p>
 <p>However, despite these cautionary remarks, clustering algorithms are often useful in practice, but it is an area where usually the most one can hope for is to find a good, but sub-optimal, solution.</p>
 
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="1-2-hierarchical-clustering-methods.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="1-2-hierarchical-clustering-methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-4-computer-tasks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.3 Hierarchical clustering methods | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.3 Hierarchical clustering methods | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.3 Hierarchical clustering methods | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1-2-model-based-clustering.html"/>
+<link rel="next" href="1-4-summary.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="1-cluster.html"><a href="1-cluster.html"><i class="fa fa-check"></i><b>1</b> Cluster Analysis</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-k-means-clustering.html"><a href="1-1-k-means-clustering.html"><i class="fa fa-check"></i><b>1.1</b> K-means clustering</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-k-means-clustering.html"><a href="1-1-k-means-clustering.html#estimating-boldsymbol-delta"><i class="fa fa-check"></i><b>1.1.1</b> Estimating <span class="math inline">\(\boldsymbol \delta\)</span></a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-k-means-clustering.html"><a href="1-1-k-means-clustering.html#k-means"><i class="fa fa-check"></i><b>1.1.2</b> K-means</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1-1-k-means-clustering.html"><a href="1-1-k-means-clustering.html#example-iris-data"><i class="fa fa-check"></i><b>1.1.3</b> Example: Iris data</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1-1-k-means-clustering.html"><a href="1-1-k-means-clustering.html#choosing-k"><i class="fa fa-check"></i><b>1.1.4</b> Choosing <span class="math inline">\(K\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-model-based-clustering.html"><a href="1-2-model-based-clustering.html"><i class="fa fa-check"></i><b>1.2</b> Model-based clustering</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-model-based-clustering.html"><a href="1-2-model-based-clustering.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>1.2.1</b> Maximum-likelihood estimation</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-model-based-clustering.html"><a href="1-2-model-based-clustering.html#multivariate-gaussian-clusters"><i class="fa fa-check"></i><b>1.2.2</b> Multivariate Gaussian clusters</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-model-based-clustering.html"><a href="1-2-model-based-clustering.html#example-iris"><i class="fa fa-check"></i><b>1.2.3</b> Example: Iris</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-hierarchical-clustering-methods.html"><a href="1-3-hierarchical-clustering-methods.html"><i class="fa fa-check"></i><b>1.3</b> Hierarchical clustering methods</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-hierarchical-clustering-methods.html"><a href="1-3-hierarchical-clustering-methods.html#distance-measures"><i class="fa fa-check"></i><b>1.3.1</b> Distance measures</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-3-hierarchical-clustering-methods.html"><a href="1-3-hierarchical-clustering-methods.html#toy-example"><i class="fa fa-check"></i><b>1.3.2</b> Toy Example</a></li>
+<li class="chapter" data-level="1.3.3" data-path="1-3-hierarchical-clustering-methods.html"><a href="1-3-hierarchical-clustering-methods.html#comparison-of-methods"><i class="fa fa-check"></i><b>1.3.3</b> Comparison of methods</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-summary.html"><a href="1-4-summary.html"><i class="fa fa-check"></i><b>1.4</b> Summary</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-computer-tasks.html"><a href="1-5-computer-tasks.html"><i class="fa fa-check"></i><b>1.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.6" data-path="1-6-exercises.html"><a href="1-6-exercises.html"><i class="fa fa-check"></i><b>1.6</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hierarchical-clustering-methods" class="section level2">
+<h2><span class="header-section-number">1.3</span> Hierarchical clustering methods</h2>
+<p><em>Hierarchical</em> clustering methods work by creating a hierarchy of clusters, in which clusters at each level of the heirarchy are formed by merging or splitting clusters from a neighbouring level of the hierarchy. A hierarchical clustering method is usually of one of two types:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>agglomerative</strong> clustering methods start with the finest partition (one observation per cluster) and progressively combine clusters.</p></li>
+<li><p><strong>divisive/splitting</strong> clustering methods start with a single cluster, and then progressively splits or divides clusters.</p></li>
+</ol>
+<p>We will focus on agglomerative methods.</p>
+<div id="distance-measures" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> Distance measures</h3>
+<p>Agglomerative clustering methods take the <span class="math inline">\(n \times n\)</span> matrix of inter-point distances <span class="math inline">\(\mathbf D=(d_{ij})_{i,j=1}^n\)</span> of the type we considered in Chapter <a href="#mds"><strong>??</strong></a>. Sometimes we will have access to the underlying data <span class="math inline">\(\mathbf x_1, \ldots, \mathbf x_n\)</span> and in that case the distances may be computed using a distance function <span class="math inline">\(d\)</span>, i.e., <span class="math inline">\(d_{ij}=d(\mathbf x_i, \mathbf x_j)\)</span>.
+As we saw previously, we can find that different distance functions <span class="math inline">\(d\)</span>, can produce different results. For example, with continuous data the Euclidean (<span class="math inline">\(L_2\)</span>) and Manhattan distance (<span class="math inline">\(L_1\)</span>) will often produce different results, with the Euclidean distance being more sensitive to outliers than the Manhattan distance:</p>
+<ul>
+<li>the Euclidean distance matrix for the points <span class="math inline">\(x=0, 1,4\)</span> is
+<span class="math display">\[\begin{pmatrix}0&amp;&amp;\\1&amp;0\\
+16&amp;9&amp;0\end{pmatrix}\]</span>
+whereas the Manhattan distance matrix is
+<span class="math display">\[\begin{pmatrix}0&amp;&amp;\\1&amp;0\\
+4&amp;3&amp;0\end{pmatrix}.\]</span></li>
+</ul>
+<p>The differences can be even more important for binary attribute data. In Chapter <a href="#mds"><strong>??</strong></a> we saw the SMC and Jaccard similarity measures, which leads to a corresponding distance function. For example,</p>
+<ul>
+<li>The Jaccard distance for two sets of attributes <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is
+<span class="math display">\[1- \frac{|A \cap B|}{|A\cup B|}\]</span>
+i.e., it is number of attributes shared by A and B, divided by the number of attributes possessed by either A or B (or both), all subtracted from 1.</li>
+</ul>
+<div id="distances-between-clusters" class="section level4">
+<h4><span class="header-section-number">1.3.1.1</span> Distances between clusters</h4>
+<p>The distances between individual observations are the input to the clustering method. Each method then defines a distance between clusters. For example, suppose we have two clusters <span class="math inline">\(\mathcal{G}=\{\mathbf x_1, \mathbf x_2\}\)</span> and <span class="math inline">\(\mathcal{H}=\{\mathbf x_3, \mathbf x_4\}\)</span>. Clustering methods are characterized by how they measure the distance between clusters, <span class="math inline">\(d(\mathcal{G}, \mathcal{H})\)</span>, which is a function of the pairwise distances <span class="math inline">\(d_{ij}\)</span> where one member of the pair <span class="math inline">\(i\)</span> is from <span class="math inline">\(\mathcal{G}\)</span> and the other, <span class="math inline">\(j\)</span>, is from <span class="math inline">\(\mathcal{H}\)</span>.</p>
+<p>For example,</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>single linkage (SL)</strong> agglomerative clustering, sometimes called <strong>nearest neighbour</strong> clustering, uses the closest (least distant) pair
+<span class="math display">\[d_{SL}(\mathcal{G}, \mathcal{H}) = \min_{\substack{i\in \mathcal{G}\\ i\in \mathcal{H}}} d_{ij}\]</span></p></li>
+<li><p><strong>complete linkage (CL)</strong> agglomerative clustering, sometimes called <strong>furthest neigbour</strong> clustering, uses
+<span class="math display">\[d_{CL}(\mathcal{G}, \mathcal{H}) = \max_{\substack{i\in \mathcal{G}\\ i\in \mathcal{H}}} d_{ij}\]</span></p></li>
+<li><p><strong>group average (GA)</strong> clustering uses the average distance between groups:
+<span class="math display">\[d_{GA}(\mathcal{G}, \mathcal{H}) = \frac{1}{n_\mathcal{G}n_\mathcal{H}}\sum_{i\in\mathcal{G}}\sum_{j\in\mathcal{H}} d_{ij}\]</span></p></li>
+</ol>
+<p>and many other choices are possible (see the help page of the <code>hclust</code> command in R for some details).</p>
+<p>Agglomerative clustering methods then work as follows:</p>
+<ul>
+<li><p>Start with the finest partition of singleton clusters (one observation per cluster)</p></li>
+<li><p>At each stage, join the two clusters with the closest distance.</p></li>
+<li><p>Stop once we are left with just a single cluster.</p></li>
+</ul>
+</div>
+</div>
+<div id="toy-example" class="section level3">
+<h3><span class="header-section-number">1.3.2</span> Toy Example</h3>
+<p>Suppose we are given 5 observations with distance matrix</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">(D &lt;-<span class="st"> </span><span class="kw">as.dist</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">                      <span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">                      <span class="dv">11</span>,<span class="dv">9</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">                      <span class="dv">15</span>,<span class="dv">13</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">                      <span class="dv">7</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">0</span>), <span class="dt">nr=</span><span class="dv">5</span>, <span class="dt">byrow=</span>T)))</a></code></pre></div>
+<pre><code>##    1  2  3  4
+## 2  2         
+## 3 11  9      
+## 4 15 13 10   
+## 5  7  5  4  8</code></pre>
+<p>i.e., <span class="math inline">\(d_{1,2}=2, d_{1,3}=11\)</span> etc.</p>
+<p>All methods start with the singleton clusters <span class="math inline">\(\{1\},\{2\},\{3\},\{4\},\{5\}\)</span>.</p>
+<div id="single-linkage" class="section level5 unnumbered">
+<h5>Single linkage</h5>
+<ul>
+<li>at stage 1 we join the pair of clusters that are closest, which is <span class="math inline">\(\{1\}\)</span> and <span class="math inline">\(\{2\}\)</span>, resulting in the clusters <span class="math inline">\(\{1\, 2\},\{3\},\{4\},\{5\}\)</span>. The (single linkage) distance matrix for these clusteres is then</li>
+</ul>
+<pre><code>##   12  3  4
+## 3  9      
+## 4 13 10   
+## 5  5  4  8</code></pre>
+<ul>
+<li>the closest clusters are <span class="math inline">\(\{3\}\)</span> and <span class="math inline">\(\{5\}\)</span>, and so at stage 2
+we get the clusters <span class="math inline">\(\{1\, 2\},\{3, 5\},\{4\}\)</span>, with the distances between clusters now given by</li>
+</ul>
+<pre><code>##    12 35
+## 35  5   
+## 4  13  8</code></pre>
+<ul>
+<li>at stage 3 we join <span class="math inline">\(\{1\, 2\}\)</span> and <span class="math inline">\(\{3, 5\}\)</span> giving the clusters <span class="math inline">\(\{1\, 2, 3, 5\},\{4\}\)</span>, with the distances between clusters now given by</li>
+</ul>
+<pre><code>##   1235
+## 4    8</code></pre>
+<ul>
+<li>at stage 4 we join the final two clusters resulting in the single cluster <span class="math inline">\(\{1\, 2, 3, 4, 5\}\)</span>.</li>
+</ul>
+<p>The <code>hclust</code> command does agglomerative clustering: we just have to specify the method to use.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">D.sl &lt;-<span class="kw">hclust</span>(D, <span class="dt">method=</span><span class="st">&quot;single&quot;</span>)</a></code></pre></div>
+<p>We can use the <code>cutree</code> command to specify a given number of clusters. For example, it we want just two clusters, we can use</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">cutree</span>(D.sl,<span class="dt">k=</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 1 1 1 2 1</code></pre>
+<p>This tells us that observations 1,2,3, and 5 are all in one cluster, and observation 4 in another cluster.</p>
+<p>A convenient graphical way to present the output from an agglomerative clustering method is as a <strong>dendrogram</strong>. These show the arrangement of the clusters produced at each stage. The height of each node in the plot is proportional to the value of the intergroup distance between its two daughters. The <code>plot</code> command in R automatically produces dendrograms if passed output from the <code>hclust</code>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">plot</span>(D.sl)</a></code></pre></div>
+<p><img src="10-clustering_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>An alternatively to cutting the tree according to the number of clusters required, is to specify at which height to cut the tree. For example, if we cut the tree at height <span class="math inline">\(T=4.5\)</span> we get</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">cutree</span>(D.sl, <span class="dt">h=</span><span class="fl">4.5</span>) <span class="co"># note we specify h= for height</span></a></code></pre></div>
+<pre><code>## [1] 1 1 2 3 2</code></pre>
+<p>showing that we have clusters <span class="math inline">\(\{1,2\}, \{3,5\}, \{4\}\)</span>.</p>
+</div>
+<div id="complete-linkage" class="section level5 unnumbered">
+<h5>Complete linkage</h5>
+<p>Let’s now consider using complete linkage.</p>
+<ul>
+<li><p>at stage 0 the clsuters are <span class="math inline">\(\{1\}, \{2\},\{3\},\{4\},\{5\}\)</span></p></li>
+<li><p>stage 1 is the same for all methods and we joint the pair of observations that are closest, resulting in clusters <span class="math inline">\(\{1\, 2\},\{3\},\{4\},\{5\}\)</span>. The (complete linkage) distance matrix between clusters is</p></li>
+</ul>
+<pre><code>##   12  3  4
+## 3 11      
+## 4 15 10   
+## 5  7  4  8</code></pre>
+<p>which is different to what we found previously.</p>
+<ul>
+<li>at stage 2 we joint together <span class="math inline">\(\{3\}\)</span> and <span class="math inline">\(\{5\}\)</span> giving the clusters <span class="math inline">\(\{1\, 2\},\{3, 5\},\{4\}\)</span>, with the distances between clusters given by</li>
+</ul>
+<pre><code>##    12 35
+## 35 11   
+## 4  15 10</code></pre>
+<ul>
+<li>at stage 3 the clusters are <span class="math inline">\(\{1\, 2\},\{3, 4, 5\}\)</span>, with the distances between clusters given by</li>
+</ul>
+<pre><code>##     12
+## 345 15</code></pre>
+<ul>
+<li>at stage 4 there is a single cluster <span class="math inline">\(\{1\, 2, 3, 4, 5\}\)</span>.</li>
+</ul>
+<p>The dendrogram for this is shown below. Note that complete linkage produces a different clustering if we require two clusters.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">hclust</span>(D, <span class="dt">method=</span><span class="st">&quot;complete&quot;</span>))</a></code></pre></div>
+<p><img src="10-clustering_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
+<div id="group-average" class="section level5 unnumbered">
+<h5>Group average</h5>
+<p>Group average clustering produces the same hierarchy of clusters as single linkage, but the nodes (points where clusters join) are at different heights in the dendrogram.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">D.ga &lt;-<span class="st"> </span><span class="kw">hclust</span>(D, <span class="dt">method=</span><span class="st">&quot;average&quot;</span>)</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw">plot</span>(D.ga)</a></code></pre></div>
+<p><img src="10-clustering_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>If we were to cut the single linkage and group average dendrograms at a height of 6, then we find different clusters. The single linkage dendrogram cut at height 6 gives the clusters <span class="math inline">\(\{1,2,3,5\}, \{4\}\)</span> whereas the group average dendrogram gives the clusters <span class="math inline">\(\{1,2\}, \{3,5\}, \{4\}\)</span>, despite the two trees having the same topology.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">cutree</span>(D.sl, <span class="dt">h=</span><span class="dv">6</span>) <span class="co"># cut the tree at height 6</span></a></code></pre></div>
+<pre><code>## [1] 1 1 1 2 1</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">cutree</span>(D.ga, <span class="dt">h=</span><span class="dv">6</span>)</a></code></pre></div>
+<pre><code>## [1] 1 1 2 3 2</code></pre>
+</div>
+</div>
+<div id="comparison-of-methods" class="section level3">
+<h3><span class="header-section-number">1.3.3</span> Comparison of methods</h3>
+<p>In the case where the distances <span class="math inline">\(\mathbf D\)</span> clearly split into distinct <em>compact</em> clusters (<em>compact</em> in the sense that all observations within a cluster are relatively close compared to observations in different clusters), all three methods will produce similar results.</p>
+<p>In cases where the clustering is less obvious, we may find differences between the methods. Single linkage will join two clusters <span class="math inline">\(\mathcal{G}\)</span> and <span class="math inline">\(\mathcal{H}\)</span> if there is a pair of observations <span class="math inline">\(i\in \mathcal{G}\)</span> and <span class="math inline">\(j \in \mathcal{H}\)</span> that is small. We therefore get a chaining effect, where observations linked by a chain of close intermediate observations get clustered together. The consequence of this is that the clusters produced can end up not being <em>compact</em>. If we look at the largest distance between members in a cluster, sometimes called the diameter,
+<span class="math display">\[D_\mathcal{G}= \max_{i,j \in \mathcal{G}} d_{ij}\]</span>
+then the single linkage method can produce clusters with very large diameters.</p>
+<p>In constrast, complete linkage is the other extereme. Two clusters are only considered close if all pairs of obsevations are close. Consequently, it tends to produce clusters with small diameters. A downside is that observations assigned to a cluster can be much closer to members of other clusters than they are to some members of their own cluster.</p>
+<p>Group averaging is a compromise between these two extremes. It aims to find compact clusters that are relatively far apart. However, the method is not invariant to monotone transformations of the distances, unlike single and complete linkage methods.</p>
+<!-- We now explain in more detail how these methods are applied.  First, we consider single linkage.  It is assumed that the set of distances is ordered, so that
+ \begin{equation}
+ d_{a_1,b_1}\leq d_{a_2,b_2} \leq \cdots \leq d_{a_{N-1}, b_{N-1}} \leq d_{a_N,b_N},
+(\#eq:orderdist)
+ \end{equation}
+ where $N=n(n-1)/2$, and  we adopt the following  conventions: (i) $a_t < b_t$; and (ii) to break a tie such as  $d_{a_{t},b_{t}} = d_{a_{t+1},b_{t+1}}$,  we write
+ $$
+ \cdots \leq d_{a_{t},b_{t}} \leq d_{a_{t+1},b_{t+1}} \leq \cdots
+ $$
+  if $a_{t} < a_{t+1}$, or $a_{t}=a_{t+1}$ and $b_t<b_{t+1}$; and we write
+ $$
+ \cdots \leq d_{a_{t+1},b_{t+1}} \leq d_{a_{t},b_{t}} \leq \cdots
+ $$
+ if $a_{t+1}<a_t$, or $a_{t+1}=a_t$ and $b_{t+1}<b_t$.
+
+
+1. Start with singleton clusters $\mathcal{C}_1, \ldots , \mathcal{C}_n$, i.e. $\mathcal{C}_i =\{i\}$.
+
+2. Combine experimental units $a_1$ and $b_1$ into a single new cluster, so that we now have one doubleton cluster and $n-2$ singleton clusters.
+
+3. Next, consider $a_2$ and $b_2$, where $d_{a_2,b_2}$ is the second smaller distance.  If both $a_2 \notin \{a_1,b_1\}$ and $b_2 \notin \{a_1,b_1\}$, then we combine $a_2$ and $b_2$ into a second doubleton cluster,
+     $\{a_2, b_2\}$, leading to $n-2$ clusters altogether ($2$ doubleton clusters and $n-4$ singleton clusters).  If, on the other hand, $a_2 \in \{a_1,b_1\}$, then necessarily $b_2 \notin \{a_1,b_1\}$, and so we form the trippleton cluster $\{a_1,b_1,b_2\}$; while if $b_2 \in \{a_1, b_1\}$, then necessarily $a_2 \notin \{a_1, b_1\}$, and we form the trippleton cluster $\{a_1, a_2, b_1\}$.  Either way, in the latter two cases, we are left with $n-2$ clusters altogether (one trippleton and $n-3$ singleton clusters).
+
+4. We continue this process as we pass through the $N$ inter-point distances.  However, sometimes we may wish to terminate this process at some threshold, $T$; i.e. we stop the process at the smallest $t$ such that
+     $d_{a_t, b_t}>T$.
+
+
+ In the single linkage approach, in effect we are defining the distance between two clusters $\mathcal{C}_u$ and $\mathcal{C}_v$ by
+ $$
+ d_S^\ast(\mathcal{C}_u, \mathcal{C}_v)=\min_{i \in \mathcal{C}_u, \, j \in \mathcal{C}_v} d_{ij}.
+ $$
+
+In contrast, with the complete linkage method, in effect we are defining  the distance between two clusters $\mathcal{C}_u$ and $\mathcal{C}_v$ by
+$$
+d_C^\ast(\mathcal{C}_u, \mathcal{C}_v)=\max_{i \in \mathcal{C}_u, \, j \in \mathcal{C}_v} d_{ij}.
+$$
+
+A convenient graphical way to present the output from either a single linkage procedure or a complete linkage procedure is to plot a **dendrogram**.
+-->
+<!--
+The following distance matrix was based on the relative gene frequencies for the four blood-group systems $A_1$, $A_2$, $B$ and $O$ for large samples from four human populations: (1) Inuit, (2) African, (3) English and (4) Korean.  The inter-point distances were determined using the Mahalanobis distance between $\bmu_i$ and $\bmu_j$ defined by
+$$
+d_{ij}=\sqrt{(\bmu_i -\bmu_j)^\top \bSigma^{-1}(\bmu_i - \bmu_j)}.
+$$
+The matrix of inter-point distances is given by:
+$$
+\begin{pmatrix}
+0&23.26&16.34 & 16.87\\
+&0&9.85 & 20.43 \\
+&&0&19.60\\
+&&&0
+\end{pmatrix}.
+$$
+
+**Hypothesis of interest**:  *there there is a natural clustering*
+$$
+\{\text{African}=2, \text{English}=3\}\qquad \text{and}\qquad
+\{\text{Inuit}=1, \text{Korean}=4\}.
+$$
+
+Let us first of all look at single linkage.  The ordering of the distances is given by
+$$
+d_{23} < d_{13} <d_{14}<d_{34}<d_{24}<d_{12}.
+$$
+
+*Single Linkage*
+  
+- At Stage $0$ the clusters are $\{1\}$, $\{2\}$, $\{3\}$ and $\{4\}$.
+- At Stage $1$ the clusters are $\{1\}$, $\{2,3\}$ and  $\{4\}$.
+- At Stage $2$ the clusters are $\{1,2,3\}$ and $\{4\}$.
+- At Stage $3$ we have a single cluster $\{1,2,3,4\}$.
+
+Now let us look at complete linkage.  Here, Stage $0^\prime$ and Stage $1^\prime$ are the same at Stage $0$ and Stage $1$ of single linkage, but Stage $2^\prime$ is different.
+
+*Complete Linkage*
+- At Stage $0^\prime$ the clusters are $\{1\}$, $\{2\}$, $\{3\}$ and $\{4\}$.
+- At Stage $1^\prime$ the clusters are $\{1\}$, $\{2,3\}$ and  $\{4\}$.
+- At Stage $2^\prime$ the clusters are $\{1,4\}$ and $\{2,3\}$.
+- At Stage $3^\prime$ we have a single cluster $\{1,2,3,4\}$.
+
+The reason that we combine $\{1,4\}$ at Stage $2^\prime$ is because
+$$
+d_{1,4}=16.87<d^\ast_C(\{1\}, \{2,3\})=\max \{d_{12}, d_{13}\}=23.26
+$$
+and
+$$
+d_{1,4}=16.87<d^\ast_C(\{4\}, \{2,3\})=\max \{d_{24}, d_{34}\}=20.43.
+$$
+So with complete linkage we should combine $\{1\}$ and $\{4\}$ before combining either $\{1\}$ or $\{4\}$ with $\{2,3\}$.
+
+In this example, single linkage and complete linkage lead to different conclusions: complete linkage supports the hypothesis of interest, while single linkage does not.  Some people have argued that single linkage is more appropriate here.
+-->
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1-2-model-based-clustering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-4-summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -2331,8 +2331,8 @@ with (necessarily real) eigenvalues \(\lambda _1 \geq \lambda _2 \geq \dots \geq
 if and only if \(\lambda _n >0\). It is positive semi-definite if and only if \(\lambda_n \geq 0\).
 \end{lemma}
 \begin{proof}
-\iffalse{} {Proof. } \fi{}If \(\mathbf A\) is positive definite, and if \(\mathbf x\) is a unit-eigenvalue of \(\mathbf A\) corresponding to \(\lambda_n\), then
-\[0\leq \mathbf x^\top \mathbf A\mathbf x= \lambda_n \mathbf x^\top \mathbf x= \lambda_n.\]
+\iffalse{} {Proof. } \fi{}If \(\mathbf A\) is positive definite, and if \(\mathbf x\) is a unit-eigenvector of \(\mathbf A\) corresponding to \(\lambda_n\), then
+\[0<\mathbf x^\top \mathbf A\mathbf x= \lambda_n \mathbf x^\top \mathbf x= \lambda_n.\]
 
 Conversely, suppose \(\mathbf A\) has positive eigenvalues. Because \(\mathbf A\) is real and symmetric, we can write it as \(\mathbf A=\mathbf Q\boldsymbol \Lambda\mathbf Q^\top\). Now if \(\mathbf x\) is a non-zero vector, then \(\mathbf y= \mathbf Q^\top \mathbf x\not= \boldsymbol 0\), (as \(\mathbf Q^\top\) has inverse \(\mathbf Q\) and hence \(\dim \operatorname{Ker}(\mathbf Q)=0\)). Thus
 \[\mathbf x^\top \mathbf A\mathbf x= \mathbf y^\top \boldsymbol \Lambda\mathbf y= \sum_{i=1}^n \lambda_i y_i^2 >0\] and thus \(\mathbf A\) is positive definite.
@@ -9162,6 +9162,737 @@ Calculate Fisher's linear discriminant function using just a single LDA variable
 \tightlist
 \item
   What would Fisher's discriminant rule be if you use both LDA variables?
+\end{enumerate}
+
+\hypertarget{cluster}{%
+\chapter{Cluster Analysis}\label{cluster}}
+
+Discriminant analysis, covered in Chapter \ref{lda}, is a \textbf{supervised} learning method: in order to train the classifier we had access to both the input \(\mathbf x\) and the label \(y\) for that case (what group it belonged to).
+This chapter focusses on cluster analysis, which is an \textbf{unsupervised} learning method: we have to train the model without knowledge of the true cluster labels. In many problems there may not be anything we could describe as a `true' cluster label - in which case we are using cluster analysis as a way finding descriptive statistics about the data.
+
+The aim is to group cases into `clusters' such that cases within each cluster are more closely related to each other than to cases in other clusters. Some methods do this using the attributes/measurements \(\mathbf x\) for each case. These methods include k-means clustering and model-based clustering. In contrast, other methods such as hierarchical clusteringmethods, use the proximities or distances between cases (as in MDS).
+
+\hypertarget{k-means-clustering}{%
+\section{K-means clustering}\label{k-means-clustering}}
+
+Suppose we have a sample of \(n\) vectors \(\mathbf x_1, \ldots , \mathbf x_n \in \mathbb{R}^p\). Consider the situation where \(\mathbf x_i\) comes from one of \(K\) sub-populations (I used \(g\) previously, but this method is known as `K'-means so we'll use \(K\) instead of \(g\) here). We'll initially assume \(K\) is known, but will discuss how to choose \(K\) in applications where we do not have prior beliefs about the number of clusters.
+
+The key point is that we do not know which sub-population each \(\mathbf x_i\) comes from, i.e., we do not know how to allocate the observations to sub-populations. \textbf{The goal of cluster analysis} is to allocate each case, \(\mathbf x_1, \ldots, \mathbf x_n\), to one of \(K\) \textbf{clusters}, \(\mathcal{C}_1, \ldots , \mathcal{C}_k\), in such a way that observation vectors within a cluster tend to be more similar to each other, in some sense, than to observations in different clusters.
+
+Each data point, \(\mathbf x_i\), will be allocated to precisely one cluster:
+\[\mathbf x_i \in \mathcal{C}_j\]
+so that the clusters partition the \(n\) cases:
+\[
+\bigcup_{j=1}^k \mathcal{C}_j = \{\mathbf x_1, \ldots , \mathbf x_n\}, \qquad \text{and} \qquad \mathcal{C}_j \cap \mathcal{C}_{j'} =\emptyset,\qquad j \neq j'.
+\]
+
+It will be convenient to introduce an alternative, but equivalent, way to describe the allocation of cases to clusters. We will do this with an \textbf{encoder}, \(\delta(i)\), for \(i=1, \ldots,n\), with:
+
+\begin{equation}
+\delta(i) = j \iff \mathbf x_i \in \mathcal{C}_j. 
+\label{eq:two-way}
+\end{equation}
+We write \(\boldsymbol \delta=(\delta(1),\ldots , \delta(n))^\top\) for the vector of \(n\) different cluster indicators.
+
+\hypertarget{estimating-boldsymbol-delta}{%
+\subsection{\texorpdfstring{Estimating \(\boldsymbol \delta\)}{Estimating \textbackslash{}boldsymbol \textbackslash{}delta}}\label{estimating-boldsymbol-delta}}
+
+We think of the encoder \(\delta(i)\) as a parameter that we need to estimate. We estimate it by picking a loss function, and then seeking to minimize that loss. A natural choice for the loss function is to use the within-cluster scatter that we saw previously:
+
+\[W(\delta) = \sum_{k=1}^K \sum_{i: \delta(i)=k} \sum_{i': \delta(i')=k} d(\mathbf x_i, \mathbf x_{i'})\]
+for some distance function \(d\). As in Chapter \ref{lda}, we can split the total point scatter into within-cluster and between-cluster scatter:
+\begin{align}
+T&= W(\boldsymbol \delta)+B(\boldsymbol \delta)\\
+\sum_{k=1}^K \sum_{i=1}^n \sum_{i'=1}^n d(\mathbf x_i, \mathbf x_{i'})&= \sum_{k=1}^K \sum_{i: \delta(i)=k} \left(\sum_{i': \delta(i')=k} d(\mathbf x_i, \mathbf x_{i'})+\sum_{i': \delta(i')\not=k} d(\mathbf x_i, \mathbf x_{i'})\right)
+\end{align}
+and so minimizing within-cluster scatter is equivalent to maximizing between-cluster scatter.
+
+In general, solving the optimization problem
+
+\[\hat{\boldsymbol \delta} = \arg \min_{\boldsymbol \delta} W(\boldsymbol \delta)\]
+is impossible in most cases, as the number of possible allocations of cases to clusters explodes combinatorially. So instead of searching through all possible choices of \(\boldsymbol \delta\) we take an iterative greedy descent approach. These work by
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Picking an initial partition \(\boldsymbol \delta\).
+\item
+  At each step, the cluster assignments are changed to reduce the loss function \(W(\boldsymbol \delta)\)
+\end{enumerate}
+
+\hypertarget{k-means}{%
+\subsection{K-means}\label{k-means}}
+
+\textbf{K-means clustering} is the most commonly used iterative descent clustering method. It uses the squared Eucliden distances between points
+\[d(\mathbf x_i, \mathbf x_{i'})=||\mathbf x_i - \mathbf x_{i'}||_2^2\]
+
+In this case, the within-cluster scatter reduces to
+\begin{align}
+W(\delta) &= \sum_{k=1}^K \sum_{i: \delta(i)=k} \sum_{i': \delta(i')=k} ||\mathbf x_i - \mathbf x_{i'}||_2^2 \\
+&= \sum_{k=1}^K 2n_k \sum_{i: \delta(i)=k} ||\mathbf x_{i} - \hat{{\boldsymbol{\mu}}}_k||_2^2 \label{eq:Wscatterk}\\
+\end{align}
+
+where \(n_k = \sum_{i=1}^n \mathbb{I}_{\delta(i)=k}\) is the number of points assigned to cluster \(k\), and
+
+\[\hat{{\boldsymbol{\mu}}}_k=\frac{1}{n_k}\sum_{i: \delta(i)=k} \mathbf x_i\]
+is the mean vector of the points assigned to cluster \(k\) (you'll be asked to prove this in the Exercises).
+
+Thus we can see that k-means aims to minimize the sum of the square distance from each point to its cluster mean.
+
+The greedy iterative approach used in K-means clustering is thus as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  For a given cluster assignment \(\boldsymbol \delta\), find the mean of each cluster \(\hat{{\boldsymbol{\mu}}_1}, \ldots, \hat{{\boldsymbol{\mu}}_K}\).
+\item
+  Given a set of cluster means \(\hat{{\boldsymbol{\mu}}_1}, \ldots, \hat{{\boldsymbol{\mu}}_K}\), allocate each point to the closest cluster mean, i.e., set
+  \[\delta(i) = \arg \min_k ||\mathbf x_i - \hat{{\boldsymbol{\mu}}}_k||_2^2\]
+\item
+  Iterate steps 1. and 2. until convergence.
+\end{enumerate}
+
+Note that the result of these steps might be a sub-optimal local minimum. Thus, we usually run \(K\)-means several times with different random initial choices for \(\delta\), and then choose the best solution.
+
+\hypertarget{example-iris-data}{%
+\subsection{Example: Iris data}\label{example-iris-data}}
+
+Consider the `iris' data again. Suppose we are given the petal and sepal length and widths, but not told which species each iris belongs to. I.e., suppose we are given the data
+
+\begin{table}[H]
+\centering
+\begin{tabular}{rrrr}
+\toprule
+Sepal.Length & Sepal.Width & Petal.Length & Petal.Width\\
+\midrule
+5.1 & 3.5 & 1.4 & 0.2\\
+4.9 & 3.0 & 1.4 & 0.2\\
+4.7 & 3.2 & 1.3 & 0.2\\
+4.6 & 3.1 & 1.5 & 0.2\\
+5.0 & 3.6 & 1.4 & 0.2\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Our goal is to find clusters within the data. These are groups of irises that are more similar to each other than to those in other groups (clusters). These clusters may correspond to the Species label (which we aren't given), or they may not. The goal of cluster analysis is not to predict the species, but simply to group the data into similar clusters.
+
+Let's look at finding 3 clusters. We can do this using the \texttt{kmeans} command in R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris2 <-}\StringTok{ }\NormalTok{iris[,}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{]}
+\CommentTok{# nstart gives the number of random initialisations to try }
+\NormalTok{(iris.k <-}\StringTok{ }\KeywordTok{kmeans}\NormalTok{(iris2, }\DataTypeTok{centers =} \DecValTok{3}\NormalTok{, }\DataTypeTok{nstart=}\DecValTok{25}\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## K-means clustering with 3 clusters of sizes 50, 62, 38
+## 
+## Cluster means:
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1     5.006000    3.428000     1.462000    0.246000
+## 2     5.901613    2.748387     4.393548    1.433871
+## 3     6.850000    3.073684     5.742105    2.071053
+## 
+## Clustering vector:
+##   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+##  [38] 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+##  [75] 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 3 3 3 3 2 3 3 3 3
+## [112] 3 3 2 2 3 3 3 3 2 3 2 3 2 3 3 2 2 3 3 3 3 3 2 3 3 3 3 2 3 3 3 2 3 3 3 2 3
+## [149] 3 2
+## 
+## Within cluster sum of squares by cluster:
+## [1] 15.15100 39.82097 23.87947
+##  (between_SS / total_SS =  88.4 %)
+## 
+## Available components:
+## 
+## [1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
+## [6] "betweenss"    "size"         "iter"         "ifault"
+\end{verbatim}
+
+From this output we can read off the final cluster means, and the encoder \(\boldsymbol \delta\). Also given is the final within-cluster sum of squares for each cluster.
+
+We can visualise the output of \(K\)-means using the \texttt{fviz\_cluster} command from the \texttt{factoextra} package. This first projects the points into two dimensions using PCA, and then shows the classification in 2d, and so some caution is needed in interpreting these plots.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(factoextra)}
+\KeywordTok{fviz_cluster}\NormalTok{(iris.k, }\DataTypeTok{data =}\NormalTok{ iris2,}
+             \DataTypeTok{geom =} \StringTok{"point"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\hypertarget{choosing-k}{%
+\subsection{\texorpdfstring{Choosing \(K\)}{Choosing K}}\label{choosing-k}}
+
+In the iris data, we know there are 3 distinct species. But suppose we didn't know this. What happens if we try other values for \(K\)?
+
+\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+How do we choose between these different values of \(K\)?
+In general, if we choose \(K\) too large, then each individual case will begin to represent a cluster. Conversely, if \(K\) is too small then we will find data points are incorrectly clustered together.
+
+The best approach for choosing \(K\) is to use domain knowledge when it is available. In the case where there is no prior knowledge of how many clusters we expect to find, we can use a data-driven approach for choosing \(K\).
+A common approach data-driven approach is known as the \textbf{elbow method}. This approach looks at the within-cluster sum of squares \(W(\delta)\) as the number of clusters changes, i.e., we compute \(W_1, W_2, \ldots, W_{K_{max}}\). \(W\) will decrease as the number of clusters increases, but we can look for the point where the decrease slows down. The intuition is that if we've used \(K\) clusters when really the data consist of \(K+1\) clusters, \(W_K-W_{K+1}\) will be large. In constrast, if there are really \(K\) clusters, and we use \(K^*>K\) then at least one of the estimated clusters must partition one of the natural groups, and so the change in \(W\) will be less. As you can see, this is not an exact science!
+
+For the iris data, we can create an elbow plot using the \texttt{fviz\_nbclust} command from the \texttt{factoextra} package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{fviz_nbclust}\NormalTok{(iris2, kmeans, }\DataTypeTok{method =} \StringTok{"wss"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+In this case, I would probably decide there most likely three natural clusters in the data, as there is a reasonable decrease in \(W\) when moving from 2 to 3 clusters, but moving to 3 clusters only yields a minor improvement. Note here the slight increase in W in moving from 9 to 10 clusters. This is due to only using a greed search, rather than an exhaustive one (we know the best 10-group cluster must be better than the betst 9-group cluster, we just have found it).
+
+\hypertarget{model-based-clustering}{%
+\section{Model-based clustering}\label{model-based-clustering}}
+
+Model-based clustering is similar to K-means clustering, in that we want to allocate each case to a cluster. The difference is that we will now assume a probability distribution for the observations within each cluster.
+
+Consider the situation where \(\mathbf x_i\) comes from one of \(K\) sub-populations, where the \(j\)th sub-population has
+probability density function \(f(\mathbf x; \boldsymbol \theta_j)\), \(j=1,\ldots , K\). Here \(\boldsymbol \theta_j\) are unknown parameters describing each sub-population.
+
+The most common choice for the density \(f\) is to assume it is a multivariate normal distribution. The parameters \(\boldsymbol \theta_j\) would then represent the mean and variance of the MVN density for each cluster.
+
+\hypertarget{maximum-likelihood-estimation}{%
+\subsection{Maximum-likelihood estimation}\label{maximum-likelihood-estimation}}
+
+We want to estimate the optimal allocation of each case to a cluster, i.e., estimate \(\boldsymbol \delta\), as well as the (usually) unknown parameter vectors \(\boldsymbol \theta_1, \ldots , \boldsymbol \theta_K\). We can do this by maximum likelihood estimation.
+
+The likelihood for \(\boldsymbol \theta_1, \ldots , \boldsymbol \theta_K\) and the allocation \(\boldsymbol \delta\) may be written as
+\begin{align*}
+L(\boldsymbol \theta_1,\ldots , \boldsymbol \theta_K; \boldsymbol \delta)&=\left \{\prod_{\mathbf x\in \mathcal{C}_1} f(\mathbf x; \boldsymbol \theta_1)\right \}\cdots \left \{\prod_{\mathbf x\in \mathcal{C}_K} f(\mathbf x; \boldsymbol \theta_K)\right \}\\
+&=\left \{\prod_{i: \delta_i=1} f(\mathbf x_i; \boldsymbol \theta_1)\right \}\cdots \left \{\prod_{i: \delta_i=} f(\mathbf x_i; \boldsymbol \theta_K)\right \}\\
+&= \prod_{i=1}^n f(\mathbf x_i; \boldsymbol \theta_{\delta_i})
+\end{align*}
+
+Let \(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_K\) and \(\hat{\boldsymbol \delta}\) denote the maximum likelihood estimators of \(\boldsymbol \theta_1, \ldots , \boldsymbol \theta_K\) and the unknown allocation \(\boldsymbol \delta\).
+Also, let \(\hat{\mathcal{C}}_1, \ldots, \hat{\mathcal{C}}_K\) denote the maximum likelihood clusters, which are determined by \(\hat{\boldsymbol \delta}\) via Equation \eqref{eq:two-way}.
+
+Then we have the following result.
+
+\begin{proposition}
+\protect\hypertarget{prp:ten1}{}{\label{prp:ten1} }If \(\mathbf x\in \hat{\mathcal{C}}_j\) then
+\[
+\sup_{1 \leq k \leq K}f(\mathbf x; \hat{\boldsymbol \theta}_k) = f(\mathbf x; \hat{\boldsymbol \theta}_j).
+\]
+\end{proposition}
+
+\begin{proof}
+\iffalse{} {Proof. } \fi{}If we move an \(\mathbf x\) from \(\hat{\mathcal{C}}_j\) to \(\hat{\mathcal{C}}_k\), then the likelihood changes to
+\[
+L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_K; \boldsymbol \delta)f(\mathbf x; \hat{\boldsymbol \theta}_k)/f(\mathbf x; \hat{\boldsymbol \theta}_j).
+\]
+But by definition of \(L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_K; \hat{\boldsymbol \delta})\),
+\[
+L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_K; \hat{\boldsymbol \delta})f(\mathbf x; \hat{\boldsymbol \theta}_k)/f(\mathbf x; \hat{\boldsymbol \theta}_j) \leq L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_K; \hat{\boldsymbol \delta}),
+\]
+from which we conclude that Proposition \ref{prp:ten1} holds.
+\end{proof}
+
+Note the similarity to the sample ML discriminant rule considered in Section \ref{lda-ML}: in each case we classify \(\mathbf x\) to the cluster for which the likelihood \(f(\mathbf x; \hat{\boldsymbol \theta}_k)\) is greatest. The difference with LDA is that we are not given the cluster labels for the training data, and so we have to estimate \(\boldsymbol \delta\) as well as the different parameter vectors, \(\boldsymbol \theta_k\), for each cluster.
+
+The computation for model-based clustering is beyond the scope of the module, but is covered in the Computational Statistics module (the section on the EM algorithm).
+
+\hypertarget{multivariate-gaussian-clusters}{%
+\subsection{Multivariate Gaussian clusters}\label{multivariate-gaussian-clusters}}
+
+We now consider the case where the sub-populations are multivariate Gaussian, i.e. \(f(\mathbf x; \boldsymbol \theta_j)\) is the density of \(N_p({\boldsymbol{\mu}}_j, \boldsymbol{\Sigma}_j)\) for \(j=1, \ldots , K\). Here, \(\boldsymbol \theta_j\) consists of \({\boldsymbol{\mu}}_j\) and \(\boldsymbol{\Sigma}_j\) for each \(j=1, \ldots , K\).
+
+In the general case, when the mean vector and covariance matrix are different for each sub-population, we know how to maximise the likelihood when the allocation \(\boldsymbol \delta\) is given (see Section \ref{sample-lda}). Conversely, given estimated parameters \(\hat{\boldsymbol \theta}_k\), we can estimate the encoder \(\boldsymbol \delta\) using Proposition \ref{prp:ten1}. As for K-means, the procedure for doing model based clustering iterates between the steps
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Estimate \(\boldsymbol \theta_k\) given the current partition \(\boldsymbol \delta\).
+\item
+  Estimate \(\boldsymbol \delta\) given parameter values \(\hat{\boldsymbol \theta}_1, \ldots, \hat{\boldsymbol \theta}_k\).
+\end{enumerate}
+
+until convergence.
+
+\hypertarget{link-to-k-means-clustering}{%
+\subsubsection{Link to K-means clustering}\label{link-to-k-means-clustering}}
+
+The case where \(\boldsymbol{\Sigma}_1=\cdots = \boldsymbol{\Sigma}_K=\sigma^2 \mathbf I_p\), i.e.~the common covariance matrix is a scalar multiple of the \(p \times p\) identity matrix, turns out to be equivalent to K-means clustering. To see this, note that the maximum likelihood allocation \(\hat{\boldsymbol \delta}\) given estimated cluster means \(\hat{{\boldsymbol{\mu}}}_k\), is obtained by the \(\boldsymbol \delta\) which maximizes
+\[
+\prod_{i=1}^n\exp(-\frac{1}{2\sigma}||\mathbf x_i-{\boldsymbol{\mu}}_{\delta(i)}||_2^2)
+\]
+which is equivalent to minimizing
+\[
+\sum_{j=1}^K \sum_{\mathbf x\in \mathcal{C}_j} \vert \vert \mathbf x- \hat{{\boldsymbol{\mu}}}_j\vert \vert^2.
+\]
+which in turn is equivalent to minimizing \(W(\boldsymbol \delta)\).
+
+\hypertarget{example-iris-1}{%
+\subsection{Example: Iris}\label{example-iris-1}}
+
+The \texttt{mclust} library can be used to perform model-based clustering with Gaussian clusters. We just have to specify the number of required clusters.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(mclust)}
+\NormalTok{iris.m <-}\StringTok{ }\KeywordTok{Mclust}\NormalTok{(iris2,}\DataTypeTok{G=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Pairs plots of the classification of each point can easily be obtained, as can the estimated probability density of each cluster.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(iris.m, }\DataTypeTok{what =} \KeywordTok{c}\NormalTok{(}\StringTok{"classification"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(iris.m, }\DataTypeTok{what =} \KeywordTok{c}\NormalTok{(}\StringTok{"density"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-9-2.pdf}
+
+How to choose \(K\) in model-based clustering is beyond the scope of the module.
+
+\hypertarget{hierarchical-clustering-methods}{%
+\section{Hierarchical clustering methods}\label{hierarchical-clustering-methods}}
+
+\emph{Hierarchical} clustering methods work by creating a hierarchy of clusters, in which clusters at each level of the heirarchy are formed by merging or splitting clusters from a neighbouring level of the hierarchy. A hierarchical clustering method is usually of one of two types:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{agglomerative} clustering methods start with the finest partition (one observation per cluster) and progressively combine clusters.
+\item
+  \textbf{divisive/splitting} clustering methods start with a single cluster, and then progressively splits or divides clusters.
+\end{enumerate}
+
+We will focus on agglomerative methods.
+
+\hypertarget{distance-measures}{%
+\subsection{Distance measures}\label{distance-measures}}
+
+Agglomerative clustering methods take the \(n \times n\) matrix of inter-point distances \(\mathbf D=(d_{ij})_{i,j=1}^n\) of the type we considered in Chapter \ref{mds}. Sometimes we will have access to the underlying data \(\mathbf x_1, \ldots, \mathbf x_n\) and in that case the distances may be computed using a distance function \(d\), i.e., \(d_{ij}=d(\mathbf x_i, \mathbf x_j)\).
+As we saw previously, we can find that different distance functions \(d\), can produce different results. For example, with continuous data the Euclidean (\(L_2\)) and Manhattan distance (\(L_1\)) will often produce different results, with the Euclidean distance being more sensitive to outliers than the Manhattan distance:
+
+\begin{itemize}
+\tightlist
+\item
+  the Euclidean distance matrix for the points \(x=0, 1,4\) is
+  \[\begin{pmatrix}0&&\\1&0\\
+  16&9&0\end{pmatrix}\]
+  whereas the Manhattan distance matrix is
+  \[\begin{pmatrix}0&&\\1&0\\
+  4&3&0\end{pmatrix}.\]
+\end{itemize}
+
+The differences can be even more important for binary attribute data. In Chapter \ref{mds} we saw the SMC and Jaccard similarity measures, which leads to a corresponding distance function. For example,
+
+\begin{itemize}
+\tightlist
+\item
+  The Jaccard distance for two sets of attributes \(A\) and \(B\) is
+  \[1- \frac{|A \cap B|}{|A\cup B|}\]
+  i.e., it is number of attributes shared by A and B, divided by the number of attributes possessed by either A or B (or both), all subtracted from 1.
+\end{itemize}
+
+\hypertarget{distances-between-clusters}{%
+\subsubsection{Distances between clusters}\label{distances-between-clusters}}
+
+The distances between individual observations are the input to the clustering method. Each method then defines a distance between clusters. For example, suppose we have two clusters \(\mathcal{G}=\{\mathbf x_1, \mathbf x_2\}\) and \(\mathcal{H}=\{\mathbf x_3, \mathbf x_4\}\). Clustering methods are characterized by how they measure the distance between clusters, \(d(\mathcal{G}, \mathcal{H})\), which is a function of the pairwise distances \(d_{ij}\) where one member of the pair \(i\) is from \(\mathcal{G}\) and the other, \(j\), is from \(\mathcal{H}\).
+
+For example,
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{single linkage (SL)} agglomerative clustering, sometimes called \textbf{nearest neighbour} clustering, uses the closest (least distant) pair
+  \[d_{SL}(\mathcal{G}, \mathcal{H}) = \min_{\substack{i\in \mathcal{G}\\ i\in \mathcal{H}}} d_{ij}\]
+\item
+  \textbf{complete linkage (CL)} agglomerative clustering, sometimes called \textbf{furthest neigbour} clustering, uses
+  \[d_{CL}(\mathcal{G}, \mathcal{H}) = \max_{\substack{i\in \mathcal{G}\\ i\in \mathcal{H}}} d_{ij}\]
+\item
+  \textbf{group average (GA)} clustering uses the average distance between groups:
+  \[d_{GA}(\mathcal{G}, \mathcal{H}) = \frac{1}{n_\mathcal{G}n_\mathcal{H}}\sum_{i\in\mathcal{G}}\sum_{j\in\mathcal{H}} d_{ij}\]
+\end{enumerate}
+
+and many other choices are possible (see the help page of the \texttt{hclust} command in R for some details).
+
+Agglomerative clustering methods then work as follows:
+
+\begin{itemize}
+\item
+  Start with the finest partition of singleton clusters (one observation per cluster)
+\item
+  At each stage, join the two clusters with the closest distance.
+\item
+  Stop once we are left with just a single cluster.
+\end{itemize}
+
+\hypertarget{toy-example}{%
+\subsection{Toy Example}\label{toy-example}}
+
+Suppose we are given 5 observations with distance matrix
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(D <-}\StringTok{ }\KeywordTok{as.dist}\NormalTok{(}\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+                      \DecValTok{2}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+                      \DecValTok{11}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+                      \DecValTok{15}\NormalTok{,}\DecValTok{13}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}
+                      \DecValTok{7}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{0}\NormalTok{), }\DataTypeTok{nr=}\DecValTok{5}\NormalTok{, }\DataTypeTok{byrow=}\NormalTok{T)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    1  2  3  4
+## 2  2         
+## 3 11  9      
+## 4 15 13 10   
+## 5  7  5  4  8
+\end{verbatim}
+
+i.e., \(d_{1,2}=2, d_{1,3}=11\) etc.
+
+All methods start with the singleton clusters \(\{1\},\{2\},\{3\},\{4\},\{5\}\).
+
+\hypertarget{single-linkage}{%
+\paragraph{Single linkage}\label{single-linkage}}
+\addcontentsline{toc}{paragraph}{Single linkage}
+
+\begin{itemize}
+\tightlist
+\item
+  at stage 1 we join the pair of clusters that are closest, which is \(\{1\}\) and \(\{2\}\), resulting in the clusters \(\{1\, 2\},\{3\},\{4\},\{5\}\). The (single linkage) distance matrix for these clusteres is then
+\end{itemize}
+
+\begin{verbatim}
+##   12  3  4
+## 3  9      
+## 4 13 10   
+## 5  5  4  8
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  the closest clusters are \(\{3\}\) and \(\{5\}\), and so at stage 2
+  we get the clusters \(\{1\, 2\},\{3, 5\},\{4\}\), with the distances between clusters now given by
+\end{itemize}
+
+\begin{verbatim}
+##    12 35
+## 35  5   
+## 4  13  8
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  at stage 3 we join \(\{1\, 2\}\) and \(\{3, 5\}\) giving the clusters \(\{1\, 2, 3, 5\},\{4\}\), with the distances between clusters now given by
+\end{itemize}
+
+\begin{verbatim}
+##   1235
+## 4    8
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  at stage 4 we join the final two clusters resulting in the single cluster \(\{1\, 2, 3, 4, 5\}\).
+\end{itemize}
+
+The \texttt{hclust} command does agglomerative clustering: we just have to specify the method to use.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{D.sl <-}\KeywordTok{hclust}\NormalTok{(D, }\DataTypeTok{method=}\StringTok{"single"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We can use the \texttt{cutree} command to specify a given number of clusters. For example, it we want just two clusters, we can use
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cutree}\NormalTok{(D.sl,}\DataTypeTok{k=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 1 1 2 1
+\end{verbatim}
+
+This tells us that observations 1,2,3, and 5 are all in one cluster, and observation 4 in another cluster.
+
+A convenient graphical way to present the output from an agglomerative clustering method is as a \textbf{dendrogram}. These show the arrangement of the clusters produced at each stage. The height of each node in the plot is proportional to the value of the intergroup distance between its two daughters. The \texttt{plot} command in R automatically produces dendrograms if passed output from the \texttt{hclust}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(D.sl)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+An alternatively to cutting the tree according to the number of clusters required, is to specify at which height to cut the tree. For example, if we cut the tree at height \(T=4.5\) we get
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cutree}\NormalTok{(D.sl, }\DataTypeTok{h=}\FloatTok{4.5}\NormalTok{) }\CommentTok{# note we specify h= for height}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 1 2 3 2
+\end{verbatim}
+
+showing that we have clusters \(\{1,2\}, \{3,5\}, \{4\}\).
+
+\hypertarget{complete-linkage}{%
+\paragraph{Complete linkage}\label{complete-linkage}}
+\addcontentsline{toc}{paragraph}{Complete linkage}
+
+Let's now consider using complete linkage.
+
+\begin{itemize}
+\item
+  at stage 0 the clsuters are \(\{1\}, \{2\},\{3\},\{4\},\{5\}\)
+\item
+  stage 1 is the same for all methods and we joint the pair of observations that are closest, resulting in clusters \(\{1\, 2\},\{3\},\{4\},\{5\}\). The (complete linkage) distance matrix between clusters is
+\end{itemize}
+
+\begin{verbatim}
+##   12  3  4
+## 3 11      
+## 4 15 10   
+## 5  7  4  8
+\end{verbatim}
+
+which is different to what we found previously.
+
+\begin{itemize}
+\tightlist
+\item
+  at stage 2 we joint together \(\{3\}\) and \(\{5\}\) giving the clusters \(\{1\, 2\},\{3, 5\},\{4\}\), with the distances between clusters given by
+\end{itemize}
+
+\begin{verbatim}
+##    12 35
+## 35 11   
+## 4  15 10
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  at stage 3 the clusters are \(\{1\, 2\},\{3, 4, 5\}\), with the distances between clusters given by
+\end{itemize}
+
+\begin{verbatim}
+##     12
+## 345 15
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  at stage 4 there is a single cluster \(\{1\, 2, 3, 4, 5\}\).
+\end{itemize}
+
+The dendrogram for this is shown below. Note that complete linkage produces a different clustering if we require two clusters.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{hclust}\NormalTok{(D, }\DataTypeTok{method=}\StringTok{"complete"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\hypertarget{group-average}{%
+\paragraph{Group average}\label{group-average}}
+\addcontentsline{toc}{paragraph}{Group average}
+
+Group average clustering produces the same hierarchy of clusters as single linkage, but the nodes (points where clusters join) are at different heights in the dendrogram.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{D.ga <-}\StringTok{ }\KeywordTok{hclust}\NormalTok{(D, }\DataTypeTok{method=}\StringTok{"average"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(D.ga)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+If we were to cut the single linkage and group average dendrograms at a height of 6, then we find different clusters. The single linkage dendrogram cut at height 6 gives the clusters \(\{1,2,3,5\}, \{4\}\) whereas the group average dendrogram gives the clusters \(\{1,2\}, \{3,5\}, \{4\}\), despite the two trees having the same topology.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cutree}\NormalTok{(D.sl, }\DataTypeTok{h=}\DecValTok{6}\NormalTok{) }\CommentTok{# cut the tree at height 6}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 1 1 2 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cutree}\NormalTok{(D.ga, }\DataTypeTok{h=}\DecValTok{6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 1 2 3 2
+\end{verbatim}
+
+\hypertarget{comparison-of-methods}{%
+\subsection{Comparison of methods}\label{comparison-of-methods}}
+
+In the case where the distances \(\mathbf D\) clearly split into distinct \emph{compact} clusters (\emph{compact} in the sense that all observations within a cluster are relatively close compared to observations in different clusters), all three methods will produce similar results.
+
+In cases where the clustering is less obvious, we may find differences between the methods. Single linkage will join two clusters \(\mathcal{G}\) and \(\mathcal{H}\) if there is a pair of observations \(i\in \mathcal{G}\) and \(j \in \mathcal{H}\) that is small. We therefore get a chaining effect, where observations linked by a chain of close intermediate observations get clustered together. The consequence of this is that the clusters produced can end up not being \emph{compact}. If we look at the largest distance between members in a cluster, sometimes called the diameter,
+\[D_\mathcal{G}= \max_{i,j \in \mathcal{G}} d_{ij}\]
+then the single linkage method can produce clusters with very large diameters.
+
+In constrast, complete linkage is the other extereme. Two clusters are only considered close if all pairs of obsevations are close. Consequently, it tends to produce clusters with small diameters. A downside is that observations assigned to a cluster can be much closer to members of other clusters than they are to some members of their own cluster.
+
+Group averaging is a compromise between these two extremes. It aims to find compact clusters that are relatively far apart. However, the method is not invariant to monotone transformations of the distances, unlike single and complete linkage methods.
+
+\hypertarget{summary}{%
+\section{Summary}\label{summary}}
+
+In this chapter we have focused on just two types of clustering methods: partitioning methods (K-means and model-based methods); and hierarchical agglomerative clustering methods.
+
+There are many algorithms for performing Cluster Analysis, but there is no generally accepted \emph{best} method. Different algorithms (or even the same algorithm with a different initialisation) do not necessarily produce the same results on a given dataset, and there is often a fairly large subjective element in the assessment of any particular method. Moreover, the choice of which underlying distance function to use can also lead to different conclusions.
+
+One way to test a clustering algorithm is to apply it on data with a known group structure. Experience suggests that this will only produce good results when the groups are very distinct. When, on the other hand, there is a lot of overlap between groups, clustering algorithms are not likely to perform particularly well.
+
+However, despite these cautionary remarks, clustering algorithms are often useful in practice, but it is an area where usually the most one can hope for is to find a good, but sub-optimal, solution.
+
+\hypertarget{computer-tasks-5}{%
+\section{Computer tasks}\label{computer-tasks-5}}
+
+\hypertarget{q1}{%
+\paragraph{Q1}\label{q1}}
+\addcontentsline{toc}{paragraph}{Q1}
+
+Perform hierarchical clustering with single, complete and average linkage using the iris data. You could also look
+at other method's such as Ward's method (see \texttt{?hclust} for details).
+
+\begin{itemize}
+\tightlist
+\item
+  In each case, cut the dendrogram to give three distinct groups, and compute the confusion matrix comparing the clusters found with the Species label.
+  Commment on which linkage method has worked best in this case.
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  We do not normally know the species/cluster-label when carrying out cluster analysis, and so can we still say anything about which methods are better if you were expecting to see three distinct groups?
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  Compare the hierarchical clustering methods with the results of doing K-means clustering and model-based clustering (assuming multivariate normal distributions for each population).
+\end{itemize}
+
+\hypertarget{q2}{%
+\paragraph{Q2}\label{q2}}
+\addcontentsline{toc}{paragraph}{Q2}
+
+Download the Indian Premier League data from Moodle and load it into R. We will filter the data to only look at players who played at least 10 innings, and the select just the information on the number of runs they scored, their high score (HS), their batting average (Avg), their best figures (BF), their strike rate (SR), and the number of 4s and 6s they hit.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(dplyr)}
+\NormalTok{IPL<-}\KeywordTok{read.csv}\NormalTok{(}\StringTok{'IPL.csv'}\NormalTok{)}
+\NormalTok{IPL10<-IPL }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{filter}\NormalTok{(Mat.x}\OperatorTok{>=}\DecValTok{10}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(PLAYER,Runs.x, HS, Avg.x, BF, SR.x, X4s, X6s)}
+\end{Highlighting}
+\end{Shaded}
+
+Apply agglomerative hierarchical clustering to these data. You will need to first compute a distance matrix for the data, which can be done with the \texttt{dist} command.
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\item
+  Using the Euclidean distance, do single linkage, complete linkage, and average linkage give similar dendrograms?
+\item
+  Do your results change much if we use a different distance measure (e.g.~Manhattan)?
+\item
+  There are several R packages for creating different types of dendrogram plots. Have a look at the link \href{http://www.sthda.com/english/wiki/beautiful-dendrogram-visualizations-in-r-5-must-known-methods-unsupervised-machine-learning}{here} and try creating an alternative type of dendrogram. Consider whether this has helped communicate anything of interest about the data.
+\end{enumerate}
+
+\hypertarget{q3}{%
+\paragraph{Q3}\label{q3}}
+\addcontentsline{toc}{paragraph}{Q3}
+
+Look at the data stored in the \texttt{USArrests} data frame in R. You can read about the data by typing \texttt{?USArrests}.
+
+Apply a selection of clustering methods to these data and discuss how many clusters appear to be present.
+
+\hypertarget{exercises-6}{%
+\section{Exercises}\label{exercises-6}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  In the table below, information is given on the presence or absence (denoted by \(1\) and \(0\), respectively) of \(6\) unspecified attributes, denoted A1, \ldots{}, A6, in Lions, Giraffes, Sheep and Humans.
+  \[
+  \begin{array}{cccccccc}
+  \textrm{Individual}  &&\textrm{A1}&\textrm{A2}&\textrm{A3}&\textrm{A4}&\textrm{A5}&\textrm{A6}\\
+  &&&&&&\\
+  \textrm{Lion}&&1&1&0&0&1&1\\
+  \textrm{Giraffe}&&1&1&1&0&0&1\\
+  \textrm{Sheep}&&1&0&0&1&0&1\\
+  \textrm{Human}&&0&0&0&0&1&0
+  \end{array}
+  \]
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\item
+  Use the information in the table to calculate a similarity matrix based on the simple matching
+  coefficient given by Equation \eqref{eq:smc}.
+\item
+  Using a suitable transformation, convert the similarity matrix into a dissimilarity matrix,
+  \(\mathbf D\) say.
+\item
+  Apply the single linkage method to the matrix \(\mathbf D\). Summarise your results graphically in a dendrogram.
+\item
+  Apply the complete linkage method to the matrix \(\mathbf D\). Summarise your results graphically in a dendrogram.
+\item
+  Suppose exactly two clusters are required. What would be your clusters based on single
+  linkage and complete linkage?
+\item
+  Repeat part v., but this time with three clusters rather than two.
+\item
+  Briefly (i.e.~in one or two sentences) summarise your findings.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Attempt question 4b from the 2017-18 exam paper.
+\item
+  Prove Equation \eqref{eq:Wscatterk}.
 \end{enumerate}
 
 \bibliography{book.bib,packages.bib}

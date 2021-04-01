@@ -132,10 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Applied multivariate statistics</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
-<li class="chapter" data-level="0.1" data-path="0-1-computer-tasks.html"><a href="0-1-computer-tasks.html"><i class="fa fa-check"></i><b>0.1</b> Computer tasks</a></li>
-<li class="chapter" data-level="0.2" data-path="0-2-exercises.html"><a href="0-2-exercises.html"><i class="fa fa-check"></i><b>0.2</b> Exercises</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="1" data-path="1-cluster.html"><a href="1-cluster.html"><i class="fa fa-check"></i><b>1</b> Cluster Analysis</a><ul>
 <li class="chapter" data-level="1.1" data-path="1-1-likelihood-based-clustering.html"><a href="1-1-likelihood-based-clustering.html"><i class="fa fa-check"></i><b>1.1</b> Likelihood-based clustering</a><ul>
 <li class="chapter" data-level="1.1.1" data-path="1-1-likelihood-based-clustering.html"><a href="1-1-likelihood-based-clustering.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>1.1.1</b> Maximum-likelihood estimation</a></li>
@@ -144,8 +141,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1.4" data-path="1-1-likelihood-based-clustering.html"><a href="1-1-likelihood-based-clustering.html#estimating-g"><i class="fa fa-check"></i><b>1.1.4</b> Estimating <span class="math inline">\(g\)</span>??????</a></li>
 <li class="chapter" data-level="1.1.5" data-path="1-1-likelihood-based-clustering.html"><a href="1-1-likelihood-based-clustering.html#non-normal-clusters"><i class="fa fa-check"></i><b>1.1.5</b> Non-normal clusters?</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-2-hierarchical-clustering-methods.html"><a href="1-2-hierarchical-clustering-methods.html"><i class="fa fa-check"></i><b>1.2</b> Hierarchical clustering methods</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-hierarchical-clustering-methods.html"><a href="1-2-hierarchical-clustering-methods.html"><i class="fa fa-check"></i><b>1.2</b> Hierarchical clustering methods</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-hierarchical-clustering-methods.html"><a href="1-2-hierarchical-clustering-methods.html#distance-measures"><i class="fa fa-check"></i><b>1.2.1</b> Distance measures</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-hierarchical-clustering-methods.html"><a href="1-2-hierarchical-clustering-methods.html#toy-example"><i class="fa fa-check"></i><b>1.2.2</b> Toy Example</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-hierarchical-clustering-methods.html"><a href="1-2-hierarchical-clustering-methods.html#comparison-of-methods"><i class="fa fa-check"></i><b>1.2.3</b> Comparison of methods</a></li>
+</ul></li>
 <li class="chapter" data-level="1.3" data-path="1-3-further-points.html"><a href="1-3-further-points.html"><i class="fa fa-check"></i><b>1.3</b> Further Points</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-computer-tasks.html"><a href="1-4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -364,17 +367,27 @@ computational explosion in the number of possible allocations when <span class="
 <h3><span class="header-section-number">1.1.3</span> Example</h3>
 <p>Check computer tasks</p>
 <p>See <a href="https://rpubs.com/MrCristianrl/504935" class="uri">https://rpubs.com/MrCristianrl/504935</a></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">iris.kmeans &lt;-<span class="st"> </span><span class="kw">kmeans</span>(iris2, <span class="dt">centers =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">fitted</span>(iris.kmeans)</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">table</span>(iris.kmeans<span class="op">$</span>cluster, iris<span class="op">$</span>Species)</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">library</span>(cluster)</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">clusplot</span>(iris, iris.kmeans<span class="op">$</span>cluster, <span class="dt">color=</span>T, <span class="dt">shade=</span>T, <span class="dt">labels=</span><span class="dv">0</span>, <span class="dt">lines=</span><span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">iris.kmeans &lt;-<span class="st"> </span><span class="kw">kmeans</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">centers =</span> <span class="dv">3</span>, <span class="dt">nstart=</span><span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">iris.kmeans</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">fitted</span>(iris.kmeans)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">table</span>(iris.kmeans<span class="op">$</span>cluster, iris<span class="op">$</span>Species)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">library</span>(<span class="st">&quot;factoextra&quot;</span>)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw">fviz_cluster</span>(iris.kmeans, <span class="dt">data =</span> iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="kw">library</span>(cluster)</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw">clusplot</span>(iris, iris.kmeans<span class="op">$</span>cluster, <span class="dt">color=</span>T, <span class="dt">shade=</span>T, <span class="dt">labels=</span><span class="dv">0</span>, <span class="dt">lines=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="kw">fviz_nbclust</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], kmeans, <span class="dt">method =</span> <span class="st">&quot;gap_stat&quot;</span>)</a></code></pre></div>
+<p><a href="https://towardsdatascience.com/how-to-use-and-visualize-k-means-clustering-in-r-19264374a53c" class="uri">https://towardsdatascience.com/how-to-use-and-visualize-k-means-clustering-in-r-19264374a53c</a></p>
+<p>The function fviz_cluster() [factoextra package] can be used to easily visualize k-means clusters. It takes k-means results and the original data as arguments. In the resulting plot, observations are represented by points, using principal components if the number of variables is greater than 2. It’s also possible to draw concentration ellipse around each cluster.</p>
 </div>
 <div id="estimating-g" class="section level3">
 <h3><span class="header-section-number">1.1.4</span> Estimating <span class="math inline">\(g\)</span>??????</h3>
 </div>
 <div id="non-normal-clusters" class="section level3">
 <h3><span class="header-section-number">1.1.5</span> Non-normal clusters?</h3>
+<!--###################################################################-->
 </div>
 </div>
             </section>

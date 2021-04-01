@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.2 Likelihood-based clustering | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.2 Likelihood-based clustering | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.2 Likelihood-based clustering | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1-1-k-means-clustering.html"/>
+<link rel="next" href="1-3-hierarchical-clustering-methods.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="1-cluster.html"><a href="1-cluster.html"><i class="fa fa-check"></i><b>1</b> Cluster Analysis</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-k-means-clustering.html"><a href="1-1-k-means-clustering.html"><i class="fa fa-check"></i><b>1.1</b> K-means clustering</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-k-means-clustering.html"><a href="1-1-k-means-clustering.html#estimating-boldsymbol-delta"><i class="fa fa-check"></i><b>1.1.1</b> Estimating <span class="math inline">\(\boldsymbol \delta\)</span></a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-k-means-clustering.html"><a href="1-1-k-means-clustering.html#k-means"><i class="fa fa-check"></i><b>1.1.2</b> K-means</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1-1-k-means-clustering.html"><a href="1-1-k-means-clustering.html#example-iris-data"><i class="fa fa-check"></i><b>1.1.3</b> Example: Iris data</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1-1-k-means-clustering.html"><a href="1-1-k-means-clustering.html#choosing-k"><i class="fa fa-check"></i><b>1.1.4</b> Choosing <span class="math inline">\(K\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-likelihood-based-clustering.html"><a href="1-2-likelihood-based-clustering.html"><i class="fa fa-check"></i><b>1.2</b> Likelihood-based clustering</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-likelihood-based-clustering.html"><a href="1-2-likelihood-based-clustering.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>1.2.1</b> Maximum-likelihood estimation</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-2-likelihood-based-clustering.html"><a href="1-2-likelihood-based-clustering.html#multivariate-gaussian-clusters"><i class="fa fa-check"></i><b>1.2.2</b> Multivariate Gaussian clusters</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-2-likelihood-based-clustering.html"><a href="1-2-likelihood-based-clustering.html#example"><i class="fa fa-check"></i><b>1.2.3</b> Example</a></li>
+<li class="chapter" data-level="1.2.4" data-path="1-2-likelihood-based-clustering.html"><a href="1-2-likelihood-based-clustering.html#estimating-the-number-of-clusters-g"><i class="fa fa-check"></i><b>1.2.4</b> Estimating the number of clusters <span class="math inline">\(g\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-hierarchical-clustering-methods.html"><a href="1-3-hierarchical-clustering-methods.html"><i class="fa fa-check"></i><b>1.3</b> Hierarchical clustering methods</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-hierarchical-clustering-methods.html"><a href="1-3-hierarchical-clustering-methods.html#distance-measures"><i class="fa fa-check"></i><b>1.3.1</b> Distance measures</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-3-hierarchical-clustering-methods.html"><a href="1-3-hierarchical-clustering-methods.html#toy-example"><i class="fa fa-check"></i><b>1.3.2</b> Toy Example</a></li>
+<li class="chapter" data-level="1.3.3" data-path="1-3-hierarchical-clustering-methods.html"><a href="1-3-hierarchical-clustering-methods.html#comparison-of-methods"><i class="fa fa-check"></i><b>1.3.3</b> Comparison of methods</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-further-points.html"><a href="1-4-further-points.html"><i class="fa fa-check"></i><b>1.4</b> Further Points</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-computer-tasks.html"><a href="1-5-computer-tasks.html"><i class="fa fa-check"></i><b>1.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.6" data-path="1-6-exercises.html"><a href="1-6-exercises.html"><i class="fa fa-check"></i><b>1.6</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="likelihood-based-clustering" class="section level2">
+<h2><span class="header-section-number">1.2</span> Likelihood-based clustering</h2>
+<p>Suppose we have a sample of <span class="math inline">\(n\)</span> random vectors <span class="math inline">\(\mathbf x_1, \ldots , \mathbf x_n\)</span>. Consider the situation where <span class="math inline">\(\mathbf x_i\)</span> comes from one of <span class="math inline">\(k\)</span> sub-populations, where the <span class="math inline">\(j\)</span>th sub-population has
+probability density function <span class="math inline">\(f(\mathbf x; \boldsymbol \theta_j)\)</span>, <span class="math inline">\(j=1,\ldots , g\)</span>. Here <span class="math inline">\(\boldsymbol \theta_j\)</span> are unknown parameters describing each sub-population. The most common choice for the density <span class="math inline">\(f\)</span> is to assume it is a multivariate normal distribution. The parameters <span class="math inline">\(\boldsymbol \theta_j\)</span> would then represent the mean and variance of the MVN density for each cluster.</p>
+<div id="maximum-likelihood-estimation" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Maximum-likelihood estimation</h3>
+<p>We want to estimate the optimal allocation of each case to a cluster, i.e., estimate <span class="math inline">\(\boldsymbol \delta\)</span>, as well as the (usually) unknown parameter vectors <span class="math inline">\(\boldsymbol \theta_1, \ldots , \boldsymbol \theta_g\)</span>. We can do this by maximum likelihood estimation.</p>
+<p>The likelihood for <span class="math inline">\(\boldsymbol \theta_1, \ldots , \boldsymbol \theta_g\)</span> and the allocation <span class="math inline">\(\boldsymbol \delta\)</span> may be written as
+<span class="math display">\[\begin{align*}
+L(\boldsymbol \theta_1,\ldots , \boldsymbol \theta_g; \boldsymbol \delta)&amp;=\left \{\prod_{\mathbf x\in \mathcal{C}_1} f(\mathbf x; \boldsymbol \theta_1)\right \}\cdots \left \{\prod_{\mathbf x\in \mathcal{C}_g} f(\mathbf x; \boldsymbol \theta_g)\right \}\\
+&amp;=\left \{\prod_{i: \delta_i=1} f(\mathbf x_i; \boldsymbol \theta_1)\right \}\cdots \left \{\prod_{i: \delta_i=g} f(\mathbf x_i; \boldsymbol \theta_g)\right \}\\
+&amp;= \prod_{i=1}^n f(\mathbf x_i; \boldsymbol \theta_{\delta_i})
+\end{align*}\]</span></p>
+<p>Let <span class="math inline">\(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_g\)</span> and <span class="math inline">\(\hat{\boldsymbol \delta}\)</span> denote the maximum likelihood estimators of <span class="math inline">\(\boldsymbol \theta_1, \ldots , \boldsymbol \theta_g\)</span> and the unknown allocation <span class="math inline">\(\boldsymbol \delta\)</span>.
+Also, let <span class="math inline">\(\hat{\mathcal{C}}_1, \ldots, \hat{\mathcal{C}}_g\)</span> denote the maximum likelihood clusters, which are determined by <span class="math inline">\(\hat{\boldsymbol \delta}\)</span> via <a href="1-1-k-means-clustering.html#eq:two-way">(1.1)</a>.</p>
+<p>HOW TO FIND?</p>
+<p>Then we have the following result.</p>
+
+<div class="proposition">
+<span id="prp:ten1" class="proposition"><strong>Proposition 1.1  </strong></span>If <span class="math inline">\(\mathbf x\in \hat{\mathcal{C}}_j\)</span> then
+<span class="math display">\[
+\sup_{1 \leq k \leq g}f(\mathbf x; \hat{\boldsymbol \theta}_k) = f(\mathbf x; \hat{\boldsymbol \theta}_j).
+\]</span>
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> If we move an <span class="math inline">\(\mathbf x\)</span> from <span class="math inline">\(\hat{\mathcal{C}}_j\)</span> to <span class="math inline">\(\hat{\mathcal{C}}_k\)</span>, then the likelihood changes to
+<span class="math display">\[
+L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_g; \boldsymbol \delta)f(\mathbf x; \hat{\boldsymbol \theta}_k)/f(\mathbf x; \hat{\boldsymbol \theta}_j).
+\]</span>
+But by definition of <span class="math inline">\(L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_g; \hat{\boldsymbol \delta})\)</span>,
+<span class="math display">\[
+L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_g; \hat{\boldsymbol \delta})f(\mathbf x; \hat{\boldsymbol \theta}_k)/f(\mathbf x; \hat{\boldsymbol \theta}_j) \leq L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_g; \hat{\boldsymbol \delta}),
+\]</span>
+from which we conclude that Proposition <a href="1-2-likelihood-based-clustering.html#prp:ten1">1.1</a> holds.
+</div>
+
+<p>Note that this result is closely related to the sample ML discriminant rule considered in Section <a href="#lda-ML"><strong>??</strong></a>.</p>
+</div>
+<div id="multivariate-gaussian-clusters" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Multivariate Gaussian clusters</h3>
+<p>We now consider the case where the sub-populations are multivariate Gaussian, i.e. <span class="math inline">\(f(\mathbf x; \boldsymbol \theta_j)\)</span> is the density of <span class="math inline">\(N_p({\boldsymbol{\mu}}_j, \boldsymbol{\Sigma}_j)\)</span> for <span class="math inline">\(j=1, \ldots , g\)</span>.</p>
+<p>In the general case, when the mean vector and covariance matrix are different for each sub-population, we know how to maximise the likelihood when the allocation <span class="math inline">\(\boldsymbol \delta\)</span> is given.
+Here, <span class="math inline">\(\boldsymbol \theta_j\)</span> consists of <span class="math inline">\({\boldsymbol{\mu}}_j\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}_j\)</span> for each <span class="math inline">\(j=1, \ldots , g\)</span>, and from Section ???????????????????? <a href="#asdfasegasxdg"><strong>??</strong></a>, we know that the maximised log-likelihood for cluster <span class="math inline">\(j\)</span> is
+<span class="math display">\[
+\ell(\hat{{\boldsymbol{\mu}}}_j[\boldsymbol \delta], \hat{\boldsymbol{\Sigma}}_j[ \boldsymbol \delta])=-\frac{n_j[\boldsymbol \delta]}{2}\log (\vert \hat{\boldsymbol{\Sigma}}_j[\boldsymbol \delta]\vert)-\frac{n_j[\boldsymbol \delta]}{2}p(1+\log 2\pi),
+\]</span>
+where <span class="math inline">\(n_j[\boldsymbol \delta]\)</span> is the number of elements in cluster <span class="math inline">\(j\)</span>, <span class="math inline">\(\mathcal{C}_j[\boldsymbol \delta]\)</span>, for the given allocation <span class="math inline">\(\boldsymbol \delta\)</span>. Similarly, <span class="math inline">\(\hat{{\boldsymbol{\mu}}}_j[\boldsymbol \delta]\)</span> and <span class="math inline">\(\hat{\boldsymbol{\Sigma}}_j[\boldsymbol \delta]\)</span> are the MLEs of <span class="math inline">\({\boldsymbol{\mu}}_j\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}_j\)</span> for the given allocation <span class="math inline">\(\boldsymbol \delta\)</span>, i.e. the sample mean and covariance matrix
+<span class="math display">\[
+\hat{{\boldsymbol{\mu}}}_j[\boldsymbol \delta]=\frac{1}{n_j[\boldsymbol \delta]}\sum_{\mathbf x\in \mathcal{C}_j[\boldsymbol \delta]} \mathbf x=\bar{\mathbf x}_j[\boldsymbol \delta]
+\]</span>
+and
+<span class="math display">\[
+\hat{\boldsymbol{\Sigma}}_j[\boldsymbol \delta]=\frac{1}{n_j[\boldsymbol \delta]}\sum_{\mathbf x\in \mathcal{C}_j[\boldsymbol \delta]}(\mathbf x- \bar{\mathbf x}_j[\boldsymbol \delta])(\mathbf x- \bar{\mathbf x}_j[\boldsymbol \delta])^\top.
+\]</span></p>
+<p>It follows that the MLE of <span class="math inline">\(\boldsymbol \delta\)</span> is the choice of <span class="math inline">\(\boldsymbol \delta\)</span> which maximises the log-likelihood
+<span class="math display">\[
+-\frac{1}{2}\sum_{j=1}^g n_j[\boldsymbol \delta] \log (\vert\hat{\boldsymbol{\Sigma}}_j[\boldsymbol \delta]\vert)\, + \, \text{constant}
+\]</span>
+over <span class="math inline">\(\boldsymbol \delta\)</span>.</p>
+<p>Under the assumption that the population covariance matrices are the same, i.e. <span class="math inline">\(\boldsymbol{\Sigma}_1=\cdots = \boldsymbol{\Sigma}_g\)</span>, the maximised log-likelihood for a given allocation <span class="math inline">\(\boldsymbol \delta\)</span> is
+given by
+<span class="math display" id="eq:Wdelta">\[\begin{equation}
+-\frac{n}{2}\log (\vert \mathbf W[\boldsymbol \delta]\vert)\, + \,\text{constant},
+\tag{1.3}
+\end{equation}\]</span>
+where <span class="math inline">\(n=\sum_{j=1}^g n_j\)</span> and
+<span class="math display">\[
+\mathbf W[\boldsymbol \delta]=\sum_{j=1}^g \sum_{x \in \mathcal{C}_j[{\pmb \delta}]} (\mathbf x- \hat{{\boldsymbol{\mu}}}_j[\boldsymbol \delta])(\mathbf x- \hat{{\boldsymbol{\mu}}}_j[\boldsymbol \delta])^\top
+\]</span>
+is the ‘’within’’ sum of squares and products matrix for the given allocation. So the maximum likelihood allocation <span class="math inline">\(\hat{\boldsymbol \delta}\)</span> is the <span class="math inline">\(\boldsymbol \delta\)</span> which maximises <a href="1-2-likelihood-based-clustering.html#eq:Wdelta">(1.3)</a>.</p>
+<p>The final case we consider is where <span class="math inline">\(\boldsymbol{\Sigma}_1=\cdots = \boldsymbol{\Sigma}_g=\sigma^2 \mathbf I_p\)</span>, i.e. the common covariance matrix is a scalar multiple of the <span class="math inline">\(p \times p\)</span> identity matrix.
+This is a version of the so-called  approach, and here the maximum likelihood allocation <span class="math inline">\(\hat{\boldsymbol \delta}\)</span> is obtained by the <span class="math inline">\(\boldsymbol \delta\)</span> which minimises
+<span class="math display">\[
+\sum_{j=1}^g \sum_{\mathbf x\in \mathcal{C}_j} \vert \vert \mathbf x- \bar{\mathbf x}_j\vert \vert^2.
+\]</span></p>
+<p>Although clustering based on the likelihood function has a certain intuitive appeal, in most practical situation it is not feasible to find the global maximum due to the
+computational explosion in the number of possible allocations when <span class="math inline">\(n\)</span> is even of moderate size, e.g. <span class="math inline">\(n=100\)</span>. A further problem is that there may be a large number of local maxima of the likelihood function. However, despite these challenges, likelihood-based clustering, such as <span class="math inline">\(k\)</span>-means clustering, is widely used and can lead to useful, even if sub-optimal, solutions to the clustering problem.</p>
+</div>
+<div id="example" class="section level3">
+<h3><span class="header-section-number">1.2.3</span> Example</h3>
+<p>Check computer tasks</p>
+<p>See <a href="https://rpubs.com/MrCristianrl/504935" class="uri">https://rpubs.com/MrCristianrl/504935</a></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">iris.kmeans &lt;-<span class="st"> </span><span class="kw">kmeans</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], <span class="dt">centers =</span> <span class="dv">3</span>, <span class="dt">nstart=</span><span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">iris.kmeans</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">fitted</span>(iris.kmeans)</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">table</span>(iris.kmeans<span class="op">$</span>cluster, iris<span class="op">$</span>Species)</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="kw">library</span>(<span class="st">&quot;factoextra&quot;</span>)</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="kw">fviz_cluster</span>(iris.kmeans, <span class="dt">data =</span> iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="kw">library</span>(cluster)</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="kw">clusplot</span>(iris, iris.kmeans<span class="op">$</span>cluster, <span class="dt">color=</span>T, <span class="dt">shade=</span>T, <span class="dt">labels=</span><span class="dv">0</span>, <span class="dt">lines=</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="kw">fviz_nbclust</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>], kmeans, <span class="dt">method =</span> <span class="st">&quot;gap_stat&quot;</span>)</a></code></pre></div>
+<p><a href="https://towardsdatascience.com/how-to-use-and-visualize-k-means-clustering-in-r-19264374a53c" class="uri">https://towardsdatascience.com/how-to-use-and-visualize-k-means-clustering-in-r-19264374a53c</a></p>
+<p>The function fviz_cluster() [factoextra package] can be used to easily visualize k-means clusters. It takes k-means results and the original data as arguments. In the resulting plot, observations are represented by points, using principal components if the number of variables is greater than 2. It’s also possible to draw concentration ellipse around each cluster.</p>
+</div>
+<div id="estimating-the-number-of-clusters-g" class="section level3">
+<h3><span class="header-section-number">1.2.4</span> Estimating the number of clusters <span class="math inline">\(g\)</span></h3>
+<p>See wikipedia.
+<a href="https://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set" class="uri">https://en.wikipedia.org/wiki/Determining_the_number_of_clusters_in_a_data_set</a></p>
+<p><a href="https://uc-r.github.io/kmeans_clustering" class="uri">https://uc-r.github.io/kmeans_clustering</a></p>
+<p><code>fviz_nbclust(df, kmeans, method = &quot;wss&quot;)</code></p>
+<!--###################################################################-->
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1-1-k-means-clustering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-3-hierarchical-clustering-methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
