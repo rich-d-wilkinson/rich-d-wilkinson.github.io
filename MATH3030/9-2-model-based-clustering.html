@@ -338,31 +338,43 @@ probability density function <span class="math inline">\(f(\mathbf x; \boldsymbo
 <p>The likelihood for <span class="math inline">\(\boldsymbol \theta_1, \ldots , \boldsymbol \theta_K\)</span> and the allocation <span class="math inline">\(\boldsymbol \delta\)</span> may be written as
 <span class="math display">\[\begin{align*}
 L(\boldsymbol \theta_1,\ldots , \boldsymbol \theta_K; \boldsymbol \delta)&amp;=\left \{\prod_{\mathbf x\in \mathcal{C}_1} f(\mathbf x; \boldsymbol \theta_1)\right \}\cdots \left \{\prod_{\mathbf x\in \mathcal{C}_K} f(\mathbf x; \boldsymbol \theta_K)\right \}\\
-&amp;=\left \{\prod_{i: \delta_i=1} f(\mathbf x_i; \boldsymbol \theta_1)\right \}\cdots \left \{\prod_{i: \delta_i=} f(\mathbf x_i; \boldsymbol \theta_K)\right \}\\
-&amp;= \prod_{i=1}^n f(\mathbf x_i; \boldsymbol \theta_{\delta_i})
+&amp;=\left \{\prod_{i: \delta(i)=1} f(\mathbf x_i; \boldsymbol \theta_1)\right \}\cdots \left \{\prod_{i: \delta(i)=K} f(\mathbf x_i; \boldsymbol \theta_K)\right \}\\
+&amp;= \prod_{i=1}^n f(\mathbf x_i; \boldsymbol \theta_{\delta(i)})
 \end{align*}\]</span></p>
 <p>Let <span class="math inline">\(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_K\)</span> and <span class="math inline">\(\hat{\boldsymbol \delta}\)</span> denote the maximum likelihood estimators of <span class="math inline">\(\boldsymbol \theta_1, \ldots , \boldsymbol \theta_K\)</span> and the unknown allocation <span class="math inline">\(\boldsymbol \delta\)</span>.
 Also, let <span class="math inline">\(\hat{\mathcal{C}}_1, \ldots, \hat{\mathcal{C}}_K\)</span> denote the maximum likelihood clusters, which are determined by <span class="math inline">\(\hat{\boldsymbol \delta}\)</span> via Equation <a href="9-1-k-means-clustering.html#eq:two-way">(9.1)</a>.</p>
 <p>Then we have the following result.</p>
 
 <div class="proposition">
-<span id="prp:ten1" class="proposition"><strong>Proposition 9.1  </strong></span>If <span class="math inline">\(\mathbf x\in \hat{\mathcal{C}}_j\)</span> then
-<span class="math display">\[
-\sup_{1 \leq k \leq K}f(\mathbf x; \hat{\boldsymbol \theta}_k) = f(\mathbf x; \hat{\boldsymbol \theta}_j).
-\]</span>
+<p><span id="prp:ten1" class="proposition"><strong>Proposition 9.1  </strong></span>Observations are classified to the cluster for which they have the largest likelihood:
+<span class="math display">\[\hat{\delta}(i)= \arg \max_k f(\mathbf x_i; \hat{\boldsymbol \theta}_k).\]</span></p>
+<!--If $\bx \in \hat{\mathcal{C}}_j$ then
+$$
+\sup_{1 \leq k \leq K}f(\bx; \hat{\btheta}_k) = f(\bx; \hat{\btheta}_j).
+$$-->
 </div>
 
 
 <div class="proof">
- <span class="proof"><em>Proof. </em></span> If we move an <span class="math inline">\(\mathbf x\)</span> from <span class="math inline">\(\hat{\mathcal{C}}_j\)</span> to <span class="math inline">\(\hat{\mathcal{C}}_k\)</span>, then the likelihood changes to
+<p> <span class="proof"><em>Proof. </em></span> Suppose observation <span class="math inline">\(i\)</span>, <span class="math inline">\(\mathbf x_i\)</span>, gets classified to cluster <span class="math inline">\(\hat{\mathcal{C}}_j\)</span> according to the maximum likelihood estimator, i.e.,
+<span class="math display">\[\hat{\delta}(i)=j\]</span></p>
+<p>Then consider the encoder <span class="math inline">\(\boldsymbol \delta\)</span> that is the same as <span class="math inline">\(\hat{\boldsymbol \delta}\)</span>, but which moves <span class="math inline">\(\mathbf x_i\)</span> from <span class="math inline">\(\hat{\mathcal{C}}_j\)</span> to <span class="math inline">\(\hat{\mathcal{C}}_k\)</span>.</p>
+<p><span class="math display">\[\delta(i&#39;) =\begin{cases}
+\hat{\delta}(i&#39;) &amp;\mbox{ for } i&#39; \not = i\\
+ k &amp; \mbox{ for } i&#39; = i
+\end{cases}\]</span></p>
+<p>Then the likelihood of <span class="math inline">\(\boldsymbol \delta\)</span> is
 <span class="math display">\[
-L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_K; \boldsymbol \delta)f(\mathbf x; \hat{\boldsymbol \theta}_k)/f(\mathbf x; \hat{\boldsymbol \theta}_j).
-\]</span>
-But by definition of <span class="math inline">\(L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_K; \hat{\boldsymbol \delta})\)</span>,
+L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_K; \boldsymbol \delta) = L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_K; \hat{\boldsymbol \delta})f(\mathbf x_i; \hat{\boldsymbol \theta}_k)/f(\mathbf x_i; \hat{\boldsymbol \theta}_j).
+\]</span></p>
+But by definition
 <span class="math display">\[
-L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_K; \hat{\boldsymbol \delta})f(\mathbf x; \hat{\boldsymbol \theta}_k)/f(\mathbf x; \hat{\boldsymbol \theta}_j) \leq L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_K; \hat{\boldsymbol \delta}),
+L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_K; \boldsymbol \delta) \leq L(\hat{\boldsymbol \theta}_1, \ldots , \hat{\boldsymbol \theta}_K; \hat{\boldsymbol \delta}),
 \]</span>
-from which we conclude that Proposition <a href="9-2-model-based-clustering.html#prp:ten1">9.1</a> holds.
+as <span class="math inline">\(\hat{\boldsymbol \delta}\)</span> maximizes the likelihood, and so we conclude that
+<span class="math display">\[f(\mathbf x; \hat{\boldsymbol \theta}_k)/f(\mathbf x; \hat{\boldsymbol \theta}_j)\leq1\]</span>
+for all <span class="math inline">\(k\)</span>
+and thus Proposition <a href="9-2-model-based-clustering.html#prp:ten1">9.1</a> holds.
 </div>
 
 <p><br></br></p>
@@ -415,7 +427,7 @@ is the ''within'' sum of squares and products matrix for the given allocation.  
 <h4><span class="header-section-number">9.2.2.1</span> Link to K-means clustering</h4>
 <p>The case where <span class="math inline">\(\boldsymbol{\Sigma}_1=\cdots = \boldsymbol{\Sigma}_K=\sigma^2 \mathbf I_p\)</span>, i.e. the common covariance matrix is a scalar multiple of the <span class="math inline">\(p \times p\)</span> identity matrix, turns out to be equivalent to K-means clustering. To see this, note that the maximum likelihood allocation <span class="math inline">\(\hat{\boldsymbol \delta}\)</span> given estimated cluster means <span class="math inline">\(\hat{{\boldsymbol{\mu}}}_k\)</span>, is obtained by the <span class="math inline">\(\boldsymbol \delta\)</span> which maximizes
 <span class="math display">\[
-\prod_{i=1}^n\exp(-\frac{1}{2\sigma}||\mathbf x_i-{\boldsymbol{\mu}}_{\delta(i)}||_2^2)
+\prod_{i=1}^n\exp(-\frac{1}{2\sigma}||\mathbf x_i-\hat{{\boldsymbol{\mu}}}_{\delta(i)}||_2^2)
 \]</span>
 which is equivalent to minimizing
 <span class="math display">\[
@@ -430,13 +442,13 @@ computational explosion in the number of possible allocations when $n$ is even o
 <div id="example-iris-1" class="section level3">
 <h3><span class="header-section-number">9.2.3</span> Example: Iris</h3>
 <p>The <code>mclust</code> library can be used to perform model-based clustering with Gaussian clusters. We just have to specify the number of required clusters.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="kw">library</span>(mclust)</a>
-<a class="sourceLine" id="cb258-2" data-line-number="2">iris.m &lt;-<span class="st"> </span><span class="kw">Mclust</span>(iris2,<span class="dt">G=</span><span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="kw">library</span>(mclust)</a>
+<a class="sourceLine" id="cb260-2" data-line-number="2">iris.m &lt;-<span class="st"> </span><span class="kw">Mclust</span>(iris2,<span class="dt">G=</span><span class="dv">3</span>)</a></code></pre></div>
 <p>Pairs plots of the classification of each point can easily be obtained, as can the estimated probability density of each cluster.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1"><span class="kw">plot</span>(iris.m, <span class="dt">what =</span> <span class="kw">c</span>(<span class="st">&quot;classification&quot;</span>))</a></code></pre></div>
-<p><img src="10-clustering_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="kw">plot</span>(iris.m, <span class="dt">what =</span> <span class="kw">c</span>(<span class="st">&quot;density&quot;</span>))</a></code></pre></div>
-<p><img src="10-clustering_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1"><span class="kw">plot</span>(iris.m, <span class="dt">what =</span> <span class="kw">c</span>(<span class="st">&quot;classification&quot;</span>))</a></code></pre></div>
+<p><img src="10-clustering_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1"><span class="kw">plot</span>(iris.m, <span class="dt">what =</span> <span class="kw">c</span>(<span class="st">&quot;density&quot;</span>))</a></code></pre></div>
+<p><img src="10-clustering_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
 <p>How to choose <span class="math inline">\(K\)</span> in model-based clustering is beyond the scope of the module.</p>
 </div>
 </div>

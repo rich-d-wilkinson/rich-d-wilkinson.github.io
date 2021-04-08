@@ -356,10 +356,10 @@ would appear to be better if the purpose is to form three distinct clusters.
 <div id="q2" class="section level5 unnumbered">
 <h5>Q2</h5>
 <p>Download the Indian Premier League data from Moodle and load it into R. We will filter the data to only look at players who played at least 10 innings, and the select just the information on the number of runs they scored, their high score (HS), their batting average (Avg), their best figures (BF), their strike rate (SR), and the number of 4s and 6s they hit.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb281-2" data-line-number="2">IPL&lt;-<span class="kw">read.csv</span>(<span class="st">&#39;IPL.csv&#39;</span>)</a>
-<a class="sourceLine" id="cb281-3" data-line-number="3">IPL10&lt;-IPL <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(Mat.x<span class="op">&gt;=</span><span class="dv">10</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb281-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(PLAYER,Runs.x, HS, Avg.x, BF, SR.x, X4s, X6s)</a></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb283-2" data-line-number="2">IPL&lt;-<span class="kw">read.csv</span>(<span class="st">&#39;IPL.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb283-3" data-line-number="3">IPL10&lt;-IPL <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(Mat.x<span class="op">&gt;=</span><span class="dv">10</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb283-4" data-line-number="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(PLAYER,Runs.x, HS, Avg.x, BF, SR.x, X4s, X6s)</a></code></pre></div>
 <p>Apply agglomerative hierarchical clustering to these data. You will need to first compute a distance matrix for the data, which can be done with the <code>dist</code> command.</p>
 <ol style="list-style-type: lower-roman">
 <li><p>Using the Euclidean distance, do single linkage, complete linkage, and average linkage give similar dendrograms?</p></li>
@@ -374,6 +374,22 @@ https://stats.stackexchange.com/questions/218604/with-categorical-data-can-there
 <h5>Q3</h5>
 <p>Look at the data stored in the <code>USArrests</code> data frame in R. You can read about the data by typing <code>?USArrests</code>.</p>
 <p>Apply a selection of clustering methods to these data and discuss how many clusters appear to be present.</p>
+<!-- ### Q4
+
+Do k-means on MNIST
+#MNIST
+Xtest <- mnist$train$x[1:10000,]
+mnist.kmeans <- kmeans(Xtest, centers=10, nstart = 10, iter.max = 100)
+
+mnist.tab <- table(mnist$train$y[1:10000], mnist.kmeans$cluster)
+apply(mnist.tab,1,which.max)
+
+for(i in 1:10){
+  image(t(matrix(mnist.kmeans$centers[i,], nr=28, byrow=T)))
+}
+
+
+-->
 </div>
 </div>
             </section>

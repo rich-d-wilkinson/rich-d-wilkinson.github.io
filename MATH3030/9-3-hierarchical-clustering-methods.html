@@ -376,11 +376,11 @@ i.e., it is number of attributes shared by A and B, divided by the number of att
 <div id="toy-example" class="section level3">
 <h3><span class="header-section-number">9.3.2</span> Toy Example</h3>
 <p>Suppose we are given 5 observations with distance matrix</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1">(D &lt;-<span class="st"> </span><span class="kw">as.dist</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb261-2" data-line-number="2">                      <span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb261-3" data-line-number="3">                      <span class="dv">11</span>,<span class="dv">9</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb261-4" data-line-number="4">                      <span class="dv">15</span>,<span class="dv">13</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">0</span>,</a>
-<a class="sourceLine" id="cb261-5" data-line-number="5">                      <span class="dv">7</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">0</span>), <span class="dt">nr=</span><span class="dv">5</span>, <span class="dt">byrow=</span>T)))</a></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">(D &lt;-<span class="st"> </span><span class="kw">as.dist</span>(<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb263-2" data-line-number="2">                      <span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb263-3" data-line-number="3">                      <span class="dv">11</span>,<span class="dv">9</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb263-4" data-line-number="4">                      <span class="dv">15</span>,<span class="dv">13</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb263-5" data-line-number="5">                      <span class="dv">7</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">0</span>), <span class="dt">nr=</span><span class="dv">5</span>, <span class="dt">byrow=</span>T)))</a></code></pre></div>
 <pre><code>##    1  2  3  4
 ## 2  2         
 ## 3 11  9      
@@ -391,7 +391,7 @@ i.e., it is number of attributes shared by A and B, divided by the number of att
 <div id="single-linkage" class="section level5 unnumbered">
 <h5>Single linkage</h5>
 <ul>
-<li>at stage 1 we join the pair of clusters that are closest, which is <span class="math inline">\(\{1\}\)</span> and <span class="math inline">\(\{2\}\)</span>, resulting in the clusters <span class="math inline">\(\{1\, 2\},\{3\},\{4\},\{5\}\)</span>. The (single linkage) distance matrix for these clusteres is then</li>
+<li>at stage 1 we join the pair of clusters that are closest, which is <span class="math inline">\(\{1\}\)</span> and <span class="math inline">\(\{2\}\)</span>, resulting in the clusters <span class="math inline">\(\{1\, 2\},\{3\},\{4\},\{5\}\)</span>. The (single linkage) distance matrix for these clusters is then</li>
 </ul>
 <pre><code>##   12  3  4
 ## 3  9      
@@ -399,30 +399,30 @@ i.e., it is number of attributes shared by A and B, divided by the number of att
 ## 5  5  4  8</code></pre>
 <ul>
 <li>the closest clusters are <span class="math inline">\(\{3\}\)</span> and <span class="math inline">\(\{5\}\)</span>, and so at stage 2
-we get the clusters <span class="math inline">\(\{1\, 2\},\{3, 5\},\{4\}\)</span>, with the distances between clusters now given by</li>
+we get the clusters <span class="math inline">\(\{1, 2\},\{3, 5\},\{4\}\)</span>, with the distances between clusters now given by</li>
 </ul>
 <pre><code>##    12 35
 ## 35  5   
 ## 4  13  8</code></pre>
 <ul>
-<li>at stage 3 we join <span class="math inline">\(\{1\, 2\}\)</span> and <span class="math inline">\(\{3, 5\}\)</span> giving the clusters <span class="math inline">\(\{1\, 2, 3, 5\},\{4\}\)</span>, with the distances between clusters now given by</li>
+<li>at stage 3 we join <span class="math inline">\(\{1, 2\}\)</span> and <span class="math inline">\(\{3, 5\}\)</span> giving the clusters <span class="math inline">\(\{1\, 2, 3, 5\},\{4\}\)</span>, with the distances between clusters now given by</li>
 </ul>
 <pre><code>##   1235
 ## 4    8</code></pre>
 <ul>
-<li>at stage 4 we join the final two clusters resulting in the single cluster <span class="math inline">\(\{1\, 2, 3, 4, 5\}\)</span>.</li>
+<li>at stage 4 we join the final two clusters resulting in the single cluster <span class="math inline">\(\{1, 2, 3, 4, 5\}\)</span>.</li>
 </ul>
 <p>The <code>hclust</code> command does agglomerative clustering: we just have to specify the method to use.</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1">D.sl &lt;-<span class="kw">hclust</span>(D, <span class="dt">method=</span><span class="st">&quot;single&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">D.sl &lt;-<span class="kw">hclust</span>(D, <span class="dt">method=</span><span class="st">&quot;single&quot;</span>)</a></code></pre></div>
 <p>We can use the <code>cutree</code> command to specify a given number of clusters. For example, it we want just two clusters, we can use</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1"><span class="kw">cutree</span>(D.sl,<span class="dt">k=</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1"><span class="kw">cutree</span>(D.sl,<span class="dt">k=</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 1 1 1 2 1</code></pre>
-<p>This tells us that observations 1,2,3, and 5 are all in one cluster, and observation 4 in another cluster.</p>
+<p>This tells us that observations 1,2,3 and 5 are all in one cluster, and observation 4 in another cluster.</p>
 <p>A convenient graphical way to present the output from an agglomerative clustering method is as a <strong>dendrogram</strong>. These show the arrangement of the clusters produced at each stage. The height of each node in the plot is proportional to the value of the intergroup distance between its two daughters. The <code>plot</code> command in R automatically produces dendrograms if passed output from the <code>hclust</code>.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1"><span class="kw">plot</span>(D.sl)</a></code></pre></div>
-<p><img src="10-clustering_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1"><span class="kw">plot</span>(D.sl)</a></code></pre></div>
+<p><img src="10-clustering_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>An alternatively to cutting the tree according to the number of clusters required, is to specify at which height to cut the tree. For example, if we cut the tree at height <span class="math inline">\(T=4.5\)</span> we get</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1"><span class="kw">cutree</span>(D.sl, <span class="dt">h=</span><span class="fl">4.5</span>) <span class="co"># note we specify h= for height</span></a></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1"><span class="kw">cutree</span>(D.sl, <span class="dt">h=</span><span class="fl">4.5</span>) <span class="co"># note we specify h= for height</span></a></code></pre></div>
 <pre><code>## [1] 1 1 2 3 2</code></pre>
 <p>showing that we have clusters <span class="math inline">\(\{1,2\}, \{3,5\}, \{4\}\)</span>.</p>
 </div>
@@ -430,7 +430,7 @@ we get the clusters <span class="math inline">\(\{1\, 2\},\{3, 5\},\{4\}\)</span
 <h5>Complete linkage</h5>
 <p>Let’s now consider using complete linkage.</p>
 <ul>
-<li><p>at stage 0 the clsuters are <span class="math inline">\(\{1\}, \{2\},\{3\},\{4\},\{5\}\)</span></p></li>
+<li><p>at stage 0 the clusters are <span class="math inline">\(\{1\}, \{2\},\{3\},\{4\},\{5\}\)</span></p></li>
 <li><p>stage 1 is the same for all methods and we joint the pair of observations that are closest, resulting in clusters <span class="math inline">\(\{1\, 2\},\{3\},\{4\},\{5\}\)</span>. The (complete linkage) distance matrix between clusters is</p></li>
 </ul>
 <pre><code>##   12  3  4
@@ -439,33 +439,33 @@ we get the clusters <span class="math inline">\(\{1\, 2\},\{3, 5\},\{4\}\)</span
 ## 5  7  4  8</code></pre>
 <p>which is different to what we found previously.</p>
 <ul>
-<li>at stage 2 we joint together <span class="math inline">\(\{3\}\)</span> and <span class="math inline">\(\{5\}\)</span> giving the clusters <span class="math inline">\(\{1\, 2\},\{3, 5\},\{4\}\)</span>, with the distances between clusters given by</li>
+<li>at stage 2 we joint together <span class="math inline">\(\{3\}\)</span> and <span class="math inline">\(\{5\}\)</span> giving the clusters <span class="math inline">\(\{1, 2\},\{3, 5\},\{4\}\)</span>, with the distances between clusters given by</li>
 </ul>
 <pre><code>##    12 35
 ## 35 11   
 ## 4  15 10</code></pre>
 <ul>
-<li>at stage 3 the clusters are <span class="math inline">\(\{1\, 2\},\{3, 4, 5\}\)</span>, with the distances between clusters given by</li>
+<li>at stage 3 the clusters are <span class="math inline">\(\{1, 2\},\{3, 4, 5\}\)</span>, with the distances between clusters given by</li>
 </ul>
 <pre><code>##     12
 ## 345 15</code></pre>
 <ul>
-<li>at stage 4 there is a single cluster <span class="math inline">\(\{1\, 2, 3, 4, 5\}\)</span>.</li>
+<li>at stage 4 there is a single cluster <span class="math inline">\(\{1, 2, 3, 4, 5\}\)</span>.</li>
 </ul>
 <p>The dendrogram for this is shown below. Note that complete linkage produces a different clustering if we require two clusters.</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">hclust</span>(D, <span class="dt">method=</span><span class="st">&quot;complete&quot;</span>))</a></code></pre></div>
-<p><img src="10-clustering_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">hclust</span>(D, <span class="dt">method=</span><span class="st">&quot;complete&quot;</span>))</a></code></pre></div>
+<p><img src="10-clustering_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 </div>
 <div id="group-average" class="section level5 unnumbered">
 <h5>Group average</h5>
 <p>Group average clustering produces the same hierarchy of clusters as single linkage, but the nodes (points where clusters join) are at different heights in the dendrogram.</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1">D.ga &lt;-<span class="st"> </span><span class="kw">hclust</span>(D, <span class="dt">method=</span><span class="st">&quot;average&quot;</span>)</a>
-<a class="sourceLine" id="cb276-2" data-line-number="2"><span class="kw">plot</span>(D.ga)</a></code></pre></div>
-<p><img src="10-clustering_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1">D.ga &lt;-<span class="st"> </span><span class="kw">hclust</span>(D, <span class="dt">method=</span><span class="st">&quot;average&quot;</span>)</a>
+<a class="sourceLine" id="cb278-2" data-line-number="2"><span class="kw">plot</span>(D.ga)</a></code></pre></div>
+<p><img src="10-clustering_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p>If we were to cut the single linkage and group average dendrograms at a height of 6, then we find different clusters. The single linkage dendrogram cut at height 6 gives the clusters <span class="math inline">\(\{1,2,3,5\}, \{4\}\)</span> whereas the group average dendrogram gives the clusters <span class="math inline">\(\{1,2\}, \{3,5\}, \{4\}\)</span>, despite the two trees having the same topology.</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1"><span class="kw">cutree</span>(D.sl, <span class="dt">h=</span><span class="dv">6</span>) <span class="co"># cut the tree at height 6</span></a></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1"><span class="kw">cutree</span>(D.sl, <span class="dt">h=</span><span class="dv">6</span>) <span class="co"># cut the tree at height 6</span></a></code></pre></div>
 <pre><code>## [1] 1 1 1 2 1</code></pre>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1"><span class="kw">cutree</span>(D.ga, <span class="dt">h=</span><span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="kw">cutree</span>(D.ga, <span class="dt">h=</span><span class="dv">6</span>)</a></code></pre></div>
 <pre><code>## [1] 1 1 2 3 2</code></pre>
 </div>
 </div>
