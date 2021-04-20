@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.2 Multivariate Linear Model | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.2 Multivariate Linear Model | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.2 Multivariate Linear Model | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1-1-recap-standard-linear-model.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="1-lm.html"><a href="1-lm.html"><i class="fa fa-check"></i><b>1</b> The Multivariate Linear Model</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-recap-standard-linear-model.html"><a href="1-1-recap-standard-linear-model.html"><i class="fa fa-check"></i><b>1.1</b> Recap: standard linear model</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-recap-standard-linear-model.html"><a href="1-1-recap-standard-linear-model.html#geometry"><i class="fa fa-check"></i><b>1.1.1</b> Geometry</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-recap-standard-linear-model.html"><a href="1-1-recap-standard-linear-model.html#normal-linear-model"><i class="fa fa-check"></i><b>1.1.2</b> Normal linear model</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-multivariate-linear-model.html"><a href="1-2-multivariate-linear-model.html"><i class="fa fa-check"></i><b>1.2</b> Multivariate Linear Model</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multivariate-linear-model" class="section level2">
+<h2><span class="header-section-number">1.2</span> Multivariate Linear Model</h2>
+<p>In the standard linear model the responses <span class="math inline">\(y_i\)</span> are univariate. In the multivariate linear model, the responses are <span class="math inline">\(p \times 1\)</span> vectors <span class="math inline">\(\mathbf y_i\)</span>. Here, the linear model takes the form
+<span class="math display" id="eq:mlm1">\[\begin{equation}
+\mathbf y_i=\mathbf B^\top \mathbf x_i +{\pmb \epsilon}_i, \qquad i=1, \ldots , n,
+\tag{1.6}
+\end{equation}\]</span>
+where <span class="math inline">\(\stackrel{q \times p}{\mathbf B}\)</span> is a parameter matrix, the <span class="math inline">\(\mathbf x_i\)</span> are <span class="math inline">\(q \times 1\)</span> covariate vectors as in 8.2, and the <span class="math inline">\({\pmb \epsilon}_i\)</span> are <span class="math inline">\(p \times 1\)</span> error vectors. The model <a href="1-2-multivariate-linear-model.html#eq:mlm1">(1.6)</a> may be written in matrix form as
+<span class="math display" id="eq:mlm2">\[\begin{equation}
+\mathbf Y= \mathbf X\mathbf B+\mathbf E,
+\tag{1.7}
+\end{equation}\]</span>
+where <span class="math inline">\(\stackrel{n \times p}{\mathbf Y}=[\mathbf y_1, \ldots , \mathbf y_n]^\top\)</span> is the data matrix for the <span class="math inline">\(y\)</span>-variables, <span class="math inline">\(\mathbf X=[\mathbf x_1, \ldots , \mathbf x_n]^\top\)</span> is the <span class="math inline">\(n \times q\)</span> data matrix for the <span class="math inline">\(x\)</span>-variables, defined as in 8.2, and <span class="math inline">\(\stackrel{n \times p}{\mathbf E}=[{\pmb \epsilon}_1, \ldots , {\pmb \epsilon}_n]^\top\)</span>.</p>
+<p>By analogy with assumption 4. in 8.2, it is assumed that
+<span class="math display" id="eq:MVNassumption">\[\begin{equation}
+{\pmb \epsilon_1}, \ldots , {\pmb \epsilon}_n \quad \text{are
+IID}\quad N_p({\mathbf 0}_p, \boldsymbol{\Sigma}).
+\tag{1.8}
+\end{equation}\]</span></p>
+<p>Under this MVN assumption, the log-likelihood function <span class="math inline">\(\ell(\mathbf B, \boldsymbol{\Sigma})\)</span> for the parameter matrices <span class="math inline">\(\mathbf B\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}\)</span> is given by
+<span class="math display" id="eq:MVNlik">\[\begin{align}
+\ell(\mathbf B, \boldsymbol{\Sigma})&amp;=-\frac{np}{2}\log(2\pi) -\frac{n}{2}\log(\vert \boldsymbol{\Sigma}\vert) \nonumber \\
+&amp; \qquad \qquad -\frac{1}{2}\text{tr}\left \{
+(\mathbf Y-\mathbf X\mathbf B) \boldsymbol{\Sigma}^{-1} (\mathbf Y- \mathbf X\mathbf B)^\top\right \}.
+\tag{1.9}
+\end{align}\]</span></p>
+
+<div class="proposition">
+<span id="prp:eight1" class="proposition"><strong>Proposition 1.1  </strong></span>The maximum likelihood estimators of <span class="math inline">\(\mathbf B\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}\)</span> in <a href="1-2-multivariate-linear-model.html#eq:MVNlik">(1.9)</a>
+are given by
+<span class="math display" id="eq:MVbeta">\[\begin{equation}
+\hat{\mathbf B}= (\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf Y
+\tag{1.10}
+\end{equation}\]</span>
+and
+<span class="math display" id="eq:RSS">\[\begin{equation}
+\hat{\boldsymbol{\Sigma}}=\frac{1}{n}\mathbf Y^\top \mathbf P\mathbf Y,
+\tag{1.11}
+\end{equation}\]</span>
+where <span class="math inline">\(\mathbf P\)</span> is the matrix defined in <a href="1-1-recap-standard-linear-model.html#eq:defP">(1.5)</a>. The maximised log-likelihood is given by
+<span class="math display" id="eq:maxlik">\[\begin{equation}
+\ell(\hat{\mathbf B}, \hat{\boldsymbol{\Sigma}})=- \frac{n}{2} \log(\vert \hat{\boldsymbol{\Sigma}} \vert )-\frac{np}{2}\log(2\pi) -\frac{np}{2}.
+\tag{1.12}
+\end{equation}\]</span>
+</div>
+
+<p><strong>Remark:</strong> note how similar <a href="1-2-multivariate-linear-model.html#eq:MVbeta">(1.10)</a> and <a href="1-2-multivariate-linear-model.html#eq:RSS">(1.11)</a> are to their univariate counterparts <a href="1-1-recap-standard-linear-model.html#eq:uni1">(1.3)</a> and <a href="1-1-recap-standard-linear-model.html#eq:uni2">(1.4)</a>, respectively; the only thing that is different is that <span class="math inline">\(\mathbf Y\)</span> is now an <span class="math inline">\(n \times p\)</span> matrix rather than an <span class="math inline">\(n \times 1\)</span> vector.</p>
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> <strong>of <a href="1-2-multivariate-linear-model.html#eq:MVbeta">(1.10)</a>}.</strong> Recall that <span class="math inline">\(\mathbf P\)</span> defined in <a href="1-1-recap-standard-linear-model.html#eq:defP">(1.5)</a> is a projection matrix, i.e. <span class="math inline">\(\mathbf P^\top =\mathbf P\)</span> and <span class="math inline">\(\mathbf P^2 = \mathbf P\)</span>.
+Moreover,
+<span class="math display" id="eq:orthog27a">\[\begin{equation}
+\mathbf P\mathbf X=\mathbf X-\mathbf X(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf X=\mathbf X-\mathbf X={\mathbf 0}_{n,q}
+\tag{1.13}
+\end{equation}\]</span>
+and
+<span class="math display" id="eq:orthog27b">\[\begin{equation}
+\mathbf X^\top \mathbf P=\mathbf X^\top - \mathbf X^\top \mathbf X(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top =\mathbf X^\top -\mathbf X^\top ={\mathbf 0}_{q,n}.
+\tag{1.14}
+\end{equation}\]</span>
+Now write
+<span class="math display">\[\begin{align*}
+\mathbf Y-\mathbf X\mathbf B&amp;=\mathbf Y-\mathbf X\hat{\mathbf B} +\mathbf X\hat{\mathbf B}-\mathbf X\mathbf B\\
+&amp;=\mathbf Y-\mathbf X(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf Y+\mathbf X(\hat{\mathbf B}-\mathbf B)\\
+&amp;=\mathbf P\mathbf Y+\mathbf X(\hat{\mathbf B}-\mathbf B).
+\end{align*}\]</span>
+Then, using <a href="1-2-multivariate-linear-model.html#eq:orthog27a">(1.13)</a> and <a href="1-2-multivariate-linear-model.html#eq:orthog27b">(1.14)</a>,
+<span class="math display" id="eq:decomp87">\[\begin{align}
+(\mathbf Y&amp;- \mathbf X\mathbf B)^\top (\mathbf Y- \mathbf X\mathbf B) \nonumber \\
+&amp;=\{\mathbf P\mathbf Y+ \mathbf X(\hat{\mathbf B}-\mathbf B)\}^\top \{\mathbf P\mathbf Y+\mathbf X(\hat{\mathbf B}-\mathbf B)\}\nonumber \\
+&amp;=\mathbf Y^\top \mathbf P\mathbf Y+ \mathbf Y^\top \mathbf P\mathbf X(\hat{\mathbf B}-\mathbf B)\nonumber \\
+&amp; \qquad \qquad + (\hat{\mathbf B}-\mathbf B)^\top \mathbf X^\top \mathbf P\mathbf Y+(\hat{\mathbf B}-\mathbf B)^\top \mathbf X^\top \mathbf X(\hat{\mathbf B}-\mathbf B)
+\nonumber\\
+&amp;=\mathbf Y^\top \mathbf P\mathbf Y+ (\hat{\mathbf B}-\mathbf B)^\top \mathbf X^\top \mathbf X(\hat{\mathbf B}-\mathbf B).
+\tag{1.15}
+\end{align}\]</span>
+As noted in Chapter 2, for any compatible matrices <span class="math inline">\(\mathbf W\)</span> and <span class="math inline">\(\mathbf Z\)</span>, we have <span class="math inline">\(\text{tr}(\mathbf W\mathbf Z)=\text{tr}(\mathbf Z\mathbf W)\)</span>. So, using <a href="1-2-multivariate-linear-model.html#eq:decomp87">(1.15)</a>, it follows that the trace term in <a href="1-2-multivariate-linear-model.html#eq:MVNlik">(1.9)</a> may be written
+<span class="math display" id="eq:twobits">\[\begin{align}
+&amp;\text{tr}\left \{ (\mathbf Y-\mathbf X\mathbf B)\boldsymbol{\Sigma}^{-1} (\mathbf Y- \mathbf X\mathbf B)^\top \right \}\nonumber \\
+&amp;=\text{tr}\left \{\boldsymbol{\Sigma}^{-1} (\mathbf Y-\mathbf X\mathbf B)^\top (\mathbf Y- \mathbf X\mathbf B) \right \}\nonumber \\
+&amp;=\text{tr}\left \{  \boldsymbol{\Sigma}^{-1} ( \mathbf Y-\mathbf X\hat{\mathbf B}+\mathbf X\hat{\mathbf B} -\mathbf X\mathbf B)^\top
+( \mathbf Y-\mathbf X\hat{\mathbf B}+\mathbf X\hat{\mathbf B} -\mathbf X\mathbf B)       \right \}\nonumber \\
+&amp;= \text{tr}\left [\boldsymbol{\Sigma}^{-1} \{\mathbf Y^\top \mathbf P\mathbf Y+(\hat{\mathbf B}-\mathbf B)^\top \mathbf X^\top \mathbf X(\hat{\mathbf B}-\mathbf B)  \}\right ]
+\nonumber\\
+&amp;=\text{tr} \left (\boldsymbol{\Sigma}^{-1}\mathbf Y^\top \mathbf P\mathbf Y\right ) + \text{tr}\left \{
+\mathbf X(\hat{\mathbf B}-\mathbf B) \boldsymbol{\Sigma}^{-1} (\hat{\mathbf B}-\mathbf B)^\top  \mathbf X^\top  \right \}
+\tag{1.16}
+\end{align}\]</span>
+The first term on the RHS of <a href="1-2-multivariate-linear-model.html#eq:twobits">(1.16)</a> does not depend on <span class="math inline">\(\mathbf B\)</span>. In the second term, the matrix inside the trace is non-negative definite for all <span class="math inline">\(\mathbf B\)</span>, and therefore the second term in <a href="1-2-multivariate-linear-model.html#eq:twobits">(1.16)</a> is non-negative, and has a minimum value of <span class="math inline">\(0\)</span>, achieved uniquely when <span class="math inline">\(\mathbf B=\hat{\mathbf B}\)</span>. Therefore, for fixed <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, <a href="1-2-multivariate-linear-model.html#eq:MVNlik">(1.9)</a> is maximised when <span class="math inline">\(\mathbf B=\hat{\mathbf B}\)</span>, as defined in <a href="1-2-multivariate-linear-model.html#eq:MVbeta">(1.10)</a>. <span class="math inline">\(\square\)</span></p>
+<p>To prove <a href="1-2-multivariate-linear-model.html#eq:RSS">(1.11)</a>, we require the following result, whose proof is omitted because it is a bit too technical.</p>
+</div>
+
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> Suppose that <span class="math inline">\(\mathbf A\)</span> is a fixed symmetric positive definite <span class="math inline">\(p \times p\)</span> matrix and define the function
+<span class="math display">\[
+G(\boldsymbol{\Sigma}) \equiv -\frac{n}{2} \log \left (\vert \boldsymbol{\Sigma}\vert\right)  -\frac{1}{2}\text{tr} \left (\boldsymbol{\Sigma}^{-1} \mathbf A\right).
+\]</span>
+Then <span class="math inline">\(G(\boldsymbol{\Sigma})\)</span> is maximised over symmetric positive definite <span class="math inline">\(p \times p\)</span> matrices <span class="math inline">\(\boldsymbol{\Sigma}\)</span> at
+<span class="math inline">\(\hat{\boldsymbol{\Sigma}}=n^{-1}\mathbf A\)</span>, and the maximum value of <span class="math inline">\(G\)</span> is given by
+<span class="math display">\[
+G(\hat{\boldsymbol{\Sigma}})= -\frac{n}{2} \log \left (\vert n^{-1} \mathbf A\vert \right ) -np/2.
+\]</span>
+</div>
+
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> <strong>of <a href="1-2-multivariate-linear-model.html#eq:RSS">(1.11)</a> and <a href="1-2-multivariate-linear-model.html#eq:maxlik">(1.12)</a>}.</strong> Again using the result <span class="math inline">\(\text{tr}(\mathbf W\mathbf Z)=\text{tr}(\mathbf Z\mathbf W)\)</span> for compatible matrices <span class="math inline">\(\mathbf W\)</span> and <span class="math inline">\(\mathbf Z\)</span>, we have
+<span class="math display">\[
+\text{tr}\{(\mathbf Y-\mathbf X\hat{\mathbf B}) \boldsymbol{\Sigma}^{-1}(\mathbf Y-\mathbf X\hat{\mathbf B})^\top\}=\text{tr}(\boldsymbol{\Sigma}^{-1}(\mathbf P\mathbf Y)^\top \mathbf P\mathbf Y)=\text{tr}(\boldsymbol{\Sigma}^{-1} \mathbf Y^\top \mathbf P\mathbf Y),
+\]</span>
+because <span class="math inline">\(\mathbf P\)</span> is a projection matrix. Consequently,
+<span class="math display">\[
+\ell(\hat{\mathbf B},\boldsymbol{\Sigma})=-\frac{np}{2}\log(2\pi)-\frac{n}{2}\log \vert \boldsymbol{\Sigma}\vert -\frac{1}{2} \text{tr}
+\left \{ \boldsymbol{\Sigma}^{-1}\mathbf Y^\top \mathbf P\mathbf Y\right \},
+\]</span>
+and we want to maximise <span class="math inline">\(\ell(\hat{\mathbf B}, \boldsymbol{\Sigma})\)</span> over symmetric positive definite matrices <span class="math inline">\(\boldsymbol{\Sigma}\)</span>. So take <span class="math inline">\(\mathbf A=\mathbf Y^\top \mathbf P\mathbf Y\)</span>. Then, using Proposition <a href="#prp:eight2"><strong>??</strong></a>, <span class="math inline">\(\hat{\boldsymbol{\Sigma}} = n^{-1}\mathbf Y^\top \mathbf P\mathbf Y\)</span>, which agrees with <a href="1-2-multivariate-linear-model.html#eq:RSS">(1.11)</a>.</p>
+To prove <a href="1-2-multivariate-linear-model.html#eq:maxlik">(1.12)</a>, note that
+<span class="math display">\[\begin{align*}
+\text{tr}\{(\mathbf Y-\mathbf X\hat{\mathbf B}) \hat{\boldsymbol{\Sigma}}^{-1}(\mathbf Y-\mathbf X\hat{\mathbf B})^\top \}
+&amp;=\text{tr}\{\hat{\boldsymbol{\Sigma}}^{-1} (\mathbf P\mathbf Y)^\top \mathbf P\mathbf Y\}\\
+&amp;= n \text{tr}\{(\mathbf Y^\top \mathbf P\mathbf Y)^{-1} \mathbf Y^\top \mathbf P\mathbf Y\}\\
+&amp;=n\text{tr}(\mathbf I_p)=np,
+\end{align*}\]</span>
+so <a href="1-2-multivariate-linear-model.html#eq:maxlik">(1.12)</a> follows after substitution of <span class="math inline">\(\mathbf B=\hat{\mathbf B}\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}=\hat{\boldsymbol{\Sigma}}\)</span> into <a href="1-2-multivariate-linear-model.html#eq:MVNlik">(1.9)</a>.
+</div>
+
+<p>We now determine the joint distribution of <span class="math inline">\(\hat{\mathbf B}\)</span> and <span class="math inline">\(\hat{\boldsymbol{\Sigma}}\)</span>.</p>
+
+<div class="proposition">
+<p><span id="prp:eight3" class="proposition"><strong>Proposition 1.2  </strong></span>Assume that <a href="1-2-multivariate-linear-model.html#eq:mlm2">(1.7)</a> and <a href="1-2-multivariate-linear-model.html#eq:MVNassumption">(1.8)</a> both hold and assume that <span class="math inline">\(\mathbf X\)</span> has full rank <span class="math inline">\(q\)</span>, where <span class="math inline">\(q &lt; n\)</span>. Then the following results hold.</p>
+<ol style="list-style-type: decimal">
+<li><p>The MLE of <span class="math inline">\(\mathbf B\)</span>, <span class="math inline">\(\hat{\mathbf B}\)</span> defined in <a href="1-2-multivariate-linear-model.html#eq:MVbeta">(1.10)</a>, and the MLE of <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, <span class="math inline">\(\hat{\boldsymbol{\Sigma}}\)</span> defined in <a href="1-2-multivariate-linear-model.html#eq:RSS">(1.11)</a>,
+are independent. Moreover, the elements of <span class="math inline">\(\hat{\mathbf B}\)</span> are jointly multivariate normal, while <span class="math inline">\(n\hat{\boldsymbol{\Sigma}} \sim W_p(\boldsymbol{\Sigma}, n-q)\)</span>.</p></li>
+<li><p>The MLE <span class="math inline">\(\hat{\mathbf B}\)</span> satisfies <span class="math inline">\(E[\hat{\mathbf B}]=\mathbf B\)</span>, i.e. <span class="math inline">\(\hat{\mathbf B}\)</span> is unbiased for <span class="math inline">\(\mathbf B\)</span>.</p></li>
+</ol>
+3.Write <span class="math inline">\(\hat{\mathbf b}_{[j]}\)</span> for column <span class="math inline">\(j\)</span> of <span class="math inline">\(\hat{\mathbf B}\)</span>, <span class="math inline">\(j=1, \ldots , p\)</span>, so that <span class="math inline">\(\hat{\mathbf B}=[\hat{\mathbf b}_{[1]}, \ldots , \hat{\mathbf b}_{[p]}]\)</span>.
+Then for <span class="math inline">\(j,k=1, \ldots , p\)</span>,
+<span class="math display">\[
+\text{Cov}(\hat{\mathbf b}_{[j]}, \hat{\mathbf b}_{[k]})=\sigma_{jk} (\mathbf X^\top \mathbf X)^{-1}.
+\]</span>
+</div>
+
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> <em>of Proposition <a href="1-2-multivariate-linear-model.html#prp:eight3">1.2</a></em>
+First, observe that <span class="math inline">\(\hat{\boldsymbol{\Sigma}}\)</span> is a function of the elements of <span class="math inline">\(\mathbf P\mathbf Y\)</span>, namely
+<span class="math display">\[
+\hat{\boldsymbol{\Sigma}}=n^{-1} \mathbf Y^\top \mathbf P^\top \mathbf P\mathbf Y=n^{-1}\mathbf Y^\top \mathbf P\mathbf Y,
+\]</span>
+because <span class="math inline">\(\mathbf P\)</span> is a projection matrix. Moreover, under the MVN assumption <a href="1-2-multivariate-linear-model.html#eq:MVNassumption">(1.8)</a>, <span class="math inline">\(\mathbf P\mathbf Y\)</span> and
+<span class="math inline">\(\hat{\mathbf B}\)</span> are jointly MVN, so to prove part 1. it will be sufficient to prove that each column of <span class="math inline">\(\hat{\mathbf B}\)</span> is uncorrelated with
+each column of <span class="math inline">\(\mathbf P\mathbf Y\)</span>. Write <span class="math inline">\(\mathbf y_{[j]}\)</span> for column <span class="math inline">\(j\)</span> of <span class="math inline">\(\mathbf Y\)</span>. Then
+<span class="math display">\[
+\mathbf Y=[\mathbf y_{[1]}, \ldots , \mathbf y_{[p]}], \qquad \mathbf P\mathbf Y=[\mathbf P\mathbf y_{[1]}, \ldots , \mathbf P\mathbf y_{[p]}],
+\]</span>
+and
+<span class="math display">\[
+\hat{\mathbf B}\equiv [\hat{\mathbf b}_{[1]}, \ldots , \hat{\mathbf b}_{[p]}] =[(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y_{[1]}, \ldots , (\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y_{[p]}],
+\]</span>
+where, as before, <span class="math inline">\(\hat{\mathbf b}_{[j]}\)</span> is column <span class="math inline">\(j\)</span> of <span class="math inline">\(\hat{\mathbf B}\)</span>. The covariance between column <span class="math inline">\(j\)</span> of <span class="math inline">\(\hat{\mathbf B}\)</span> and column <span class="math inline">\(k\)</span> of <span class="math inline">\(\mathbf P\mathbf Y\)</span> is given by
+<span class="math display">\[\begin{align*}
+\text{Cov}(\hat{\mathbf b}_{[j]}, \mathbf P\mathbf y_{[k]})&amp;= \text{Cov}\{(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y_{[j]}, \mathbf P\mathbf y_{[k]}\}\\
+&amp;=(\mathbf X^\top \mathbf X)^{-1} \mathbf X^\top \text{Cov}(\mathbf y_{[j]}, \mathbf y_{[k]})\mathbf P\\
+&amp;=(\mathbf X^\top \mathbf X)^{-1} \mathbf X^\top \sigma_{jk}\mathbf I_n\mathbf P\\
+&amp;=\sigma_{jk}(\mathbf X^\top \mathbf X)^{-1} \mathbf X^\top (\mathbf I_n - \mathbf X(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top)={\mathbf 0}_{q,n},
+\end{align*}\]</span>
+where <span class="math inline">\(\boldsymbol{\Sigma}=(\sigma_{jk})_{j,k=1}^p\)</span>. In the above we have used the definition of <span class="math inline">\(\mathbf P\)</span> in <a href="1-1-recap-standard-linear-model.html#eq:defP">(1.5)</a> and the fact that
+<span class="math display" id="eq:energise">\[\begin{equation}
+\text{Cov}(\mathbf y_{[j]}, \mathbf y_{[k]})=\sigma_{jk}\mathbf I_n
+\tag{1.17}
+\end{equation}\]</span>
+due to the independence of the rows of <span class="math inline">\(\mathbf Y\)</span>. Therefore <span class="math inline">\(\hat{\mathbf B}\)</span> and <span class="math inline">\(\mathbf P\mathbf Y\)</span> are independent by Proposition <a href="#prp:six4"><strong>??</strong></a>, and
+by Proposition <a href="#thm:six11"><strong>??</strong></a> (Cochran’s theorem), <span class="math inline">\(n\hat{\boldsymbol{\Sigma}} \sim W_p(\boldsymbol{\Sigma}, n-q)\)</span> which concludes the proof of part 1.</p>
+<p>Part 2. follows because, taking the expectation of <a href="1-2-multivariate-linear-model.html#eq:MVbeta">(1.10)</a> we find that
+<span class="math display">\[\begin{align*}
+E[\hat{\mathbf B}]&amp;=E[(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf Y]\\
+&amp;=(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top E[\mathbf Y]\\
+&amp;=(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf X\mathbf B=\mathbf B.
+\end{align*}\]</span></p>
+For part 3., using <a href="1-2-multivariate-linear-model.html#eq:energise">(1.17)</a> again,
+<span class="math display">\[\begin{align*}
+\text{Cov}(\hat{\mathbf b}_{[j]}, \hat{\mathbf b}_{[k]})&amp;=\text{Cov}\{(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y_{[j]}, (\mathbf X^\top \mathbf X)^{-1} \mathbf X^\top \mathbf y_{[k]}\}\\
+&amp;=(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \text{Cov}(\mathbf y_{[j]}, \mathbf y_{[k]}) \mathbf X(\mathbf X^\top \mathbf X)^{-1}\\
+&amp;=(\mathbf X^\top \mathbf X)^{-1} \mathbf X^\top \sigma_{jk}\mathbf I_n\mathbf X(\mathbf X^\top \mathbf X)^{-1}=\sigma_{jk}(\mathbf X^\top \mathbf X)^{-1},
+\end{align*}\]</span>
+as required.
+</div>
+
+<p>We now investigate the situation where we wish to test <a href="1-2-multivariate-linear-model.html#eq:mlm2">(1.7)</a> against a sub-model. Specifically, we consider the null hypothesis
+<span class="math display">\[
+H_0: \, \mathbf B=\begin{pmatrix}\mathbf B^\ast \\{\mathbf 0}_{q-r,p} \end{pmatrix}, \qquad \boldsymbol{\Sigma}\quad \text{unrestricted},
+\]</span>
+where <span class="math inline">\(\mathbf B^\ast\)</span> is <span class="math inline">\(r \times p\)</span> with <span class="math inline">\(1 \leq r &lt;q\)</span>. The alternative hypothesis is
+<span class="math display">\[
+H_1: \, \stackrel{q \times p}{\mathbf B} \quad \text{unrestricted}, \qquad \boldsymbol{\Sigma}\quad
+\text{unrestricted},
+\]</span>
+i.e. model <a href="1-2-multivariate-linear-model.html#eq:mlm2">(1.7)</a> under the MVN assumption <a href="1-2-multivariate-linear-model.html#eq:MVNassumption">(1.8)</a>. Note that <span class="math inline">\(H_0\)</span> is nested within <span class="math inline">\(H_1\)</span>.
+Let us write <span class="math inline">\(\hat{\mathbf B}_j\)</span> and <span class="math inline">\(\hat{\boldsymbol{\Sigma}}_j\)</span> for the MLEs of <span class="math inline">\(\mathbf B\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}\)</span> under hypothesis <span class="math inline">\(H_j\)</span>, <span class="math inline">\(j=0,1\)</span>. Then, using <a href="1-2-multivariate-linear-model.html#eq:maxlik">(1.12)</a> in Proposition <a href="1-2-multivariate-linear-model.html#prp:eight1">1.1</a> to calculate the maximised likelihood under <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span>, we obtain the Wilks statistic, <span class="math inline">\(\omega_{0,1}\)</span> (equals ``twice the different in maximised log likelihoods’’):
+<span class="math display">\[\begin{align*}
+\omega_{0,1}&amp;=2\{\ell(\hat{\mathbf B}_1, \hat{\boldsymbol{\Sigma}}_1)-\ell(\hat{\mathbf B}_0, \hat{\Sigma}_0)\}\\
+&amp;= - n\log(\vert \hat{\boldsymbol{\Sigma}}_1\vert) + n\log (\vert \hat{\boldsymbol{\Sigma}}_0\vert)
+=n\log \left ( \frac{\vert \hat{\boldsymbol{\Sigma}}_0 \vert}{\vert \hat{\boldsymbol{\Sigma}}_1\vert}  \right).
+\end{align*}\]</span></p>
+<p>In the univariate case there is a simple, explicit transformation from the Wilks statistic <span class="math inline">\(\omega_{0,1}\)</span> to the classical <span class="math inline">\(F_{q-r,n-q}\)</span> distribution for testing <span class="math inline">\(H_0\)</span> against <span class="math inline">\(H_1\)</span>. In the multivariate case, the exact distribution of <span class="math inline">\(\omega_{0,1}\)</span> under <span class="math inline">\(H_0\)</span> does not have a simple relationship with an <span class="math inline">\(F\)</span>-distribution, and the situation is a lot more complicated.</p>
+<p>When <span class="math inline">\(n\)</span> is large, however, we can use the large sample log-likelihood ratio test, which implies that, under <span class="math inline">\(H_0\)</span>,
+<span class="math inline">\(\omega_{0,1}\)</span> is approximately <span class="math inline">\(\chi^2\)</span>, and we should reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(\omega_{0,1}\)</span> is sufficiently large.</p>
+<p>The relevant degrees of freedom of the <span class="math inline">\(\chi^2\)</span> are now calculated.</p>
+<p>Under <span class="math inline">\(H_0\)</span>, the number of free parameters is
+<span class="math display">\[
+rp + \frac{1}{2}p(p+1),
+\]</span>
+while under <span class="math inline">\(H_1\)</span> there are
+<span class="math display">\[
+qp +\frac{1}{2}p(p+1)
+\]</span>
+free parameters. So the difference is <span class="math inline">\((q-r)p\)</span>, and so we should refer <span class="math inline">\(\omega_{0,1}\)</span> to <span class="math inline">\(\chi_{(q-r)p}^2\)</span>.</p>
+
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1-1-recap-standard-linear-model.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

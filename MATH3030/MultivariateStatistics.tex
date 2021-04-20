@@ -165,6 +165,8 @@
 \newcommand{\bdelta}{\boldsymbol \delta}
 \newcommand{\bbeta}{\boldsymbol \beta}
 \newcommand{\blambda}{\boldsymbol \lambda}
+\newcommand{\bepsilon}{\boldsymbol \epsilon}
+\newcommand{\balpha}{\boldsymbol \alpha}
 
 \newcommand{\bA}{\mathbf A}
 \newcommand{\bB}{\mathbf B}
@@ -189,6 +191,7 @@
 \newcommand{\bX}{\mathbf X}
 \newcommand{\bY}{\mathbf Y}
 \newcommand{\bZ}{\mathbf Z}
+\newcommand{\rd}{\mathrm d}
 
 \newcommand{\ba}{\mathbf a}
 \newcommand{\bb}{\mathbf b}
@@ -235,7 +238,7 @@
 \newcommand{\var}{{\mathbb{V}\operatorname{ar}}}
 \newcommand{\cor}{{\mathbb{C}\operatorname{or}}}
 
-\textbf{Warning:} these lecture notes are still in preparation. Chapters 1-9 have been finished. Chapter 10 is still being worked on.
+These lecture notes are now \textbf{complete}. I'll continue to correct typos but will not be adding additional material.
 
 This module is concerned with the analysis of multivariate data, in which the response is a vector of random variables rather than a single random variable.
 
@@ -1706,15 +1709,15 @@ Alternatively, if we treat \(\mathbf u\) as a basis for \(U\), then the coordina
 To check this, draw a picture!
 \end{example}
 
-\hypertarget{geometric-interpretation-of-linear-regresssion}{%
-\subsubsection{Geometric interpretation of linear regresssion}\label{geometric-interpretation-of-linear-regresssion}}
+\hypertarget{ch2linreg}{%
+\subsubsection{Geometric interpretation of linear regresssion}\label{ch2linreg}}
 
 Consider the linear regression model
 \[\mathbf y= \mathbf X\boldsymbol \beta+\mathbf e\]
 where \(\mathbf y\in\mathbb{R}^n\) is the vector of observations, \(\mathbf X\) is the \(n\times p\) design matrix, \(\boldsymbol \beta\) is the \(p\times 1\) vector of parameters that we wish to estimate, and \(\mathbf e\) is a \(n\times 1\) vector of zero-mean errors.
 
 Least-squares regression tries to find the value of \(\boldsymbol \beta\in \mathbb{R}^p\) that minimizes the sum of squared errors, i.e., we try to find \(\boldsymbol \beta\) to minimize
-\[||\mathbf y- \mathbf X\boldsymbol \beta||_2\]
+\[||\mathbf y- \mathbf X\boldsymbol \beta||_2^2\]
 
 We know that \(\mathbf X\boldsymbol \beta\) is in the column space of \(\mathbf X\), and so we can see that linear regression aims to find the \emph{orthogonal projection} onto \(\mathcal{C}(X)\).
 \[\mathbf P_U\mathbf y=\arg \min_{\mathbf y': \mathbf y' \in \mathcal{C}(X)} ||\mathbf y-\mathbf y'||_2.\]
@@ -2643,8 +2646,8 @@ with the maximum obtained at \(\mathbf a=\mathbf u_1\) and \(\mathbf b=\mathbf v
 
 We'll see much more of this kind of thing in Chapters \ref{pca} and \ref{cca}.
 
-\hypertarget{low-rank-approximation}{%
-\section{Low-rank approximation}\label{low-rank-approximation}}
+\hypertarget{lowrank}{%
+\section{Low-rank approximation}\label{lowrank}}
 
 One of the reasons the SVD is so widely used is that it can be used to find the best low rank approximation to a matrix. Before we discuss this, we need to define what it means for some matrix \(\mathbf B\) to be a good approximation to \(\mathbf A\). To do that, we need the concept of a matrix norm.
 
@@ -8027,7 +8030,8 @@ The way we find a rule \(d\), is by defining discriminant functions, \(\delta_j(
 i.e., \(d\) is a map from \(\mathbb{R}^p\) to \(\{1, \ldots, g\}\)
 
 \hypertarget{linear-discriminant-analysis}{%
-\subsection{Linear discriminant analysis}\label{linear-discriminant-analysis}}
+\subsection*{Linear discriminant analysis}\label{linear-discriminant-analysis}}
+\addcontentsline{toc}{subsection}{Linear discriminant analysis}
 
 We will focus on discriminant functions that are \textbf{affine} functions of the data. That is they are linear projections of the data plus a constant of the form
 \begin{equation}
@@ -8308,7 +8312,7 @@ For example, suppose we want to classify photos on the internet as either being 
 Suppose \emph{a priori} that the probability an observation is from population \(k\) is \(\pi_k\), with
 \[\sum_{k=1}^g \pi_k=1.\]
 Then given a probability model \(f_k(\mathbf x)\) for observations \(\mathbf x\) from population \(k\), our posterior probability for observation \(\mathbf x\) being from population \(k\) is
-\[{\mathbb{P}}(y=k \mid \mathbf x) = \frac{f_k(\mathbf x)\pi_k}{\sum_{j=1}^g f_k(\mathbf x)\pi_k}\]
+\[{\mathbb{P}}(y=k \mid \mathbf x) = \frac{f_k(\mathbf x)\pi_k}{\sum_{j=1}^g f_j(\mathbf x)\pi_j}\]
 by Bayes theorem.
 
 \begin{definition}
@@ -9154,7 +9158,7 @@ With a bit of work, it is possible to get a prediction accuracy of over 80\% for
 ## [2,] -0.9378613 0.9421974
 \end{verbatim}
 
-Calculate Fisher's linear discriminant function using just a single LDA variable, and compare the discriminant regions with those you found previously.
+Calculate Fisher's linear discriminant function using just a single LDA variable.
 
 \begin{enumerate}
 \def\labelenumi{\roman{enumi}.}
@@ -9942,6 +9946,623 @@ Apply a selection of clustering methods to these data and discuss how many clust
   Attempt question 4b from the 2017-18 exam paper.
 \item
   Prove Equation \eqref{eq:Wscatterk}.
+\end{enumerate}
+
+\hypertarget{lm}{%
+\chapter{Linear Models}\label{lm}}
+
+In this chapter we consider linear regression methods. Suppose we have a response variable \(y\) that we would like to predict using covariate information \(\mathbf x=(x_1, \ldots, x_p)^\top \in \mathbb{R}^p\).
+
+A linear model for \(y\) assumes that the mean of \(y\), \(\mu={\mathbb{E}}[y]\), is modelled as a linear function of \(\mathbf x\), i.e.~it is assumed that
+\[
+\mu = \mathbf x^\top \boldsymbol \beta,
+\]
+where \(\boldsymbol \beta\in \mathbb{R}^p\) is an unknown parameter vector to be estimated.
+
+The videos for this chapter are available at the following links:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/Linear+ModelsA+Ordinary+Least+Squares/1_ytvk0uc6}{Ordinary least squares}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/Linear+ModelsA+Principal+Component+Regression/1_h0l11uvw}{Principal component regression}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/Linear+ModelsA+Ridge+Regression/1_rjnxkukd}{Ridge regression}
+\item
+  \href{https://mediaspace.nottingham.ac.uk/media/Linear+modelsA+multi-output+models/1_f61kjm7u}{Multi-output linear models}
+\end{itemize}
+
+\hypertarget{notation-3}{%
+\subsection*{Notation}\label{notation-3}}
+\addcontentsline{toc}{subsection}{Notation}
+
+Suppose we have observations on \(n\) cases, \(\{\mathbf x_1, y_1\}, \ldots, \{\mathbf x_n, y_n\}\). The standard linear model is
+\begin{align}
+y_i &= \mathbf x_i^\top \boldsymbol \beta+\epsilon_i
+\label{eq:slm1}\\
+&=\beta_1 x_{i1}+\ldots+\beta_p x_{ip}+\epsilon_i
+\end{align}
+for \(i=1, \ldots , n\),
+where \(\boldsymbol \beta\in \mathbb{R}^p\) is the unknown parameter vector we wish to estimate. We can write \eqref{eq:slm1} in matrix form as
+\begin{equation}
+\mathbf y=\mathbf X\boldsymbol \beta+{\pmb \epsilon},
+\label{eq:slm2}
+\end{equation}
+where \(\stackrel{n \times p}{\mathbf X}= \begin{pmatrix} - & \mathbf x_1^\top &-\\ &\vdots&\\ -&\mathbf x_n^\top&-\end{pmatrix}\) is the matrix of covariates,
+\(\stackrel{n \times 1}{\mathbf y}\) is the vector of univariate responses and \(\stackrel{n \times 1}{\pmb \epsilon}\) is the vector of univariate error terms.
+
+We will assume throughout this chapter that \(\mathbf y\) and \(\mathbf X\) have been centred so that \(\bar{y}=0\) and the mean of each column of \(\mathbf X\) is zero. We do this to simplify the exposition and to avoid having to include an intercept term in the model (which makes the notation slightly messy). For uncentred data, we can think of the model as
+
+\[y_i - \bar{y} = \beta_1 (x_{i1}-\bar{x}_1)+\ldots+\beta_p (x_{ip}-\bar{x}_p)+\epsilon_i\]
+
+\hypertarget{ordinary-least-squares-ols}{%
+\section{Ordinary least squares (OLS)}\label{ordinary-least-squares-ols}}
+
+This section contains a brief review of the ordinary least squares (OLS) approach to fitting the linear model to data. Most of you will have studied this material in other modules.
+
+Our model is
+\[
+\mathbf y=\mathbf X\boldsymbol \beta+{\pmb \epsilon}.
+\]
+
+In OLS we make three assumptionsabout the error term \(\boldsymbol \epsilon\):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \({\mathbb{E}}[\epsilon_i]=0\) for \(i=1, \ldots , n\).
+\item
+  The \(\epsilon_i\) are uncorrelated, i.e. \({\mathbb{C}\operatorname{ov}}(\epsilon_i, \epsilon_j)=0\) for \(i \neq j\).
+\item
+  The \(\epsilon_i\) have constant variance (i.e., are \emph{homoscedastic}): \({\mathbb{V}\operatorname{ar}}(\epsilon_i)=\sigma^2\) for all \(i\).
+\end{enumerate}
+
+If these assumptions are reasonable, then
+a common way to estimate \(\boldsymbol \beta\) is to choose it to minimize the sum of squared errors, i.e.,
+
+\begin{align*}
+{\hat{\boldsymbol \beta}}^{ols} &= \arg \min_{\boldsymbol \beta} || \mathbf y- \mathbf X\boldsymbol \beta||_2^2\\
+&= \arg \min_{\boldsymbol \beta} \sum_{i=1}^n (y_i - \mathbf x_i^\top \boldsymbol \beta)^2
+\end{align*}
+
+If we note that
+\[|| \mathbf y- \mathbf X\boldsymbol \beta||_2^2 = (\mathbf y-\mathbf X\boldsymbol \beta)^\top(\mathbf y-\mathbf X\boldsymbol \beta) \]
+then multiplying out and differentiating with respect to \(\boldsymbol \beta\) gives
+\[\frac{\mathrm d}{\mathrm d\boldsymbol \beta} || \mathbf y- \mathbf X\boldsymbol \beta||_2^2 = 2\mathbf X^\top (\mathbf y- \mathbf X\boldsymbol \beta).\]
+You may need to look again at \ref{vectordiff} to remind yourself about vector differentiation. Setting the derivative equal to \(\boldsymbol 0\) and solving gives the least squares estimator
+
+\begin{equation}
+\hat{\boldsymbol \beta}^{ols}=\left (\mathbf X^\top \mathbf X\right )^{-1}\mathbf X^\top \mathbf y
+\label{eq:uni1}
+\end{equation}
+when \(\mathbf X^\top \mathbf X\) is invertible (we'll discuss what to do if it is not in the next section).
+The \textbf{fitted-values} are \[\hat{\mathbf y}= \mathbf X\hat{\boldsymbol \beta}^{ols}=\mathbf X(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y.\]
+
+\hypertarget{geometry}{%
+\subsection{Geometry}\label{geometry}}
+
+Does this make sense intuitively? As discussed in Chapter \ref{ch2linreg}, we know that \(\mathbf X\boldsymbol \beta\) is a linear combination of the columns of \(\mathbf X\) and is thus in \(\mathcal{C}(\mathbf X),\) the column space of \(\mathbf X\). Thus minimizing \(||\mathbf y- \mathbf X\boldsymbol \beta||_2^2\) is equivalent to finding the \emph{orthogonal projection} of \(\mathbf y\) onto \(\mathcal{C}(\mathbf X)\).
+
+\[\mathbf P_{\mathcal{C}(X)}\mathbf y=\arg \min_{\mathbf y': \mathbf y' \in \mathcal{C}(X)} ||\mathbf y-\mathbf y'||_2.\]
+and by Proposition \ref{prp:orthogprojection} this is
+\[\mathbf P_{\mathcal{C}(X)}\mathbf y= \mathbf X(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y=\hat{\mathbf y}\]
+which again implies\\
+\[\hat{\boldsymbol \beta}=(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y\]
+in agreement with what we found in the previous section. So we can think of linear regression as projecting \(\mathbf y\) onto the columns of \(\mathbf X\).
+
+Its useful here to recall the exercise we looked at in Chapter \ref{linalg-decomp} solving the linear system of equations. If the singular value decomposition (SVD) of \(\mathbf X\) is \(\mathbf X= \mathbf U\boldsymbol{\Sigma}\mathbf V^\top\), then we can see that
+
+\begin{align*}
+\hat{\boldsymbol \beta}&=(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y\\
+&=\mathbf V\boldsymbol{\Sigma}^{-1}\mathbf U^\top \mathbf y\\
+&= \mathbf X^{+}\mathbf y
+\end{align*}
+i.e., our estimate of \(\boldsymbol \beta\) is the generalized inverse of \(\mathbf X\) formed by the SVD, \(\mathbf X^{+}=\mathbf V\boldsymbol{\Sigma}^{-1}\mathbf U^\top\), times \(\mathbf y\).
+
+The fitted values are
+\begin{align}
+\hat{\mathbf y}^{ols} &= \mathbf X\hat{\boldsymbol \beta}\\
+&=\mathbf U\mathbf U^\top \mathbf y\\
+&=\sum_{j=1}^p \mathbf u_j \mathbf u_j^\top \mathbf y.\label{eq:lmsvd}
+\end{align}
+\(\mathbf U^\top \mathbf y\) are the coordinates of \(\mathbf y\) with respect to the orthonormal basis \(\mathbf U\), and \(\mathbf U\mathbf U^\top \mathbf y\) is the projection of \(\mathbf y\) onto that basis. So yet another way to think about OLS is that it projects \(\mathbf y\) onto the left singular vectors \(\mathbf U\). As we said in Chapter \ref{linalg-decomp}, the left singular vectors form an orthonormal basis for the column space of \(\mathbf X\), and so projecting onto \(\mathbf U\) is the same as projecting onto \(\mathcal{C}(\mathbf X)\).
+
+\hypertarget{normal-linear-model}{%
+\subsection{Normal linear model}\label{normal-linear-model}}
+
+Often, we make an additional (fourth) assumption about the random errors and assume that they are normally distributed:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  The \(\epsilon_i\) are IID \(N(0, \sigma^2)\).
+\end{enumerate}
+
+The log-likelihood for models \eqref{eq:slm1} and \eqref{eq:slm2} under the Gaussian assumption 4. is
+\begin{align*}
+\ell(\boldsymbol \beta, \sigma^2)&=-\frac{n}{2}\log (\sigma^2)-\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} \sum_{i=1}^n (y_i-\mathbf x_i^\top \boldsymbol \beta)^2\\
+& = -\frac{n}{2}\log (\sigma^2)-\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} (\mathbf y- \mathbf X\boldsymbol \beta)^\top (\mathbf y- \mathbf X\boldsymbol \beta).
+\end{align*}
+We can see that maximizing the log-likelihood with respect to \(\boldsymbol \beta\) is equivalent to minimizing \(||\mathbf y- \mathbf X\boldsymbol \beta||_2^2=(\mathbf y- \mathbf X\boldsymbol \beta)^\top (\mathbf y- \mathbf X\boldsymbol \beta)\)
+and thus \(\hat{\boldsymbol \beta}^{ols}\) is also the maximum likelihood estimator of \(\boldsymbol \beta\) when the errors have a Gaussian distribution.
+
+\hypertarget{linear-models-in-r}{%
+\subsection{Linear models in R}\label{linear-models-in-r}}
+
+Linear models are easy to fit in R. For example, using the iris data, we can train a model to predict the sepal length from the other measurements as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lm}\NormalTok{(Sepal.Length}\OperatorTok{~}\StringTok{ }\NormalTok{Sepal.Width}\OperatorTok{+}\NormalTok{Petal.Length}\OperatorTok{+}\NormalTok{Petal.Width,}\DataTypeTok{data=}\NormalTok{iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Sepal.Length ~ Sepal.Width + Petal.Length + Petal.Width, 
+##     data = iris)
+## 
+## Coefficients:
+##  (Intercept)   Sepal.Width  Petal.Length   Petal.Width  
+##       1.8560        0.6508        0.7091       -0.5565
+\end{verbatim}
+
+\hypertarget{problems-with-ols}{%
+\subsection{Problems with OLS}\label{problems-with-ols}}
+
+There are several problems encountered when fitting linear models using OLS when working with large datasets, two of which are
+
+\begin{itemize}
+\item
+  \(\mathbf X^\top \mathbf X\) may not be invertible, or the inversion may be numerically unstable (which is often called \emph{multicollinearity}). For example, if the number of covariates \(p\) is larger than the number of observations \(n\) (which can easily happen when working with image data), then the \(p \times p\) matrix \(\mathbf X^\top \mathbf X\) is at most rank \(n<p\) and so is not invertible.
+\item
+  Prediction accuracy may be low. The Gauss Markov theorem says that the ordinary least squares estimator of \(\boldsymbol \beta\) has minimum variance amongst all unbiased estimators of \(\boldsymbol \beta\). The mean square error (MSE), which is a measure of accuracy, of an estimator \(\tilde{\theta}\) of unknown quantity \(\theta\) is
+  \begin{align*}
+  MSE(\tilde{\theta}) &= {\mathbb{E}}((\theta - \tilde{\theta})^2)\\
+  &={\mathbb{V}\operatorname{ar}}(\tilde{\theta})+ ({\mathbb{E}}(\tilde{\theta})- \theta)^2\\
+  &={\mathbb{V}\operatorname{ar}}(\tilde{\theta})+ \operatorname{bias}(\tilde{\theta})^2
+  \end{align*}
+  By allowing a small amount of bias, we may be able to find estimators that have a smaller MSE than the least squares estimator of \(\boldsymbol \beta\).
+\end{itemize}
+
+In the next two sections we will look at some methods that have been proposed to solve these problems.
+
+\hypertarget{principal-component-regression-pcr}{%
+\section{Principal component regression (PCR)}\label{principal-component-regression-pcr}}
+
+In \textbf{principal component regression}, instead of regressing \(\mathbf y\) onto \(\mathbf X\) (or equivalently projecting \(\mathbf y\) onto the columns of \(\mathbf X\)), we instead regress \(\mathbf y\) onto the principal component scores of \(\mathbf X\).
+If the singular value decomposition (SVD) of \(\mathbf X\) is \(\mathbf X= \mathbf U\boldsymbol{\Sigma}\mathbf V^\top\) (recall that \(\mathbf X\) is column centred), then we've seen that
+\[\hat{\boldsymbol \beta}= \mathbf V\boldsymbol{\Sigma}^{-1}\mathbf U^\top \mathbf y.\]
+Note that this does not rely upon \(\mathbf X^\top\mathbf X\) being invertable. If \(\mathbf X\) is rank \(r\), then it has \(r\) non-zero singular values, and \(\mathbf V\) is \(p\times r\) and \(\mathbf U\) is \(n \times r\). In principal component regression we take this idea further.
+
+We start by projecting the covariates matrix \(\mathbf X\) onto the first \(k\) principal components of \(\mathbf X\), giving us the first \(k\) principal component scores of \(\mathbf X\):
+\[\mathbf Z= \mathbf X\mathbf V_k= \mathbf U_k \boldsymbol{\Sigma}_k\]
+where \(\mathbf U_k=\begin{pmatrix}\mathbf u_1&\ldots & \mathbf u_k\end{pmatrix} \in \mathbb{R}^{n \times k}\) is the matrix formed from the first \(k\) columns of \(\mathbf U\), and \(\mathbf V_k\in \mathbb{R}^{p \times k}\) is the matrix formed from the first \(k\) columns of \(\mathbf V\), and \(\boldsymbol{\Sigma}_k\in \mathbb{R}^{k \times k}\) is the diagonal matrix containing the first \(k\) singular values (cf Section \ref{lowrank}).
+
+In PCR, we then use the linear model
+\[\mathbf y= \mathbf Z\boldsymbol \alpha+\boldsymbol \epsilon.\]
+Estimating \(\boldsymbol \alpha\) by least squares gives
+\begin{align*}
+\hat{\boldsymbol \alpha} &= (\mathbf Z^\top \mathbf Z)^{-1}\mathbf Z^\top \mathbf y\\
+&= (\boldsymbol{\Sigma}_k \mathbf U_k^\top \mathbf U_k\boldsymbol{\Sigma}_k)^{-1}\boldsymbol{\Sigma}_k \mathbf U_k^\top \mathbf y\\
+&=\boldsymbol{\Sigma}_k^{-1}\mathbf U_k^\top \mathbf y
+\end{align*}
+as \(\mathbf U_k^\top\mathbf U_k =\mathbf I_k\). The corresponding fitted values will be
+
+\begin{align}
+\hat{\mathbf y}^{PCR} &= \mathbf Z\hat{\boldsymbol \alpha} \\
+&= \mathbf U_k \mathbf U_k^\top \mathbf y\\
+&=\sum_{j=1}^k \mathbf u_k \mathbf u_j^\top \mathbf y.
+\end{align}
+
+Comparing with Equation \eqref{eq:lmsvd}, we can see this is the same as before, except we have truncated the sum, so that we are only projecting onto the first \(k\) principal components. If we let \(k=r = \operatorname{rank}(\mathbf X)\) then PCR is the same as OLS.
+
+To convert from the PCR coefficients \(\boldsymbol \alpha\) back to coefficients of the original \(\mathbf x\) variables, we multiply by the right singular vectors:
+\[\hat{\boldsymbol \beta}^{pcr} = \mathbf V_k \hat{\boldsymbol \alpha} = \mathbf V_k \boldsymbol{\Sigma}_k^{-1} \mathbf U_k^\top \mathbf y\]
+as \(\mathbf Z\boldsymbol \alpha= \mathbf X\mathbf V_k \boldsymbol \alpha\).
+
+We choose the number of principal components to use in the regression \(k\), by assessing some form of predictive accuracy of the resulting model.
+
+The are several motivations for using PCR. The first is that it can always be used, regardless of whether \(\mathbf X^\top\mathbf X\) is invertible. The second is that in many problems with large \(p\), it often has superior predictive performance to OLS, as it reduces the variance of the predictions.
+
+\hypertarget{pcr-in-r}{%
+\subsection{PCR in R}\label{pcr-in-r}}
+
+PCR is easy to implement yourself in R. For example, using the iris regression problem from the previous section, we can do PCR using just the first 2 principal components as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris.pca <-}\StringTok{ }\KeywordTok{prcomp}\NormalTok{(iris[,}\DecValTok{2}\OperatorTok{:}\DecValTok{4}\NormalTok{],}\DataTypeTok{scale=}\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{Z =}\StringTok{ }\NormalTok{iris.pca}\OperatorTok{$}\NormalTok{x[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{] }\CommentTok{# select the first two PCs}
+\NormalTok{iris.lm <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(iris}\OperatorTok{$}\NormalTok{Sepal.Length}\OperatorTok{~}\NormalTok{Z)}
+\NormalTok{iris.lm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = iris$Sepal.Length ~ Z)
+## 
+## Coefficients:
+## (Intercept)         ZPC1         ZPC2  
+##      5.8433       0.4230      -0.4348
+\end{verbatim}
+
+Note that we didn't centre the data here, and so we have estimate a non-zero intercept as well as the coefficients of \(\mathbf x\).
+
+To convert from PCR coefficients to coefficients of \(\mathbf x\) we can multiply by \(\mathbf V_k\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris.pca}\OperatorTok{$}\NormalTok{rotation[,}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{] }\OperatorTok{%*%}\StringTok{ }\KeywordTok{coef}\NormalTok{(iris.lm)[}\OperatorTok{-}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   [,1]
+## Sepal.Width  0.2173767
+## Petal.Length 0.3853085
+## Petal.Width  0.4150270
+\end{verbatim}
+
+In practice we do not need to do PCR ourselves in this way, as it has been implemented in the \texttt{pls} R package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(pls)}
+\NormalTok{iris.pcr <-}\StringTok{ }\KeywordTok{pcr}\NormalTok{(Sepal.Length}\OperatorTok{~}\StringTok{ }\NormalTok{Sepal.Width}\OperatorTok{+}\NormalTok{Petal.Length}\OperatorTok{+}\NormalTok{Petal.Width, }\DecValTok{2}\NormalTok{, }\CommentTok{# number of components,}
+                \DataTypeTok{scale=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{data=}\NormalTok{iris)}
+\KeywordTok{coef}\NormalTok{(iris.pcr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## , , 2 comps
+## 
+##              Sepal.Length
+## Sepal.Width     0.2173767
+## Petal.Length    0.3853085
+## Petal.Width     0.4150270
+\end{verbatim}
+
+Note that the coefficients found match those we computed ourselves.
+
+To choose the number of components to retain, we can use cross-validation. This is a generalization of the idea of splitting the data into training and test sets. The \texttt{pls} package reports the estimate root means square error on the test set (RMSEP) for each possible value of \(k\), up to the maximum specified by the user (taken to be the rank of \(\mathbf X\) if we leave it unspecified).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris.pcr2 <-}\StringTok{ }\KeywordTok{pcr}\NormalTok{(Sepal.Length}\OperatorTok{~}\StringTok{ }\NormalTok{Sepal.Width}\OperatorTok{+}\NormalTok{Petal.Length}\OperatorTok{+}\NormalTok{Petal.Width, }\DecValTok{3}\NormalTok{, }\CommentTok{# number of components,}
+                \DataTypeTok{scale=}\OtherTok{TRUE}\NormalTok{, }\DataTypeTok{data=}\NormalTok{iris, }\DataTypeTok{validation=}\StringTok{'CV'}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(iris.pcr2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Data:    X dimension: 150 3 
+##  Y dimension: 150 1
+## Fit method: svdpc
+## Number of components considered: 3
+## 
+## VALIDATION: RMSEP
+## Cross-validated using 10 random segments.
+##        (Intercept)  1 comps  2 comps  3 comps
+## CV          0.8308   0.5476   0.3926   0.3215
+## adjCV       0.8308   0.5470   0.3921   0.3209
+## 
+## TRAINING: % variance explained
+##               1 comps  2 comps  3 comps
+## X               74.05    98.84   100.00
+## Sepal.Length    57.97    78.47    85.86
+\end{verbatim}
+
+\hypertarget{shrinkage-methods}{%
+\section{Shrinkage methods}\label{shrinkage-methods}}
+
+Another approach to fitting linear models is to regularise the parameters. Instead of minimizing \(||\mathbf y- \mathbf X\boldsymbol \beta||^2_2\), we instead minimize
+
+\[||\mathbf y- \mathbf X\boldsymbol \beta||^2_2+\lambda||\boldsymbol \beta||\]
+where we have added a penalty term \(\lambda||\boldsymbol \beta||\) to constrain the size of the parameter (\(\lambda\geq 0\)). This stops estimated values of \(\boldsymbol \beta\) becoming too large.
+Larger values of \(\lambda\) penalise the size of \(\boldsymbol \beta\) more strongly, and so have a bigger effect. As \(\lambda \rightarrow \infty\) we find the optimal \(\boldsymbol \beta\) tends to \(\boldsymbol 0\).
+
+\textbf{Ridge regression} is the name given to the estimate found when we use the \(||\cdot||_2\) norm.
+\[\hat{\boldsymbol \beta}^{ridge} = \arg \min_{\boldsymbol \beta} \left\{||\mathbf y- \mathbf X\boldsymbol \beta||^2_2+\lambda||\boldsymbol \beta||_2^2 \right\}.\]
+You'll show on the example sheets that
+
+\[\hat{\boldsymbol \beta}^{ridge} = (\mathbf X^\top \mathbf X+ \lambda\mathbf I)^{-1}\mathbf X^\top \mathbf y\]
+
+We can also show that the ridge regression estimator is small than the OLS estimator
+\[||\hat{\boldsymbol \beta}^{ols}||_2 \geq ||\hat{\boldsymbol \beta}^{ridge}||_2\]
+We say that ridge regression \emph{shrinks} the parameter estimates towards zero. The motivation for this is that when there are many correlated covariates, we sometimes find that the coefficients are poorly determined, and so the OLS estimator can have high variance. As \href{https://web.stanford.edu/~hastie/Papers/ESLII.pdf}{Hastie et al.} put it
+
+\begin{quote}
+``A wildly large positive coefficient on one variable can be cancelled by a large negative coefficient on its correlated cousin. By imposing a size constraint on the coefficients {[}\ldots{}{]} this phenomenon is prevented from occurring.''
+\end{quote}
+
+The fitted values are again \(\hat{\mathbf y}^{ridge} = \mathbf X\hat{\boldsymbol \beta}^{ridge}\).
+If we substitute the SVD for \(\mathbf X\) we find
+
+\begin{align*}
+\hat{\mathbf y}^{ridge}&=\mathbf X\hat{\boldsymbol \beta}^{ridge}\\
+&=\mathbf X(\mathbf X^\top \mathbf X+ \lambda\mathbf I)^{-1}\mathbf X^\top \mathbf y\\
+&=\mathbf U\boldsymbol{\Sigma}\mathbf V^\top(\mathbf V\boldsymbol{\Sigma}^2 \mathbf V^\top +\lambda\mathbf I)^{-1}\mathbf V\boldsymbol{\Sigma}\mathbf U^\top \mathbf y\\
+&=\mathbf U\boldsymbol{\Sigma}\mathbf V^\top(\mathbf V(\boldsymbol{\Sigma}^2  +\lambda\mathbf I)\mathbf V^\top)^{-1}\mathbf V\boldsymbol{\Sigma}\mathbf U^\top \mathbf y\\
+&=\mathbf U\boldsymbol{\Sigma}(\boldsymbol{\Sigma}^2  +\lambda\mathbf I)^{-1}\boldsymbol{\Sigma}\mathbf U^\top \mathbf y\\
+&= \sum_{i=1}^p \frac{\sigma^2_i}{\sigma^2_i+\lambda} \mathbf u_i \mathbf u_i^\top \mathbf y
+\end{align*}
+The penultimate line has assumed \(\mathbf V\) is full rank here, but the argument can be made to work regardless. Since \(\lambda\geq 0\), we have that \(\frac{\sigma^2_i}{\sigma^2_i+\lambda}\leq 1\). So we can see that just like in OLS and PCR, we project the data onto the orthonormal basis \(\mathbf U\), but with ridge regression, we shrink the coefficients by the factors \(\frac{\sigma^2_i}{\sigma^2_i+\lambda}\leq 1\). A greater amount of shrinkage is applied to basis vectors with small singular values \(\sigma_i\).
+
+If we compare the three different expressions for the fitted values
+\begin{align*}
+\hat{\mathbf y}^{ols}&=\sum_{i=1}^p \mathbf u_i \mathbf u_i^\top \mathbf y,\\
+\hat{\mathbf y}^{ridge}&=\sum_{i=1}^k \mathbf u_i \mathbf u_i^\top \mathbf y\\
+\hat{\mathbf y}^{ridge}&=\sum_{i=1}^p \frac{\sigma^2_i}{\sigma^2_i+\lambda} \mathbf u_i \mathbf u_i^\top \mathbf y
+\end{align*}
+we can see that PCR just works in a lower dimensional space discarding dimensions with small singular values, whereas ridge regression retains all coordinates, but reduces the importance of the coordinates with small singular values.
+
+In ridge regression we used the \(||\cdot||_2\) norm to penalise the parameter size. Other methods use other norms, which can induce interesting effects. Of particular interest is the \textbf{lasso}, which uses the \(L_1\) norm as a penalty \(||\boldsymbol \beta||_1\). This induces sparsity in the solution, but is beyond the scope of the module. If you are interested, take a look at the \href{https://en.wikipedia.org/wiki/Lasso_(statistics)}{wikipedia page}
+
+\hypertarget{ridge-regression-in-r}{%
+\subsection{Ridge regression in R}\label{ridge-regression-in-r}}
+
+We'll use the \texttt{glmnet} package to do ridge regression. The \texttt{glmnet} command solves the optimization problem
+\[\arg \min_{\boldsymbol \beta} \left\{||\mathbf y- \mathbf X\boldsymbol \beta||^2_2+\lambda \left((1-\alpha)||\boldsymbol \beta||_2^2+\alpha ||\boldsymbol \beta||_1^2\right)\right\}\]
+where we must specify the value of \(\alpha\).
+Taking \(\alpha=0\) gives us ridge regression, and \(\alpha=1\) gives the lasso. Values of \(\alpha \in (0,1)\) balance both the \(L_1\) and \(L_2\) penalties (a method known as the \textbf{elastic-net}).
+
+We can choose to specify what values of \(\lambda\) to use (if we don't specify this, the \texttt{glmnet} package will pick some sensible values). Remember that larger values of \(\lambda\) result in a bigger penalty, and greater shrinkage of the parameters.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(glmnet)}
+\NormalTok{X =}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(iris[,}\DecValTok{2}\OperatorTok{:}\DecValTok{4}\NormalTok{]) }\CommentTok{# glmnet doesn't work with data frames}
+\NormalTok{y=iris[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{lambdas <-}\StringTok{ }\DecValTok{10}\OperatorTok{^}\KeywordTok{seq}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{-4}\NormalTok{, }\DataTypeTok{by =} \FloatTok{-.1}\NormalTok{)}
+\NormalTok{iris.ridge <-}\StringTok{ }\KeywordTok{glmnet}\NormalTok{(X,y, }\DataTypeTok{alpha=}\DecValTok{0}\NormalTok{, }\DataTypeTok{lambda =}\NormalTok{ lambdas)}
+\end{Highlighting}
+\end{Shaded}
+
+We can then look at how the parameter estimates change as the size of \(\lambda\) changes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(iris.ridge, }\DataTypeTok{xvar=}\StringTok{'lambda'}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{08-multivarLM_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#matplot(log(lambdas), t(iris.ridge$beta), type='l') # does the same}
+\end{Highlighting}
+\end{Shaded}
+
+We can see that as \(\lambda\) grows large, the parameters all shrink to \(0\) as expected. For \(\lambda\approx 0\), we get the OLS estimates of the parameters
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{coef}\NormalTok{(}\KeywordTok{lm}\NormalTok{(y}\OperatorTok{~}\NormalTok{X))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   (Intercept)  XSepal.Width XPetal.Length  XPetal.Width 
+##     1.8559975     0.6508372     0.7091320    -0.5564827
+\end{verbatim}
+
+We usually choose \(\lambda\) by finding which value gives the lower prediction error (using some form of predictive test, such as cross-validation).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cv_fit <-}\StringTok{ }\KeywordTok{cv.glmnet}\NormalTok{(X, y, }\DataTypeTok{alpha =} \DecValTok{0}\NormalTok{, }\DataTypeTok{lambda =}\NormalTok{ lambdas)}
+\KeywordTok{plot}\NormalTok{(cv_fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{08-multivarLM_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+From this, we can see that very small values of \(\lambda\) work best here, i.e., the OLS estimator is optimal. This is not a surprise as there are only three covariates in this problem. It is in larger problems that we expect shrinkage methods to be most useful.
+
+The value of lambda that minimizes the prediction error can be found by
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cv_fit}\OperatorTok{$}\NormalTok{lambda.min }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.001258925
+\end{verbatim}
+
+and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cv_fit}\OperatorTok{$}\NormalTok{lambda}\FloatTok{.1}\NormalTok{se}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.01584893
+\end{verbatim}
+
+\hypertarget{multioutput-linear-model}{%
+\section{Multioutput Linear Model}\label{multioutput-linear-model}}
+
+In the standard linear model the responses \(y_i\) are univariate. In the multivariate linear model, the data are \(\{\mathbf x_1, \mathbf y_1\}, \ldots, \{\mathbf x_n, \mathbf y_n\}\) with the responses \(\mathbf y_i \in \mathbb{R}^q\). Here, the linear model takes the form
+\begin{equation}
+\mathbf y_i= \mathbf B^\top \mathbf x_i +{\pmb \epsilon}_i, \qquad i=1, \ldots , n,
+\label{eq:mlm1}
+\end{equation}
+where \(\mathbf B\) is now a \(p \times q\) parameter matrix, and we have an error vector \({\pmb \epsilon}_i\in \mathbb{R}^q\) are \(q \times 1\). The model \eqref{eq:mlm1} may be written in matrix form as
+\begin{equation}
+\mathbf Y= \mathbf X\mathbf B+\mathbf E,
+\label{eq:mlm2}
+\end{equation}
+where \[\mathbf Y=
+\begin{pmatrix} - & \mathbf y_1^\top &-\\
+&\vdots&\\
+-&\mathbf y_n^\top&-\end{pmatrix}\] is the \(n \times q\) data matrix for the \(y\)-variables, \(\mathbf X\) is the \(n \times p\) data matrix as defined before, and \[\stackrel{n \times p}{\mathbf E}=\begin{pmatrix} - & \boldsymbol \epsilon_1^\top &-\\
+&\vdots&\\
+-&\boldsymbol \epsilon_n^\top&-\end{pmatrix}.\]
+
+We will assume that
+\begin{equation}
+{\pmb \epsilon_1}, \ldots , {\pmb \epsilon}_n \quad \text{are
+IID}\quad N_p({\mathbf 0}_p, \boldsymbol{\Sigma}).
+\label{eq:MVNassumption}
+\end{equation}
+
+\begin{proposition}
+\protect\hypertarget{prp:eight1}{}{\label{prp:eight1} }The maximum likelihood estimator of \(\mathbf B\) is
+
+\begin{equation}
+\hat{\mathbf B}= (\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf Y
+\label{eq:MVbeta}
+\end{equation}
+\end{proposition}
+
+\textbf{Remarks:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  note how similar \eqref{eq:MVbeta} is to its univariate counterpart
+  \eqref{eq:uni1}. The only thing that is different is that \(\mathbf Y\) is now an \(n \times q\) matrix rather than an \(n \times 1\) vector.
+\item
+  The coefficients for the \(k^{th}\) output, i.e., the \(k^{th}\) column of \(\mathbf B\), are just the OLS estimates from regressing the \(k^{th}\) column of \(\mathbf Y\) on \(\mathbf X\). I.e., the multivariate linear regression estimates are just the univariate estimates applied to each output in turn: the different outputs do not affect each others least squares estimates.
+\end{enumerate}
+
+You will see how to fit multivariate linear models in R in the computer tasks.
+
+\hypertarget{computer-tasks-6}{%
+\section{Computer tasks}\label{computer-tasks-6}}
+
+\hypertarget{q1-1}{%
+\paragraph{Q1}\label{q1-1}}
+\addcontentsline{toc}{paragraph}{Q1}
+
+The gasoline dataset in the \texttt{pls} dataset consists of data on 60 different gasoline samples. For each sample, the near-infra-read (NIR) spectrum has been measured, which consists of measurements at 401 different wavelengths.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(pls)}
+\KeywordTok{data}\NormalTok{(gasoline)}
+\KeywordTok{matplot}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\DecValTok{900}\NormalTok{,}\DecValTok{1700}\NormalTok{,}\DecValTok{2}\NormalTok{),}\KeywordTok{t}\NormalTok{(gasoline}\OperatorTok{$}\NormalTok{NIR), }\DataTypeTok{type=}\StringTok{'l'}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{'log(1/R)'}\NormalTok{, }\DataTypeTok{xlab=}\StringTok{'wavelength (nm)'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{08-multivarLM-ex_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+Also recorded is the octane number of each sample. We will use the NIR measurements to predict the octane number of each sample.
+Note that here \(n=60\) and \(p=401\), so we have many more covariates than samples.
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\tightlist
+\item
+  Start by using the \texttt{lm} command to predict the octane number from the NIR spectra.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lm}\NormalTok{(octane}\OperatorTok{~}\NormalTok{NIR, }\DataTypeTok{data=}\NormalTok{gasoline)}
+\end{Highlighting}
+\end{Shaded}
+
+What happens? How many of the coefficients are estimated?
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\setcounter{enumi}{1}
+\item
+  We'll now try principal component regression. First, project the NIR values onto the first 10 principal components. Then build a linear model using \texttt{lm}. Split the data into a training set containing 40 observations, and a test set containing 20 observations. What is the predictive accuracy of your model?
+\item
+  Now use the \texttt{pcr} command from the \texttt{pls} package. You can use cross-validation to assess the prediction accuracy, and plot the predictive accuracies, for different number of principal components using the code below.
+  How many principal components would you retain in your model to ensure the best performance?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gasoline.pcr <-}\StringTok{ }\KeywordTok{pcr}\NormalTok{(octane}\OperatorTok{~}\NormalTok{NIR, }\DataTypeTok{data=}\NormalTok{gasoline, }\DataTypeTok{validation=}\StringTok{'CV'}\NormalTok{)}
+\KeywordTok{summary}\NormalTok{(gasoline.pcr)}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{RMSEP}\NormalTok{(gasoline.pcr), }\DataTypeTok{legendpos =} \StringTok{"topright"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Now try ridge regression. What value would you choose for the ridge penalty term \(\lambda\)?
+\end{enumerate}
+
+\hypertarget{q2-1}{%
+\paragraph{Q2}\label{q2-1}}
+\addcontentsline{toc}{paragraph}{Q2}
+
+The \texttt{lm} command in R will automatically work if you pass in a matrix of response variables. To demonstrate this, lets try to predict the sepal width and sepal length from the petal length and widths for the iris data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lm}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(Sepal.Length, Sepal.Width) }\OperatorTok{~}\StringTok{ }\NormalTok{Petal.Length}\OperatorTok{+}\NormalTok{Petal.Width, }\DataTypeTok{data=}\NormalTok{iris)}
+\end{Highlighting}
+\end{Shaded}
+
+Check that the parameter estimates you find are the same as if you did two univariate linear regressions.
+
+\hypertarget{exercises-7}{%
+\section{Exercises}\label{exercises-7}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Show that the ridge regression estimator of \(\boldsymbol \beta\) is
+  \[\hat{\boldsymbol \beta}^{ridge} = (\mathbf X^\top \mathbf X+ \lambda\mathbf I_p)^{-1}\mathbf X^\top \mathbf y.\]
+  Prove that the inverse exists if \(\lambda > 0\).
+
+  Finally, prove that the estimator can rewritten as
+  \[\hat{\boldsymbol \beta}^{ridge} = \mathbf X^\top(\mathbf X\mathbf X^\top + \lambda\mathbf I_n)^{-1} \mathbf y.\]
+  When might this be useful?
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Let
+  \[\hat{\boldsymbol \beta}_\lambda=\arg \min_{\boldsymbol \beta} ||\mathbf y-\mathbf X\boldsymbol \beta||^2+\lambda ||\boldsymbol \beta||\]
+  Prove that \[||\hat{\boldsymbol \beta}_\lambda|| \leq ||\hat{\boldsymbol \beta}^{ols}||.\]
+  Note that we can prove this for a general norm \(||\cdot||\), not just the \(L_2\) norm.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  For the normal linear model
+  \[\mathbf y= \mathbf X\boldsymbol \beta+ N(\boldsymbol 0, \sigma^2 \mathbf I)\]
+  show that
+  \begin{align}
+  {\mathbb{V}\operatorname{ar}}(\hat{\boldsymbol \beta}^{ols}) &= \sigma^2 (\mathbf X^\top \mathbf X)^{-1}\\
+  &= \sigma^2\sum_{i=1}^p \frac{\mathbf v_i \mathbf v_i^\top}{\lambda_i}
+  \end{align}
+  where \(\lambda_i\) are the eigenvalues of \(\mathbf X^\top \mathbf X\), and \(\mathbf v_i\) the corresponding unit eigenvectors.
+
+  If \(\hat{\boldsymbol \beta}_k\) is the PCR estimator based on the first \(k\) principal components, show that
+  \[{\mathbb{V}\operatorname{ar}}(\hat{\boldsymbol \beta}_k) = \sigma^2 \sum_{i=1}^k \frac{\mathbf v_i \mathbf v_i^\top}{\lambda_i}.\]
+
+  Thus, show that \[\mathbf A_k = {\mathbb{V}\operatorname{ar}}(\hat{\boldsymbol \beta}^{ols})-{\mathbb{V}\operatorname{ar}}(\hat{\boldsymbol \beta}_k)\] is a positive semi-definite matrix. Consequently, show that any linear combination of \(\hat{\boldsymbol \beta}_k\), e.g., a prediction \(\mathbf x^\top \hat{\boldsymbol \beta}_k\), has a lower variance compared to the same linear combination using the OLS estimator, i.e.,
+  \[{\mathbb{V}\operatorname{ar}}(\mathbf x^\top \hat{\boldsymbol \beta}_k)\leq {\mathbb{V}\operatorname{ar}}(\mathbf x^\top \hat{\boldsymbol \beta}^{ols}).\]
 \end{enumerate}
 
 \bibliography{book.bib,packages.bib}

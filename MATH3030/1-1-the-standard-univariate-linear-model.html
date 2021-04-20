@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.1 The standard univariate linear model | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.1 The standard univariate linear model | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.1 The standard univariate linear model | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1-lm.html"/>
+<link rel="next" href="1-2-multivariate-linear-model.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="1-lm.html"><a href="1-lm.html"><i class="fa fa-check"></i><b>1</b> The Multivariate Linear Model</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-the-standard-univariate-linear-model.html"><a href="1-1-the-standard-univariate-linear-model.html"><i class="fa fa-check"></i><b>1.1</b> The standard univariate linear model</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-multivariate-linear-model.html"><a href="1-2-multivariate-linear-model.html"><i class="fa fa-check"></i><b>1.2</b> Multivariate Linear Model</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="the-standard-univariate-linear-model" class="section level2">
+<h2><span class="header-section-number">1.1</span> The standard univariate linear model</h2>
+<p>In this section we give a brief review of the standard linear model in which the response is univariate. As this is all review material, there will be no video for this section. Then, in subsequent sections, we discuss the multivariate linear model, i.e. multiple regression with a vector response which has a general covariance matrix.</p>
+<p>Consider the univariate linear model in which
+<span class="math display" id="eq:slm1">\[\begin{equation}
+y_i = \mathbf x_i^\top \boldsymbol \beta+\epsilon_i, \qquad i=1, \ldots , n,
+\tag{1.1}
+\end{equation}\]</span>
+where <span class="math inline">\(\stackrel{q \times 1}{\boldsymbol \beta}\)</span> is a parameter vector and <span class="math inline">\(\mathbf x_i\)</span> is a <span class="math inline">\(q \times 1\)</span> covariate vector for experimental unit <span class="math inline">\(i\)</span>. We can also write <a href="1-1-the-standard-univariate-linear-model.html#eq:slm1">(1.1)</a> in equivalent vector-matrix form
+<span class="math display" id="eq:slm2">\[\begin{equation}
+\mathbf y=\mathbf X\boldsymbol \beta+{\pmb \epsilon},
+\tag{1.2}
+\end{equation}\]</span>
+where <span class="math inline">\(\stackrel{n \times q}{\mathbf X}=[\mathbf x_1 , \ldots , \mathbf x_n]^\top\)</span> is the matrix of covariates,
+<span class="math inline">\(\stackrel{n \times 1}{\mathbf y}\)</span> is the vector of univariate responses and <span class="math inline">\(\stackrel{n \times 1}{\pmb \epsilon}\)</span> is the vector of univariate `error’ terms.</p>
+<p>It is assumed throughout this chapter that <span class="math inline">\(\mathbf X\)</span> has full rank <span class="math inline">\(p\)</span>, so that <span class="math inline">\((\mathbf X^\top \mathbf X)^{-1}\)</span> exists.</p>
+<p>Most or all of the following assumptions are usually made in the standard linear model:</p>
+<ol style="list-style-type: decimal">
+<li><p>For each <span class="math inline">\(i=1, \ldots , n\)</span>, <span class="math inline">\(E[\epsilon_i]=0\)</span>.</p></li>
+<li><p>The <span class="math inline">\(\epsilon_i\)</span> are uncorrelated, i.e. for <span class="math inline">\(i \neq j\)</span>, <span class="math inline">\(\text{Cov}(\epsilon_i, \epsilon_j)=0\)</span>.</p></li>
+<li>The <span class="math inline">\(\epsilon_i\)</span> have constant variance, i.e. <span class="math inline">\(\text{Var}(\epsilon_i)=\sigma^2\)</span>, i.e. <span class="math inline">\(\sigma^2\)</span> does not depend on <span class="math inline">\(i\)</span>.</li>
+<li><p>The <span class="math inline">\(\epsilon_i\)</span> are IID <span class="math inline">\(N(0, \sigma^2)\)</span>.</p></li>
+</ol>
+<p>It is clear that assumption 4. implies each of assumptions 1-3. However, note that the least squares approach to be discussed below makes sense under assumptions 1-3 alone. The attraction of assumption 4. is that it enables us to perform exact inference since the relevant distributions are known exactly, and the estimators of <span class="math inline">\(\boldsymbol \beta\)</span> and <span class="math inline">\(\sigma^2\)</span> are maximum likelihood estimators (MLEs). We shall assume 4. and its multivariate analogue, see <a href="1-2-multivariate-linear-model.html#eq:MVNassumption">(1.8)</a> below, throughout this chapter.</p>
+<p>The log-likelihood for models <a href="1-1-the-standard-univariate-linear-model.html#eq:slm1">(1.1)</a> and <a href="1-1-the-standard-univariate-linear-model.html#eq:slm2">(1.2)</a> under the Gaussian assumption 4. is given by
+<span class="math display">\[\begin{align*}
+\ell(\boldsymbol \beta, \sigma^2)&amp;=-\frac{n}{2}\log (\sigma^2)--\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} \sum_{i=1}^n (y_i-\mathbf x_i^\top \boldsymbol \beta)^2\\
+&amp; \qquad = -\frac{n}{2}\log (\sigma^2)-\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} (\mathbf y- \mathbf X\boldsymbol \beta)^\top (\mathbf y- \mathbf X\boldsymbol \beta).
+\end{align*}\]</span>
+Applying the results in 2.10 to the second expression above,
+<span class="math display">\[
+\frac{\partial \ell}{\partial \boldsymbol \beta}(\boldsymbol \beta, \sigma^2)=\frac{1}{\sigma^2}\mathbf X^\top (\mathbf y- \mathbf X\boldsymbol \beta)
+\]</span>
+and
+<span class="math display">\[
+\frac{\partial \ell}{\partial \sigma^2}(\boldsymbol \beta, \sigma^2)=-\frac{n}{2}\frac{1}{\sigma^2}+\frac{1}{2\sigma^4}
+ (\mathbf y- \mathbf X\boldsymbol \beta)^\top (\mathbf y- \mathbf X\boldsymbol \beta).
+\]</span>
+Setting <span class="math inline">\(\partial \ell(\hat{\boldsymbol \beta}, \hat{\sigma}^2))/\partial \boldsymbol \beta={\mathbf 0}_q\)</span>, the zero vector, and assuming that <span class="math inline">\(\mathbf X^\top \mathbf X\)</span> is invertible, implies that
+<span class="math display" id="eq:uni1">\[\begin{equation}
+\hat{\boldsymbol \beta}=\left (\mathbf X^\top \mathbf X\right )^{-1}\mathbf X^\top \mathbf y.
+\tag{1.3}
+\end{equation}\]</span>
+Also, setting <span class="math inline">\(\partial \ell(\hat{\boldsymbol \beta}, \hat{\sigma}^2))/\partial \sigma^2=0\)</span> gives
+<span class="math display" id="eq:uni2">\[\begin{equation}
+\hat{\sigma}^2 = \frac{1}{n}\mathbf y^\top \mathbf P\mathbf y,
+\tag{1.4}
+\end{equation}\]</span>
+where
+<span class="math display" id="eq:defP">\[\begin{equation}
+\mathbf P=\mathbf I_n - \mathbf X\left ( \mathbf X^\top \mathbf X\right)^{-1}\mathbf X^\top
+\tag{1.5}
+\end{equation}\]</span>
+is a projection matrix. The maximised log-likelihood is given by
+<span class="math display">\[\begin{align*}
+\ell(\hat{\boldsymbol \beta}, \hat{\sigma}^2)&amp;= -\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi) -\frac{1}{2\hat{\sigma}^2}(\mathbf y- \mathbf X\hat{\boldsymbol \beta})^\top (\mathbf y- \mathbf X\hat{\boldsymbol \beta})\\
+&amp;= -\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi)-\frac{n}{2\mathbf y^\top \mathbf P\mathbf y}\mathbf y^\top \mathbf P\mathbf y\\
+&amp;=-\frac{n}{2}\log(\hat{\sigma}^2)-\frac{n}{2}\log(2\pi)-\frac{n}{2}.
+\end{align*}\]</span></p>
+<p>Under the IID Gaussian assumption for the <span class="math inline">\(\epsilon_i\)</span>,
+<span class="math display">\[
+\hat{\boldsymbol \beta} \sim N_q\left \{\boldsymbol \beta, \sigma^2 (\mathbf X^\top \mathbf X)^{-1}\right\},
+\]</span>
+and
+<span class="math display">\[
+n\hat{\sigma}^2/\sigma^2 \sim \chi_{n-q}^2.
+\]</span></p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1-lm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-2-multivariate-linear-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

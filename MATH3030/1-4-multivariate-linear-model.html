@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.4 Multivariate Linear Model | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.4 Multivariate Linear Model | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.4 Multivariate Linear Model | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1-3-shrinkage-methods.html"/>
+<link rel="next" href="1-5-computer-tasks.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="1-lm.html"><a href="1-lm.html"><i class="fa fa-check"></i><b>1</b> Linear Models</a><ul>
+<li class="chapter" data-level="" data-path="1-lm.html"><a href="1-lm.html#notation"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>1.1</b> Ordinary least squares (OLS)</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#geometry"><i class="fa fa-check"></i><b>1.1.1</b> Geometry</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#normal-linear-model"><i class="fa fa-check"></i><b>1.1.2</b> Normal linear model</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#linear-models-in-r"><i class="fa fa-check"></i><b>1.1.3</b> Linear models in R</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#problems-with-ols"><i class="fa fa-check"></i><b>1.1.4</b> Problems with OLS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-principal-component-regression-pcr.html"><a href="1-2-principal-component-regression-pcr.html"><i class="fa fa-check"></i><b>1.2</b> Principal component regression (PCR)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-principal-component-regression-pcr.html"><a href="1-2-principal-component-regression-pcr.html#pcr-in-r"><i class="fa fa-check"></i><b>1.2.1</b> PCR in R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-shrinkage-methods.html"><a href="1-3-shrinkage-methods.html"><i class="fa fa-check"></i><b>1.3</b> Shrinkage methods</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-shrinkage-methods.html"><a href="1-3-shrinkage-methods.html#ridge-regression-in-r"><i class="fa fa-check"></i><b>1.3.1</b> Ridge regression in R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-multivariate-linear-model.html"><a href="1-4-multivariate-linear-model.html"><i class="fa fa-check"></i><b>1.4</b> Multivariate Linear Model</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-computer-tasks.html"><a href="1-5-computer-tasks.html"><i class="fa fa-check"></i><b>1.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.6" data-path="1-6-exercises.html"><a href="1-6-exercises.html"><i class="fa fa-check"></i><b>1.6</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multivariate-linear-model" class="section level2">
+<h2><span class="header-section-number">1.4</span> Multivariate Linear Model</h2>
+<p>In the standard linear model the responses <span class="math inline">\(y_i\)</span> are univariate. In the multivariate linear model, the data are <span class="math inline">\(\{\mathbf x_1, \mathbf y_1\}, \ldots, \{\mathbf x_n, \mathbf y_n\}\)</span> with the responses <span class="math inline">\(\mathbf y_i \in \mathbb{R}^q\)</span>. Here, the linear model takes the form
+<span class="math display" id="eq:mlm1">\[\begin{equation}
+\mathbf y_i= \mathbf B^\top \mathbf x_i +{\pmb \epsilon}_i, \qquad i=1, \ldots , n,
+\tag{1.5}
+\end{equation}\]</span>
+where <span class="math inline">\(\mathbf B\)</span> is now a <span class="math inline">\(p \times q\)</span> parameter matrix, and we have an error vector <span class="math inline">\({\pmb \epsilon}_i\in \mathbb{R}^q\)</span> are <span class="math inline">\(q \times 1\)</span>. The model <a href="1-4-multivariate-linear-model.html#eq:mlm1">(1.5)</a> may be written in matrix form as
+<span class="math display" id="eq:mlm2">\[\begin{equation}
+\mathbf Y= \mathbf X\mathbf B+\mathbf E,
+\tag{1.6}
+\end{equation}\]</span>
+where <span class="math display">\[\mathbf Y=
+\begin{pmatrix} - &amp; \mathbf y_1^\top &amp;-\\
+&amp;\vdots&amp;\\
+-&amp;\mathbf y_n^\top&amp;-\end{pmatrix}\]</span> is the <span class="math inline">\(n \times q\)</span> data matrix for the <span class="math inline">\(y\)</span>-variables, <span class="math inline">\(\mathbf X\)</span> is the <span class="math inline">\(n \times p\)</span> data matrix as defined before, and <span class="math display">\[\stackrel{n \times p}{\mathbf E}=\begin{pmatrix} - &amp; \boldsymbol \epsilon_1^\top &amp;-\\
+&amp;\vdots&amp;\\
+-&amp;\boldsymbol \epsilon_n^\top&amp;-\end{pmatrix}.\]</span></p>
+<p>We will assume that
+<span class="math display" id="eq:MVNassumption">\[\begin{equation}
+{\pmb \epsilon_1}, \ldots , {\pmb \epsilon}_n \quad \text{are
+IID}\quad N_p({\mathbf 0}_p, \boldsymbol{\Sigma}).
+\tag{1.7}
+\end{equation}\]</span></p>
+
+<div class="proposition">
+<p><span id="prp:eight1" class="proposition"><strong>Proposition 1.1  </strong></span>The maximum likelihood estimator of <span class="math inline">\(\mathbf B\)</span> is</p>
+<span class="math display" id="eq:MVbeta">\[\begin{equation}
+\hat{\mathbf B}= (\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf Y
+\tag{1.8}
+\end{equation}\]</span>
+</div>
+
+<p><strong>Remarks:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>note how similar <a href="1-4-multivariate-linear-model.html#eq:MVbeta">(1.8)</a> is to its univariate counterpart
+<a href="1-1-ordinary-least-squares-ols.html#eq:uni1">(1.3)</a>. The only thing that is different is that <span class="math inline">\(\mathbf Y\)</span> is now an <span class="math inline">\(n \times q\)</span> matrix rather than an <span class="math inline">\(n \times 1\)</span> vector.</p></li>
+<li><p>The coefficients for the <span class="math inline">\(k^{th}\)</span> output, i.e., the <span class="math inline">\(k^{th}\)</span> column of <span class="math inline">\(\mathbf B\)</span>, are just the OLS estimates from regressing the <span class="math inline">\(k^{th}\)</span> column of <span class="math inline">\(\mathbf Y\)</span> on <span class="math inline">\(\mathbf X\)</span>. I.e., the multivariate linear regression estimates are just the univariate estimates applied to each output in turn: the different outputs do not affect each others least squares estimates.</p></li>
+</ol>
+<!--```{proof}
+The proof of this is messy and not particularly interesting, so
+
+With Sigma= I does it cleanly separate into q distinct sums?
+
+And then with Sigma is it a case of just multiplying by Sigma ^{1/2} somewhere?
+```
+-->
+<p>You will see how to fit multivariate linear models in R in the computer tasks.</p>
+<!--READ ABOUT REDUCED RANK REGRESSION, and link to CCA...... Why would we care?
+-->
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1-3-shrinkage-methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-5-computer-tasks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

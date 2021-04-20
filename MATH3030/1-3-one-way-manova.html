@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.3 One-way MANOVA | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.3 One-way MANOVA | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.3 One-way MANOVA | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1-2-multivariate-linear-model.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="1-lm.html"><a href="1-lm.html"><i class="fa fa-check"></i><b>1</b> The Multivariate Linear Model</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-the-standard-univariate-linear-model.html"><a href="1-1-the-standard-univariate-linear-model.html"><i class="fa fa-check"></i><b>1.1</b> The standard univariate linear model</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-multivariate-linear-model.html"><a href="1-2-multivariate-linear-model.html"><i class="fa fa-check"></i><b>1.2</b> Multivariate Linear Model</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-one-way-manova.html"><a href="1-3-one-way-manova.html"><i class="fa fa-check"></i><b>1.3</b> One-way MANOVA</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="one-way-manova" class="section level2">
+<h2><span class="header-section-number">1.3</span> One-way MANOVA</h2>
+<p>We now consider the multivariate version of the one-way ANOVA considered at the end of 8.2, known as one-way MANOVA. The model is defined by
+<span class="math display" id="eq:MANOVA1">\[\begin{equation}
+ \mathbf y_{ij} = {\boldsymbol{\mu}}_j + {\pmb \epsilon}_{ij}, \qquad  i=1, \ldots , n_j; \quad j=1, \ldots, t,
+ \tag{1.21}
+ \end{equation}\]</span>
+where the <span class="math inline">\({\pmb \epsilon}_{ij}\)</span> are IID <span class="math inline">\(N_p({\mathbf 0}_p, \boldsymbol{\Sigma})\)</span>, and the <span class="math inline">\(\mathbf y_{ij}\)</span> and <span class="math inline">\({\boldsymbol{\mu}}_j\)</span> are also
+<span class="math inline">\(p \times 1\)</span> vectors. It is assumed that <span class="math inline">\(\text{Var}({\pmb \epsilon}_i)=\boldsymbol{\Sigma}\)</span> is constant across the <span class="math inline">\(t\)</span> populations.</p>
+<p>One possibility is to use the linear model framework developed in 8.3. In this case, <span class="math inline">\(\mathbf X\)</span> is a matrix with each element equal to zero or one. However, it is also feasible to do the calculations directly. This is what we shall do.</p>
+<p>The log-likelihood of model <a href="1-3-one-way-manova.html#eq:MANOVA1">(1.21)</a> is given by
+<span class="math display" id="eq:MANOVAlik">\[\begin{align}
+ \ell({\boldsymbol{\mu}}_1, \ldots , {\boldsymbol{\mu}}_t)&amp;=-\frac{np}{2}\log(2\pi)-\frac{n}{2}\log(\vert \boldsymbol{\Sigma}\vert)\nonumber\\
+ &amp; \qquad \qquad -\frac{1}{2}\sum_{j=1}^t \sum_{i=1}^{n_j}
+ (\mathbf y_{ij}-{\boldsymbol{\mu}}_j)^\top \boldsymbol{\Sigma}^{-1} (\mathbf y_{ij}-{\boldsymbol{\mu}}_j),
+ \tag{1.22}
+ \end{align}\]</span>
+where <span class="math inline">\(n=n_1 + n_2 +\cdots + n_t\)</span>.</p>
+<p>Using results in 2.10, the partial derivative, or gradient, of <a href="1-3-one-way-manova.html#eq:MANOVAlik">(1.22)</a> with respect to the vector <span class="math inline">\({\boldsymbol{\mu}}_k\)</span> is given by
+<span class="math display">\[\begin{align*}
+ \frac{\partial \ell}{\partial {\boldsymbol{\mu}}_k}({\boldsymbol{\mu}}_1, \ldots , {\boldsymbol{\mu}}_t, \boldsymbol{\Sigma})&amp;=\sum_{i=1}^{n_j} \boldsymbol{\Sigma}^{-1}(\mathbf y_{ik}-{\boldsymbol{\mu}}_k)\\
+ &amp;=n_k \boldsymbol{\Sigma}^{-1} (\bar{\mathbf y}_{+k}-{\boldsymbol{\mu}}_k).
+ \end{align*}\]</span>
+where <span class="math inline">\(\bar{\mathbf y}_{+k}\)</span> is the sample mean of group <span class="math inline">\(k\)</span>, i.e.
+<span class="math display">\[
+\bar{\mathbf y}_{+k}=n_k^{-1}\sum_{i=1}^{n_k} \mathbf y_{ik}.
+\]</span>
+So, setting <span class="math inline">\(\partial \ell/\partial {\boldsymbol{\mu}}_k={\mathbf 0}_p\)</span> implies <span class="math inline">\(\hat{{\boldsymbol{\mu}}}_k=\bar{\mathbf y}_{+k}\)</span>.
+Therefore
+<span class="math display">\[\begin{align*}
+\ell(\hat{{\boldsymbol{\mu}}}_1, \ldots , \hat{{\boldsymbol{\mu}}}_t, \boldsymbol{\Sigma})&amp;= -\frac{np}{2}\log(2\pi)-\frac{n}{2}\log(\vert \boldsymbol{\Sigma}\vert)\\
+&amp;\qquad \qquad - \frac{1}{2} \sum_{j=1}^t \sum_{i=1}^{n_j} (\mathbf y_{ij}-\bar{\mathbf y}_{+j})^\top \boldsymbol{\Sigma}^{-1}
+(\mathbf y_{ij}-\bar{\mathbf y}_{+j})\\
+&amp;=-\frac{n p}{2}\log(2\pi) -\frac{n}{2}\log(\vert \boldsymbol{\Sigma}\vert)-\frac{1}{2}\text{tr}(\boldsymbol{\Sigma}^{-1}\mathbf W),
+\end{align*}\]</span>
+where <span class="math inline">\(\mathbf W\)</span>, defined by
+<span class="math display">\[
+\mathbf W=\sum_{j=1}^t \sum_{i=1}^{n_j} (\mathbf y_{ij}-\bar{\mathbf y}_{+j})(\mathbf y_{ij}-\bar{\mathbf y}_{+j})^\top,
+\]</span>
+is the matrix version of the `within’ sum of squares considered in 8.2. Using Proposition <a href="#prp:eight2"><strong>??</strong></a>, we deduce that
+<span class="math display">\[
+\hat{\boldsymbol{\Sigma}}=n^{-1}\mathbf W.
+\]</span>
+Consequently,
+<span class="math display">\[
+\ell(\hat{{\boldsymbol{\mu}}}_1, \ldots , \hat{{\boldsymbol{\mu}}}_t,\hat{\boldsymbol{\Sigma}})=-\frac{n}{2}\log(\vert \hat{\boldsymbol{\Sigma}}\vert)-\frac{np}{2}- \frac{np}{2}\log(2\pi).
+\]</span></p>
+<p>Now consider the key null hypothesis for a one-way MANOVA:
+<span class="math display">\[
+H_0: \, {\boldsymbol{\mu}}_1=\cdots ={\boldsymbol{\mu}}_t, \qquad \boldsymbol{\Sigma}\quad \text{unrestricted}.
+\]</span>
+Under <span class="math inline">\(H_0\)</span>, the <span class="math inline">\(\mathbf y_{ij}\)</span> are IID <span class="math inline">\(N_p({\boldsymbol{\mu}}, \boldsymbol{\Sigma})\)</span>, so the log-likelihood under <span class="math inline">\(H_0\)</span> is
+<span class="math display">\[\begin{align*}
+\ell_0({\boldsymbol{\mu}}, \boldsymbol{\Sigma}) &amp; \equiv \ell ({\boldsymbol{\mu}}, \ldots ,{\boldsymbol{\mu}}, \boldsymbol{\Sigma})\\
+&amp;=-\frac{np}{2}\log(2\pi) - \frac{n}{2}\log(\vert \boldsymbol{\Sigma}\vert)-\frac{1}{2}\sum_{j=1}^t \sum_{i=1}^{n_j} (\mathbf y_{ij}-{\boldsymbol{\mu}})^\top \boldsymbol{\Sigma}^{-1}(\mathbf y_{ij}-{\boldsymbol{\mu}}),
+\end{align*}\]</span>
+and so the MLE of <span class="math inline">\({\boldsymbol{\mu}}\)</span> under <span class="math inline">\(H_0\)</span> is given by
+<span class="math display">\[
+\hat{{\boldsymbol{\mu}}}_0=\frac{1}{n} \sum_{j=1}^t \sum_{i=1}^{n_j} \mathbf y_{ij} =\bar{\mathbf y}_{++},
+\]</span>
+and, using Proposition <a href="#prp:eight2"><strong>??</strong></a> again, it is seen that the MLE of <span class="math inline">\(\boldsymbol{\Sigma}\)</span> under <span class="math inline">\(H_0\)</span> is
+<span class="math display">\[
+\hat{\boldsymbol{\Sigma}}_0=n^{-1}\mathbf T,
+\]</span>
+where <span class="math inline">\(\mathbf T\)</span> is the matrix analogue of the total sum of squares, i.e.
+<span class="math display">\[
+\mathbf T=\sum_{j=1}^t \sum_{i=1}^{n_j} (\mathbf y_{ij}-\bar{\mathbf y}_{++})(\mathbf y_{ij}-\bar{\mathbf y}_{++})^\top.
+\]</span></p>
+<p>The Wilks statistic, <span class="math inline">\(\omega_0\)</span>, for testing <span class="math inline">\(H_0\)</span> against the general alternative <a href="1-3-one-way-manova.html#eq:MANOVA1">(1.21)</a> is then
+<span class="math display" id="eq:MANOVA2">\[\begin{align}
+\omega_0=2\{\ell(\hat{{\boldsymbol{\mu}}}_1, \ldots , \hat{{\boldsymbol{\mu}}}_t, \hat{\boldsymbol{\Sigma}})-\ell_0(\hat{{\boldsymbol{\mu}}}_0, \hat{\boldsymbol{\Sigma}}_0)\}&amp;=n\log \left (\vert \hat{\boldsymbol{\Sigma}}_0 \vert / \vert \hat{\boldsymbol{\Sigma}}\vert  \right ) \nonumber \\
+&amp;=n \log\left ( \vert \mathbf T\vert/\vert \mathbf W\vert \right ).
+\tag{1.23}
+\end{align}\]</span>
+The degrees of freedom under <span class="math inline">\(H_0\)</span> are <span class="math inline">\(p+p(p+1)/2\)</span> and the degrees of freedom under <a href="1-3-one-way-manova.html#eq:MANOVA1">(1.21)</a> are <span class="math inline">\(pt+p(p+1)/2\)</span>, so the difference is <span class="math inline">\(p(t-1)\)</span>. Consequently, when the <span class="math inline">\(n_j\)</span> are all large, we should refer <span class="math inline">\(\omega_0\)</span> to
+<span class="math inline">\(\chi_{p(t-1)}^2\)</span> and reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(\omega_0\)</span> is sufficiently large.</p>
+<p>It is not immediately obvious that <a href="1-3-one-way-manova.html#eq:MANOVA2">(1.23)</a> is a natural generalisation of <a href="1-1-the-standard-univariate-linear-model.html#eq:ANOVA2">(1.8)</a>. However, in Example Sheet 4 you are asked to prove that
+<span class="math display">\[
+\mathbf T=\mathbf W+\mathbf B,
+\]</span>
+where <span class="math inline">\(\mathbf B\)</span> is the matrix analogue of the `between’ sum of squares <span class="math inline">\(B\)</span> in @ref(eq:T=B+W), i.e.
+<span class="math display">\[
+\mathbf B= \sum_{j=1}^t  n_j (\bar{\mathbf y}_{+j}-\bar{\mathbf y}_{++})(\bar{\mathbf y}_{+j}-\bar{\mathbf y}_{++})^\top.
+\]</span>
+Consequently,
+<span class="math display">\[\begin{align*}
+\omega_0&amp;=n \log (\vert \mathbf T\vert /\vert \mathbf W\vert)
+=n \log (\vert \mathbf W^{-1} \vert \vert \mathbf W+ \mathbf B\vert)\\
+&amp;=n \log (\vert \mathbf W^{-1}(\mathbf W+\mathbf B)\vert)
+=n \log (\vert \mathbf I_p +\mathbf W^{-1} \mathbf B\vert),
+\end{align*}\]</span>
+which  a natural generalisation of <a href="1-1-the-standard-univariate-linear-model.html#eq:ANOVA2">(1.8)</a>.</p>
+
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1-2-multivariate-linear-model.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
