@@ -134,6 +134,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.1" data-path="0-1-computer-tasks.html"><a href="0-1-computer-tasks.html"><i class="fa fa-check"></i><b>0.1</b> Computer tasks</a></li>
 <li class="chapter" data-level="0.2" data-path="0-2-exercises.html"><a href="0-2-exercises.html"><i class="fa fa-check"></i><b>0.2</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="1" data-path="1-lm.html"><a href="1-lm.html"><i class="fa fa-check"></i><b>1</b> Linear Models</a><ul>
+<li class="chapter" data-level="" data-path="1-lm.html"><a href="1-lm.html#notation"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>1.1</b> Ordinary least squares (OLS)</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#geometry"><i class="fa fa-check"></i><b>1.1.1</b> Geometry</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#normal-linear-model"><i class="fa fa-check"></i><b>1.1.2</b> Normal linear model</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#linear-models-in-r"><i class="fa fa-check"></i><b>1.1.3</b> Linear models in R</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#problems-with-ols"><i class="fa fa-check"></i><b>1.1.4</b> Problems with OLS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-principal-component-regression-pcr.html"><a href="1-2-principal-component-regression-pcr.html"><i class="fa fa-check"></i><b>1.2</b> Principal component regression (PCR)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-principal-component-regression-pcr.html"><a href="1-2-principal-component-regression-pcr.html#pcr-in-r"><i class="fa fa-check"></i><b>1.2.1</b> PCR in R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-shrinkage-methods.html"><a href="1-3-shrinkage-methods.html"><i class="fa fa-check"></i><b>1.3</b> Shrinkage methods</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-shrinkage-methods.html"><a href="1-3-shrinkage-methods.html#ridge-regression-in-r"><i class="fa fa-check"></i><b>1.3.1</b> Ridge regression in R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-multi-output-linear-model.html"><a href="1-4-multi-output-linear-model.html"><i class="fa fa-check"></i><b>1.4</b> Multi-output Linear Model</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="1-4-multi-output-linear-model.html"><a href="1-4-multi-output-linear-model.html#normal-linear-model-1"><i class="fa fa-check"></i><b>1.4.1</b> Normal linear model</a></li>
+<li class="chapter" data-level="1.4.2" data-path="1-4-multi-output-linear-model.html"><a href="1-4-multi-output-linear-model.html#reduced-rank-regression"><i class="fa fa-check"></i><b>1.4.2</b> Reduced rank regression</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
 
@@ -158,70 +177,119 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">0.1</span> Computer tasks</h2>
 <div id="task-1" class="section level5 unnumbered">
 <h5>Task 1</h5>
-<p>Let’s look again at the crabs dataset.</p>
+<p>Consider again the crabs dataset you looked at in the exercises in the chapter on PCA (see <a href="#pca-comptask"><strong>??</strong></a>).
+We now consider a canonical correlation analysis in which one set of variables, the <span class="math inline">\(\mathbf x\)</span>-set, is given by CL and CW and the
+other set, the <span class="math inline">\(\mathbf y\)</span>-set, is given by FL, RW and BD.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">data</span>(crabs)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">head</span>(crabs)</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" data-line-number="2">?crabs           <span class="co"># read the help page to find out about the dataset</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">X=<span class="kw">as.matrix</span>(crabs[<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>])    </a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">n=<span class="dv">200</span>                                      <span class="co"># sample size</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">H=<span class="kw">diag</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n))<span class="op">-</span><span class="kw">rep</span>(<span class="dv">1</span>,n)<span class="op">%*%</span><span class="kw">t</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n))<span class="op">/</span>n  <span class="co"># n times n centering matrix</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">X1 =<span class="st"> </span>crabs <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(CL, CW)  <span class="op">%&gt;%</span>as.matrix            </a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co"># store CL and CW in X1</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">Y1 =<span class="st"> </span>crabs <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(FL, RW, BD) <span class="op">%&gt;%</span><span class="st"> </span>as.matrix            </a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co"># store FL, RW and BD in Y1</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">Sxx=<span class="kw">t</span>(X1)<span class="op">%*%</span>H<span class="op">%*%</span>X1<span class="op">/</span>n                       <span class="co"># find x-variable variance matrix</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">Syy=<span class="kw">t</span>(Y1)<span class="op">%*%</span>H<span class="op">%*%</span>Y1<span class="op">/</span>n                       <span class="co"># find y-variable variance matrix</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13">Sxy=<span class="kw">t</span>(X1)<span class="op">%*%</span>H<span class="op">%*%</span>Y1<span class="op">/</span>n                       <span class="co"># find cross-covariance matrix</span></a></code></pre></div>
 <ol style="list-style-type: lower-roman">
-<li><p>Use the <code>lda</code> command to build a classifier to predict the <code>sex</code> of the crabs from the
-five numerical measurements (don’t use the index!).</p></li>
-<li><p>Test the predictive accuracy of your classifier by splitting the data into a training set and a test set. Report the predictive accuracy and find the confusion matrix.</p></li>
-<li><p>Plot the histograms of the 1d projections of the data. Note that there can only be single projected variable here as there are just <span class="math inline">\(g=2\)</span> groups.</p></li>
-<li><p>Use your classifier to predict the sex of a crab that has BD=14, FL=15.5, RW=13.3, CL=31, and CW=36. What probability does the classifier give for this crab being male?</p></li>
-<li><p>Create a new variable that indicates the species and the sex of the crab. With levels
-BM, BF, OM, OF. This can be done as follows:</p></li>
+<li><p>calculate <span class="math inline">\({\mathbf fS}_{\mathbf fx x}^{-1/2}\)</span> and <span class="math inline">\({\mathbf fS}_{\mathbf fyy}^{-1/2}\)</span> by first computing the spectral decomposition of <span class="math inline">\(\mathbf S_{xx}\)</span> and <span class="math inline">\(\mathbf S_{yy}\)</span>.</p></li>
+<li><p>Now calculate the matrix <span class="math inline">\(\mathbf Q\)</span> and compute its singular value decomposition.</p></li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">crabs<span class="op">$</span>spsex &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">paste</span>(crabs<span class="op">$</span>sp, crabs<span class="op">$</span>sex, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>))</a></code></pre></div>
-<p>Build a classifier to predict the species and sex of the crabs. Test its predictive accuracy, and provide some plots showing its effectiveness etc.</p>
+<!--
+
+```r
+A=Cx%*%Sxy%*%Cy            # calculate the A matrix (see Chapter 5)
+U4=svd(A)$u                # extract the U matrix (our notation) in svd
+V4=svd(A)$v                # extract the V matrix (our notation) in svd
+d4=svd(A)$d                # extract the singular values in svd
+acheck=Cx%*%U4[,1]         # calculate optimal x-weights
+bcheck=Cy%*%V4[,1]         # calculate optimal y-weights
+xscores1=H%*%X1%*%acheck   # calculate centred x-scores for 1st CC
+yscores1=H%*%Y1%*%bcheck   # calculate centred y-scores for 1st CC
+plot(xscores1,yscores1)    # plot x-scores against y-scores for 1st CC
+```
+-->
+<ol start="3" style="list-style-type: lower-roman">
+<li><p>Compute the first pair of CC vectors and CC variables <span class="math inline">\(\eta_1\)</span> and <span class="math inline">\(\psi_1\)</span>. What is the 1st canonical correlation?</p></li>
+<li><p>Plot <span class="math inline">\(\psi_1\)</span> vs <span class="math inline">\(\eta_1\)</span>. What does the plot tell you (if anything)?</p></li>
+<li><p>Repeat the above to find the second pair of CC vectors, and the second set of CC variables/scores, and plot these against each other and against the first CC scores. Is there any interesting structure in any of the plots? Which plots suggest random scatter?</p></li>
+</ol>
+<!--- Test the following hypotheses: (i) that both CC coefficients are zero, and (ii) that at most one of the CC coefficients is non-zero.  What do you conclude from your findings?
+-->
+<ol start="6" style="list-style-type: lower-roman">
+<li>Finally, repeat the analysis above using the <code>cc</code> command and <code>plt.cc</code> from the package <code>CCA</code> which you will need to download.</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">cca&lt;-<span class="kw">cc</span>(X1,Y1)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">plt.cc</span>(cca, <span class="dt">var.label=</span><span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="task-2" class="section level5 unnumbered">
 <h5>Task 2</h5>
-<p>In this question we will generate some data ourselves, and then see how successful LDA is at separating the populations.</p>
+<p>The full Premier League dataset is available at
+<a href="https://www.rotowire.com/soccer/league-table.php?season=2019">https://www.rotowire.com/soccer/league-table.php?season=2018</a>. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.</p>
+<p>Read the data into R (hint: try the <code>read.csv</code> command).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">read.csv</span>(x , <span class="dt">file=</span><span class="st">&quot;/YOURDIRECTORY/prem_league_data.txt, sep=&quot;</span> <span class="st">&quot;, header=TRUE)</span></a></code></pre></div>
+<p>If you are not sure what the name of YOURDIRECTORY is where the file is located, then a useful command to find out is <code>file.choose()</code></p>
 <ol style="list-style-type: lower-roman">
-<li>Generate 4 populations in 2d using the MVN distribution as follows:</li>
+<li><p>Check that you can reproduce, and agree with, the calculations done in this chapter.</p></li>
+<li><p>Consider now doing CCA with <span class="math inline">\(\mathbf x=(W,D)\)</span> and <span class="math inline">\(\mathbf y=(G,GA, L)\)</span>. Note that if you knew <span class="math inline">\(W\)</span> and <span class="math inline">\(D\)</span>, you could calculate <span class="math inline">\(L\)</span>. Without doing any computation, what do you expect the first canoncial correlation to be? What will the first pair of CC vectors be (upto a multiplicative constant)?</p></li>
+<li><p>Check your intuition by doing the calculation in R:</p></li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">mu1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">mu2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">mu3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">mu4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">Sigma &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="fl">0.5</span>,<span class="fl">0.4</span>,<span class="fl">0.4</span>,<span class="fl">0.5</span>), <span class="dt">nr=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="kw">library</span>(mvtnorm)</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">S1 &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dv">100</span>, mu1, Sigma)</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">S2 &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dv">100</span>, mu2, Sigma)</a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">S3 &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dv">100</span>, mu3, Sigma)</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">S4 &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dv">100</span>, mu4, Sigma)</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11">X=<span class="kw">rbind</span>(S1,S2,S3,S4)</a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">popn=</span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;1&quot;</span>,<span class="dv">100</span>),<span class="kw">rep</span>(<span class="st">&quot;2&quot;</span>,<span class="dv">100</span>),<span class="kw">rep</span>(<span class="st">&quot;3&quot;</span>,<span class="dv">100</span>),<span class="kw">rep</span>(<span class="st">&quot;4&quot;</span>,<span class="dv">100</span>)), <span class="dt">X1=</span>X[,<span class="dv">1</span>], <span class="dt">X2=</span>X[,<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw">qplot</span>(<span class="dt">x=</span>X1,<span class="dt">y=</span>X2, <span class="dt">colour=</span>popn, <span class="dt">data=</span>dat)</a></code></pre></div>
-<p><img src="09-lda-ex_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<ol start="2" style="list-style-type: lower-roman">
-<li><p>Use LDA to train a classifier. Plot the 2d projection found, and use the <code>partimat</code> command from the <code>klaR</code> package to visualise the discriminant regions.</p></li>
-<li><p>Experiment with different population means, different number of populations, and different covariance functions. What makes populations easy/hard to separate?</p></li>
-</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">X &lt;-<span class="st"> </span>table[,<span class="kw">c</span>(<span class="st">&#39;W&#39;</span>,<span class="st">&#39;D&#39;</span>)] </a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">Y &lt;-<span class="st"> </span>table[,<span class="kw">c</span>(<span class="st">&#39;G&#39;</span>,<span class="st">&#39;GA&#39;</span>,<span class="st">&#39;L&#39;</span>)] </a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">cc</span>(X,Y)</a></code></pre></div>
 </div>
 <div id="task-3" class="section level5 unnumbered">
 <h5>Task 3</h5>
-<p>With a bit of work, it is possible to get a prediction accuracy of over 80% for the MNIST data using linear discriminant analysis.</p>
-<ol style="list-style-type: lower-roman">
-<li>Create a training set of 1000 images, and try using the <code>lda</code> command to fit a linear classifier. Did it work?</li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&#39;mnist.rda&#39;</span>)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">X&lt;-<span class="st"> </span><span class="kw">as.matrix</span>(mnist<span class="op">$</span>train<span class="op">$</span>x[<span class="dv">1</span><span class="op">:</span><span class="dv">10000</span>,])</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">y&lt;-mnist<span class="op">$</span>train<span class="op">$</span>y[<span class="dv">1</span><span class="op">:</span><span class="dv">10000</span>]</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">library</span>(MASS)</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">lda</span>(X,y)</a></code></pre></div>
-<ol start="2" style="list-style-type: lower-roman">
-<li><p>One way to fix problems such as colinearity, or in this case, zero variance, is to first use PCA on the data to rotate to set of variables with maximal variance. Do PCA on your training data using just the <span class="math inline">\(X\)</span>s (the pixel intensities) and select the <span class="math inline">\(p=100\)</span> most variable PC scores. This should leave you with a <span class="math inline">\(1000 \times 100\)</span> matrix.</p></li>
-<li><p>Do linear discriminant on the 100 PC variables you derived in the previous part. Plot the LDA projections of the data: Try plotting both the first 2 projected variables (coloured by the digit they represent), and the first 3 projected variables.
-Does using 3 dimensions help in separating the different populations?</p></li>
-<li><p>Find the predictive accuracy of your classifier using the MNIST test data. Note that you will first need to project this data onto the <span class="math inline">\(p\)</span> leading principal components. Find the confusion matrix and comment upon it.</p></li>
-</ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">Xtest &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(mnist<span class="op">$</span>test<span class="op">$</span>x)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">Ytest &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(mnist<span class="op">$</span>test<span class="op">$</span>y)</a></code></pre></div>
-<ol start="22" style="list-style-type: lower-alpha">
-<li>Does the predictive accuracy change if instead of using the first <span class="math inline">\(p=100\)</span> principal component scores you use fewer or more? You can also try using larger training sets. The MNIST training data consists of <span class="math inline">\(60,000\)</span> images - depending upon your computer you may be able to repeat the analysis with all <span class="math inline">\(60,000\)</span> images. If so, how does this affect the prediction accuracy?</li>
-</ol>
+<!--https://stats.idre.ucla.edu/r/dae/canonical-correlation-analysis/-->
+<p>We will now look data measured from 600 first year university students. Measurements were made on three psychological variables:</p>
+<ul>
+<li>Locus of Control: the degree to someone believes that they, as opposed to external forces, have control over the outcome of events in their lives.</li>
+<li>Self Concept: an indication of whether a person tends to hold a generally positive and consistent or negative and variable self-view.</li>
+<li>Motivation: how motivated an individual is</li>
+</ul>
+<p>which will form our <span class="math inline">\(\mathbf X\)</span> variables. The <span class="math inline">\(\mathbf Y\)</span> variables are four academic scores (standardized test scores)</p>
+<ul>
+<li>Reading</li>
+<li>Writing</li>
+<li>Math</li>
+<li>Science</li>
+</ul>
+<p>and gender (1=Male, 0 = Female) We are interested in how the set of psychological variables relates to the academic variables and gender.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">mm &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://stats.idre.ucla.edu/stat/data/mmreg.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">colnames</span>(mm) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Concept&quot;</span>, <span class="st">&quot;Motivation&quot;</span>, <span class="st">&quot;Read&quot;</span>, <span class="st">&quot;Write&quot;</span>, <span class="st">&quot;Math&quot;</span>,</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">    <span class="st">&quot;Science&quot;</span>, <span class="st">&quot;Sex&quot;</span>)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">summary</span>(mm)</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">psych &lt;-<span class="st"> </span>mm[, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">acad &lt;-<span class="st"> </span>mm[, <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>]</a></code></pre></div>
+<p>Conduct CCA on these data. Provide an interpretation of your results.</p>
+<!--
+We will carry out some canonical correlation analysis (CCA) on the Boston Housing dataset from the `mlbench` library.
+
+
+```r
+library(mlbench) # the dataset is from this package/
+library(CCA)
+data(BostonHousing2)
+library(dplyr)
+X = BostonHousing2 %>% select(crim, zn, indus, nox,rm, age)
+Y = BostonHousing2 %>% select(cmedv, lstat,  ptratio, tax, dis)
+```
+
+
+Conduct a canonical correlation analysis of this data. In particular,
+
+```r
+cca<-cc(X,Y)
+cca$cor   #gives the canonical correlations (singular values of A in our notes) Note the first singular value is large. 
+plt.var(cca, d1=1, d2=2, var.label = TRUE)
+```
+
+
+[Note: these commands were also used on the Boston Housing data in lectures and I have provided the html output on the Moodle page, which could be helpful]. 
+
+-->
 </div>
 </div>
             </section>

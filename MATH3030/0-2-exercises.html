@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="0-1-computer-tasks.html"/>
-
+<link rel="next" href="1-lm.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -134,6 +134,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.1" data-path="0-1-computer-tasks.html"><a href="0-1-computer-tasks.html"><i class="fa fa-check"></i><b>0.1</b> Computer tasks</a></li>
 <li class="chapter" data-level="0.2" data-path="0-2-exercises.html"><a href="0-2-exercises.html"><i class="fa fa-check"></i><b>0.2</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="1" data-path="1-lm.html"><a href="1-lm.html"><i class="fa fa-check"></i><b>1</b> Linear Models</a><ul>
+<li class="chapter" data-level="" data-path="1-lm.html"><a href="1-lm.html#notation"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="1.1" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>1.1</b> Ordinary least squares (OLS)</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#geometry"><i class="fa fa-check"></i><b>1.1.1</b> Geometry</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#normal-linear-model"><i class="fa fa-check"></i><b>1.1.2</b> Normal linear model</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#linear-models-in-r"><i class="fa fa-check"></i><b>1.1.3</b> Linear models in R</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#problems-with-ols"><i class="fa fa-check"></i><b>1.1.4</b> Problems with OLS</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1-2-principal-component-regression-pcr.html"><a href="1-2-principal-component-regression-pcr.html"><i class="fa fa-check"></i><b>1.2</b> Principal component regression (PCR)</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-principal-component-regression-pcr.html"><a href="1-2-principal-component-regression-pcr.html#pcr-in-r"><i class="fa fa-check"></i><b>1.2.1</b> PCR in R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-shrinkage-methods.html"><a href="1-3-shrinkage-methods.html"><i class="fa fa-check"></i><b>1.3</b> Shrinkage methods</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-shrinkage-methods.html"><a href="1-3-shrinkage-methods.html#ridge-regression-in-r"><i class="fa fa-check"></i><b>1.3.1</b> Ridge regression in R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1-4-multi-output-linear-model.html"><a href="1-4-multi-output-linear-model.html"><i class="fa fa-check"></i><b>1.4</b> Multi-output Linear Model</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="1-4-multi-output-linear-model.html"><a href="1-4-multi-output-linear-model.html#normal-linear-model-1"><i class="fa fa-check"></i><b>1.4.1</b> Normal linear model</a></li>
+<li class="chapter" data-level="1.4.2" data-path="1-4-multi-output-linear-model.html"><a href="1-4-multi-output-linear-model.html#reduced-rank-regression"><i class="fa fa-check"></i><b>1.4.2</b> Reduced rank regression</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
 
@@ -156,84 +175,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="exercises" class="section level2">
 <h2><span class="header-section-number">0.2</span> Exercises</h2>
-<!--0. Something in 2d, drawing decision boundaries with 3 populations.-->
 <ol style="list-style-type: decimal">
-<li><p>Prove that the Bayes classifier can be written as given in Proposition <a href="#prp:ldabayes"><strong>??</strong></a>.</p></li>
-<li><p>Prove that <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> and <span class="math inline">\(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\)</span> have the same eigenvalues and find an expression relating their eigenvectors.</p></li>
-<li><p>Prove Proposition <a href="#prp:ldaconvex"><strong>??</strong></a>. Note that region <span class="math inline">\(\mathcal{R}\)</span> is convex and connected if for <span class="math inline">\(\mathbf x_1, \mathbf x_2 \in \mathcal{R}\)</span> we have
-<span class="math display">\[\lambda \mathbf x_1+(1-\lambda) \mathbf x_2 \in \mathcal{R} \mbox{ for all } \lambda \in [0,1].\]</span></p></li>
-</ol>
-<!--
-Suppose $\bx_1, \bx_2 \in \mathcal{R}_k$. Then
-\begin{align*}
-\delta_k(\bx) &=  \bv_k^\top (\lambda \bx_1+(1-\lambda) \bx_2) + c_k\\
-&=  \lambda (\bv_k^\top\bx_1+c_k)+(1-\lambda) (\bv_k^\top\bx_2 + c_k)\\
-&= \lambda \delta_k(\bx_1)+(1-\lambda) \delta_k(\bx_1)\\
-&>  \lambda \delta_j(\bx_1)+(1-\lambda) \delta_j(\bx_2) \mbox{ for } j \not = k\\
-&=\delta_j(\bx)
-\end{align*}
-
-Thus $\bx \in \mathcal{R}_k$. 
--->
-<ol start="4" style="list-style-type: decimal">
-<li>Consider <span class="math inline">\(g=3\)</span> bivariate normal populations with the same covariance matrix, given by
-<span class="math display">\[ {\boldsymbol{\mu}}_1 = \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \quad
-{\boldsymbol{\mu}}_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}, \quad
-{\boldsymbol{\mu}}_3 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad
-\boldsymbol{\Sigma}= \begin{pmatrix} 5 &amp; 2 \\ 2 &amp; 1 \end{pmatrix}.\]</span>
-Determine the three maximum likelihood discriminant rules and, hence, sketch the ML discriminant regions. Determine the point at which the three boundary lines meet.</li>
-</ol>
-<!--
-5. In the notes we looked at the We are given $n_1=n_2=50$ observations from two species of iris, {\sl I. setosa} and {\sl I. versicolor}.  The two variables are {\sl sepal length} and {\sl sepal width}.  The problem is to set up a discriminant rule for allocating a new observation $\bz=(z_1,z_2)^T$ to either {\sl I. setosa} or {\sl I. versicolor}.
-
-The sample means are given by
-$$\bar{\bx}_1=(5.006, 3.428)^\top \qquad \text{and} \qquad \bar{\bx}_2=(5.936,2.770)^\top$$
-and the sample covariance matrices are given by
-$$\bS_1 = \begin{pmatrix} 0.1218 & 0.0972 \\ 0.0972 & 0.1408 \end{pmatrix} \qquad \text{and} \qquad \bS_2 = \begin{pmatrix} 0.2611 & 0.0835 \\ 0.0835 & 0.0965 \end{pmatrix}.$$
-
-Assuming that the population covariance matrices for the two groups are equal, determine the sample ML rule for allocating the new observation $\bz$.  In particular, determine the equation of the straight line which separates the two allocation regions and plot the two regions graphically.
-
-6. In addition to {\sl I. setosa} and {\sl I. versicoluor}, $n_3=50$ observations of a third species of iris {\sl I. virginica} are taken with sample mean and covariance,
-$$ \bar{\bx}_3=(6.588, 2.974)^\top, \qquad \bS_3 = \begin{pmatrix} 0.3963 & 0.0919 \\ 0.0919 & 0.1019 \end{pmatrix}. $$
-It is calculated that
-$$ \frac{1}{147}(50\bS_1 + 50\bS_2 + 50\bS_3) = \begin{pmatrix} 0.2650 & 0.0927 \\ 0.0927 & 0.1154 \end{pmatrix}$$
-and that the largest eigenvalue of $\bW^{-1} \bB$ is $4.17$ with eigenvector $(1,-1.29)^\top$.
-
-Calculate Fisher's linear discriminant function and compare the allocation regions with those given by the sample ML discriminant rule.
--->
-<ol start="5" style="list-style-type: decimal">
-<li>The<code>palmerpenguins</code> R package contains size measurements of adult foraging penguins near Palmer Station, Antarctica.
-We will begin by looking at a subset of this data, looking at just the <em>Adelie</em> (<span class="math inline">\(n_1=151\)</span>) and <em>Chinstrap</em> (<span class="math inline">\(n_2=68\)</span>) penguins, and just the <em>bill length</em> and <em>bill depth</em> measurements. The sample mean and covariance for each group are</li>
-</ol>
-<p><span class="math display">\[\begin{align*}
-{\boldsymbol{\mu}}_{A}&amp;=\begin{pmatrix}38.8 \\18.3 \\\end{pmatrix} \qquad \boldsymbol{\Sigma}_A = \begin{pmatrix}7.09&amp;1.27 \\1.27&amp;1.48 \\\end{pmatrix}\\
-{\boldsymbol{\mu}}_{C}&amp;=\begin{pmatrix}48.8 \\18.4 \\\end{pmatrix}\qquad \boldsymbol{\Sigma}_C = \begin{pmatrix}11.2&amp;2.48 \\2.48&amp;1.29 \\\end{pmatrix}
-\end{align*}\]</span></p>
-<!-- 
-https://github.com/allisonhorst/palmerpenguins
--->
+<li><p>Attempt exam question 1 part (b) from the 2017-18 exam paper. You will find the past exam papers on Moodle.</p></li>
+<li>Suppose that <span class="math inline">\(\mathbf z= (\mathbf x^\top \mathbf y^\top)^\top\)</span> is a random vector, where both <span class="math inline">\(\mathbf x\)</span> and <span class="math inline">\(\mathbf y\)</span> are sub-vectors of dimension <span class="math inline">\(p\)</span>, so that <span class="math inline">\(\mathbf z\)</span> is <span class="math inline">\((2p)\times 1\)</span>. Define
+<span class="math display">\[{\mathbb{V}\operatorname{ar}}(\mathbf z)=\boldsymbol{\Sigma}_{\mathbf z\mathbf z}=\begin{pmatrix} \boldsymbol{\Sigma}_{\mathbf x\mathbf x} &amp; \boldsymbol{\Sigma}_{\mathbf x\mathbf y}\\\boldsymbol{\Sigma}_{\mathbf y\mathbf x} &amp; \boldsymbol{\Sigma}_{\mathbf y\mathbf y}  \end{pmatrix}.\]</span>
 <ol style="list-style-type: lower-roman">
-<li><p>Find the ML discriminant rule for allocating a new penguin <span class="math inline">\(\mathbf z=(z_1,z_2)^T\)</span> as either <em>Adelie</em> or <em>Chinstrap</em> assuming that the population covariance matrices for the two groups are equal. In particular, determine the sample ML rule for allocating the new observation <span class="math inline">\(\mathbf z\)</span>. Find the equation of the straight line which separates the two allocation regions and plot the two regions graphically.</p></li>
-<li><p>Find the Bayes discriminant rule estimating the prior probabilities using the observed frequencies <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>. How does this differ to the ML rule?</p></li>
-<li><p>In addition to the <em>Adelie</em> and <em>Chinstrap</em> penguins, there are also <span class="math inline">\(n_3=123\)</span> measurements on <em>Gentoo</em> penguins with sample mean and covariance
-<span class="math display">\[
-{\boldsymbol{\mu}}_{G}=\begin{pmatrix}47.5 \\15 \\\end{pmatrix} \qquad \boldsymbol{\Sigma}_G = \begin{pmatrix}9.5&amp;1.95 \\1.95&amp;0.963 \\\end{pmatrix}\]</span>
-The within-group covariance matrix is
-<span class="math display">\[ \frac{1}{342}(151 \mathbf S_A + 68 \mathbf S_C + 123 \mathbf S_G) = \begin{pmatrix}9.25&amp;1.9 \\1.9&amp;1.24 \\\end{pmatrix}.\]</span>
-The eigendecomposition of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> is found in R to be</p></li>
-</ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">WiB.eig</a></code></pre></div>
-<pre><code>## eigen() decomposition
-## $values
-## [1] 9.847607 1.269243
-## 
-## $vectors
-##            [,1]      [,2]
-## [1,]  0.3470103 0.3350582
-## [2,] -0.9378613 0.9421974</code></pre>
-<p>Calculate Fisher’s linear discriminant function using just a single LDA variable, and compare the discriminant regions with those you found previously.</p>
-<ol start="4" style="list-style-type: lower-roman">
-<li>What would Fisher’s discriminant rule be if you use both LDA variables?</li>
+<li>Suppose that <span class="math inline">\(\mathbf y= \mathbf T\mathbf x\)</span> where <span class="math inline">\(\mathbf T\)</span> is a fixed matrix. Find <span class="math inline">\(\boldsymbol{\Sigma}_{\mathbf x\mathbf y}\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}_{\mathbf y\mathbf y}\)</span> in terms of <span class="math inline">\(\boldsymbol{\Sigma}_{\mathbf x\mathbf x}\)</span> and <span class="math inline">\(\mathbf T\)</span>.</li>
+<li>Assuming now that <span class="math inline">\(\mathbf T\)</span> is an orthogonal matrix and <span class="math inline">\(\boldsymbol{\Sigma}_{\mathbf x\mathbf x}\)</span> is of full rank, determine the singular values of the matrix <span class="math inline">\(\mathbf Q=\boldsymbol{\Sigma}_{\mathbf x\mathbf x}^{-1/2}\boldsymbol{\Sigma}_ {\mathbf x\mathbf y}\boldsymbol{\Sigma}_{\mathbf y\mathbf y}^{-1/2}\)</span>, and hence write down the canonical correlation coefficients.</li>
+<li>Suppose now that <span class="math inline">\(\mathbf T\)</span> is non-singular but not orthogonal. Comment on whether the answer to part (b) changes.</li>
+</ol></li>
+<li>We will now prove Proposition <a href="#prp:svdopt3"><strong>??</strong></a> by induction.
+The case for <span class="math inline">\(k=1\)</span> was proved in Section <a href="#cca1"><strong>??</strong></a> in Proposition <a href="#prp:svdmax2"><strong>??</strong></a>. Assume the result is true for <span class="math inline">\(k\)</span>. Consider the objective
+<span class="math display">\[\mathcal{L} = \mathbf a^\top \mathbf Q\mathbf b+ \sum_{i=1}^k \gamma_i\mathbf a^\top \mathbf a_i + \sum_{i=1}^k \mu_i\mathbf b^\top \mathbf b_i + \frac{\lambda_1}{2}(1-\mathbf a^\top\mathbf a)+ \frac{\lambda_2}{2}(1-\mathbf b^\top\mathbf b)\]</span>
+where <span class="math inline">\(\lambda_i, \mu_i, \gamma_i\)</span> are Lagrangian multipliers.
+<ol style="list-style-type: lower-roman">
+<li><p>By differentiating with respect to <span class="math inline">\(\mathbf a\)</span> and <span class="math inline">\(\mathbf b\)</span> and setting the derivative to zero show that
+<span class="math display" id="eq:ex3b" id="eq:ex3a">\[\begin{align}
+ \mathbf Q\mathbf b+ \sum\gamma_i \mathbf a_i - \lambda_1 \mathbf a&amp;= 0 \tag{0.1}\\
+ \mathbf Q^\top\mathbf a+ \sum\mu_i \mathbf b_i - \lambda_2 \mathbf b&amp;= 0. \tag{0.2} 
+ \end{align}\]</span></p></li>
+<li><p>By left multiplying the equations above by <span class="math inline">\(\mathbf a^\top\)</span> and <span class="math inline">\(\mathbf b^\top\)</span> respectively show that
+<span class="math display">\[\lambda_1=\lambda_2 = \mathbf a^\top \mathbf Q\mathbf b.\]</span></p></li>
+<li><p>By left multiplying <a href="0-2-exercises.html#eq:ex3a">(0.1)</a> by <span class="math inline">\(\mathbf a_i^\top\)</span> show that <span class="math inline">\(\gamma_i=0\)</span> for <span class="math inline">\(i=1, \ldots, k\)</span>. Show similarly that <span class="math inline">\(\mu_i =0\)</span> for <span class="math inline">\(i=1, \ldots, k\)</span>.</p></li>
+<li><p>Finally, by copying the proof of Proposition <a href="#prp:svdmax2"><strong>??</strong></a>, prove Proposition <a href="#prp:svdopt3"><strong>??</strong></a>.</p></li>
+</ol></li>
+<li><p>Show the mean of the cc variables <span class="math inline">\(\eta_k\)</span> and <span class="math inline">\(\psi_k\)</span> is zero. Prove Proposition <a href="#prp:ccavar"><strong>??</strong></a> giving the variance of covariance the cc variables.</p></li>
 </ol>
 
 </div>
@@ -243,8 +209,8 @@ The eigendecomposition of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)<
           </div>
         </div>
       </div>
-<a href="0-1-computer-tasks.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="0-1-computer-tasks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-lm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

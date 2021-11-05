@@ -152,9 +152,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="1-5-tasks-ch2.html"><a href="1-5-tasks-ch2.html"><i class="fa fa-check"></i><b>1.5</b> Computer tasks</a></li>
 <li class="chapter" data-level="1.6" data-path="1-6-exercises-ch2.html"><a href="1-6-exercises-ch2.html"><i class="fa fa-check"></i><b>1.6</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="2-lm.html"><a href="2-lm.html"><i class="fa fa-check"></i><b>2</b> The Multivariate Linear Model</a><ul>
-<li class="chapter" data-level="2.1" data-path="2-1-recap-standard-linear-model.html"><a href="2-1-recap-standard-linear-model.html"><i class="fa fa-check"></i><b>2.1</b> Recap: standard linear model</a></li>
-<li class="chapter" data-level="2.2" data-path="2-2-multivariate-linear-model.html"><a href="2-2-multivariate-linear-model.html"><i class="fa fa-check"></i><b>2.2</b> Multivariate Linear Model</a></li>
+<li class="chapter" data-level="2" data-path="2-lm.html"><a href="2-lm.html"><i class="fa fa-check"></i><b>2</b> Linear Models</a><ul>
+<li class="chapter" data-level="" data-path="2-lm.html"><a href="2-lm.html#notation-1"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="2.1" data-path="2-1-ordinary-least-squares-ols.html"><a href="2-1-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>2.1</b> Ordinary least squares (OLS)</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-ordinary-least-squares-ols.html"><a href="2-1-ordinary-least-squares-ols.html#geometry"><i class="fa fa-check"></i><b>2.1.1</b> Geometry</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-ordinary-least-squares-ols.html"><a href="2-1-ordinary-least-squares-ols.html#normal-linear-model"><i class="fa fa-check"></i><b>2.1.2</b> Normal linear model</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-1-ordinary-least-squares-ols.html"><a href="2-1-ordinary-least-squares-ols.html#linear-models-in-r"><i class="fa fa-check"></i><b>2.1.3</b> Linear models in R</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-1-ordinary-least-squares-ols.html"><a href="2-1-ordinary-least-squares-ols.html#problems-with-ols"><i class="fa fa-check"></i><b>2.1.4</b> Problems with OLS</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-2-principal-component-regression-pcr.html"><a href="2-2-principal-component-regression-pcr.html"><i class="fa fa-check"></i><b>2.2</b> Principal component regression (PCR)</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-principal-component-regression-pcr.html"><a href="2-2-principal-component-regression-pcr.html#pcr-in-r"><i class="fa fa-check"></i><b>2.2.1</b> PCR in R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-shrinkage-methods.html"><a href="2-3-shrinkage-methods.html"><i class="fa fa-check"></i><b>2.3</b> Shrinkage methods</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-shrinkage-methods.html"><a href="2-3-shrinkage-methods.html#ridge-regression-in-r"><i class="fa fa-check"></i><b>2.3.1</b> Ridge regression in R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-4-multi-output-linear-model.html"><a href="2-4-multi-output-linear-model.html"><i class="fa fa-check"></i><b>2.4</b> Multi-output Linear Model</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-4-multi-output-linear-model.html"><a href="2-4-multi-output-linear-model.html#normal-linear-model-1"><i class="fa fa-check"></i><b>2.4.1</b> Normal linear model</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-4-multi-output-linear-model.html"><a href="2-4-multi-output-linear-model.html#reduced-rank-regression"><i class="fa fa-check"></i><b>2.4.2</b> Reduced rank regression</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -356,15 +371,15 @@ a projection matrix.
 <p>We are mostly interested in <strong>orthogonal</strong> projections.</p>
 
 <div class="definition">
-<span id="def:orthogproj" class="definition"><strong>Definition 1.12  </strong></span>If <span class="math inline">\(W\)</span> is an inner product space, and <span class="math inline">\(U\)</span> is a subspace of <span class="math inline">\(W\)</span>, then the orthogonal projection of <span class="math inline">\(\mathbf w\in W\)</span> onto <span class="math inline">\(U\)</span> is the unique element <span class="math inline">\(\mathbf u\in U\)</span> that minimizes
+<span id="def:orthogproj" class="definition"><strong>Definition 1.12  </strong></span>If <span class="math inline">\(W\)</span> is an inner product space, and <span class="math inline">\(U\)</span> is a subspace of <span class="math inline">\(W\)</span>, then the orthogonal projection of <span class="math inline">\(\mathbf w\in W\)</span> onto <span class="math inline">\(U\)</span> is the unique vector <span class="math inline">\(\mathbf u\in U\)</span> that minimizes
 <span class="math display">\[||\mathbf w-\mathbf u||.\]</span>
 </div>
 
 <p>In other words, the orthogonal projection of <span class="math inline">\(\mathbf w\)</span> onto <span class="math inline">\(U\)</span> is the <em>best possible approximation</em> of <span class="math inline">\(\mathbf w\)</span> in <span class="math inline">\(U\)</span>.</p>
 <p>As above, we can split <span class="math inline">\(W\)</span> into <span class="math inline">\(U\)</span> and its orthogonal compliment
 <span class="math display">\[U^\perp = \{\mathbf x\in W: \langle \mathbf x,\mathbf u\rangle = 0\}\]</span>
-i.e., <span class="math inline">\(W=U \oplus U^\perp\)</span> so that any <span class="math inline">\(\mathbf w\in W\)</span> can be written as
-<span class="math inline">\(\mathbf w=\mathbf u+\mathbf v\)</span> with <span class="math inline">\(\mathbf u\in U\)</span> and <span class="math inline">\(\mathbf v\in U^\perp\)</span>.</p>
+i.e., <span class="math inline">\(W=U \oplus U^\perp\)</span> so that any <span class="math inline">\(\mathbf w\in W\)</span> can be uniquely written as
+<span class="math inline">\(\mathbf w=\mathbf u+\mathbf v\)</span> with <span class="math inline">\(\mathbf u\in U\)</span> and <span class="math inline">\(\mathbf v\in U^\perp\)</span>. This makes clear why we call <span class="math inline">\(\mathbf u= \arg \min_{\mathbf u\in \mathbf U} ||\mathbf w-\mathbf u||\)</span> the <em>orthogonal</em> projection of <span class="math inline">\(\mathbf w\)</span>, it is because it splits <span class="math inline">\(\mathbf w\)</span> into two orthogonal components: <span class="math inline">\(\mathbf w= \mathbf u+\mathbf v\)</span> with <span class="math inline">\(\langle \mathbf u, \mathbf v\rangle=0\)</span>.</p>
 
 <div class="proposition">
 <span id="prp:orthogprojection" class="proposition"><strong>Proposition 1.5  </strong></span>If <span class="math inline">\(\{\mathbf u_1, \ldots, \mathbf u_k\}\)</span> is a basis for <span class="math inline">\(U\)</span>, then the orthogonal projection matrix (i.e., the matrix that projects <span class="math inline">\(\mathbf w\in W\)</span> onto <span class="math inline">\(U\)</span>) is
@@ -411,13 +426,13 @@ To check this, draw a picture!
 
 <!-- OKAY TO HERE -->
 </div>
-<div id="geometric-interpretation-of-linear-regresssion" class="section level4">
+<div id="ch2linreg" class="section level4">
 <h4><span class="header-section-number">1.3.3.2</span> Geometric interpretation of linear regresssion</h4>
 <p>Consider the linear regression model
 <span class="math display">\[\mathbf y= \mathbf X\boldsymbol \beta+\mathbf e\]</span>
 where <span class="math inline">\(\mathbf y\in\mathbb{R}^n\)</span> is the vector of observations, <span class="math inline">\(\mathbf X\)</span> is the <span class="math inline">\(n\times p\)</span> design matrix, <span class="math inline">\(\boldsymbol \beta\)</span> is the <span class="math inline">\(p\times 1\)</span> vector of parameters that we wish to estimate, and <span class="math inline">\(\mathbf e\)</span> is a <span class="math inline">\(n\times 1\)</span> vector of zero-mean errors.</p>
 <p>Least-squares regression tries to find the value of <span class="math inline">\(\boldsymbol \beta\in \mathbb{R}^p\)</span> that minimizes the sum of squared errors, i.e., we try to find <span class="math inline">\(\boldsymbol \beta\)</span> to minimize
-<span class="math display">\[||\mathbf y- \mathbf X\boldsymbol \beta||_2\]</span></p>
+<span class="math display">\[||\mathbf y- \mathbf X\boldsymbol \beta||_2^2\]</span></p>
 <p>We know that <span class="math inline">\(\mathbf X\boldsymbol \beta\)</span> is in the column space of <span class="math inline">\(\mathbf X\)</span>, and so we can see that linear regression aims to find the <em>orthogonal projection</em> onto <span class="math inline">\(\mathcal{C}(X)\)</span>.
 <span class="math display">\[\mathbf P_U\mathbf y=\arg \min_{\mathbf y&#39;: \mathbf y&#39; \in \mathcal{C}(X)} ||\mathbf y-\mathbf y&#39;||_2.\]</span></p>
 <p>By Proposition <a href="1-3-linalg-innerprod.html#prp:orthogprojection">1.5</a> this is

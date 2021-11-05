@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.2 Exploratory data analysis (EDA) | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.2 Exploratory data analysis (EDA) | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.2 Exploratory data analysis (EDA) | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1.1-notation.html"/>
+<link rel="next" href="1.3-randvec.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-notation.html"><a href="1.1-notation.html"><i class="fa fa-check"></i><b>1.1</b> Notation</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="1.1-notation.html"><a href="1.1-notation.html#example-datasets"><i class="fa fa-check"></i><b>1.1.1</b> Example datasets</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1.1-notation.html"><a href="1.1-notation.html#aims-of-multivariate-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Aims of multivariate data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1.2-exploratory-data-analysis-eda.html"><a href="1.2-exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>1.2</b> Exploratory data analysis (EDA)</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1.2-exploratory-data-analysis-eda.html"><a href="1.2-exploratory-data-analysis-eda.html#data-visualization"><i class="fa fa-check"></i><b>1.2.1</b> Data visualization</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1.2-exploratory-data-analysis-eda.html"><a href="1.2-exploratory-data-analysis-eda.html#summary-statistics"><i class="fa fa-check"></i><b>1.2.2</b> Summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1.3-randvec.html"><a href="1.3-randvec.html"><i class="fa fa-check"></i><b>1.3</b> Random vectors and matrices</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="1.3-randvec.html"><a href="1.3-randvec.html#estimators"><i class="fa fa-check"></i><b>1.3.1</b> Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1.4-computer-tasks.html"><a href="1.4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1.5-exercises.html"><a href="1.5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-linalg-prelim.html"><a href="2-linalg-prelim.html"><i class="fa fa-check"></i><b>2</b> Review of linear algebra</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html"><i class="fa fa-check"></i><b>2.1</b> Basics</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#notation-1"><i class="fa fa-check"></i><b>2.1.1</b> Notation</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#elementary-matrix-operations"><i class="fa fa-check"></i><b>2.1.2</b> Elementary matrix operations</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#special-matrices"><i class="fa fa-check"></i><b>2.1.3</b> Special matrices</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#vectordiff"><i class="fa fa-check"></i><b>2.1.4</b> Vector Differentiation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html"><i class="fa fa-check"></i><b>2.2</b> Vector spaces</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html#linear-independence"><i class="fa fa-check"></i><b>2.2.1</b> Linear independence</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html#colsspace"><i class="fa fa-check"></i><b>2.2.2</b> Row and column spaces</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html#linear-transformations"><i class="fa fa-check"></i><b>2.2.3</b> Linear transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html"><i class="fa fa-check"></i><b>2.3</b> Inner product spaces</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html#normed"><i class="fa fa-check"></i><b>2.3.1</b> Distances, and angles</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html#orthogonal-matrices"><i class="fa fa-check"></i><b>2.3.2</b> Orthogonal matrices</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html#projection-matrix"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2.4-centering-matrix.html"><a href="2.4-centering-matrix.html"><i class="fa fa-check"></i><b>2.4</b> The Centering Matrix</a></li>
+<li class="chapter" data-level="2.5" data-path="2.5-tasks-ch2.html"><a href="2.5-tasks-ch2.html"><i class="fa fa-check"></i><b>2.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.6" data-path="2.6-exercises-ch2.html"><a href="2.6-exercises-ch2.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-linalg-decomp.html"><a href="3-linalg-decomp.html"><i class="fa fa-check"></i><b>3</b> Matrix decompositions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-matrix-matrix.html"><a href="3.1-matrix-matrix.html"><i class="fa fa-check"></i><b>3.1</b> Matrix-matrix products</a></li>
+<li class="chapter" data-level="3.2" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>3.2</b> Spectral/eigen decomposition</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>3.2.1</b> Eigenvalues and eigenvectors</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>3.2.2</b> Spectral decomposition</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3.3-linalg-SVD.html"><a href="3.3-linalg-SVD.html"><i class="fa fa-check"></i><b>3.3</b> Singular Value Decomposition (SVD)</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3.3-linalg-SVD.html"><a href="3.3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.3.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3.4-svdopt.html"><a href="3.4-svdopt.html"><i class="fa fa-check"></i><b>3.4</b> SVD optimization results</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-lowrank.html"><a href="3.5-lowrank.html"><i class="fa fa-check"></i><b>3.5</b> Low-rank approximation</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="3.5-lowrank.html"><a href="3.5-lowrank.html#matrix-norms"><i class="fa fa-check"></i><b>3.5.1</b> Matrix norms</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="3.6-exercises-1.html"><a href="3.6-exercises-1.html"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-mds.html"><a href="4-mds.html"><i class="fa fa-check"></i><b>4</b> Multidimensional Scaling (MDS)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-classical-mds.html"><a href="4.1-classical-mds.html"><i class="fa fa-check"></i><b>4.1</b> Classical MDS</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4.1-classical-mds.html"><a href="4.1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>4.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="4.1.2" data-path="4.1-classical-mds.html"><a href="4.1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>4.1.2</b> Principal Coordinate Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4.2-similarity.html"><a href="4.2-similarity.html"><i class="fa fa-check"></i><b>4.2</b> Similarity measures</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="4.2-similarity.html"><a href="4.2-similarity.html#binary-attributes"><i class="fa fa-check"></i><b>4.2.1</b> Binary attributes</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4.2-similarity.html"><a href="4.2-similarity.html#example-classical-mds-with-the-mnist-data"><i class="fa fa-check"></i><b>4.2.2</b> Example: Classical MDS with the MNIST data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4.3-non-metric-mds.html"><a href="4.3-non-metric-mds.html"><i class="fa fa-check"></i><b>4.3</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="4.4" data-path="4.4-exercises-2.html"><a href="4.4-exercises-2.html"><i class="fa fa-check"></i><b>4.4</b> Exercises</a></li>
+<li class="chapter" data-level="4.5" data-path="4.5-computer-tasks-1.html"><a href="4.5-computer-tasks-1.html"><i class="fa fa-check"></i><b>4.5</b> Computer Tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><a href="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><i class="fa fa-check"></i>Part III: Inference using the Multivariate Normal Distribution (MVN)</a></li>
+<li class="chapter" data-level="5" data-path="5-multinormal.html"><a href="5-multinormal.html"><i class="fa fa-check"></i><b>5</b> The Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html"><i class="fa fa-check"></i><b>5.1</b> Definition and Properties of the MVN</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html#basics"><i class="fa fa-check"></i><b>5.1.1</b> Basics</a></li>
+<li class="chapter" data-level="5.1.2" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html#transformations"><i class="fa fa-check"></i><b>5.1.2</b> Transformations</a></li>
+<li class="chapter" data-level="5.1.3" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html#independence"><i class="fa fa-check"></i><b>5.1.3</b> Independence</a></li>
+<li class="chapter" data-level="5.1.4" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html#confidence-ellipses"><i class="fa fa-check"></i><b>5.1.4</b> Confidence ellipses</a></li>
+<li class="chapter" data-level="5.1.5" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html#sampling-results-for-the-mvn"><i class="fa fa-check"></i><b>5.1.5</b> Sampling results for the MVN</a></li>
+<li class="chapter" data-level="5.2.1" data-path="5.2-the-wishart-distribution.html"><a href="5.2-the-wishart-distribution.html"><i class="fa fa-check"></i><b>5.2.1</b> Properties</a></li>
+<li class="chapter" data-level="5.2.2" data-path="5.2-the-wishart-distribution.html"><a href="5.2-the-wishart-distribution.html#cochrans-theorem"><i class="fa fa-check"></i><b>5.2.2</b> Cochran’s theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5.3-hotellings-t2-distribution.html"><a href="5.3-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>5.3</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
+<li class="chapter" data-level="5.4" data-path="5.4-inference-based-on-the-mvn.html"><a href="5.4-inference-based-on-the-mvn.html"><i class="fa fa-check"></i><b>5.4</b> Inference based on the MVN</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="5.4-inference-based-on-the-mvn.html"><a href="5.4-inference-based-on-the-mvn.html#onesampleSigma"><i class="fa fa-check"></i><b>5.4.1</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> known</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5.4-inference-based-on-the-mvn.html"><a href="5.4-inference-based-on-the-mvn.html#onesample"><i class="fa fa-check"></i><b>5.4.2</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 1 sample</a></li>
+<li class="chapter" data-level="5.4.3" data-path="5.4-inference-based-on-the-mvn.html"><a href="5.4-inference-based-on-the-mvn.html#boldsymbolsigma-unknown-2-samples"><i class="fa fa-check"></i><b>5.4.3</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 2 samples</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5.5-exercises-3.html"><a href="5.5-exercises-3.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+<li class="chapter" data-level="5.6" data-path="5.6-computer-tasks-2.html"><a href="5.6-computer-tasks-2.html"><i class="fa fa-check"></i><b>5.6</b> Computer tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="6" data-path="6-lda.html"><a href="6-lda.html"><i class="fa fa-check"></i><b>6</b> Discriminant analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="6-lda.html"><a href="6-lda.html#linear-discriminant-analysis"><i class="fa fa-check"></i>Linear discriminant analysis</a></li>
+<li class="chapter" data-level="6.1" data-path="6.1-lda-ML.html"><a href="6.1-lda-ML.html"><i class="fa fa-check"></i><b>6.1</b> Maximum likelihood (ML) discriminant rule</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="6.1-lda-ML.html"><a href="6.1-lda-ML.html#multivariate-normal-populations"><i class="fa fa-check"></i><b>6.1.1</b> Multivariate normal populations</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6.1-lda-ML.html"><a href="6.1-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>6.1.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="6.1.3" data-path="6.1-lda-ML.html"><a href="6.1-lda-ML.html#two-populations"><i class="fa fa-check"></i><b>6.1.3</b> Two populations</a></li>
+<li class="chapter" data-level="6.1.4" data-path="6.1-lda-ML.html"><a href="6.1-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>6.1.4</b> More than two populations</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6.2-lda-Bayes.html"><a href="6.2-lda-Bayes.html"><i class="fa fa-check"></i><b>6.2</b> Bayes discriminant rule</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6.2-lda-Bayes.html"><a href="6.2-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>6.2.1</b> Example: LDA using the Iris data</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6.2-lda-Bayes.html"><a href="6.2-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>6.2.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6.2-lda-Bayes.html"><a href="6.2-lda-Bayes.html#prediction-accuracy"><i class="fa fa-check"></i><b>6.2.3</b> Prediction accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6.3-FLDA.html"><a href="6.3-FLDA.html"><i class="fa fa-check"></i><b>6.3</b> Fisher’s linear discriminant rule</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="6.3-FLDA.html"><a href="6.3-FLDA.html#iris-example-continued-1"><i class="fa fa-check"></i><b>6.3.1</b> Iris example continued</a></li>
+<li class="chapter" data-level="6.3.2" data-path="6.3-FLDA.html"><a href="6.3-FLDA.html#links-between-methods"><i class="fa fa-check"></i><b>6.3.2</b> Links between methods</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="6.4-computer-tasks-3.html"><a href="6.4-computer-tasks-3.html"><i class="fa fa-check"></i><b>6.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="6.5" data-path="6.5-exercises-4.html"><a href="6.5-exercises-4.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-cluster.html"><a href="7-cluster.html"><i class="fa fa-check"></i><b>7</b> Cluster Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-k-means-clustering.html"><a href="7.1-k-means-clustering.html"><i class="fa fa-check"></i><b>7.1</b> K-means clustering</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="7.1-k-means-clustering.html"><a href="7.1-k-means-clustering.html#estimating-boldsymbol-delta"><i class="fa fa-check"></i><b>7.1.1</b> Estimating <span class="math inline">\(\boldsymbol \delta\)</span></a></li>
+<li class="chapter" data-level="7.1.2" data-path="7.1-k-means-clustering.html"><a href="7.1-k-means-clustering.html#k-means"><i class="fa fa-check"></i><b>7.1.2</b> K-means</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7.1-k-means-clustering.html"><a href="7.1-k-means-clustering.html#example-iris-data"><i class="fa fa-check"></i><b>7.1.3</b> Example: Iris data</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7.1-k-means-clustering.html"><a href="7.1-k-means-clustering.html#choosing-k"><i class="fa fa-check"></i><b>7.1.4</b> Choosing <span class="math inline">\(K\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7.2-model-based-clustering.html"><a href="7.2-model-based-clustering.html"><i class="fa fa-check"></i><b>7.2</b> Model-based clustering</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="7.2-model-based-clustering.html"><a href="7.2-model-based-clustering.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>7.2.1</b> Maximum-likelihood estimation</a></li>
+<li class="chapter" data-level="7.2.2" data-path="7.2-model-based-clustering.html"><a href="7.2-model-based-clustering.html#multivariate-gaussian-clusters"><i class="fa fa-check"></i><b>7.2.2</b> Multivariate Gaussian clusters</a></li>
+<li class="chapter" data-level="7.2.3" data-path="7.2-model-based-clustering.html"><a href="7.2-model-based-clustering.html#example-iris"><i class="fa fa-check"></i><b>7.2.3</b> Example: Iris</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7.3-hierarchical-clustering-methods.html"><a href="7.3-hierarchical-clustering-methods.html"><i class="fa fa-check"></i><b>7.3</b> Hierarchical clustering methods</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="7.3-hierarchical-clustering-methods.html"><a href="7.3-hierarchical-clustering-methods.html#distance-measures"><i class="fa fa-check"></i><b>7.3.1</b> Distance measures</a></li>
+<li class="chapter" data-level="7.3.2" data-path="7.3-hierarchical-clustering-methods.html"><a href="7.3-hierarchical-clustering-methods.html#toy-example"><i class="fa fa-check"></i><b>7.3.2</b> Toy Example</a></li>
+<li class="chapter" data-level="7.3.3" data-path="7.3-hierarchical-clustering-methods.html"><a href="7.3-hierarchical-clustering-methods.html#comparison-of-methods"><i class="fa fa-check"></i><b>7.3.3</b> Comparison of methods</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="7.4-summary.html"><a href="7.4-summary.html"><i class="fa fa-check"></i><b>7.4</b> Summary</a></li>
+<li class="chapter" data-level="7.5" data-path="7.5-computer-tasks-4.html"><a href="7.5-computer-tasks-4.html"><i class="fa fa-check"></i><b>7.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="7.6" data-path="7.6-exercises-5.html"><a href="7.6-exercises-5.html"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-lm.html"><a href="8-lm.html"><i class="fa fa-check"></i><b>8</b> Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="8-lm.html"><a href="8-lm.html#notation-3"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="8.1" data-path="8.1-ordinary-least-squares-ols.html"><a href="8.1-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>8.1</b> Ordinary least squares (OLS)</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="8.1-ordinary-least-squares-ols.html"><a href="8.1-ordinary-least-squares-ols.html#geometry"><i class="fa fa-check"></i><b>8.1.1</b> Geometry</a></li>
+<li class="chapter" data-level="8.1.2" data-path="8.1-ordinary-least-squares-ols.html"><a href="8.1-ordinary-least-squares-ols.html#normal-linear-model"><i class="fa fa-check"></i><b>8.1.2</b> Normal linear model</a></li>
+<li class="chapter" data-level="8.1.3" data-path="8.1-ordinary-least-squares-ols.html"><a href="8.1-ordinary-least-squares-ols.html#linear-models-in-r"><i class="fa fa-check"></i><b>8.1.3</b> Linear models in R</a></li>
+<li class="chapter" data-level="8.1.4" data-path="8.1-ordinary-least-squares-ols.html"><a href="8.1-ordinary-least-squares-ols.html#problems-with-ols"><i class="fa fa-check"></i><b>8.1.4</b> Problems with OLS</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="8.2-principal-component-regression-pcr.html"><a href="8.2-principal-component-regression-pcr.html"><i class="fa fa-check"></i><b>8.2</b> Principal component regression (PCR)</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="8.2-principal-component-regression-pcr.html"><a href="8.2-principal-component-regression-pcr.html#pcr-in-r"><i class="fa fa-check"></i><b>8.2.1</b> PCR in R</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8.3-shrinkage-methods.html"><a href="8.3-shrinkage-methods.html"><i class="fa fa-check"></i><b>8.3</b> Shrinkage methods</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="8.3-shrinkage-methods.html"><a href="8.3-shrinkage-methods.html#ridge-regression-in-r"><i class="fa fa-check"></i><b>8.3.1</b> Ridge regression in R</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="8.4-multi-output-linear-model.html"><a href="8.4-multi-output-linear-model.html"><i class="fa fa-check"></i><b>8.4</b> Multi-output Linear Model</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="8.4-multi-output-linear-model.html"><a href="8.4-multi-output-linear-model.html#normal-linear-model-1"><i class="fa fa-check"></i><b>8.4.1</b> Normal linear model</a></li>
+<li class="chapter" data-level="8.4.2" data-path="8.4-multi-output-linear-model.html"><a href="8.4-multi-output-linear-model.html#reduced-rank-regression"><i class="fa fa-check"></i><b>8.4.2</b> Reduced rank regression</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="8.5-computer-tasks-5.html"><a href="8.5-computer-tasks-5.html"><i class="fa fa-check"></i><b>8.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="8.6" data-path="8.6-exercises-6.html"><a href="8.6-exercises-6.html"><i class="fa fa-check"></i><b>8.6</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exploratory-data-analysis-eda" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Exploratory data analysis (EDA)</h2>
+<!--http://zevross.com/blog/2017/06/19/tips-and-tricks-for-working-with-images-and-figures-in-r-markdown-documents/-->
+<blockquote>
+<p>A picture is worth a thousand words</p>
+</blockquote>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="figs/Minard.jpg" alt="Charles Joseph Minard's famous map of Napoleon's 1812 invasion of Russian. It displays [six types of data in two dimensions](https://en.wikipedia.org/wiki/Charles_Joseph_Minard#The_map_of_Napoleon's_Russian_campaign)."  />
+<p class="caption">
+Figure 1.1: Charles Joseph Minard’s famous map of Napoleon’s 1812 invasion of Russian. It displays <a href="https://en.wikipedia.org/wiki/Charles_Joseph_Minard#The_map_of_Napoleon&#39;s_Russian_campaign">six types of data in two dimensions</a>.
+</p>
+</div>
+<p>Before trying any form of statistical analysis, it is always a good idea to do some form of exploratory data analysis to understand the challenges presented by the data. As a minimum, this usually involves finding out whether each variable is continuous, discrete, or categorical, doing some basic visualization (plots), and perhaps computing a few summary statistics such as the mean and variance.</p>
+<div id="data-visualization" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Data visualization</h3>
+<p>Visualising datasets before fitting any models can be extremely useful. It allows us to see obvious patterns and relationships,and may suggest a sensible form of analysis.
+With multivariate data, finding the right kind of plot is not always simple, and many different approaches have been proposed.</p>
+<p>When <span class="math inline">\(p=1\)</span> or <span class="math inline">\(p=2\)</span> we can simply draw histograms and scatter plots (respectively) to view the distribution. For <span class="math inline">\(p \geq 3\)</span> the task is harder. One solution is a matrix of pair-wise scatter plots using the <code>pairs</code> command in R. The graph below shows the relationship between goals scored (F), goals against (A) and points (PT) for 20 teams during a recent Premiership season.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="figs/pairs.png" alt="Scatter plots of goals for (F), goals against (A) and points (PT) for a recent Premier League Season"  />
+<p class="caption">
+Figure 1.2: Scatter plots of goals for (F), goals against (A) and points (PT) for a recent Premier League Season
+</p>
+</div>
+<p>We can instantly see that points and goals scored are positively correlated, and that points and goals conceded (A) are negatively correlated (this is not a surprise of course).</p>
+<p>R has a good basic plotting functionality. However, we will sometimes use packages that provide additional functionality. The first time you use a package you may need to install it. We can use <code>ggplot2</code> and <code>GGally</code> (which adds functionality to ggplot2) to add colour and detail to pairs plots. For example</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="1.2-exploratory-data-analysis-eda.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb1-2"><a href="1.2-exploratory-data-analysis-eda.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="1.2-exploratory-data-analysis-eda.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb1-4"><a href="1.2-exploratory-data-analysis-eda.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pairs(iris) # - try the pairs command for comparison</span></span>
+<span id="cb1-5"><a href="1.2-exploratory-data-analysis-eda.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(iris, <span class="at">columns=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,  <span class="at">mapping=</span>ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">colour =</span> Species),</span>
+<span id="cb1-6"><a href="1.2-exploratory-data-analysis-eda.html#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">upper =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;cor&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>)))  <span class="co"># fix the font size</span></span></code></pre></div>
+<p><img src="01-statistical-prelim_files/figure-html/unnamed-chunk-7-1.png" width="100%" /></p>
+<p>This plot allows us to instantly see that there are clear differences between the three species of iris, at least when we look at the pairs plots. The benefit of adding colour in this case is that we can see the differences between the different species. Note how the sepal length and width are (weakly) negatively correlated across the entire dataset, but are positively correlated when we look at a single species at a time. We would have missed this information if we only used the <code>pairs</code> command (try it!).</p>
+<p>Note that it is possible to miss key relationships when looking at <em>marginals</em> plots such as these, as they only show two variables at a time. More complex relationships between three or more variables will not be visible. It is difficult visualize data in three or more dimensions. Many different types of plot have been proposed (e.g. Google Chernoff faces). One approach is to use a <em>parallel line</em> plot</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="1.2-exploratory-data-analysis-eda.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggparcoord</span>(iris, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">groupColumn=</span><span class="dv">5</span>)</span></code></pre></div>
+<p><img src="01-statistical-prelim_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Each case is represented by a single line, and here we have the information shown for the four continuous variables. The fifth variable <code>Species</code> is a discrete factor, and is shown by colouring the lines.</p>
+<p>If you not familiar with <code>ggplot2</code>, a nice introduction can be found <a href="https://ggplot2.tidyverse.org/">here</a>. Details about `GGally can be found <a href="https://ggobi.github.io/ggally/">here</a>. A good way to see the variety of plots that are possible, and to find code to create them, is to browse plot galleries such as those available
+<a href="https://www.r-graph-gallery.com/ggplot2-package.html">here</a>
+and <a href="https://www.data-to-viz.com">here</a>.</p>
+<!--You can also use the `plot3d` command in the `rgl` library to create an interactive 3D plot of the data.  The difficulty of displaying multivariate data is further motivation for developing a method for reducing the number of dimensions in the data.-->
+</div>
+<div id="summary-statistics" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Summary statistics</h3>
+<p>It is often useful to report a small number of numerical summaries of the data.
+In univariate statistics we define the sample mean and sample variance of samples <span class="math inline">\(x_1, \ldots, x_n\)</span> to be
+<span class="math display">\[ \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \quad \text{and} \quad s_{xx} = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2 \]</span>
+and for two samples, <span class="math inline">\(x_1, \ldots, x_n\)</span> and <span class="math inline">\(y_1, \ldots, y_n\)</span>, we define the sample covariance to be
+<span class="math display">\[s_{xy}=\frac{1}{n}\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y}).\]</span></p>
+<p>Analogous multivariate quantities can be defined as follows:</p>
+
+<div class="definition">
+<span id="def:samplemean" class="definition"><strong>Definition 1.1  </strong></span>For a sample of <span class="math inline">\(n\)</span> points, each containing <span class="math inline">\(p\)</span> variables, <span class="math inline">\(\mathbf x_1, \mathbf x_2, \ldots, \mathbf x_n \in \mathbb{R}^p\)</span>, the <strong>sample mean</strong> and <strong>sample covariance matrix</strong> are
+<span class="math display" id="eq:samplecov" id="eq:samplemean">\[\begin{align}
+ \bar{\mathbf x} &amp;= \frac{1}{n} \sum_{i=1}^n \mathbf x_i \tag{1.1}\\
+ \mathbf S&amp;= \frac{1}{n} \sum_{i=1}^n (\mathbf x_i - \bar{\mathbf x}) (\mathbf x_i - \bar{\mathbf x})^\top 
+\tag{1.2}
+\end{align}\]</span>
+where <span class="math inline">\(\mathbf x_i\in \mathbb{R}^p\)</span> denotes the <span class="math inline">\(p\)</span> variables observed on the <span class="math inline">\(i\)</span>th subject.
+</div>
+<p>Note that</p>
+<ul>
+<li><span class="math inline">\(\bar{\mathbf x} \in \mathbb{R}^p\)</span>. The <span class="math inline">\(j\)</span>th entry in <span class="math inline">\(\bar{\mathbf x}\)</span> is simply the (univariate) sample mean of the <span class="math inline">\(j\)</span>th variable.</li>
+<li><span class="math inline">\(\mathbf S\in \mathbb{R}^{p\times p}\)</span>. Note that the <span class="math inline">\(ij^{th}\)</span> entry of <span class="math inline">\(\mathbf S\)</span> is <span class="math inline">\(s_{ij}\)</span>, the sample covariance between variable <span class="math inline">\(i\)</span> and variable <span class="math inline">\(j\)</span>. The <span class="math inline">\(i^{th}\)</span> diagonal element is the (univariate) sample variance of the <span class="math inline">\(i\)</span>th variable.<br />
+</li>
+<li><span class="math inline">\(\mathbf S\)</span> is symmetric since <span class="math inline">\(s_{ij}=s_{ji}\)</span>.</li>
+<li>an alternative formula for <span class="math inline">\(\mathbf S\)</span> is
+<span class="math display">\[\mathbf S= \frac{1}{n} \left(\sum_{i=1}^n \mathbf x_i \mathbf x_i^\top \right)- \bar{\mathbf x} \bar{\mathbf x}^\top.\]</span></li>
+<li>We have divided by <span class="math inline">\(n\)</span> rather than <span class="math inline">\(n-1\)</span> here, which gives the maximum likelihood estimator of the variance, rather than the unbiased variance estimator that is often used.</li>
+</ul>
+
+<div class="definition">
+<span id="def:samplecor" class="definition"><strong>Definition 1.2  </strong></span>The <strong>sample correlation matrix</strong>, <span class="math inline">\(\mathbf R\)</span>, is the matrix with <span class="math inline">\(ij^{th}\)</span> entry <span class="math inline">\(r_{ij}\)</span> equal to the sample correlation between variables <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, that is
+<span class="math display">\[ r_{ij} = \frac{s_{ij}}{\sqrt{s_{ii}s_{jj}}}. \]</span>
+</div>
+<p>Note that</p>
+<ul>
+<li>If <span class="math inline">\(\mathbf D= \text{diag}(\sqrt{s_{11}}, \dots, \sqrt{s_{pp}})\)</span>, then<br />
+<span class="math display">\[ \mathbf R= \mathbf D^{-1} \mathbf S\mathbf D^{-1} \]</span></li>
+<li><span class="math inline">\(\mathbf R\)</span> is symmetric</li>
+<li>the diagonal entries of <span class="math inline">\(\mathbf R\)</span> are exactly 1 (each variable is perfectly correlated with itself)</li>
+<li><span class="math inline">\(|r_{ij}| \leq 1\)</span> for all <span class="math inline">\(i, j\)</span></li>
+</ul>
+<p>Note that if we change the unit of measurement for the <span class="math inline">\(\mathbf x_i\)</span>’s then <span class="math inline">\(\mathbf S\)</span> will change but <span class="math inline">\(\mathbf R\)</span> will not.</p>
+
+<div class="definition">
+<span id="def:totalvar" class="definition"><strong>Definition 1.3  </strong></span>The <strong>total variation</strong> in a data set is usually measured by <span class="math inline">\(\text{tr}(\mathbf S)\)</span> where <span class="math inline">\(\text{tr}()\)</span> is the trace function that sums the diagonal elements of the matrix. That is,
+<span class="math display">\[\text{tr}(\mathbf S) = s_{11} + s_{22} + \ldots + s_{pp}.\]</span>
+In other words, it is the sum of the univariate variances of each of the <span class="math inline">\(p\)</span> variables.
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1.1-notation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1.3-randvec.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="1-3-randvec.html"/>
+<link rel="prev" href="1-3-properties.html"/>
 <link rel="next" href="1-5-exercises.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -49,8 +49,6 @@
 
 
 
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -133,196 +131,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
-<li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-notation.html"><a href="1-1-notation.html"><i class="fa fa-check"></i><b>1.1</b> Notation</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="1-1-notation.html"><a href="1-1-notation.html#example-datasets"><i class="fa fa-check"></i><b>1.1.1</b> Example datasets</a></li>
-<li class="chapter" data-level="1.1.2" data-path="1-1-notation.html"><a href="1-1-notation.html#aims-of-multivariate-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Aims of multivariate data analysis</a></li>
+<li class="chapter" data-level="1" data-path="1-cca.html"><a href="1-cca.html"><i class="fa fa-check"></i><b>1</b> Canonical Correlation Analysis (CCA)</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-cca1.html"><a href="1-1-cca1.html"><i class="fa fa-check"></i><b>1.1</b> The first pair of canonical variables</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="1-1-cca1.html"><a href="1-1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>1.1.1</b> The first canonical components</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1-1-cca1.html"><a href="1-1-cca1.html#premcca"><i class="fa fa-check"></i><b>1.1.2</b> Example: Premier league football</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>1.2</b> Exploratory data analysis (EDA)</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#data-visualization"><i class="fa fa-check"></i><b>1.2.1</b> Data visualization</a></li>
-<li class="chapter" data-level="1.2.2" data-path="1-2-exploratory-data-analysis-eda.html"><a href="1-2-exploratory-data-analysis-eda.html#summary-statistics"><i class="fa fa-check"></i><b>1.2.2</b> Summary statistics</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-the-full-set-of-canonical-correlations.html"><a href="1-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>1.2</b> The full set of canonical correlations</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="1-2-the-full-set-of-canonical-correlations.html"><a href="1-2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>1.2.1</b> Example continued</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="1-3-randvec.html"><a href="1-3-randvec.html"><i class="fa fa-check"></i><b>1.3</b> Random vectors and matrices</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="1-3-randvec.html"><a href="1-3-randvec.html#estimators"><i class="fa fa-check"></i><b>1.3.1</b> Estimators</a></li>
+<li class="chapter" data-level="1.3" data-path="1-3-properties.html"><a href="1-3-properties.html"><i class="fa fa-check"></i><b>1.3</b> Properties</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="1-3-properties.html"><a href="1-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>1.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="1.3.2" data-path="1-3-properties.html"><a href="1-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>1.3.2</b> Invariance/equivariance properties of CCA</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="1-4-computer-tasks.html"><a href="1-4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
 <li class="chapter" data-level="1.5" data-path="1-5-exercises.html"><a href="1-5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="2-linalg-prelim.html"><a href="2-linalg-prelim.html"><i class="fa fa-check"></i><b>2</b> Review of linear algebra</a><ul>
-<li class="chapter" data-level="2.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html"><i class="fa fa-check"></i><b>2.1</b> Basics</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#notation-1"><i class="fa fa-check"></i><b>2.1.1</b> Notation</a></li>
-<li class="chapter" data-level="2.1.2" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#elementary-matrix-operations"><i class="fa fa-check"></i><b>2.1.2</b> Elementary matrix operations</a></li>
-<li class="chapter" data-level="2.1.3" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#special-matrices"><i class="fa fa-check"></i><b>2.1.3</b> Special matrices</a></li>
-<li class="chapter" data-level="2.1.4" data-path="2-1-linalg-basics.html"><a href="2-1-linalg-basics.html#vectordiff"><i class="fa fa-check"></i><b>2.1.4</b> Vector Differentiation</a></li>
+<li class="chapter" data-level="2" data-path="2-lm.html"><a href="2-lm.html"><i class="fa fa-check"></i><b>2</b> Linear Models</a><ul>
+<li class="chapter" data-level="" data-path="2-lm.html"><a href="2-lm.html#notation"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="2.1" data-path="2-1-ordinary-least-squares-ols.html"><a href="2-1-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>2.1</b> Ordinary least squares (OLS)</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="2-1-ordinary-least-squares-ols.html"><a href="2-1-ordinary-least-squares-ols.html#geometry"><i class="fa fa-check"></i><b>2.1.1</b> Geometry</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-1-ordinary-least-squares-ols.html"><a href="2-1-ordinary-least-squares-ols.html#normal-linear-model"><i class="fa fa-check"></i><b>2.1.2</b> Normal linear model</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-1-ordinary-least-squares-ols.html"><a href="2-1-ordinary-least-squares-ols.html#linear-models-in-r"><i class="fa fa-check"></i><b>2.1.3</b> Linear models in R</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-1-ordinary-least-squares-ols.html"><a href="2-1-ordinary-least-squares-ols.html#problems-with-ols"><i class="fa fa-check"></i><b>2.1.4</b> Problems with OLS</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html"><i class="fa fa-check"></i><b>2.2</b> Vector spaces</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#linear-independence"><i class="fa fa-check"></i><b>2.2.1</b> Linear independence</a></li>
-<li class="chapter" data-level="2.2.2" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#colsspace"><i class="fa fa-check"></i><b>2.2.2</b> Row and column spaces</a></li>
-<li class="chapter" data-level="2.2.3" data-path="2-2-linalg-vecspaces.html"><a href="2-2-linalg-vecspaces.html#linear-transformations"><i class="fa fa-check"></i><b>2.2.3</b> Linear transformations</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-principal-component-regression-pcr.html"><a href="2-2-principal-component-regression-pcr.html"><i class="fa fa-check"></i><b>2.2</b> Principal component regression (PCR)</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-principal-component-regression-pcr.html"><a href="2-2-principal-component-regression-pcr.html#pcr-in-r"><i class="fa fa-check"></i><b>2.2.1</b> PCR in R</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html"><i class="fa fa-check"></i><b>2.3</b> Inner product spaces</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#normed"><i class="fa fa-check"></i><b>2.3.1</b> Distances, and angles</a></li>
-<li class="chapter" data-level="2.3.2" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#orthogonal-matrices"><i class="fa fa-check"></i><b>2.3.2</b> Orthogonal matrices</a></li>
-<li class="chapter" data-level="2.3.3" data-path="2-3-linalg-innerprod.html"><a href="2-3-linalg-innerprod.html#projection-matrix"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-shrinkage-methods.html"><a href="2-3-shrinkage-methods.html"><i class="fa fa-check"></i><b>2.3</b> Shrinkage methods</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-shrinkage-methods.html"><a href="2-3-shrinkage-methods.html#ridge-regression-in-r"><i class="fa fa-check"></i><b>2.3.1</b> Ridge regression in R</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="2-4-centering-matrix.html"><a href="2-4-centering-matrix.html"><i class="fa fa-check"></i><b>2.4</b> The Centering Matrix</a></li>
-<li class="chapter" data-level="2.5" data-path="2-5-tasks-ch2.html"><a href="2-5-tasks-ch2.html"><i class="fa fa-check"></i><b>2.5</b> Computer tasks</a></li>
-<li class="chapter" data-level="2.6" data-path="2-6-exercises-ch2.html"><a href="2-6-exercises-ch2.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-multi-output-linear-model.html"><a href="2-4-multi-output-linear-model.html"><i class="fa fa-check"></i><b>2.4</b> Multi-output Linear Model</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-4-multi-output-linear-model.html"><a href="2-4-multi-output-linear-model.html#normal-linear-model-1"><i class="fa fa-check"></i><b>2.4.1</b> Normal linear model</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-4-multi-output-linear-model.html"><a href="2-4-multi-output-linear-model.html#reduced-rank-regression"><i class="fa fa-check"></i><b>2.4.2</b> Reduced rank regression</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="3-linalg-decomp.html"><a href="3-linalg-decomp.html"><i class="fa fa-check"></i><b>3</b> Matrix decompositions</a><ul>
-<li class="chapter" data-level="3.1" data-path="3-1-matrix-matrix.html"><a href="3-1-matrix-matrix.html"><i class="fa fa-check"></i><b>3.1</b> Matrix-matrix products</a></li>
-<li class="chapter" data-level="3.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>3.2</b> Spectral/eigen decomposition</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>3.2.1</b> Eigenvalues and eigenvectors</a></li>
-<li class="chapter" data-level="3.2.2" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>3.2.2</b> Spectral decomposition</a></li>
-<li class="chapter" data-level="3.2.3" data-path="3-2-spectraleigen-decomposition.html"><a href="3-2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html"><i class="fa fa-check"></i><b>3.3</b> Singular Value Decomposition (SVD)</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="3-3-linalg-SVD.html"><a href="3-3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.3.1</b> Examples</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="3-4-svdopt.html"><a href="3-4-svdopt.html"><i class="fa fa-check"></i><b>3.4</b> SVD optimization results</a></li>
-<li class="chapter" data-level="3.5" data-path="3-5-lowrank.html"><a href="3-5-lowrank.html"><i class="fa fa-check"></i><b>3.5</b> Low-rank approximation</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="3-5-lowrank.html"><a href="3-5-lowrank.html#matrix-norms"><i class="fa fa-check"></i><b>3.5.1</b> Matrix norms</a></li>
-<li class="chapter" data-level="3.5.2" data-path="3-5-lowrank.html"><a href="3-5-lowrank.html#eckart-young-mirsky-theorem"><i class="fa fa-check"></i><b>3.5.2</b> Eckart-Young-Mirsky Theorem</a></li>
-<li class="chapter" data-level="3.5.3" data-path="3-5-lowrank.html"><a href="3-5-lowrank.html#example-image-compression"><i class="fa fa-check"></i><b>3.5.3</b> Example: image compression</a></li>
-</ul></li>
-<li class="chapter" data-level="3.6" data-path="3-6-tasks-ch3.html"><a href="3-6-tasks-ch3.html"><i class="fa fa-check"></i><b>3.6</b> Computer tasks</a></li>
-<li class="chapter" data-level="3.7" data-path="3-7-exercises-ch3.html"><a href="3-7-exercises-ch3.html"><i class="fa fa-check"></i><b>3.7</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html"><i class="fa fa-check"></i>PART II: Dimension reduction methods</a><ul>
-<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#a-warning"><i class="fa fa-check"></i>A warning</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="4-pca.html"><a href="4-pca.html"><i class="fa fa-check"></i><b>4</b> Principal Component Analysis (PCA)</a><ul>
-<li class="chapter" data-level="4.1" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html"><i class="fa fa-check"></i><b>4.1</b> PCA: an informal introduction</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#notation-recap"><i class="fa fa-check"></i><b>4.1.1</b> Notation recap</a></li>
-<li class="chapter" data-level="4.1.2" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#first-principal-component"><i class="fa fa-check"></i><b>4.1.2</b> First principal component</a></li>
-<li class="chapter" data-level="4.1.3" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#second-principal-component"><i class="fa fa-check"></i><b>4.1.3</b> Second principal component</a></li>
-<li class="chapter" data-level="4.1.4" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#geometric-interpretation-1"><i class="fa fa-check"></i><b>4.1.4</b> Geometric interpretation</a></li>
-<li class="chapter" data-level="4.1.5" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#example"><i class="fa fa-check"></i><b>4.1.5</b> Example</a></li>
-<li class="chapter" data-level="4.1.6" data-path="4-1-pca-an-informal-introduction.html"><a href="4-1-pca-an-informal-introduction.html#example-iris"><i class="fa fa-check"></i><b>4.1.6</b> Example: Iris</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>4.2</b> PCA: a formal description with proofs</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>4.2.1</b> Properties of principal components</a></li>
-<li class="chapter" data-level="4.2.2" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
-<li class="chapter" data-level="4.2.3" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>4.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
-<li class="chapter" data-level="4.2.4" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>4.2.4</b> Population PCA</a></li>
-<li class="chapter" data-level="4.2.5" data-path="4-2-pca-a-formal-description-with-proofs.html"><a href="4-2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>4.2.5</b> PCA under transformations of variables</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="4-3-an-alternative-view-of-pca.html"><a href="4-3-an-alternative-view-of-pca.html"><i class="fa fa-check"></i><b>4.3</b> An alternative view of PCA</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="4-3-an-alternative-view-of-pca.html"><a href="4-3-an-alternative-view-of-pca.html#pca-mnist"><i class="fa fa-check"></i><b>4.3.1</b> Example: MNIST handwritten digits</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="4-4-pca-comptask.html"><a href="4-4-pca-comptask.html"><i class="fa fa-check"></i><b>4.4</b> Computer tasks</a></li>
-<li class="chapter" data-level="4.5" data-path="4-5-exercises-1.html"><a href="4-5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis (CCA)</a><ul>
-<li class="chapter" data-level="5.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html"><i class="fa fa-check"></i><b>5.1</b> The first pair of canonical variables</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="5-1-cca1.html"><a href="5-1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>5.1.1</b> The first canonical components</a></li>
-<li class="chapter" data-level="5.1.2" data-path="5-1-cca1.html"><a href="5-1-cca1.html#premcca"><i class="fa fa-check"></i><b>5.1.2</b> Example: Premier league football</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="5-2-the-full-set-of-canonical-correlations.html"><a href="5-2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>5.2.1</b> Example continued</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="5-3-properties.html"><a href="5-3-properties.html"><i class="fa fa-check"></i><b>5.3</b> Properties</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="5-3-properties.html"><a href="5-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>5.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
-<li class="chapter" data-level="5.3.2" data-path="5-3-properties.html"><a href="5-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>5.3.2</b> Invariance/equivariance properties of CCA</a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="5-4-computer-tasks-1.html"><a href="5-4-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.4</b> Computer tasks</a></li>
-<li class="chapter" data-level="5.5" data-path="5-5-exercises-2.html"><a href="5-5-exercises-2.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling (MDS)</a><ul>
-<li class="chapter" data-level="6.1" data-path="6-1-classical-mds.html"><a href="6-1-classical-mds.html"><i class="fa fa-check"></i><b>6.1</b> Classical MDS</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="6-1-classical-mds.html"><a href="6-1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>6.1.1</b> Non-Euclidean distance matrices</a></li>
-<li class="chapter" data-level="6.1.2" data-path="6-1-classical-mds.html"><a href="6-1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>6.1.2</b> Principal Coordinate Analysis</a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="6-2-similarity.html"><a href="6-2-similarity.html"><i class="fa fa-check"></i><b>6.2</b> Similarity measures</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="6-2-similarity.html"><a href="6-2-similarity.html#binary-attributes"><i class="fa fa-check"></i><b>6.2.1</b> Binary attributes</a></li>
-<li class="chapter" data-level="6.2.2" data-path="6-2-similarity.html"><a href="6-2-similarity.html#example-classical-mds-with-the-mnist-data"><i class="fa fa-check"></i><b>6.2.2</b> Example: Classical MDS with the MNIST data</a></li>
-</ul></li>
-<li class="chapter" data-level="6.3" data-path="6-3-non-metric-mds.html"><a href="6-3-non-metric-mds.html"><i class="fa fa-check"></i><b>6.3</b> Non-metric MDS</a></li>
-<li class="chapter" data-level="6.4" data-path="6-4-exercises-3.html"><a href="6-4-exercises-3.html"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
-<li class="chapter" data-level="6.5" data-path="6-5-computer-tasks-2.html"><a href="6-5-computer-tasks-2.html"><i class="fa fa-check"></i><b>6.5</b> Computer Tasks</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><a href="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><i class="fa fa-check"></i>Part III: Inference using the Multivariate Normal Distribution (MVN)</a></li>
-<li class="chapter" data-level="7" data-path="7-multinormal.html"><a href="7-multinormal.html"><i class="fa fa-check"></i><b>7</b> The Multivariate Normal Distribution</a><ul>
-<li class="chapter" data-level="7.1" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html"><i class="fa fa-check"></i><b>7.1</b> Definition and Properties of the MVN</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#basics"><i class="fa fa-check"></i><b>7.1.1</b> Basics</a></li>
-<li class="chapter" data-level="7.1.2" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#transformations"><i class="fa fa-check"></i><b>7.1.2</b> Transformations</a></li>
-<li class="chapter" data-level="7.1.3" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#independence"><i class="fa fa-check"></i><b>7.1.3</b> Independence</a></li>
-<li class="chapter" data-level="7.1.4" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#confidence-ellipses"><i class="fa fa-check"></i><b>7.1.4</b> Confidence ellipses</a></li>
-<li class="chapter" data-level="7.1.5" data-path="7-1-definition-and-properties-of-the-mvn.html"><a href="7-1-definition-and-properties-of-the-mvn.html#sampling-results-for-the-mvn"><i class="fa fa-check"></i><b>7.1.5</b> Sampling results for the MVN</a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html"><i class="fa fa-check"></i><b>7.2</b> The Wishart distribution</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html#properties-1"><i class="fa fa-check"></i><b>7.2.1</b> Properties</a></li>
-<li class="chapter" data-level="7.2.2" data-path="7-2-the-wishart-distribution.html"><a href="7-2-the-wishart-distribution.html#cochrans-theorem"><i class="fa fa-check"></i><b>7.2.2</b> Cochran’s theorem</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="7-3-hotellings-t2-distribution.html"><a href="7-3-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>7.3</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
-<li class="chapter" data-level="7.4" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html"><i class="fa fa-check"></i><b>7.4</b> Inference based on the MVN</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#onesampleSigma"><i class="fa fa-check"></i><b>7.4.1</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> known</a></li>
-<li class="chapter" data-level="7.4.2" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#onesample"><i class="fa fa-check"></i><b>7.4.2</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 1 sample</a></li>
-<li class="chapter" data-level="7.4.3" data-path="7-4-inference-based-on-the-mvn.html"><a href="7-4-inference-based-on-the-mvn.html#boldsymbolsigma-unknown-2-samples"><i class="fa fa-check"></i><b>7.4.3</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 2 samples</a></li>
-</ul></li>
-<li class="chapter" data-level="7.5" data-path="7-5-exercises-4.html"><a href="7-5-exercises-4.html"><i class="fa fa-check"></i><b>7.5</b> Exercises</a></li>
-<li class="chapter" data-level="7.6" data-path="7-6-computer-tasks-3.html"><a href="7-6-computer-tasks-3.html"><i class="fa fa-check"></i><b>7.6</b> Computer tasks</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
-<li class="chapter" data-level="8" data-path="8-lda.html"><a href="8-lda.html"><i class="fa fa-check"></i><b>8</b> Discriminant analysis</a><ul>
-<li class="chapter" data-level="" data-path="8-lda.html"><a href="8-lda.html#linear-discriminant-analysis"><i class="fa fa-check"></i>Linear discriminant analysis</a></li>
-<li class="chapter" data-level="8.1" data-path="8-1-lda-ML.html"><a href="8-1-lda-ML.html"><i class="fa fa-check"></i><b>8.1</b> Maximum likelihood (ML) discriminant rule</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="8-1-lda-ML.html"><a href="8-1-lda-ML.html#multivariate-normal-populations"><i class="fa fa-check"></i><b>8.1.1</b> Multivariate normal populations</a></li>
-<li class="chapter" data-level="8.1.2" data-path="8-1-lda-ML.html"><a href="8-1-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>8.1.2</b> The sample ML discriminant rule</a></li>
-<li class="chapter" data-level="8.1.3" data-path="8-1-lda-ML.html"><a href="8-1-lda-ML.html#two-populations"><i class="fa fa-check"></i><b>8.1.3</b> Two populations</a></li>
-<li class="chapter" data-level="8.1.4" data-path="8-1-lda-ML.html"><a href="8-1-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>8.1.4</b> More than two populations</a></li>
-</ul></li>
-<li class="chapter" data-level="8.2" data-path="8-2-lda-Bayes.html"><a href="8-2-lda-Bayes.html"><i class="fa fa-check"></i><b>8.2</b> Bayes discriminant rule</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="8-2-lda-Bayes.html"><a href="8-2-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>8.2.1</b> Example: LDA using the Iris data</a></li>
-<li class="chapter" data-level="8.2.2" data-path="8-2-lda-Bayes.html"><a href="8-2-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>8.2.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
-<li class="chapter" data-level="8.2.3" data-path="8-2-lda-Bayes.html"><a href="8-2-lda-Bayes.html#prediction-accuracy"><i class="fa fa-check"></i><b>8.2.3</b> Prediction accuracy</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="8-3-FLDA.html"><a href="8-3-FLDA.html"><i class="fa fa-check"></i><b>8.3</b> Fisher’s linear discriminant rule</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="8-3-FLDA.html"><a href="8-3-FLDA.html#iris-example-continued-1"><i class="fa fa-check"></i><b>8.3.1</b> Iris example continued</a></li>
-<li class="chapter" data-level="8.3.2" data-path="8-3-FLDA.html"><a href="8-3-FLDA.html#links-between-methods"><i class="fa fa-check"></i><b>8.3.2</b> Links between methods</a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="8-4-computer-tasks-4.html"><a href="8-4-computer-tasks-4.html"><i class="fa fa-check"></i><b>8.4</b> Computer tasks</a></li>
-<li class="chapter" data-level="8.5" data-path="8-5-exercises-5.html"><a href="8-5-exercises-5.html"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="9-cluster.html"><a href="9-cluster.html"><i class="fa fa-check"></i><b>9</b> Cluster Analysis</a><ul>
-<li class="chapter" data-level="9.1" data-path="9-1-k-means-clustering.html"><a href="9-1-k-means-clustering.html"><i class="fa fa-check"></i><b>9.1</b> K-means clustering</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="9-1-k-means-clustering.html"><a href="9-1-k-means-clustering.html#estimating-boldsymbol-delta"><i class="fa fa-check"></i><b>9.1.1</b> Estimating <span class="math inline">\(\boldsymbol \delta\)</span></a></li>
-<li class="chapter" data-level="9.1.2" data-path="9-1-k-means-clustering.html"><a href="9-1-k-means-clustering.html#k-means"><i class="fa fa-check"></i><b>9.1.2</b> K-means</a></li>
-<li class="chapter" data-level="9.1.3" data-path="9-1-k-means-clustering.html"><a href="9-1-k-means-clustering.html#example-iris-data"><i class="fa fa-check"></i><b>9.1.3</b> Example: Iris data</a></li>
-<li class="chapter" data-level="9.1.4" data-path="9-1-k-means-clustering.html"><a href="9-1-k-means-clustering.html#choosing-k"><i class="fa fa-check"></i><b>9.1.4</b> Choosing <span class="math inline">\(K\)</span></a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="9-2-model-based-clustering.html"><a href="9-2-model-based-clustering.html"><i class="fa fa-check"></i><b>9.2</b> Model-based clustering</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="9-2-model-based-clustering.html"><a href="9-2-model-based-clustering.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>9.2.1</b> Maximum-likelihood estimation</a></li>
-<li class="chapter" data-level="9.2.2" data-path="9-2-model-based-clustering.html"><a href="9-2-model-based-clustering.html#multivariate-gaussian-clusters"><i class="fa fa-check"></i><b>9.2.2</b> Multivariate Gaussian clusters</a></li>
-<li class="chapter" data-level="9.2.3" data-path="9-2-model-based-clustering.html"><a href="9-2-model-based-clustering.html#example-iris-1"><i class="fa fa-check"></i><b>9.2.3</b> Example: Iris</a></li>
-</ul></li>
-<li class="chapter" data-level="9.3" data-path="9-3-hierarchical-clustering-methods.html"><a href="9-3-hierarchical-clustering-methods.html"><i class="fa fa-check"></i><b>9.3</b> Hierarchical clustering methods</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="9-3-hierarchical-clustering-methods.html"><a href="9-3-hierarchical-clustering-methods.html#distance-measures"><i class="fa fa-check"></i><b>9.3.1</b> Distance measures</a></li>
-<li class="chapter" data-level="9.3.2" data-path="9-3-hierarchical-clustering-methods.html"><a href="9-3-hierarchical-clustering-methods.html#toy-example"><i class="fa fa-check"></i><b>9.3.2</b> Toy Example</a></li>
-<li class="chapter" data-level="9.3.3" data-path="9-3-hierarchical-clustering-methods.html"><a href="9-3-hierarchical-clustering-methods.html#comparison-of-methods"><i class="fa fa-check"></i><b>9.3.3</b> Comparison of methods</a></li>
-</ul></li>
-<li class="chapter" data-level="9.4" data-path="9-4-summary.html"><a href="9-4-summary.html"><i class="fa fa-check"></i><b>9.4</b> Summary</a></li>
-<li class="chapter" data-level="9.5" data-path="9-5-computer-tasks-5.html"><a href="9-5-computer-tasks-5.html"><i class="fa fa-check"></i><b>9.5</b> Computer tasks</a></li>
-<li class="chapter" data-level="9.6" data-path="9-6-exercises-6.html"><a href="9-6-exercises-6.html"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="10-lm.html"><a href="10-lm.html"><i class="fa fa-check"></i><b>10</b> Linear Models</a><ul>
-<li class="chapter" data-level="" data-path="10-lm.html"><a href="10-lm.html#notation-3"><i class="fa fa-check"></i>Notation</a></li>
-<li class="chapter" data-level="10.1" data-path="10-1-ordinary-least-squares-ols.html"><a href="10-1-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>10.1</b> Ordinary least squares (OLS)</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="10-1-ordinary-least-squares-ols.html"><a href="10-1-ordinary-least-squares-ols.html#geometry"><i class="fa fa-check"></i><b>10.1.1</b> Geometry</a></li>
-<li class="chapter" data-level="10.1.2" data-path="10-1-ordinary-least-squares-ols.html"><a href="10-1-ordinary-least-squares-ols.html#normal-linear-model"><i class="fa fa-check"></i><b>10.1.2</b> Normal linear model</a></li>
-<li class="chapter" data-level="10.1.3" data-path="10-1-ordinary-least-squares-ols.html"><a href="10-1-ordinary-least-squares-ols.html#linear-models-in-r"><i class="fa fa-check"></i><b>10.1.3</b> Linear models in R</a></li>
-<li class="chapter" data-level="10.1.4" data-path="10-1-ordinary-least-squares-ols.html"><a href="10-1-ordinary-least-squares-ols.html#problems-with-ols"><i class="fa fa-check"></i><b>10.1.4</b> Problems with OLS</a></li>
-</ul></li>
-<li class="chapter" data-level="10.2" data-path="10-2-principal-component-regression-pcr.html"><a href="10-2-principal-component-regression-pcr.html"><i class="fa fa-check"></i><b>10.2</b> Principal component regression (PCR)</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="10-2-principal-component-regression-pcr.html"><a href="10-2-principal-component-regression-pcr.html#pcr-in-r"><i class="fa fa-check"></i><b>10.2.1</b> PCR in R</a></li>
-</ul></li>
-<li class="chapter" data-level="10.3" data-path="10-3-shrinkage-methods.html"><a href="10-3-shrinkage-methods.html"><i class="fa fa-check"></i><b>10.3</b> Shrinkage methods</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="10-3-shrinkage-methods.html"><a href="10-3-shrinkage-methods.html#ridge-regression-in-r"><i class="fa fa-check"></i><b>10.3.1</b> Ridge regression in R</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="10-4-multioutput-linear-model.html"><a href="10-4-multioutput-linear-model.html"><i class="fa fa-check"></i><b>10.4</b> Multioutput Linear Model</a></li>
-<li class="chapter" data-level="10.5" data-path="10-5-computer-tasks-6.html"><a href="10-5-computer-tasks-6.html"><i class="fa fa-check"></i><b>10.5</b> Computer tasks</a></li>
-<li class="chapter" data-level="10.6" data-path="10-6-exercises-7.html"><a href="10-6-exercises-7.html"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -346,291 +187,129 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="computer-tasks" class="section level2">
 <h2><span class="header-section-number">1.4</span> Computer tasks</h2>
-<p>If you haven’t done so already, please download and install R and Rstudio. R is the programming language, and Rstudio is an integrated development environment that makes using R much more pleasurable. My advice is to always use Rstudio and never run code in R itself.</p>
-<ol start="0" style="list-style-type: decimal">
-<li><p><strong>For complete beginners:</strong> For those who are completely new to R (or those who want a refresher), I recommend working through an online tutorial. <a href="https://www.statmethods.net/r-tutorial/index.html">This</a> tutorial looks good, but contains more than you’ll need.</p></li>
-<li><p><strong>Warm-up:</strong> The most important aspects of R to focus on for this module are</p>
-<ul>
-<li>Basic plotting</li>
-<li>Manipulation of matrices and data frames.</li>
-</ul>
-<p>Let’s look at the <code>iris</code> dataset.</p>
-<ul>
-<li>Can you plot the sepal length against the sepal width?</li>
-</ul>
-<p>We’ll now do some exercises on data manipulation. Note that there are several ways to do basic data manipulation in R. You can use base R commands or if you prefer, you can use the <a href="https://dplyr.tidyverse.org/">dplyr</a> commands which are part of the <code>tidyverse</code> packages.
-For example, to select columns, in base you can do:</p></li>
+<div id="task-1" class="section level5 unnumbered">
+<h5>Task 1</h5>
+<p>Consider again the crabs dataset you looked at in the exercises in the chapter on PCA (see <a href="#pca-comptask"><strong>??</strong></a>).
+We now consider a canonical correlation analysis in which one set of variables, the <span class="math inline">\(\mathbf x\)</span>-set, is given by CL and CW and the
+other set, the <span class="math inline">\(\mathbf y\)</span>-set, is given by FL, RW and BD.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">?crabs           <span class="co"># read the help page to find out about the dataset</span></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">X=<span class="kw">as.matrix</span>(crabs[<span class="dv">4</span><span class="op">:</span><span class="dv">8</span>])    </a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">n=<span class="dv">200</span>                                      <span class="co"># sample size</span></a>
+<a class="sourceLine" id="cb22-5" data-line-number="5">H=<span class="kw">diag</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n))<span class="op">-</span><span class="kw">rep</span>(<span class="dv">1</span>,n)<span class="op">%*%</span><span class="kw">t</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n))<span class="op">/</span>n  <span class="co"># n times n centering matrix</span></a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb22-7" data-line-number="7">X1 =<span class="st"> </span>crabs <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(CL, CW)  <span class="op">%&gt;%</span>as.matrix            </a>
+<a class="sourceLine" id="cb22-8" data-line-number="8"><span class="co"># store CL and CW in X1</span></a>
+<a class="sourceLine" id="cb22-9" data-line-number="9">Y1 =<span class="st"> </span>crabs <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(FL, RW, BD) <span class="op">%&gt;%</span><span class="st"> </span>as.matrix            </a>
+<a class="sourceLine" id="cb22-10" data-line-number="10"><span class="co"># store FL, RW and BD in Y1</span></a>
+<a class="sourceLine" id="cb22-11" data-line-number="11">Sxx=<span class="kw">t</span>(X1)<span class="op">%*%</span>H<span class="op">%*%</span>X1<span class="op">/</span>n                       <span class="co"># find x-variable variance matrix</span></a>
+<a class="sourceLine" id="cb22-12" data-line-number="12">Syy=<span class="kw">t</span>(Y1)<span class="op">%*%</span>H<span class="op">%*%</span>Y1<span class="op">/</span>n                       <span class="co"># find y-variable variance matrix</span></a>
+<a class="sourceLine" id="cb22-13" data-line-number="13">Sxy=<span class="kw">t</span>(X1)<span class="op">%*%</span>H<span class="op">%*%</span>Y1<span class="op">/</span>n                       <span class="co"># find cross-covariance matrix</span></a></code></pre></div>
+<ol style="list-style-type: lower-roman">
+<li><p>calculate <span class="math inline">\({\mathbf fS}_{\mathbf fx x}^{-1/2}\)</span> and <span class="math inline">\({\mathbf fS}_{\mathbf fyy}^{-1/2}\)</span> by first computing the spectral decomposition of <span class="math inline">\(\mathbf S_{xx}\)</span> and <span class="math inline">\(\mathbf S_{yy}\)</span>.</p></li>
+<li><p>Now calculate the matrix <span class="math inline">\(\mathbf Q\)</span> and compute its singular value decomposition.</p></li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">iris[,<span class="dv">2</span>] <span class="co"># selects column 2</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">iris<span class="op">$</span>Sepal.Width <span class="co"># selects the same column by name</span></a></code></pre></div>
-<p>or using dplyr you can do</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">select</span>(iris, <span class="st">&quot;Sepal.Width&quot;</span>)</a></code></pre></div>
-<ul>
-<li><p>Can you select the column of the <code>iris</code> data that contains just the sepal length and add it to the sepal width?</p>
-<p>To select only certain rows of the data (i.e. to filter it), we can again use either base R or dplyr.</p></li>
-</ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">iris[iris[,<span class="dv">3</span>]<span class="op">&lt;</span><span class="dv">5</span>,] <span class="co"># select all rows that have a petal length less than 5.</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">filter</span>(iris, Petal.Length<span class="op">&lt;</span><span class="dv">5</span>) <span class="co"># do the same thing using dplyr</span></a></code></pre></div>
-<ul>
-<li><p>Can you now select all the rows of the <code>iris</code> data frame that are for species <em>setosa</em>? What is the mean petal length for these flowers?</p></li>
-<li><p>Can you select all the flowers that have a sepal length greater than 5? What is the proportion of each species of iris in this set?</p></li>
-</ul>
-<p>A nice aspect of dplyr is that you can chain commmands together. So for example, to select the versicolour flowers with petal width less than 1.5, we can do</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">iris <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Species<span class="op">==</span><span class="st">&#39;versicolor&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(Petal.Width<span class="op">&lt;</span><span class="fl">1.5</span>)</a></code></pre></div>
-<ul>
-<li>Can you select all the flowers that have a sepal length greater than 6, and a petal length less than 5? What is the proportion of each species in this set?</li>
-</ul>
-<p>Note that <code>iris</code> is a data frame</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">is.data.frame</span>(iris)</a></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<p>which is a type of structure used in R. This is convenient for some tasks, but not for others. Let’s first extract the four numerical columns and store them as a matrix <span class="math inline">\(X\)</span>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">is.matrix</span>(iris)</a></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">X &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(iris[,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>])</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">is.matrix</span>(X)</a></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<ul>
-<li>Select the 4 numerical columns and multiply the first column by 1, the second by 2, the third by 3, and the 4th by 4. One way to do this is by multiplying <span class="math inline">\(X\)</span> by the diagonal matrix</li>
-</ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">diag</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>)</a></code></pre></div>
-<pre><code>##      [,1] [,2] [,3] [,4]
-## [1,]    1    0    0    0
-## [2,]    0    2    0    0
-## [3,]    0    0    3    0
-## [4,]    0    0    0    4</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>The table below shows the module marks for 5 students on the modules G11PRB (<span class="math inline">\(P\)</span>) and G11STA (<span class="math inline">\(S\)</span>).</li>
-</ol>
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Student
-</th>
-<th style="text-align:right;">
-P
-</th>
-<th style="text-align:right;">
-S
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-A
-</td>
-<td style="text-align:right;">
-41
-</td>
-<td style="text-align:right;">
-63
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-B
-</td>
-<td style="text-align:right;">
-72
-</td>
-<td style="text-align:right;">
-82
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-C
-</td>
-<td style="text-align:right;">
-46
-</td>
-<td style="text-align:right;">
-38
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-D
-</td>
-<td style="text-align:right;">
-77
-</td>
-<td style="text-align:right;">
-57
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-E
-</td>
-<td style="text-align:right;">
-59
-</td>
-<td style="text-align:right;">
-85
-</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>As an exercise, calculate the sample mean, sample covariance, sample correlation and total variation by hand.</li>
-</ul>
-<!--The sample mean is $\bar{\bx} = \begin{pmatrix} 59 \\ 65 \end{pmatrix}$.
+<!--
 
-The sample covariance matrix is $\bS = \begin{pmatrix} 197.2 & 92.8 \\ 92.8 & 297.2 \end{pmatrix}$.
-
-The sample correlation matrix is
-\begin{align*}
-\bR &= \bD^{-1} \bS \bD^{-1}\\
-&= \begin{pmatrix} 14.0 & 0 \\ 0 & 17.2 \end{pmatrix}^{-1} \begin{pmatrix} 197.2 & 92.8 \\ 92.8 & 297.2 \end{pmatrix} \begin{pmatrix} 14.0 & 0 \\ 0 & 17.2 \end{pmatrix}^{-1} \\
-&= \begin{pmatrix} 0.071 & 0 \\ 0 & 0.058 \end{pmatrix} \begin{pmatrix} 197.2 & 92.8 \\ 92.8 & 297.2 \end{pmatrix} \begin{pmatrix} 0.071 & 0 \\ 0 & 0.058 \end{pmatrix} \\
-&= \begin{pmatrix} 1.000 & 0.383 \\ 0.383 & 1.000 \end{pmatrix}.
-\end{align*}
-
-The total variation is $\ttr(\bS) = 197.2 + 297.2 = 494.4$.
+```r
+A=Cx%*%Sxy%*%Cy            # calculate the A matrix (see Chapter 5)
+U4=svd(A)$u                # extract the U matrix (our notation) in svd
+V4=svd(A)$v                # extract the V matrix (our notation) in svd
+d4=svd(A)$d                # extract the singular values in svd
+acheck=Cx%*%U4[,1]         # calculate optimal x-weights
+bcheck=Cy%*%V4[,1]         # calculate optimal y-weights
+xscores1=H%*%X1%*%acheck   # calculate centred x-scores for 1st CC
+yscores1=H%*%Y1%*%bcheck   # calculate centred y-scores for 1st CC
+plot(xscores1,yscores1)    # plot x-scores against y-scores for 1st CC
+```
 -->
-<ul>
-<li>Now calculate these in R using <code>colMeans</code>, <code>cov</code>, and <code>cor</code>. These commands assume each column is a different variable, and each row a different observation.</li>
-</ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">Ex1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3">  <span class="dt">Student=</span>LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>],</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4">  <span class="dt">P =</span> <span class="kw">c</span>(<span class="dv">41</span>,<span class="dv">72</span>,<span class="dv">46</span>,<span class="dv">77</span>,<span class="dv">59</span>),</a>
-<a class="sourceLine" id="cb15-5" data-line-number="5">  <span class="dt">S =</span> <span class="kw">c</span>(<span class="dv">63</span>,<span class="dv">82</span>,<span class="dv">38</span>,<span class="dv">57</span>,<span class="dv">85</span>)</a>
-<a class="sourceLine" id="cb15-6" data-line-number="6">  )</a>
-<a class="sourceLine" id="cb15-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb15-8" data-line-number="8">Ex1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span><span class="st"> </span>colMeans</a></code></pre></div>
-<pre><code>##  P  S 
-## 59 65</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">Ex1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select_if</span>(is.numeric) <span class="op">%&gt;%</span><span class="st"> </span>cov</a></code></pre></div>
-<pre><code>##       P     S
-## P 246.5 116.0
-## S 116.0 371.5</code></pre>
-<p>Note that by default R uses <span class="math inline">\(n-1\)</span> in the denominator for the variance and covariance commands, whereas we used <span class="math inline">\(n\)</span> in our definition. <!-- hence the multiple of $4/5=(n-1)/n introduced in the covariance calculations above.--></p>
-<p>We will be using the <code>dplyr</code> R package to perform basic data manipulation in R. If you are unfamiliar with <code>dplyr</code>, you can read about it at <a href="https://dplyr.tidyverse.org/">https://dplyr.tidyverse.org/</a>. The pipe command <code>%&gt;%</code> is particularly useful for chaining together multiple commands.</p>
-<p>You could compute the same quantities using more familiar commands by selecting the numerical columns:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">colMeans</span>(Ex1[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>])</a></code></pre></div>
-<pre><code>##  P  S 
-## 59 65</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">cov</span>(Ex1[,<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>])</a></code></pre></div>
-<pre><code>##       P     S
-## P 246.5 116.0
-## S 116.0 371.5</code></pre>
-<ul>
-<li>Can you compute the covariance matrix using the definition in Equation <a href="1-2-exploratory-data-analysis-eda.html#eq:samplecov">(1.2)</a>?</li>
-</ul>
-<!--```
-Ex1 %>% select_if(is.numeric) %>% cov*4/5
-Ex1 %>% select_if(is.numeric) %>% cor
-Ex1 %>% select_if(is.numeric) %>% cov %>% diag %>% sum*4/5
-```-->
-<ol start="3" style="list-style-type: decimal">
-<li>The <code>mtcars</code> dataset is another built-in dataset in R. You can read about it by typing <code>?mtcars</code> in R. Note that some of the variables are factors. You can ensure R treats them as factors by using the following command to create a dataset where they are listed as factors:</li>
+<ol start="3" style="list-style-type: lower-roman">
+<li><p>Compute the first pair of CC vectors and CC variables <span class="math inline">\(\eta_1\)</span> and <span class="math inline">\(\psi_1\)</span>. What is the 1st canonical correlation?</p></li>
+<li><p>Plot <span class="math inline">\(\psi_1\)</span> vs <span class="math inline">\(\eta_1\)</span>. What does the plot tell you (if anything)?</p></li>
+<li><p>Repeat the above to find the second pair of CC vectors, and the second set of CC variables/scores, and plot these against each other and against the first CC scores. Is there any interesting structure in any of the plots? Which plots suggest random scatter?</p></li>
 </ol>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">mtcars2 &lt;-<span class="st"> </span><span class="kw">within</span>(mtcars, {</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2">   vs &lt;-<span class="st"> </span><span class="kw">factor</span>(vs, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;V&quot;</span>, <span class="st">&quot;S&quot;</span>))</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3">   am &lt;-<span class="st"> </span><span class="kw">factor</span>(am, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;automatic&quot;</span>, <span class="st">&quot;manual&quot;</span>))</a>
-<a class="sourceLine" id="cb23-4" data-line-number="4">   cyl  &lt;-<span class="st"> </span><span class="kw">ordered</span>(cyl)</a>
-<a class="sourceLine" id="cb23-5" data-line-number="5">   gear &lt;-<span class="st"> </span><span class="kw">ordered</span>(gear)</a>
-<a class="sourceLine" id="cb23-6" data-line-number="6">   carb &lt;-<span class="st"> </span><span class="kw">ordered</span>(carb)</a>
-<a class="sourceLine" id="cb23-7" data-line-number="7">})</a></code></pre></div>
-<p>Work with the <code>mtcars2</code> dataframe when you use <code>ggplot2</code>.</p>
-<ul>
-<li>Create some plots to explore the structure of this dataset using ggplot2.</li>
-<li>Try using the <code>pairs</code> command from base R and the <code>ggpairs</code> command from GGally.</li>
-<li>Try colouring the scatter plots accoring to whether the car is automatic or not. - Create another plot using colour to represent the number of gears.</li>
-<li>Find another type of plot from one of the plot galleries and try to create a similar plot with these data.</li>
-</ul>
-<ol start="4" style="list-style-type: decimal">
-<li>We can 100 generate samples from the multivariate normal distribution with mean vector
-<span class="math display">\[{\boldsymbol{\mu}}= \left(\begin{array}{c}1\\0\end{array}\right)\]</span>
-and covariance matrix
-<span class="math display">\[\boldsymbol{\Sigma}= \left(\begin{array}{cc}2&amp;1\\1&amp;2\end{array}\right)\]</span>
-as follows (you may need to install the R package <code>mvtnorm</code> first):</li>
+<!--- Test the following hypotheses: (i) that both CC coefficients are zero, and (ii) that at most one of the CC coefficients is non-zero.  What do you conclude from your findings?
+-->
+<ol start="6" style="list-style-type: lower-roman">
+<li>Finally, repeat the analysis above using the <code>cc</code> command and <code>plt.cc</code> from the package <code>CCA</code> which you will need to download.</li>
 </ol>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">library</span>(mvtnorm)</a></code></pre></div>
-<pre><code>## Warning: package &#39;mvtnorm&#39; was built under R version 3.6.2</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">mu =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb26-2" data-line-number="2">Sigma=<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="dt">nr=</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb26-3" data-line-number="3">X &lt;-<span class="st"> </span><span class="kw">rmvnorm</span>(<span class="dt">n=</span><span class="dv">100</span>, <span class="dt">mean=</span>mu, <span class="dt">sigma=</span>Sigma)</a></code></pre></div>
-<ul>
-<li>Compute the sample mean and covariance matrix of these samples.</li>
-<li>Generate a new sample dataset, <span class="math inline">\(X\)</span>, and recompute the sample mean and covariance matrix. What do you notice?</li>
-<li>Try changing <span class="math inline">\(n\)</span>, the number of samples (making it much larger say), and now recomputing the mean and covariance. What do you notice?</li>
-</ul>
-<ol start="5" style="list-style-type: decimal">
-<li><strong>Optional</strong> Download the MNIST data from Moodle and load it into R.</li>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">cca&lt;-<span class="kw">cc</span>(X1,Y1)</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw">plt.cc</span>(cca, <span class="dt">var.label=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+</div>
+<div id="task-2" class="section level5 unnumbered">
+<h5>Task 2</h5>
+<p>The full Premier League dataset is available at
+<a href="https://www.rotowire.com/soccer/league-table.php?season=2019">https://www.rotowire.com/soccer/league-table.php?season=2018</a>. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.</p>
+<p>Read the data into R (hint: try the <code>read.csv</code> command).</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">read.csv</span>(x , <span class="dt">file=</span><span class="st">&quot;/YOURDIRECTORY/prem_league_data.txt, sep=&quot;</span> <span class="st">&quot;, header=TRUE)</span></a></code></pre></div>
+<p>If you are not sure what the name of YOURDIRECTORY is where the file is located, then a useful command to find out is <code>file.choose()</code></p>
+<ol style="list-style-type: lower-roman">
+<li><p>Check that you can reproduce, and agree with, the calculations done in this chapter.</p></li>
+<li><p>Consider now doing CCA with <span class="math inline">\(\mathbf x=(W,D)\)</span> and <span class="math inline">\(\mathbf y=(G,GA, L)\)</span>. Note that if you knew <span class="math inline">\(W\)</span> and <span class="math inline">\(D\)</span>, you could calculate <span class="math inline">\(L\)</span>. Without doing any computation, what do you expect the first canoncial correlation to be? What will the first pair of CC vectors be (upto a multiplicative constant)?</p></li>
+<li><p>Check your intuition by doing the calculation in R:</p></li>
 </ol>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">load</span>(<span class="st">&#39;mnist.rda&#39;</span>)</a></code></pre></div>
-<p>This loads a list <code>mnist</code> that splits the data into two parts</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">mnist<span class="op">$</span>train <span class="co">## a training set of 60000 images</span></a>
-<a class="sourceLine" id="cb28-2" data-line-number="2">mnist<span class="op">$</span>test <span class="co">## a test set of 10000 images</span></a></code></pre></div>
-<p>Let’s just look at the training set. This is also a list containing the image intensities and the image labels</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">mnist<span class="op">$</span>train<span class="op">$</span>x <span class="co"># image intensities</span></a>
-<a class="sourceLine" id="cb29-2" data-line-number="2">mnist<span class="op">$</span>train<span class="op">$</span>y <span class="co"># image labels</span></a></code></pre></div>
-<p>If we select just the first image we can see it is a vector of length 784 containing numbers between 0 and 1.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">mnist<span class="op">$</span>train<span class="op">$</span>x[<span class="dv">1</span>,]</a></code></pre></div>
-<p>I’ve created a function to help you plot these images.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">library</span>(reshape2)</a>
-<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb31-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb31-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb31-5" data-line-number="5">plot.mnist &lt;-<span class="st"> </span><span class="cf">function</span>(im){</a>
-<a class="sourceLine" id="cb31-6" data-line-number="6">  <span class="co">#im[im&lt;0]&lt;-0 # set any negative intensities to zero</span></a>
-<a class="sourceLine" id="cb31-7" data-line-number="7">  <span class="co">#im[im&gt;1]&lt;-1 # set an intensities bigger than 1 to 1.</span></a>
-<a class="sourceLine" id="cb31-8" data-line-number="8">  </a>
-<a class="sourceLine" id="cb31-9" data-line-number="9">  </a>
-<a class="sourceLine" id="cb31-10" data-line-number="10">  <span class="cf">if</span>(<span class="kw">is.vector</span>(im)){ <span class="co"># a single image</span></a>
-<a class="sourceLine" id="cb31-11" data-line-number="11">    </a>
-<a class="sourceLine" id="cb31-12" data-line-number="12">    A&lt;-<span class="kw">matrix</span>(im, <span class="dt">nr=</span><span class="dv">28</span>, <span class="dt">byrow=</span>F)</a>
-<a class="sourceLine" id="cb31-13" data-line-number="13">    C&lt;-<span class="st"> </span><span class="kw">melt</span>(A, <span class="dt">varnames =</span> <span class="kw">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>), <span class="dt">value.name =</span> <span class="st">&quot;intensity&quot;</span>)</a>
-<a class="sourceLine" id="cb31-14" data-line-number="14">    p&lt;-<span class="kw">ggplot</span>(C, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> intensity))<span class="op">+</span></a>
-<a class="sourceLine" id="cb31-15" data-line-number="15"><span class="st">      </span><span class="kw">geom_tile</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>intensity))<span class="op">+</span></a>
-<a class="sourceLine" id="cb31-16" data-line-number="16"><span class="st">      </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low=</span><span class="st">&#39;white&#39;</span>, <span class="dt">high=</span><span class="st">&#39;black&#39;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb31-17" data-line-number="17"><span class="st">      </span><span class="kw">scale_y_reverse</span>()<span class="op">+</span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb31-18" data-line-number="18">        <span class="dt">strip.background =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb31-19" data-line-number="19">        <span class="dt">strip.text.x =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb31-20" data-line-number="20">        <span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>),</a>
-<a class="sourceLine" id="cb31-21" data-line-number="21">        <span class="dt">axis.text =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb31-22" data-line-number="22">        <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>()</a>
-<a class="sourceLine" id="cb31-23" data-line-number="23">      ) </a>
-<a class="sourceLine" id="cb31-24" data-line-number="24">  }</a>
-<a class="sourceLine" id="cb31-25" data-line-number="25">  <span class="cf">else</span>{</a>
-<a class="sourceLine" id="cb31-26" data-line-number="26">    <span class="cf">if</span> (<span class="kw">dim</span>(im)[<span class="dv">2</span>]<span class="op">!=</span><span class="dv">784</span>){</a>
-<a class="sourceLine" id="cb31-27" data-line-number="27">      im =<span class="st"> </span><span class="kw">t</span>(im)</a>
-<a class="sourceLine" id="cb31-28" data-line-number="28">    } </a>
-<a class="sourceLine" id="cb31-29" data-line-number="29">    n &lt;-<span class="st"> </span><span class="kw">dim</span>(im)[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb31-30" data-line-number="30">    As &lt;-<span class="st"> </span><span class="kw">array</span>(im, <span class="dt">dim =</span> <span class="kw">c</span>(n, <span class="dv">28</span>, <span class="dv">28</span>))</a>
-<a class="sourceLine" id="cb31-31" data-line-number="31">    </a>
-<a class="sourceLine" id="cb31-32" data-line-number="32">    Cs&lt;-<span class="st"> </span><span class="kw">melt</span>(As, <span class="dt">varnames =</span> <span class="kw">c</span>(<span class="st">&quot;image&quot;</span>,<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>), <span class="dt">value.name =</span> <span class="st">&quot;intensity&quot;</span>)</a>
-<a class="sourceLine" id="cb31-33" data-line-number="33">    p&lt;-<span class="kw">ggplot</span>(Cs, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y, <span class="dt">fill =</span> intensity))<span class="op">+</span></a>
-<a class="sourceLine" id="cb31-34" data-line-number="34"><span class="st">      </span><span class="kw">geom_tile</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>intensity))<span class="op">+</span></a>
-<a class="sourceLine" id="cb31-35" data-line-number="35"><span class="st">      </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low=</span><span class="st">&#39;white&#39;</span>, <span class="dt">high=</span><span class="st">&#39;black&#39;</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb31-36" data-line-number="36"><span class="st">      </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>image, <span class="dt">nrow =</span> <span class="kw">floor</span>(<span class="kw">sqrt</span>(n))<span class="op">+</span><span class="dv">1</span>, <span class="dt">ncol =</span> <span class="kw">floor</span>(<span class="kw">sqrt</span>(n))<span class="op">+</span><span class="dv">1</span>)<span class="op">+</span></a>
-<a class="sourceLine" id="cb31-37" data-line-number="37"><span class="st">      </span><span class="kw">scale_y_reverse</span>()<span class="op">+</span><span class="kw">theme</span>(</a>
-<a class="sourceLine" id="cb31-38" data-line-number="38">        <span class="dt">strip.background =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb31-39" data-line-number="39">        <span class="dt">strip.text.x =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb31-40" data-line-number="40">        <span class="dt">panel.spacing =</span> <span class="kw">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>),</a>
-<a class="sourceLine" id="cb31-41" data-line-number="41">        <span class="dt">axis.text =</span> <span class="kw">element_blank</span>(),</a>
-<a class="sourceLine" id="cb31-42" data-line-number="42">        <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>()</a>
-<a class="sourceLine" id="cb31-43" data-line-number="43">      ) </a>
-<a class="sourceLine" id="cb31-44" data-line-number="44">    </a>
-<a class="sourceLine" id="cb31-45" data-line-number="45">  }</a>
-<a class="sourceLine" id="cb31-46" data-line-number="46">  <span class="kw">return</span>(p)</a>
-<a class="sourceLine" id="cb31-47" data-line-number="47">}</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">X &lt;-<span class="st"> </span>table[,<span class="kw">c</span>(<span class="st">&#39;W&#39;</span>,<span class="st">&#39;D&#39;</span>)] </a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">Y &lt;-<span class="st"> </span>table[,<span class="kw">c</span>(<span class="st">&#39;G&#39;</span>,<span class="st">&#39;GA&#39;</span>,<span class="st">&#39;L&#39;</span>)] </a>
+<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="kw">cc</span>(X,Y)</a></code></pre></div>
+</div>
+<div id="task-3" class="section level5 unnumbered">
+<h5>Task 3</h5>
+<!--https://stats.idre.ucla.edu/r/dae/canonical-correlation-analysis/-->
+<p>We will now look data measured from 600 first year university students. Measurements were made on three psychological variables:</p>
 <ul>
-<li><p>Use this command to plot the first 10 images from the MNIST training set.</p></li>
-<li><p>Select all the 5s from the MNIST training set. Plot a selection of these digits.</p></li>
+<li>Locus of Control: the degree to someone believes that they, as opposed to external forces, have control over the outcome of events in their lives.</li>
+<li>Self Concept: an indication of whether a person tends to hold a generally positive and consistent or negative and variable self-view.</li>
+<li>Motivation: how motivated an individual is</li>
 </ul>
+<p>which will form our <span class="math inline">\(\mathbf X\)</span> variables. The <span class="math inline">\(\mathbf Y\)</span> variables are four academic scores (standardized test scores)</p>
+<ul>
+<li>Reading</li>
+<li>Writing</li>
+<li>Math</li>
+<li>Science</li>
+</ul>
+<p>and gender (1=Male, 0 = Female) We are interested in how the set of psychological variables relates to the academic variables and gender.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">mm &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://stats.idre.ucla.edu/stat/data/mmreg.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">colnames</span>(mm) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Concept&quot;</span>, <span class="st">&quot;Motivation&quot;</span>, <span class="st">&quot;Read&quot;</span>, <span class="st">&quot;Write&quot;</span>, <span class="st">&quot;Math&quot;</span>,</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3">    <span class="st">&quot;Science&quot;</span>, <span class="st">&quot;Sex&quot;</span>)</a>
+<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="kw">summary</span>(mm)</a>
+<a class="sourceLine" id="cb26-5" data-line-number="5">psych &lt;-<span class="st"> </span>mm[, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb26-6" data-line-number="6">acad &lt;-<span class="st"> </span>mm[, <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>]</a></code></pre></div>
+<p>Conduct CCA on these data. Provide an interpretation of your results.</p>
+<!--
+We will carry out some canonical correlation analysis (CCA) on the Boston Housing dataset from the `mlbench` library.
+
+
+```r
+library(mlbench) # the dataset is from this package/
+library(CCA)
+data(BostonHousing2)
+library(dplyr)
+X = BostonHousing2 %>% select(crim, zn, indus, nox,rm, age)
+Y = BostonHousing2 %>% select(cmedv, lstat,  ptratio, tax, dis)
+```
+
+
+Conduct a canonical correlation analysis of this data. In particular,
+
+```r
+cca<-cc(X,Y)
+cca$cor   #gives the canonical correlations (singular values of A in our notes) Note the first singular value is large. 
+plt.var(cca, d1=1, d2=2, var.label = TRUE)
+```
+
+
+[Note: these commands were also used on the Boston Housing data in lectures and I have provided the html output on the Moodle page, which could be helpful]. 
+
+-->
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="1-3-randvec.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-3-properties.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="1-5-exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

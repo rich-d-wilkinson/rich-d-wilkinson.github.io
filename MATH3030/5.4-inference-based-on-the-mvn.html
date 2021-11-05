@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5.4 Inference based on the MVN | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5.4 Inference based on the MVN | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5.4 Inference based on the MVN | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="5.3-hotellings-t2-distribution.html"/>
+<link rel="next" href="5.5-exercises-3.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-notation.html"><a href="1.1-notation.html"><i class="fa fa-check"></i><b>1.1</b> Notation</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="1.1-notation.html"><a href="1.1-notation.html#example-datasets"><i class="fa fa-check"></i><b>1.1.1</b> Example datasets</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1.1-notation.html"><a href="1.1-notation.html#aims-of-multivariate-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Aims of multivariate data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1.2-exploratory-data-analysis-eda.html"><a href="1.2-exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>1.2</b> Exploratory data analysis (EDA)</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1.2-exploratory-data-analysis-eda.html"><a href="1.2-exploratory-data-analysis-eda.html#data-visualization"><i class="fa fa-check"></i><b>1.2.1</b> Data visualization</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1.2-exploratory-data-analysis-eda.html"><a href="1.2-exploratory-data-analysis-eda.html#summary-statistics"><i class="fa fa-check"></i><b>1.2.2</b> Summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1.3-randvec.html"><a href="1.3-randvec.html"><i class="fa fa-check"></i><b>1.3</b> Random vectors and matrices</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="1.3-randvec.html"><a href="1.3-randvec.html#estimators"><i class="fa fa-check"></i><b>1.3.1</b> Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1.4-computer-tasks.html"><a href="1.4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1.5-exercises.html"><a href="1.5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-linalg-prelim.html"><a href="2-linalg-prelim.html"><i class="fa fa-check"></i><b>2</b> Review of linear algebra</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html"><i class="fa fa-check"></i><b>2.1</b> Basics</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#notation-1"><i class="fa fa-check"></i><b>2.1.1</b> Notation</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#elementary-matrix-operations"><i class="fa fa-check"></i><b>2.1.2</b> Elementary matrix operations</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#special-matrices"><i class="fa fa-check"></i><b>2.1.3</b> Special matrices</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#vectordiff"><i class="fa fa-check"></i><b>2.1.4</b> Vector Differentiation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html"><i class="fa fa-check"></i><b>2.2</b> Vector spaces</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html#linear-independence"><i class="fa fa-check"></i><b>2.2.1</b> Linear independence</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html#colsspace"><i class="fa fa-check"></i><b>2.2.2</b> Row and column spaces</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html#linear-transformations"><i class="fa fa-check"></i><b>2.2.3</b> Linear transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html"><i class="fa fa-check"></i><b>2.3</b> Inner product spaces</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html#normed"><i class="fa fa-check"></i><b>2.3.1</b> Distances, and angles</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html#orthogonal-matrices"><i class="fa fa-check"></i><b>2.3.2</b> Orthogonal matrices</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html#projection-matrix"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2.4-centering-matrix.html"><a href="2.4-centering-matrix.html"><i class="fa fa-check"></i><b>2.4</b> The Centering Matrix</a></li>
+<li class="chapter" data-level="2.5" data-path="2.5-tasks-ch2.html"><a href="2.5-tasks-ch2.html"><i class="fa fa-check"></i><b>2.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.6" data-path="2.6-exercises-ch2.html"><a href="2.6-exercises-ch2.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-linalg-decomp.html"><a href="3-linalg-decomp.html"><i class="fa fa-check"></i><b>3</b> Matrix decompositions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-matrix-matrix.html"><a href="3.1-matrix-matrix.html"><i class="fa fa-check"></i><b>3.1</b> Matrix-matrix products</a></li>
+<li class="chapter" data-level="3.2" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>3.2</b> Spectral/eigen decomposition</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>3.2.1</b> Eigenvalues and eigenvectors</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>3.2.2</b> Spectral decomposition</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3.3-linalg-SVD.html"><a href="3.3-linalg-SVD.html"><i class="fa fa-check"></i><b>3.3</b> Singular Value Decomposition (SVD)</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3.3-linalg-SVD.html"><a href="3.3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.3.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3.4-svdopt.html"><a href="3.4-svdopt.html"><i class="fa fa-check"></i><b>3.4</b> SVD optimization results</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-lowrank.html"><a href="3.5-lowrank.html"><i class="fa fa-check"></i><b>3.5</b> Low-rank approximation</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="3.5-lowrank.html"><a href="3.5-lowrank.html#matrix-norms"><i class="fa fa-check"></i><b>3.5.1</b> Matrix norms</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="3.6-exercises-1.html"><a href="3.6-exercises-1.html"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-mds.html"><a href="4-mds.html"><i class="fa fa-check"></i><b>4</b> Multidimensional Scaling (MDS)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-classical-mds.html"><a href="4.1-classical-mds.html"><i class="fa fa-check"></i><b>4.1</b> Classical MDS</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4.1-classical-mds.html"><a href="4.1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>4.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="4.1.2" data-path="4.1-classical-mds.html"><a href="4.1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>4.1.2</b> Principal Coordinate Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4.2-similarity.html"><a href="4.2-similarity.html"><i class="fa fa-check"></i><b>4.2</b> Similarity measures</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="4.2-similarity.html"><a href="4.2-similarity.html#binary-attributes"><i class="fa fa-check"></i><b>4.2.1</b> Binary attributes</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4.2-similarity.html"><a href="4.2-similarity.html#example-classical-mds-with-the-mnist-data"><i class="fa fa-check"></i><b>4.2.2</b> Example: Classical MDS with the MNIST data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4.3-non-metric-mds.html"><a href="4.3-non-metric-mds.html"><i class="fa fa-check"></i><b>4.3</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="4.4" data-path="4.4-exercises-2.html"><a href="4.4-exercises-2.html"><i class="fa fa-check"></i><b>4.4</b> Exercises</a></li>
+<li class="chapter" data-level="4.5" data-path="4.5-computer-tasks-1.html"><a href="4.5-computer-tasks-1.html"><i class="fa fa-check"></i><b>4.5</b> Computer Tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><a href="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><i class="fa fa-check"></i>Part III: Inference using the Multivariate Normal Distribution (MVN)</a></li>
+<li class="chapter" data-level="5" data-path="5-multinormal.html"><a href="5-multinormal.html"><i class="fa fa-check"></i><b>5</b> The Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html"><i class="fa fa-check"></i><b>5.1</b> Definition and Properties of the MVN</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html#basics"><i class="fa fa-check"></i><b>5.1.1</b> Basics</a></li>
+<li class="chapter" data-level="5.1.2" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html#transformations"><i class="fa fa-check"></i><b>5.1.2</b> Transformations</a></li>
+<li class="chapter" data-level="5.1.3" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html#independence"><i class="fa fa-check"></i><b>5.1.3</b> Independence</a></li>
+<li class="chapter" data-level="5.1.4" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html#confidence-ellipses"><i class="fa fa-check"></i><b>5.1.4</b> Confidence ellipses</a></li>
+<li class="chapter" data-level="5.1.5" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html#sampling-results-for-the-mvn"><i class="fa fa-check"></i><b>5.1.5</b> Sampling results for the MVN</a></li>
+<li class="chapter" data-level="5.2.1" data-path="5.2-the-wishart-distribution.html"><a href="5.2-the-wishart-distribution.html"><i class="fa fa-check"></i><b>5.2.1</b> Properties</a></li>
+<li class="chapter" data-level="5.2.2" data-path="5.2-the-wishart-distribution.html"><a href="5.2-the-wishart-distribution.html#cochrans-theorem"><i class="fa fa-check"></i><b>5.2.2</b> Cochran’s theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5.3-hotellings-t2-distribution.html"><a href="5.3-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>5.3</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
+<li class="chapter" data-level="5.4" data-path="5.4-inference-based-on-the-mvn.html"><a href="5.4-inference-based-on-the-mvn.html"><i class="fa fa-check"></i><b>5.4</b> Inference based on the MVN</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="5.4-inference-based-on-the-mvn.html"><a href="5.4-inference-based-on-the-mvn.html#onesampleSigma"><i class="fa fa-check"></i><b>5.4.1</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> known</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5.4-inference-based-on-the-mvn.html"><a href="5.4-inference-based-on-the-mvn.html#onesample"><i class="fa fa-check"></i><b>5.4.2</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 1 sample</a></li>
+<li class="chapter" data-level="5.4.3" data-path="5.4-inference-based-on-the-mvn.html"><a href="5.4-inference-based-on-the-mvn.html#boldsymbolsigma-unknown-2-samples"><i class="fa fa-check"></i><b>5.4.3</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 2 samples</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5.5-exercises-3.html"><a href="5.5-exercises-3.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+<li class="chapter" data-level="5.6" data-path="5.6-computer-tasks-2.html"><a href="5.6-computer-tasks-2.html"><i class="fa fa-check"></i><b>5.6</b> Computer tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="6" data-path="6-lda.html"><a href="6-lda.html"><i class="fa fa-check"></i><b>6</b> Discriminant analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="6-lda.html"><a href="6-lda.html#linear-discriminant-analysis"><i class="fa fa-check"></i>Linear discriminant analysis</a></li>
+<li class="chapter" data-level="6.1" data-path="6.1-lda-ML.html"><a href="6.1-lda-ML.html"><i class="fa fa-check"></i><b>6.1</b> Maximum likelihood (ML) discriminant rule</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="6.1-lda-ML.html"><a href="6.1-lda-ML.html#multivariate-normal-populations"><i class="fa fa-check"></i><b>6.1.1</b> Multivariate normal populations</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6.1-lda-ML.html"><a href="6.1-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>6.1.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="6.1.3" data-path="6.1-lda-ML.html"><a href="6.1-lda-ML.html#two-populations"><i class="fa fa-check"></i><b>6.1.3</b> Two populations</a></li>
+<li class="chapter" data-level="6.1.4" data-path="6.1-lda-ML.html"><a href="6.1-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>6.1.4</b> More than two populations</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6.2-lda-Bayes.html"><a href="6.2-lda-Bayes.html"><i class="fa fa-check"></i><b>6.2</b> Bayes discriminant rule</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6.2-lda-Bayes.html"><a href="6.2-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>6.2.1</b> Example: LDA using the Iris data</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6.2-lda-Bayes.html"><a href="6.2-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>6.2.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6.2-lda-Bayes.html"><a href="6.2-lda-Bayes.html#prediction-accuracy"><i class="fa fa-check"></i><b>6.2.3</b> Prediction accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6.3-FLDA.html"><a href="6.3-FLDA.html"><i class="fa fa-check"></i><b>6.3</b> Fisher’s linear discriminant rule</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="6.3-FLDA.html"><a href="6.3-FLDA.html#iris-example-continued-1"><i class="fa fa-check"></i><b>6.3.1</b> Iris example continued</a></li>
+<li class="chapter" data-level="6.3.2" data-path="6.3-FLDA.html"><a href="6.3-FLDA.html#links-between-methods"><i class="fa fa-check"></i><b>6.3.2</b> Links between methods</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="6.4-computer-tasks-3.html"><a href="6.4-computer-tasks-3.html"><i class="fa fa-check"></i><b>6.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="6.5" data-path="6.5-exercises-4.html"><a href="6.5-exercises-4.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-cluster.html"><a href="7-cluster.html"><i class="fa fa-check"></i><b>7</b> Cluster Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-k-means-clustering.html"><a href="7.1-k-means-clustering.html"><i class="fa fa-check"></i><b>7.1</b> K-means clustering</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="7.1-k-means-clustering.html"><a href="7.1-k-means-clustering.html#estimating-boldsymbol-delta"><i class="fa fa-check"></i><b>7.1.1</b> Estimating <span class="math inline">\(\boldsymbol \delta\)</span></a></li>
+<li class="chapter" data-level="7.1.2" data-path="7.1-k-means-clustering.html"><a href="7.1-k-means-clustering.html#k-means"><i class="fa fa-check"></i><b>7.1.2</b> K-means</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7.1-k-means-clustering.html"><a href="7.1-k-means-clustering.html#example-iris-data"><i class="fa fa-check"></i><b>7.1.3</b> Example: Iris data</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7.1-k-means-clustering.html"><a href="7.1-k-means-clustering.html#choosing-k"><i class="fa fa-check"></i><b>7.1.4</b> Choosing <span class="math inline">\(K\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7.2-model-based-clustering.html"><a href="7.2-model-based-clustering.html"><i class="fa fa-check"></i><b>7.2</b> Model-based clustering</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="7.2-model-based-clustering.html"><a href="7.2-model-based-clustering.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>7.2.1</b> Maximum-likelihood estimation</a></li>
+<li class="chapter" data-level="7.2.2" data-path="7.2-model-based-clustering.html"><a href="7.2-model-based-clustering.html#multivariate-gaussian-clusters"><i class="fa fa-check"></i><b>7.2.2</b> Multivariate Gaussian clusters</a></li>
+<li class="chapter" data-level="7.2.3" data-path="7.2-model-based-clustering.html"><a href="7.2-model-based-clustering.html#example-iris"><i class="fa fa-check"></i><b>7.2.3</b> Example: Iris</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7.3-hierarchical-clustering-methods.html"><a href="7.3-hierarchical-clustering-methods.html"><i class="fa fa-check"></i><b>7.3</b> Hierarchical clustering methods</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="7.3-hierarchical-clustering-methods.html"><a href="7.3-hierarchical-clustering-methods.html#distance-measures"><i class="fa fa-check"></i><b>7.3.1</b> Distance measures</a></li>
+<li class="chapter" data-level="7.3.2" data-path="7.3-hierarchical-clustering-methods.html"><a href="7.3-hierarchical-clustering-methods.html#toy-example"><i class="fa fa-check"></i><b>7.3.2</b> Toy Example</a></li>
+<li class="chapter" data-level="7.3.3" data-path="7.3-hierarchical-clustering-methods.html"><a href="7.3-hierarchical-clustering-methods.html#comparison-of-methods"><i class="fa fa-check"></i><b>7.3.3</b> Comparison of methods</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="7.4-summary.html"><a href="7.4-summary.html"><i class="fa fa-check"></i><b>7.4</b> Summary</a></li>
+<li class="chapter" data-level="7.5" data-path="7.5-computer-tasks-4.html"><a href="7.5-computer-tasks-4.html"><i class="fa fa-check"></i><b>7.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="7.6" data-path="7.6-exercises-5.html"><a href="7.6-exercises-5.html"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-lm.html"><a href="8-lm.html"><i class="fa fa-check"></i><b>8</b> Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="8-lm.html"><a href="8-lm.html#notation-3"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="8.1" data-path="8.1-ordinary-least-squares-ols.html"><a href="8.1-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>8.1</b> Ordinary least squares (OLS)</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="8.1-ordinary-least-squares-ols.html"><a href="8.1-ordinary-least-squares-ols.html#geometry"><i class="fa fa-check"></i><b>8.1.1</b> Geometry</a></li>
+<li class="chapter" data-level="8.1.2" data-path="8.1-ordinary-least-squares-ols.html"><a href="8.1-ordinary-least-squares-ols.html#normal-linear-model"><i class="fa fa-check"></i><b>8.1.2</b> Normal linear model</a></li>
+<li class="chapter" data-level="8.1.3" data-path="8.1-ordinary-least-squares-ols.html"><a href="8.1-ordinary-least-squares-ols.html#linear-models-in-r"><i class="fa fa-check"></i><b>8.1.3</b> Linear models in R</a></li>
+<li class="chapter" data-level="8.1.4" data-path="8.1-ordinary-least-squares-ols.html"><a href="8.1-ordinary-least-squares-ols.html#problems-with-ols"><i class="fa fa-check"></i><b>8.1.4</b> Problems with OLS</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="8.2-principal-component-regression-pcr.html"><a href="8.2-principal-component-regression-pcr.html"><i class="fa fa-check"></i><b>8.2</b> Principal component regression (PCR)</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="8.2-principal-component-regression-pcr.html"><a href="8.2-principal-component-regression-pcr.html#pcr-in-r"><i class="fa fa-check"></i><b>8.2.1</b> PCR in R</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8.3-shrinkage-methods.html"><a href="8.3-shrinkage-methods.html"><i class="fa fa-check"></i><b>8.3</b> Shrinkage methods</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="8.3-shrinkage-methods.html"><a href="8.3-shrinkage-methods.html#ridge-regression-in-r"><i class="fa fa-check"></i><b>8.3.1</b> Ridge regression in R</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="8.4-multi-output-linear-model.html"><a href="8.4-multi-output-linear-model.html"><i class="fa fa-check"></i><b>8.4</b> Multi-output Linear Model</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="8.4-multi-output-linear-model.html"><a href="8.4-multi-output-linear-model.html#normal-linear-model-1"><i class="fa fa-check"></i><b>8.4.1</b> Normal linear model</a></li>
+<li class="chapter" data-level="8.4.2" data-path="8.4-multi-output-linear-model.html"><a href="8.4-multi-output-linear-model.html#reduced-rank-regression"><i class="fa fa-check"></i><b>8.4.2</b> Reduced rank regression</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="8.5-computer-tasks-5.html"><a href="8.5-computer-tasks-5.html"><i class="fa fa-check"></i><b>8.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="8.6" data-path="8.6-exercises-6.html"><a href="8.6-exercises-6.html"><i class="fa fa-check"></i><b>8.6</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="inference-based-on-the-mvn" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Inference based on the MVN</h2>
+<p>In univariate statistical analysis, you will have seen how to do hypothesis testing for the mean of a population.</p>
+<ol style="list-style-type: decimal">
+<li><p>In the case where you have a single sample <span class="math inline">\(x_1, \ldots, x_n\)</span> which come from a population with known variance <span class="math inline">\(\sigma^2\)</span> we use a z-test when testing hypotheses such as
+<span class="math inline">\(H_0: \mu=\mu_1\)</span>.</p></li>
+<li><p>When the variance of the population, <span class="math inline">\(\sigma^2\)</span>, is unknown, then we have to use a t-test.</p></li>
+<li><p>When we have two samples, <span class="math inline">\(x_1, \ldots, x_n\)</span> and <span class="math inline">\(y_1, \ldots, y_m\)</span>, we use either a paired or an unpaired t-test.</p></li>
+</ol>
+<p>We now develop analogous results in the multivariate case. The role of the Student <span class="math inline">\(t\)</span>-distribution will be played by Hotelling’s <span class="math inline">\(T^2\)</span>, and the role of the <span class="math inline">\(\chi^2\)</span> is played by the Wishart distribution.</p>
+<p>The next three subsections deal with the multivariate equivalent of the three situations listed above. Before we do, lets quickly recap how hypothesis testing works:</p>
+<div id="recap-of-hypothesis-testing-framework" class="section level4 unnumbered">
+<h4>Recap of hypothesis testing framework</h4>
+<p>Suppose that we have a null hypothesis <span class="math inline">\(H_0\)</span> represented by a completely specified model and that we wish to test this hypothesis using data <span class="math inline">\(x_1, \ldots, x_n\)</span>. We proceed as follows</p>
+<ol style="list-style-type: decimal">
+<li><p>Assume <span class="math inline">\(H_0\)</span> is true.</p></li>
+<li><p>Find a test statistic <span class="math inline">\(T(x_1, \ldots, x_n)\)</span> for which large values indicate departure from <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>Calculate the theoretical sampling distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>The observed value <span class="math inline">\(T_{obs}=T(x_1, \ldots, x_n)\)</span> of the test statistic is compared with the distribution of <span class="math inline">\(T\)</span> under <span class="math inline">\(H_0\)</span>. Then either</p>
+<ul>
+<li>(Neyman-Pearson) reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(T_{obs}&gt;c\)</span>. Here <span class="math inline">\(c\)</span> is chosen so that <span class="math inline">\(\mathbb{P}(T\geq c| H_0)=\alpha\)</span> where <span class="math inline">\(\alpha\)</span> is the <strong>size</strong> of the test, i.e., <span class="math inline">\(\mathbb{P}(\mbox{reject } H_0 | H_0 \mbox{ true})=\alpha\)</span>.</li>
+<li>(Fisherian) compute the p-value <span class="math inline">\(p=\mathbb{P}(T\geq T_{obs}|H_0)\)</span> and report it. This represents the strength of evidence against <span class="math inline">\(H_0\)</span>.</li>
+</ul></li>
+</ol>
+</div>
+<div id="onesampleSigma" class="section level3" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> known</h3>
+<p>Let <span class="math inline">\(\mathbf x_1,\ldots,\mathbf x_n\)</span> be a random sample from <span class="math inline">\(N_p({\boldsymbol{\mu}},\boldsymbol{\Sigma})\)</span> where
+<span class="math inline">\({\boldsymbol{\mu}}= (\mu_1,\ldots,\mu_p)^\top\)</span>. Suppose we wish to conduct the following hypothesis test <span class="math display">\[H_0: {\boldsymbol{\mu}}= \mathbf a\mbox{ vs } H_1: {\boldsymbol{\mu}}\neq \mathbf a\]</span> where <span class="math inline">\(\mathbf a\)</span> is fixed and pre-specified.
+Let’s first <strong>assume that <span class="math inline">\(\boldsymbol{\Sigma}\)</span> is known</strong>. This will result in the multivariate analogue of the z-test.</p>
+<p>One approach would be to conduct <span class="math inline">\(p\)</span> separate univariate z-tests tests with null hypotheses
+<span class="math display">\[H_0: \mu_i = a_i \qquad \text{vs.} \qquad H_1: \mu_i \neq a_i, \quad \mbox{for } i=1,\ldots,p.\]</span><br />
+However, this ignores possible correlations between the variables - see the example for a situation in which this can make a difference.</p>
+<p>A better approach is to conduct a single (multivariate) hypothesis test using the test statistic
+<span class="math display">\[
+\zeta^2 = n(\bar{\mathbf x}-\mathbf a)^\top \boldsymbol{\Sigma}^{-1} (\bar{\mathbf x}-\mathbf a).
+\]</span></p>
+<p>We need to compute the distribution of <span class="math inline">\(\zeta^2\)</span> when <span class="math inline">\(H_0\)</span> is true. Note that</p>
+<p><span class="math display">\[
+\zeta^2 = (n^{1/2}\bar{\mathbf x}-n^{1/2}{\boldsymbol{\mu}})^\top \boldsymbol{\Sigma}^{-1} (n^{1/2}\bar{\mathbf x}-n^{1/2}{\boldsymbol{\mu}}).
+\]</span>
+Recall that <span class="math inline">\(\bar{\mathbf x} \sim N_p({\boldsymbol{\mu}}, \frac{1}{n} \boldsymbol{\Sigma})\)</span>, and that therefore <span class="math inline">\(n^{1/2} \bar{\mathbf x} \sim N_p(n^{1/2} {\boldsymbol{\mu}}, \boldsymbol{\Sigma})\)</span>. Applying Proposition<br />
+Proposition <a href="5.1-definition-and-properties-of-the-mvn.html#prp:six5">5.3</a> we thus see that
+<span class="math display">\[\zeta^2\sim \chi_p^2\]</span>
+when <span class="math inline">\(H_0\)</span> is true.</p>
+<p>Thus to conduct the hypothesis test, we compute <span class="math inline">\(\zeta^2\)</span> for the observed data, and if the value is large compared to a <span class="math inline">\(\chi^2_p\)</span> distribution, we reject <span class="math inline">\(H_0\)</span>.</p>
+<ul>
+<li><p>The Neyman-Pearson approach is to define a critical region and reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(\zeta^2 &gt; \chi^2_{p,\alpha}\)</span>, where <span class="math inline">\(\chi^2_{p,\alpha}\)</span> is the upper <span class="math inline">\(\alpha\)</span> quantile of the <span class="math inline">\(\chi^2_p\)</span> distribution, i.e., <span class="math inline">\(\mathbb{P}(\chi^2_p &gt; \chi^2_{p,\alpha})=\alpha\)</span>.</p></li>
+<li><p>The Fisherian approach is to state the result as a <span class="math inline">\(p\)</span>-value where <span class="math inline">\(p = \mathbb{P}(\chi^2_p &gt; \zeta_{\text{obs}}^2)\)</span>, and
+<span class="math inline">\(\zeta_{\text{obs}}^2\)</span> is the observed value of the statistic <span class="math inline">\(\zeta^2\)</span>.</p></li>
+</ul>
+<p>The multivariate equivalent of a confidence interval is a <strong>confidence region</strong> and the <span class="math inline">\(100(1-\alpha)\)</span>% confidence region for <span class="math inline">\({\boldsymbol{\mu}}\)</span> is <span class="math inline">\(\{ \mathbf a: \zeta^2 \leq \chi^2_{p,\alpha} \}\)</span>.
+This confidence region will be the interior of an ellipse or ellipsoid.</p>
+<div id="example" class="section level4 unnumbered">
+<h4>Example</h4>
+<p>Consider again the exam marks for first year maths students in the two modules PRB and STA. The scatterplot below shows the module marks for <span class="math inline">\(n=203\)</span> students on probability (PRB, <span class="math inline">\(x_1\)</span>) and statistics (STA, <span class="math inline">\(x_2\)</span>), with the sample mean vector <span class="math inline">\(\begin{pmatrix}62.1 \\62.7 \\\end{pmatrix}\)</span> marked on as a red ‘+.’</p>
+<p><img src="07-mvn_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p>The target for the module mean for a large population of students should be exactly 60 for both modules. We now conduct a hypothesis test to see if the lecturers have missed the target and made the exam too difficult. We will test the hypotheses <span class="math inline">\(H_0\)</span> versus <span class="math inline">\(H_1\)</span> at the 5% level where
+<span class="math display">\[
+H_0: {\boldsymbol{\mu}}= \begin{pmatrix} 60 \\ 60 \end{pmatrix} \qquad \text{and} \qquad H_1: {\boldsymbol{\mu}}\neq \begin{pmatrix} 60 \\ 60 \end{pmatrix}.
+\]</span></p>
+<p>Let’s assume to begin with that observations <span class="math inline">\(\mathbf x_1,\ldots,\mathbf x_{203}\)</span> are a random sample from <span class="math inline">\(N_2({\boldsymbol{\mu}},\boldsymbol{\Sigma})\)</span> where
+<span class="math display">\[
+\boldsymbol{\Sigma}= \begin{pmatrix} 200 &amp; 150 \\ 150 &amp; 300 \end{pmatrix}
+\]</span>
+is assumed known.</p>
+<p>The test statistic is
+<span class="math display">\[\begin{align*}
+\zeta^2 &amp;= 203 \begin{pmatrix} 62.1 - 60 \\ 62.7 - 60 \end{pmatrix}^\top \begin{pmatrix} 200 &amp; 150 \\ 150 &amp; 300 \end{pmatrix}^{-1} \begin{pmatrix} 62.1 - 60 \\ 62.7 - 60 \end{pmatrix}\\
+&amp;=5.84
+\end{align*}\]</span></p>
+<p>Under <span class="math inline">\(H_0\)</span>, <span class="math inline">\(\zeta^2\sim \chi^2_2\)</span>. and so the critical value is <span class="math inline">\(\chi^2_{2,0.05} = 5.991\)</span>.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="5.4-inference-based-on-the-mvn.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qchisq</span>(<span class="fl">0.95</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 5.991465</code></pre>
+<p>The plot below shows the density of a <span class="math inline">\(\chi^2_2\)</span> random variable. The vertical red line shows the critical value, the vertical black line the observed value, and the shaded region shows the critical region. As <span class="math inline">\(\zeta^2 &lt; \chi^2_{p,0.05}\)</span> we can see that we do not reject the null hypothesis at the 5% level.</p>
+<p><img src="07-mvn_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p>The <span class="math inline">\(p\)</span>-value is</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="5.4-inference-based-on-the-mvn.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pchisq</span>(zeta2, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##            [,1]
+## [1,] 0.05389049</code></pre>
+<p>which is the area of the red shaded region.</p>
+<p>Note that if we had conducted separate univariate hypothesis tests of <span class="math inline">\(H_0: \mu_1 = 60\)</span> and <span class="math inline">\(H_0: \mu_2 = 60\)</span> then the test statistics would have been:
+<span class="math display">\[\begin{eqnarray*}
+z_1 &amp;=&amp; \frac{\bar{x}_1 - \mu_1}{\sqrt{\sigma_1^2/n}} = \frac{62-60}{\sqrt{200/203}} = 2.11  \\
+z_2 &amp;=&amp; \frac{\bar{x}_2 - \mu_2}{\sqrt{\sigma_2^2/n}} = \frac{62-60}{\sqrt{300/203}} = 2.22.
+\end{eqnarray*}\]</span>
+The critical value would have been <span class="math inline">\(Z_{0.025} = 1.960\)</span> and both null hypotheses would have been rejected. Therefore we see that a multivariate hypothesis can be accepted when each of univariate components is rejected and vice-versa.</p>
+<p>The <span class="math inline">\(95\)</span>% confidence region is the interior of an ellipse, centred on <span class="math inline">\(\bar{\mathbf x}\)</span>, with the angle of the major-axis governed by <span class="math inline">\(\boldsymbol{\Sigma}\)</span> (given by the eigenvectors of <span class="math inline">\(\boldsymbol{\Sigma}\)</span>). We can see from the plot below that <span class="math inline">\((60,60)^\top\)</span>, marked with a cross, lies just inside the confidence region.</p>
+<p><img src="07-mvn_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+</div>
+</div>
+<div id="onesample" class="section level3" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 1 sample</h3>
+<p>In the previous section we considered a hypothesis test of
+<span class="math display">\[H_0: {\boldsymbol{\mu}}= \mathbf a\mbox{ vs } H_1: {\boldsymbol{\mu}}\neq \mathbf a\]</span> based on an IID sample from <span class="math inline">\(N_p({\boldsymbol{\mu}},\boldsymbol{\Sigma})\)</span> when <span class="math inline">\(\boldsymbol{\Sigma}\)</span> was <strong>known</strong>. In reality, we rarely know <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, so we <strong>replace it with the sample covariance matrix</strong>, <span class="math inline">\(\mathbf S\)</span>. Corollary <a href="5.3-hotellings-t2-distribution.html#cor:csix6">5.4</a> tells us that the distribution is then <span class="math inline">\(F_{p,n-p}\)</span> rather than <span class="math inline">\(\chi^2_p\)</span> as was the case when <span class="math inline">\(\boldsymbol{\Sigma}\)</span> was known.</p>
+<p>More specifically, we use the test statistic:
+<span class="math display">\[\gamma^2 = \frac{n-p}{p} (\bar{\mathbf x}-\mathbf a)^\top \mathbf S^{-1} (\bar{\mathbf x}-\mathbf a),\]</span>
+Corollary <a href="5.3-hotellings-t2-distribution.html#cor:csix6">5.4</a> tells us that when <span class="math inline">\(H_0\)</span> is true,
+<span class="math display">\[\gamma^2 \sim F_{p,n-p}.\]</span>
+As before, depending upon our approach we either</p>
+<ul>
+<li><p>(Neyman-Pearson approach) reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(\gamma^2 &gt; F_{p,n-p,\alpha}\)</span>, where <span class="math inline">\(\alpha\)</span> is the significance level.</p></li>
+<li><p>(Fisherian approach) compute the p-value <span class="math inline">\(p = \mathbb{P}(F_{p,n-p} &gt; \gamma^2_{obs})\)</span>.</p></li>
+</ul>
+<p>The <span class="math inline">\(100(1-\alpha)\)</span>% confidence region for <span class="math inline">\({\boldsymbol{\mu}}\)</span> is <span class="math inline">\(\{ \mathbf a: \gamma^2 \leq F_{p,n-p,\alpha} \}\)</span>, which will again be the interior of an ellipse or ellipsoid, but the confidence region is now determined by <span class="math inline">\(\mathbf S\)</span> rather than <span class="math inline">\(\boldsymbol{\Sigma}\)</span>.</p>
+<div id="example-continued" class="section level4 unnumbered">
+<h4>Example continued</h4>
+<p>We return to the example with the module marks for <span class="math inline">\(n=203\)</span> students on probability (PRB, <span class="math inline">\(x_1\)</span>) and statistics (STA, <span class="math inline">\(x_2\)</span>), but now we assume that <span class="math inline">\(\boldsymbol{\Sigma}\)</span> is unknown.</p>
+<p>The sample mean and sample covariance matrix are
+<span class="math display">\[\bar{\mathbf x} = \begin{pmatrix}62.1 \\62.7 \\\end{pmatrix} \qquad \mathbf S= \begin{pmatrix}191&amp;155.6 \\155.6&amp;313.5 \\\end{pmatrix}\]</span>
+We conduct a hypothesis test at the 5% level of:
+<span class="math display">\[H_0: {\boldsymbol{\mu}}= \begin{pmatrix} 60 \\ 60 \end{pmatrix} \qquad \text{vs.} \qquad H_1: {\boldsymbol{\mu}}\neq \begin{pmatrix} 60 \\ 60 \end{pmatrix}.\]</span></p>
+<p>The test statistic is
+<span class="math display">\[\begin{align*}
+\gamma^2 &amp;= \frac{203-2}{2} \begin{pmatrix} 62.1 - 60 \\ 62.7 - 60 \end{pmatrix}^\top \begin{pmatrix}191&amp;155.6 \\155.6&amp;313.5 \\\end{pmatrix}^{-1} \begin{pmatrix} 62.1 - 60 \\ 62.7 - 60 \end{pmatrix} \\
+ &amp;= 2.84.
+\end{align*}\]</span>
+The critical value is <span class="math inline">\(F_{2,201,0.05}\)</span></p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="5.4-inference-based-on-the-mvn.html#cb110-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">qf</span>(<span class="fl">0.95</span>, <span class="dv">2</span>,<span class="dv">201</span>)</span></code></pre></div>
+<pre><code>## [1] 3.040828</code></pre>
+<p>so <span class="math inline">\(\gamma^2 &lt; F_{p,n-p,0.05}\)</span> and we do not reject the null hypothesis at the 5% level.</p>
+<p>The <span class="math inline">\(p\)</span>-value is</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="5.4-inference-based-on-the-mvn.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pf</span>(gamma2, <span class="dv">2</span>, <span class="dv">201</span>)</span></code></pre></div>
+<pre><code>##            [,1]
+## [1,] 0.06051421</code></pre>
+<p>Thankfully, we don’t need to do all the computation ourselves whenever we want to do a test, as there are several R packages that will do the work for us:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="5.4-inference-based-on-the-mvn.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ICSNP) <span class="co"># you&#39;ll need to install this package the first time</span></span>
+<span id="cb114-2"><a href="5.4-inference-based-on-the-mvn.html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="fu">HotellingsT2</span>(X,  <span class="at">mu =</span> mu)</span></code></pre></div>
+<pre><code>## 
+##  Hotelling&#39;s one sample T2-test
+## 
+## data:  X
+## T.2 = 2.8444, df1 = 2, df2 = 201, p-value = 0.06051
+## alternative hypothesis: true location is not equal to c(60,60)</code></pre>
+<p>Notice again the difference to the two univariate tests</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="5.4-inference-based-on-the-mvn.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(X[,<span class="dv">1</span>], <span class="at">mu=</span><span class="dv">60</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  X[, 1]
+## t = 2.1581, df = 202, p-value = 0.0321
+## alternative hypothesis: true mean is not equal to 60
+## 95 percent confidence interval:
+##  60.18121 64.01584
+## sample estimates:
+## mean of x 
+##  62.09852</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="5.4-inference-based-on-the-mvn.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(X[,<span class="dv">2</span>], <span class="at">mu=</span><span class="dv">60</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  X[, 2]
+## t = 2.1669, df = 202, p-value = 0.03141
+## alternative hypothesis: true mean is not equal to 60
+## 95 percent confidence interval:
+##  60.24305 65.15596
+## sample estimates:
+## mean of x 
+##  62.69951</code></pre>
+<p>The <span class="math inline">\(95\)</span>% confidence region is the interior of an ellipse, centred on <span class="math inline">\(\bar{\mathbf x}\)</span>, with the angle of the major-axis governed by <span class="math inline">\(\mathbf S\)</span>. The confidence region is very slightly larger than when <span class="math inline">\(\boldsymbol{\Sigma}\)</span> was known.</p>
+<p><img src="07-mvn_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+</div>
+</div>
+<div id="boldsymbolsigma-unknown-2-samples" class="section level3" number="5.4.3">
+<h3><span class="header-section-number">5.4.3</span> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 2 samples</h3>
+<p>Suppose now we have data from two populations <span class="math inline">\(\mathbf x_1, \ldots, \mathbf x_n\)</span> and <span class="math inline">\(\mathbf y_1,\ldots, \mathbf y_m\)</span>, and that we wish to test the difference between the two population means. As with the univariate case, there are two cases to consider:</p>
+<div id="paired-case" class="section level4 unnumbered">
+<h4>Paired case</h4>
+<p>If <span class="math inline">\(m=n\)</span> and there exists some experimental link between <span class="math inline">\(\mathbf x_i\)</span> and <span class="math inline">\(\mathbf y_i\)</span> then we can look at the differences <span class="math inline">\(\mathbf z_i = \mathbf y_i - \mathbf x_i\)</span> for <span class="math inline">\(i=1,\ldots,n\)</span>. For example, <span class="math inline">\(\mathbf x_i\)</span> and <span class="math inline">\(\mathbf y_i\)</span> could be vectors of pre-treatment and post-treatment measurements, respectively, of the same variables. The crucial assumption is that the differences <span class="math inline">\(\mathbf z_i\)</span> are IID <span class="math inline">\(N_p({\boldsymbol{\mu}}, \boldsymbol{\Sigma})\)</span>. To examine the null hypothesis of no difference between the means we would test</p>
+<p><span class="math display">\[H_0: {\boldsymbol{\mu}}={\mathbf 0}_p \mbox{ vs } H_1: {\boldsymbol{\mu}}\neq {\mathbf 0}_p.\]</span></p>
+<p>We then base our inference on <span class="math inline">\(\bar{\mathbf z} = \frac{1}{n} \sum_{i=1}^n \mathbf z_i = \bar{\mathbf y} - \bar{\mathbf x}\)</span>, and proceed exactly as in the 1 sample case, using the test in Secion <a href="5.4-inference-based-on-the-mvn.html#onesampleSigma">5.4.1</a> if <span class="math inline">\(\boldsymbol{\Sigma}\)</span> is known, or else the test in Section <a href="5.4-inference-based-on-the-mvn.html#onesample">5.4.2</a> if with <span class="math inline">\(\mathbf S= \frac{1}{n} \sum_{i=1}^n (\mathbf z_i - \bar{\mathbf z})(\mathbf z_i - \bar{\mathbf z})^\top\)</span>.</p>
+</div>
+<div id="unpaired-case" class="section level4 unnumbered">
+<h4>Unpaired case</h4>
+<p>The unpaired case is where <span class="math inline">\(\mathbf x_i\)</span> and <span class="math inline">\(\mathbf y_i\)</span> are independent and not connected to each other. For example, in a clinical trial we may have two separate groups of patients, where one group receives a placebo and the other group receives an active treatment. Let <span class="math inline">\(\mathbf x_1,\ldots,\mathbf x_n\)</span> be an IID sample from <span class="math inline">\(N_p({\boldsymbol{\mu}}_1,\boldsymbol{\Sigma})\)</span> and let <span class="math inline">\(\mathbf y_1,\ldots,\mathbf y_m\)</span> be an IID sample from <span class="math inline">\(N_p({\boldsymbol{\mu}}_2,\boldsymbol{\Sigma})\)</span>. In this case, we can base our inference on the following result.</p>
+
+<div class="proposition">
+<span id="prp:seven1" class="proposition"><strong>Proposition 5.13  </strong></span>Suppose
+<span class="math display">\[\begin{align*}
+\mathbf x_1,\ldots,\mathbf x_n  &amp;\sim N_p({\boldsymbol{\mu}}_1,\boldsymbol{\Sigma}_1)\\ 
+\mathbf y_1,\ldots,\mathbf y_m  &amp;\sim N_p({\boldsymbol{\mu}}_2,\boldsymbol{\Sigma}_2). 
+\end{align*}\]</span>
+Then when <span class="math inline">\({\boldsymbol{\mu}}_1 = {\boldsymbol{\mu}}_2\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}_1 = \boldsymbol{\Sigma}_2\)</span> (i.e. when the two populations have the same distribution),
+<span class="math display">\[\frac{nm}{n+m} (\bar{\mathbf y} - \bar{\mathbf x})^\top \mathbf S_u^{-1} (\bar{\mathbf y} - \bar{\mathbf x}) \sim T^2(p,n+m-2),\]</span>
+where
+<span class="math display">\[\mathbf S_u = \frac{n\mathbf S_1 + m\mathbf S_2}{n+m-2}\]</span>
+is the pooled unbiased variance matrix estimator
+and <span class="math inline">\(\mathbf S_j\)</span> is the sample covariance matrix for group <span class="math inline">\(j\)</span>.
+</div>
+
+<div class="proof">
+<p>\iffalse{} <span class="proof"><em>Proof. </em></span> We know that <span class="math inline">\(\bar{\mathbf x} \sim N_p \left({\boldsymbol{\mu}}_1,n^{-1}\boldsymbol{\Sigma}_1 \right)\)</span> and <span class="math inline">\(\bar{\mathbf y} \sim N_p \left({\boldsymbol{\mu}}_2,m^{-1}\boldsymbol{\Sigma}_2 \right)\)</span>, and <span class="math inline">\(\bar{\mathbf x}\)</span> and <span class="math inline">\(\bar{\mathbf y}\)</span> are independent, so
+<span class="math display">\[\bar{\mathbf y} - \bar{\mathbf x} \sim N_p \left({\boldsymbol{\mu}}_2 - {\boldsymbol{\mu}}_1, \frac{1}{n}\boldsymbol{\Sigma}_1 + \frac{1}{m} \boldsymbol{\Sigma}_2 \right).\]</span>
+If <span class="math inline">\({\boldsymbol{\mu}}_1 = {\boldsymbol{\mu}}_2\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}_1 = \boldsymbol{\Sigma}_2 = \boldsymbol{\Sigma}\)</span>, then <span class="math inline">\(\bar{\mathbf y} - \bar{\mathbf x} \sim N_p \left(\boldsymbol 0_p, \left(\frac{1}{n} + \frac{1}{m} \right)\boldsymbol{\Sigma}\right)\)</span> and
+<span class="math display">\[\mathbf z= \left(\frac{1}{n} + \frac{1}{m} \right)^{-1/2} (\bar{\mathbf y} - \bar{\mathbf x}) \sim N_p(\boldsymbol 0_p,\boldsymbol{\Sigma}).\]</span></p>
+<p>From Proposition <a href="5.2-the-wishart-distribution.html#prp:six12">5.10</a> we know that <span class="math inline">\(n\mathbf S_1 \sim W_p(\Sigma_1,n-1)\)</span> and <span class="math inline">\(m\mathbf S_2 \sim W_p(\Sigma_2,m-1)\)</span>. Therefore when <span class="math inline">\(\boldsymbol{\Sigma}_1 = \boldsymbol{\Sigma}_2 = \boldsymbol{\Sigma}\)</span>,
+<span class="math display">\[\begin{eqnarray*}
+\mathbf M= (n+m-2)\mathbf S_u &amp;=&amp; (n+m-2)\frac{n\mathbf S_1 + m\mathbf S_2}{n+m-2} \\
+&amp;=&amp; n\mathbf S_1 + m\mathbf S_2 \sim W_p(\boldsymbol{\Sigma},n+m-2)
+\end{eqnarray*}\]</span>
+by Proposition <a href="5.2-the-wishart-distribution.html#prp:six10">5.9</a>, using the fact that <span class="math inline">\(\mathbf S_1\)</span> and <span class="math inline">\(\mathbf S_2\)</span> are independent.</p>
+Now <span class="math inline">\(\mathbf z\)</span> is independent of <span class="math inline">\(\mathbf M\)</span>, since <span class="math inline">\(\bar{\mathbf x}\)</span> and <span class="math inline">\(\bar{\mathbf y}\)</span> are independent of <span class="math inline">\(\mathbf S_1\)</span> and <span class="math inline">\(\mathbf S_2\)</span>, respectively, by Proposition <a href="5.1-definition-and-properties-of-the-mvn.html#prp:six6">5.4</a>. Therefore, applying Proposition <a href="5.3-hotellings-t2-distribution.html#prp:six13">5.11</a> with <span class="math inline">\(\mathbf x= \mathbf z\)</span> and <span class="math inline">\(\mathbf M= (n+m-2)\mathbf S_u\)</span>, we have
+<span class="math display">\[\begin{align*}
+(n+m-2) \mathbf z^\top ((n+m-2)\mathbf S_u)^{-1} \mathbf z&amp;= \mathbf z^\top \mathbf S_u^{-1} \mathbf z\\
+&amp;\sim T^2(p,n+m-2)
+\end{align*}\]</span>
+and
+<span class="math display">\[\begin{eqnarray*}
+\mathbf z^\top \mathbf S_u^{-1} \mathbf z&amp;=&amp; \left(\frac{1}{n} + \frac{1}{m} \right)^{-1/2} (\bar{\mathbf y} - \bar{\mathbf x})^\top \mathbf S_u^{-1} \left(\frac{1}{n} + \frac{1}{m} \right)^{-1/2} (\bar{\mathbf y} - \bar{\mathbf x}) \\
+&amp;=&amp; \left(\frac{1}{n} + \frac{1}{m} \right)^{-1} (\bar{\mathbf y} - \bar{\mathbf x})^\top \mathbf S_u^{-1} (\bar{\mathbf y} - \bar{\mathbf x}).
+\end{eqnarray*}\]</span>
+Finally,
+<span class="math display">\[\left(\frac{1}{n} + \frac{1}{m} \right)^{-1} = \left(\frac{m}{nm} + \frac{n}{nm} \right)^{-1} = \left(\frac{n+m}{nm} \right)^{-1} = \frac{nm}{n+m},\]</span>
+so Proposition <a href="5.4-inference-based-on-the-mvn.html#prp:seven1">5.13</a> is proved.
+</div>
+<p>As in the one sample case, we can convert Hotelling’s two-sample <span class="math inline">\(T^2\)</span> statistic to the <span class="math inline">\(F\)</span> distribution using Proposition <a href="5.3-hotellings-t2-distribution.html#prp:six14">5.12</a>.</p>
+
+<div class="corollary">
+<span id="cor:cseven1" class="corollary"><strong>Corollary 5.5  </strong></span>Using the notation of Proposition <a href="5.4-inference-based-on-the-mvn.html#prp:seven1">5.13</a>, it follows that
+<span class="math display">\[\delta^2 = \frac{(n+m-p-1)}{(n+m-2)p} \frac{nm}{(n+m)} (\bar{\mathbf y} - \bar{\mathbf x})^\top \mathbf S_u^{-1} (\bar{\mathbf y} - \bar{\mathbf x}) \sim F_{p,n+m-p-1}.\]</span>
+</div>
+
+<div class="proof">
+\iffalse{} <span class="proof"><em>Proof. </em></span> Simply apply Proposition <a href="5.3-hotellings-t2-distribution.html#prp:six14">5.12</a> to the statistic in Proposition <a href="5.4-inference-based-on-the-mvn.html#prp:seven1">5.13</a> (replace <span class="math inline">\(n\)</span> with <span class="math inline">\(n+m-2\)</span>).
+</div>
+</div>
+<div id="example-continued-1" class="section level4 unnumbered">
+<h4>Example continued</h4>
+<p>There are two different maths undergraduate programmes at the University of Nottingham: a 3-year (G100) and a 4-year (G103) programme. For the exam marks example, is there a significant difference between students registered on the two different programmes? Let <span class="math inline">\(\mathbf x_1,\ldots, \mathbf x_{131}\)</span> be the exam marks of the G100 students and let <span class="math inline">\(\mathbf y_1,\ldots, \mathbf y_{72}\)</span> be the exam marks of the G103 students. The data is shown below, with the sample means marked as large ‘+’ signs.</p>
+<p><img src="07-mvn_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p>Let <span class="math inline">\({\boldsymbol{\mu}}_1\)</span> and <span class="math inline">\({\boldsymbol{\mu}}_2\)</span> be the population means for G100 and G103 respectively. Our hypotheses are
+<span class="math display">\[H_0: {\boldsymbol{\mu}}_1 = {\boldsymbol{\mu}}_2 \qquad \text{vs.} \qquad H_1: {\boldsymbol{\mu}}_1 \neq {\boldsymbol{\mu}}_2.\]</span></p>
+<p>We will assume that
+<span class="math display">\[\begin{align*}
+\mathbf x_n, \ldots, \mathbf x_{131}&amp;\sim N_2({\boldsymbol{\mu}}_1,\boldsymbol{\Sigma}_1)\\
+\mathbf y_1,\ldots,\mathbf y_m &amp;\sim  N_2({\boldsymbol{\mu}}_2,\boldsymbol{\Sigma}_2).
+\end{align*}\]</span></p>
+<p>The sample summary statistics are:
+<span class="math display">\[\begin{eqnarray*}
+n = 131 &amp;\quad&amp; m = 72 \\
+\bar{\mathbf x} = \begin{pmatrix}61.6 \\63.2 \\\end{pmatrix}&amp;\quad&amp; \bar{\mathbf y}= \begin{pmatrix}63.1 \\61.9 \\\end{pmatrix}\\
+\mathbf S_1 = \begin{pmatrix}180.2&amp;158.5 \\158.5&amp;312.8 \\\end{pmatrix} &amp;\qquad&amp; \mathbf S_2 = \begin{pmatrix}179.1&amp;157.5 \\157.5&amp;310.8 \\\end{pmatrix}
+\end{eqnarray*}\]</span></p>
+<p>The assumption <span class="math inline">\(\boldsymbol{\Sigma}= \boldsymbol{\Sigma}_1 = \boldsymbol{\Sigma}_2\)</span> does not look unreasonable given the sample covariance matrices. Using the <code>HotellingT2</code> command from the <code>ICSNP</code> package, we find</p>
+<!--
+compute
+\begin{eqnarray*}
+\bS_u &=& \frac{1}{131+72-2} \lb 131 \begin{pmatrix}180.2&158.5 \\158.5&312.8 \\\end{pmatrix} + 72 \begin{pmatrix}209.1&151.7 \\151.7&313.7 \\\end{pmatrix} \rb \\
+&=& \begin{pmatrix} 213.21 & 146.76 \\ 146.76 & 332.96 \end{pmatrix}
+\end{eqnarray*}
+and, therefore, ${\ds \bS_u^{-1} = \begin{pmatrix} 0.0067 & -0.0030 \\ -0.0030 & 0.0043 \end{pmatrix}}.$
+
+The test statistic is
+$$\delta^2 = \frac{141}{284} \times \frac{4508}{144} \begin{pmatrix} 4.179 \\ -2.329 \end{pmatrix}^\top \begin{pmatrix} 0.0067 & -0.0030 \\ -0.0030 & 0.0043 \end{pmatrix} \begin{pmatrix} 4.179 \\ -2.329 \end{pmatrix}
+= 3.089$$
+
+
+```r
+S100 <- cov(G100)*(n-1)/n
+S103 <- cov(G103)*(m-1)/m
+Su <- (n*S100+m*S103)/(n+m-2)
+delta2 <- (n+m-2-1)/(2*(n+m-2)) *n*m/(n+m)*t((ybar-xbar))%*% solve(Su)%*%(ybar-xbar)
+```
+-->
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="5.4-inference-based-on-the-mvn.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ICSNP) <span class="co"># you&#39;ll need to install this</span></span>
+<span id="cb120-2"><a href="5.4-inference-based-on-the-mvn.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">HotellingsT2</span>(G100, G103)</span></code></pre></div>
+<pre><code>## 
+##  Hotelling&#39;s two sample T2-test
+## 
+## data:  G100 and G103
+## T.2 = 1.0696, df1 = 2, df2 = 200, p-value = 0.3451
+## alternative hypothesis: true location difference is not equal to c(0,0)</code></pre>
+<p>So the test statistic was computed to be <span class="math inline">\(\delta^2 = 1.06962\)</span> and the p-value is <span class="math inline">\(p= 0.345\)</span>.</p>
+<p>The critical value for <span class="math inline">\(\alpha=0.05\)</span> is
+<span class="math display">\[F_{2,n+m-2-1,\alpha} = F_{2,200,0.05} = 3.041.\]</span></p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="5.4-inference-based-on-the-mvn.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.95</span>,<span class="dv">2</span>, <span class="dv">200</span>)</span></code></pre></div>
+<pre><code>## [1] 3.041056</code></pre>
+<p>Therefore <span class="math inline">\(\delta^2 &lt; F_{p,n+m-p-1}\)</span>, so we do not reject the null hypothesis at the 5% level.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="5.3-hotellings-t2-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5.5-exercises-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

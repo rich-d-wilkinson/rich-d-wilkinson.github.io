@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.1 Ordinary least squares (OLS) | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.1 Ordinary least squares (OLS) | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.1 Ordinary least squares (OLS) | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="2-lm.html"/>
+<link rel="next" href="2.2-principal-component-regression-pcr.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="1-cca.html"><a href="1-cca.html"><i class="fa fa-check"></i><b>1</b> Canonical Correlation Analysis (CCA)</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-cca1.html"><a href="1.1-cca1.html"><i class="fa fa-check"></i><b>1.1</b> The first pair of canonical variables</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="1.1-cca1.html"><a href="1.1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>1.1.1</b> The first canonical components</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1.1-cca1.html"><a href="1.1-cca1.html#premcca"><i class="fa fa-check"></i><b>1.1.2</b> Example: Premier league football</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1.2-the-full-set-of-canonical-correlations.html"><a href="1.2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>1.2</b> The full set of canonical correlations</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1.2-the-full-set-of-canonical-correlations.html"><a href="1.2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>1.2.1</b> Example continued</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1.3-properties.html"><a href="1.3-properties.html"><i class="fa fa-check"></i><b>1.3</b> Properties</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="1.3-properties.html"><a href="1.3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>1.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="1.3.2" data-path="1.3-properties.html"><a href="1.3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>1.3.2</b> Invariance/equivariance properties of CCA</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1.4-computer-tasks.html"><a href="1.4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1.5-exercises.html"><a href="1.5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-lm.html"><a href="2-lm.html"><i class="fa fa-check"></i><b>2</b> Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="2-lm.html"><a href="2-lm.html#notation"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="2.1" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>2.1</b> Ordinary least squares (OLS)</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#geometry"><i class="fa fa-check"></i><b>2.1.1</b> Geometry</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#normal-linear-model"><i class="fa fa-check"></i><b>2.1.2</b> Normal linear model</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#linear-models-in-r"><i class="fa fa-check"></i><b>2.1.3</b> Linear models in R</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#problems-with-ols"><i class="fa fa-check"></i><b>2.1.4</b> Problems with OLS</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-principal-component-regression-pcr.html"><a href="2.2-principal-component-regression-pcr.html"><i class="fa fa-check"></i><b>2.2</b> Principal component regression (PCR)</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2.2-principal-component-regression-pcr.html"><a href="2.2-principal-component-regression-pcr.html#pcr-in-r"><i class="fa fa-check"></i><b>2.2.1</b> PCR in R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2.3-shrinkage-methods.html"><a href="2.3-shrinkage-methods.html"><i class="fa fa-check"></i><b>2.3</b> Shrinkage methods</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="2.3-shrinkage-methods.html"><a href="2.3-shrinkage-methods.html#ridge-regression-in-r"><i class="fa fa-check"></i><b>2.3.1</b> Ridge regression in R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2.4-multi-output-linear-model.html"><a href="2.4-multi-output-linear-model.html"><i class="fa fa-check"></i><b>2.4</b> Multi-output Linear Model</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="2.4-multi-output-linear-model.html"><a href="2.4-multi-output-linear-model.html#normal-linear-model-1"><i class="fa fa-check"></i><b>2.4.1</b> Normal linear model</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2.4-multi-output-linear-model.html"><a href="2.4-multi-output-linear-model.html#reduced-rank-regression"><i class="fa fa-check"></i><b>2.4.2</b> Reduced rank regression</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ordinary-least-squares-ols" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Ordinary least squares (OLS)</h2>
+<p>This section contains a brief review of the ordinary least squares (OLS) approach to fitting the linear model to data. Most of you will have studied this material in other modules.</p>
+<p>Our model is
+<span class="math display">\[
+\mathbf y=\mathbf X\boldsymbol \beta+{\pmb \epsilon}.
+\]</span></p>
+<p>In OLS we make three assumptionsabout the error term <span class="math inline">\(\boldsymbol \epsilon\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\({\mathbb{E}}[\epsilon_i]=0\)</span> for <span class="math inline">\(i=1, \ldots , n\)</span>.</li>
+<li>The <span class="math inline">\(\epsilon_i\)</span> are uncorrelated, i.e. <span class="math inline">\({\mathbb{C}\operatorname{ov}}(\epsilon_i, \epsilon_j)=0\)</span> for <span class="math inline">\(i \neq j\)</span>.</li>
+<li>The <span class="math inline">\(\epsilon_i\)</span> have constant variance (i.e., are <em>homoscedastic</em>): <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\epsilon_i)=\sigma^2\)</span> for all <span class="math inline">\(i\)</span>.</li>
+</ol>
+<p>If these assumptions are reasonable, then
+a common way to estimate <span class="math inline">\(\boldsymbol \beta\)</span> is to choose it to minimize the sum of squared errors, i.e.,</p>
+<p><span class="math display">\[\begin{align*}
+{\hat{\boldsymbol \beta}}^{ols} &amp;= \arg \min_{\boldsymbol \beta} || \mathbf y- \mathbf X\boldsymbol \beta||_2^2\\
+&amp;= \arg \min_{\boldsymbol \beta} \sum_{i=1}^n (y_i - \mathbf x_i^\top \boldsymbol \beta)^2
+\end{align*}\]</span></p>
+<p>If we note that
+<span class="math display">\[|| \mathbf y- \mathbf X\boldsymbol \beta||_2^2 = (\mathbf y-\mathbf X\boldsymbol \beta)^\top(\mathbf y-\mathbf X\boldsymbol \beta) \]</span>
+then multiplying out and differentiating with respect to <span class="math inline">\(\boldsymbol \beta\)</span> gives
+<span class="math display">\[\frac{\mathrm d}{\mathrm d\boldsymbol \beta} || \mathbf y- \mathbf X\boldsymbol \beta||_2^2 = 2\mathbf X^\top (\mathbf y- \mathbf X\boldsymbol \beta).\]</span>
+You may need to look again at <a href="#vectordiff"><strong>??</strong></a> to remind yourself about vector differentiation. Setting the derivative equal to <span class="math inline">\(\boldsymbol 0\)</span> and solving gives the least squares estimator</p>
+<p><span class="math display" id="eq:uni1">\[\begin{equation}
+\hat{\boldsymbol \beta}^{ols}=\left (\mathbf X^\top \mathbf X\right )^{-1}\mathbf X^\top \mathbf y
+\tag{2.3}
+\end{equation}\]</span>
+when <span class="math inline">\(\mathbf X^\top \mathbf X\)</span> is invertible (we’ll discuss what to do if it is not in the next section).
+The <strong>fitted-values</strong> are <span class="math display">\[\hat{\mathbf y}= \mathbf X\hat{\boldsymbol \beta}^{ols}=\mathbf X(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y.\]</span></p>
+<div id="geometry" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Geometry</h3>
+<p>We can derive the same solution without using any calculus.
+As discussed in Chapter <a href="#ch2linreg"><strong>??</strong></a>, we know that <span class="math inline">\(\mathbf X\boldsymbol \beta\)</span> is a linear combination of the columns of <span class="math inline">\(\mathbf X\)</span> and is thus in <span class="math inline">\(\mathcal{C}(\mathbf X),\)</span> the column space of <span class="math inline">\(\mathbf X\)</span>. Thus minimizing <span class="math inline">\(||\mathbf y- \mathbf X\boldsymbol \beta||_2^2\)</span> with respect to <span class="math inline">\(\boldsymbol \beta\)</span> is equivalent to the following optimization problem <span class="math display">\[\min_{\mathbf y&#39;: \mathbf y&#39; \in \mathcal{C}(X)} ||\mathbf y-\mathbf y&#39;||_2.\]</span></p>
+<p>Recall that <span class="math inline">\(\mathcal{C}(\mathbf X)\)</span> is a vector subspace of <span class="math inline">\(\mathbb{R}^n\)</span>, and that for all <span class="math inline">\(\mathbf y\in \mathbb{R}^n\)</span> there is a unique decomposition of <span class="math inline">\(\mathbf y\)</span> into
+<span class="math display">\[\mathbf y= \hat{\mathbf y} + \mathbf v\]</span>
+where <span class="math inline">\(\hat{\mathbf y}\in \mathcal{C}(\mathbf X)\)</span> and <span class="math inline">\(\mathbf v\in \mathcal{C}(\mathbf X)^\perp\)</span>. We call <span class="math inline">\(\hat{\mathbf y}\)</span> the orthogonal projection of <span class="math inline">\(\mathbf y\)</span> onto <span class="math inline">\(\mathcal{C}(\mathbf X)\)</span>, and we have that
+<span class="math display">\[\hat{\mathbf y}=\arg \min_{\mathbf y&#39; \in \mathcal{C}(\mathbf X)}||\mathbf y- \mathbf y&#39;||.\]</span></p>
+<p>Now because <span class="math inline">\(\mathbf y-\hat{\mathbf y}\in \mathcal{C}(\mathbf X)^\perp\)</span>, we must have
+<span class="math display">\[\mathbf z^\top(\mathbf y-\hat{\mathbf y})=0 \mbox{ for all } \mathbf z\in \mathcal{C}(\mathbf X).\]</span>
+Any <span class="math inline">\(\mathbf z\in \mathcal{C}(\mathbf X)\)</span> can be written as <span class="math inline">\(\mathbf z= \mathbf X\boldsymbol \alpha\)</span> for some <span class="math inline">\(\boldsymbol \alpha\in \mathbb{R}^p\)</span>, and similarly there must be a <span class="math inline">\(\hat{\boldsymbol \beta}\in \mathbb{R}^p\)</span> such that <span class="math inline">\(\hat{\mathbf y}=\mathbf X\hat{\boldsymbol \beta}\)</span>, which gives that</p>
+<p><span class="math display">\[{\boldsymbol \alpha}^\top\mathbf X^\top (\mathbf y-\mathbf X\hat{\boldsymbol \beta})=0 \mbox{ for all } \boldsymbol \alpha\in \mathbb{R}^p.\]</span></p>
+<p>Taking <span class="math inline">\(\boldsymbol \alpha= \mathbf e_i\)</span>, the standard basis, for <span class="math inline">\(i=1, \ldots, p\)</span>, gives that</p>
+<p><span class="math display">\[\mathbf X^\top(\mathbf y-\mathbf X\hat{\boldsymbol \beta})=\boldsymbol 0\]</span>
+from which the result follows as before.</p>
+<p>So another way to think of linear regression is as projecting <span class="math inline">\(\mathbf y\)</span> onto the columns of <span class="math inline">\(\mathbf X\)</span>.</p>
+<p>Its useful here to recall the exercise we looked at in Chapter <a href="#linalg-decomp"><strong>??</strong></a> solving the linear system of equations. If the singular value decomposition (SVD) of <span class="math inline">\(\mathbf X\)</span> is <span class="math inline">\(\mathbf X= \mathbf U\boldsymbol{\Sigma}\mathbf V^\top\)</span>, then we can see that</p>
+<p><span class="math display">\[\begin{align*}
+\hat{\boldsymbol \beta}&amp;=(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y\\
+&amp;=\mathbf V\boldsymbol{\Sigma}^{-1}\mathbf U^\top \mathbf y\\
+&amp;= \mathbf X^{+}\mathbf y
+\end{align*}\]</span>
+i.e., our estimate of <span class="math inline">\(\boldsymbol \beta\)</span> is the generalized inverse of <span class="math inline">\(\mathbf X\)</span> formed by the SVD, <span class="math inline">\(\mathbf X^{+}=\mathbf V\boldsymbol{\Sigma}^{-1}\mathbf U^\top\)</span>, times <span class="math inline">\(\mathbf y\)</span>.</p>
+<p>The fitted values are
+<span class="math display" id="eq:lmsvd">\[\begin{align}
+\hat{\mathbf y}^{ols} &amp;= \mathbf X\hat{\boldsymbol \beta}\\
+&amp;=\mathbf U\mathbf U^\top \mathbf y\\
+&amp;=\sum_{j=1}^p \mathbf u_j \mathbf u_j^\top \mathbf y.\tag{2.4}
+\end{align}\]</span>
+<span class="math inline">\(\mathbf U^\top \mathbf y\)</span> are the coordinates of <span class="math inline">\(\mathbf y\)</span> with respect to the orthonormal basis <span class="math inline">\(\mathbf U\)</span>, and <span class="math inline">\(\mathbf U\mathbf U^\top \mathbf y\)</span> is the projection of <span class="math inline">\(\mathbf y\)</span> onto that basis. So yet another way to think about OLS is that it projects <span class="math inline">\(\mathbf y\)</span> onto the left singular vectors <span class="math inline">\(\mathbf U\)</span>. As we said in Chapter <a href="#linalg-decomp"><strong>??</strong></a>, the left singular vectors form an orthonormal basis for the column space of <span class="math inline">\(\mathbf X\)</span>, and so projecting onto <span class="math inline">\(\mathbf U\)</span> is the same as projecting onto <span class="math inline">\(\mathcal{C}(\mathbf X)\)</span>.</p>
+</div>
+<div id="normal-linear-model" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Normal linear model</h3>
+<p>Often, we make an additional (fourth) assumption about the random errors and assume that they are normally distributed:</p>
+<ol start="4" style="list-style-type: decimal">
+<li>The <span class="math inline">\(\epsilon_i\)</span> are IID <span class="math inline">\(N(0, \sigma^2)\)</span>.</li>
+</ol>
+<p>The log-likelihood for models <a href="2-lm.html#eq:slm1">(2.1)</a> and <a href="2-lm.html#eq:slm2">(2.2)</a> under the Gaussian assumption 4. is
+<span class="math display">\[\begin{align*}
+\ell(\boldsymbol \beta, \sigma^2)&amp;=-\frac{n}{2}\log (\sigma^2)-\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} \sum_{i=1}^n (y_i-\mathbf x_i^\top \boldsymbol \beta)^2\\
+&amp; = -\frac{n}{2}\log (\sigma^2)-\frac{n}{2}\log(2\pi)-\frac{1}{2\sigma^2} (\mathbf y- \mathbf X\boldsymbol \beta)^\top (\mathbf y- \mathbf X\boldsymbol \beta).
+\end{align*}\]</span>
+We can see that maximizing the log-likelihood with respect to <span class="math inline">\(\boldsymbol \beta\)</span> is equivalent to minimizing <span class="math inline">\(||\mathbf y- \mathbf X\boldsymbol \beta||_2^2=(\mathbf y- \mathbf X\boldsymbol \beta)^\top (\mathbf y- \mathbf X\boldsymbol \beta)\)</span>
+and thus <span class="math inline">\(\hat{\boldsymbol \beta}^{ols}\)</span> is also the maximum likelihood estimator of <span class="math inline">\(\boldsymbol \beta\)</span> when the errors have a Gaussian distribution.</p>
+<!--
+In addition
+$$
+\frac{\partial \ell}{\partial \sigma^2}(\bbeta, \sigma^2)=-\frac{n}{2}\frac{1}{\sigma^2}+\frac{1}{2\sigma^4}
+ (\by - \bX \bbeta)^\top (\by - \bX \bbeta).
+$$
+and  setting $\partial \ell(\hat{\bbeta}, \hat{\sigma}^2))/\partial \sigma^2=0$ gives
+\begin{equation}
+\hat{\sigma}^2 = \frac{1}{n}\by^\top \bP \by,
+(\#eq:uni2)
+\end{equation}
+where
+\begin{equation}
+\bP=\bI_n - \bX \left ( \bX^\top \bX\right)^{-1}\bX^\top
+(\#eq:defP)
+\end{equation}
+is a projection matrix.  
+Under the IID Gaussian assumption for the $\epsilon_i$,
+$$
+\hat{\bbeta} \sim N_p\left \{\bbeta, \sigma^2 (\bX^\top \bX)^{-1}\right\},
+$$
+and
+$$
+n\hat{\sigma}^2/\sigma^2 \sim \chi_{n-p}^2
+$$
+which allows us to do hypothesis tests about the value of $\bbeta$ (but we do not pursue that in this module).
+
+PERHAPS DELETE THE DISTRIBUTION BIT.
+
+FIGURE SHOWING PROJECTION ONTO POINTS?
+COMPARED WITGH PCA?
+-->
+</div>
+<div id="linear-models-in-r" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Linear models in R</h3>
+<p>Linear models are easy to fit in R. For example, using the iris data, we can train a model to predict the sepal length from the other measurements as follows:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="2.1-ordinary-least-squares-ols.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Sepal.Length<span class="sc">~</span> Sepal.Width<span class="sc">+</span>Petal.Length<span class="sc">+</span>Petal.Width,<span class="at">data=</span>iris)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Sepal.Length ~ Sepal.Width + Petal.Length + Petal.Width, 
+##     data = iris)
+## 
+## Coefficients:
+##  (Intercept)   Sepal.Width  Petal.Length   Petal.Width  
+##       1.8560        0.6508        0.7091       -0.5565</code></pre>
+</div>
+<div id="problems-with-ols" class="section level3" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Problems with OLS</h3>
+<p>There are several problems encountered when fitting linear models using OLS when working with large datasets, two of which are</p>
+<ul>
+<li><p><span class="math inline">\(\mathbf X^\top \mathbf X\)</span> may not be invertible, or the inversion may be numerically unstable (which is often called <em>multicollinearity</em>). For example, if the number of covariates <span class="math inline">\(p\)</span> is larger than the number of observations <span class="math inline">\(n\)</span> (which can easily happen when working with image data), then the <span class="math inline">\(p \times p\)</span> matrix <span class="math inline">\(\mathbf X^\top \mathbf X\)</span> is at most rank <span class="math inline">\(n&lt;p\)</span> and so is not invertible.</p></li>
+<li><p>Prediction accuracy may be low. The Gauss Markov theorem says that the ordinary least squares estimator of <span class="math inline">\(\boldsymbol \beta\)</span> has minimum variance amongst all unbiased estimators of <span class="math inline">\(\boldsymbol \beta\)</span>. The mean square error (MSE), which is a measure of accuracy, of an estimator <span class="math inline">\(\tilde{\theta}\)</span> of unknown quantity <span class="math inline">\(\theta\)</span> is
+<span class="math display">\[\begin{align*}
+MSE(\tilde{\theta}) &amp;= {\mathbb{E}}((\theta - \tilde{\theta})^2)\\
+&amp;={\mathbb{V}\operatorname{ar}}(\tilde{\theta})+ ({\mathbb{E}}(\tilde{\theta})- \theta)^2\\
+&amp;={\mathbb{V}\operatorname{ar}}(\tilde{\theta})+ \operatorname{bias}(\tilde{\theta})^2
+\end{align*}\]</span>
+By allowing a small amount of bias, we may be able to find estimators that have a smaller MSE than the least squares estimator of <span class="math inline">\(\boldsymbol \beta\)</span>.</p></li>
+</ul>
+<p>In the next two sections we will look at some methods that have been proposed to solve these problems.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2-lm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2.2-principal-component-regression-pcr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

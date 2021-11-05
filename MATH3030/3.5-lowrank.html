@@ -1,0 +1,3699 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3.5 Low-rank approximation | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3.5 Low-rank approximation | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3.5 Low-rank approximation | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="3.4-svdopt.html"/>
+<link rel="next" href="3.6-exercises-1.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-notation.html"><a href="1.1-notation.html"><i class="fa fa-check"></i><b>1.1</b> Notation</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="1.1-notation.html"><a href="1.1-notation.html#example-datasets"><i class="fa fa-check"></i><b>1.1.1</b> Example datasets</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1.1-notation.html"><a href="1.1-notation.html#aims-of-multivariate-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Aims of multivariate data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1.2-exploratory-data-analysis-eda.html"><a href="1.2-exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>1.2</b> Exploratory data analysis (EDA)</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1.2-exploratory-data-analysis-eda.html"><a href="1.2-exploratory-data-analysis-eda.html#data-visualization"><i class="fa fa-check"></i><b>1.2.1</b> Data visualization</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1.2-exploratory-data-analysis-eda.html"><a href="1.2-exploratory-data-analysis-eda.html#summary-statistics"><i class="fa fa-check"></i><b>1.2.2</b> Summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1.3-randvec.html"><a href="1.3-randvec.html"><i class="fa fa-check"></i><b>1.3</b> Random vectors and matrices</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="1.3-randvec.html"><a href="1.3-randvec.html#estimators"><i class="fa fa-check"></i><b>1.3.1</b> Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1.4-computer-tasks.html"><a href="1.4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1.5-exercises.html"><a href="1.5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-linalg-prelim.html"><a href="2-linalg-prelim.html"><i class="fa fa-check"></i><b>2</b> Review of linear algebra</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html"><i class="fa fa-check"></i><b>2.1</b> Basics</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#notation-1"><i class="fa fa-check"></i><b>2.1.1</b> Notation</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#elementary-matrix-operations"><i class="fa fa-check"></i><b>2.1.2</b> Elementary matrix operations</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#special-matrices"><i class="fa fa-check"></i><b>2.1.3</b> Special matrices</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#vectordiff"><i class="fa fa-check"></i><b>2.1.4</b> Vector Differentiation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html"><i class="fa fa-check"></i><b>2.2</b> Vector spaces</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html#linear-independence"><i class="fa fa-check"></i><b>2.2.1</b> Linear independence</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html#colsspace"><i class="fa fa-check"></i><b>2.2.2</b> Row and column spaces</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html#linear-transformations"><i class="fa fa-check"></i><b>2.2.3</b> Linear transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html"><i class="fa fa-check"></i><b>2.3</b> Inner product spaces</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html#normed"><i class="fa fa-check"></i><b>2.3.1</b> Distances, and angles</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html#orthogonal-matrices"><i class="fa fa-check"></i><b>2.3.2</b> Orthogonal matrices</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html#projection-matrix"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2.4-centering-matrix.html"><a href="2.4-centering-matrix.html"><i class="fa fa-check"></i><b>2.4</b> The Centering Matrix</a></li>
+<li class="chapter" data-level="2.5" data-path="2.5-tasks-ch2.html"><a href="2.5-tasks-ch2.html"><i class="fa fa-check"></i><b>2.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.6" data-path="2.6-exercises-ch2.html"><a href="2.6-exercises-ch2.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-linalg-decomp.html"><a href="3-linalg-decomp.html"><i class="fa fa-check"></i><b>3</b> Matrix decompositions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-matrix-matrix.html"><a href="3.1-matrix-matrix.html"><i class="fa fa-check"></i><b>3.1</b> Matrix-matrix products</a></li>
+<li class="chapter" data-level="3.2" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>3.2</b> Spectral/eigen decomposition</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>3.2.1</b> Eigenvalues and eigenvectors</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>3.2.2</b> Spectral decomposition</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3.3-linalg-SVD.html"><a href="3.3-linalg-SVD.html"><i class="fa fa-check"></i><b>3.3</b> Singular Value Decomposition (SVD)</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3.3-linalg-SVD.html"><a href="3.3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.3.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3.4-svdopt.html"><a href="3.4-svdopt.html"><i class="fa fa-check"></i><b>3.4</b> SVD optimization results</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-lowrank.html"><a href="3.5-lowrank.html"><i class="fa fa-check"></i><b>3.5</b> Low-rank approximation</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="3.5-lowrank.html"><a href="3.5-lowrank.html#matrix-norms"><i class="fa fa-check"></i><b>3.5.1</b> Matrix norms</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="3.6-exercises-1.html"><a href="3.6-exercises-1.html"><i class="fa fa-check"></i><b>3.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-mds.html"><a href="4-mds.html"><i class="fa fa-check"></i><b>4</b> Multidimensional Scaling (MDS)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-classical-mds.html"><a href="4.1-classical-mds.html"><i class="fa fa-check"></i><b>4.1</b> Classical MDS</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4.1-classical-mds.html"><a href="4.1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>4.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="4.1.2" data-path="4.1-classical-mds.html"><a href="4.1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>4.1.2</b> Principal Coordinate Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4.2-similarity.html"><a href="4.2-similarity.html"><i class="fa fa-check"></i><b>4.2</b> Similarity measures</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="4.2-similarity.html"><a href="4.2-similarity.html#binary-attributes"><i class="fa fa-check"></i><b>4.2.1</b> Binary attributes</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4.2-similarity.html"><a href="4.2-similarity.html#example-classical-mds-with-the-mnist-data"><i class="fa fa-check"></i><b>4.2.2</b> Example: Classical MDS with the MNIST data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4.3-non-metric-mds.html"><a href="4.3-non-metric-mds.html"><i class="fa fa-check"></i><b>4.3</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="4.4" data-path="4.4-exercises-2.html"><a href="4.4-exercises-2.html"><i class="fa fa-check"></i><b>4.4</b> Exercises</a></li>
+<li class="chapter" data-level="4.5" data-path="4.5-computer-tasks-1.html"><a href="4.5-computer-tasks-1.html"><i class="fa fa-check"></i><b>4.5</b> Computer Tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><a href="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><i class="fa fa-check"></i>Part III: Inference using the Multivariate Normal Distribution (MVN)</a></li>
+<li class="chapter" data-level="5" data-path="5-multinormal.html"><a href="5-multinormal.html"><i class="fa fa-check"></i><b>5</b> The Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html"><i class="fa fa-check"></i><b>5.1</b> Definition and Properties of the MVN</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html#basics"><i class="fa fa-check"></i><b>5.1.1</b> Basics</a></li>
+<li class="chapter" data-level="5.1.2" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html#transformations"><i class="fa fa-check"></i><b>5.1.2</b> Transformations</a></li>
+<li class="chapter" data-level="5.1.3" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html#independence"><i class="fa fa-check"></i><b>5.1.3</b> Independence</a></li>
+<li class="chapter" data-level="5.1.4" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html#confidence-ellipses"><i class="fa fa-check"></i><b>5.1.4</b> Confidence ellipses</a></li>
+<li class="chapter" data-level="5.1.5" data-path="5.1-definition-and-properties-of-the-mvn.html"><a href="5.1-definition-and-properties-of-the-mvn.html#sampling-results-for-the-mvn"><i class="fa fa-check"></i><b>5.1.5</b> Sampling results for the MVN</a></li>
+<li class="chapter" data-level="5.2.1" data-path="5.2-the-wishart-distribution.html"><a href="5.2-the-wishart-distribution.html"><i class="fa fa-check"></i><b>5.2.1</b> Properties</a></li>
+<li class="chapter" data-level="5.2.2" data-path="5.2-the-wishart-distribution.html"><a href="5.2-the-wishart-distribution.html#cochrans-theorem"><i class="fa fa-check"></i><b>5.2.2</b> Cochran’s theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5.3-hotellings-t2-distribution.html"><a href="5.3-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>5.3</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
+<li class="chapter" data-level="5.4" data-path="5.4-inference-based-on-the-mvn.html"><a href="5.4-inference-based-on-the-mvn.html"><i class="fa fa-check"></i><b>5.4</b> Inference based on the MVN</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="5.4-inference-based-on-the-mvn.html"><a href="5.4-inference-based-on-the-mvn.html#onesampleSigma"><i class="fa fa-check"></i><b>5.4.1</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> known</a></li>
+<li class="chapter" data-level="5.4.2" data-path="5.4-inference-based-on-the-mvn.html"><a href="5.4-inference-based-on-the-mvn.html#onesample"><i class="fa fa-check"></i><b>5.4.2</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 1 sample</a></li>
+<li class="chapter" data-level="5.4.3" data-path="5.4-inference-based-on-the-mvn.html"><a href="5.4-inference-based-on-the-mvn.html#boldsymbolsigma-unknown-2-samples"><i class="fa fa-check"></i><b>5.4.3</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 2 samples</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="5.5-exercises-3.html"><a href="5.5-exercises-3.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+<li class="chapter" data-level="5.6" data-path="5.6-computer-tasks-2.html"><a href="5.6-computer-tasks-2.html"><i class="fa fa-check"></i><b>5.6</b> Computer tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="6" data-path="6-lda.html"><a href="6-lda.html"><i class="fa fa-check"></i><b>6</b> Discriminant analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="6-lda.html"><a href="6-lda.html#linear-discriminant-analysis"><i class="fa fa-check"></i>Linear discriminant analysis</a></li>
+<li class="chapter" data-level="6.1" data-path="6.1-lda-ML.html"><a href="6.1-lda-ML.html"><i class="fa fa-check"></i><b>6.1</b> Maximum likelihood (ML) discriminant rule</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="6.1-lda-ML.html"><a href="6.1-lda-ML.html#multivariate-normal-populations"><i class="fa fa-check"></i><b>6.1.1</b> Multivariate normal populations</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6.1-lda-ML.html"><a href="6.1-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>6.1.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="6.1.3" data-path="6.1-lda-ML.html"><a href="6.1-lda-ML.html#two-populations"><i class="fa fa-check"></i><b>6.1.3</b> Two populations</a></li>
+<li class="chapter" data-level="6.1.4" data-path="6.1-lda-ML.html"><a href="6.1-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>6.1.4</b> More than two populations</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6.2-lda-Bayes.html"><a href="6.2-lda-Bayes.html"><i class="fa fa-check"></i><b>6.2</b> Bayes discriminant rule</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6.2-lda-Bayes.html"><a href="6.2-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>6.2.1</b> Example: LDA using the Iris data</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6.2-lda-Bayes.html"><a href="6.2-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>6.2.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6.2-lda-Bayes.html"><a href="6.2-lda-Bayes.html#prediction-accuracy"><i class="fa fa-check"></i><b>6.2.3</b> Prediction accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6.3-FLDA.html"><a href="6.3-FLDA.html"><i class="fa fa-check"></i><b>6.3</b> Fisher’s linear discriminant rule</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="6.3-FLDA.html"><a href="6.3-FLDA.html#iris-example-continued-1"><i class="fa fa-check"></i><b>6.3.1</b> Iris example continued</a></li>
+<li class="chapter" data-level="6.3.2" data-path="6.3-FLDA.html"><a href="6.3-FLDA.html#links-between-methods"><i class="fa fa-check"></i><b>6.3.2</b> Links between methods</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="6.4-computer-tasks-3.html"><a href="6.4-computer-tasks-3.html"><i class="fa fa-check"></i><b>6.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="6.5" data-path="6.5-exercises-4.html"><a href="6.5-exercises-4.html"><i class="fa fa-check"></i><b>6.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-cluster.html"><a href="7-cluster.html"><i class="fa fa-check"></i><b>7</b> Cluster Analysis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-k-means-clustering.html"><a href="7.1-k-means-clustering.html"><i class="fa fa-check"></i><b>7.1</b> K-means clustering</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="7.1-k-means-clustering.html"><a href="7.1-k-means-clustering.html#estimating-boldsymbol-delta"><i class="fa fa-check"></i><b>7.1.1</b> Estimating <span class="math inline">\(\boldsymbol \delta\)</span></a></li>
+<li class="chapter" data-level="7.1.2" data-path="7.1-k-means-clustering.html"><a href="7.1-k-means-clustering.html#k-means"><i class="fa fa-check"></i><b>7.1.2</b> K-means</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7.1-k-means-clustering.html"><a href="7.1-k-means-clustering.html#example-iris-data"><i class="fa fa-check"></i><b>7.1.3</b> Example: Iris data</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7.1-k-means-clustering.html"><a href="7.1-k-means-clustering.html#choosing-k"><i class="fa fa-check"></i><b>7.1.4</b> Choosing <span class="math inline">\(K\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7.2-model-based-clustering.html"><a href="7.2-model-based-clustering.html"><i class="fa fa-check"></i><b>7.2</b> Model-based clustering</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="7.2-model-based-clustering.html"><a href="7.2-model-based-clustering.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>7.2.1</b> Maximum-likelihood estimation</a></li>
+<li class="chapter" data-level="7.2.2" data-path="7.2-model-based-clustering.html"><a href="7.2-model-based-clustering.html#multivariate-gaussian-clusters"><i class="fa fa-check"></i><b>7.2.2</b> Multivariate Gaussian clusters</a></li>
+<li class="chapter" data-level="7.2.3" data-path="7.2-model-based-clustering.html"><a href="7.2-model-based-clustering.html#example-iris"><i class="fa fa-check"></i><b>7.2.3</b> Example: Iris</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7.3-hierarchical-clustering-methods.html"><a href="7.3-hierarchical-clustering-methods.html"><i class="fa fa-check"></i><b>7.3</b> Hierarchical clustering methods</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="7.3-hierarchical-clustering-methods.html"><a href="7.3-hierarchical-clustering-methods.html#distance-measures"><i class="fa fa-check"></i><b>7.3.1</b> Distance measures</a></li>
+<li class="chapter" data-level="7.3.2" data-path="7.3-hierarchical-clustering-methods.html"><a href="7.3-hierarchical-clustering-methods.html#toy-example"><i class="fa fa-check"></i><b>7.3.2</b> Toy Example</a></li>
+<li class="chapter" data-level="7.3.3" data-path="7.3-hierarchical-clustering-methods.html"><a href="7.3-hierarchical-clustering-methods.html#comparison-of-methods"><i class="fa fa-check"></i><b>7.3.3</b> Comparison of methods</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="7.4-summary.html"><a href="7.4-summary.html"><i class="fa fa-check"></i><b>7.4</b> Summary</a></li>
+<li class="chapter" data-level="7.5" data-path="7.5-computer-tasks-4.html"><a href="7.5-computer-tasks-4.html"><i class="fa fa-check"></i><b>7.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="7.6" data-path="7.6-exercises-5.html"><a href="7.6-exercises-5.html"><i class="fa fa-check"></i><b>7.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="8-lm.html"><a href="8-lm.html"><i class="fa fa-check"></i><b>8</b> Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="8-lm.html"><a href="8-lm.html#notation-3"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="8.1" data-path="8.1-ordinary-least-squares-ols.html"><a href="8.1-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>8.1</b> Ordinary least squares (OLS)</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="8.1-ordinary-least-squares-ols.html"><a href="8.1-ordinary-least-squares-ols.html#geometry"><i class="fa fa-check"></i><b>8.1.1</b> Geometry</a></li>
+<li class="chapter" data-level="8.1.2" data-path="8.1-ordinary-least-squares-ols.html"><a href="8.1-ordinary-least-squares-ols.html#normal-linear-model"><i class="fa fa-check"></i><b>8.1.2</b> Normal linear model</a></li>
+<li class="chapter" data-level="8.1.3" data-path="8.1-ordinary-least-squares-ols.html"><a href="8.1-ordinary-least-squares-ols.html#linear-models-in-r"><i class="fa fa-check"></i><b>8.1.3</b> Linear models in R</a></li>
+<li class="chapter" data-level="8.1.4" data-path="8.1-ordinary-least-squares-ols.html"><a href="8.1-ordinary-least-squares-ols.html#problems-with-ols"><i class="fa fa-check"></i><b>8.1.4</b> Problems with OLS</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="8.2-principal-component-regression-pcr.html"><a href="8.2-principal-component-regression-pcr.html"><i class="fa fa-check"></i><b>8.2</b> Principal component regression (PCR)</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="8.2-principal-component-regression-pcr.html"><a href="8.2-principal-component-regression-pcr.html#pcr-in-r"><i class="fa fa-check"></i><b>8.2.1</b> PCR in R</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8.3-shrinkage-methods.html"><a href="8.3-shrinkage-methods.html"><i class="fa fa-check"></i><b>8.3</b> Shrinkage methods</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="8.3-shrinkage-methods.html"><a href="8.3-shrinkage-methods.html#ridge-regression-in-r"><i class="fa fa-check"></i><b>8.3.1</b> Ridge regression in R</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="8.4-multi-output-linear-model.html"><a href="8.4-multi-output-linear-model.html"><i class="fa fa-check"></i><b>8.4</b> Multi-output Linear Model</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="8.4-multi-output-linear-model.html"><a href="8.4-multi-output-linear-model.html#normal-linear-model-1"><i class="fa fa-check"></i><b>8.4.1</b> Normal linear model</a></li>
+<li class="chapter" data-level="8.4.2" data-path="8.4-multi-output-linear-model.html"><a href="8.4-multi-output-linear-model.html#reduced-rank-regression"><i class="fa fa-check"></i><b>8.4.2</b> Reduced rank regression</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="8.5-computer-tasks-5.html"><a href="8.5-computer-tasks-5.html"><i class="fa fa-check"></i><b>8.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="8.6" data-path="8.6-exercises-6.html"><a href="8.6-exercises-6.html"><i class="fa fa-check"></i><b>8.6</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lowrank" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Low-rank approximation</h2>
+<p>One of the reasons the SVD is so widely used is that it can be used to find the best low rank approximation to a matrix. Before we discuss this, we need to define what it means for some matrix <span class="math inline">\(\mathbf B\)</span> to be a good approximation to <span class="math inline">\(\mathbf A\)</span>. To do that, we need the concept of a matrix norm.</p>
+<div id="matrix-norms" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Matrix norms</h3>
+<p>In Section <a href="2.3-linalg-innerprod.html#normed">2.3.1</a> we described norms on vectors. Here will extend this idea to include norms on matrices, so that we can discuss the size of a matrix <span class="math inline">\(||\mathbf A||\)</span>, and the distance between two matrices <span class="math inline">\(||\mathbf A-\mathbf B||\)</span>. There are two particular norms we will focus on. The first is called the Frobenious norm (or sometimes the Hilbert-Schmidt norm).</p>
+
+<div class="definition">
+<span id="def:frobenius" class="definition"><strong>Definition 3.1  </strong></span>Let <span class="math inline">\(\mathbf A\in \mathbb{R}^{n\times p}\)</span>. The <strong>Frobenius norm</strong> of <span class="math inline">\(\mathbf A\)</span> is
+<span class="math display">\[||\mathbf A||_F = \left(\sum_{i=1}^n\sum_{j=1}^p |a_{ij}|^2\right)^{\frac{1}{2}}=(\operatorname{tr}\mathbf A^\top\mathbf A)^{\frac{1}{2}}  
+\]</span>
+where <span class="math inline">\(a_{ij}\)</span> are the individual entries of <span class="math inline">\(\mathbf A\)</span>.
+</div>
+<p>Note that the Frobenius norm is invariant to rotation by an orthogonal matrix <span class="math inline">\(\mathbf U\)</span>:
+<span class="math display">\[\begin{align*}
+ ||\mathbf A\mathbf U||_F^2 &amp;= \operatorname{tr}(\mathbf U^\top \mathbf A^\top \mathbf A\mathbf U)\\
+ &amp;=\operatorname{tr}(\mathbf U\mathbf U^\top \mathbf A^\top \mathbf A)\\
+ &amp;= \operatorname{tr}(\mathbf A^\top\mathbf A)\\
+ &amp;= ||\mathbf A||_F^2.
+\end{align*}\]</span></p>
+
+<div class="proposition">
+<span id="prp:frob" class="proposition"><strong>Proposition 3.10  </strong></span><span class="math display">\[||\mathbf A||_F = \left(\sum_{i=1}^r \sigma_i^2\right)^{\frac{1}{2}}\]</span>
+where <span class="math inline">\(\sigma_i\)</span> are the singular values of <span class="math inline">\(\mathbf A\)</span>, and <span class="math inline">\(r = \operatorname{rank}(\mathbf A)\)</span>.
+</div>
+
+<div class="proof">
+\iffalse{} <span class="proof"><em>Proof. </em></span> Using the (non-compact) SVD
+<span class="math inline">\(\mathbf A= \mathbf U\boldsymbol{\Sigma}\mathbf V^\top\)</span>
+we have <span class="math display">\[||\mathbf A||_F=||\mathbf U^\top \mathbf A||_F = ||\mathbf U^\top \mathbf A\mathbf V||_F = ||\boldsymbol{\Sigma}||_F=\operatorname{tr}(\boldsymbol{\Sigma}^\top\boldsymbol{\Sigma})^\frac{1}{2}=\left(\sum \sigma_i^2 \right)^\frac{1}{2}.\]</span>
+</div>
+<p><br></p>
+We previously defined the p-norms for vectors in <span class="math inline">\(\mathbb{R}^p\)</span> to be
+<span class="math display">\[||\mathbf x||_p = \left(\sum |x_i|^p\right)^{\frac{1}{p}}.\]</span>
+These vector norms <em>induce</em> matrix norms, sometimes also called operator norms:
+
+<div class="definition">
+<span id="def:matrixnorm" class="definition"><strong>Definition 3.2  </strong></span>The p-norms for matrices are defined by
+<span class="math display">\[||\mathbf A||_p = \sup_{\mathbf x\not=0} \frac{||\mathbf A\mathbf x||_p}{||\mathbf x||_p} = \sup_{\mathbf x: ||\mathbf x||_p=1} ||\mathbf A\mathbf x||_p\]</span>
+</div>
+
+<div class="proposition">
+<span id="prp:L2matrixnorm" class="proposition"><strong>Proposition 3.11  </strong></span><span class="math display">\[||\mathbf A||_2 = \sigma_1\]</span>
+where <span class="math inline">\(\sigma_1\)</span> is the first singular value of <span class="math inline">\(\mathbf A\)</span>.
+</div>
+
+<div class="proof">
+<p>\iffalse{} <span class="proof"><em>Proof. </em></span> By Proposition <a href="3.4-svdopt.html#prp:svdmax1">3.8</a>.</p>
+<pre><code>
+### Eckart-Young-Mirsky Theorem
+Now that we have defined a norm (i.e., a distance) on matrices, we can think about approximating a matrix $\bA$ by a matrix that is easier to work with. We have shown that any matrix can be split into the sum of rank-1 component matrices
+$$\bA = \sum_{i=1}^r \sigma_i \bu_i \bv_i^\top$$
+We&#39;ll now consider a family  of approximations of the form
+\begin{equation}
+\bA_k = \sum_{i=1}^k \sigma_i \bu_i \bv_i^\top
+(\#eq:svdreduced)
+\end{equation}
+where $k&lt;=r=\operatorname{rank}(\bA)$. This is a rank-k matrix, and as we&#39;ll now show, it is the best possible rank-k approximation to $\bA$.
+&lt;/div&gt;\EndKnitrBlock{proof}
+\BeginKnitrBlock{theorem}&lt;div class=&quot;theorem&quot;&gt;&lt;span class=&quot;theorem&quot; id=&quot;thm:Eckart-Young&quot;&gt;&lt;strong&gt;(\#thm:Eckart-Young) &lt;/strong&gt;&lt;/span&gt;**(Eckart-Young-Mirsky)** For either the 2-norm $||\cdot||_2$ or the Frobenious norm $||\cdot||_F$ 
+$$||\bA-\bA_k|| \leq ||\bA-\bB|| \mbox{ for all rank-k matrices }\bB.$$
+Moreover, 
+$$||\bA-\bA_k|| =\begin{cases}
+\sigma_{k+1} &amp;\mbox{for the }||\cdot||_2 \mbox{ norm}\\
+\left(\sum_{i=k+1}^r \sigma_{i}^2\right)^{\frac{1}{2}} &amp;\mbox{for the }||\cdot||_F \mbox{ norm.}\\
+\end{cases}$$&lt;/div&gt;\EndKnitrBlock{theorem}
+
+
+
+
+\BeginKnitrBlock{proof}&lt;div class=&quot;proof&quot;&gt;\iffalse{} &lt;span class=&quot;proof&quot;&gt;&lt;em&gt;Proof. &lt;/em&gt;&lt;/span&gt;  \fi{}The last part follows from Propositions  \@ref(prp:L2matrixnorm) and  \@ref(prp:frob). 
+
+**Non-examinable:** this is quite a tricky proof, but I&#39;ve included it as its interesting to see.
+We&#39;ll just prove it for the 2-norm.
+Let $\bB$ be an $n\times p$ matrix of rank $k$. The null space $\mathcal{N}(\bB)\subset\mathbb{R}^p$  must be of dimension $p-k$ by the rank nullity theorem. 
+
+Consider the $p \times (k+1)$ matrix $\bV_{k+1}=[\bv_1\; \ldots \;\bv_{k+1}]$. This has rank $k+1$, and has column space $\mathcal{C}(\bV_{k+1})\subset \mathbb{R}^{p}$. Because
+$$\dim \mathcal{N}(\bB)+\dim \mathcal{C}(\bV_{k+1})=p-k+k+1=p+1$$
+we can see that $\mathcal{N}(B)$ and $\mathcal{C}(V_{k+1})$ cannot be disjoint spaces (as they are both subsets of the p-dimensional space $\mathbb{R}^p$). Thus we can find
+ $\bw \in \mathcal{N}(B)\cap\mathcal{C}(V_{k+1})$, and moreover we  can choose $\bw$ so that $||\bw||_2=1$.
+
+Because $\bw \in \mathcal{C}(\bV_{k+1})$ we can write $\bw = \sum_{i=1}^{k+1}w_i \bv_i$ with $\sum_{i=1}^{k+1}w_i^2=1$.
+
+Then
+\begin{align*}
+||\bA-\bB||_2^2 &amp;\geq ||(\bA-\bB)\bw||_{2}^2 \quad \mbox{ by definition of the matrix 2-norm}\\
+&amp;=||\bA\bw||_2^2 \quad \mbox{ as } \bw\in \mathcal{N}(\bB)\\
+&amp;=\bw^\top \bV \bSigma^2\bV^\top \bw \quad\mbox{ using the SVD} \bA=\bU\bSigma \bV^\top\\
+&amp;=\sum_{i=1}^{k+1}\sigma_i^2 w_i^2 \quad\mbox{ by substituting }\bw = \sum_{i=1}^{k+1}w_i \bv_i\\
+&amp;\geq \sigma_{k+1}^2 \sum_{i=1}^{k+1} w_i^2\quad\mbox{ as } \sigma_1\geq\sigma_2\geq\ldots\\
+&amp;= \sigma_{k+1}^2 \quad\mbox{ as } \sum_{i=1}^{k+1}w_i^2=1\\
+&amp;=||\bA-\bA_k||_2^2
+\end{align*}
+as required&lt;/div&gt;\EndKnitrBlock{proof}
+
+This best-approximation property is what makes the SVD so useful in applications.
+
+
+### Example: image compression
+
+As an example, lets consider  the image of some peppers from the [USC-SIPI image database](http://sipi.usc.edu/database/). 
+
+
+```r
+library(tiff)
+library(rasterImage)
+peppers&lt;-readTIFF(&quot;figs/Peppers.tiff&quot;)
+plot(as.raster(peppers))
+```
+
+&lt;img src=&quot;03-matrix-decompositions_files/figure-html/unnamed-chunk-12-1.png&quot; width=&quot;100%&quot; /&gt;
+
+This is a $512 \times 512$ colour image, meaning that there are three matrices $\bR, \bB,\bG$ of dimension $512\times 512$) giving the intensity of red, green, and blue for each pixel. 
+Naively storing this matrix requires 5.7Mb.  
+
+We can compute the SVD of the three colour intensity matrices, and the view the image that results from using  reduced rank versions $\bB_k, \bG_k, \bR_k$ instead (as in Equation \@ref(eq:svdreduced)). The image below is formed using $k=5, 30, 100$, and $300$ basis vectors.
+
+
+```r
+svd_image &lt;- function(im,k){
+  s &lt;- svd(im)
+  Sigma_k &lt;- diag(s$d[1:k])
+  U_k &lt;- s$u[,1:k]
+  V_k &lt;- s$v[,1:k]
+  im_k &lt;- U_k %*% Sigma_k %*% t(V_k)
+   ## the reduced rank SVD produces some intensities &lt;0 and &gt;1. 
+  # Let&#39;s truncate these
+  im_k[im_k&gt;1]=1
+  im_k[im_k&lt;0]=0
+  return(im_k)
+}
+
+par(mfrow=c(2,2), mar=c(1,1,1,1))
+
+pepprssvd&lt;- peppers
+for(k in c(4,30,100,300)){
+  svds&lt;-list()
+  for(ii in 1:3) {
+    pepprssvd[,,ii]&lt;-svd_image(peppers[,,ii],k)
+  }
+  plot(as.raster(pepprssvd))
+}
+```
+
+&lt;img src=&quot;03-matrix-decompositions_files/figure-html/unnamed-chunk-13-1.png&quot; width=&quot;100%&quot; /&gt;
+
+
+You can see that for $k=30$ we have a reasonable approximation, but with some errors. With $k=100$ it is hard to spot the difference with the original. The size of the four compressed images is 45Kb, 345Kb, 1.1Mb and 3.4Mb. 
+
+You can see further demonstrations of image compression with the SVD [here](http://timbaumann.info/svd-image-compression-demo/).
+
+We will see much more of the SVD in later chapters.
+
+## Computer tasks {#tasks-ch3}
+&lt;!-- checked--&gt;
+
+1. Finding the eigenvalues and eigenvectors of a matrix is easy in R. 
+
+
+```r
+A=matrix(c(3,1,1,6),nrow=2,byrow=TRUE)    # use a to define a matrix A
+Eig=eigen(A)                     # the eigenvalues and eigenvectors of A
+                                   # are stored in the list Eig
+lambda=Eig$values                # extract the eigenvalues from Eig and
+                                   # store in the vector e
+lambda                           # you should see the eigenvalues in
+```
+
+```
+## [1] 6.302776 2.697224
+```
+
+```r
+                                   # descending order
+Q=Eig$vectors                    # extract the eigenvectors from Eig and
+                                   # store then in the columns of Q
+```
+
+The spectral decomposition of $\bA$ is 
+$$\bA = \bQ \bLambda\bQ^\top$$
+Let&#39;s check this in R (noting as always that there may be some numerical errors)
+
+
+```r
+Q%*%diag(lambda)%*%t(Q)          # reconstruct A,
+```
+
+```
+##      [,1] [,2]
+## [1,]    3    1
+## [2,]    1    6
+```
+
+```r
+                                   # where t(Q) gives the transpose of Q
+```
+
+Since A is positive definite, we can calculate the symmetric, positive definite square root of A.
+
+
+```r
+Asqrt=Q%*%diag(lambda**0.5)%*%t(Q) # lambda**0.5 contains the square roots
+Asqrt%*%Asqrt                      # it is seen that A is recovered
+```
+
+```
+##      [,1] [,2]
+## [1,]    3    1
+## [2,]    1    6
+```
+
+
+- Instead of using the full eigendecomposition for $\bA$, try truncating it and using just a single eigenvalue and eigenvector, i.e., compute
+$$\bA&#39; = \lambda_1 \bq_1 \bq_1^\top$$
+- Compute the difference between $\bA$ and $\bA&#39;$ using the 2-norm and the Frobenius norm.
+
+
+2.  The singular value decomposition can be computed in R using the command `svd`. Let $\bX$ be the four numerical variables in the `iris` dataset with the column mean removed
+
+
+```r
+n=150
+H=diag(rep(1,n))-rep(1,n)%*%t(rep(1,n))/n   # calculate the centering matrix H
+X=H%*% as.matrix(iris[,1:4])
+# This can also be done using the command
+# sweep(iris[,1:4], 2, colMeans(iris[,1:4]))  # do you understand why?
+```
+
+
+- Compute the SVD of $\bX$ in R and report its singular values.
+
+- Does R report the full or  compact SVD?
+
+
+- Check that $\bX \bv = \sigma \bu$.
+
+
+- Compute the best rank-1, rank-2, and rank-3 approximations to $\bX$, and report the 2-norm and Frobenious norm for these approximations
+
+- Compute the eigenvalues of $\bX^\top \bX$. How do these relate to the singular values? How does  $\bX^\top \bX$ relate to the sample covariance matrix of the iris data? How do the singular values relate to the eigenvalues of the covariance matrix?
+
+- Let $\bS$ be the sample covariance matrix of the iris dataset. What vector $\bx$ with $||\bx||=1$ maximizes $\bx^\top \bS\bx$? 
+
+3.  Choose an few images from the [USC-SIPI Image Database
+](http://sipi.usc.edu/database/) and repeat the image compression example from the notes. Which type of images compress well do you think?
+
+
+4. We won&#39;t discuss how the SVD is computed in practice, but there are a variety of approaches that can be used. Try the following iterative approach for computing the first singular vectors:
+
+
+```r
+X &lt;- as.matrix(iris[,1:4])
+v &lt;- rnorm(dim(X)[2])
+
+for (iter in 1:500){
+  u &lt;- X %*%v
+  u &lt;- u/sqrt(sum(u^2)) 
+  v &lt;- t(X) %*%u
+  v &lt;- v/sqrt(sum(v^2)) 
+}
+X.svd &lt;- svd(X)
+X.svd$v[,1]/v
+X.svd$u[,1]/u
+```
+
+
+
+## Exercises {#exercises-ch3}
+&lt;!-- checked--&gt;
+
+0. There is a great Twitter thread on the SVD by Daniella Witten. Read it [here](https://twitter.com/WomenInStat/status/1285610321747611653).
+
+1. Let $\bSigma$  be  an arbitrary covariance matrix. 
+    - Show $\bSigma$ is symmetric and 
+  positive semi-definite.
+    - Give examples of both singular and non-singular covariance matrices.  
+    - What condition must the eigenvalues of a non-singular covariance matrix satisfy?
+
+&lt;br&gt;&lt;/br&gt;
+
+2. Compute, by hand (but check your answer in R), the singular value decomposition (full and compact) of the following matrices.
+    - $\left(\begin{array}{cc}2&amp;0\\0&amp;-1\end{array}
+\right)$
+    - $\left(\begin{array}{cc}1&amp;0\\0&amp;0\\0&amp;0\end{array}
+\right)$
+
+
+3. Let $$\bX=\left(\begin{array}{cc}1&amp;1\\0&amp;1\\1&amp;0\end{array}
+\right)$$  
+The eigen-decomposition of $\bX^\top \bX$ is
+$$\bX^\top \bX =\frac{1}{\sqrt{2}}\left(\begin{array}{cc}1&amp;-1\\1&amp;1\end{array}
+\right) \left(\begin{array}{cc}3&amp;0\\0&amp;1\end{array}
+\right)\frac{1}{\sqrt{2}}\left(\begin{array}{cc}1&amp;-1\\1&amp;1\end{array}
+\right)^\top $$
+Use this fact to compute answer the following questions: 
+    - What are the singular values of $\bX$?
+    - What are the right singular vectors of $\bX$?
+    - What are the left singular vectors of $\bX$? 
+    - Give the compact SVD of $\bX$. Check your answer, noting that the singular vectors are only specified up to multiplication by $-1$
+    - Can you compute the full SVD of $\bX$?
+    - What is the eigen-decomposition of $\bX \bX^\top$?
+    - Find a generalised inverse of matrix $\bX$. 
+
+
+&lt;!--
+**Solution:**
+
+$$U =\left(\begin{array}{ccc}\frac{2}{\sqrt{6}}&amp;0&amp;\frac{1}{\sqrt{3}}\\
+\frac{1}{\sqrt{6}}&amp; \frac{1}{\sqrt{2}}&amp;\frac{-1}{\sqrt{3}}\\
+\frac{-1}{\sqrt{6}}&amp; \frac{-1}{\sqrt{2}}&amp;\frac{1}{\sqrt{3}}
+\end{array}
+\right)$$--&gt;
+
+
+4. The SVD can be used to solve linear systems of the form 
+$$\bA \bx = \by$$
+where $\bA$ is a $n\times p$ matrix, with compact SVD 
+$\bA = \bU \bSigma \bV^\top$. 
+
+
+    - If $\bA$ is a square invertible matrix, show that $$\tilde{\bx} = \bV \bSigma^{-1} \bU^\top \by$$ is the unique solution to $\bA \bx = \by$, i.e., show that $\bA^{-1} =  \bV \bSigma^{-1} \bU^\top$.
+    
+    - If $\bA$ is not a square matrix, then $\bA^+ = \bV \bSigma^{-1} \bU^\top$ is a generalized inverse (not a true inverse) matrix, and 
+    $\tilde{\bx}=\bA^+\by$ is still a useful quantity to consider as we shall now see.  Let $\bA=\left(\begin{array}{cc}1&amp;1\\0&amp;1\\1&amp;0\end{array}
+\right)$ and $\by = \left(\begin{array}{c}2\\1\\1\end{array}
+\right)$. Then $\bA\bx=\by$ is an over-determined system in that there are  3 equations in 2 unknowns. Compute $\tilde{\bx}=\bA^+\by$. Is this a solution to the equation?
+
+     **Note** that you computed the svd for $\bA$ in Q2. 
+     
+    - Now suppose  $\by = \left(\begin{array}{c}1\\-1\\1\end{array}
+\right)$. There is no solution to $\bA\bx=\by$ in this case as $\by$ is not in the column space of $\bA$. Prove that ${\tilde{\bx}} = \bA^+\by$ solves the least squares problem
+$$\tilde{\bx} = \arg\min_{\bx}||\by - \bA\bx||_2.$$
+
+    **Hint**: You can either do this directly for this problem, or you can show that the least squares solution $(\bA^\top \bA)^{-1}\bA^\top \by=\tilde{\bx}$.
+
+5. Consider the system 
+    $$\bB\bx = \by \mbox{ with }\bB =\left(\begin{array}{ccc}1&amp;0&amp;1\\1&amp;1&amp;0\end{array}
+\right),\by = \left(\begin{array}{c}1\\1\end{array}
+\right).$$ 
+This is an underdetermined system, as there are 2 equations in 3 unknowns, and so there are an infinite number of solutions for $\bx$ in this case.
+    
+    - Find the  full SVD for $\bB=\bU \bSigma \bV^\top$ (noting that $\bB=\bA^\top$ for $\bA$ from the previous question). 
+    - Compute 
+     $\tilde{\bx}=\bB^+\by$, check it is a solution to the equation, and explain why $$\tilde{\bx}= \sum_{i=1}^r \bv_i \frac{\bu_i^\top \by}{\sigma_i}$$ in general, where $r\leq max(n,p)$ is the rank of $\bB$, and write out $\tilde{\bx}$ explicitly in this form for the given $\bB$.
+     - Consider $\bx$ of the form
+     $$\bx = \tilde{\bx} + \sum_{i=r+1}^n \alpha_i \bv_i$$
+    and explain why any $\bx$ of this form is also a solution to $\bB\bx=\by$. Thus write out all possible solutions of the equation.
+    - Prove that $\tilde{\bx}$ is the solution with minimum norm, i.e., $||\tilde{\bx}||_2 \leq ||\bx||_2$. **Hint** $\bv_1, \ldots, \bv_p$ form a complete orthonormal basis for $\mathbb{R}^p$.
+
+
+
+
+6. Prove proposition \@ref(prp:eigproj), namely that the eigenvalues of projection matrices are either 0 or 1.
+Show that ${\bf 1}_n$ is an eigenvector of $\bH$.  What is the corresponding eigenvalue?  What are the remaining eigenvalues equal to?
+
+&lt;!--chapter:end:03-matrix-decompositions.Rmd--&gt;
+
+# PART II: Dimension reduction methods {-}
+
+
+[Introductory Video](https://mediaspace.nottingham.ac.uk/media/Part+IIA+Dimension+reduction+introduction/1_0s2cgr1r)
+
+In many applications,  a large number of variables are recorded for  each experimental unit under study.  For example,  if we think of individual people as the  *experimental units*, then in a health check-up we might collect data on  age, blood pressure, cholesterol level, blood test results, lung function, weight, height, BMI,  etc. If you use websites such as Amazon, Facebook, and Google, they  store thousands (possibly millions) of pieces of information about you ([this article](https://www.theguardian.com/commentisfree/2018/mar/28/all-the-data-facebook-google-has-on-you-privacy) shows you how to download the information Google stores about you, including all the locations you&#39;ve visited, every  search, youtube video, or app you&#39;ve used and more). They process this data to create an individual profile for each user, which they can then use to create targetted adverts.
+
+When analysing data of moderate or high dimension, it is often desirable to seeks ways to restructure the data and reduce its dimension whilst **retaining the most important information** within the data or **preserving some feature of interest** in the data.  There a variety of reasons we might want to do this. 
+
+- In reduced dimensions, it is often much easier to understand and appreciate the most important features of a dataset.
+- If there is a lot of reduncancy in the data, we might want to reduce the dimension to lower the memory requirements in storing it (e.g. with sound and image compression).
+- In high dimensions,  it can be difficult to analyse data (e.g. with statistical methods), and so reducing the dimension can be a way to make a dataset amenable to analysis. 
+
+
+In this part of the module we investigate three different methods for dimension reduction: Principal Component Analysis (PCA) in Chapter \@ref(pca); Canonical Correlation Analysis (CCA) in Chapter \@ref(cca); and Multidimensional Scaling (MDS) in Chapter \@ref(mds). Matrix algebra (Chapters \@ref(linalg-prelim) and \@ref(linalg-decomp)) plays a key role in all three of these techniques.
+
+### A warning {-}  
+
+Beware that high-dimensional data can behave qualitatively differently to low-dimensional data. As an example, lets consider 1000 points uniformly distributed in $[0,1]^d$, and  think about how close together or spread out the points are. A simple way to do this is to consider the ratio of the maximum and minimum distance between any two points in our sample.
+
+
+```r
+N&lt;-1000
+averatio &lt;-c()
+ii&lt;-1
+for(d in c(2,5,10,20,30,40,50,60,80,100, 200, 350, 500, 750, 1000)){
+  averatio[ii] &lt;- mean(replicate(10, {
+  X&lt;-matrix(runif(N*d), nc=d)
+  d &lt;- as.matrix(dist(X)) 
+  # this gives a N x N matrix of the Euclidean distances between the data points.
+  maxdist &lt;- max(d) 
+  mindist &lt;- min(d+diag(10^5, nrow=N)) 
+  # The diagonal elements of the distance matrix are zero,
+  # so I&#39;ve added a big number to the diagonal 
+  # so that we get the minimum distance between different points
+  maxdist/mindist}))
+  ii &lt;- ii+1
+}
+plot(c(2,5,10,20,30,40,50,60,80,100, 200, 350, 500, 750, 1000), 
+     averatio, ylab=&#39;Max. dist. / min. dist.&#39;, xlab=&#39;Dimension d&#39;, log=&#39;xy&#39;)
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-1-1.png&quot; width=&quot;672&quot; /&gt;
+
+So we can see that as the dimension increases, the ratio of the maximum and minimum distance between any two random points in our sample tends to 1. In other words, all points are the same distance apart!
+
+
+
+
+&lt;!--### Why reduce dimension? {-}--&gt;
+
+# Principal Component Analysis (PCA) {#pca}
+
+The videos for this chapter are available at the following links:
+
+- [4.1 An informal introduction to PCA](https://mediaspace.nottingham.ac.uk/media/PCA_Informal/1_zs9dumou)
+- [4.1.5 Informal Examples](https://mediaspace.nottingham.ac.uk/media/PCA+Informal+Examples/1_3c9ghrtf)
+- [4.2 A more formal description of PCA](https://mediaspace.nottingham.ac.uk/media/PCA+Formal+Description/1_tq8tpcn0)
+- [4.2.1 Properties of PC scores](https://mediaspace.nottingham.ac.uk/media/PCAA+Properties+%28edited%29/1_vax8yhp9)
+- [4.2.2 Example: PCA of the football data](https://mediaspace.nottingham.ac.uk/media/PCA+Football+Example/1_h70vgqq2)
+- [4.2.4 Population PCA and transformations](https://mediaspace.nottingham.ac.uk/media/Population+PCA+and+transformations/1_y1s2arei)
+- [4.3 An alternative view of PCA: minimizing reconstruction error`](https://mediaspace.nottingham.ac.uk/media/PCAA+Minimizing+Reconstruction+Error/1_93tzf0ju)
+- [4.3.1 Example: PCA of the MNIST data](https://mediaspace.nottingham.ac.uk/media/PCAA+MNIST+example/1_ljte3zc1)
+
+With multivariate data, it is common to want to reduce the dimension of the data *in a sensible way*. For example 
+
+- exam marks across different modules are
+averaged to produce a single overall mark for each
+student
+
+- a football league table  converts the
+numbers of wins, draws and losses to a single measure of
+points.
+
+
+Mathematically, these summaries
+are both linear combinations of the
+original variables of the form 
+$$y = \bu^\top \bx.$$  
+for some choice of $\bu$.
+
+For the exam marks example, suppose each student sits $p=4$ modules
+with marks, $x_1,x_2,x_3,x_4$.  Then, writing $\bx=(x_1, x_2 , x_3, x_4)^\top$ and choosing $\bu = \lb \frac{1}{4}, \frac{1}{4}, \frac{1}{4}, \frac{1}{4} \rb ^\top$
+ gives an overall average,
+$$ y =\bu^\top \bx= \begin{pmatrix} \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{4} \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} = \frac{x_1}{4} + \frac{x_2}{4} + \frac{x_3}{4} + \frac{x_4}{4}.$$
+
+
+For the football league table, if $w$ is the number of wins, $d$ is the number of draws and $l$ is the number of losses then, writing
+ ${\mathbf r}=(w,d,l)^\top$, we choose $\bu = \lb 3,1,0 \rb^\top$ to get the points score
+$$ y = \bu^\top {\mathbf r}=\begin{pmatrix} 3 &amp; 1 &amp; 0 \end{pmatrix} \begin{pmatrix} w \\ d \\ l \end{pmatrix} = 3w + 1d + 0l=3w+d.$$
+
+
+
+
+
+
+
+#### Geometric interpretation {-}
+
+In the two examples above, we used the vector $\bu$ to convert our original variables,  $\bx$,
+to a new variable, $y$, by projecting $\bx$ onto $\bu$. 
+We can think of this as a projection onto the subspace defined by $\bu$ 
+
+
+$$U = \operatorname{span}\{\bu\} = \{\lambda \bu : \lambda \in \mathbb{R}\}\subset \mathbb{R}^p,$$
+
+For the exam data, each data point $\bx = \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix}$
+is a vector in  $\mathbb{R}^4$, and we&#39;ve expressed $\bx$ in terms of its coordinates with respsect to the standard basis, $\be_1^\top = (1\; 0\; 0 \; 0)$ etc:
+$$\bx =x_1 \be_1 + x_2 \be_2 +x_3 \be_3 +x_4 \be_4.$$
+ The vector subspace $U$ is a line  in $\mathbb{R}^4$ along the direction $\bu = \begin{pmatrix} \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{4} &amp; \frac{1}{4} \end{pmatrix}^\top$.
+
+
+How do we project onto subspace $U$? 
+
+- If $||\bu||_2=1$ then the orthogonal projection of $\bx$ onto $U$ is  
+$$\bu \bu^\top\bx.$$
+Or in other words, the projection of $\bx$ onto subspace $U$  has coordinate  $\bu^\top \bx$ with respect to basis $\{\bu\}$.
+
+If you prefer to think in terms of projection matrices (see Chapter \@ref(orthogproj)), then the matrix for projecting onto $U$ is
+$$\bP_U = \bu (\bu^\top \bu)^{-1}\bu^\top$$
+which simplifies to 
+$$\bP_U = \bu \bu^\top$$
+when $||\bu||=\sqrt{\bu^\top\bu}=1$ so that we again see the projection of $\bx$ onto $U$ is $y=\bP_u \bx = \bu \bu^\top\bx$.
+
+
+
+
+
+
+
+
+**How should we choose $\bu$?**
+
+The answer to that question depends upon the goal of the analysis. For the exam  and football league examples, the choice of $\bu$ is an arbitrary decision taken in order to reduce a  multidimensional dataset to a single variable (average mark, or points). 
+
+A single $\bu$ gives a **snapshot** or summary of the data. If $\bu$ is chosen well that snapshot may tell us much of what we want to know about the data, e.g., 
+
+- Liverpool won the league, 
+- student $X$&#39;s exam performance was first class etc. 
+
+In many cases we will want to use multiple snapshots: instead of using a single $\bu$, we will use a collection $\bu_1, \bu_2, \ldots, \bu_r$ and consider the derived variables
+
+$$\by = \begin{pmatrix} y_1\\y_2 \\ \vdots \\ y_r\end{pmatrix} = \begin{pmatrix}
+\bu_1^\top \bx\\  \bu_2^\top \bx\\\vdots\\  \bu_r^\top \bx\end{pmatrix}$$
+
+In matrix notation, if we set 
+$$\bU = \begin{pmatrix} 
+|&amp;&amp;|\\
+\bu_1 &amp; \ldots &amp; \bu_r\\
+|&amp;&amp;|\end{pmatrix}$$
+then the new derived variable is 
+$$\by = \bU^\top \bx.$$ 
+
+If $\dim(\by)=r&lt;p=\dim(\bx)$ then we have reduced the dimension of the data. If $\by$ tells us all we need to know about the data, then we can work (plot, analyse, model) with $\by$ instead of $\bx$. If $r\ll p$ this can make working with the data  significantly easier, as we can more easily visulise and understand low dimensional problems.
+
+
+We will study a variety of methods for choosing $\bU$. The methods can all be expressed as constrained optimization problems:
+
+\begin{align}
+\mbox{minimize} f_{\bX}(\bU) (\#eq:dimredopt) \\
+\mbox{ subject to } \bU \in \mathcal{U} 
+\end{align}
+
+The objective $f_{\bX}(\bU)$ varies between methods:  principal component analysis (PCA) maximizes variance or minimizes reconstruction error; canonical correlation analysis (CCA) maximizes correlation; multidimensional scaling (MDS) maximizes spread etc.
+
+The contstraint on the search space $\mathcal{U}$, is usually that $\bU$ must be (partially) orthogonal, but in other methods other constraints are used
+
+
+
+## PCA: an informal introduction
+
+There are two different ways of motivating 
+principal component analysis (PCA), which may in part explain why PCA is so widely used. 
+
+The first motivation, and the topic of this section,  is to introduce PCA as method for maximizing the variance of the transformed variables $\by$. We start by choosing $\bu_1$ so that $y_1=\bu_1^\top \bx$ has maximum variance. We then choose $\bu_2$ so that $y_2=\bu_2^\top \bx$ has maximum variance subject to being uncorrelated with $y_1$, and so on. 
+
+The idea is to  produce a set of variables $y_1, y_2, \ldots, y_r$ that are uncorrelated, but which are most informative about the data. The thinking is that  if a variable has large variance it must be informative/important.
+
+The name **principal component analysis** comes from thinking of this as splitting the data $\bX$ into its most important parts. It therefore won&#39;t surprise you to find that this involves the matrix decompositions we studied in Chapter \@ref(linalg-decomp). 
+
+[Allison Horst (\@allison_horst)](https://twitter.com/allison_horst/status/1288904459490213888?lang=en) gave a great illustration of how to think about PCA on Twitter. Imagine  you are a whale shark with a wide mouth
+
+![](figs/WideMouthShark1.png)
+
+and that you&#39;re swimming towards a delicious swarm of krill. 
+
+![](figs/WideMouthShark2.png)
+
+What way should you tilt your shark head in order to eat as many krill as possible? The answer is given by the first principal component of the data!
+
+
+
+### Notation recap 
+
+
+
+
+As before, let $\bx_1,\ldots,\bx_n$ be $p \times 1$ vectors of measurements on $n$ experimental units and write
+$$\bX =\left( \begin{array}{ccc}
+- &amp;\bx_1^\top&amp;-\\
+- &amp;\bx_2^\top&amp;-\\
+- &amp;..&amp;-\\
+- &amp;\bx_n^\top&amp;-
+\end{array}\right)
+$$
+
+
+**IMPORTANT NOTE:** 
+In this section we will assume that $\bX$ has been column centered so that the mean of each column is $0$ (i.e., the sample mean of $\bx_1,\ldots,\bx_n$ is the zero vector $\bzero \in \mathbb{R}^p$). If $\bX$ has not been column centered, replace $\bX$ by
+$$\bH \bX$$ where $\bH$ is the centering matrix (see \@ref(centering-matrix)), or equivalently, replace $\bx_i$ by $\bx_i - \bar{\bx}$. It is possible to write out the details of PCA replacing $\bX$ by $\bH \bX$ throughout, but this gets messy and obscures the important detail. Most software implementations (and in particular `prcomp` in R), automatically centre your data for you, and so in practice you don&#39;t need to worry about doing this when using a software package.
+
+
+
+The sample covariance matrix for $\bX$  (assuming it has been column centered) is 
+$$\bS = \frac{1}{n}\bX^\top \bX = \frac{1}{n}\sum \bx_i\bx_i^\top$$
+
+Given some vector $\bu$, the transformed variables
+$$y_i = \bu^\top \bx_i$$
+have 
+
+- **mean $0$**:
+$$\bar{y}= \frac{1}{n}\sum_{i=1}^n y_i = \frac{1}{n}\sum_{i=1}^n \bu^\top \bx_i =\frac{1}{n} \bu^\top \sum_{i=1}^n  \bx_i = 0$$
+    as the mean of the $\bx_i$ is $\bzero$.
+
+- **sample covariance matrix** $$\bu^\top \bS\bu$$
+as 
+$$\frac{1}{n} \sum_{i=1}^n y_i^2 = \frac{1}{n} \sum_{i=1}^n \bu^\top \bx_i \bx_i^\top\bu = \frac{1}{n}\bu^\top \sum_{i=1}^n  \bx_i \bx_i^\top \bu = \bu^\top \bS \bu
+$$
+
+
+### First principal component 
+
+We would like to find the $\bu$ which maximises the sample variance, $\bu^\top \bS \bu$ over unit vectors $\bu$, i.e., vectors with $||\bu||=1$.  Why do we focus on unit vectors? If we don&#39;t, we could make the variance as large as we like, e.g.,  if we replace $\bu$ by $10\bu$ it would increase the variance by a factor of 100. Thus, we constrain the problem and only consider unit vectors for $\bu$.
+
+We know from Proposition \@ref(prp:two8) in Section \@ref(svdopt) that $\bv_1$, the first eigenvector of $\bS$ (also the first right singular vector of $\bX$), maximizes $\bu^\top \bS\bu$ with
+$$  \max_{\bu: ||\bu||=1} \bu^\top \bS \bu = \bv_1 \bS \bv_1 =\lambda_1$$
+where $\lambda_1$ is the largest eigenvalue of $\bS$.
+
+So the first principal component of $\bX$ is $\bv_1$, and the first transformed variable (sometimes called a principal component score) is $y_1 = \bv_1 ^\top \bx$. 
+Applying this to each data point we get $n$ instances of this new variable
+$$y_{i1} = \bv_1 ^\top \bx_i.$$
+
+**A note on singular values**: We know $\bS = \frac{1}{n}\bX^\top\bX$ and so the eigenvalues of $\bS$ are the same as the squared singular values of $\frac{1}{\sqrt{n}} \bX$:
+
+$$\sqrt{\lambda_1} = \sigma_1\left(\frac{1}{\sqrt{n}} \bX\right)$$
+
+If we scale $\bX$ by a factor $c$, then  the singular values are  scaled by the same amount, i.e.,
+$$\sigma_i(c\bX)=c\sigma_i(\bX)$$
+and in particular
+$$ \sigma_i\left(\frac{1}{\sqrt{n}} \bX\right) = \frac{1}{\sqrt{n}} \sigma_i(\bX)$$
+We will need to remember this scaling if we use the  SVD of $\bX$ to do PCA. Note that scaling $\bX$ does not change the singular vectors/principal components.
+
+
+### Second principal component
+
+$y_1$ is the transformed variable that has maximum variance.  What should we choose to be our next transformed variable, i.e., what $\bu_2$ should we choose for $y_2 = \bu_2^\top \bx$? It makes sense to choose $y_2$ to be uncorrelated with $y_1$, as otherwise it contains some of the same information given by $y_1$. The sample covariance between $y_1$ and $\bu_2^\top \bx$ is
+\begin{align*}
+s_{y_2y_1} &amp;=\frac{1}{n}\sum_{i=1}^n \bu_2^\top \bx_i \bx_i^\top \bv_1\\ 
+&amp;= \bu_2^\top \bS \bv_1\\
+&amp; = \lambda_1 \bu_2^\top \bv_1 \mbox{ as } \bv_1 \mbox{ is an eigenvector of } S
+\end{align*}
+So to make $y_2$ uncorrelated with $y_1$ we have to choose $\bu_2$ to be orthogonal to $\bv_1$, i.e., $\bu_2^\top \bv_1=0$. So we choose $\bu_2$ to be the solution to the optimization problem
+
+$$\max_{\bu} \bu^\top \bS \bu \mbox{ subject to } \bu^\top \bv_1=0.$$
+The solution to this problem is to take $\bu_2 = \bv_2$, i.e., the second eigenvector of $\bS$ (or second right singular vector of $\bX$), and then $$\bv_2^\top \bS \bv_2=\lambda_2.$$
+We&#39;ll prove this result in the next section.
+
+#### Later principal components {-}
+
+Our first transformed variable is
+$$y_{i1}= \bv_1^\top \bx_i$$
+and our second transformed variable is
+$$y_{i2}= \bv_2^\top \bx_i.$$
+At this point, you can probably guess that the $j^{th}$  transformed variable is going to be 
+$$y_{ij}= \bv_j^\top \bx_i.$$
+where $\bv_j$ is the $j^{th}$ eigenvector of $\bS$. 
+
+
+
+
+- The transformed variables $y_{i}$ are the **principal component scores**. $y_1$ is the first score etc. 
+- The eigenvectors/right singular vectors are sometimes refered to as the **loadings** or simply as the **principal components**.
+
+
+
+### Geometric interpretation
+
+
+
+We think of PCA as projecting the data points $\bx$ onto a subspace $V$. The basis vectors for this subspace are the eigenvectors of $\bS$, which are the same as the right singular vectors of $\bX$ (the loadings):
+$$V=\operatorname{span}\{\bv_1, \ldots, \bv_r\}.$$
+The orthogonal projection matrix (see Section \@ref(orthogproj)) for projecting onto $V$ is 
+$$\bP_V = \bV \bV^\top$$
+as $\bV^\top \bV=\bI$.  
+The coordinates of the data points projected onto  $V$ (with respect to the basis for $V$) are the **principal component scores**:
+
+$$\by_i= \left(\begin{array}{c}y_{i1}\\\vdots\\y_{ir}\end{array}\right)= \bV^\top \bx_i$$
+where $$\bV = \left(\begin{array}{ccc} | &amp;&amp;|\\\bv_1&amp;\ldots&amp; \bv_r\\  | &amp;&amp;|\end{array}\right)$$ 
+is the matrix of right singular vectors from the SVD of $\bX$. 
+The transformed variables are
+
+$$\bY = \left( \begin{array}{ccc}
+- &amp;\by_1^\top&amp;-\\
+- &amp;..&amp;-\\
+- &amp;\by_n^\top&amp;-
+\end{array}\right ) = \bX\bV.
+$$
+Substituting the SVD for $\bX = \bU \bSigma\bV^\top$ we can see the transformed variable matrix/principal component scores are
+$$\bY = \bU \bSigma.$$
+
+$\bY$ is a $n \times r$ matrix, and so if $r&lt;p$ we have reduced the dimension of $\bX$, keeping the most important parts of the data
+
+
+
+
+### Example
+
+
+
+We consider the marks of $n=10$ students who studied G11PRB and G11STA.
+
+&lt;table class=&quot;table&quot; style=&quot;width: auto !important; margin-left: auto; margin-right: auto;&quot;&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; student &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; PRB &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; STA &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 1 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 81 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 75 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 2 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 79 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 73 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 3 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 66 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 79 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 4 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 53 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 55 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 5 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 43 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 53 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 6 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 59 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 49 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 7 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 62 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 72 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 8 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 79 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 92 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 9 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 49 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 58 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 10 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 55 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 56 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+These data haven&#39;t been column centered, so let&#39;s do that in R. You can do it using the centering matrix as previously, but here is a different approach:
+
+
+```r
+secondyr &lt;- data.frame(
+  student = 1:10,
+PRB=c(81 , 79 , 66 , 53 , 43 , 59 , 62 , 79 , 49 , 55),
+STA =c(75 , 73 , 79 , 55 , 53 , 49 , 72 , 92 , 58 , 56)
+        )
+xbar &lt;- colMeans(secondyr[,2:3]) #only columns 2 and 3 are data
+X &lt;- as.matrix(sweep(secondyr[,2:3], 2, xbar) ) 
+```
+
+&lt;table class=&quot;table&quot; style=&quot;width: auto !important; margin-left: auto; margin-right: auto;&quot;&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; PRB &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; STA &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 18.4 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 8.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 16.4 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 6.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 3.4 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 12.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -9.6 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -11.2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -19.6 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -13.2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -3.6 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -17.2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -0.6 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 5.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 16.4 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 25.8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -13.6 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -8.2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -7.6 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -10.2 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+The  sample covariance matrix can be computed in two ways:
+
+```r
+1/10* t(X)%*%X
+```
+
+```
+##        PRB    STA
+## PRB 162.04 135.38
+## STA 135.38 175.36
+```
+
+```r
+cov(X)*9/10 
+```
+
+```
+##        PRB    STA
+## PRB 162.04 135.38
+## STA 135.38 175.36
+```
+
+```r
+# Remember R uses the unbiased factor 1/(n-1), 
+# so the 9/10=(n-1)/n changes this to 1/n 
+# to match the notes
+```
+
+We can find the singular value decomposition of $\bX$ using R
+
+```r
+(X_svd = svd(X))
+```
+
+```
+## $d
+## [1] 55.15829 18.20887
+## 
+## $u
+##              [,1]        [,2]
+##  [1,] -0.34556317 -0.39864295
+##  [2,] -0.29430029 -0.39482564
+##  [3,] -0.21057607  0.34946080
+##  [4,]  0.26707104 -0.04226416
+##  [5,]  0.41833934  0.27975879
+##  [6,]  0.27085156 -0.50812066
+##  [7,] -0.06865802  0.24349429
+##  [8,] -0.54378479  0.32464825
+##  [9,]  0.27768146  0.23043980
+## [10,]  0.22893893 -0.08394852
+## 
+## $v
+##            [,1]       [,2]
+## [1,] -0.6895160 -0.7242705
+## [2,] -0.7242705  0.6895160
+```
+
+So we can see that the eigenvectors/right singular vectors/loadings are 
+
+$$\bv_1=\begin{pmatrix} -0.69 \\ -0.724 \end{pmatrix},\qquad \bv_2=\begin{pmatrix} -0.724 \\ 0.69 \end{pmatrix}$$
+
+
+Sometimes the new variables have an obvious interpretation.  In this case the first PC gives approximately equal weight to PRB and STA and thus represents some form of negative &#39;&#39;average&#39;&#39; mark.  Note that the singular vectors are only determined upto multiplication by $\pm 1$. In this case, R has chosen $\bv_1$ to have negative entries, but we could multiply $\bv_1$ by $-1$ so that the first PC was more like the avearge.
+As it is, a student that has a high mark on PRB and STA will have a low negative value for $y_1$.  The second PC, meanwhile, represents a contrast between PRB and STA.  For example, a large positive value for $y_2$ implies the student did much better on STA than PRB, and a large negative value implies the opposite.
+
+If we plot the data along with the principal components. The two lines, centred on $\bar{\bx}$, are in  the direction of the principal components/eigenvectors, and their lengths are $2 \sqrt{\lambda_j}$, $j=1,2$.
+We can see that the first PC is in the direction of greatest variation (shown in red), and that the second PC (shown in green) is orthogonal to the first PC. 
+
+
+
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-8-1.png&quot; width=&quot;576&quot; /&gt;
+
+
+We can find the transformed variables by computing either $\bX\bV$ or $\bU\bSigma$
+
+```r
+X %*% X_svd$v
+```
+
+```
+##             [,1]       [,2]
+##  [1,] -19.060674 -7.2588361
+##  [2,] -16.233101 -7.1893271
+##  [3,] -11.615016  6.3632849
+##  [4,]  14.731183 -0.7695824
+##  [5,]  23.074883  5.0940904
+##  [6,]  14.939710 -9.2523011
+##  [7,]  -3.787059  4.4337549
+##  [8,] -29.994240  5.9114764
+##  [9,]  15.316435  4.1960474
+## [10,]  12.627880 -1.5286074
+```
+
+```r
+X_svd$u %*% diag(X_svd$d)
+```
+
+```
+##             [,1]       [,2]
+##  [1,] -19.060674 -7.2588361
+##  [2,] -16.233101 -7.1893271
+##  [3,] -11.615016  6.3632849
+##  [4,]  14.731183 -0.7695824
+##  [5,]  23.074883  5.0940904
+##  [6,]  14.939710 -9.2523011
+##  [7,]  -3.787059  4.4337549
+##  [8,] -29.994240  5.9114764
+##  [9,]  15.316435  4.1960474
+## [10,]  12.627880 -1.5286074
+```
+
+If we plot the PC scores we can see that the variation is now in line with the new coordinate axes:
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-10-1.png&quot; width=&quot;672&quot; /&gt;
+
+R also has a built-in function for doing PCA. 
+
+
+```r
+pca &lt;- prcomp(secondyr[,2:3]) # prcomp will automatocally remove the column mean
+pca$rotation # the loadings
+```
+
+```
+##            PC1        PC2
+## PRB -0.6895160 -0.7242705
+## STA -0.7242705  0.6895160
+```
+
+```r
+pca$x # the scores
+```
+
+```
+##              PC1        PC2
+##  [1,] -19.060674 -7.2588361
+##  [2,] -16.233101 -7.1893271
+##  [3,] -11.615016  6.3632849
+##  [4,]  14.731183 -0.7695824
+##  [5,]  23.074883  5.0940904
+##  [6,]  14.939710 -9.2523011
+##  [7,]  -3.787059  4.4337549
+##  [8,] -29.994240  5.9114764
+##  [9,]  15.316435  4.1960474
+## [10,]  12.627880 -1.5286074
+```
+
+
+Note that the new variables have sample mean $\bar{\by}=\bzero$. The sample covariance matrix is a diagonal with entries given by the eigenvalues (see part 4. of Proposition \@ref(prp:pca2)). Note that there is always some numerical error (so quantities are never 0, and instead are just very small numnbers). 
+
+$$
+\bLambda = \tdiag(\lambda_1,\lambda_2) =  \begin{pmatrix} \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2 \end{pmatrix}.
+$$
+
+
+
+
+```r
+colMeans(pca$x)
+```
+
+```
+##           PC1           PC2 
+##  2.842171e-15 -9.769963e-16
+```
+
+```r
+cov(pca$x)*9/10 # to convert to using 1/n as the denominator 
+```
+
+```
+##              PC1          PC2
+## PC1 3.042437e+02 1.974167e-14
+## PC2 1.974167e-14 3.315628e+01
+```
+
+Finally, note that we did the singular value decomposition for $\bX$ above not $\frac{1}{\sqrt{10}}\bX$, and so we&#39;d need to square and scale the singular values to find the eigenvalues. Let&#39;s check:
+
+
+```r
+X_svd$d^2/10 # square and scale the singular values
+```
+
+```
+## [1] 304.24372  33.15628
+```
+
+```r
+eigen(t(X) %*% X/10)$values  # compute the eigenvalues of the covariance matrix
+```
+
+```
+## [1] 304.24372  33.15628
+```
+
+```r
+svd(X/sqrt(10))$d^2 # compute the singular values of X/sqrt(10) and square
+```
+
+```
+## [1] 304.24372  33.15628
+```
+
+
+
+
+
+### Example: Iris
+
+In general when using R to do PCA, we don&#39;t need to compute the SVD and then do the projections, as there is an R command `prcomp` that will do it all for us.  The `princomp` will also do PCA, but is less stable than `prcomp`, and it is recommended that you use `prcomp` in preference.
+
+Let&#39;s do PCA on the iris dataset discussed in Chapter \@ref(stat-prelim). The `prcomp` returns the square root of the eigenvalues (the standard devaiation of the PC scores), and the PC scores.
+
+
+```r
+iris.pca = prcomp(iris[,1:4])
+iris.pca$sdev # the square root of the eigenvalues
+```
+
+```
+## [1] 2.0562689 0.4926162 0.2796596 0.1543862
+```
+
+```r
+head(iris.pca$x)  #the PC scores
+```
+
+```
+##            PC1        PC2         PC3          PC4
+## [1,] -2.684126 -0.3193972  0.02791483  0.002262437
+## [2,] -2.714142  0.1770012  0.21046427  0.099026550
+## [3,] -2.888991  0.1449494 -0.01790026  0.019968390
+## [4,] -2.745343  0.3182990 -0.03155937 -0.075575817
+## [5,] -2.728717 -0.3267545 -0.09007924 -0.061258593
+## [6,] -2.280860 -0.7413304 -0.16867766 -0.024200858
+```
+
+The PC loadings/eigenvectors can also be accessed, as can the sample mean
+
+```r
+iris.pca$rotation #the eigenvecstors
+```
+
+```
+##                      PC1         PC2         PC3        PC4
+## Sepal.Length  0.36138659 -0.65658877  0.58202985  0.3154872
+## Sepal.Width  -0.08452251 -0.73016143 -0.59791083 -0.3197231
+## Petal.Length  0.85667061  0.17337266 -0.07623608 -0.4798390
+## Petal.Width   0.35828920  0.07548102 -0.54583143  0.7536574
+```
+
+```r
+iris.pca$center # the sample mean of the data
+```
+
+```
+## Sepal.Length  Sepal.Width Petal.Length  Petal.Width 
+##     5.843333     3.057333     3.758000     1.199333
+```
+
+A scree plot can be obtained simply by using the `plot` command. The summary command also gives useful information about the importance of each PC.
+
+
+```r
+plot(iris.pca)
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-16-1.png&quot; width=&quot;672&quot; /&gt;
+
+```r
+summary(iris.pca)
+```
+
+```
+## Importance of components:
+##                           PC1     PC2    PC3     PC4
+## Standard deviation     2.0563 0.49262 0.2797 0.15439
+## Proportion of Variance 0.9246 0.05307 0.0171 0.00521
+## Cumulative Proportion  0.9246 0.97769 0.9948 1.00000
+```
+
+To plot the PC scores, you can either manually create a plot or use the `ggfortify` package. For example, here is a plot of the first two PC scores coloured according to the species of iris.
+
+
+```r
+iris$PC1=iris.pca$x[,1]
+iris$PC2=iris.pca$x[,2]
+qplot(PC1, PC2, colour=Species, data=iris)
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-17-1.png&quot; width=&quot;672&quot; /&gt;
+
+The `ggfortify` package provides a nice wrapper for some of this functionality.
+
+
+```r
+library(ggfortify)
+autoplot(iris.pca, data = iris, colour = &#39;Species&#39;, scale=FALSE)
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-18-1.png&quot; width=&quot;672&quot; /&gt;
+
+
+
+
+
+
+
+
+
+
+
+## PCA: a formal description with proofs
+
+Let&#39;s now summarize what we&#39;ve said so far and prove some results about principal component analysis.
+
+Let $\bx_1, \ldots , \bx_n$ denote a sample of vectors in $\mathbb{R}^p$ with sample mean vector $\bar{\bx}$ and sample covariance matrix $\bS$.  Suppose $\bS=\frac{1}{n}\bX^\top \bH\bX$ has spectral decomposition (see Proposition \@ref(prp:spectraldecomp))
+\begin{equation}
+\bS=\bV \bLambda \bV^\top = \sum_{j=1}^p  \lambda_j \bv_j \bv_j^\top,
+(\#eq:pcaspect)
+\end{equation}
+where  the eigenvalues are $\lambda_1 \geq \lambda_2 \geq \lambda_p \geq 0$ with $\bLambda=\text{diag}\{\lambda_1, \ldots, \lambda_p\}$, and $\bV$ contains the eigenvectors of $\bS$. If $\bS$ is of full rank, then $\lambda_p&gt;0$. If $\bS$ is rank $r$, with $r&lt;p$, then $\lambda_{r+1}=\ldots, \lambda_p=0$ and we can truncate $\bV$ to consider just the first $r$ columns.
+
+The principal components of $\bX$ are defined sequentially. If the $\bv_k$ is value of $\bu$ that maximizes the objective for the $k^{th}$ problem (for $k&lt;j$), then the $j^{th}$ principal component is the solution  to the following optimization problem: 
+\begin{equation}
+\max_{\bu: \, \vert \vert \bu \vert \vert =1}\bu^\top \bS \bu
+(\#eq:pcmaxgen)
+\end{equation}
+subject to
+\begin{equation}
+\bv_k^\top \bu =0, \qquad k=1, \ldots , j-1.
+(\#eq:pccongen)
+\end{equation}
+(for $j=1$ there is no orthogonality constraint).
+
+
+\BeginKnitrBlock{proposition}&lt;div class=&quot;proposition&quot;&gt;&lt;span class=&quot;proposition&quot; id=&quot;prp:pca1&quot;&gt;&lt;strong&gt;(\#prp:pca1) &lt;/strong&gt;&lt;/span&gt;The maximum of Equation \@ref(eq:pcmaxgen)
+subject to Equation \@ref(eq:pccongen) is equal to $\lambda_j$ and is obtained when $\bu=\bv_j$.&lt;/div&gt;\EndKnitrBlock{proposition}
+
+\BeginKnitrBlock{proof}&lt;div class=&quot;proof&quot;&gt;\iffalse{} &lt;span class=&quot;proof&quot;&gt;&lt;em&gt;Proof. &lt;/em&gt;&lt;/span&gt;  \fi{}We can prove this using the method of Lagrange multipliers. For $j=1$ our objective is
+$$\mathcal{L} = \bu^\top  \bS \bu +\lambda(1-\bu^\top \bu)$$
+Differentiating (see \@ref(vectordiff)) with respect to $\bu$ and setting the derivative equal to zero gives
+$$2\bS\bu -2\lambda \bu=0$$
+Rearranging we see that $\bu$ must satify
+$$\bS\bu=\lambda \bu \mbox{ with } \bu^\top \bu=1$$
+i.e., $\bu$ is a unit eigenvector of $\bS$. Substituting this back in to the objective we see
+$$\bu \bS\bu = \lambda$$
+and so we must choose $\bu=\bv_1$, the eigenvector corresponding to the largest eigenvalue of $\bS$.
+
+We now proceed inductively and  assume the result  is true for $k=1, \ldots, j-1$. The Lagrangian for the $j^{th}$ optimization problem is
+    $$\mathcal{L} = \bu^\top  \bS \bu +\lambda(1-\bu^\top \bu) +\sum_{k=1}^{j-1}\mu_k (0-\bu^\top \bv_k)$$
+where we now have $j$ Lagrange multipliers $\lambda, \mu_1, \ldots, \mu_{j-1}$ - one for each constraint.
+Differentiating with respect to $\bu$ and setting equal to zero gives
+$$0 = 2\bS \bu - 2\lambda \bu - \sum_{k=1}^{j-1} \mu_k\bv_k=0 $$
+If we left multiply by $\bv_l^\top$ we get 
+$$2\bv_l^\top \bS\bu - 2\lambda \bv_l \bu- \sum \mu_k \bv_l^\top \bv_k =0$$
+We know $\bv_l$ is an eigenvector of $\bS$ and so $\bS\bv_l=\lambda_l \bv_l$ and hence $\bv_k \bS\bu=0$ as $\bv_l^\top \bu=0$. Also $$\bv_l^\top\bv_k=\begin{cases}1 &amp;\mbox{ if } k=l\\
+0 &amp;\mbox{ otherwise, }\end{cases}$$ and thus we&#39;ve shown that   $\mu_l=0$ for $l=1, \ldots, j-1$. So again we have that $$\bS\bu = \lambda \bu$$
+i.e., $\bu$ must be a unit eigenvector of $\bS$. It only remains to show *which* eigenvector it is. Because  $\bu$ must be orthogonal to $\bv_1, \ldots, \bv_{j-1}$, 
+and as $\bv_l^\top \bS \bv_l = \lambda_l$, we must choose $\bu=\bv_j$, the eigenvector corresponding to the $j^{th}$ largest eigenvalue. &lt;/div&gt;\EndKnitrBlock{proof}
+
+
+
+
+### Properties of principal components
+
+
+For $j=1, \ldots , p$, the scores of the $j^{th}$ principal component (PC)  are given  by
+$$
+y_{ij}=\bv_j^\top(\bx_i - \bar{\bx}), \qquad i=1, \ldots , n.
+$$
+The $j^{th}$ eigenvector $\bv_j$ is sometimes referred to as the vector of **loadings** for the $j^{th}$ PC. Note that if $\operatorname{rank}(S)=r&lt;p$, then the $r+1^{th}, \ldots, p^{th}$ scores are meaningless, as they will all be zero.
+
+In vector notation 
+$$
+\by_i=( y_{i1}, y_{i2}, \ldots , y_{ip})^\top = \bV^\top (\bx_i -\bar{\bx}), \qquad i=1, \ldots ,n.
+$$
+In matrix form, the full set of PC scores is given by
+$$
+\bY = [\by_1 , \ldots , \by_n]^\top =\bH\bX \bV.
+$$
+
+
+If $\tilde{\bX}=\bH\bX$ is the column centered data matrix, with singular value decomposition
+$\tilde{\bX}=\bU \bSigma \bV^\top$ with $\bV$  as in Equation \@ref(eq:pcaspect), then 
+$$\bY = \tilde{\bX}\bV = \bU \bSigma.$$
+
+
+
+
+
+The transformed variables $\bY = \bH\bX\bV$ have some important properties which we collect together in the following proposition.
+
+
+\BeginKnitrBlock{proposition}&lt;div class=&quot;proposition&quot;&gt;&lt;span class=&quot;proposition&quot; id=&quot;prp:pca2&quot;&gt;&lt;strong&gt;(\#prp:pca2) &lt;/strong&gt;&lt;/span&gt;The following results hold:
+
+1. The sample mean vector of $\by_1, \ldots , \by_n$ is the zero vector: $\bar{\by}={\mathbf 0}_p$ 
+
+2.  The sample covariance matrix of $\by_1, \ldots, \by_n$ is 
+$$\Lambda = \operatorname{diag}(\lambda_1, \ldots, \lambda_p)$$
+i.e., for each fixed $j$, the sample variance of $y_{ij}$ is $\lambda_j$, and $y_{ij}$ is uncorrelated with with $y_{ik}$ for $j\not = k$.
+
+3.  For $j\leq k$ the  sample variance of $\{y_{ij}\}_{i=1, \ldots , n}$ is greater than or equal to the sample variance of $\{y_{ik}\}_{i=1, \ldots , n}$. 
+$$\bv_1^\top \bS \bv_1 \geq \bv_2^\top \bS \bv_2 \geq \ldots \geq \bv_p^\top \bS \bv_p\geq 0$$
+Note that if $\operatorname{rank}(S)=r&lt;p$, then $\bv_k^\top \bS \bv_k = 0$ for $k=r+1, \ldots, p$.
+
+4.  The sum of the sample variances is equal to the trace of $\bS$
+$$\sum_{j=1}^p \bv_j^\top \bS \bv_j = \sum_{j=1}^p \lambda_j = \ttr(\bS)$$
+
+5.  The product of the sample variances is equal to the determinant of $\bS$
+$$\prod_{j=1}^p \bv_j^\top \bS \bv_j = \prod_{j=1}^p \lambda_j = |\bS|.$$
+&lt;/div&gt;\EndKnitrBlock{proposition}
+
+
+\BeginKnitrBlock{proof}&lt;div class=&quot;proof&quot;&gt;\iffalse{} &lt;span class=&quot;proof&quot;&gt;&lt;em&gt;Proof. &lt;/em&gt;&lt;/span&gt;  \fi{}For i.
+$$\bar{\by} = \frac{1}{n}\sum_{i=1}^n \bV^\top(\bx_i-\bar{\bx}) = \frac{1}{n} \bV^\top\sum_{i=1}^n(\bx_i-\bar{\bx}) =\bzero.$$
+
+For 2. the sample covariance matrix of $\by_1, \ldots, \by_n$ is
+\begin{align*}
+\frac{1}{n}\sum_{i=1}^n \by_i \by_i^\top &amp;=\frac{1}{n} \sum \bV^\top (\bx_i-\bar{\bx})(\bx_i - \bx)^\top \bV\\
+&amp;=\bV^\top \bS \bV\\
+&amp;=\bV^\top \bV \bLambda \bV^\top \bV \mbox{ substiting the spectral decomposition for }\bS\\
+&amp;=\bLambda
+\end{align*}
+
+
+3. is a consequence 2. and of ordering the eigenvalues in decreasing magnitude.
+
+4.  follows from lemma \@ref(lem:trace) and the spectral decomposition of $\bS$:
+$$\tr(\bS) = \tr(\bV \bLambda\bV^\top)  =\tr(\bV^\top \bV\bLambda)=\tr(\bLambda)=\sum\lambda_i$$
+
+5. follows from \@ref(prp:deteig).
+&lt;/div&gt;\EndKnitrBlock{proof}
+
+From these properties we say that a proportion
+$$\frac{\lambda_j}{\lambda_1 + \ldots + \lambda_p}$$
+of the variability in the sample is &#39;explained&#39; by the $j^{th}$ PC.
+
+One tool for looking at the contributions of each PC is to look at the **scree plot** which plots the percentage of variance explained by PC $j$ against $j$.  We&#39;ll see examples of scree plots below. 
+
+
+
+
+### Example: Football {#pca:football}
+
+We can apply PCA to a football league table where $W$, $D$, $L$ are the number of matches won, drawn and lost and $G$ and $GA$ are the goals scored for and against, and $GD$ is the goal difference ($G-GA$).  An extract of the table for the 2019-2020 Premier League season is:
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&quot;text-align:left;&quot;&gt; Team &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; W &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; D &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; L &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; G &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; GA &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; GD &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Liverpool &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 32 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 3 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 3 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 85 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 33 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 52 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Manchester City &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 26 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 3 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 9 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 102 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 35 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 67 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Manchester United &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 18 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 12 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 8 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 66 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 36 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 30 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Chelsea &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 20 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 6 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 12 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 69 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 54 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 15 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Leicester City &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 18 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 8 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 12 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 67 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 41 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 26 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Tottenham Hotspur &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 16 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 11 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 11 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 61 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 47 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 14 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Wolverhampton &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 15 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 14 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 9 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 51 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 40 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Arsenal &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 14 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 14 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 10 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 56 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 48 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Sheffield United &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 14 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 12 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 12 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 39 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 39 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Burnley &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 15 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 9 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 14 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 43 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 50 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -7 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+
+
+
+
+
+The sample mean vector is
+
+$$\bar{\bx} =\begin{pmatrix}14.4 \\9.2 \\14.4 \\51.7 \\51.7 \\0 \\\end{pmatrix}.$$
+
+Note that the total goals scored must equal the total goals conceded, and that the sum of the goal differences must be $0$. The sample covariance matrix is
+
+\begin{equation}
+\bS= \begin{pmatrix}38.3&amp;-9.18&amp;-29.2&amp;103&amp;-57&amp;160 \\-9.18&amp;10.2&amp;-0.98&amp;-27.5&amp;-2.24&amp;-25.2 \\-29.2&amp;-0.98&amp;30.1&amp;-75.3&amp;59.3&amp;-135 \\103&amp;-27.5&amp;-75.3&amp;336&amp;-147&amp;483 \\-57&amp;-2.24&amp;59.3&amp;-147&amp;134&amp;-281 \\160&amp;-25.2&amp;-135&amp;483&amp;-281&amp;764 \\\end{pmatrix}
+(\#eq:PLES)
+\end{equation}
+
+
+The eigenvalues of $\bS$ are
+$$\bLambda = \tdiag \begin{pmatrix}1300&amp;71.9&amp;8.05&amp;4.62&amp;-2.65e-14&amp;-3.73e-14 \\\end{pmatrix}$$
+
+
+Note that we have two zero eigenvalues (which won&#39;t be computed as exactly zero because of numerical rounding errors) because two of our variables are a linear combinations of the other variables, $W+D+L = 38$ and $GD=G-GA$.  The corresponding eigenvectors are
+$$\bV = [\bv_1 \ldots \bv_6] =\begin{pmatrix}-0.166&amp;0.0262&amp;-0.707&amp;0.373&amp;0.222&amp;-0.533 \\0.0282&amp;-0.275&amp;0.661&amp;0.391&amp;0.222&amp;-0.533 \\0.138&amp;0.249&amp;0.0455&amp;-0.764&amp;0.222&amp;-0.533 \\-0.502&amp;0.6&amp;0.202&amp;0.117&amp;0.533&amp;0.222 \\0.285&amp;0.701&amp;0.11&amp;0.286&amp;-0.533&amp;-0.222 \\-0.787&amp;-0.101&amp;0.0915&amp;-0.169&amp;-0.533&amp;-0.222 \\\end{pmatrix}$$
+
+
+
+
+
+
+
+
+
+The proportion of variability explained by each of the PCs is:
+$$
+\begin{pmatrix}0.939&amp;0.052&amp;0.00583&amp;0.00334&amp;-1.92e-17&amp;-2.7e-17 \\\end{pmatrix}
+$$
+
+
+
+There is no point computing the scores for PC 5 and 6, because these do not explain any of the variability in the data.  Similarly, there is little value in computing the scores for PCs 3 \&amp; 4 because they account for less than 1\% of the variability in the data.
+
+We can, therefore, choose to compute only the first two PC scores.  We are reducing the dimension of our data set from $p=5$ to $p=2$ while still retaining 99\% of the variability.  The first PC score/transformed variable is given by:
+\begin{align*}
+y_{i1} &amp;= -0.17(W_i-\bar{W}) +0.03(D_i-\bar{D}) +0.14(L_i-\bar{L})\\
+&amp; \qquad +-0.5(G_i-\bar{G}) +0.28(GA_i-\bar{GA})+-0.79(GD_i-\bar{GD}),
+\end{align*}
+and similarly for PC 2.
+
+
+The first five rows of our revised &#39;league table&#39; are now
+&lt;table class=&quot;table&quot; style=&quot;width: auto !important; margin-left: auto; margin-right: auto;&quot;&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&quot;text-align:left;&quot;&gt; Team &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; PC1 &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; PC2 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Liverpool &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -67.6 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Manchester City &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -85.6 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 12.3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Manchester United &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -36.7 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -7.7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Chelsea &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -21.2 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 10.9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Leicester City &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -32.2 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -1.1 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+
+
+
+Now that we have reduced the dimension to $p=2$, we can visualise the differences between the teams.
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-26-1.png&quot; width=&quot;672&quot; /&gt;
+
+
+
+We might interpret the PCs as follows.  The first PC seems to measure the difference in goals scored and conceded between teams.  Low values of PC1 indicate good peformance, and high values poor performance. Teams are rewarded with -0.79 for each positive goal difference, and -0.5 for each goal scored, whilst being penalised by 0.28 for every goal they concede. So a team with a large negative PC1 score tends to score lots of goals and concede few. If we rank teams by their  PC1 score, and compare this with the rankings using 3 points for a win and 1 point for a draw we get a different ranking of the teams.
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&quot;text-align:left;&quot;&gt;   &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; PC1 &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; PC2 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Manchester City &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -85.59 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 12.35 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Liverpool &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -67.64 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.93 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Manchester United &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -36.66 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -7.73 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Leicester City &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -32.16 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -1.13 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Chelsea &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -21.19 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 10.90 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+The second PC has a strong positive loading for both goals for and against.  A team with a large positive PC 2 score was, therefore, involved in matches with lots of goals.  We could, therefore, interpret PC 2 as an &#39;entertainment&#39; measure, ranking teams according to their involvement in high-scoring games.
+
+The above example raises the question of how many PCs should we use in practice.  If we reduce the dimension to $p=1$ then we can rank observations and analyse our new variable with univariate statistics.  If we reduce the dimension to $p=2$ then it is still easy to visualise the data.  However, reducing the dimension to $p=1$ or $p=2$ may involve losing lots of information and a sensible answer should depend on the objectives of the analysis and the data itself.
+
+The scree graph for the football example is:
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-29-1.png&quot; width=&quot;672&quot; /&gt;
+
+There are many possible methods for choosing the number of PCs to retain for analysis,  including:
+
+- retaining enough PCs to explain, say, 90\% of the total variation;
+- retaining PCs where the eigenvalue is above the average.
+
+To retain enough PCs to explain 90\% of the total variance, would require us to keep just a single PCs in this case.
+
+
+
+### PCA based on $\bR$ versus PCA based on $\bS$ {#pcawithR}
+
+Recall the distinction between the sample covariance matrix $\bS$ and the sample correlation matrix $\bR$.
+Note that all correlation matrices are also covariance matrices, but not all covariance matrices are correlation matrices.
+Before doing PCA we must decide whether to do PCA based on $\bS$ or $\bR$? As we will see later
+
+- PCA based on $\bR$ (but not $\bS$) is scale invariant, whereas 
+- PCA based on $\bS$  is invariant under orthogonal rotation. 
+
+If the original $p$ variables represent very different types of quantity or show marked differences in variances, then it will usually be better to use $\bR$ rather than $\bS$.  However, in some circumstances, we may wish to use $\bS$, such as when the $p$ variables are measuring similar entities and the sample variances are not too different.
+
+Given  that the required numerical calculations are  easy to perform in R, we might wish to do it both ways and see if it makes much difference. To use the correlation matrix $\bR$, we just add the option `scale=TRUE` when using the `prcomp` command.
+
+#### Football example continued
+
+If we repeat the analysis of the football data using $\bR$ instead of $\bS$, we get find principal components:
+
+
+
+\begin{align*}
+\bLambda &amp;= \tdiag \begin{pmatrix}4.51&amp;1.25&amp;0.156&amp;0.0863&amp;3.68e-32&amp;2.48e-33 \\\end{pmatrix}\\
+\;\\
+\bV = [\bv_1 \ldots \bv_6] &amp;=\begin{pmatrix}-0.456&amp;0.149&amp;-0.342&amp;-0.406&amp;0.466&amp;0.52 \\0.143&amp;-0.844&amp;0.344&amp;-0.143&amp;0.24&amp;0.268 \\0.432&amp;0.321&amp;0.186&amp;0.541&amp;0.413&amp;0.461 \\-0.438&amp;0.214&amp;0.7&amp;-0.0181&amp;0.389&amp;-0.348 \\0.419&amp;0.342&amp;0.386&amp;-0.671&amp;-0.245&amp;0.22 \\-0.466&amp;-0.00136&amp;0.302&amp;0.269&amp;-0.586&amp;0.525 \\\end{pmatrix}
+\end{align*}
+
+The effect of using $\bR$ is to standardize each of the original variables to have variance 1. 
+The first PC now has  loadings which are more evenly balanced across the 6 original variables. 
+
+Teams will have a small value of PC1 score if they won lots, lost rarely, scored a lot, and conceded rarely. In other words, PC1 is a complete measure of overall performance. If we look at the league table based on ordering according to PC1 we get a table that looks more like the original table.
+
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style=&quot;text-align:left;&quot;&gt;   &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; PC1 &lt;/th&gt;
+   &lt;th style=&quot;text-align:right;&quot;&gt; PC2 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Liverpool &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -4.70 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 1.20 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Manchester City &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -4.38 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 1.65 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Manchester United &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -2.01 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -1.29 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Chelsea &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -1.29 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 1.08 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Leicester City &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -1.66 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.12 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Tottenham Hotspur &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -0.91 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -0.65 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Wolverhampton &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -0.82 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -1.88 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Arsenal &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -0.46 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -1.56 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Sheffield United &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -0.18 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -1.38 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style=&quot;text-align:left;&quot;&gt; Burnley &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; 0.18 &lt;/td&gt;
+   &lt;td style=&quot;text-align:right;&quot;&gt; -0.10 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+Overall for these data, doing PCA with $\bR$ instead of $\bS$ better summarizes the data (although this is just my subjective opinion - you may feel differently).
+
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-32-1.png&quot; width=&quot;672&quot; /&gt;
+
+
+
+
+### Population PCA
+
+So far we have considered sample PCA based on the sample covariance matrix or sample correlation matrix:
+$$
+\bS=\frac{1}{n}\sum_{i=1}^n (\bx_i-\bar{\bx})(\bx_i-\bar{\bx})^\top.
+$$
+
+We note now that there is a *population* analogue of PCA based on the population
+covariance matrix $\bSigma$.  Although the population version of PCA is not of as much direct practical
+relevance as sample PCA, it is nevertheless of conceptual importance.
+
+Let $\bx$ denote a $p \times 1$ random vector with $\BE(\bx)={\pmb \mu}$ and $\var(\bx)={\pmb \Sigma}$.  As defined,
+$\pmb \mu$ is the population mean vector and $\pmb \Sigma$ is the population covariance matrix.
+
+Since $\pmb \Sigma$ is symmetric, the spectral decomposition theorem tells us that
+$$
+{\pmb \Sigma}=\sum_{j=1}^p \check{\lambda}_j \check{\bv}_j \check{\bv}_j^\top=\check{\bV} \check{\bLambda}\check{\bV}^\top
+$$
+where the &#39;check&#39; symbol  $\quad \check{} \quad$   is used to distinguish population quantities from their sample analogues.
+
+Then:
+
+- the first population PC is defined by $Y_1=\check{\bv}_1^\top (\bx-{\pmb \mu})$;
+- the second population PC is defined by $Y_2=\check{\bv}_2^\top (\bx-{\pmb \mu})$;
+-  $\ldots$
+- the $p$th population PC is defined by $Y_p=\check{\bv}_p^\top (\bx-{\pmb \mu})$.
+
+
+The $Y_1, \ldots , Y_p$ are random variables, unlike the sample PCA case, where the $y_{ij}$ are observed quantities.
+In the sample PCA case, the $y_{ij}$ can often be regarded as the observed values of random variables.
+
+In matrix form, the above definitions can be summarised by writing
+$$
+\by =\begin{pmatrix} Y_1 \\ Y_2 \\ ... \\...\\Y_p   \end{pmatrix} = \check{\bV}^\top (\bx-{\pmb \mu}).
+$$
+
+The population PCA analogues of the sample PCA properties listed in Proposition \@ref(prp:pca2)  are now given.  Note that the
+$Y_j$&#39;s are random variables as opposed to observed values of random variables.
+
+
+\BeginKnitrBlock{proposition}&lt;div class=&quot;proposition&quot;&gt;&lt;span class=&quot;proposition&quot; id=&quot;prp:pca3&quot;&gt;&lt;strong&gt;(\#prp:pca3) &lt;/strong&gt;&lt;/span&gt;The following results hold for the random variables $Y_1, \ldots , Y_p$ defined above.
+
+1.  $\BE(Y_j)=0$ for $j=1, \ldots , p$;
+
+2.   $\var(Y_j)=\check{\lambda}_j$ for $j=1,\ldots, p$;
+
+3.  $\cov(Y_j,Y_k)=0$ if $j \neq k$;
+
+4.  $\var(Y_1) \geq \var(Y_2) \geq \cdots \geq \var(Y_p) \geq 0$;
+
+5.  $\sum_{j=1}^p \var(Y_j)=\sum_{j=1}^p \check{\lambda}_j=\text{tr}(\bSigma)$;
+
+6.  $\prod_{j=1}^p \text{Var}(Y_j)=\prod_{j=1}^p \check{\lambda}_j=\vert \bSigma \vert$.
+&lt;/div&gt;\EndKnitrBlock{proposition}
+
+Note that, defining $\by=(Y_1, \ldots , Y_p)^\top$ as before,  part 1. implies that $\BE(\by)={\mathbf 0}_p$ and parts 2. and 3. together imply that
+$$
+\text{Var}(\by)=\bLambda \equiv \text{diag}(\check{\lambda}_1, \ldots , \check{\lambda}_p).
+$$
+
+Consider now a repeated sampling framework in which we assume that $\bx_1, \ldots , \bx_n$ are IID random vectors from a population
+with mean vector $\pmb \mu$ and covariance matrix $\bSigma$.
+
+What is the relationship between the sample PCA based on the sample of observed vectors $\bx_1, \ldots , \bx_n$, and the population PCA based on the unobserved random vector $\bx$,
+from the same population?
+
+If the elements of $\bSigma$ are all finite, then as $n$ increases, the elements of the sample covariance matrix $\bS$ will converge to the corresponding elements
+of the population covariance matrix $\bSigma$. Consequently, we expect the principal components from sample PCA to converge to the population PCA values as $n$ grows large. Justification of this statement comes from the weak law of large numbers applied to the components of $\Sigma$, but the details are beyond the scope of this module.
+
+
+### PCA under transformations of variables
+
+
+We&#39;ll now consider what happens to PCA when the data are transformed in various ways. 
+
+
+
+**Addition transformation**
+
+Firstly, consider the transformation of addition where, for example, we add a fixed amount to each variable. 
+We can write this transformation as $\bz_i = \bx_i + \bc$, where $\bc$ is a fixed vector.  Under this transformation the sample mean changes, $\bar{\bz} = \bar{\bx} + \bc$, but the sample variance remains $\bS$.  Consequently, the eigenvalues and eigenvectors remain the same and, therefore, so do the principal component scores/transformed vasriables,
+$$\by_i = \bV^\top (\bz_i - \bar{\bz}) = \bV^\top(\bx_i + \bc - (\bar{\bx} + \bc)) = \bV^\top (\bx_i - \bar{\bx}).$$
+We say that the principal components are **invariant** under the addition transformation.  An important special case is to choose $\bc = -\bar{\bx}$ so that the PC scores are simply $\by_i = \bV^\top \bz_i$.
+
+
+
+**Scale transformation**
+
+
+Secondly, we consider the scale transformation where each variable is multiplied by a fixed amount. 
+A scale transformation occurs more naturally when we convert units of measurement from, say, metres to kilometres.  We can write this transformation as $\bz_i = \bD \bx_i$, where $\bD$ is a diagonal matrix with positive elements.  Under this transformation the sample mean changes from $\bar{\bx}$ to $\bar{\bz} = \bD \bar{\bx}$, and the sample covariance matrix changes from $\bS$ to $\bD \bS \bD$.  Consequently, the principal components also change.
+
+This lack of scale-invariance is undesirable. For example, if we analysed data that included some information on distances, we don&#39;t want the answer to depend upon whether we use km, metres, or miles as the measure of distance.
+One solution is to scale the data using 
+$$
+\bD = \tdiag(s_{11}^{-1/2}, \ldots , s_{pp}^{-1/2}),
+ $$
+ where $s_{ii}$ is the $i$th diagonal element of $\bS$.  In effect, we have standardised all the new variables to have variance 1.  In this case the sample covariance matrix of the $\bz_i$&#39;s is simply the sample correlation matrix $\bR$ of the original variables, $\bx_i$.  Therefore, we can carry out PCA on the sample correlation matrix, $\bR$, which is invariant to changes of scale.
+
+In summary: $\bR$ is scale-invariant while $\bS$ is not. To do PCA on $\bR$ in R we use the option `scale=TRUE` in the `prcomp` command.
+
+We saw an example of this in section \@ref(pcawithR) with the football data. Because the sample 
+ variances of $G$ and $GA$ are much larger than the sample variances of $W$, $D$ and $L$, doing PCA with $\bR$ instead of $\bS$ completely changed the analysis.
+ 
+
+**Orthogonal transformations**
+
+Thirdly, we consider a transformation by an orthogonal matrix, $\stackrel{p \times p}{\bA}$, such that $\bA \bA^\top = \bA^\top \bA = \bI_p$, and write $\bz_i = \bA \bx_i$.  This is equivalent to rotating and/or reflecting the original data.
+
+Let $\bS$ be the sample covariance matrix of the $\bx_i$ and let $\bT$ be the sample covariance matrix of the $\bz_i$.  Under this transformation the sample mean changes from $\bar{\bx}$ to $\bar{\bz} = \bA \bar{\bx}$, and the sample covariance matrix $\bS$ changes from $\bS$ to $\bT = \bA \bS \bA^\top$.
+
+However, if we write $\bS$ in terms of its spectral decomposition $\bS = \bV \bLambda \bV^\top$, then $\bT = \bA \bV \bLambda \bV^\top \bA^\top = \bB \bLambda \bB^\top$ where $\bB = \bA \bV$ is also orthogonal.  It is therefore apparent that the eigenvalues of $\bT$ are the same as those of  $\bS$; and the eigenvectors of $\bT$ are given by $\bb_j$ where $\bb_j = \bA \bv_j$, $j=1,\ldots,p$.  The PC scores of the rotated  variables are
+$$ \by_i = \bB^\top (\bz_i - \bar{\bz}) = \bV^\top \bA^\top \bA (\bx_i - \bar{\bx}) = \bV_1^\top (\bx_i - \bar{\bx}),$$
+and so they are identical to the PC scores of the original variables.
+
+Therefore, under an orthogonal transformation the eigenvalues and PC scores are unchanged; the PCs are orthogonal transformations of the original PCs.  We say that the principal components are **equivariant** with respect to orthogonal transformations.
+
+
+&lt;!--IS PCA of R EQUIVARAINT?--&gt;
+
+## An alternative view of PCA
+
+
+In this section, we will again consider the situation in which the sample $\bx_1, \ldots ,  \bx_n \in \mathbb{R}^p$ have  zero mean (replace $\bx_i$ by $\bx_i-\bar{\bx}$ if the mean is not zero). 
+
+To recap, in PCA to find the $r$ leading principal components, we solve the optimization problem 
+\begin{align*}
+\mbox{For } k=1, \ldots, r &amp;\mbox{ maximize } \bu_k^\top \bS \bu_k \\
+ &amp;\mbox{ subject to } \bu_k^\top \bu_j = \begin{cases}
+ 1  &amp;\mbox{ if } j=k\\
+ 0 &amp; \mbox{ otherwise.}
+ \end{cases}
+ \end{align*}
+
+We can write this in the form given in the introduction to this chapter (Equation \@ref(eq:dimredopt)) as
+\begin{align*}
+&amp;\mbox{Maximize } \operatorname{tr}(\bU^\top \bS \bU) \\
+ &amp;\mbox{ subject to } \bU^\top \bU =\bI_r,
+ \end{align*}
+as $\operatorname{tr}(\bU^\top \bS \bU) = \sum_{k=1}^r \bu_k^\top \bS \bu_k$ if $\bU$ has columns $\bu_1, \ldots, \bu_r$.
+
+#### An equivalent problem {-}
+There is another optimization problem that we sometimes wish to solve, that turns out to be equivalent to the above, thus providing another reason why PCA is so widely used.
+
+
+Suppose we want to find the best rank-$r$ linear approximation to the data matrix $\bX=\begin{pmatrix}\bx_1&amp; \ldots &amp; \bx_n\end{pmatrix}^\top$ (remember that we&#39;re assuming the data have been column centered, if not, replace $\bX$ by $\bH\bX$).  One way to think about this is seek  a $p\times r$ matrix $\bU$ for which the rank $r$ linear model 
+$$f(\by) = \bU \by$$ can be used to represent the data. 
+
+
+
+Let&#39;s choose $\by_i\in \mathbb{R}^r$ and $\bU$ to minimize the sum of squared errors 
+$$\sum_{i=1}^n ||\bx_i - \bU \by_i||^2_2.$$
+
+If we write 
+$$\bY^\top = \begin{pmatrix} 
+| &amp;&amp;|\\
+\by_1&amp; \ldots &amp; \by_n\\
+| &amp;&amp;|
+\end{pmatrix}$$
+then
+\begin{align*}
+\sum_{i=1}^n ||\bx_i - \bU \by_i||^2_2 &amp;=\tr((\bX^\top - \bU \bY^\top)^\top (\bX^\top - \bU \bY^\top))\\
+&amp;=||\bX^\top - \bU \bY^\top||_F^2
+\end{align*}
+
+i.e., we&#39;re looking for the  rank-$r$ matrix $\bX_r$ that minimizes $||\bX - \bX_r||_F=||\bX^\top - \bX_r^\top||_F$, noting that  we can write an arbitrary rank-$r$ matrix as $\bX_r^\top = \bU \bY^\top$ for some $p\times r$ matrix $\bU$ and a $n \times r$ matrix $\bY$.
+
+It makes sense to restrict the columns of $\bU$ to be orthonormal so that $\bU^\top \bU=\bI_r$ as non-orthonormal coordinates systems are confusing. We know that the $\bu \in \mathcal{C}(\bU)$ (where $\mathcal{C}(\bU)$ is the column space of $\bU$) that minimizes 
+ $$||\bx-\bu||_2$$
+is the orthogonal projection of $\bx$ onto  $\mathcal{C}(\bU)$, which given the columns of $\bU$ are orthonormal is $\bu = \bU\bU^\top \bx$ (see Section \@ref(orthogproj)). So we must have $\bX_r^\top = \bU\bU^\top \bX^\top$ and $\bY^\top = \bU^\top \bX^\top$.
+ 
+So it remains to find the optimal choice for $\bU$ by minimizing
+\begin{align*}
+||\bX^\top - \bU\bU^\top \bX^\top||_F^2 &amp;=||\bX - \bX\bU\bU^\top ||_F^2\\
+&amp;= \operatorname{tr}((\bX - \bX\bU\bU^\top)^\top(\bX - \bX\bU\bU^\top))\\
+&amp;= \operatorname{tr}(\bX^\top \bX) - 2 \operatorname{tr}(\bU\bU^\top \bX^\top\bX) +  \operatorname{tr}(\bU\bU^\top \bX^\top\bX \bU \bU^\top)\\
+&amp;= \operatorname{tr}(\bX^\top \bX)  - \operatorname{tr}(\bU^\top \bX^\top \bX\bU) 
+\end{align*}
+where we&#39;ve used the fact $\operatorname{tr}(\bA\bB) = \operatorname{tr}(\bB\bA)$ and that $\bU^\top \bU=\bI_r$.
+
+Minimizing the equation above with respect to $\bU$ is equivalent to maximizing 
+$$\operatorname{tr}(\bU^\top \bS\bU) $$
+which is the maximum variance objective we used to introduce PCA.
+
+So to summarize, the optimization problem 
+\begin{align*}
+&amp;\mbox{Minimize } ||\bX^\top -\bU\bU^\top \bX^\top||_F \\
+ &amp;\mbox{ subject to } \bU^\top \bU =\bI_r,
+ \end{align*}
+is equivalent to (and has the same as)  the PCA optimization problem.
+
+
+
+
+### Example: MNIST handwritten digits {#pca-mnist}
+
+Let&#39;s consider the MNIST dataset of handwritten digits discussed in Chapter \@ref(stat-prelim). Recall this is a collection of 60,000 digits, each of which has been converted to a $28\times 28$ pixel greyscale image (so $p=784$). 
+I&#39;ve made a clean version of the dataset available on Moodle, so you can try this analysis for yourself. Let&#39;s look at just the 3s. I&#39;ve created a plotting function `plot.mnist`, which is in the code file on Moodle. 
+
+
+
+
+```r
+load(file=&quot;mnist.rda&quot;) 
+source(&#39;mnisttools.R&#39;)
+mnist3 = mnist$train$x[mnist$train$y==3,] # select just the 3s
+plot.mnist(mnist3[1:12,]) # plot the first 12 images
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-33-1.png&quot; width=&quot;672&quot; /&gt;
+
+We can see there is quite a bit of variation between them.
+Now lets look at $\bar{\bx}$, the average 3.
+
+
+```r
+xbar=colMeans(mnist3)
+plot.mnist(xbar)
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-34-1.png&quot; width=&quot;384&quot; /&gt;
+
+We can use the `prcomp` command to find the principal components. Note that we can&#39;t use the `scale=TRUE` option as some of the columns are all 0, and so R throws an error as it cannot rescale these to have variance 1.  Let&#39;s plot the first few principal components/eigenvectors/loading vectors.
+
+
+
+```r
+mnist3.pca &lt;- prcomp(mnist3)
+plot.mnist(mnist3.pca$rotation[,1:12]) 
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-35-1.png&quot; width=&quot;672&quot; /&gt;
+
+These show the main mode of variability in the 3s. Focusing on the first PC, we can see that this is a form of rotation and causes the 3 to slant either forward or backward.  If we wanted a rank-2 approximation to the data we would use
+$$f(\by) = \bar{\bx} + y_1 \bv_1 + y_2 \bv_2$$
+
+Let&#39;s try reconstructing the data with $r=2$.
+
+
+
+```r
+r=2
+recon =  mnist3.pca$x[,1:r] %*% t(mnist3.pca$rotation[,1:r])
+plot.mnist2(matrix(rep(xbar,12), byrow=T, nr=12)+recon[1:12,])
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-36-1.png&quot; width=&quot;672&quot; /&gt;
+
+We can see that all of these 3s still look a lot like the average 3, but that they vary in their slant, and the heaviness of the line. 
+
+The scree plot shows a sharp decrease in the eigenvalues until about the 100th component, at which point they level off.  
+
+
+```r
+plot(mnist3.pca$sdev) # scree plot
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-37-1.png&quot; width=&quot;672&quot; /&gt;
+
+
+
+It can also be useful to plot the cumulative sum of the total proportion of variance explained by a given number of principal components. I&#39;ve drawn on horizontal lines at 90\% and 95\% of variance explained, to help identify when we cross these thresholds.
+We need 80 components to explain 90\% of the variance, and  138 components to explain 95\% of the variance. 
+
+
+```r
+cumvar = 100*cumsum(mnist3.pca$sdev^2) / sum(mnist3.pca$sdev^2)
+plot(cumvar, ylab=&quot;Cumulative proportion of variance explained&quot;, xlab=&quot;Number of PCs used&quot;, ylim=c(0,100))
+abline(h=90, lty=2)
+abline(v=min(which(cumvar&gt;90)), lty=2)
+abline(h=95, lty=2)
+abline(v=min(which(cumvar&gt;95)), lty=2)
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-39-1.png&quot; width=&quot;672&quot; /&gt;
+
+
+Let&#39;s now look at the reconstruction using $r=10, \;50, \;100$ and $500$ components to see how the accuracy changes.
+
+```r
+r=10
+recon =  mnist3.pca$x[,1:r] %*% t(mnist3.pca$rotation[,1:r])
+plot.mnist2(matrix(rep(xbar,12), byrow=T, nr=12)+recon[1:12,])
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-40-1.png&quot; width=&quot;672&quot; /&gt;
+
+
+
+```r
+r=50
+recon =  mnist3.pca$x[,1:r] %*% t(mnist3.pca$rotation[,1:r])
+plot.mnist2(matrix(rep(xbar,12), byrow=T, nr=12)+recon[1:12,])
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-41-1.png&quot; width=&quot;672&quot; /&gt;
+
+```r
+r=100
+recon =  mnist3.pca$x[,1:r] %*% t(mnist3.pca$rotation[,1:r])
+plot.mnist2(matrix(rep(xbar,12), byrow=T, nr=12)+recon[1:12,])
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-42-1.png&quot; width=&quot;672&quot; /&gt;
+
+
+```r
+r=500
+recon =  mnist3.pca$x[,1:r] %*% t(mnist3.pca$rotation[,1:r])
+plot.mnist2(matrix(rep(xbar,12), byrow=T, nr=12)+recon[1:12,])
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-43-1.png&quot; width=&quot;672&quot; /&gt;
+
+We can see that as the number of components increases the reconstructions start to look more like the original 12 images.
+
+We can visualise the range of 3s by looking at a scatter plot of the first two principal components. 
+
+
+```r
+library(ggplot2)
+qplot(mnist3.pca$x[,1], mnist3.pca$x[,2])
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-44-1.png&quot; width=&quot;672&quot; /&gt;
+
+We can then finding images that differ according to these two PC scores. The first plot below is the 3 with the smallest PC1 score, and the second has the largest PC1 score. The third plot has the smallest PC2 score, and the fourth plot the largest PC2 score.
+These four different 3s differ in more than just the first two principal components, but you can see the effect of the PC1 score is to slant the image forward or backward, whereas PC2 changes the thickness of the line.
+
+
+
+```r
+image_list &lt;- c(which.min(mnist3.pca$x[,1]), which.max(mnist3.pca$x[,1]),
+                which.min(mnist3.pca$x[,2]), which.max(mnist3.pca$x[,2]))
+plot.mnist(mnist3[image_list,]) # plot the first 12 images
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-45-1.png&quot; width=&quot;672&quot; /&gt;
+
+
+Finally, let&#39;s do PCA on a selection of the 60,000 images (not just the 3s). You can compute the SVD (which is what `prcomp` uses to do PCA) on a $60,000 \times 784$ matrix, but it takes a long time on most computers, so here I&#39;ve just computed the first two components on a random selection of 5,000 images using the option `rank=2` which significantly speeds up the computation time.
+
+
+```r
+# Note this is slow to compute!
+image_index &lt;- sample(1:60000, size=5000) # select a random sample of images
+mnist.pca &lt;- prcomp(mnist$train$x[image_index,], rank=2)
+Digit = as.factor(mnist$train$y[image_index])
+ggplot(as.data.frame(mnist.pca$x), aes(x=PC1, y=PC2, colour=Digit, label=Digit))+
+geom_text(aes(label=Digit))
+```
+
+&lt;img src=&quot;04-pca_files/figure-html/unnamed-chunk-46-1.png&quot; width=&quot;672&quot; /&gt;
+
+We can see from this scatter plot that the first two principal components do a surprisingly good job of separating and clustering the digits.
+
+
+
+
+
+
+&lt;!--Extensions 
+
+Principal component regression
+
+
+
+ Total least squares
+--&gt;
+
+## Computer tasks {#pca-comptask}
+
+
+##### Exercise 1 {-}
+
+Using the `iris` dataset, familiarize yourself with the `prcomp` command and its output.
+
+    Now, instead of using `prcomp` we will do the analysis ourselves using the `eigen` command. 
+
+- Start by computing the sample mean and sample variance of the dataset (use $n-1$ as the denominator when you compute the sample variance to get the same answer as provided by `prcomp`).
+- Now compute the eigenvalues and eigenvectors of the covariance matrix using `eigen`. Check that these agree with those computed by `prcomp` (noting that `prcomp` returns the standard deviation which is the square root of the eigenvalues).
+- Now compute the principal component scores by multiplying $\bX$ by the matrix of eigenvectors $\bV$. Check your answer agrees with the scores provided by `prcomp`.
+
+
+Now we will do the same thing again, but using the `svd` command.
+
+- Compute the column centred data matrix $\frac{1}{\sqrt{n-1}}\bH\bX$.
+- Compute the SVD of $\frac{1}{\sqrt{n-1}}\bH\bX$ and $\bH\bX$. How are the two sets of singular values related, and how do they relate to the  eigenvalues computed previously.
+Are the singular vectors of $\frac{1}{\sqrt{n-1}}\bH\bX$ and $\bH\bX$ the same?
+
+
+- Compute the SVD scores by doing both $\bH\bX\bV$ and $\bU\bSigma$, where
+$$\bH\bX = \bU \bSigma\bV^\top$$ 
+is the SVD of $\bH\bX$.
+
+##### Exercise 2 {-}
+
+
+In this question we will look at the crabs data from the `MASS` R package. 
+We will focus on the 5 continuous variables, all measured in mm:  
+
+- FL = frontal lobe size 
+- RW = rear width 
+- CL = carapace length
+- CW = carapace width
+- BD = body depth.  
+
+The sample size is $200$.
+
+
+```r
+library(MASS)
+?crabs # read the help page to find out about the dataset
+X=crabs[,4:8]     # construct data matrix X with columns FL, RW, CL, CW, BD
+```
+
+- Carry out PCA on the data in $X$ using the covariance matrix, including obtaining a scree plot and plotting the PC scores.
+
+&lt;!--
+
+```r
+pca &lt;- prcomp(X, scale=FALSE)   #carry out PCA on S  
+pca
+lambda &lt;- pca$sdev**2    #eigenvalues of S
+plot( lambda , ylim=c( 0, max(lambda) )
+lines(lambda)
+```
+--&gt;
+
+Some questions:
+
+- Do you have any suggestions for an interpretation for the 1st PC?
+
+
+- Are you able to come up with an interpretation for the 2nd PC?
+
+
+- Do you think an analysis based on the sample covariance matrix ${\bf S}$ or the
+correlation matrix ${\bf R}$ is preferable with this dataset? Note that you can use  `scale=TRUE` in `prcomp`
+to carry out PCA on ${\bf R}$. Does it make much difference which is used?
+
+- Without doing any computation, think about what you expect  the sample mean and sample covariance matrix to be for the PC scores. Check this numerically.
+
+- Now check other properties of the PC scores listed in proposition \@ref(prp:pca2).
+
+- Try the following transformations of the data.
+
+    - adding a constant to the data
+$$\bz = \bx+\bc,$$
+
+    - scaling the data: 
+$$\bz = \bD\bx$$
+for some diagonal matrix $\bD$
+    - rotating the data:
+$$\bz = \bU\bx$$
+for some $p\times p$ orthogonal matrix $\bU$. 
+You can generate a random orthogonal matrix using the following commands
+
+```r
+library(pracma)
+U &lt;- randortho(5)
+```
+
+Check the effect of each transformation on the principal components (the loadings/eigenvectors), the principal component scores, and the variance of the principal components (the eigenvalues).
+
+
+
+##### Exercise 3 {-}
+
+Download the final Premier League table for the 2018-19 season from 
+[https://www.rotowire.com/soccer/league-table.php?season=2018](https://www.rotowire.com/soccer/league-table.php?season=2018). There is a button to download the csv (comma separated variable) file in the bottom right hand corner.
+
+- Load the data into R using the command `read.csv`. Note that you may need to manually delete the first row of the csv file before doing this. (*I haven&#39;t given you the command here, as learning how to do this yourself is important*).
+
+- Repeat the analysis from section \@ref(pca:football). Does the meaning of the principal components change? Was the 2018-19 league season notably different to the 2019-20 season (which is the season analysed in the notes)?
+
+
+## Exercises
+
+1. Consider the following data in $\mathbb{R}^2$
+
+$$\bx_1 =\begin{pmatrix}1\\-1\end{pmatrix},\; \bx_2 =\begin{pmatrix}-1\\1\end{pmatrix},
+\;\bx_3 =\begin{pmatrix}2\\2\end{pmatrix}$$
+
+- What is the orthogonal projection of these points onto $$\bu_1 = \begin{pmatrix}1\\0\end{pmatrix}$$ and onto $$\bu_2 =\frac{1}{\sqrt{5}}\begin{pmatrix}1\\2\end{pmatrix}?$$
+
+- Compute the sample variance matrix of the data points, and compute its spectral decomposition. 
+
+- Which unit vector $\bu$ would maximize the variance of these projections?
+    
+- What vector $\bu$ would minimize 
+$$\sum_{i=1}^4 ||\bx_i -\bu \bu^\top \bx_i||^2_2?$$
+    This is the sum of squared errors from a rank 1 approximation to the data.
+
+- Plot the data points and convince yourself that your answers make intuitive sense.  
+
+
+
+
+2. Consider a population covariance matrix $\bSigma$ of the form
+$$\bSigma=\gamma \bI_p + \ba \ba^\top$$
+where $\gamma&gt;0$ is a scalar, $\bI_p$ is the $p \times p$ identity matrix and $\ba$ is a vector of dimension $p$.
+    -  Show that $\ba$ is an eigenvector of $\bSigma$.
+    - Show that if $\bb$ is any vector such that $\ba^\top \bb=0$, then $\bb$ is also an eigenvector of $\bSigma$.
+    - Obtain all the eigenvalues of $\bSigma$.
+    - Determine expressions for the proportion of variability &#39;explained&#39; by:
+            
+    i. the largest (population) principal component of $\bSigma$;
+    ii. the $r$ largest (population) principal components of $\bSigma$, where $1 &lt; r \leq p$.
+
+3. A covariance matrix has the following eigenvalues:
+
+
+
+```
+##  [1] 4.22 2.38 1.88 1.11 0.91 0.82 0.58 0.44 0.35 0.19 0.05 0.04 0.04
+```
+
+
+- Sketch a scree plot.
+- Determine the minimum number of principal components needed to explain 90\% of the total variation.
+- Determine the number of principal components whose eigenvalues are above average.
+
+4.  Measurements are taken on $p=3$ variables $x_1$, $x_2$ and $x_3$, with sample correlation matrix
+$$
+ \bR = \begin{pmatrix} 1 &amp; 0.5792 &amp; 0.2414 \\ 0.5792 &amp; 1 &amp; 0.5816 \\ 0.2414 &amp; 0.5816 &amp; 1 \end{pmatrix}.
+$$
+The variable $z_j$  is the standardised versions of $x_j$, $j=1,2,3$,  i.e. each $z_j$ has sample mean $0$ and variance $1$.
+One observation has $z_1 = z_2 = z_3 = 0$ and a second observation has $z_1 = z_2 = z_3 =1$.  Calculate the three
+principal component scores for
+each of these observations.
+
+
+5. Do exam question 1 part (a) from the 2017-18 exam paper. You will find the past exam papers on Moodle.
+
+&lt;!--chapter:end:04-pca.Rmd--&gt;
+
+# Canonical Correlation Analysis (CCA) {#cca}
+
+The videos for this chapter are available at the following links
+
+- [5.1: Introduction to CCA](https://mediaspace.nottingham.ac.uk/media/CCA+Introduction/1_qhk7v35f)
+- [5.1.1: The first pair of CC variables](https://mediaspace.nottingham.ac.uk/media/CCAA+First+CC/1_yjm6kkxf)
+- [5.1.2: Example: Premier league data](https://mediaspace.nottingham.ac.uk/media/CCAA+Football+Example/1_r2v6924j)
+- [5.2: The full set of CC variables](https://mediaspace.nottingham.ac.uk/media/CCAA+Full+Set/1_xmdoi9i6)
+- [5.3: Properties of CCA](https://mediaspace.nottingham.ac.uk/media/CCA%3A%20Properties/1_g24h27bj)
+
+
+
+Suppose we observe a random sample of $n$ bivariate observations
+$$
+\bz_1=(x_1,y_1)^\top , \ldots , \bz_n=(x_n,y_n)^\top.
+$$
+If we are interested in exploring possible dependence between the $x_i$&#39;s and $y_i$&#39;s then among the first things we would do would be to obtain a scatterplot of the $x_i$&#39;s against the $y_i$&#39;s and calculate the correlation coefficient.  Recall that the sample  correlation coefficient is defined by
+\begin{align}
+r=\cor(x,y)&amp;=\frac{S_{xy}}{\sqrt{S_{xx}}\sqrt{S_{yy}}}\\
+&amp;=\frac{\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{\left(\sum_{i=1}^n (x_i-\bar{x})^2  \right)^{1/2}  \left(\sum_{i=1}^n (y_i-\bar{y})^2 \right)^{1/2}}
+(\#eq:scr)
+\end{align}
+where $\bar{x}=n^{-1}\sum_{i=1}^n x_i$ and $\bar{y}=n^{-1}\sum_{i=1}^n y_i$ are the sample means.  
+
+Recall that the sample correlation is a **scale-free measure** of the strength of the **linear dependence** between the $x_i$&#39;s and the $y_i$&#39;s.
+
+
+In this chapter we investigate the multivariate analogue of this question. Instead of our bivariate observations being a pair of scalars, suppose instead that we are given  two different random vectors $\bx$ and $\by$. In otherwords, for each subject/case $i$ we have observations
+$\{\bx_i,\by_i\}_{i=1}^n.$
+
+Multivariate data structures can be understood better if we look at low-dimensional projections of the data. The question is, given a sample $\{\bx_i, \; \by_i\}_{i=1}^{n}$, what is a sensible way to assess and describe the strength of the linear dependence between the two  vectors?
+
+Canonical correlation analysis (CCA) gives an answer to this question in terms of the best low-dimensional linear projections of the $\bx$ and $\by$ random variables. In a comparable way to PCA, &#39;best&#39; in CCA is defined in terms of maximizing correlations. 
+A key role is played by the singular value decomposition (SVD) introduced  in Chapter \@ref(linalg-decomp).
+
+  
+  
+  
+## The first pair of canonical variables {#cca1}
+
+
+
+#### Some notation {-}
+Assume we are given a random sample of vectors $\bx_i, \by_i$, and that we stack these into a vector $\bz_i$
+$$
+\bz_i=\left(\begin{array}{c}
+\bx_i\\
+\by_i
+\end{array}\right)=(\bx_i^\top , \by_i^\top )^\top,\quad  i=1,\ldots, n,
+$$
+where
+the $\bx_i$ are $p \times 1$, the $\by_i$ are $q \times 1$ and, consequently, the $\bz_i$ are $(p+q)\times 1$. We are interested in determining the strength of linear association between the $\bx_i$ vectors and the $\by_i$ vectors.
+We formulate this task as an optimisation problem (cf. PCA). 
+
+First, some notation: 
+
+- Let $\bar{\bx}$, $\bar{\by}$, and $\bar{\bz}$ denote the  sample mean vectors of the $\bx_i$, $\by_i$ and $\bz_i$ respectively.
+
+- Let $\bS_{\bz\bz}$ denote the sample covariance matrix of the $\bz_i$, $i=1,\ldots, n$.  Then $\bS_{\bz\bz}$ can be written in block matrix form
+$$
+\bS_{\bz\bz}=\left [\begin{array}{cc}
+\bS_{\bx \bx} &amp; \bS_{\bx\by}\\
+\bS_{\by \bx} &amp; \bS_{\by \by} \end{array} \right ],
+$$
+where $\bS_{\bx \bx}$ ($p \times p$) is the sample covariance matrix of the $\bx_i$, $\bS_{\by \by}$ ($q \times q$) is the sample covariance of the $\by_i$, and the cross-covariance matrices are given by
+$$
+\stackrel{p \times q}{\bS}_{\bx \by}=n^{-1} \sum_{i=1}^n (\bx_i -\bar{\bx})(\by_i-\bar{\by})^\top
+\qquad \text{and} \qquad \stackrel{q \times p}{\bS}_{\by \bx}=\bS_{\bx \by}^\top.
+$$
+
+#### Defining the optimization objective {-}
+
+
+We want to find the linear combination of the $\bx$-variables and the linear combination of the $\by$-variables which is most highly correlated.
+
+ One version of the optimisation problem we want to solve is: find non-zero vectors $\stackrel{p \times 1}{\ba}$ and $\stackrel{q \times 1}{\bb}$ which maximise the correlation coefficient
+$$
+\cor(\ba^\top \bx,\bb^\top \by)=\frac{\ba^\top \bS_{\bx \by}\bb}{(\ba^\top \bS_{\bx \bx}\ba)^{1/2}(\bb^\top \bS_{\by \by}\bb)^{1/2}}.
+$$
+In other words:
+\begin{align}
+&amp;\mbox{Maximise} \qquad\qquad \quad  \cor(\ba^\top \bx,\bb^\top \by),
+(\#eq:opt26)\\
+  &amp;\mbox{for non-zero vectors}\quad  \ba \;\; (p \times 1)\mbox{ and  } \bb \;\; (q \times 1) \nonumber
+\end{align}
+
+where $\cor(\cdot,\cdot)$ is defined in \@ref(eq:scr).
+
+
+  Intuitively, this objective makes sense, because we want to find the linear combination of the $\bx$-variables and the linear combination of the $\by$-variables which are most highly correlated.
+  However, note that for any $\gamma&gt;0$ and $\delta&gt;0$,
+  \begin{align}
+  \cor(\gamma\ba^\top \bx, \delta \bb^\top \by)&amp;= \frac{\gamma \delta}{\sqrt{\gamma^2 \delta^2}}\cor(\ba^\top \bx,\bb^\top \by)\\
+  &amp;=\cor(\ba^\top \bx,\bb^\top \by).
+  (\#eq:invar)
+  \end{align}
+ $\cor(\ba^\top \bx,\bb^\top \by)$ is invariant to (i.e. unchanged by) multiplication of $\ba$ and $\bb$ by positive scalars.  Consequently there will be an infinite number of solutions to this optimisation problem, because if $\ba$ and $\bb$ are solutions, then so are $\gamma \ba$ and $\delta \bb$, for any $\gamma&gt;0$ and $\delta&gt;0$.
+
+A more  useful way to formulate this optimisation problem is
+
+\begin{align}
+&amp;\mbox{Maximize }\qquad \ba^\top \bS_{\bx \by}\bb
+(\#eq:opt27a)\\
+  &amp;\mbox{subject to } \qquad  \ba^\top \bS_{\bx \bx}\ba=\bb^\top \bS_{\by \by}\bb=1.\nonumber
+\end{align}
+
+Thankfully, there is a link between the solutions of the two optimization problems \@ref(eq:opt26) and \@ref(eq:opt27a). Firstly, the invariance of $\cor(\ba^\top \bx, \bb^\top \by)$ means that  if 
+ $\check{\ba}$ and $\check{\bb}$ are a solution to  problem \@ref(eq:opt27a), then for any $\gamma,\;\delta&gt;0$, we have that $\ba=\gamma \check{\ba}$ and $\bb=\delta \check{\bb}$ are a solution to  \@ref(eq:opt26).
+
+Conversely, we can convert any solution to  optimization problem \@ref(eq:opt26) to be a solution to the problem \@ref(eq:opt27a):
+
+
+
+\BeginKnitrBlock{proposition}&lt;div class=&quot;proposition&quot;&gt;&lt;span class=&quot;proposition&quot; id=&quot;prp:unnamed-chunk-1&quot;&gt;&lt;strong&gt;(\#prp:unnamed-chunk-1) &lt;/strong&gt;&lt;/span&gt;If $\ba$ and $\bb$ maximise \@ref(eq:opt26), then
+$$
+\check{\ba}=\frac{\ba}{(\ba^\top \bS_{\bx \bx}{\ba})^{1/2}} \qquad \text{and} \qquad
+\check{\bb}= \frac{{\bb}}{({\bb}^\top \bS_{\by \by}{\bb})^{1/2}}
+$$
+  are a solution to the constrained maximization problem   \@ref(eq:opt27a).&lt;/div&gt;\EndKnitrBlock{proposition}
+
+\BeginKnitrBlock{proof}&lt;div class=&quot;proof&quot;&gt;\iffalse{} &lt;span class=&quot;proof&quot;&gt;&lt;em&gt;Proof. &lt;/em&gt;&lt;/span&gt;  \fi{}
+Suppose ${\ba}$ and ${\bb}$ are  solutions to optimization problem \@ref(eq:opt26).  Then invariance with respect to rescaling implies that  $\check{\ba}={\ba}/({\ba}^\top \bS_{\bx \bx} {\ba})^{1/2}$ and $\check{\bb}= {\bb}/({\bb}^\top \bS_{\by \by} {\bb})^{1/2}$ also achieve the optima. 
+But $\check{\ba}$ and $\check{\bb}$ satisfy the constraints  $\ba^\top \bS_{\bx \bx}\ba=\bb^\top \bS_{\by \by}\bb=1$
+because
+$$
+\check{\ba}^\top \bS_{\bx \bx} \check{\ba}=\frac{{\ba}^\top \bS_{\bx \bx}{\ba}}{\left \{ \left ({\ba}^\top \bS_{\bx \bx}{\ba}\right )^{1/2}\right \}^2}
+=\frac{{\ba}^\top \bS_{\bx \bx}{\ba}}{{\ba}^\top \bS_{\bx \bx}{\ba}}=1
+$$
+and similarly for $\check{\bb}$.
+So $\check{\ba}$ and $\check{\bb}$ maximises \@ref(eq:opt27a) subject to the constraints.&lt;/div&gt;\EndKnitrBlock{proof}
+
+
+
+### The first canonical components 
+
+
+As in the chapter on PCA, the optimal solution for CCA can be computed using the singular value decomposition. Before we describe the result, let&#39;s prove the following proposition from Chapter \@ref(linalg-decomp) 
+
+
+
+
+\BeginKnitrBlock{proposition}&lt;div class=&quot;proposition&quot;&gt;&lt;span class=&quot;proposition&quot; id=&quot;prp:svdmax2&quot;&gt;&lt;strong&gt;(\#prp:svdmax2) &lt;/strong&gt;&lt;/span&gt;For any matrix $\bQ$, we have
+$$
+\max_{\ba, \bb:\, \vert \vert \ba \vert \vert=\vert \vert \bb \vert \vert =1} \ba^\top \bQ \bb =\sigma_1.
+$$
+with the maximum obtained at $\ba=\bu_1$ and $\bb=\bv_1$, the first left and right singular vectors of $\bQ$.&lt;/div&gt;\EndKnitrBlock{proposition}
+
+\BeginKnitrBlock{proof}&lt;div class=&quot;proof&quot;&gt;\iffalse{} &lt;span class=&quot;proof&quot;&gt;&lt;em&gt;Proof. &lt;/em&gt;&lt;/span&gt;  \fi{}We&#39;ll use the method of Lagrange multipliers to prove this result. Consider the objective
+$$\mathcal{L} = \ba^\top \bQ \bb +\frac{\lambda_1}{2}(1-\ba^\top\ba)+\frac{\lambda_2}{2} (1-\bb^\top \bb).$$
+The factor of 1/2 is there to simplify the maths once we differentiate. 
+Differentiating with respect to $\ba$ and $\bb$ and setting the derivative equal to zero gives
+\begin{align}
+\bzero &amp;= \bQ\bb -\lambda_1 \ba (\#eq:ccaevp1)\\
+\bzero &amp;= \bQ^\top\ba -\lambda_2 \bb(\#eq:ccaevp2)
+\end{align}
+where for the second equation we&#39;ve noted that $\ba^\top \bQ \bb = \bb^\top \bQ^\top \ba$. 
+Left multiplying the first equation by $\ba^\top$ and the second by $\bb^\top$, and recalling that $\ba^\top \ba=\bb^\top\bb=1$, shows that the two Lagrange multipliers are the same $\lambda_1 = \lambda_2 =: \lambda$ say.
+
+Substituting  $\ba=\bQ\bb/\lambda$ into \@ref(eq:ccaevp2) gives
+$$\bQ^\top\bQ \bb= \lambda^2\bb,$$
+and so we can see that $\bb$ is an eigenvector of $\bQ^\top \bQ$, and thus we must have $\bb = \bv_i$ for some $i$, i.e., $\bb$ is one of the right singular vectors of $\bQ$. Similarly, substituting $\bb = \bQ^\top \ba/\lambda$ into \@ref(eq:ccaevp1) gives
+$$\bQ\bQ^\top \ba= \lambda^2\ba.$$
+So $\ba=\bu_j$ for some $j$, i.e., $\ba$ is one of the left singular vectors of $\bQ$.
+
+Finally, consider the original objective with $\ba=\bu_j$ and $\bb=\bv_i$:
+$$\bu_j^\top\bQ\bv_i = \sigma_i\bu_j^\top \bu_i = \begin{cases} \sigma_i &amp;\mbox{ if } i = j\\
+0 &amp;\mbox{ otherwise.}
+\end{cases}
+$$
+Hence we minimize the objective by taking $\ba=\bu_1$ and $\bb=\bv_1$, and then we find
+$$\max_{\ba, \bb:\, \vert \vert \ba \vert \vert=\vert \vert \bb \vert \vert =1} \ba^\top \bQ \bb =\sigma_1.$$&lt;/div&gt;\EndKnitrBlock{proof}
+&lt;br&gt;&lt;/br&gt;
+
+
+
+
+#### Main result {-}
+
+We&#39;re now in a position to describe the main result giving the first pair of canonical variables
+
+\BeginKnitrBlock{proposition}&lt;div class=&quot;proposition&quot;&gt;&lt;span class=&quot;proposition&quot; id=&quot;prp:unnamed-chunk-4&quot;&gt;&lt;strong&gt;(\#prp:unnamed-chunk-4) &lt;/strong&gt;&lt;/span&gt;
+Assume that $\bS_{\bx \bx}$ and $\bS_{\by \by}$ are both  non-singular, and consider the singular value decomposition of the matrix $\bQ:=\bS_{\bx \bx}^{-1/2} \bS_{\bx \by}\bS_{\by \by}^{-1/2}$
+\begin{equation}
+\bQ= {\mathbf U}{\pmb \Sigma} {\mathbf V}^\top = \sum_{j=1}^t \sigma_j {\mathbf u}_j {\mathbf v}_j^\top,
+(\#eq:svdcca)
+\end{equation}
+where $t=\operatorname{rank}(\bQ)$ and $\sigma_1 \geq \cdots \geq \sigma_t &gt;0$.
+
+
+Then the solution to the constrained optimization problem \@ref(eq:opt27a) is  $$\ba =\bS_{\bx \bx}^{-1/2}{\mathbf u}_1\quad \mbox{and}\quad \bb=\bS_{\by \by}^{-1/2}{\mathbf v}_1.$$
+  
+The maximum value of the correlation coefficient is given by the largest singular value $\sigma_1$:
+  $$\max_{\ba, \bb} \cor(\ba^\top\bx, \bb^\top\bb)=\sigma_1.$$
+&lt;/div&gt;\EndKnitrBlock{proposition}
+
+
+
+\BeginKnitrBlock{proof}&lt;div class=&quot;proof&quot;&gt;\iffalse{} &lt;span class=&quot;proof&quot;&gt;&lt;em&gt;Proof. &lt;/em&gt;&lt;/span&gt;  \fi{}If we  let
+$$
+\tilde{\ba}=\bS_{\bx \bx}^{1/2} \ba \qquad \text{and} \qquad \tilde{\bb}=\bS_{\by \by}^{1/2}\bb,
+$$ 
+we may write the constraints $\ba^\top \bS_{\bx \bx}\ba=\bb^\top \bS_{\by \by}\bb=1$ as
+$$
+\tilde{\ba}^\top \tilde{\ba}=1 \qquad \text{and} \qquad \tilde{\bb}^\top \tilde{\bb}=1.
+$$
+
+  
+
+Because $\bS_{\bx \bx}$ and $\bS_{\by \by}$ are non-singular, $\bS_{\bx \bx}^{1/2}$ and $\bS_{\by \by}^{1/2}$ must also be non-singular, and so we can compute
+$\bS_{\bx \bx}^{-1/2}$ and $\bS_{\by \by}^{-1/2}$, using the matrix square roots  defined in Section \@ref(matrixroots).  
+
+
+If we write
+$$
+\ba=\bS_{\bx \bx}^{-1/2}\tilde{\ba} \qquad \text{and} \qquad \bb=\bS_{\by \by}^{-1/2} \tilde{\bb},
+$$
+then the optimisation problem \@ref(eq:opt27a)  becomes
+$$
+\max_{\tilde{\ba}, \tilde{\bb}}
+\tilde{\ba}^\top \bS_{\bx \bx}^{-1/2}\bS_{\bx \by}\bS_{\by \by}^{-1/2} \tilde{\bb}
+$$
+subject to
+$$
+\vert \vert \tilde{\ba} \vert \vert =1 \qquad \text{and} \qquad \vert \vert \tilde{\bb}\vert \vert=1.
+$$
+  
+Then by Proposition \@ref(prp:svdmax2) we can see that 
+$$\tilde{\ba} = \bu_1 \quad \mbox{and}\quad\tilde{\bb} = \bv_1$$
+and the result follows.  &lt;/div&gt;\EndKnitrBlock{proof}
+
+&lt;br&gt;&lt;/br&gt;
+
+We will label the solution found as 
+$$\ba_1 := \bS_{xx}^{-\frac{1}{2}}\bu_1\quad \mbox{ and }\quad\bb_1 := \bS_{yy}^{-\frac{1}{2}}\bv_1$$
+to stress that $\ba_1$ and $\bb_1$ are the **first** pair of  **canonical correlation (CC) vectors**. The variables $\eta_1=\ba_1^\top (\bx-\bar{\bx})$ and $\psi_1=\bb_1^\top (\by-\bar{\by})$ are called the first pair of **canonical correlation variables**,  and  $\sigma_1=\cor(\eta_1, \psi_1)$ is the **first canonical correlation**.
+
+
+
+### Example: Premier league football {#premcca}
+
+
+
+Lets again return to the Premier League from the previous chapter.  
+
+
+
+```r
+library(dplyr)
+prem1920 &lt;- read.csv(&#39;data/2019_2020EPL.csv&#39;) 
+# the data can be downloaded from https://www.rotowire.com/soccer/league-table.php
+table &lt;- prem1920 %&gt;% dplyr::select(Team, W, D, L, G, GA, GD) 
+knitr::kable(head(table,5), booktabs = TRUE, escape=FALSE)
+```
+
+
+
+|Team              |  W|  D|  L|   G| GA| GD|
+|:-----------------|--:|--:|--:|---:|--:|--:|
+|Liverpool         | 32|  3|  3|  85| 33| 52|
+|Manchester City   | 26|  3|  9| 102| 35| 67|
+|Manchester United | 18| 12|  8|  66| 36| 30|
+|Chelsea           | 20|  6| 12|  69| 54| 15|
+|Leicester City    | 18|  8| 12|  67| 41| 26|
+
+
+We shall treat $W$ and $D$, the number of wins and draws,  as the $\bx$-variables. The number of goals for and against, $G$ and $GA$, will be treated as the $\by$-variables.  The number of losses and the goal difference, $L$ and $GD$, are omitted as they provide no additional information when we know $W$ and $D$.
+
+We shall  consider the questions 
+
+- how strongly associated are the match outcome variables, $W$ and $D$,  with the goals for and against variables, $G$ and $GA$?
+- what linear combination of $W$ and $D$, and of $G$ and $GA$ are most strongly correlated?
+
+Firstly, we need to compute the three covariance matrices needed for CCA. These are easily computed in R:
+
+
+```r
+X &lt;- table[,c(&#39;W&#39;,&#39;D&#39;)] # W and D
+Y &lt;- table[,c(&#39;G&#39;,&#39;GA&#39;)] # G and GA
+S_xx &lt;- cov(X)
+S_yy &lt;- cov(Y)
+S_xy &lt;- cov(X,Y)
+```
+
+giving 
+
+$$\bS_{xx} =\begin{pmatrix}40.4&amp;-9.66 \\-9.66&amp;10.7 \\\end{pmatrix}, \quad \bS_{yy} =\begin{pmatrix}354&amp;-155 \\-155&amp;141 \\\end{pmatrix}, \quad \bS_{xy}=\bS_{yx}^\top =\begin{pmatrix}108&amp;-60 \\-28.9&amp;-2.36 \\\end{pmatrix}.$$
+
+
+
+We now want to calculate the matrix $\bQ$ in \@ref(eq:svdcca) and then find its singular valued decomposition.  We first need to find $\bS_{\bx \bx}^{-1/2}$ and $\bS_{\by \by}^{-1/2}$. Using R to do the computations we obtain the spectral decompositions
+
+
+
+
+```r
+eigen_xx &lt;- eigen(S_xx)
+Vx &lt;- eigen_xx$vectors
+S_xx_invsqrt &lt;- Vx %*% diag(1/sqrt(eigen_xx$values)) %*% t(Vx)
+# check S_xx %*% S_xx_invsqrt %*% S_xx_invsqrt is the identity matrix
+```
+
+$$\bS_{xx} =\bQ\bLambda \bQ^\top=\begin{pmatrix}-0.959&amp;-0.285 \\0.285&amp;-0.959 \\\end{pmatrix} \begin{pmatrix}43.2&amp;0 \\0&amp;7.82 \\\end{pmatrix} \begin{pmatrix}-0.959&amp;0.285 \\-0.285&amp;-0.959 \\\end{pmatrix}$$
+
+and so 
+
+\begin{align*}
+\bS_{\bx\bx}^{-1/2} &amp;= \bQ\bLambda^{-\frac{1}{2}}\bQ^\top \\
+&amp;=\begin{pmatrix}-0.959&amp;-0.285 \\0.285&amp;-0.959 \\\end{pmatrix} \begin{pmatrix}0.152&amp;0 \\0&amp;0.357 \\\end{pmatrix} \begin{pmatrix}-0.959&amp;0.285 \\-0.285&amp;-0.959 \\\end{pmatrix}\\
+&amp;= \begin{pmatrix}0.169&amp;0.0561 \\0.0561&amp;0.341 \\\end{pmatrix}.
+\end{align*}
+
+
+Similarly, we find
+
+
+```r
+eigen_yy &lt;- eigen(S_yy)
+Vy &lt;- eigen_yy$vectors
+S_yy_invsqrt &lt;- Vy %*% diag(1/sqrt(eigen_yy$values)) %*% t(Vy)
+```
+
+
+\begin{align*}
+\bS_{\by\by}^{-1/2}= \begin{pmatrix}0.0657&amp;0.0337 \\0.0337&amp;0.112 \\\end{pmatrix}.
+\end{align*}
+
+
+
+
+
+Consequently,
+\begin{align*}
+\bQ&amp;=\bS_{\bx \bx}^{-1/2}\bS_{\bx \by}\bS_{\by \by}^{-1/2}\\
+&amp;=\begin{pmatrix}0.169&amp;0.0561 \\0.0561&amp;0.341 \\\end{pmatrix} \begin{pmatrix}108&amp;-60 \\-28.9&amp;-2.36 \\\end{pmatrix}\begin{pmatrix}0.0657&amp;0.0337 \\0.0337&amp;0.112 \\\end{pmatrix}\\
+&amp;=\begin{pmatrix}0.747&amp;-0.588 \\-0.39&amp;-0.595 \\\end{pmatrix}.
+\end{align*}
+
+
+The SVD of $\bQ$ is given by
+\begin{align}
+\bQ&amp;=\bU {\pmb \Sigma} \bV^\top \nonumber \\
+&amp;=\begin{pmatrix}-0.99&amp;-0.143 \\-0.143&amp;0.99 \\\end{pmatrix} \begin{pmatrix}0.955&amp;0 \\0&amp;0.705 \\\end{pmatrix}\begin{pmatrix}-0.715&amp;-0.699 \\0.699&amp;-0.715 \\\end{pmatrix}^\top
+(\#eq:SVDanalysis)
+\end{align}
+
+
+
+
+
+So the 1st CC coefficient is $0.955$, which is close to its maximum value of $1$.  The 1st CC weight vectors are
+given by
+
+
+```r
+a1 = S_xx_invsqrt%*% Q_svd$u[,1]
+b1 = S_yy_invsqrt%*% Q_svd$v[,1]
+```
+  
+  
+
+\begin{align*}
+\ba_1&amp;=\bS_{\bx \bx}^{-1/2}\bu_1\\
+&amp;=\begin{pmatrix}0.169&amp;0.0561 \\0.0561&amp;0.341 \\\end{pmatrix}\begin{pmatrix}-0.99 \\-0.143 \\\end{pmatrix}\\
+&amp;=\begin{pmatrix}-0.175 \\-0.104 \\\end{pmatrix}\\
+\bb_1 &amp;=\bS_{\by \by}^{-1/2}\bv_1\\
+&amp;= \begin{pmatrix}-0.0234 \\0.0541 \\\end{pmatrix}
+\end{align*}
+
+&lt;!--In order to make interpretation easier:
+
+REMOVED THIS AS CONFUSING AS IT DOESN&quot;T AGREE WITH R OUTPUT.
+
+- We change $\ba_1$  to $-\ba_1$ and $\bb_1$ to $-\bb_1$.  [This entails changing $\bu_1$ to $-\bu_1$ and $\bv_1$ to $-\bv_1$; note that, provided we change the sign of **both** $\bu_1$ and $\bv_1$, we do not change the matrix $\bQ$.]
+- We rescale $\ba_1$ and $\bb_1$ so that they are unit vectors.
+
+
+```r
+a1n = -a1/sqrt(sum(a1^2))
+b1n = -b1/sqrt(sum(b1^2))
+```
+--&gt;
+
+&lt;!--This leads to the standardised 1st CC weight vectors
+$$
+\ba_1=\begin{pmatrix}0.859 \\0.512 \\\end{pmatrix} \qquad \text{and} \qquad
+\bb_1=\begin{pmatrix}0.397 \\-0.918 \\\end{pmatrix}
+$$
+and the 1st CC variables, obtained by using these weights, are
+$$
+\eta_1 =0.859 (W-\bar{W}) +0.512(D -\bar{D})
+$$
+and
+$$
+ \psi_1 = 0.397(G-\bar{G}) -0.918(GA-\bar{GA}).
+$$
+--&gt;
+
+
+This leads to the first pair of CC variables, obtained using these CC vectors/weights:
+$$
+\eta_1 =-0.175 (W-\bar{W}) +-0.104(D -\bar{D})
+$$
+and
+$$
+ \psi_1 = -0.0234(G-\bar{G}) +0.0541(GA-\bar{GA}).
+$$
+
+
+We can see that $\psi_1$ is measuring something similar to goal difference $G-GA$, as usually defined, but it gives  higher weight to goals conceded than goals scored ($0.0541$ versus $0.0234$).
+
+$\eta_1$ is measuring something similar to number of points $3W+D$, as usually defined, but the ratio of points for a win to points for a draw is lower, at around 2:1, as opposed to the usual ratio 3:1.
+
+
+
+
+
+The full list  of the first canonical correlation variables is thus
+
+```r
+Xcent &lt;- sweep(X,2, colMeans(X)) # column centre the matrix
+Ycent &lt;- sweep(Y,2, colMeans(Y)) # column centre the matrix
+eta = as.matrix(Xcent)%*%a1
+psi = as.matrix(Ycent)%*%b1
+```
+
+
+|Team              |        eta|        psi|
+|:-----------------|----------:|----------:|
+|Liverpool         | -2.4340723| -1.7921117|
+|Manchester City   | -1.3838590| -2.0820965|
+|Manchester United | -0.9221199| -1.1846733|
+|Chelsea           | -0.6464941| -0.2807761|
+|Leicester City    | -0.5049886| -0.9374949|
+
+A scatter plot of the two canonical correlation variables shows the strong correlation between them.
+
+
+```r
+cca.out &lt;- data.frame(Team=table$Team, eta=eta, psi=psi)
+library(ggplot2)
+ggplot(cca.out, aes(x= eta, y= psi, label=Team))+   geom_point() +
+geom_text(aes(label=Team),hjust=0, vjust=0, size=4)
+```
+
+&lt;img src=&quot;05-cca_files/figure-html/unnamed-chunk-17-1.png&quot; width=&quot;672&quot; /&gt;
+
+
+&lt;!--WHAT HAPPENS IF WE INCLUDE L? THen S_XX is not invertible.--&gt;
+
+
+
+
+We can also do this with the `CCA` package in R.  The command `matcor(X,Y)` gives the correlation matrices, and the command `cc` performs CCA. See if you can find the outputs computed above in the output of the `cc` command.
+
+
+```r
+library(CCA)
+prem.cca &lt;- cc(X,Y)
+prem.cca$cor # the canonical correlations
+```
+
+```
+## [1] 0.9550749 0.7054825
+```
+
+```r
+prem.cca$xcoef # the canonical correlation vectors for X
+```
+
+```
+##         [,1]      [,2]
+## W -0.1750356 0.0313256
+## D -0.1042828 0.3293057
+```
+
+```r
+prem.cca$ycoef  # the canonical correlation vectors for Y
+```
+
+```
+##           [,1]        [,2]
+## G  -0.02342507 -0.07003113
+## GA  0.05412069 -0.10372100
+```
+
+```r
+head(prem.cca$scores$xscores) # the canonical correlation variables 
+```
+
+```
+##            [,1]       [,2]
+## [1,] -2.4340723 -1.4903651
+## [2,] -1.3838590 -1.6783187
+## [3,] -0.9221199  1.0348282
+## [4,] -0.6464941 -0.8783550
+## [5,] -0.5049886 -0.2823947
+## [6,] -0.4677660  0.6428713
+```
+
+```r
+head(prem.cca$scores$yscores) # the canonical correlation variables 
+```
+
+```
+##            [,1]        [,2]
+## [1,] -1.7921117 -0.39245373
+## [2,] -2.0820965 -1.79042487
+## [3,] -1.1846733  0.62697465
+## [4,] -0.2807761 -1.45009678
+## [5,] -0.9374949  0.03833851
+## [6,] -0.4722204 -0.16380075
+```
+
+```r
+#prem.cca
+#plt.cc(prem.cca, var.label = TRUE, ind.names = table$Team)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## The full set of canonical correlations
+
+Let us first recap what we did in the previous section: we found a linear combination of the $\bx$-variables and a linear combination of the $\by$-variables which
+maximised the correlation, and expressed the answer in terms of quantities which arise in the SVD of $\bQ$, where
+$$
+\bQ\equiv \bS_{\bx \bx}^{-1/2} \bS_{\bx \by}\bS_{\by \by}^{-1/2}=\bU {\pmb \Sigma} \bV^\top=\sum_{j=1}^t \sigma_j \bu_j \bv_j^\top.
+$$
+
+We found the  maximum value of the correlation $\cor(\ba^\top\bx, \bb^\top\by)$ to be $\sigma_1$, achieved using the linear combinations $\eta_1=\ba_1^\top \bx$ and  $\psi_1=\bb_1^\top \by$ with 
+
+$$\ba_1=\bS_{\bx \bx}^{-1/2}\bu_1 \quad\mbox{ and } \bb_1=\bS_{\by \by}^{-1/2}\bv_1.$$
+
+
+
+We now repeat this process to find the next most important linear combination, subject to being uncorrelated with the first linear combination,  as we did with PCA.  For $\ba^\top \bx$ to be uncorrelated with $\eta_1 = \ba_1^\top \bx$ we require
+$$0 = \cov(\ba_1^\top \bx, \ba^\top \bx) = \ba_1^\top \bS_{xx}\ba,$$
+and similarly we require the condition $\bb_1^\top \bS_{yy} \bb=0$ for $\bb$.
+
+
+
+
+Thus, to obtain the second canonical correlation coefficient, plus the associated sets of canonical correlation vectors and variables, we need to solve the following optimisation problem:
+\begin{equation}
+\max_{\ba,\, \bb} \ba^\top \bS_{\bx \by}\bb
+(\#eq:cc2)
+\end{equation}
+subject to the constraints
+\begin{equation}
+\ba^\top \bS_{\bx \bx}\ba = \bb^\top \bS_{\by \by}\bb=1,
+(\#eq:conny21)
+\end{equation}
+\begin{equation}
+\ba_1^\top \bS_{\bx \bx} \ba= \bb_1^\top \bS_{\by \by}\bb=0.
+(\#eq:conny22)
+\end{equation}
+Note that maximising \@ref(eq:cc2) subject to \@ref(eq:conny21) and \@ref(eq:conny22)is very similar to the optimisation problem \@ref(eq:opt27a) considered in the previous section.
+What is
+new are the constraints \@ref(eq:conny22), which take into account that we have already found the first canonical correlation. 
+
+It will probably not surprise you to find that the solution is 
+$$\ba^\top \bS_{xy}\bb = \sigma_2\quad\mbox{ achieved at} \quad \ba=\ba_2 := S_{xx}^{-1/2}\bu_2 \mbox{ and } \bb=\bb_2 := S_{yy}^{-1/2}\bv_2$$
+where $\sigma_2$ is the second largest singular value of $\bQ$, and $\bu_2$ and $\bv_2$ are the corresponding left and right singular vectors.
+
+#### Main results {-}
+
+We now state the result in its full generality.
+
+\BeginKnitrBlock{proposition}&lt;div class=&quot;proposition&quot;&gt;&lt;span class=&quot;proposition&quot; id=&quot;prp:ccafull&quot;&gt;&lt;strong&gt;(\#prp:ccafull) &lt;/strong&gt;&lt;/span&gt;For $k=1, \ldots, r = \operatorname{rank}(\bS_{xy})$, the solution to sequence of  optimization problems
+\begin{align}
+\mbox{Maximize} \quad &amp;\ba^\top \bS_{xy}\bb\\
+\mbox{subject to }  \;\;&amp;\ba^\top \bS_{xx}\ba=\bb^\top\bS_{yy} \bb=1\\
+\mbox{ and }\;\;\;&amp;\ba_i^\top \bS_{xx}\ba=\bb_i^\top \bS_{yy}\bb = 0 \mbox{ for }i=1, \ldots, k-1
+\end{align}
+is achieved at $\ba_k = \bS_{xx}^{-1/2}\bu_k$ and $\bb_k=\bS_{yy}^{-1/2}\bv_k$ with $\ba_k \bS_{xy}\bb_k = \sigma_k$.&lt;/div&gt;\EndKnitrBlock{proposition}
+&lt;br&gt;&lt;/br&gt;
+Note that an equivalent way of  writing down the problem   is as
+\begin{align*}
+\mbox{Maximize } \quad \tr(\bA^\top \bS_{xy}\bB) &amp;= \sum_{i=1}^k \ba_i^\top \bS_{xy}\bb_i\\
+\mbox{ subject to} \quad \bA^\top \bS_{xx}\bA&amp;=\bI\\
+\mbox{ and }\quad \bB^\top \bS_{yy}\bB &amp;= \bI
+\end{align*}
+which is in the form of the general problem given in Equation \@ref(eq:dimredopt) if $$\bA = \begin{pmatrix}\ba_1&amp;\ldots &amp;\ba_k\end{pmatrix}, \quad \bB = \begin{pmatrix}\bb_1&amp;\ldots &amp;\bb_k\end{pmatrix}$$
+are matrices containing the canonical correlation vectors as columns.
+
+&lt;br&gt;&lt;/br&gt;
+Before we prove this result, we first give an extension of Proposition \@ref(prp:svdmax2).
+
+\BeginKnitrBlock{proposition}&lt;div class=&quot;proposition&quot;&gt;&lt;span class=&quot;proposition&quot; id=&quot;prp:svdopt3&quot;&gt;&lt;strong&gt;(\#prp:svdopt3) &lt;/strong&gt;&lt;/span&gt;Let $\bQ$ be an arbitrary matrix with SVD $\bQ = \sum_{k=1}^r \sigma_i \bu_i \bv^\top_i$. 
+For $k=1, \ldots, r$ the solution to the optimization problem
+\begin{align}
+\mbox{Maximize}\quad  &amp;\ba^\top \bQ \bb \\
+\mbox{subject to} \quad &amp;\ba^\top \ba = \bb^\top \bb=1\\
+&amp;\ba_i^\top\ba = \bb_i^\top\bb = 0 \mbox{ for } i = 1, \ldots, k-1
+  \end{align}
+is  achieved at
+$$\ba_k=\bu_k, \qquad \bb_k = \bv_k$$
+with 
+$$\ba_k^\top \bQ \bb_k = \sigma_k.$$&lt;/div&gt;\EndKnitrBlock{proposition}
+
+\BeginKnitrBlock{proof}&lt;div class=&quot;proof&quot;&gt;\iffalse{} &lt;span class=&quot;proof&quot;&gt;&lt;em&gt;Proof. &lt;/em&gt;&lt;/span&gt;  \fi{}We will work through the proof of this proposition in the Exercises. &lt;/div&gt;\EndKnitrBlock{proof}
+
+
+
+\BeginKnitrBlock{proof}&lt;div class=&quot;proof&quot;&gt;\iffalse{} &lt;span class=&quot;proof&quot;&gt;&lt;em&gt;Proof. &lt;/em&gt;&lt;/span&gt;  \fi{}**Proof of  Proposition \@ref(prp:ccafull)**. We note as before that if  we write $\tilde{\ba}_j =\bS_{\bx \bx}^{1/2} \ba_j$ and $\tilde{\bb}_j=\bS_{\by \by}^{1/2} \bb_j$, then the constraints become 
+$$\tilde{\ba}^\top \tilde{\ba}=\tilde{\bb}^\top\tilde{ \bb}=1 \;\mbox{ and }\;\tilde{\ba}_i^\top \tilde{\ba}=\tilde{\bb}_i^\top \tilde{\bb} = 0 \mbox{ for }i=1, \ldots, k.
+$$
+Consequently, we may view constraints \@ref(eq:conny22) as corresponding to orthogonality constraints (cf. PCA) in modified coordinate systems.
+
+The objective $\ba^\top \bS_{xy}\bb$ becomes
+$\tilde{\ba}^\top \bQ \tilde{\bb}$
+  with 
+$$\bQ = \bS_{xx}^{-1/2} \bS_{xy}\bS_{yy}^{-1/2}.$$
+Thus applying Proposition \@ref(prp:svdopt3) gives the desired result.&lt;/div&gt;\EndKnitrBlock{proof}
+
+&lt;br&gt;&lt;/br&gt;
+
+To summarize:
+
+- The $k^{th}$ **canonical correlation** is $\sigma_k$, the $k^{th}$ largest singular value of $\bQ$.
+
+- The $k^{th}$ **canonical correlation vectors** (sometimes called the **weights** for the $\bx$ and $\by$ variables) are $$\ba_k = \bS_{xx}^{-1/2} \bu_k, \qquad \bb_k = \bS_{yy}^{-1/2} \bv_k$$
+
+
+- The $k^{th}$ **canonical correlation variables** (or **canonical correlation scores**) are 
+$$\eta_{ik} = \ba_k^\top (\bx_i-\bar{\bx}), \qquad \psi_{ik} = \bb_k^\top (\by_i-\bar{\by}).$$
+
+
+We define the  CC variable/score vectors to be 
+$${\pmb \eta}_k=(\eta_{1k}, \ldots , \eta_{nk})^\top \mbox{ and }{\pmb \psi}_{k}=(\psi_{1k}, \ldots , \psi_{nk})^\top.$$  
+
+&lt;br&gt; &lt;/br&gt;
+
+### Example  continued  
+From \@ref(eq:SVDanalysis), it is seen that the 2nd CC coefficient is given by $\sigma_2=0.705$.  So the correlation between the second pair of CC variables is smaller than the 1st CC coefficient, though still appreciably different from $0$.  We now calculate the 2nd CC weight vectors:
+
+
+$$
+\ba_2=\bS_{\bx \bx}^{-1/2} \bq_2 = \begin{pmatrix}0.0313 \\0.329 \\\end{pmatrix}
+\qquad \text{and} \qquad
+\bb_2=\bS_{\by \by}^{-1/2}\br_2=\begin{pmatrix}-0.07 \\-0.104 \\\end{pmatrix},
+$$
+&lt;!--with standardised versions (without the sign changes this time)
+$$
+\ba_2=\begin{pmatrix}0.0947 \\0.996 \\\end{pmatrix}
+\qquad \text{and} \qquad
+\bb_2=\begin{pmatrix}-0.56 \\-0.829 \\\end{pmatrix},
+$$
+--&gt;
+with
+new variables
+$$
+\eta_2 =0.0313 (W-\bar{W}) +0.329(D -\bar{D})
+$$
+and
+$$
+ \psi_2 = -0.07(G-\bar{G}) -0.104(GA-\bar{GA}).
+$$
+Note that, to a good approximation, $\eta_2$ is measuring something similar to the number of draws and, approximately, $\psi_2$ is something related to the negative of total number of goals in a team&#39;s games.  So large $\psi_2$ means relatively few goals in a team&#39;s games, and small (i.e. large negative) $\psi_2$ means a relatively large number of goals in a team&#39;s games.
+
+Interpretation of the 2nd CC: teams that have a lot of draws tend to be in low-scoring games and/or teams that have few draws tend to be in high-scoring games.
+
+
+```r
+eta2 = prem.cca$scores$xscores[,1] 
+psi2= prem.cca$scores$yscores[,2] 
+cca.out &lt;- data.frame(Team=table$Team, eta2=eta2, psi2=psi2)
+library(ggplot2)
+ggplot(cca.out, aes(x= eta2, y= psi2, label=Team))+   geom_point() +
+geom_text(aes(label=Team),hjust=0, vjust=0, size=4)
+```
+
+&lt;img src=&quot;05-cca_files/figure-html/unnamed-chunk-22-1.png&quot; width=&quot;672&quot; /&gt;
+
+
+
+&lt;!--## Population CCA
+
+So far in this chapter we have based CCA on the sample covariance matrix
+$$
+\bS_{\bz\bz}=\left [\begin{array}{cc}
+\bS_{\bx \bx} &amp; \bS_{\bx\by}\\
+\bS_{\by \bx} &amp; \bS_{\by \by} \end{array} \right ],
+$$
+However, just as there is a population analogue of PCA, so there is a population analogue of CCA.
+
+Given random vectors $\stackrel{p \times 1}{\bx}$ and $\stackrel{q \times 1}{\by}$, define the random vector $\bz=(\bx^\top, \by^\top)^\top$ with population covariance matrix
+$$
+\text{Var}(\bz)=\bSigma_{\bz\bz}=\left [\begin{array}{cc}
+\bSigma_{\bx \bx} &amp; \bSigma_{\bx\by}\\
+\bSigma_{\by \bx} &amp; \bSigma_{\by \by} \end{array} \right ].
+$$
+Then, by analogy with what we have seen in the sample CCA, the population CCA is based on the
+matrix
+$$
+\check{\bQ}=\bSigma_{\bx \bx}^{-1/2}\bSigma_{\bx \by}\bSigma_{\by \by}^{-1/2},
+$$
+where, as in \S 3.4,  the check symbol has been used above and below to indicate population quantities.
+If $\check{\bQ}$ has SVD
+$$
+\check{\bQ}=\sum_{j=1}^t \check{\sigma}_j\check {\mathbf q}_j \check{\mathbf r}_j^\top \equiv \check{\mathbf Q}\check{\pmb \sigma} \check{\mathbf R}^\top,
+$$
+where $\check{\sigma}_1 \geq \cdots \geq \check{\sigma}_t \geq 0$ and $t=\min(p,q)$, and the $\check{\bq}_j$ and $\check{\mathbf r}_j$ are unit vectors, then the first population CC coefficient is given by $\check{\sigma}_1$,
+and the associated weights are given by
+$$
+\check{\ba}=\bSigma_{\bx \bx}^{-1/2}\check{\bq}_1=\check{\ba}_1 \qquad \text{and} \qquad \check{\bb}=\bSigma_{\by \by}^{-1/2}\check{\mathbf r}_1=\check{\bb}_1.
+$$
+The full set of population CC weight vectors is given by
+$$
+\check{\ba}_j =\bSigma_{\bx \bx}^{-1/2}\check{\bq}_j \qquad \text{and} \qquad
+\check{\bb}_j=\bSigma_{\by \by}^{-1/2}\check{\mathbf r}_1, \qquad , j=1, \ldots , t,
+$$
+and the $j$th population CC coefficient is given by $\check{\sigma}_j$.
+
+--&gt;
+
+## Properties 
+
+The CC variables have a mean of zero. Their correlation structure  is given in the following proposition:
+
+\BeginKnitrBlock{proposition}&lt;div class=&quot;proposition&quot;&gt;&lt;span class=&quot;proposition&quot; id=&quot;prp:ccavar&quot;&gt;&lt;strong&gt;(\#prp:ccavar) &lt;/strong&gt;&lt;/span&gt;Assume that $\bS_{\bx \bx}$ and $\bS_{\by \by}$ both have full rank.  Then for $1 \leq k,\ell \leq t$,
+$$
+\cor(\eta_k,  \psi_{\ell})=\begin{cases} \sigma_k &amp;\text{if} \quad k=\ell\\
+0 &amp; \text{if} \quad k \neq \ell, \end{cases}
+$$
+and 
+$$\cor(\eta_j, \eta_k)= \cor(\psi_j, \psi_k)=\begin{cases}
+1 &amp;\mbox{ if } j=k\\
+0 &amp;\mbox{otherwise}
+\end{cases}
+$$&lt;/div&gt;\EndKnitrBlock{proposition}
+
+\BeginKnitrBlock{proof}&lt;div class=&quot;proof&quot;&gt;\iffalse{} &lt;span class=&quot;proof&quot;&gt;&lt;em&gt;Proof. &lt;/em&gt;&lt;/span&gt;  \fi{}You will prove this in the exercises.&lt;/div&gt;\EndKnitrBlock{proof}
+
+### Connection  with linear regression when $q=1$
+
+Although CCA is clearly a different technique to linear regression, it turns out that when either $\dim \bx=p=1$ or $\dim \by=q=1$, there is a close  connection between the two approaches.
+
+Consider the case $q=1$ and  $p&gt;1$.  Hence there is only a single $y$-variable but we still have $p&gt;1$ $x$-variables.
+
+Let&#39;s make the following assumptions:
+
+1. The $\bx_i$ have been centred so that $\bar{\bx}={\mathbf 0}_p$, the zero vector.
+2. The covariance matrix for the $x$-variables, $\bS_{\bx \bx}$, has full rank $p$.
+
+The first assumption means that 
+$$\bS_{xx}=\frac{1}{n}\bX^\top \bX \quad \mbox{and}\quad \bS_{xy}=\frac{1}{n}\bX^\top \by,$$ and the second means that $(\bX^\top \bX)^{-1}$ exists.
+
+Since $q=1$, the matrix we decompose in CCA
+$$
+\bQ=\bS_{\bx \bx}^{-1/2} \bS_{\bx y}\bS_{yy}^{-1/2}
+$$
+is a $p \times 1$ vector.  Consequently, its
+ SVD is just
+$$
+\bQ=\sigma_1 \bu_1,
+$$
+where
+$$
+\sigma_1=\vert \vert \bQ \vert \vert_F = (\bQ^\top \bQ)^{\frac{1}{2}} \qquad \text{and} \qquad \bu_1=\bQ /\vert \vert \bQ \vert \vert_F.
+$$
+Note that $\bv=1$ here.
+Consequently, the first canoncial correlation vector for $\bx$ is
+\begin{align*}
+\ba&amp;=\bS_{\bx \bx}^{-1/2}\bu_1 =\bS_{\bx\bx}^{-1/2} \frac{\bQ}{||\bQ||_F}\\
+&amp;=\bS_{\bx \bx}^{-1/2} \frac{1}{\vert \vert \bS_{\bx \bx}^{-1/2}\bS_{\bx y}S_{yy}^{-1/2}\vert \vert_F}\bS_{\bx \bx}^{-1/2}\bS_{\bx \by}S_{yy}^{-1/2}\\
+&amp;=\frac{1}{\vert \vert \bS_{\bx \bx}^{-1/2}\bS_{\bx y}\vert \vert_F}\bS_{\bx \bx}^{-1}\bS_{\bx y}\\
+&amp;= c (\bX^\top \bX)^{-1}\bX^\top \by
+\end{align*}
+where $c$ is a scalar constant. 
+
+
+Thus, we can see that the first canonical correlation vector $\ba$ is a scalar multiple of
+$$
+\hat{\pmb \beta}=\left ( \bX^\top \bX \right )^{-1} \bX^\top \by,
+$$
+  the classical  least squares estimator.  Therefore the least squares estimator $\hat{\pmb \beta}$ solves \@ref(eq:opt26).  However, it does not usually solve the constrained optimisation problem \@ref(eq:opt27a)  because typically  $\hat{\pmb \beta}^\top \bS_{\bx \bx}\hat{\pmb \beta} \not= 1$, so that the constraint in Equation \@ref(eq:opt27a) will  not be satisfied.
+
+
+
+### Invariance/equivariance properties of CCA
+
+Suppose we apply  orthogonal transformations and translations to the $\bx_i$ and the $\by_i$ of the form
+\begin{equation}
+{\mathbf h}_i={\mathbf T}\bx_i + {\pmb \mu} \qquad \text{and} \qquad {\mathbf k}_i={\mathbf R}\by_i +{\pmb \nu},
+\qquad i=1,\ldots , n,
+(\#eq:transformations)
+\end{equation}
+where $\mathbf T$ ($p \times p$) and $\mathbf R$ ($q \times q$) are orthogonal matrices, and $\pmb \mu$ ($p \times 1$) and
+$\pmb \nu$ ($q \times 1$) are fixed vectors.
+
+How do these transformations affect the CC analysis?
+
+Firstly, since  CCA depends only on sample covariance matrices, it follows that the translation vectors $\pmb \mu$ and $\pmb \nu$ have no effect on the analysis.
+
+Secondly, let&#39;s consider the effect of the rotations by an orthogonal matrix. We&#39;ve seen that CCA in the original $\bx$ and $\by$ coordinates depends on
+\begin{equation}
+\bQ \equiv \bQ_{\bx \by}=\bS_{\bx \bx}^{-1/2}\bS_{\bx \by}\bS_{\by \by }^{-1/2}.
+(\#eq:Axy)
+\end{equation}
+In the new coordinates we have
+$$
+\tilde{\bS}_{\bh \bh}={\mathbf T} \bS_{\bx \bx}{\mathbf T}^\top, \qquad \tilde{\bS}_{\bk\bk}={\mathbf R}\bS_{\by \by}{\mathbf R}^\top,
+$$
+$$
+\tilde{\bS}_{\bh\bk}={\mathbf T}\bS_{\bx \by}{\mathbf R}^\top =
+\tilde{\bS}_{\bk\bh}^\top,
+$$
+where here and below, a tilde above a symbol is used to indicate that the corresponding term is defined in terms of the new $\bh$, $\bk$ coordinates, rather
+than the old $\bx$, $\by$ coordinates.
+Due to the fact that $\mathbf T$ and $\mathbf R$ are orthogonal,
+$$
+\tilde{\bS}_{\bb\bh}^{ 1/2}={\mathbf T}\bS_{\bx \bx}^{ 1/2}{\mathbf T}^\top, \qquad
+\tilde{\bS}_{\bh\bh}^{ -1/2}={\mathbf T}\bS_{\bx \bx}^{ -1/2}{\mathbf T}^\top
+$$
+$$
+\tilde{\bS}_{\bk\bk}^{ 1/2}={\mathbf R}\bS_{\by \by}^{ 1/2}{\mathbf R}^\top \qquad \text{and} \qquad
+\tilde{\bS}_{\bk\bk}^{ -1/2}={\mathbf R}\bS_{\by \by}^{- 1/2}{\mathbf R}^\top.
+$$
+The analogue of \@ref(eq:Axy) in the new coordinates is given by
+\begin{align*}
+\tilde{\bQ}_{\mathbf h k}&amp;=\tilde{\bS}_{\bh\bh}^{-1/2}\tilde{\bS}_{\mathbf h k}\tilde{\bS}_{\bk\bk}^{-1/2}\\
+&amp;={\mathbf T} \bS_{\bx \bx}^{-1/2}{\mathbf T}^\top {\mathbf T}\bS_{\bx \by}{\mathbf R}^\top {\mathbf R}\bS_{\by \by}^{-1/2}{\mathbf R}^\top\\
+&amp;={\mathbf T}\bS_{\bx \bx}^{-1/2}\bS_{\bx \by}\bS_{\by \by }^{-1/2}{\mathbf R}^\top\\
+&amp;={\mathbf T} \bQ_{\bx \by}{\mathbf R}^\top.
+\end{align*}
+So, again using the fact that  $\mathbf T$ and $\mathbf R$ are orthogonal matrices, if $\bQ_{\bx \by}$ has SVD $\sum_{j=1}^t \sigma_j {\mathbf u}_j {\mathbf v}_j^\top$, then $\tilde{\bQ}_{\bh\bk}$ has SVD
+\begin{align*}
+\tilde{\bQ}_{\bh\bk}&amp;={\mathbf T }\bQ_{\bx \by}{\mathbf R}^\top
+={\mathbf T} \left ( \sum_{j=1}^t \sigma_j {\mathbf u}_j {\mathbf v}_j^\top \right){\mathbf R}^\top\\
+&amp;=\sum_{j=1}^t \sigma_j {\mathbf T}{\mathbf u}_j {\mathbf v}_j^\top {\mathbf R}^\top
+=\sum_{j=1}^t \sigma_j \left ( {\mathbf T} {\mathbf u}_j \right )\left ({\mathbf R}{\mathbf v}_j  \right )^\top
+=\sum_{j=1}^t \sigma_j \tilde{\bu}_j \tilde{\mathbf v}_j^\top,
+\end{align*}
+where, for $j=1, \ldots,t$, the  $\tilde{\bu}_j={\mathbf T}\bu_j$ are mutually orthogonal unit vectors,
+and the $\tilde{\mathbf v}_j={\mathbf R}{\mathbf v}_j$ are also mutually orthogonal unit vectors.
+
+Consequently, $\tilde{\bQ}_{\mathbf h k}$ has the same singular values as $\bQ_{\bx \by}$, namely $\sigma_1, \ldots , \sigma_t$ in both cases, and so the  canonical correlation coefficients are invariant with respect to the transformations \@ref(eq:transformations).  Moreover, since the optimal linear combinations  for the $j$th CC in the original coordinates are given by $\ba_j =\bS_{\bx \bx}^{-1/2}{\mathbf u}_j$ and $\bb_j=\bS_{\by \by}^{-1/2}{\mathbf v}_j$, the optimal linear combinations in the new coordinates are given by
+\begin{align*}
+\tilde{\ba}_{j}&amp;=\bS_{\bh\bh}^{-1/2}{\mathbf T}{\mathbf u}_j\\
+&amp;={\mathbf T}\bS_{\bx \bx}^{-1/2}{\mathbf T}^\top {\mathbf T}{\mathbf u}_j\\
+&amp;={\mathbf T}\bS_{\bx \bx}^{-1/2}{\mathbf u}_j \\
+&amp;={\mathbf T}\ba_{j},
+\end{align*}
+and a similar argument shows that $\tilde{\bb}_{j}={\mathbf R}\bb_{j}$.  So under transformations \@ref(eq:transformations),
+the optimal vectors $\ba_{j}$ and $\bb_{j}$ transform in an equivariant manner to $\tilde{\ba}_{j}$ and $\tilde{\bb}_{j}$, respectively, $j=1, \ldots , t$.
+
+If either of $\mathbf T$ or $\mathbf R$ in \@ref(eq:transformations) is not an orthogonal matrix then the singular values are not invariant and the CC vectors do not transform in an equivariant manner.
+
+
+
+&lt;!--## Testing for zero canonical correlation coefficients
+
+So far in Part II of this module we have not considered formal statistical inference (e.g. hypothesis testing, construction of confidence regions).  Inference in various multivariate settings is considered in Part III.  However, before moving on, we briefly explain how to perform tests for zero correlations in the CCA setting, under the assumption that the $\bz_i∂ = (\bx_i^\top , \by_i^\top)^\top$ are IID multivariate normal.
+
+As previously, suppose that the $\bx_i$ are $p \times 1$ vectors and the $\by_i$ are $q \times 1$ vectors and the sample size, i.e.  the number of $\bz_i$ vectors, is $n$.  Let $\bSigma_{\bx \by} =\text{Cov}(\bx,\by)$ denote the population cross-covariance matrix as before and consider the null hypothesis
+$$
+H_0: \, \bSigma_{\bx \by}={\mathbf 0}_{p,q},
+$$
+i.e. $\bSigma_{\bx \by}$ is the $p \times q$ matrix of zeros.  Let $H_A$ denote the general alternative
+$$
+H_A:\, \bSigma_{\bx \by} \quad *unrestricted*.
+$$
+
+Then the large-sample log-likelihood ratio test statistic for testing $H_0$ versus $H_A$ is as follows:
+$$
+W_0=-\left \{n-\frac{1}{2}(p+q+3)  \right \}\sum_{j=1}^{\min(p,q)} \log (1-\sigma_j^2),
+$$
+where $\sigma_1\geq \sigma_2 \cdots \geq \sigma_{\min(p,q)} \geq 0$ are the sample canonical correlations.
+Moreover, when $n$ is large, $W_0$ is approximately $\chi_{pq}^2$ under $H_0$,  and $H_0$ should be rejected
+when $W_0$ is sufficiently large.
+
+We now consider a test concerning the rank of $\bSigma_{\bx \by}$.  For $0 \leq t &lt;\min(p,q)$, consider  the hypothesis:
+$$
+H_t: \,   \text{at most $t$ of the CC coefficients are non-zero}.
+$$
+It turns out there is a similar statistic to $W_0$ above, for testing $H_t$ against $H_A$, defined by
+$$
+W_t=-\left \{n-\frac{1}{2}(p+q+3)  \right \}\sum_{j=t+1}^{\min(p,q)} \log (1-\sigma_j^2),
+$$
+where, under $H_t$ with $n$ large, $W_t$ is approximately $\chi_{(p-t)(q-t)}^2$.  Also, we reject
+$H_t$ when $W_t$ is sufficiently large.
+
+
+**Example \@ref(exm:prem) (continued)**.
+  Here $p=q=2$, $n=20$ and $\sigma_1=0.974$ and $\sigma_2=0.508$.
+So we should refer $W_0$ to $\chi_4^2$ and refer $W_1$ to $\chi_1^2$.  Here, $W_0=53.92$ and $W_1=4.92$.  So hypothesis $H_0$ is strongly rejected, with $p$-value $&lt;\,&lt;0.001$.  In contrast, $H_1$ is rejected at the $0.05$ level but is not rejected at the $0.01$ level.  So there is only moderate evidence that the 2nd CC coefficient is non-zero.
+
+--&gt;
+
+
+&lt;!--https://stats.idre.ucla.edu/r/dae/canonical-correlation-analysis/#:~:text=Canonical%20correlation%20analysis%20is%20used,among%20two%20sets%20of%20variables.&amp;text=Canonical%20correlation%20analysis%20determines%20a,both%20within%20and%20between%20sets.
+
+
+```r
+mm &lt;- read.csv(&quot;https://stats.idre.ucla.edu/stat/data/mmreg.csv&quot;)
+colnames(mm) &lt;- c(&quot;Control&quot;, &quot;Concept&quot;, &quot;Motivation&quot;, &quot;Read&quot;, &quot;Write&quot;, &quot;Math&quot;,
+&quot;Science&quot;, &quot;Sex&quot;)
+psych &lt;- mm[,1:3]
+acad &lt;- mm[,4:8]
+library(CCA)
+matcor(psych, acad)
+```
+
+```
+## $Xcor
+##              Control   Concept Motivation
+## Control    1.0000000 0.1711878  0.2451323
+## Concept    0.1711878 1.0000000  0.2885707
+## Motivation 0.2451323 0.2885707  1.0000000
+## 
+## $Ycor
+##                Read     Write       Math    Science         Sex
+## Read     1.00000000 0.6285909  0.6792757  0.6906929 -0.04174278
+## Write    0.62859089 1.0000000  0.6326664  0.5691498  0.24433183
+## Math     0.67927568 0.6326664  1.0000000  0.6495261 -0.04821830
+## Science  0.69069291 0.5691498  0.6495261  1.0000000 -0.13818587
+## Sex     -0.04174278 0.2443318 -0.0482183 -0.1381859  1.00000000
+## 
+## $XYcor
+##              Control     Concept Motivation        Read      Write       Math
+## Control    1.0000000  0.17118778 0.24513227  0.37356505 0.35887684  0.3372690
+## Concept    0.1711878  1.00000000 0.28857075  0.06065584 0.01944856  0.0535977
+## Motivation 0.2451323  0.28857075 1.00000000  0.21060992 0.25424818  0.1950135
+## Read       0.3735650  0.06065584 0.21060992  1.00000000 0.62859089  0.6792757
+## Write      0.3588768  0.01944856 0.25424818  0.62859089 1.00000000  0.6326664
+## Math       0.3372690  0.05359770 0.19501347  0.67927568 0.63266640  1.0000000
+## Science    0.3246269  0.06982633 0.11566948  0.69069291 0.56914983  0.6495261
+## Sex        0.1134108 -0.12595132 0.09810277 -0.04174278 0.24433183 -0.0482183
+##                Science         Sex
+## Control     0.32462694  0.11341075
+## Concept     0.06982633 -0.12595132
+## Motivation  0.11566948  0.09810277
+## Read        0.69069291 -0.04174278
+## Write       0.56914983  0.24433183
+## Math        0.64952612 -0.04821830
+## Science     1.00000000 -0.13818587
+## Sex        -0.13818587  1.00000000
+```
+
+```r
+cc1 &lt;- cc(psych, acad)
+```
+--&gt;
+
+
+&lt;!--## Example: ??????????????
+
+Look at use in the scientific literature?
+
+https://www.researchgate.net/figure/Canonical-correlation-analysis-maximizes-the-correlation-between-the-linear-combination_fig1_268154629
+
+
+https://towardsdatascience.com/understanding-how-schools-work-with-canonical-correlation-analysis-4c9a88c6b913
+--&gt;
+
+&lt;!--chapter:end:05-cca.Rmd--&gt;
+
+## Computer tasks
+
+##### Task 1 {-}
+
+Consider again the crabs dataset you looked at in the exercises in the chapter on PCA (see \@ref(pca-comptask)).
+We now consider a canonical correlation analysis in which one set of variables, the $\bx$-set, is given by CL and CW and the
+other set, the $\by$-set, is given by FL, RW and BD.
+
+
+```r
+library(MASS)
+?crabs           # read the help page to find out about the dataset
+X=as.matrix(crabs[4:8])    
+n=200                                      # sample size
+H=diag(rep(1,n))-rep(1,n)%*%t(rep(1,n))/n  # n times n centering matrix
+library(dplyr)
+X1 = crabs %&gt;% dplyr::select(CL, CW)  %&gt;%as.matrix            
+# store CL and CW in X1
+Y1 = crabs %&gt;% dplyr::select(FL, RW, BD) %&gt;% as.matrix            
+# store FL, RW and BD in Y1
+Sxx=t(X1)%*%H%*%X1/n                       # find x-variable variance matrix
+Syy=t(Y1)%*%H%*%Y1/n                       # find y-variable variance matrix
+Sxy=t(X1)%*%H%*%Y1/n                       # find cross-covariance matrix
+```
+
+
+
+i.  calculate ${\bf S}_{\bf x x}^{-1/2}$ and ${\bf S}_{\bf yy}^{-1/2}$ by first computing the spectral decomposition of $\bS_{xx}$ and $\bS_{yy}$.
+ 
+ii. Now  calculate the matrix $\bQ$ and compute its singular value decomposition.
+
+
+&lt;!--
+
+```r
+A=Cx%*%Sxy%*%Cy            # calculate the A matrix (see Chapter 5)
+U4=svd(A)$u                # extract the U matrix (our notation) in svd
+V4=svd(A)$v                # extract the V matrix (our notation) in svd
+d4=svd(A)$d                # extract the singular values in svd
+acheck=Cx%*%U4[,1]         # calculate optimal x-weights
+bcheck=Cy%*%V4[,1]         # calculate optimal y-weights
+xscores1=H%*%X1%*%acheck   # calculate centred x-scores for 1st CC
+yscores1=H%*%Y1%*%bcheck   # calculate centred y-scores for 1st CC
+plot(xscores1,yscores1)    # plot x-scores against y-scores for 1st CC
+```
+--&gt;
+
+iii. Compute the first pair of CC vectors and CC variables $\eta_1$ and $\psi_1$. What is the 1st canonical correlation?
+
+
+iv. Plot $\psi_1$ vs $\eta_1$.  What does the plot tell you (if anything)? 
+
+v. Repeat the above to find the second pair of CC vectors, and the second set of CC variables/scores, and   plot these against each other and against the first CC scores.  Is there any interesting structure in any of the plots?  Which plots suggest random scatter?
+
+
+&lt;!--- Test the following hypotheses: (i) that both CC coefficients are zero, and (ii) that at most one of the CC coefficients is non-zero.  What do you conclude from your findings?
+--&gt;
+
+vi. Finally,  repeat the analysis above using the  `cc` command and `plt.cc` from the package `CCA` which you will need to download. 
+
+
+```r
+cca&lt;-cc(X1,Y1)
+plt.cc(cca, var.label=TRUE)
+```
+
+##### Task 2 {-}
+
+The full Premier League dataset is available at
+[https://www.rotowire.com/soccer/league-table.php?season=2018](https://www.rotowire.com/soccer/league-table.php?season=2019). There is a button to download the csv (comma separated variable) file in the bottom right hand corner.
+
+Read the data into R (hint: try the `read.csv` command).
+
+
+`````r
+x &lt;- read.csv(x , file=&quot;/YOURDIRECTORY/prem_league_data.txt, sep=&quot; &quot;, header=TRUE)</code></pre>
+<p>If you are not sure what the name of YOURDIRECTORY is where the file is located, then a useful command to find out is <code>file.choose()</code></p>
+<ol style="list-style-type: lower-roman">
+<li><p>Check that you can reproduce, and agree with, the calculations done in this chapter.</p></li>
+<li><p>Consider now doing CCA with <span class="math inline">\(\mathbf x=(W,D)\)</span> and <span class="math inline">\(\mathbf y=(G,GA, L)\)</span>. Note that if you knew <span class="math inline">\(W\)</span> and <span class="math inline">\(D\)</span>, you could calculate <span class="math inline">\(L\)</span>. Without doing any computation, what do you expect the first canoncial correlation to be? What will the first pair of CC vectors be (upto a multiplicative constant)?</p></li>
+<li><p>Check your intuition by doing the calculation in R:
+`````</p></li>
+</ol>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="3.5-lowrank.html#cb61-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> table[,<span class="fu">c</span>(<span class="st">&#39;W&#39;</span>,<span class="st">&#39;D&#39;</span>)] </span>
+<span id="cb61-2"><a href="3.5-lowrank.html#cb61-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> table[,<span class="fu">c</span>(<span class="st">&#39;G&#39;</span>,<span class="st">&#39;GA&#39;</span>,<span class="st">&#39;L&#39;</span>)] </span>
+<span id="cb61-3"><a href="3.5-lowrank.html#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cc</span>(X,Y)</span></code></pre></div>
+<div id="task-3" class="section level5 unnumbered">
+<h5>Task 3</h5>
+<!--https://stats.idre.ucla.edu/r/dae/canonical-correlation-analysis/-->
+<p>We will now look data measured from 600 first year university students. Measurements were made on three psychological variables:</p>
+<ul>
+<li>Locus of Control: the degree to someone believes that they, as opposed to external forces, have control over the outcome of events in their lives.</li>
+<li>Self Concept: an indication of whether a person tends to hold a generally positive and consistent or negative and variable self-view.</li>
+<li>Motivation: how motivated an individual is</li>
+</ul>
+<p>which will form our <span class="math inline">\(\mathbf X\)</span> variables. The <span class="math inline">\(\mathbf Y\)</span> variables are four academic scores (standardized test scores)</p>
+<ul>
+<li>Reading</li>
+<li>Writing</li>
+<li>Math</li>
+<li>Science</li>
+</ul>
+<p>and gender (1=Male, 0 = Female) We are interested in how the set of psychological variables relates to the academic variables and gender.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="3.5-lowrank.html#cb62-1" aria-hidden="true" tabindex="-1"></a>mm <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://stats.idre.ucla.edu/stat/data/mmreg.csv&quot;</span>)</span>
+<span id="cb62-2"><a href="3.5-lowrank.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(mm) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Concept&quot;</span>, <span class="st">&quot;Motivation&quot;</span>, <span class="st">&quot;Read&quot;</span>, <span class="st">&quot;Write&quot;</span>, <span class="st">&quot;Math&quot;</span>,</span>
+<span id="cb62-3"><a href="3.5-lowrank.html#cb62-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Science&quot;</span>, <span class="st">&quot;Sex&quot;</span>)</span>
+<span id="cb62-4"><a href="3.5-lowrank.html#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mm)</span>
+<span id="cb62-5"><a href="3.5-lowrank.html#cb62-5" aria-hidden="true" tabindex="-1"></a>psych <span class="ot">&lt;-</span> mm[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb62-6"><a href="3.5-lowrank.html#cb62-6" aria-hidden="true" tabindex="-1"></a>acad <span class="ot">&lt;-</span> mm[, <span class="dv">4</span><span class="sc">:</span><span class="dv">7</span>]</span></code></pre></div>
+<p>Conduct CCA on these data. Provide an interpretation of your results.</p>
+<!--
+We will carry out some canonical correlation analysis (CCA) on the Boston Housing dataset from the `mlbench` library.
+
+
+```r
+library(mlbench) # the dataset is from this package/
+library(CCA)
+data(BostonHousing2)
+library(dplyr)
+X = BostonHousing2 %>% select(crim, zn, indus, nox,rm, age)
+Y = BostonHousing2 %>% select(cmedv, lstat,  ptratio, tax, dis)
+```
+
+
+Conduct a canonical correlation analysis of this data. In particular,
+
+```r
+cca<-cc(X,Y)
+cca$cor   #gives the canonical correlations (singular values of A in our notes) Note the first singular value is large. 
+plt.var(cca, d1=1, d2=2, var.label = TRUE)
+```
+
+
+[Note: these commands were also used on the Boston Housing data in lectures and I have provided the html output on the Moodle page, which could be helpful]. 
+
+-->
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="3.4-svdopt.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3.6-exercises-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

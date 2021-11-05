@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Canonical Correlation Analysis (CCA) | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Canonical Correlation Analysis (CCA) | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,10 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="1-1-cca1.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="next" href="1.1-cca1.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,29 +50,32 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +84,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -114,6 +119,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -131,39 +137,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="1" data-path="1-cca.html"><a href="1-cca.html"><i class="fa fa-check"></i><b>1</b> Canonical Correlation Analysis (CCA)</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-cca1.html"><a href="1-1-cca1.html"><i class="fa fa-check"></i><b>1.1</b> The first pair of canonical variables</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="1-1-cca1.html"><a href="1-1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>1.1.1</b> The first canonical components</a></li>
-<li class="chapter" data-level="1.1.2" data-path="1-1-cca1.html"><a href="1-1-cca1.html#premcca"><i class="fa fa-check"></i><b>1.1.2</b> Example: Premier league football</a></li>
+<li class="chapter" data-level="1" data-path="1-cca.html"><a href="1-cca.html"><i class="fa fa-check"></i><b>1</b> Canonical Correlation Analysis (CCA)</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-cca1.html"><a href="1.1-cca1.html"><i class="fa fa-check"></i><b>1.1</b> The first pair of canonical variables</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="1.1-cca1.html"><a href="1.1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>1.1.1</b> The first canonical components</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1.1-cca1.html"><a href="1.1-cca1.html#premcca"><i class="fa fa-check"></i><b>1.1.2</b> Example: Premier league football</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-2-the-full-set-of-canonical-correlations.html"><a href="1-2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>1.2</b> The full set of canonical correlations</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="1-2-the-full-set-of-canonical-correlations.html"><a href="1-2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>1.2.1</b> Example continued</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-the-full-set-of-canonical-correlations.html"><a href="1.2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>1.2</b> The full set of canonical correlations</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1.2-the-full-set-of-canonical-correlations.html"><a href="1.2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>1.2.1</b> Example continued</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="1-3-properties.html"><a href="1-3-properties.html"><i class="fa fa-check"></i><b>1.3</b> Properties</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="1-3-properties.html"><a href="1-3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>1.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
-<li class="chapter" data-level="1.3.2" data-path="1-3-properties.html"><a href="1-3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>1.3.2</b> Invariance/equivariance properties of CCA</a></li>
+<li class="chapter" data-level="1.3" data-path="1.3-properties.html"><a href="1.3-properties.html"><i class="fa fa-check"></i><b>1.3</b> Properties</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="1.3-properties.html"><a href="1.3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>1.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="1.3.2" data-path="1.3-properties.html"><a href="1.3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>1.3.2</b> Invariance/equivariance properties of CCA</a></li>
 </ul></li>
+<li class="chapter" data-level="1.4" data-path="1.4-computer-tasks.html"><a href="1.4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1.5-exercises.html"><a href="1.5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
-<li class="chapter" data-level="2" data-path="2-lda.html"><a href="2-lda.html"><i class="fa fa-check"></i><b>2</b> Discriminant analysis</a><ul>
-<li class="chapter" data-level="2.1" data-path="2-1-intro-delete-title-later.html"><a href="2-1-intro-delete-title-later.html"><i class="fa fa-check"></i><b>2.1</b> Intro - delete title later</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="2-1-intro-delete-title-later.html"><a href="2-1-intro-delete-title-later.html#linear-discriminant-analysis"><i class="fa fa-check"></i><b>2.1.1</b> Linear discriminant analysis</a></li>
+<li class="chapter" data-level="2" data-path="2-lm.html"><a href="2-lm.html"><i class="fa fa-check"></i><b>2</b> Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="2-lm.html"><a href="2-lm.html#notation"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="2.1" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>2.1</b> Ordinary least squares (OLS)</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#geometry"><i class="fa fa-check"></i><b>2.1.1</b> Geometry</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#normal-linear-model"><i class="fa fa-check"></i><b>2.1.2</b> Normal linear model</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#linear-models-in-r"><i class="fa fa-check"></i><b>2.1.3</b> Linear models in R</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#problems-with-ols"><i class="fa fa-check"></i><b>2.1.4</b> Problems with OLS</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="2-2-lda-ML.html"><a href="2-2-lda-ML.html"><i class="fa fa-check"></i><b>2.2</b> Maximum likelihood (ML) discriminant rule</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="2-2-lda-ML.html"><a href="2-2-lda-ML.html#multivariate-gaussian-populations"><i class="fa fa-check"></i><b>2.2.1</b> Multivariate Gaussian populations</a></li>
-<li class="chapter" data-level="2.2.2" data-path="2-2-lda-ML.html"><a href="2-2-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>2.2.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="2.2" data-path="2.2-principal-component-regression-pcr.html"><a href="2.2-principal-component-regression-pcr.html"><i class="fa fa-check"></i><b>2.2</b> Principal component regression (PCR)</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2.2-principal-component-regression-pcr.html"><a href="2.2-principal-component-regression-pcr.html#pcr-in-r"><i class="fa fa-check"></i><b>2.2.1</b> PCR in R</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="2-3-lda-Bayes.html"><a href="2-3-lda-Bayes.html"><i class="fa fa-check"></i><b>2.3</b> Bayes discriminant rule</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="2-3-lda-Bayes.html"><a href="2-3-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>2.3.1</b> Example: LDA using the Iris data</a></li>
-<li class="chapter" data-level="2.3.2" data-path="2-3-lda-Bayes.html"><a href="2-3-lda-Bayes.html#links-between-lda-fishers-discriminant-analysis-cca-and-linear-models"><i class="fa fa-check"></i><b>2.3.2</b> Links between LDA, Fisher’s Discriminant Analysis, CCA, and linear models</a></li>
-<li class="chapter" data-level="2.3.3" data-path="2-3-lda-Bayes.html"><a href="2-3-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>2.3.3</b> Quadratic Discriminant Analysis (QDA)</a></li>
-<li class="chapter" data-level="2.3.4" data-path="2-3-lda-Bayes.html"><a href="2-3-lda-Bayes.html#could-do-prediction-accuracy-here"><i class="fa fa-check"></i><b>2.3.4</b> Could do prediction accuracy here?</a></li>
+<li class="chapter" data-level="2.3" data-path="2.3-shrinkage-methods.html"><a href="2.3-shrinkage-methods.html"><i class="fa fa-check"></i><b>2.3</b> Shrinkage methods</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="2.3-shrinkage-methods.html"><a href="2.3-shrinkage-methods.html#ridge-regression-in-r"><i class="fa fa-check"></i><b>2.3.1</b> Ridge regression in R</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="2-4-FLDA.html"><a href="2-4-FLDA.html"><i class="fa fa-check"></i><b>2.4</b> Fisher’s linear discriminant rule</a></li>
-<li class="chapter" data-level="2.5" data-path="2-5-probability-of-misclassification.html"><a href="2-5-probability-of-misclassification.html"><i class="fa fa-check"></i><b>2.5</b> Probability of misclassification</a></li>
-<li class="chapter" data-level="2.6" data-path="2-6-mnist.html"><a href="2-6-mnist.html"><i class="fa fa-check"></i><b>2.6</b> MNIST</a></li>
-<li class="chapter" data-level="2.7" data-path="2-7-computer-tasks.html"><a href="2-7-computer-tasks.html"><i class="fa fa-check"></i><b>2.7</b> Computer tasks</a></li>
-<li class="chapter" data-level="2.8" data-path="2-8-exercises.html"><a href="2-8-exercises.html"><i class="fa fa-check"></i><b>2.8</b> Exercises</a></li>
+<li class="chapter" data-level="2.4" data-path="2.4-multi-output-linear-model.html"><a href="2.4-multi-output-linear-model.html"><i class="fa fa-check"></i><b>2.4</b> Multi-output Linear Model</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="2.4-multi-output-linear-model.html"><a href="2.4-multi-output-linear-model.html#normal-linear-model-1"><i class="fa fa-check"></i><b>2.4.1</b> Normal linear model</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2.4-multi-output-linear-model.html"><a href="2.4-multi-output-linear-model.html#reduced-rank-regression"><i class="fa fa-check"></i><b>2.4.2</b> Reduced rank regression</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -185,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="cca" class="section level1">
+<div id="cca" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Canonical Correlation Analysis (CCA)</h1>
 <p>The videos for this chapter are available at the following links</p>
 <ul>
@@ -219,11 +234,10 @@ A key role is played by the singular value decomposition (SVD) introduced in Cha
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="1-1-cca1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="1.1-cca1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -242,6 +256,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -262,6 +277,10 @@ gitbook.start({
 "text": null
 },
 "download": ["MultivariateStatistics.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 },
