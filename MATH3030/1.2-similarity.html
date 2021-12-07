@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.2 Similarity measures | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.24.4 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.2 Similarity measures | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.2 Similarity measures | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1.1-classical-mds.html"/>
+<link rel="next" href="1.3-non-metric-mds.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="0.1-computer-tasks.html"><a href="0.1-computer-tasks.html"><i class="fa fa-check"></i><b>0.1</b> Computer tasks</a></li>
+<li class="chapter" data-level="0.2" data-path="0.2-exercises.html"><a href="0.2-exercises.html"><i class="fa fa-check"></i><b>0.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="1-mds.html"><a href="1-mds.html"><i class="fa fa-check"></i><b>1</b> Multidimensional Scaling (MDS)</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-classical-mds.html"><a href="1.1-classical-mds.html"><i class="fa fa-check"></i><b>1.1</b> Classical MDS</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="1.1-classical-mds.html"><a href="1.1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>1.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1.1-classical-mds.html"><a href="1.1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Principal Coordinate Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1.2-similarity.html"><a href="1.2-similarity.html"><i class="fa fa-check"></i><b>1.2</b> Similarity measures</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1.2-similarity.html"><a href="1.2-similarity.html#binary-attributes"><i class="fa fa-check"></i><b>1.2.1</b> Binary attributes</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1.2-similarity.html"><a href="1.2-similarity.html#example-classical-mds-with-the-mnist-data"><i class="fa fa-check"></i><b>1.2.2</b> Example: Classical MDS with the MNIST data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1.3-non-metric-mds.html"><a href="1.3-non-metric-mds.html"><i class="fa fa-check"></i><b>1.3</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="1.4" data-path="1.4-exercises-1.html"><a href="1.4-exercises-1.html"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
+<li class="chapter" data-level="1.5" data-path="1.5-computer-tasks-1.html"><a href="1.5-computer-tasks-1.html"><i class="fa fa-check"></i><b>1.5</b> Computer Tasks</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="similarity" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Similarity measures</h2>
+<p>So far we have presented classical MDS as starting with a distance (or dissimilarity) matrix <span class="math inline">\(\mathbf D=(d_{ij})_{i,j=1}^n\)</span>. In this setting, the larger <span class="math inline">\(d_{ij}\)</span> is, the more distant, or dissimilar, object <span class="math inline">\(i\)</span> is from object <span class="math inline">\(j\)</span>.
+We then convert <span class="math inline">\(\mathbf D\)</span> to a centred inner product matrix <span class="math inline">\(\mathbf B\)</span>, where we think of <span class="math inline">\(\mathbf B\)</span> as being a similarity matrix. Finally we find a truncated spectral decomposition for <span class="math inline">\(\mathbf B\)</span>:</p>
+<p><span class="math display">\[\mathbf D\longrightarrow \mathbf B\longrightarrow \mathbf Z=\mathbf U\boldsymbol \Lambda^{\frac{1}{2}}.\]</span></p>
+<p>Rather than using similarity matrix <span class="math inline">\(\mathbf B\)</span> derived from <span class="math inline">\(\mathbf D\)</span>, we can use a more general concept of <strong>similarity</strong> in MDS.</p>
+
+<div class="definition">
+<p><span id="def:unnamed-chunk-20" class="definition"><strong>Definition 1.4  </strong></span>A <strong>similarity matrix</strong> is defined to be an <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\({\mathbf F}=(f_{ij})_{i,j=1}^n\)</span> with the following properties:</p>
+<ol style="list-style-type: decimal">
+<li>Symmetry, i.e. <span class="math inline">\(f_{ij} =f_{ji}\)</span>, <span class="math inline">\(i,j=1, \ldots , n\)</span>.</li>
+<li><span class="math inline">\(f_{ij} \leq f_{ii}\)</span> for all <span class="math inline">\(i,j=1, \ldots , n\)</span>.</li>
+</ol>
+</div>
+<p>Note that when working with similarities <span class="math inline">\(f_{ij}\)</span>, the larger <span class="math inline">\(f_{ij}\)</span> is, the more similar objects <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are.</p>
+<ul>
+<li><p>Condition 1. implies that object <span class="math inline">\(i\)</span> is as similar to object <span class="math inline">\(j\)</span> as object <span class="math inline">\(j\)</span> is to object <span class="math inline">\(i\)</span> (symmetry).</p></li>
+<li><p>Condition 2. implies that an object is at least as similar to itself as it is to any other object.</p></li>
+</ul>
+<p>One common choice of similarity between two vectors is the <strong>cosine</strong> similarity, which is defined to be the cosine of the angle between the vectors. Equivalently, it is the inner product of the vectors after they have been normalised to have length one:</p>
+<p><span class="math display">\[\cos \theta = \frac{\mathbf x^\top \mathbf y}{||\mathbf x||_2 ||\mathbf y||_2}=\langle \frac{\mathbf x}{||\mathbf x||_2}, \; \frac{\mathbf y}{||\mathbf y||_2}\rangle\]</span>
+This is symmetric (so satisfies property 1. for similarities), and the similarity of a vector <span class="math inline">\(\mathbf x\)</span> with itself is <span class="math inline">\(1\)</span>, and thus property 2. is also satisfied (as <span class="math inline">\(\cos \theta \leq 1\)</span>).</p>
+<p>Note that because the cosine similarity uses the inner product of normalised vectors, it only gives a relative comparison of two vectors, not an absolute one: the cosine similarity between <span class="math inline">\(\mathbf x\)</span> and <span class="math inline">\(\mathbf y\)</span> is the same as the similarity between <span class="math inline">\(\mathbf x\)</span> and <span class="math inline">\(a\mathbf y\)</span> for any positive constant <span class="math inline">\(a\)</span>. Thus we should only use this measure of similarity when absolute differences are unimportant.</p>
+<div id="mds-with-similarity-matrices" class="section level4 unnumbered">
+<h4>MDS with similarity matrices</h4>
+<p>In this section, we consider MDS using measures of <strong>similarity</strong> as opposed to measures of distance/dissimilarity. We begin by showing that we can convert a positive semi-definite similarity matrix <span class="math inline">\(\mathbf F\)</span> into a distance matrix <span class="math inline">\(\mathbf D\)</span> and then into a centred inner product matrix <span class="math inline">\(\mathbf B\)</span>, allowing us to use the classical MDS approach from the previous section.</p>
+
+<div class="proposition">
+<span id="prp:mds2" class="proposition"><strong>Proposition 1.2  </strong></span>Suppose that <span class="math inline">\(\mathbf F\)</span> is a positive semi-definite similarity matrix. Then the matrix <span class="math inline">\(\mathbf D\)</span> with elements
+<span class="math display" id="eq:defD">\[\begin{equation}
+d_{ij}=\left ( f_{ii}+f_{jj} -2f_{ij} \right )^{1/2}, \qquad i,j=1, \ldots , n
+\tag{1.6}
+\end{equation}\]</span>
+is a Euclidean distance matrix. Its centred inner product matrix, <span class="math inline">\(\mathbf B= -\frac{1}{2}\mathbf H(\mathbf D\odot\mathbf D)\mathbf H\)</span>, can be computed via
+<span class="math display" id="eq:BHFH">\[\begin{equation}
+\mathbf B=\mathbf H\mathbf F\mathbf H.
+\tag{1.7}
+\end{equation}\]</span>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-2" class="proof"><em>Proof</em>. </span>Firstly, note that as <span class="math inline">\(\mathbf F\)</span> is a similarity matrix, <span class="math inline">\(f_{ii}+f_{jj}-2f_{ij}\geq 0\)</span> by condition 2., and so the <span class="math inline">\(d_{ij}\)</span> are all well-defined (i.e. real, not imaginary).
+It is easy to see that <span class="math inline">\(\mathbf D\)</span> is a distance matrix as defined in Definition <a href="1-mds.html#def:distanceD">1.1</a>.</p>
+<p>We will now show that Equation <a href="1.2-similarity.html#eq:BHFH">(1.7)</a> holds. Let <span class="math inline">\(\mathbf A= -\frac{1}{2}\mathbf D\odot \mathbf D\)</span> as in Equation <a href="1.1-classical-mds.html#eq:defA">(1.4)</a>. Then
+<span class="math display">\[
+a_{ij}=-\frac{1}{2}d_{ij}^2 =f_{ij}-\frac{1}{2}(f_{ii}+f_{jj}).
+\]</span></p>
+<p>Define
+<span class="math display">\[
+t=n^{-1}\sum_{i=1}^n f_{ii}.
+\]</span>
+Then, summing over <span class="math inline">\(j=1, \ldots , n\)</span> for fixed <span class="math inline">\(i\)</span>,
+<span class="math display">\[
+\bar{a}_{i+}=n^{-1}\sum_{j=1}^n a_{ij} = \bar{f}_{i+}-\frac{1}{2}(f_{ii}+t);
+\]</span>
+similarly,
+<span class="math display">\[
+\bar{a}_{+j}=n^{-1}\sum_{i=1}^n a_{ij}=\bar{f}_{+j}-\frac{1}{2}(f_{jj}+t),
+\]</span>
+and also
+<span class="math display">\[
+\bar{a}_{++}=n^{-2}\sum_{i,j=1}^n a_{ij}=\bar{f}_{++}-\frac{1}{2}(t+t).
+\]</span>
+Recall property (vii) from Section <a href="#centering-matrix"><strong>??</strong></a>:
+<span class="math display">\[
+b_{ij}=a_{ij}-\bar{a}_{i+}-\bar{a}_{+j}+\bar{a}_{++}
+\]</span>
+noting that <span class="math inline">\(\mathbf A\)</span> is symmetric. Thus
+<span class="math display">\[\begin{align*} 
+b_{ij}&amp;=f_{ij}-\frac{1}{2}(f_{ii}+f_{jj})-\bar{f}_{i+}+\frac{1}{2}(f_{ii}+t)\\
+&amp; \qquad -\bar{f}_{+j}+\frac{1}{2}(f_{jj}+t) +\bar{f}_{++}-t\\
+&amp; =\qquad f_{ij}-\bar{f}_{i+}-\bar{f}_{+j}+\bar{f}_{++}.
+\end{align*}\]</span>
+Consequently, <span class="math inline">\(\mathbf B=\mathbf H\mathbf F\mathbf H\)</span>, again using property (vii) from Section <a href="#centering-matrix"><strong>??</strong></a>.</p>
+<p>So we’ve shown that <span class="math inline">\(\mathbf B= \mathbf H\mathbf F\mathbf H\)</span>. It only remains to show <span class="math inline">\(\mathbf D\)</span> is Euclidean. Since <span class="math inline">\(\mathbf F\)</span> is positive semi-definite by assumption, and <span class="math inline">\(\mathbf H^\top =\mathbf H\)</span>, it follows that <span class="math inline">\(\mathbf B=\mathbf H\mathbf F\mathbf H\)</span> must also be positive semi-definite. So by Theorem <a href="1.1-classical-mds.html#thm:five1">1.1</a> <span class="math inline">\(\mathbf D\)</span> is a Euclidean distance matrix.</p>
+</div>
+<p><br></br></p>
+<p>This tells us how to do MDS with a similarity matrix <span class="math inline">\(\mathbf F\)</span>. We first apply double centering to the matrix to get
+<span class="math display">\[\mathbf B=\mathbf H\mathbf F\mathbf H\]</span>
+and then we find the spectral decomposition of <span class="math inline">\(\mathbf B\)</span> just as we did in the previous section.</p>
+</div>
+<div id="binary-attributes" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Binary attributes</h3>
+<p>One important class of problems is when the similarity between any two objects is measured by the number of common attributes. The underlying data on each object is a binary vector of 0s and 1s indicating absence or presence of an attribute. These binary vectors are then converted to similarities by comparing which attributes two objects have in common.</p>
+<p>We illustrate this through two examples.</p>
+<div id="example-4" class="section level4 unnumbered">
+<h4>Example 4</h4>
+<p>Suppose there are 4 attributes we wish to consider.</p>
+<ol style="list-style-type: decimal">
+<li>Attribute 1: Carnivore? If yes, put <span class="math inline">\(x_1=1\)</span>; if no, put <span class="math inline">\(x_1=0\)</span>.</li>
+<li>Attribute 2: Mammal? If yes, put <span class="math inline">\(x_2=1\)</span>; if no, put <span class="math inline">\(x_2=0\)</span>.</li>
+<li>Attribute 3: Natural habitat in Africa? If yes, put <span class="math inline">\(x_3=1\)</span>; if no, put <span class="math inline">\(x_3=0\)</span>.</li>
+<li>Attribute 4: Can climb trees? If yes, put <span class="math inline">\(x_4=1\)</span>; if no, put <span class="math inline">\(x_4=0\)</span>.</li>
+</ol>
+<p>Consider a lion. Each of the attributes is present so <span class="math inline">\(x_1=x_2=x_3=x_4=1\)</span>. Its attribute vector is <span class="math inline">\(\begin{pmatrix} 1&amp;1&amp;1&amp;1\end{pmatrix}^\top\)</span>.</p>
+<p>What about a tiger? In this case, 3 of the attributes are present (1, 2 and 4) but 3 is absent.
+So for a tiger, <span class="math inline">\(x_1=x_2=x_4=1\)</span> and <span class="math inline">\(x_3=0\)</span> or in vector form, its attributes are <span class="math inline">\(\begin{pmatrix} 1&amp;1&amp;0&amp;1\end{pmatrix}^\top\)</span>.</p>
+<p>How might we measure the similarity of lions and tigers based on the presence or absence of these four attributes?</p>
+<p>First form a <span class="math inline">\(2 \times 2\)</span> table as follows.
+<span class="math display">\[
+\begin{array}{cccc}
+&amp;1 &amp;0\\
+1&amp; a &amp; b\\
+0&amp; c &amp; d
+\end{array}
+\]</span>
+Here <span class="math inline">\(a\)</span> counts the number of attributes common to both lion and tiger; <span class="math inline">\(b\)</span> counts the number of attributes the lion has but the tiger does not have; <span class="math inline">\(c\)</span> counts the number of attributes the tigher has that the lion does not have; and <span class="math inline">\(d\)</span> counts the number of attributes which neither the lion nor the tiger has.
+In the above, <span class="math inline">\(a=3\)</span>, <span class="math inline">\(b=1\)</span> and <span class="math inline">\(c=d=0\)</span>.</p>
+<p>How might we make use of the information in the <span class="math inline">\(2 \times 2\)</span> table to construct a measure of similarity? There are two commonly used measures of similarity.</p>
+<p>The <strong>simple matching coefficient (SMC)</strong> counts mutual absence or presence and compares it to the total number of attributes:
+<span class="math display" id="eq:smc">\[\begin{equation}
+\frac{a+d}{a+b+c+d}.
+\tag{1.8}
+\end{equation}\]</span>
+It has a value of <span class="math inline">\(0.75\)</span> for this example.</p>
+<p>The <strong>Jaccard similarity coefficient</strong> only counts mutual presence and compares this to the number of attributes that are present in at least one of the two objects:
+<span class="math display">\[
+\frac{a}{a+b+c}.
+\]</span>
+This is also 0.75 in this example.</p>
+<p>Although the Jaccard index and SMC are the same in this case, this is not true in general.
+The difference between the two similarities can matter. For example, consider a market basket analysis where we compare shoppers. If a shop sells <span class="math inline">\(p\)</span> different products, we might record the products purchased by each shopper (their ‘basket’) as a vector of length <span class="math inline">\(p\)</span>, with a <span class="math inline">\(1\)</span> in position <span class="math inline">\(i\)</span> if the shopper purchased object <span class="math inline">\(i\)</span>, and <span class="math inline">\(0\)</span> otherewise.</p>
+<p>The basket of most shoppers might only contain a small fraction of all the available products (i.e. mostly 0s in the attribute vector). In this case the SMC will usually be high when comparing any two shoppers, even when their baskets are very different, as the attribute vectors are mostly <span class="math inline">\(0\)</span>s. In this case, the Jaccard index will be a more appropriate measure of similarity as it only looks at the difference between shoppers on the basis of the goods in their combined baskets. For example, consider a shop with 100 products and two customers.
+If customer A bought bread and beer and customer B bought peanuts and beer, then the Jaccard similarity coefficient is <span class="math inline">\(1/3\)</span>, but the SMC is <span class="math inline">\((1+97)/100=0.98\)</span>.</p>
+<p>In situations where 0 and 1 carry equivalent information with greater balance across the two groups, the SMC may be a better measure of similarity. For example, vectors of demographic variables stored in dummy variables, such as gender, would be better compared with the SMC than with the Jaccard index since the impact of gender on similarity should be equal, independently of whether male is defined as a 0 and female as a 1 or the other way around.
+<!-- copied from wikipedia--></p>
+<p>There are many other possible ways of measuring similarity. For example, we could consider weighted versions of the above if we wish to weight different attributes differently.</p>
+</div>
+<div id="example-5" class="section level4 unnumbered">
+<h4>Example 5</h4>
+<p>Let us now consider a similar but more complex example with 6 unspecified attributes (not the same attributes as in Example 1) and 5 types of living creature, with the following data matrix, consisting of zeros and ones.
+<span class="math display">\[
+\begin{array}{lcccccc}
+&amp;1&amp;2&amp;3&amp;4&amp;5&amp;6\\
+Lion&amp;1&amp;1&amp;0&amp;0&amp;1&amp;1\\
+Giraffe&amp;1&amp;1&amp;1&amp;0&amp;0&amp;1\\
+Cow&amp;1&amp;0&amp;0&amp;1&amp;0&amp;1\\
+Sheep&amp;0&amp;0&amp;0&amp;1&amp;0&amp;1\\
+Human&amp;0&amp;0&amp;0&amp;0&amp;1&amp;0
+\end{array}
+\]</span>
+Suppose we decide to use the simple matching coefficient <a href="1.2-similarity.html#eq:smc">(1.8)</a> to measure similarity. Then the following similarity matrix is obtained.
+<span class="math display">\[
+\mathbf F=\begin{array}{lccccc}
+&amp;\text{Lion}&amp;\text{Giraffe}&amp;\text{Cow}&amp;\text{Sheep}&amp;\text{Human}\\
+Lion&amp;1&amp;2/3&amp;1/2&amp;1/2&amp;1/2\\
+Giraffe&amp;2/3&amp;1&amp;1/2&amp;1/2&amp;1/6\\
+Cow&amp;1/2&amp;1/2&amp;1&amp;1&amp;1/3\\
+Sheep&amp;1/2&amp;1/2&amp;1&amp;1&amp;1/3\\
+Human&amp;1/2&amp;1/6&amp;1/3&amp;1/3&amp;1
+\end{array}
+\]</span>
+It is easily checked from the definition that <span class="math inline">\({\mathbf F}=(f_{ij})_{i,j=1}^5\)</span> is a similarity matrix.</p>
+<p>Let’s see how we would do this in R.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="1.2-similarity.html#cb30-1" aria-hidden="true" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb30-2"><a href="1.2-similarity.html#cb30-2" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>), </span>
+<span id="cb30-3"><a href="1.2-similarity.html#cb30-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">nr=</span><span class="dv">5</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
+<span id="cb30-4"><a href="1.2-similarity.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(animal) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Lion&quot;</span>, <span class="st">&quot;Giraffe&quot;</span>, <span class="st">&quot;Cow&quot;</span>, <span class="st">&quot;Sheep&quot;</span>, <span class="st">&quot;Human&quot;</span>)</span>
+<span id="cb30-5"><a href="1.2-similarity.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(animal)<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">&quot;A&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb30-6"><a href="1.2-similarity.html#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="1.2-similarity.html#cb30-7" aria-hidden="true" tabindex="-1"></a>SMC <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y){</span>
+<span id="cb30-8"><a href="1.2-similarity.html#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(x<span class="sc">==</span>y)<span class="sc">/</span><span class="fu">length</span>(x)</span>
+<span id="cb30-9"><a href="1.2-similarity.html#cb30-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-10"><a href="1.2-similarity.html#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="co"># SMC(animal[1,], animal[2,]) # check this gives what you expect</span></span>
+<span id="cb30-11"><a href="1.2-similarity.html#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="1.2-similarity.html#cb30-12" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">dim</span>(animal)[<span class="dv">1</span>]</span>
+<span id="cb30-13"><a href="1.2-similarity.html#cb30-13" aria-hidden="true" tabindex="-1"></a>F_SMC <span class="ot">=</span> <span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span>n,<span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb30-14"><a href="1.2-similarity.html#cb30-14" aria-hidden="true" tabindex="-1"></a>              <span class="fu">Vectorize</span>(<span class="cf">function</span>(i,j){</span>
+<span id="cb30-15"><a href="1.2-similarity.html#cb30-15" aria-hidden="true" tabindex="-1"></a>                <span class="fu">SMC</span>(animal[i,], animal[j,])</span>
+<span id="cb30-16"><a href="1.2-similarity.html#cb30-16" aria-hidden="true" tabindex="-1"></a>                }</span>
+<span id="cb30-17"><a href="1.2-similarity.html#cb30-17" aria-hidden="true" tabindex="-1"></a>                ))</span>
+<span id="cb30-18"><a href="1.2-similarity.html#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="co"># we could do this as a double loop, but I&#39;ve used the outer function</span></span>
+<span id="cb30-19"><a href="1.2-similarity.html#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="co"># here.</span></span></code></pre></div>
+<p>We can use the <code>dist</code> function in R to compute this more easily. The <code>dist</code> function requires us to specify which metric to use. Here, we use the <span class="math inline">\(L_1\)</span> distance, which is also known as the <a href="https://en.wikipedia.org/wiki/Taxicab_geometry">Manhattan distance</a>. We have to subtract this from the largest possible distance, which is 6 in this case, to get the similarity, and then divide by 6 to get the SMC.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="1.2-similarity.html#cb31-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">6</span><span class="sc">-</span><span class="fu">as.matrix</span>(<span class="fu">dist</span>(animal, <span class="at">method=</span><span class="st">&quot;manhattan&quot;</span>, <span class="at">diag =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb31-2"><a href="1.2-similarity.html#cb31-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">upper =</span> <span class="cn">TRUE</span>)))<span class="sc">/</span><span class="dv">6</span></span></code></pre></div>
+<pre><code>##              Lion   Giraffe       Cow     Sheep     Human
+## Lion    1.0000000 0.6666667 0.5000000 0.3333333 0.5000000
+## Giraffe 0.6666667 1.0000000 0.5000000 0.3333333 0.1666667
+## Cow     0.5000000 0.5000000 1.0000000 0.8333333 0.3333333
+## Sheep   0.3333333 0.3333333 0.8333333 1.0000000 0.5000000
+## Human   0.5000000 0.1666667 0.3333333 0.5000000 1.0000000</code></pre>
+<p>The Jaccard index can be computed as follows:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="1.2-similarity.html#cb33-1" aria-hidden="true" tabindex="-1"></a>jaccard <span class="ot">=</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb33-2"><a href="1.2-similarity.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  bt <span class="ot">=</span> <span class="fu">table</span>(y, x)</span>
+<span id="cb33-3"><a href="1.2-similarity.html#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>((bt[<span class="dv">2</span>, <span class="dv">2</span>])<span class="sc">/</span>(bt[<span class="dv">1</span>, <span class="dv">2</span>] <span class="sc">+</span> bt[<span class="dv">2</span>, <span class="dv">1</span>] <span class="sc">+</span> bt[<span class="dv">2</span>, <span class="dv">2</span>]))</span>
+<span id="cb33-4"><a href="1.2-similarity.html#cb33-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-5"><a href="1.2-similarity.html#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="1.2-similarity.html#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co"># jaccard(animal[1,], animal[2,]) </span></span>
+<span id="cb33-7"><a href="1.2-similarity.html#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># check this gives what you expect</span></span>
+<span id="cb33-8"><a href="1.2-similarity.html#cb33-8" aria-hidden="true" tabindex="-1"></a>F_jaccard <span class="ot">=</span> <span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span>n,<span class="dv">1</span><span class="sc">:</span>n, <span class="fu">Vectorize</span>(<span class="cf">function</span>(i,j){</span>
+<span id="cb33-9"><a href="1.2-similarity.html#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">jaccard</span>(animal[i,], animal[j,])</span>
+<span id="cb33-10"><a href="1.2-similarity.html#cb33-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb33-11"><a href="1.2-similarity.html#cb33-11" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
+<p>Again, we can compute this using <code>dist</code>, but this time using the binary distance metric. See the help page <code>?dist</code> to understand why.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="1.2-similarity.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">as.matrix</span>(<span class="fu">dist</span>(animal, <span class="at">method=</span><span class="st">&quot;binary&quot;</span>, <span class="at">diag=</span><span class="cn">TRUE</span>, <span class="at">upper=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>##         Lion Giraffe       Cow     Sheep Human
+## Lion    1.00     0.6 0.4000000 0.2000000  0.25
+## Giraffe 0.60     1.0 0.4000000 0.2000000  0.00
+## Cow     0.40     0.4 1.0000000 0.6666667  0.00
+## Sheep   0.20     0.2 0.6666667 1.0000000  0.00
+## Human   0.25     0.0 0.0000000 0.0000000  1.00</code></pre>
+<p>To do MDS on these data, we need to first convert from a similarity matrix <span class="math inline">\(F\)</span> to a distance matrix <span class="math inline">\(D\)</span>. We can use the following function to do this:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="1.2-similarity.html#cb36-1" aria-hidden="true" tabindex="-1"></a>FtoD <span class="ot">&lt;-</span> <span class="cf">function</span>(FF){</span>
+<span id="cb36-2"><a href="1.2-similarity.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> <span class="fu">dim</span>(FF)[<span class="dv">1</span>]</span>
+<span id="cb36-3"><a href="1.2-similarity.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  D <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nr=</span>n,<span class="at">nc=</span>n)</span>
+<span id="cb36-4"><a href="1.2-similarity.html#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(ii <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
+<span id="cb36-5"><a href="1.2-similarity.html#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(jj <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
+<span id="cb36-6"><a href="1.2-similarity.html#cb36-6" aria-hidden="true" tabindex="-1"></a>      D[ii,jj] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(FF[ii,ii]<span class="sc">+</span>FF[jj,jj]<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>FF[ii,jj])</span>
+<span id="cb36-7"><a href="1.2-similarity.html#cb36-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb36-8"><a href="1.2-similarity.html#cb36-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb36-9"><a href="1.2-similarity.html#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(D)</span>
+<span id="cb36-10"><a href="1.2-similarity.html#cb36-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Let’s now do MDS, and compare the results from using the SMC and Jaccard index. We could do this by computing <span class="math inline">\(\mathbf B= \mathbf H\mathbf F\mathbf H\)</span> and finding its spectral decomposition, but we will let R do the work for us, and use the <code>cmdscale</code> command which takes a distance matrix as input. So let’s write a function to convert from a similarity matrix to a distance matrix.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="1.2-similarity.html#cb37-1" aria-hidden="true" tabindex="-1"></a>mds1<span class="ot">&lt;-</span><span class="fu">cmdscale</span>(<span class="fu">FtoD</span>(F_SMC))</span>
+<span id="cb37-2"><a href="1.2-similarity.html#cb37-2" aria-hidden="true" tabindex="-1"></a>mds2<span class="ot">&lt;-</span><span class="fu">cmdscale</span>(<span class="fu">FtoD</span>(F_jaccard))</span></code></pre></div>
+<p><img src="06-mds_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>So we can see the choice of index has made a difference to the results.</p>
+</div>
+</div>
+<div id="example-classical-mds-with-the-mnist-data" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Example: Classical MDS with the MNIST data</h3>
+<p>In section <a href="#pca-mnist"><strong>??</strong></a> we saw the results of doing PCA on the MNIST handwritten digits. In the final part of that section, we did PCA on a selection of all the digits, and plotted the two leading PC scores, coloured by which digit they represented.</p>
+<p>Let’s now do MDS on the same data. We know that if we use the Euclidean distance between the image vectors, then we will be doing the same thing as PCA. So let’s instead first convert each pixel in the image to binary, with a value of 0 if the intensity is less than 0.3, and 1 otherwise. We can then compute a similarity matrix using the SMC and Jaccard indices.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="1.2-similarity.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;mnist.rda&#39;</span>)</span>
+<span id="cb38-2"><a href="1.2-similarity.html#cb38-2" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span> mnist<span class="sc">$</span>train<span class="sc">$</span>x[<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,]</span>
+<span id="cb38-3"><a href="1.2-similarity.html#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="1.2-similarity.html#cb38-4" aria-hidden="true" tabindex="-1"></a>Y<span class="ot">&lt;-</span> (X<span class="sc">&gt;</span><span class="fl">0.3</span>)<span class="sc">*</span><span class="fl">1.</span>  <span class="co"># multiply by 1 to convert from T/F to a 1/0</span></span>
+<span id="cb38-5"><a href="1.2-similarity.html#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="1.2-similarity.html#cb38-6" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">dim</span>(Y)[<span class="dv">1</span>]</span>
+<span id="cb38-7"><a href="1.2-similarity.html#cb38-7" aria-hidden="true" tabindex="-1"></a>p<span class="ot">=</span><span class="fu">dim</span>(Y)[<span class="dv">2</span>]</span>
+<span id="cb38-8"><a href="1.2-similarity.html#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="1.2-similarity.html#cb38-9" aria-hidden="true" tabindex="-1"></a>F_SMC<span class="ot">=</span>(p<span class="sc">-</span><span class="fu">as.matrix</span>(<span class="fu">dist</span>(Y, <span class="at">method=</span><span class="st">&quot;manhattan&quot;</span>, <span class="at">diag =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb38-10"><a href="1.2-similarity.html#cb38-10" aria-hidden="true" tabindex="-1"></a>                        <span class="at">upper =</span> <span class="cn">TRUE</span>)))<span class="sc">/</span>p</span>
+<span id="cb38-11"><a href="1.2-similarity.html#cb38-11" aria-hidden="true" tabindex="-1"></a>F_Jaccard <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span><span class="fu">as.matrix</span>(<span class="fu">dist</span>(Y, <span class="at">method=</span><span class="st">&quot;binary&quot;</span>, <span class="at">diag=</span><span class="cn">TRUE</span>, </span>
+<span id="cb38-12"><a href="1.2-similarity.html#cb38-12" aria-hidden="true" tabindex="-1"></a>                             <span class="at">upper=</span><span class="cn">TRUE</span>))</span>
+<span id="cb38-13"><a href="1.2-similarity.html#cb38-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-14"><a href="1.2-similarity.html#cb38-14" aria-hidden="true" tabindex="-1"></a>mds1<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cmdscale</span>(<span class="fu">FtoD</span>(F_SMC)))</span>
+<span id="cb38-15"><a href="1.2-similarity.html#cb38-15" aria-hidden="true" tabindex="-1"></a>mds2<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cmdscale</span>(<span class="fu">FtoD</span>(F_Jaccard)))</span></code></pre></div>
+<p>We will do as we did before, and plot the coordinates coloured by the digit each point is supposed to represent. Note that we have not used these digit labels at any point.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="1.2-similarity.html#cb39-1" aria-hidden="true" tabindex="-1"></a>Digit <span class="ot">=</span> <span class="fu">as.factor</span>(mnist<span class="sc">$</span>train<span class="sc">$</span>y[<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>])</span>
+<span id="cb39-2"><a href="1.2-similarity.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb39-3"><a href="1.2-similarity.html#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mds1, <span class="fu">aes</span>(<span class="at">x=</span>X1, <span class="at">y=</span>X2, <span class="at">colour=</span>Digit, <span class="at">label=</span>Digit))<span class="sc">+</span></span>
+<span id="cb39-4"><a href="1.2-similarity.html#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Digit))<span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;MDS for MNIST using the SMC&quot;</span>) </span></code></pre></div>
+<p><img src="06-mds_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="1.2-similarity.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mds2, <span class="fu">aes</span>(<span class="at">x=</span>X1, <span class="at">y=</span>X2, <span class="at">colour=</span>Digit, <span class="at">label=</span>Digit))<span class="sc">+</span></span>
+<span id="cb40-2"><a href="1.2-similarity.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Digit))<span class="sc">+</span> </span>
+<span id="cb40-3"><a href="1.2-similarity.html#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;MDS for MNIST using the Jaccard index&quot;</span>) </span></code></pre></div>
+<p><img src="06-mds_files/figure-html/unnamed-chunk-29-2.png" width="672" /></p>
+<p>You can see that we get two different representations of the data that differ from each other, and from the PCA representation we computed in Chapter <a href="#pca"><strong>??</strong></a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1.1-classical-mds.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1.3-non-metric-mds.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

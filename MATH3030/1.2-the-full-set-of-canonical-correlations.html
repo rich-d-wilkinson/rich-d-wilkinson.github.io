@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.2 The full set of canonical correlations | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.2 The full set of canonical correlations | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -153,32 +153,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.1" data-path="1.3-properties.html"><a href="1.3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>1.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
 <li class="chapter" data-level="1.3.2" data-path="1.3-properties.html"><a href="1.3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>1.3.2</b> Invariance/equivariance properties of CCA</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="1.4-computer-tasks.html"><a href="1.4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
-<li class="chapter" data-level="1.5" data-path="1.5-exercises.html"><a href="1.5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="2-lm.html"><a href="2-lm.html"><i class="fa fa-check"></i><b>2</b> Linear Models</a>
-<ul>
-<li class="chapter" data-level="" data-path="2-lm.html"><a href="2-lm.html#notation"><i class="fa fa-check"></i>Notation</a></li>
-<li class="chapter" data-level="2.1" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>2.1</b> Ordinary least squares (OLS)</a>
-<ul>
-<li class="chapter" data-level="2.1.1" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#geometry"><i class="fa fa-check"></i><b>2.1.1</b> Geometry</a></li>
-<li class="chapter" data-level="2.1.2" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#normal-linear-model"><i class="fa fa-check"></i><b>2.1.2</b> Normal linear model</a></li>
-<li class="chapter" data-level="2.1.3" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#linear-models-in-r"><i class="fa fa-check"></i><b>2.1.3</b> Linear models in R</a></li>
-<li class="chapter" data-level="2.1.4" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#problems-with-ols"><i class="fa fa-check"></i><b>2.1.4</b> Problems with OLS</a></li>
-</ul></li>
-<li class="chapter" data-level="2.2" data-path="2.2-principal-component-regression-pcr.html"><a href="2.2-principal-component-regression-pcr.html"><i class="fa fa-check"></i><b>2.2</b> Principal component regression (PCR)</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="2.2-principal-component-regression-pcr.html"><a href="2.2-principal-component-regression-pcr.html#pcr-in-r"><i class="fa fa-check"></i><b>2.2.1</b> PCR in R</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="2.3-shrinkage-methods.html"><a href="2.3-shrinkage-methods.html"><i class="fa fa-check"></i><b>2.3</b> Shrinkage methods</a>
-<ul>
-<li class="chapter" data-level="2.3.1" data-path="2.3-shrinkage-methods.html"><a href="2.3-shrinkage-methods.html#ridge-regression-in-r"><i class="fa fa-check"></i><b>2.3.1</b> Ridge regression in R</a></li>
-</ul></li>
-<li class="chapter" data-level="2.4" data-path="2.4-multi-output-linear-model.html"><a href="2.4-multi-output-linear-model.html"><i class="fa fa-check"></i><b>2.4</b> Multi-output Linear Model</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="2.4-multi-output-linear-model.html"><a href="2.4-multi-output-linear-model.html#normal-linear-model-1"><i class="fa fa-check"></i><b>2.4.1</b> Normal linear model</a></li>
-<li class="chapter" data-level="2.4.2" data-path="2.4-multi-output-linear-model.html"><a href="2.4-multi-output-linear-model.html#reduced-rank-regression"><i class="fa fa-check"></i><b>2.4.2</b> Reduced rank regression</a></li>
-</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -270,21 +244,19 @@ is achieved at
 with
 <span class="math display">\[\mathbf a_k^\top \mathbf Q\mathbf b_k = \sigma_k.\]</span>
 </div>
-
 <div class="proof">
- <span class="proof"><em>Proof. </em></span> We will work through the proof of this proposition in the Exercises.
+<p><span id="unlabeled-div-4" class="proof"><em>Proof</em>. </span>We will work through the proof of this proposition in the Exercises.</p>
 </div>
-
 <div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> <strong>Proof of Proposition <a href="1.2-the-full-set-of-canonical-correlations.html#prp:ccafull">1.4</a></strong>. We note as before that if we write <span class="math inline">\(\tilde{\mathbf a}_j =\mathbf S_{\mathbf x\mathbf x}^{1/2} \mathbf a_j\)</span> and <span class="math inline">\(\tilde{\mathbf b}_j=\mathbf S_{\mathbf y\mathbf y}^{1/2} \mathbf b_j\)</span>, then the constraints become
+<p><span id="unlabeled-div-5" class="proof"><em>Proof</em>. </span><strong>Proof of Proposition <a href="1.2-the-full-set-of-canonical-correlations.html#prp:ccafull">1.4</a></strong>. We note as before that if we write <span class="math inline">\(\tilde{\mathbf a}_j =\mathbf S_{\mathbf x\mathbf x}^{1/2} \mathbf a_j\)</span> and <span class="math inline">\(\tilde{\mathbf b}_j=\mathbf S_{\mathbf y\mathbf y}^{1/2} \mathbf b_j\)</span>, then the constraints become
 <span class="math display">\[\tilde{\mathbf a}^\top \tilde{\mathbf a}=\tilde{\mathbf b}^\top\tilde{ \mathbf b}=1 \;\mbox{ and }\;\tilde{\mathbf a}_i^\top \tilde{\mathbf a}=\tilde{\mathbf b}_i^\top \tilde{\mathbf b} = 0 \mbox{ for }i=1, \ldots, k.
 \]</span>
 Consequently, we may view constraints <a href="1.2-the-full-set-of-canonical-correlations.html#eq:conny22">(1.11)</a> as corresponding to orthogonality constraints (cf. PCA) in modified coordinate systems.</p>
-The objective <span class="math inline">\(\mathbf a^\top \mathbf S_{xy}\mathbf b\)</span> becomes
+<p>The objective <span class="math inline">\(\mathbf a^\top \mathbf S_{xy}\mathbf b\)</span> becomes
 <span class="math inline">\(\tilde{\mathbf a}^\top \mathbf Q\tilde{\mathbf b}\)</span>
 with
 <span class="math display">\[\mathbf Q= \mathbf S_{xx}^{-1/2} \mathbf S_{xy}\mathbf S_{yy}^{-1/2}.\]</span>
-Thus applying Proposition <a href="1.2-the-full-set-of-canonical-correlations.html#prp:svdopt3">1.5</a> gives the desired result.
+Thus applying Proposition <a href="1.2-the-full-set-of-canonical-correlations.html#prp:svdopt3">1.5</a> gives the desired result.</p>
 </div>
 <p><br></br></p>
 <p>To summarize:</p>
@@ -330,7 +302,7 @@ Note that, to a good approximation, <span class="math inline">\(\eta_2\)</span> 
 <span id="cb19-4"><a href="1.2-the-full-set-of-canonical-correlations.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb19-5"><a href="1.2-the-full-set-of-canonical-correlations.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cca.out, <span class="fu">aes</span>(<span class="at">x=</span> eta2, <span class="at">y=</span> psi2, <span class="at">label=</span>Team))<span class="sc">+</span>   <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb19-6"><a href="1.2-the-full-set-of-canonical-correlations.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Team),<span class="at">hjust=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">4</span>)</span></code></pre></div>
-<p><img src="05-cca_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="05-cca_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <!--## Population CCA
 
 So far in this chapter we have based CCA on the sample covariance matrix

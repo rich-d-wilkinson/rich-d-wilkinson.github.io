@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.1 Maximum likelihood (ML) discriminant rule | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.24.4 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.1 Maximum likelihood (ML) discriminant rule | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.1 Maximum likelihood (ML) discriminant rule | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1-lda.html"/>
+<link rel="next" href="1.2-lda-Bayes.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="1" data-path="1-lda.html"><a href="1-lda.html"><i class="fa fa-check"></i><b>1</b> Discriminant analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="1-lda.html"><a href="1-lda.html#linear-discriminant-analysis"><i class="fa fa-check"></i>Linear discriminant analysis</a></li>
+<li class="chapter" data-level="1.1" data-path="1.1-lda-ML.html"><a href="1.1-lda-ML.html"><i class="fa fa-check"></i><b>1.1</b> Maximum likelihood (ML) discriminant rule</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="1.1-lda-ML.html"><a href="1.1-lda-ML.html#multivariate-normal-populations"><i class="fa fa-check"></i><b>1.1.1</b> Multivariate normal populations</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1.1-lda-ML.html"><a href="1.1-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>1.1.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1.1-lda-ML.html"><a href="1.1-lda-ML.html#two-populations"><i class="fa fa-check"></i><b>1.1.3</b> Two populations</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1.1-lda-ML.html"><a href="1.1-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>1.1.4</b> More than two populations</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1.2-lda-Bayes.html"><a href="1.2-lda-Bayes.html"><i class="fa fa-check"></i><b>1.2</b> Bayes discriminant rule</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1.2-lda-Bayes.html"><a href="1.2-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>1.2.1</b> Example: LDA using the Iris data</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1.2-lda-Bayes.html"><a href="1.2-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>1.2.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1.2-lda-Bayes.html"><a href="1.2-lda-Bayes.html#prediction-accuracy"><i class="fa fa-check"></i><b>1.2.3</b> Prediction accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1.3-FLDA.html"><a href="1.3-FLDA.html"><i class="fa fa-check"></i><b>1.3</b> Fisher’s linear discriminant rule</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="1.3-FLDA.html"><a href="1.3-FLDA.html#iris-example-continued-1"><i class="fa fa-check"></i><b>1.3.1</b> Iris example continued</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1.3-FLDA.html"><a href="1.3-FLDA.html#links-between-methods"><i class="fa fa-check"></i><b>1.3.2</b> Links between methods</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1.4-computer-tasks.html"><a href="1.4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1.5-exercises.html"><a href="1.5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lda-ML" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Maximum likelihood (ML) discriminant rule</h2>
+<p>A popular way to develop a discriminant rule is to start by assuming (or estimating) a different distribution for <span class="math inline">\(\mathbf x\in \mathbb R^p\)</span> for each population. For example, suppose that the observations in population <span class="math inline">\(j\)</span> have a distribution with pdf <span class="math inline">\(f_j(\mathbf x)\)</span>, for <span class="math inline">\(j=1,\ldots , g\)</span>.</p>
+<p>We will begin by supposing the different population distributions <span class="math inline">\(f_1(\mathbf x), \ldots, f_g(\mathbf x)\)</span> are <strong>known</strong>, and in particular, that they are multivariate normal distributions.</p>
+
+<div class="definition">
+<span id="def:maxlik" class="definition"><strong>Definition 1.1  </strong></span>The <strong>maximum likelihood</strong> (ML) discriminant rule
+allocates <span class="math inline">\(\mathbf x\)</span> to the population with the largest likelihood at <span class="math inline">\(\mathbf x\)</span>, i.e. it allocates <span class="math inline">\(\mathbf x\)</span> to <span class="math inline">\(\Pi_j\)</span> where
+<span class="math display">\[ f_j(\mathbf x)= \max\limits_{1 \leq k \leq g} f_k(\mathbf x). \]</span>
+We can write the discriminant rule as
+<span class="math display">\[d(\mathbf x) = \arg \max_{k} f_k(\mathbf x).\]</span>
+</div>
+
+<div class="example">
+<p><span id="exm:exnine1" class="example"><strong>Example 1.2  </strong></span>Consider the univariate case with <span class="math inline">\(g=2\)</span> where <span class="math inline">\(\Pi_1\)</span> is the <span class="math inline">\(N(\mu_1,\sigma_1^2)\)</span> distribution and <span class="math inline">\(\Pi_2\)</span> is the <span class="math inline">\(N(\mu_2,\sigma_2^2)\)</span> distribution. The ML discriminant rule allocates <span class="math inline">\(x\)</span> to <span class="math inline">\(\Pi_1\)</span> if and only if
+<span class="math display">\[
+f_1(x) &gt; f_2(x) ,
+\]</span>
+which is equivalent to
+<span class="math display">\[
+\frac{1}{(2\pi\sigma_1^2)^{1/2}} \exp \left(-\frac{1}{2\sigma_1^2} (x-\mu_1)^2 \right)
+&gt; \frac{1}{(2\pi\sigma_2^2)^{1/2}} \exp \left(-\frac{1}{2\sigma_2^2} (x-\mu_2)^2 \right).
+\]</span>
+Collecting terms together on the left hand side (LHS) gives
+<span class="math display" id="eq:lda1d">\[\begin{eqnarray}
+&amp;&amp;  \qquad \frac{\sigma_2}{\sigma_1} \exp \left(-\frac{1}{2\sigma_1^2} (x - \mu_1)^2 +\frac{1}{2\sigma_2^2} (x - \mu_2)^2 \right)&gt; 1 \\
+&amp;\iff&amp; \qquad \log \left(\frac{\sigma_2}{\sigma_1} \right)-\frac{1}{2\sigma_1^2} (x - \mu_1)^2 + \frac{1}{2\sigma_2^2} (x - \mu_2)^2 &gt; 0 \\
+&amp; \iff &amp; \qquad x^2 \left(\frac{1}{\sigma_2^2} - \frac{1}{\sigma_1^2} \right)
++ x \left(\frac{2 \mu_1}{\sigma_1^2} - \frac{2 \mu_2}{\sigma_2^2} \right)+ \frac{\mu_2^2}{\sigma_2^2} - \frac{\mu_1^2}{\sigma_1^2} + 2 \log \frac{\sigma_2}{\sigma_1} &gt; 0. \tag{1.2}
+\end{eqnarray}\]</span>
+Suppose, for example, that <span class="math inline">\(\mu_1 = \sigma_1 = 1\)</span> and <span class="math inline">\(\mu_2 = \sigma_2 = 2\)</span>, then this reduces to the quadratic expression
+<span class="math display">\[ -\frac{3}{4}x^2 + x + 2 \log 2 &gt; 0.\]</span>
+Suppose that our new observation is <span class="math inline">\(x=0\)</span>, say. Then the LHS is <span class="math inline">\(2 \log 2\)</span> which is greater than zero and so we would allocate <span class="math inline">\(x\)</span> to population 1.</p>
+<p>Using the quadratic equation formula we find that <span class="math inline">\(f_1(x)=f_2(x)\)</span> when
+<span class="math display">\[x = \frac{-1 \pm \sqrt{1+6 \log 2}}{-3/2} = \frac{2}{3} \pm \frac{2}{3} \sqrt{1 + 6 \log 2},\]</span> i.e. at <span class="math inline">\(x = -0.85\)</span> and <span class="math inline">\(x = 2.18\)</span>. Our discriminant rule is thus to allocate <span class="math inline">\(x\)</span> to <span class="math inline">\(\Pi_1\)</span> if <span class="math inline">\(-0.85 &lt; x &lt; 2.18\)</span> and to allocate it to <span class="math inline">\(\Pi_2\)</span> otherwise. This is illustrated in Figure <a href="1.1-lda-ML.html#fig:lda-oned">1.2</a>.</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:lda-oned"></span>
+<img src="09-lda_files/figure-html/lda-oned-1.png" alt="Discriminant rule for the two Gaussians example." width="672" />
+<p class="caption">
+Figure 1.2: Discriminant rule for the two Gaussians example.
+</p>
+</div>
+<!--\begin{center}
+\includegraphics[width=12cm,angle=0]{mldr_univariateB.pdf}
+\end{center}-->
+<p>Note that this has not resulted in connected convex discriminant regions <span class="math inline">\(\mathcal{R}_i\)</span>. This is because our discriminant functions were not linear functions of <span class="math inline">\(\mathbf x\)</span> - thus we did not find a linear discriminant rule.</p>
+<p>Note also that if <span class="math inline">\(\sigma_1=\sigma_2\)</span> then the <span class="math inline">\(x^2\)</span> term in Equation <a href="1.1-lda-ML.html#eq:lda1d">(1.2)</a> cancels, and we are left with a linear discriminant rule. For example, if <span class="math inline">\(\sigma_2=1\)</span> with the other parameters as before, then we classify <span class="math inline">\(x\)</span> to population 1 if</p>
+<p><span class="math display">\[ 2x \left(\mu_1 -  \mu_2 \right)+ \mu_2^2 - \mu_1^2 = -2x+3 &gt; 0.
+\]</span>
+i.e., if <span class="math inline">\(x&lt;\frac{3}{2}\)</span>. In this case, we do get discriminant regions <span class="math inline">\(\mathcal{R}_j\)</span> which are connected and convex.</p>
+<div class="figure"><span style="display:block;" id="fig:lda-onedb"></span>
+<img src="09-lda_files/figure-html/lda-onedb-1.png" alt="Discriminant rule for the two Gaussians example when sigma_2=1" width="672" />
+<p class="caption">
+Figure 1.3: Discriminant rule for the two Gaussians example when sigma_2=1
+</p>
+</div>
+<div id="multivariate-normal-populations" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Multivariate normal populations</h3>
+<p>Now we consider the case of <span class="math inline">\(g\)</span> multivariate normal populations. We shall assume that for population <span class="math inline">\(k\)</span>
+<span class="math display">\[\mathbf x\sim N_p({\boldsymbol{\mu}}_k, \boldsymbol{\Sigma})\]</span>
+i.e., we allow the mean of each population to vary, but have assumed a common covariance matrix between groups. We call the <span class="math inline">\({\boldsymbol{\mu}}_k\)</span> the <strong>population means</strong> or <strong>centroids</strong>.</p>
+
+<div class="proposition">
+<p><span id="prp:nine1" class="proposition"><strong>Proposition 1.2  </strong></span>If cases in population <span class="math inline">\(\Pi_k\)</span> have a <span class="math inline">\(N_p({\boldsymbol{\mu}}_k,\boldsymbol{\Sigma})\)</span> distribution, then the ML discriminant rule is
+<span class="math display">\[d(\mathbf x)= \arg\min_{k}(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}_k).\]</span></p>
+Equivalently, if <span class="math inline">\(\delta_k(\mathbf x) = 2{\boldsymbol{\mu}}_k^\top \boldsymbol{\Sigma}^{-1} \mathbf x- {\boldsymbol{\mu}}_k^\top \Sigma^{-1} {\boldsymbol{\mu}}_k\)</span>. Then
+<span class="math display">\[d(\mathbf x) = \arg \max \delta_k(\mathbf x).\]</span>
+I.e. this is a linear discriminant rule.
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-2" class="proof"><em>Proof</em>. </span>The <span class="math inline">\(k\)</span>th likelihood is
+<span class="math display" id="eq:mvnlike">\[\begin{equation}
+f_k(\mathbf x) = | 2 \pi \boldsymbol{\Sigma}|^{-1/2} \exp \left(-\frac{1}{2} (\mathbf x- {\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x- {\boldsymbol{\mu}}_k) \right).\tag{1.3}
+\end{equation}\]</span>
+This is maximised when <span class="math display">\[(\mathbf x- {\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x- {\boldsymbol{\mu}}_k)\]</span> is minimised, due to the minus sign in the exponent.</p>
+<p><span class="math display">\[\begin{align*}
+(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}_k) &amp;= \mathbf x^\top \boldsymbol{\Sigma}^{-1}\mathbf x
+-2{\boldsymbol{\mu}}_k^\top \boldsymbol{\Sigma}^{-1}\mathbf x+{\boldsymbol{\mu}}_k^\top \boldsymbol{\Sigma}^{-1}{\boldsymbol{\mu}}_k\\
+&amp;= \mathbf x^\top \boldsymbol{\Sigma}^{-1}\mathbf x-\delta_k(\mathbf x)
+\end{align*}\]</span>
+Thus,
+<span class="math display">\[\arg \min_k (\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}_k) = \arg\max_k \delta_k(\mathbf x)\]</span>
+as <span class="math inline">\(\mathbf x^\top \boldsymbol{\Sigma}\mathbf x\)</span> does not depend on <span class="math inline">\(k\)</span>.</p>
+</div>
+<!--Note that $\sqrt{(\bx-\by)^\top \bSigma^{-1} (\bx-\by)}$ is sometimes called the Mahalanobis-->
+</div>
+<div id="sample-lda" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> The sample ML discriminant rule</h3>
+<p>To use the ML discriminant rule, we need to know the model parameters for each group, <span class="math inline">\({\boldsymbol{\mu}}_k\)</span>, as well as the common covariance matrix <span class="math inline">\(\boldsymbol{\Sigma}\)</span>. We will usually not know these parameters, and instead must estimate them from <strong>training</strong> data. We then substitute these estimates into the discriminant rule. Training data typically consists of samples <span class="math inline">\(\mathbf x_{1,k}, \ldots, \mathbf x_{n_k,k}\)</span> known to be from population <span class="math inline">\(\Pi_k\)</span>, where <span class="math inline">\(n_k\)</span> is the number of observations from population <span class="math inline">\(\Pi_k\)</span>.</p>
+<!--For simplicity, we shall assume that the populations have multivariate normal distributions with different means $\bmu_j$, $j=1,\ldots,g$, but the same covariance matrix, $\bSigma$, for all populations. -->
+<p>We estimate the unknown population means by the sample mean for each population
+<span class="math display">\[\hat{{\boldsymbol{\mu}}}_k =\frac{1}{n_k} \sum_{i=1}^{n_k} \mathbf x_{i,k}.\]</span></p>
+<p>To estimate the shared covariance matrix, <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, first calculate the sample covariance matrix for the <span class="math inline">\(k\)</span>th group:
+<span class="math display">\[\mathbf S_j=\frac{1}{n_j-1}\sum_{i=1}^{n_j} (\mathbf x_{i,j}-\hat{{\boldsymbol{\mu}}}_j)(\mathbf x_{i,j}-\hat{{\boldsymbol{\mu}}}_j)^\top\]</span></p>
+<p>Then
+<span class="math display" id="eq:ldawithin">\[\begin{equation}
+\widehat{\boldsymbol{\Sigma}} = \frac{1}{n-g} \sum_{k=1}^g n_k \mathbf S_k \tag{1.4}
+ \end{equation}\]</span>
+is an unbiased estimate of <span class="math inline">\(\boldsymbol{\Sigma}\)</span> where <span class="math inline">\(n = n_1 + n_2 + \ldots + n_g\)</span>. Note that this is not the same as the total covariance matrix (i.e. ignoring the class labels).</p>
+<p>The sample ML discriminant rule is then defined by substituting these estimates into <a href="1.1-lda-ML.html#prp:nine1">1.2</a>.</p>
+<!--```{definition, sampleML}
+If cases in population $\Pi_k$ have a $N_p(\bmu_k,\bSigma)$ distribution, then the **sample ML discriminant rule** is 
+\begin{align*}
+d(\bx) &= \arg \min_k (\bx-\bar{\bmu}_k)^\top \widehat{\bSigma}^{-1} (\bx-\bar{\bmu}_k)\\
+&= \arg \max_k \bar{\bmu}_k^\top \widehat{\bSigma}^{-1}\bx - \bar{\bmu}_k^\top \widehat{\bSigma}^{-1}\bar{\bmu}_k.
+\end{align*}
+```
+
+In the case $g=2$, the rule allocates $\bx$ to $\Pi_1$ if and only if
+$$\hat{\ba}^\top (\bx - \hat{\bh}) > 0$$
+where $\hat{\ba} = \widehat{\bSigma}^{-1} (\bar{\bmu}_1 - \bar{\bmu}_2)$, $\hat{\bh} = \frac{1}{2} (\bar{\bmu}_1 + \bar{\bmu}_2)$ and $\widehat{\bSigma}$,  the pooled estimate of $\bSigma$, is given by
+$$ \widehat{\bSigma} =  \frac{1}{n_1 + n_2 -2} (n_1 \bS_1 + n_2 \bS_2 ).$$
+
+
+
+-->
+</div>
+<div id="two-populations" class="section level3" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Two populations</h3>
+
+<div class="corollary">
+<span id="cor:nine2c" class="corollary"><strong>Corollary 1.1  </strong></span>When <span class="math inline">\(g=2\)</span>, the rule allocates <span class="math inline">\(\mathbf x\)</span> to <span class="math inline">\(\Pi_1\)</span> if and only if
+<span class="math display">\[\mathbf a^\top (\mathbf x- \mathbf h) &gt; 0, \]</span>
+where <span class="math inline">\(\mathbf a= \boldsymbol{\Sigma}^{-1} ({\boldsymbol{\mu}}_1 - {\boldsymbol{\mu}}_2)\)</span> and <span class="math inline">\(\mathbf h= \frac{1}{2} ({\boldsymbol{\mu}}_1 + {\boldsymbol{\mu}}_2)\)</span>.
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-3" class="proof"><em>Proof</em>. </span>From Proposition <a href="1.1-lda-ML.html#prp:nine1">1.2</a> we know that we classify to population 1 if and only if
+<span class="math display">\[\delta_1(\mathbf x)&gt;\delta_2(\mathbf x),\]</span>
+i.e., if
+<span class="math display">\[2{\boldsymbol{\mu}}_1^\top \boldsymbol{\Sigma}^{-1} \mathbf x-{\boldsymbol{\mu}}_1\boldsymbol{\Sigma}^{-1}{\boldsymbol{\mu}}_1&gt; 2{\boldsymbol{\mu}}_2^\top \boldsymbol{\Sigma}^{-1} \mathbf x-{\boldsymbol{\mu}}_2 \boldsymbol{\Sigma}^{-1}{\boldsymbol{\mu}}_2\]</span>
+Rearranging we see this is true if and only if
+<span class="math display">\[({\boldsymbol{\mu}}_1-{\boldsymbol{\mu}}_2)^\top \boldsymbol{\Sigma}^{-1} \mathbf x&gt; \frac{1}{2}({\boldsymbol{\mu}}_1-{\boldsymbol{\mu}}_2)^\top\boldsymbol{\Sigma}^{-1}({\boldsymbol{\mu}}_1+{\boldsymbol{\mu}}_2).\]</span>
+Using the expressions for <span class="math inline">\(\mathbf a\)</span> and <span class="math inline">\(\mathbf h\)</span> gives
+<span class="math display">\[\mathbf a^\top \mathbf x&gt; \mathbf a^\top \mathbf h\]</span>
+from which the desired result follows.</p>
+</div>
+<!--```{proof} 
+From Proposition \@ref(prp:nine1) we know that $f_1(\bx) > f_2(\bx)$ if and only if
+$$
+(\bx-\bmu_1)^\top \bSigma^{-1} (\bx-\bmu_1) < (\bx-\bmu_2)^\top \bSigma^{-1} (\bx-\bmu_2).
+$$
+Expanding both sides we find find that
+\begin{eqnarray*}
+&&\bx^\top \bSigma^{-1} \bx + \bmu_1^\top \bSigma^{-1} \bmu_1 - 2\bmu_1^\top \bSigma^{-1} \bx \\
+ && \qquad \qquad < \bx^\top \bSigma^{-1} \bx + \bmu_2^\top \bSigma^{-1} \bmu_2 - 2\bmu_2^\top \bSigma^{-1} \bx \\
+& \iff& \qquad - 2\bmu_1^\top \bSigma^{-1} \bx  + 2\bmu_2^\top \bSigma^{-1} \bx < \bmu_2^\top \bSigma^{-1} \bmu_2 - \bmu_1^\top \bSigma^{-1} \bmu_1 \\
+& \iff & \qquad - 2 \lb \bmu_1^\top \bSigma^{-1} \bx - \bmu_2^\top \bSigma^{-1} \bx \rb < (\bmu_2-\bmu_1)^\top \bSigma^{-1} (\bmu_1+\bmu_2) \\
+& \iff & \qquad (\bmu_1 - \bmu_2)^\top \bSigma^{-1} \bx > \frac{1}{2} \lsb (\bmu_1-\bmu_2)^\top \bSigma^{-1} (\bmu_1+\bmu_2) \rsb \\
+& \iff & \qquad \ba^\top \bx > \frac{1}{2} \ba^\top (\bmu_1+\bmu_2) \\
+& \iff & \qquad \ba^\top \lb \bx - \frac{1}{2}  (\bmu_1+\bmu_2) \rb > 0 \\
+& \iff & \qquad \ba^\top (\bx-\bh) > 0,
+\end{eqnarray*}
+where $\ba$ and $\bh$ are as defined above.
+```
+
+Note that the discriminant rule is *linear* in $\bx$.
+
+-->
+<p><br></br></p>
+<p>If we think about the situation where <span class="math inline">\(\boldsymbol{\Sigma}= \mathbf I\)</span>, then we can make sense of this rule geometrically. If the variance of the two populations is the identity matrix, then we can simply classify to the nearest population mean/centroid, and the decision boundary is thus the perpendicular bisector of the two centroids. Moreover,</p>
+<ul>
+<li><p><span class="math inline">\(\mathbf a= {\boldsymbol{\mu}}_1-{\boldsymbol{\mu}}_2\)</span> is the vector between the two population centroids, and thus will be perpendicular to the decision boundary.</p></li>
+<li><p><span class="math inline">\(\mathbf h= \frac{1}{2}({\boldsymbol{\mu}}_1+{\boldsymbol{\mu}}_2)\)</span> is the midpoint of the two population centroids, and thus <span class="math inline">\(\mathbf h\)</span> will lie on the decision boundary.</p></li>
+<li><p>An equation for the decision boundary is <span class="math inline">\(\mathbf a^\top (\mathbf x- \mathbf h)=0\)</span>.</p></li>
+<li><p>For a general point <span class="math inline">\(\mathbf x\in \mathbb{R}^p\)</span>, the vector <span class="math inline">\(\mathbf x-\mathbf h\)</span> is a vector from the decision boundary (i.e. from <span class="math inline">\(\mathbf h\)</span>) to <span class="math inline">\(\mathbf x\)</span>.</p></li>
+<li><p>Thinking of the scalar product, we can see that <span class="math inline">\(\mathbf a^\top (\mathbf x- \mathbf h)\)</span> is proportional to the cosine of the angle between <span class="math inline">\(\mathbf a\)</span> and <span class="math inline">\(\mathbf x-\mathbf h\)</span>. The point <span class="math inline">\(\mathbf x\)</span> will be closer to <span class="math inline">\({\boldsymbol{\mu}}_1\)</span> than <span class="math inline">\({\boldsymbol{\mu}}_2\)</span> if the angle between <span class="math inline">\(\mathbf a\)</span> and <span class="math inline">\(\mathbf x-\mathbf h\)</span> is between <span class="math inline">\(-90^\circ\)</span> and <span class="math inline">\(90^\circ\)</span>, or equivalently, if the cosine of the angle is greater than 0.</p></li>
+<li><p>Thus we classify <span class="math inline">\(\mathbf x\)</span> to population 1 if <span class="math inline">\(\mathbf a^\top (\mathbf x- \mathbf h)&gt;0\)</span>, and to population 2 if <span class="math inline">\(\mathbf a^\top (\mathbf x- \mathbf h)&lt;0\)</span>.</p></li>
+</ul>
+<p>This situation is illustrated in Figure <a href="1.1-lda-ML.html#fig:ldaidentity">1.4</a>.</p>
+<p>If we have more than <span class="math inline">\(2\)</span> populations, then for <span class="math inline">\(\boldsymbol{\Sigma}=\mathbf I\)</span>, the decision boundaries are the perpendicular bisectors between the population centroids (the <span class="math inline">\({\boldsymbol{\mu}}_i\)</span>) and we simply classify to the nearest centroid.</p>
+<p>When <span class="math inline">\(\boldsymbol{\Sigma}\not =\mathbf I\)</span>, we think of <span class="math inline">\(\boldsymbol{\Sigma}\)</span> as distorting space. Instead of measuring distance using the Euclidean distance, we instead adjust distances to account for <span class="math inline">\(\boldsymbol{\Sigma}\)</span>. The decision boundaries are then no longer the perpendicular bisectors of the centroids.</p>
+<div id="example-2" class="section level5 unnumbered">
+<h5>Example 2</h5>
+<p>Consider the bivariate case (<span class="math inline">\(p=2\)</span>) with <span class="math inline">\(g=2\)</span> groups, where <span class="math inline">\(\Pi_1\)</span> is the <span class="math inline">\(N_2({\boldsymbol{\mu}}_1,\mathbf I_2)\)</span> distribution and <span class="math inline">\(\Pi_2\)</span> is the <span class="math inline">\(N_2({\boldsymbol{\mu}}_2,\mathbf I_2)\)</span> distribution. Suppose <span class="math inline">\({\boldsymbol{\mu}}_1 = \begin{pmatrix} c \\ 0 \end{pmatrix}\)</span> and <span class="math inline">\({\boldsymbol{\mu}}_2 = \begin{pmatrix} -c \\ 0 \end{pmatrix}\)</span> for some constant <span class="math inline">\(c&gt;0\)</span>. Here, <span class="math inline">\(\mathbf a= \boldsymbol{\Sigma}^{-1} ({\boldsymbol{\mu}}_1 - {\boldsymbol{\mu}}_2) = \begin{pmatrix} 2c \\ 0 \end{pmatrix}\)</span> and <span class="math inline">\(\mathbf h= \frac{1}{2}( {\boldsymbol{\mu}}_1 + {\boldsymbol{\mu}}_2 ) = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\)</span>.</p>
+<p>The ML discriminant rule allocates <span class="math inline">\(\mathbf x\)</span> to <span class="math inline">\(\Pi_1\)</span> if <span class="math inline">\(\mathbf a^\top (\mathbf x- \mathbf h) = \mathbf a^\top \mathbf x&gt; 0\)</span>. If we write <span class="math inline">\(\mathbf x= \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}\)</span> then <span class="math inline">\(\mathbf a^\top \mathbf x= 2cx_1\)</span>, which is greater than zero if <span class="math inline">\(x_1 &gt; 0\)</span>. Hence we allocate <span class="math inline">\(\mathbf x\)</span> to <span class="math inline">\(\Pi_1\)</span> if <span class="math inline">\(x_1 &gt; 0\)</span> and allocate <span class="math inline">\(\mathbf x\)</span> to <span class="math inline">\(\Pi_2\)</span> if <span class="math inline">\(x_1 \leq 0\)</span>.</p>
+<div class="figure"><span style="display:block;" id="fig:ldaidentity"></span>
+<img src="09-lda_files/figure-html/ldaidentity-1.png" alt="LDA when the covariance matrix is the identity" width="672" />
+<p class="caption">
+Figure 1.4: LDA when the covariance matrix is the identity
+</p>
+</div>
+<!--\begin{center}
+\includegraphics[width=12cm,angle=0]{mldr_bivariate.pdf}
+\end{center}
+-->
+</div>
+<div id="example-3" class="section level5 unnumbered">
+<h5>Example 3</h5>
+<p>Let’s now generalise the previous example, making no assumptions about <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, but still assuming <span class="math inline">\({\boldsymbol{\mu}}_1=-{\boldsymbol{\mu}}_2\)</span>. If we write <span class="math inline">\(\mathbf a= \begin{pmatrix} a_1 \\ a_2 \end{pmatrix}\)</span> and <span class="math inline">\(\mathbf h= \frac{1}{2}( {\boldsymbol{\mu}}_1 + {\boldsymbol{\mu}}_2 ) = \boldsymbol 0\)</span>. Then the ML discriminant rule allocates <span class="math inline">\(\mathbf x\)</span> to <span class="math inline">\(\Pi_1\)</span> if <span class="math inline">\(\mathbf a^\top \mathbf x&gt; 0\)</span>. If we write <span class="math inline">\(\mathbf x= \begin{pmatrix} x \\ y \end{pmatrix}\)</span> then the boundary separating <span class="math inline">\(\mathcal R_1\)</span> and <span class="math inline">\(\mathcal R_2\)</span> is given by <span class="math inline">\(\mathbf a^\top \mathbf x= \begin{pmatrix} a_1 &amp; a_2 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = a_1 x + a_2 y = 0\)</span>, i.e. <span class="math inline">\(y = -\frac{a_1}{a_2} x\)</span>. This is a straight line through the origin with gradient <span class="math inline">\(-a_1/a_2\)</span>.</p>
+<p>For <span class="math inline">\({\boldsymbol{\mu}}_1 =\begin{pmatrix}1 \\1 \\\end{pmatrix}\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}= \begin{pmatrix}1&amp;-0.9 \\-0.9&amp;1 \\\end{pmatrix}\)</span> we find <span class="math inline">\(\mathbf a= \begin{pmatrix}20 \\20 \\\end{pmatrix}\)</span>, which gives the line <span class="math inline">\(y = -1 x\)</span>.</p>
+<p><img src="09-lda_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>If the variance of the <span class="math inline">\(y\)</span> component is very small compared to the variance of the <span class="math inline">\(x\)</span> component, then we begin to classify solely on the basis of <span class="math inline">\(y\)</span>. For example, if
+<span class="math inline">\({\boldsymbol{\mu}}_1 =\begin{pmatrix}2 \\1 \\\end{pmatrix}\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}= \begin{pmatrix}1&amp;0.09 \\0.09&amp;0.1 \\\end{pmatrix}\)</span> we find <span class="math inline">\(\mathbf a= \begin{pmatrix}2.39 \\17.8 \\\end{pmatrix}\)</span>, which gives the line <span class="math inline">\(y = -0.13 x\)</span>. I.e., a line that is getting close to being horizontal.</p>
+<p><img src="09-lda_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+</div>
+<div id="more-than-two-populations" class="section level3" number="1.1.4">
+<h3><span class="header-section-number">1.1.4</span> More than two populations</h3>
+<p>When <span class="math inline">\(g&gt;2\)</span>, the boundaries for the ML rule will be piece-wise linear. In the exercises you will look at an example with 3 populations in two dimensions.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1-lda.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1.2-lda-Bayes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

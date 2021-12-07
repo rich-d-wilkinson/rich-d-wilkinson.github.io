@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9.3 Hierarchical clustering methods | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.24.4 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9.3 Hierarchical clustering methods | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9.3 Hierarchical clustering methods | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="9.2-model-based-clustering.html"/>
+<link rel="next" href="9.4-summary.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="part-i-prerequisites.html"><a href="part-i-prerequisites.html"><i class="fa fa-check"></i>PART I: Prerequisites</a></li>
+<li class="chapter" data-level="1" data-path="1-stat-prelim.html"><a href="1-stat-prelim.html"><i class="fa fa-check"></i><b>1</b> Statistical Preliminaries</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-notation.html"><a href="1.1-notation.html"><i class="fa fa-check"></i><b>1.1</b> Notation</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="1.1-notation.html"><a href="1.1-notation.html#example-datasets"><i class="fa fa-check"></i><b>1.1.1</b> Example datasets</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1.1-notation.html"><a href="1.1-notation.html#aims-of-multivariate-data-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Aims of multivariate data analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1.2-exploratory-data-analysis-eda.html"><a href="1.2-exploratory-data-analysis-eda.html"><i class="fa fa-check"></i><b>1.2</b> Exploratory data analysis (EDA)</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1.2-exploratory-data-analysis-eda.html"><a href="1.2-exploratory-data-analysis-eda.html#data-visualization"><i class="fa fa-check"></i><b>1.2.1</b> Data visualization</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1.2-exploratory-data-analysis-eda.html"><a href="1.2-exploratory-data-analysis-eda.html#summary-statistics"><i class="fa fa-check"></i><b>1.2.2</b> Summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1.3-randvec.html"><a href="1.3-randvec.html"><i class="fa fa-check"></i><b>1.3</b> Random vectors and matrices</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="1.3-randvec.html"><a href="1.3-randvec.html#estimators"><i class="fa fa-check"></i><b>1.3.1</b> Estimators</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1.4-computer-tasks.html"><a href="1.4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.5" data-path="1.5-exercises.html"><a href="1.5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-linalg-prelim.html"><a href="2-linalg-prelim.html"><i class="fa fa-check"></i><b>2</b> Review of linear algebra</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html"><i class="fa fa-check"></i><b>2.1</b> Basics</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#notation-1"><i class="fa fa-check"></i><b>2.1.1</b> Notation</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#elementary-matrix-operations"><i class="fa fa-check"></i><b>2.1.2</b> Elementary matrix operations</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#special-matrices"><i class="fa fa-check"></i><b>2.1.3</b> Special matrices</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2.1-linalg-basics.html"><a href="2.1-linalg-basics.html#vectordiff"><i class="fa fa-check"></i><b>2.1.4</b> Vector Differentiation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html"><i class="fa fa-check"></i><b>2.2</b> Vector spaces</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html#linear-independence"><i class="fa fa-check"></i><b>2.2.1</b> Linear independence</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html#colsspace"><i class="fa fa-check"></i><b>2.2.2</b> Row and column spaces</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2.2-linalg-vecspaces.html"><a href="2.2-linalg-vecspaces.html#linear-transformations"><i class="fa fa-check"></i><b>2.2.3</b> Linear transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html"><i class="fa fa-check"></i><b>2.3</b> Inner product spaces</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html#normed"><i class="fa fa-check"></i><b>2.3.1</b> Distances, and angles</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html#orthogonal-matrices"><i class="fa fa-check"></i><b>2.3.2</b> Orthogonal matrices</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2.3-linalg-innerprod.html"><a href="2.3-linalg-innerprod.html#projection-matrix"><i class="fa fa-check"></i><b>2.3.3</b> Projections</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2.4-centering-matrix.html"><a href="2.4-centering-matrix.html"><i class="fa fa-check"></i><b>2.4</b> The Centering Matrix</a></li>
+<li class="chapter" data-level="2.5" data-path="2.5-tasks-ch2.html"><a href="2.5-tasks-ch2.html"><i class="fa fa-check"></i><b>2.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.6" data-path="2.6-exercises-ch2.html"><a href="2.6-exercises-ch2.html"><i class="fa fa-check"></i><b>2.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-linalg-decomp.html"><a href="3-linalg-decomp.html"><i class="fa fa-check"></i><b>3</b> Matrix decompositions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3.1-matrix-matrix.html"><a href="3.1-matrix-matrix.html"><i class="fa fa-check"></i><b>3.1</b> Matrix-matrix products</a></li>
+<li class="chapter" data-level="3.2" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html"><i class="fa fa-check"></i><b>3.2</b> Spectral/eigen decomposition</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html#eigenvalues-and-eigenvectors"><i class="fa fa-check"></i><b>3.2.1</b> Eigenvalues and eigenvectors</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html#spectral-decomposition"><i class="fa fa-check"></i><b>3.2.2</b> Spectral decomposition</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3.2-spectraleigen-decomposition.html"><a href="3.2-spectraleigen-decomposition.html#matrixroots"><i class="fa fa-check"></i><b>3.2.3</b> Matrix square roots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3.3-linalg-SVD.html"><a href="3.3-linalg-SVD.html"><i class="fa fa-check"></i><b>3.3</b> Singular Value Decomposition (SVD)</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3.3-linalg-SVD.html"><a href="3.3-linalg-SVD.html#examples"><i class="fa fa-check"></i><b>3.3.1</b> Examples</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3.4-svdopt.html"><a href="3.4-svdopt.html"><i class="fa fa-check"></i><b>3.4</b> SVD optimization results</a></li>
+<li class="chapter" data-level="3.5" data-path="3.5-lowrank.html"><a href="3.5-lowrank.html"><i class="fa fa-check"></i><b>3.5</b> Low-rank approximation</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="3.5-lowrank.html"><a href="3.5-lowrank.html#matrix-norms"><i class="fa fa-check"></i><b>3.5.1</b> Matrix norms</a></li>
+<li class="chapter" data-level="3.5.2" data-path="3.5-lowrank.html"><a href="3.5-lowrank.html#eckart-young-mirsky-theorem"><i class="fa fa-check"></i><b>3.5.2</b> Eckart-Young-Mirsky Theorem</a></li>
+<li class="chapter" data-level="3.5.3" data-path="3.5-lowrank.html"><a href="3.5-lowrank.html#example-image-compression"><i class="fa fa-check"></i><b>3.5.3</b> Example: image compression</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="3.6-tasks-ch3.html"><a href="3.6-tasks-ch3.html"><i class="fa fa-check"></i><b>3.6</b> Computer tasks</a></li>
+<li class="chapter" data-level="3.7" data-path="3.7-exercises-ch3.html"><a href="3.7-exercises-ch3.html"><i class="fa fa-check"></i><b>3.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html"><i class="fa fa-check"></i>PART II: Dimension reduction methods</a>
+<ul>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#a-warning"><i class="fa fa-check"></i>A warning</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-pca.html"><a href="4-pca.html"><i class="fa fa-check"></i><b>4</b> Principal Component Analysis (PCA)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4.1-pca-an-informal-introduction.html"><a href="4.1-pca-an-informal-introduction.html"><i class="fa fa-check"></i><b>4.1</b> PCA: an informal introduction</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4.1-pca-an-informal-introduction.html"><a href="4.1-pca-an-informal-introduction.html#notation-recap"><i class="fa fa-check"></i><b>4.1.1</b> Notation recap</a></li>
+<li class="chapter" data-level="4.1.2" data-path="4.1-pca-an-informal-introduction.html"><a href="4.1-pca-an-informal-introduction.html#first-principal-component"><i class="fa fa-check"></i><b>4.1.2</b> First principal component</a></li>
+<li class="chapter" data-level="4.1.3" data-path="4.1-pca-an-informal-introduction.html"><a href="4.1-pca-an-informal-introduction.html#second-principal-component"><i class="fa fa-check"></i><b>4.1.3</b> Second principal component</a></li>
+<li class="chapter" data-level="4.1.4" data-path="4.1-pca-an-informal-introduction.html"><a href="4.1-pca-an-informal-introduction.html#geometric-interpretation-1"><i class="fa fa-check"></i><b>4.1.4</b> Geometric interpretation</a></li>
+<li class="chapter" data-level="4.1.5" data-path="4.1-pca-an-informal-introduction.html"><a href="4.1-pca-an-informal-introduction.html#example"><i class="fa fa-check"></i><b>4.1.5</b> Example</a></li>
+<li class="chapter" data-level="4.1.6" data-path="4.1-pca-an-informal-introduction.html"><a href="4.1-pca-an-informal-introduction.html#example-iris"><i class="fa fa-check"></i><b>4.1.6</b> Example: Iris</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4.2-pca-a-formal-description-with-proofs.html"><a href="4.2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>4.2</b> PCA: a formal description with proofs</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="4.2-pca-a-formal-description-with-proofs.html"><a href="4.2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>4.2.1</b> Properties of principal components</a></li>
+<li class="chapter" data-level="4.2.2" data-path="4.2-pca-a-formal-description-with-proofs.html"><a href="4.2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>4.2.2</b> Example: Football</a></li>
+<li class="chapter" data-level="4.2.3" data-path="4.2-pca-a-formal-description-with-proofs.html"><a href="4.2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>4.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="4.2-pca-a-formal-description-with-proofs.html"><a href="4.2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>4.2.4</b> Population PCA</a></li>
+<li class="chapter" data-level="4.2.5" data-path="4.2-pca-a-formal-description-with-proofs.html"><a href="4.2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>4.2.5</b> PCA under transformations of variables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4.3-an-alternative-view-of-pca.html"><a href="4.3-an-alternative-view-of-pca.html"><i class="fa fa-check"></i><b>4.3</b> An alternative view of PCA</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="4.3-an-alternative-view-of-pca.html"><a href="4.3-an-alternative-view-of-pca.html#pca-mnist"><i class="fa fa-check"></i><b>4.3.1</b> Example: MNIST handwritten digits</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="4.4-pca-comptask.html"><a href="4.4-pca-comptask.html"><i class="fa fa-check"></i><b>4.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="4.5" data-path="4.5-exercises-1.html"><a href="4.5-exercises-1.html"><i class="fa fa-check"></i><b>4.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-cca.html"><a href="5-cca.html"><i class="fa fa-check"></i><b>5</b> Canonical Correlation Analysis (CCA)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5.1-cca1.html"><a href="5.1-cca1.html"><i class="fa fa-check"></i><b>5.1</b> The first pair of canonical variables</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="5.1-cca1.html"><a href="5.1-cca1.html#the-first-canonical-components"><i class="fa fa-check"></i><b>5.1.1</b> The first canonical components</a></li>
+<li class="chapter" data-level="5.1.2" data-path="5.1-cca1.html"><a href="5.1-cca1.html#premcca"><i class="fa fa-check"></i><b>5.1.2</b> Example: Premier league football</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="5.2-the-full-set-of-canonical-correlations.html"><a href="5.2-the-full-set-of-canonical-correlations.html"><i class="fa fa-check"></i><b>5.2</b> The full set of canonical correlations</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="5.2-the-full-set-of-canonical-correlations.html"><a href="5.2-the-full-set-of-canonical-correlations.html#example-continued"><i class="fa fa-check"></i><b>5.2.1</b> Example continued</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="5.3-properties.html"><a href="5.3-properties.html"><i class="fa fa-check"></i><b>5.3</b> Properties</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="5.3-properties.html"><a href="5.3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>5.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="5.3-properties.html"><a href="5.3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>5.3.2</b> Invariance/equivariance properties of CCA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="5.4-computer-tasks-1.html"><a href="5.4-computer-tasks-1.html"><i class="fa fa-check"></i><b>5.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="5.5" data-path="5.5-exercises-2.html"><a href="5.5-exercises-2.html"><i class="fa fa-check"></i><b>5.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-mds.html"><a href="6-mds.html"><i class="fa fa-check"></i><b>6</b> Multidimensional Scaling (MDS)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6.1-classical-mds.html"><a href="6.1-classical-mds.html"><i class="fa fa-check"></i><b>6.1</b> Classical MDS</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="6.1-classical-mds.html"><a href="6.1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>6.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6.1-classical-mds.html"><a href="6.1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>6.1.2</b> Principal Coordinate Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6.2-similarity.html"><a href="6.2-similarity.html"><i class="fa fa-check"></i><b>6.2</b> Similarity measures</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6.2-similarity.html"><a href="6.2-similarity.html#binary-attributes"><i class="fa fa-check"></i><b>6.2.1</b> Binary attributes</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6.2-similarity.html"><a href="6.2-similarity.html#example-classical-mds-with-the-mnist-data"><i class="fa fa-check"></i><b>6.2.2</b> Example: Classical MDS with the MNIST data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6.3-non-metric-mds.html"><a href="6.3-non-metric-mds.html"><i class="fa fa-check"></i><b>6.3</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="6.4" data-path="6.4-exercises-3.html"><a href="6.4-exercises-3.html"><i class="fa fa-check"></i><b>6.4</b> Exercises</a></li>
+<li class="chapter" data-level="6.5" data-path="6.5-computer-tasks-2.html"><a href="6.5-computer-tasks-2.html"><i class="fa fa-check"></i><b>6.5</b> Computer Tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><a href="part-iii-inference-using-the-multivariate-normal-distribution-mvn.html"><i class="fa fa-check"></i>Part III: Inference using the Multivariate Normal Distribution (MVN)</a></li>
+<li class="chapter" data-level="7" data-path="7-multinormal.html"><a href="7-multinormal.html"><i class="fa fa-check"></i><b>7</b> The Multivariate Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="7.1-definition-and-properties-of-the-mvn.html"><a href="7.1-definition-and-properties-of-the-mvn.html"><i class="fa fa-check"></i><b>7.1</b> Definition and Properties of the MVN</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="7.1-definition-and-properties-of-the-mvn.html"><a href="7.1-definition-and-properties-of-the-mvn.html#basics"><i class="fa fa-check"></i><b>7.1.1</b> Basics</a></li>
+<li class="chapter" data-level="7.1.2" data-path="7.1-definition-and-properties-of-the-mvn.html"><a href="7.1-definition-and-properties-of-the-mvn.html#transformations"><i class="fa fa-check"></i><b>7.1.2</b> Transformations</a></li>
+<li class="chapter" data-level="7.1.3" data-path="7.1-definition-and-properties-of-the-mvn.html"><a href="7.1-definition-and-properties-of-the-mvn.html#independence"><i class="fa fa-check"></i><b>7.1.3</b> Independence</a></li>
+<li class="chapter" data-level="7.1.4" data-path="7.1-definition-and-properties-of-the-mvn.html"><a href="7.1-definition-and-properties-of-the-mvn.html#confidence-ellipses"><i class="fa fa-check"></i><b>7.1.4</b> Confidence ellipses</a></li>
+<li class="chapter" data-level="7.1.5" data-path="7.1-definition-and-properties-of-the-mvn.html"><a href="7.1-definition-and-properties-of-the-mvn.html#sampling-results-for-the-mvn"><i class="fa fa-check"></i><b>7.1.5</b> Sampling results for the MVN</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="7.2-the-wishart-distribution.html"><a href="7.2-the-wishart-distribution.html"><i class="fa fa-check"></i><b>7.2</b> The Wishart distribution</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="7.2-the-wishart-distribution.html"><a href="7.2-the-wishart-distribution.html#properties-1"><i class="fa fa-check"></i><b>7.2.1</b> Properties</a></li>
+<li class="chapter" data-level="7.2.2" data-path="7.2-the-wishart-distribution.html"><a href="7.2-the-wishart-distribution.html#cochrans-theorem"><i class="fa fa-check"></i><b>7.2.2</b> Cochran’s theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="7.3-hotellings-t2-distribution.html"><a href="7.3-hotellings-t2-distribution.html"><i class="fa fa-check"></i><b>7.3</b> Hotelling’s <span class="math inline">\(T^2\)</span> distribution</a></li>
+<li class="chapter" data-level="7.4" data-path="7.4-inference-based-on-the-mvn.html"><a href="7.4-inference-based-on-the-mvn.html"><i class="fa fa-check"></i><b>7.4</b> Inference based on the MVN</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="7.4-inference-based-on-the-mvn.html"><a href="7.4-inference-based-on-the-mvn.html#onesampleSigma"><i class="fa fa-check"></i><b>7.4.1</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> known</a></li>
+<li class="chapter" data-level="7.4.2" data-path="7.4-inference-based-on-the-mvn.html"><a href="7.4-inference-based-on-the-mvn.html#onesample"><i class="fa fa-check"></i><b>7.4.2</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 1 sample</a></li>
+<li class="chapter" data-level="7.4.3" data-path="7.4-inference-based-on-the-mvn.html"><a href="7.4-inference-based-on-the-mvn.html#boldsymbolsigma-unknown-2-samples"><i class="fa fa-check"></i><b>7.4.3</b> <span class="math inline">\(\boldsymbol{\Sigma}\)</span> unknown: 2 samples</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="7.5-exercises-4.html"><a href="7.5-exercises-4.html"><i class="fa fa-check"></i><b>7.5</b> Exercises</a></li>
+<li class="chapter" data-level="7.6" data-path="7.6-computer-tasks-3.html"><a href="7.6-computer-tasks-3.html"><i class="fa fa-check"></i><b>7.6</b> Computer tasks</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-iv-classification-and-clustering.html"><a href="part-iv-classification-and-clustering.html"><i class="fa fa-check"></i>Part IV: Classification and Clustering</a></li>
+<li class="chapter" data-level="8" data-path="8-lda.html"><a href="8-lda.html"><i class="fa fa-check"></i><b>8</b> Discriminant analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="8-lda.html"><a href="8-lda.html#linear-discriminant-analysis"><i class="fa fa-check"></i>Linear discriminant analysis</a></li>
+<li class="chapter" data-level="8.1" data-path="8.1-lda-ML.html"><a href="8.1-lda-ML.html"><i class="fa fa-check"></i><b>8.1</b> Maximum likelihood (ML) discriminant rule</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="8.1-lda-ML.html"><a href="8.1-lda-ML.html#multivariate-normal-populations"><i class="fa fa-check"></i><b>8.1.1</b> Multivariate normal populations</a></li>
+<li class="chapter" data-level="8.1.2" data-path="8.1-lda-ML.html"><a href="8.1-lda-ML.html#sample-lda"><i class="fa fa-check"></i><b>8.1.2</b> The sample ML discriminant rule</a></li>
+<li class="chapter" data-level="8.1.3" data-path="8.1-lda-ML.html"><a href="8.1-lda-ML.html#two-populations"><i class="fa fa-check"></i><b>8.1.3</b> Two populations</a></li>
+<li class="chapter" data-level="8.1.4" data-path="8.1-lda-ML.html"><a href="8.1-lda-ML.html#more-than-two-populations"><i class="fa fa-check"></i><b>8.1.4</b> More than two populations</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="8.2-lda-Bayes.html"><a href="8.2-lda-Bayes.html"><i class="fa fa-check"></i><b>8.2</b> Bayes discriminant rule</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="8.2-lda-Bayes.html"><a href="8.2-lda-Bayes.html#example-lda-using-the-iris-data"><i class="fa fa-check"></i><b>8.2.1</b> Example: LDA using the Iris data</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8.2-lda-Bayes.html"><a href="8.2-lda-Bayes.html#quadratic-discriminant-analysis-qda"><i class="fa fa-check"></i><b>8.2.2</b> Quadratic Discriminant Analysis (QDA)</a></li>
+<li class="chapter" data-level="8.2.3" data-path="8.2-lda-Bayes.html"><a href="8.2-lda-Bayes.html#prediction-accuracy"><i class="fa fa-check"></i><b>8.2.3</b> Prediction accuracy</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="8.3-FLDA.html"><a href="8.3-FLDA.html"><i class="fa fa-check"></i><b>8.3</b> Fisher’s linear discriminant rule</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="8.3-FLDA.html"><a href="8.3-FLDA.html#iris-example-continued-1"><i class="fa fa-check"></i><b>8.3.1</b> Iris example continued</a></li>
+<li class="chapter" data-level="8.3.2" data-path="8.3-FLDA.html"><a href="8.3-FLDA.html#links-between-methods"><i class="fa fa-check"></i><b>8.3.2</b> Links between methods</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="8.4-computer-tasks-4.html"><a href="8.4-computer-tasks-4.html"><i class="fa fa-check"></i><b>8.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="8.5" data-path="8.5-exercises-5.html"><a href="8.5-exercises-5.html"><i class="fa fa-check"></i><b>8.5</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="9-cluster.html"><a href="9-cluster.html"><i class="fa fa-check"></i><b>9</b> Cluster Analysis</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="9.1-k-means-clustering.html"><a href="9.1-k-means-clustering.html"><i class="fa fa-check"></i><b>9.1</b> K-means clustering</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="9.1-k-means-clustering.html"><a href="9.1-k-means-clustering.html#estimating-boldsymbol-delta"><i class="fa fa-check"></i><b>9.1.1</b> Estimating <span class="math inline">\(\boldsymbol \delta\)</span></a></li>
+<li class="chapter" data-level="9.1.2" data-path="9.1-k-means-clustering.html"><a href="9.1-k-means-clustering.html#k-means"><i class="fa fa-check"></i><b>9.1.2</b> K-means</a></li>
+<li class="chapter" data-level="9.1.3" data-path="9.1-k-means-clustering.html"><a href="9.1-k-means-clustering.html#example-iris-data"><i class="fa fa-check"></i><b>9.1.3</b> Example: Iris data</a></li>
+<li class="chapter" data-level="9.1.4" data-path="9.1-k-means-clustering.html"><a href="9.1-k-means-clustering.html#choosing-k"><i class="fa fa-check"></i><b>9.1.4</b> Choosing <span class="math inline">\(K\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="9.2-model-based-clustering.html"><a href="9.2-model-based-clustering.html"><i class="fa fa-check"></i><b>9.2</b> Model-based clustering</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="9.2-model-based-clustering.html"><a href="9.2-model-based-clustering.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>9.2.1</b> Maximum-likelihood estimation</a></li>
+<li class="chapter" data-level="9.2.2" data-path="9.2-model-based-clustering.html"><a href="9.2-model-based-clustering.html#multivariate-gaussian-clusters"><i class="fa fa-check"></i><b>9.2.2</b> Multivariate Gaussian clusters</a></li>
+<li class="chapter" data-level="9.2.3" data-path="9.2-model-based-clustering.html"><a href="9.2-model-based-clustering.html#example-iris-1"><i class="fa fa-check"></i><b>9.2.3</b> Example: Iris</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="9.3-hierarchical-clustering-methods.html"><a href="9.3-hierarchical-clustering-methods.html"><i class="fa fa-check"></i><b>9.3</b> Hierarchical clustering methods</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="9.3-hierarchical-clustering-methods.html"><a href="9.3-hierarchical-clustering-methods.html#distance-measures"><i class="fa fa-check"></i><b>9.3.1</b> Distance measures</a></li>
+<li class="chapter" data-level="9.3.2" data-path="9.3-hierarchical-clustering-methods.html"><a href="9.3-hierarchical-clustering-methods.html#toy-example"><i class="fa fa-check"></i><b>9.3.2</b> Toy Example</a></li>
+<li class="chapter" data-level="9.3.3" data-path="9.3-hierarchical-clustering-methods.html"><a href="9.3-hierarchical-clustering-methods.html#comparison-of-methods"><i class="fa fa-check"></i><b>9.3.3</b> Comparison of methods</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="9.4-summary.html"><a href="9.4-summary.html"><i class="fa fa-check"></i><b>9.4</b> Summary</a></li>
+<li class="chapter" data-level="9.5" data-path="9.5-computer-tasks-5.html"><a href="9.5-computer-tasks-5.html"><i class="fa fa-check"></i><b>9.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="9.6" data-path="9.6-exercises-6.html"><a href="9.6-exercises-6.html"><i class="fa fa-check"></i><b>9.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="10-lm.html"><a href="10-lm.html"><i class="fa fa-check"></i><b>10</b> Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="10-lm.html"><a href="10-lm.html#notation-3"><i class="fa fa-check"></i>Notation</a></li>
+<li class="chapter" data-level="10.1" data-path="10.1-ordinary-least-squares-ols.html"><a href="10.1-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>10.1</b> Ordinary least squares (OLS)</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="10.1-ordinary-least-squares-ols.html"><a href="10.1-ordinary-least-squares-ols.html#geometry"><i class="fa fa-check"></i><b>10.1.1</b> Geometry</a></li>
+<li class="chapter" data-level="10.1.2" data-path="10.1-ordinary-least-squares-ols.html"><a href="10.1-ordinary-least-squares-ols.html#normal-linear-model"><i class="fa fa-check"></i><b>10.1.2</b> Normal linear model</a></li>
+<li class="chapter" data-level="10.1.3" data-path="10.1-ordinary-least-squares-ols.html"><a href="10.1-ordinary-least-squares-ols.html#linear-models-in-r"><i class="fa fa-check"></i><b>10.1.3</b> Linear models in R</a></li>
+<li class="chapter" data-level="10.1.4" data-path="10.1-ordinary-least-squares-ols.html"><a href="10.1-ordinary-least-squares-ols.html#problems-with-ols"><i class="fa fa-check"></i><b>10.1.4</b> Problems with OLS</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="10.2-principal-component-regression-pcr.html"><a href="10.2-principal-component-regression-pcr.html"><i class="fa fa-check"></i><b>10.2</b> Principal component regression (PCR)</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="10.2-principal-component-regression-pcr.html"><a href="10.2-principal-component-regression-pcr.html#pcr-in-r"><i class="fa fa-check"></i><b>10.2.1</b> PCR in R</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="10.3-shrinkage-methods.html"><a href="10.3-shrinkage-methods.html"><i class="fa fa-check"></i><b>10.3</b> Shrinkage methods</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="10.3-shrinkage-methods.html"><a href="10.3-shrinkage-methods.html#ridge-regression-in-r"><i class="fa fa-check"></i><b>10.3.1</b> Ridge regression in R</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="10.4-multi-output-linear-model.html"><a href="10.4-multi-output-linear-model.html"><i class="fa fa-check"></i><b>10.4</b> Multi-output Linear Model</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="10.4-multi-output-linear-model.html"><a href="10.4-multi-output-linear-model.html#normal-linear-model-1"><i class="fa fa-check"></i><b>10.4.1</b> Normal linear model</a></li>
+<li class="chapter" data-level="10.4.2" data-path="10.4-multi-output-linear-model.html"><a href="10.4-multi-output-linear-model.html#reduced-rank-regression"><i class="fa fa-check"></i><b>10.4.2</b> Reduced rank regression</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="10.5-computer-tasks-6.html"><a href="10.5-computer-tasks-6.html"><i class="fa fa-check"></i><b>10.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="10.6" data-path="10.6-exercises-7.html"><a href="10.6-exercises-7.html"><i class="fa fa-check"></i><b>10.6</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hierarchical-clustering-methods" class="section level2" number="9.3">
+<h2><span class="header-section-number">9.3</span> Hierarchical clustering methods</h2>
+<p><em>Hierarchical</em> clustering methods work by creating a hierarchy of clusters, in which clusters at each level of the heirarchy are formed by merging or splitting clusters from a neighbouring level of the hierarchy. A hierarchical clustering method is usually of one of two types:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>agglomerative</strong> clustering methods start with the finest partition (one observation per cluster) and progressively combine clusters.</p></li>
+<li><p><strong>divisive/splitting</strong> clustering methods start with a single cluster, and then progressively splits or divides clusters.</p></li>
+</ol>
+<p>We will focus on agglomerative methods.</p>
+<div id="distance-measures" class="section level3" number="9.3.1">
+<h3><span class="header-section-number">9.3.1</span> Distance measures</h3>
+<p>Agglomerative clustering methods take the <span class="math inline">\(n \times n\)</span> matrix of inter-point distances <span class="math inline">\(\mathbf D=(d_{ij})_{i,j=1}^n\)</span> of the type we considered in Chapter <a href="6-mds.html#mds">6</a>. Sometimes we will have access to the underlying data <span class="math inline">\(\mathbf x_1, \ldots, \mathbf x_n\)</span> and in that case the distances may be computed using a distance function <span class="math inline">\(d\)</span>, i.e., <span class="math inline">\(d_{ij}=d(\mathbf x_i, \mathbf x_j)\)</span>.
+As we saw previously, we can find that different distance functions <span class="math inline">\(d\)</span>, can produce different results. For example, with continuous data the Euclidean (<span class="math inline">\(L_2\)</span>) and Manhattan distance (<span class="math inline">\(L_1\)</span>) will often produce different results, with the Euclidean distance being more sensitive to outliers than the Manhattan distance:</p>
+<ul>
+<li>the Euclidean distance matrix for the points <span class="math inline">\(x=0, 1,4\)</span> is
+<span class="math display">\[\begin{pmatrix}0&amp;&amp;\\1&amp;0\\
+16&amp;9&amp;0\end{pmatrix}\]</span>
+whereas the Manhattan distance matrix is
+<span class="math display">\[\begin{pmatrix}0&amp;&amp;\\1&amp;0\\
+4&amp;3&amp;0\end{pmatrix}.\]</span></li>
+</ul>
+<p>The differences can be even more important for binary attribute data. In Chapter <a href="6-mds.html#mds">6</a> we saw the SMC and Jaccard similarity measures, which leads to a corresponding distance function. For example,</p>
+<ul>
+<li>The Jaccard distance for two sets of attributes <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is
+<span class="math display">\[1- \frac{|A \cap B|}{|A\cup B|}\]</span>
+i.e., it is number of attributes shared by A and B, divided by the number of attributes possessed by either A or B (or both), all subtracted from 1.</li>
+</ul>
+<div id="distances-between-clusters" class="section level4" number="9.3.1.1">
+<h4><span class="header-section-number">9.3.1.1</span> Distances between clusters</h4>
+<p>The distances between individual observations are the input to the clustering method. Each method then defines a distance between clusters. For example, suppose we have two clusters <span class="math inline">\(\mathcal{G}=\{\mathbf x_1, \mathbf x_2\}\)</span> and <span class="math inline">\(\mathcal{H}=\{\mathbf x_3, \mathbf x_4\}\)</span>. Clustering methods are characterized by how they measure the distance between clusters, <span class="math inline">\(d(\mathcal{G}, \mathcal{H})\)</span>, which is a function of the pairwise distances <span class="math inline">\(d_{ij}\)</span> where one member of the pair <span class="math inline">\(i\)</span> is from <span class="math inline">\(\mathcal{G}\)</span> and the other, <span class="math inline">\(j\)</span>, is from <span class="math inline">\(\mathcal{H}\)</span>.</p>
+<p>For example,</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>single linkage (SL)</strong> agglomerative clustering, sometimes called <strong>nearest neighbour</strong> clustering, uses the closest (least distant) pair
+<span class="math display">\[d_{SL}(\mathcal{G}, \mathcal{H}) = \min_{\substack{i\in \mathcal{G}\\ i\in \mathcal{H}}} d_{ij}\]</span></p></li>
+<li><p><strong>complete linkage (CL)</strong> agglomerative clustering, sometimes called <strong>furthest neigbour</strong> clustering, uses
+<span class="math display">\[d_{CL}(\mathcal{G}, \mathcal{H}) = \max_{\substack{i\in \mathcal{G}\\ i\in \mathcal{H}}} d_{ij}\]</span></p></li>
+<li><p><strong>group average (GA)</strong> clustering uses the average distance between groups:
+<span class="math display">\[d_{GA}(\mathcal{G}, \mathcal{H}) = \frac{1}{n_\mathcal{G}n_\mathcal{H}}\sum_{i\in\mathcal{G}}\sum_{j\in\mathcal{H}} d_{ij}\]</span></p></li>
+</ol>
+<p>and many other choices are possible (see the help page of the <code>hclust</code> command in R for some details).</p>
+<p>Agglomerative clustering methods then work as follows:</p>
+<ul>
+<li><p>Start with the finest partition of singleton clusters (one observation per cluster)</p></li>
+<li><p>At each stage, join the two clusters with the closest distance.</p></li>
+<li><p>Stop once we are left with just a single cluster.</p></li>
+</ul>
+</div>
+</div>
+<div id="toy-example" class="section level3" number="9.3.2">
+<h3><span class="header-section-number">9.3.2</span> Toy Example</h3>
+<p>Suppose we are given 5 observations with distance matrix</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="9.3-hierarchical-clustering-methods.html#cb261-1" aria-hidden="true" tabindex="-1"></a>(D <span class="ot">&lt;-</span> <span class="fu">as.dist</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb261-2"><a href="9.3-hierarchical-clustering-methods.html#cb261-2" aria-hidden="true" tabindex="-1"></a>                      <span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb261-3"><a href="9.3-hierarchical-clustering-methods.html#cb261-3" aria-hidden="true" tabindex="-1"></a>                      <span class="dv">11</span>,<span class="dv">9</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb261-4"><a href="9.3-hierarchical-clustering-methods.html#cb261-4" aria-hidden="true" tabindex="-1"></a>                      <span class="dv">15</span>,<span class="dv">13</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb261-5"><a href="9.3-hierarchical-clustering-methods.html#cb261-5" aria-hidden="true" tabindex="-1"></a>                      <span class="dv">7</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">0</span>), <span class="at">nr=</span><span class="dv">5</span>, <span class="at">byrow=</span>T)))</span></code></pre></div>
+<pre><code>##    1  2  3  4
+## 2  2         
+## 3 11  9      
+## 4 15 13 10   
+## 5  7  5  4  8</code></pre>
+<p>i.e., <span class="math inline">\(d_{1,2}=2, d_{1,3}=11\)</span> etc.</p>
+<p>All methods start with the singleton clusters <span class="math inline">\(\{1\},\{2\},\{3\},\{4\},\{5\}\)</span>.</p>
+<div id="single-linkage" class="section level5 unnumbered">
+<h5>Single linkage</h5>
+<ul>
+<li>at stage 1 we join the pair of clusters that are closest, which is <span class="math inline">\(\{1\}\)</span> and <span class="math inline">\(\{2\}\)</span>, resulting in the clusters <span class="math inline">\(\{1\, 2\},\{3\},\{4\},\{5\}\)</span>. The (single linkage) distance matrix for these clusters is then</li>
+</ul>
+<pre><code>##   12  3  4
+## 3  9      
+## 4 13 10   
+## 5  5  4  8</code></pre>
+<ul>
+<li>the closest clusters are <span class="math inline">\(\{3\}\)</span> and <span class="math inline">\(\{5\}\)</span>, and so at stage 2
+we get the clusters <span class="math inline">\(\{1, 2\},\{3, 5\},\{4\}\)</span>, with the distances between clusters now given by</li>
+</ul>
+<pre><code>##    12 35
+## 35  5   
+## 4  13  8</code></pre>
+<ul>
+<li>at stage 3 we join <span class="math inline">\(\{1, 2\}\)</span> and <span class="math inline">\(\{3, 5\}\)</span> giving the clusters <span class="math inline">\(\{1\, 2, 3, 5\},\{4\}\)</span>, with the distances between clusters now given by</li>
+</ul>
+<pre><code>##   1235
+## 4    8</code></pre>
+<ul>
+<li>at stage 4 we join the final two clusters resulting in the single cluster <span class="math inline">\(\{1, 2, 3, 4, 5\}\)</span>.</li>
+</ul>
+<p>The <code>hclust</code> command does agglomerative clustering: we just have to specify the method to use.</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="9.3-hierarchical-clustering-methods.html#cb266-1" aria-hidden="true" tabindex="-1"></a>D.sl <span class="ot">&lt;-</span><span class="fu">hclust</span>(D, <span class="at">method=</span><span class="st">&quot;single&quot;</span>)</span></code></pre></div>
+<p>We can use the <code>cutree</code> command to specify a given number of clusters. For example, it we want just two clusters, we can use</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="9.3-hierarchical-clustering-methods.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cutree</span>(D.sl,<span class="at">k=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1 1 1 2 1</code></pre>
+<p>This tells us that observations 1,2,3 and 5 are all in one cluster, and observation 4 in another cluster.</p>
+<p>A convenient graphical way to present the output from an agglomerative clustering method is as a <strong>dendrogram</strong>. These show the arrangement of the clusters produced at each stage. The height of each node in the plot is proportional to the value of the intergroup distance between its two daughters. The <code>plot</code> command in R automatically produces dendrograms if passed output from the <code>hclust</code>.</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="9.3-hierarchical-clustering-methods.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(D.sl)</span></code></pre></div>
+<p><img src="10-clustering_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>An alternatively to cutting the tree according to the number of clusters required, is to specify at which height to cut the tree. For example, if we cut the tree at height <span class="math inline">\(T=4.5\)</span> we get</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="9.3-hierarchical-clustering-methods.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cutree</span>(D.sl, <span class="at">h=</span><span class="fl">4.5</span>) <span class="co"># note we specify h= for height</span></span></code></pre></div>
+<pre><code>## [1] 1 1 2 3 2</code></pre>
+<p>showing that we have clusters <span class="math inline">\(\{1,2\}, \{3,5\}, \{4\}\)</span>.</p>
+</div>
+<div id="complete-linkage" class="section level5 unnumbered">
+<h5>Complete linkage</h5>
+<p>Let’s now consider using complete linkage.</p>
+<ul>
+<li><p>at stage 0 the clusters are <span class="math inline">\(\{1\}, \{2\},\{3\},\{4\},\{5\}\)</span></p></li>
+<li><p>stage 1 is the same for all methods and we joint the pair of observations that are closest, resulting in clusters <span class="math inline">\(\{1\, 2\},\{3\},\{4\},\{5\}\)</span>. The (complete linkage) distance matrix between clusters is</p></li>
+</ul>
+<pre><code>##   12  3  4
+## 3 11      
+## 4 15 10   
+## 5  7  4  8</code></pre>
+<p>which is different to what we found previously.</p>
+<ul>
+<li>at stage 2 we joint together <span class="math inline">\(\{3\}\)</span> and <span class="math inline">\(\{5\}\)</span> giving the clusters <span class="math inline">\(\{1, 2\},\{3, 5\},\{4\}\)</span>, with the distances between clusters given by</li>
+</ul>
+<pre><code>##    12 35
+## 35 11   
+## 4  15 10</code></pre>
+<ul>
+<li>at stage 3 the clusters are <span class="math inline">\(\{1, 2\},\{3, 4, 5\}\)</span>, with the distances between clusters given by</li>
+</ul>
+<pre><code>##     12
+## 345 15</code></pre>
+<ul>
+<li>at stage 4 there is a single cluster <span class="math inline">\(\{1, 2, 3, 4, 5\}\)</span>.</li>
+</ul>
+<p>The dendrogram for this is shown below. Note that complete linkage produces a different clustering if we require two clusters.</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="9.3-hierarchical-clustering-methods.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">hclust</span>(D, <span class="at">method=</span><span class="st">&quot;complete&quot;</span>))</span></code></pre></div>
+<p><img src="10-clustering_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
+<div id="group-average" class="section level5 unnumbered">
+<h5>Group average</h5>
+<p>Group average clustering produces the same hierarchy of clusters as single linkage, but the nodes (points where clusters join) are at different heights in the dendrogram.</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="9.3-hierarchical-clustering-methods.html#cb276-1" aria-hidden="true" tabindex="-1"></a>D.ga <span class="ot">&lt;-</span> <span class="fu">hclust</span>(D, <span class="at">method=</span><span class="st">&quot;average&quot;</span>)</span>
+<span id="cb276-2"><a href="9.3-hierarchical-clustering-methods.html#cb276-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(D.ga)</span></code></pre></div>
+<p><img src="10-clustering_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>If we were to cut the single linkage and group average dendrograms at a height of 6, then we find different clusters. The single linkage dendrogram cut at height 6 gives the clusters <span class="math inline">\(\{1,2,3,5\}, \{4\}\)</span> whereas the group average dendrogram gives the clusters <span class="math inline">\(\{1,2\}, \{3,5\}, \{4\}\)</span>, despite the two trees having the same topology.</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="9.3-hierarchical-clustering-methods.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cutree</span>(D.sl, <span class="at">h=</span><span class="dv">6</span>) <span class="co"># cut the tree at height 6</span></span></code></pre></div>
+<pre><code>## [1] 1 1 1 2 1</code></pre>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="9.3-hierarchical-clustering-methods.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cutree</span>(D.ga, <span class="at">h=</span><span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## [1] 1 1 2 3 2</code></pre>
+</div>
+</div>
+<div id="comparison-of-methods" class="section level3" number="9.3.3">
+<h3><span class="header-section-number">9.3.3</span> Comparison of methods</h3>
+<p>In the case where the distances <span class="math inline">\(\mathbf D\)</span> clearly split into distinct <em>compact</em> clusters (<em>compact</em> in the sense that all observations within a cluster are relatively close compared to observations in different clusters), all three methods will produce similar results.</p>
+<p>In cases where the clustering is less obvious, we may find differences between the methods. Single linkage will join two clusters <span class="math inline">\(\mathcal{G}\)</span> and <span class="math inline">\(\mathcal{H}\)</span> if there is a pair of observations <span class="math inline">\(i\in \mathcal{G}\)</span> and <span class="math inline">\(j \in \mathcal{H}\)</span> that is small. We therefore get a chaining effect, where observations linked by a chain of close intermediate observations get clustered together. The consequence of this is that the clusters produced can end up not being <em>compact</em>. If we look at the largest distance between members in a cluster, sometimes called the diameter,
+<span class="math display">\[D_\mathcal{G}= \max_{i,j \in \mathcal{G}} d_{ij}\]</span>
+then the single linkage method can produce clusters with very large diameters.</p>
+<p>In constrast, complete linkage is the other extereme. Two clusters are only considered close if all pairs of obsevations are close. Consequently, it tends to produce clusters with small diameters. A downside is that observations assigned to a cluster can be much closer to members of other clusters than they are to some members of their own cluster.</p>
+<p>Group averaging is a compromise between these two extremes. It aims to find compact clusters that are relatively far apart. However, the method is not invariant to monotone transformations of the distances, unlike single and complete linkage methods.</p>
+<!-- We now explain in more detail how these methods are applied.  First, we consider single linkage.  It is assumed that the set of distances is ordered, so that
+ \begin{equation}
+ d_{a_1,b_1}\leq d_{a_2,b_2} \leq \cdots \leq d_{a_{N-1}, b_{N-1}} \leq d_{a_N,b_N},
+(\#eq:orderdist)
+ \end{equation}
+ where $N=n(n-1)/2$, and  we adopt the following  conventions: (i) $a_t < b_t$; and (ii) to break a tie such as  $d_{a_{t},b_{t}} = d_{a_{t+1},b_{t+1}}$,  we write
+ $$
+ \cdots \leq d_{a_{t},b_{t}} \leq d_{a_{t+1},b_{t+1}} \leq \cdots
+ $$
+  if $a_{t} < a_{t+1}$, or $a_{t}=a_{t+1}$ and $b_t<b_{t+1}$; and we write
+ $$
+ \cdots \leq d_{a_{t+1},b_{t+1}} \leq d_{a_{t},b_{t}} \leq \cdots
+ $$
+ if $a_{t+1}<a_t$, or $a_{t+1}=a_t$ and $b_{t+1}<b_t$.
+
+
+1. Start with singleton clusters $\mathcal{C}_1, \ldots , \mathcal{C}_n$, i.e. $\mathcal{C}_i =\{i\}$.
+
+2. Combine experimental units $a_1$ and $b_1$ into a single new cluster, so that we now have one doubleton cluster and $n-2$ singleton clusters.
+
+3. Next, consider $a_2$ and $b_2$, where $d_{a_2,b_2}$ is the second smaller distance.  If both $a_2 \notin \{a_1,b_1\}$ and $b_2 \notin \{a_1,b_1\}$, then we combine $a_2$ and $b_2$ into a second doubleton cluster,
+     $\{a_2, b_2\}$, leading to $n-2$ clusters altogether ($2$ doubleton clusters and $n-4$ singleton clusters).  If, on the other hand, $a_2 \in \{a_1,b_1\}$, then necessarily $b_2 \notin \{a_1,b_1\}$, and so we form the trippleton cluster $\{a_1,b_1,b_2\}$; while if $b_2 \in \{a_1, b_1\}$, then necessarily $a_2 \notin \{a_1, b_1\}$, and we form the trippleton cluster $\{a_1, a_2, b_1\}$.  Either way, in the latter two cases, we are left with $n-2$ clusters altogether (one trippleton and $n-3$ singleton clusters).
+
+4. We continue this process as we pass through the $N$ inter-point distances.  However, sometimes we may wish to terminate this process at some threshold, $T$; i.e. we stop the process at the smallest $t$ such that
+     $d_{a_t, b_t}>T$.
+
+
+ In the single linkage approach, in effect we are defining the distance between two clusters $\mathcal{C}_u$ and $\mathcal{C}_v$ by
+ $$
+ d_S^\ast(\mathcal{C}_u, \mathcal{C}_v)=\min_{i \in \mathcal{C}_u, \, j \in \mathcal{C}_v} d_{ij}.
+ $$
+
+In contrast, with the complete linkage method, in effect we are defining  the distance between two clusters $\mathcal{C}_u$ and $\mathcal{C}_v$ by
+$$
+d_C^\ast(\mathcal{C}_u, \mathcal{C}_v)=\max_{i \in \mathcal{C}_u, \, j \in \mathcal{C}_v} d_{ij}.
+$$
+
+A convenient graphical way to present the output from either a single linkage procedure or a complete linkage procedure is to plot a **dendrogram**.
+-->
+<!--
+The following distance matrix was based on the relative gene frequencies for the four blood-group systems $A_1$, $A_2$, $B$ and $O$ for large samples from four human populations: (1) Inuit, (2) African, (3) English and (4) Korean.  The inter-point distances were determined using the Mahalanobis distance between $\bmu_i$ and $\bmu_j$ defined by
+$$
+d_{ij}=\sqrt{(\bmu_i -\bmu_j)^\top \bSigma^{-1}(\bmu_i - \bmu_j)}.
+$$
+The matrix of inter-point distances is given by:
+$$
+\begin{pmatrix}
+0&23.26&16.34 & 16.87\\
+&0&9.85 & 20.43 \\
+&&0&19.60\\
+&&&0
+\end{pmatrix}.
+$$
+
+**Hypothesis of interest**:  *there there is a natural clustering*
+$$
+\{\text{African}=2, \text{English}=3\}\qquad \text{and}\qquad
+\{\text{Inuit}=1, \text{Korean}=4\}.
+$$
+
+Let us first of all look at single linkage.  The ordering of the distances is given by
+$$
+d_{23} < d_{13} <d_{14}<d_{34}<d_{24}<d_{12}.
+$$
+
+*Single Linkage*
+  
+- At Stage $0$ the clusters are $\{1\}$, $\{2\}$, $\{3\}$ and $\{4\}$.
+- At Stage $1$ the clusters are $\{1\}$, $\{2,3\}$ and  $\{4\}$.
+- At Stage $2$ the clusters are $\{1,2,3\}$ and $\{4\}$.
+- At Stage $3$ we have a single cluster $\{1,2,3,4\}$.
+
+Now let us look at complete linkage.  Here, Stage $0^\prime$ and Stage $1^\prime$ are the same at Stage $0$ and Stage $1$ of single linkage, but Stage $2^\prime$ is different.
+
+*Complete Linkage*
+- At Stage $0^\prime$ the clusters are $\{1\}$, $\{2\}$, $\{3\}$ and $\{4\}$.
+- At Stage $1^\prime$ the clusters are $\{1\}$, $\{2,3\}$ and  $\{4\}$.
+- At Stage $2^\prime$ the clusters are $\{1,4\}$ and $\{2,3\}$.
+- At Stage $3^\prime$ we have a single cluster $\{1,2,3,4\}$.
+
+The reason that we combine $\{1,4\}$ at Stage $2^\prime$ is because
+$$
+d_{1,4}=16.87<d^\ast_C(\{1\}, \{2,3\})=\max \{d_{12}, d_{13}\}=23.26
+$$
+and
+$$
+d_{1,4}=16.87<d^\ast_C(\{4\}, \{2,3\})=\max \{d_{24}, d_{34}\}=20.43.
+$$
+So with complete linkage we should combine $\{1\}$ and $\{4\}$ before combining either $\{1\}$ or $\{4\}$ with $\{2,3\}$.
+
+In this example, single linkage and complete linkage lead to different conclusions: complete linkage supports the hypothesis of interest, while single linkage does not.  Some people have argued that single linkage is more appropriate here.
+-->
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="9.2-model-based-clustering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="9.4-summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

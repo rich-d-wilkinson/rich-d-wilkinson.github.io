@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.1 The first pair of canonical variables | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.1 The first pair of canonical variables | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -153,32 +153,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.1" data-path="1.3-properties.html"><a href="1.3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>1.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
 <li class="chapter" data-level="1.3.2" data-path="1.3-properties.html"><a href="1.3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>1.3.2</b> Invariance/equivariance properties of CCA</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="1.4-computer-tasks.html"><a href="1.4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
-<li class="chapter" data-level="1.5" data-path="1.5-exercises.html"><a href="1.5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="2-lm.html"><a href="2-lm.html"><i class="fa fa-check"></i><b>2</b> Linear Models</a>
-<ul>
-<li class="chapter" data-level="" data-path="2-lm.html"><a href="2-lm.html#notation"><i class="fa fa-check"></i>Notation</a></li>
-<li class="chapter" data-level="2.1" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>2.1</b> Ordinary least squares (OLS)</a>
-<ul>
-<li class="chapter" data-level="2.1.1" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#geometry"><i class="fa fa-check"></i><b>2.1.1</b> Geometry</a></li>
-<li class="chapter" data-level="2.1.2" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#normal-linear-model"><i class="fa fa-check"></i><b>2.1.2</b> Normal linear model</a></li>
-<li class="chapter" data-level="2.1.3" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#linear-models-in-r"><i class="fa fa-check"></i><b>2.1.3</b> Linear models in R</a></li>
-<li class="chapter" data-level="2.1.4" data-path="2.1-ordinary-least-squares-ols.html"><a href="2.1-ordinary-least-squares-ols.html#problems-with-ols"><i class="fa fa-check"></i><b>2.1.4</b> Problems with OLS</a></li>
-</ul></li>
-<li class="chapter" data-level="2.2" data-path="2.2-principal-component-regression-pcr.html"><a href="2.2-principal-component-regression-pcr.html"><i class="fa fa-check"></i><b>2.2</b> Principal component regression (PCR)</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="2.2-principal-component-regression-pcr.html"><a href="2.2-principal-component-regression-pcr.html#pcr-in-r"><i class="fa fa-check"></i><b>2.2.1</b> PCR in R</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="2.3-shrinkage-methods.html"><a href="2.3-shrinkage-methods.html"><i class="fa fa-check"></i><b>2.3</b> Shrinkage methods</a>
-<ul>
-<li class="chapter" data-level="2.3.1" data-path="2.3-shrinkage-methods.html"><a href="2.3-shrinkage-methods.html#ridge-regression-in-r"><i class="fa fa-check"></i><b>2.3.1</b> Ridge regression in R</a></li>
-</ul></li>
-<li class="chapter" data-level="2.4" data-path="2.4-multi-output-linear-model.html"><a href="2.4-multi-output-linear-model.html"><i class="fa fa-check"></i><b>2.4</b> Multi-output Linear Model</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="2.4-multi-output-linear-model.html"><a href="2.4-multi-output-linear-model.html#normal-linear-model-1"><i class="fa fa-check"></i><b>2.4.1</b> Normal linear model</a></li>
-<li class="chapter" data-level="2.4.2" data-path="2.4-multi-output-linear-model.html"><a href="2.4-multi-output-linear-model.html#reduced-rank-regression"><i class="fa fa-check"></i><b>2.4.2</b> Reduced rank regression</a></li>
-</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -270,10 +244,8 @@ However, note that for any <span class="math inline">\(\gamma&gt;0\)</span> and 
 \]</span>
 are a solution to the constrained maximization problem <a href="1.1-cca1.html#eq:opt27a">(1.4)</a>.
 </div>
-
 <div class="proof">
- <span class="proof"><em>Proof. </em></span> 
-Suppose <span class="math inline">\({\mathbf a}\)</span> and <span class="math inline">\({\mathbf b}\)</span> are solutions to optimization problem <a href="1.1-cca1.html#eq:opt26">(1.2)</a>. Then invariance with respect to rescaling implies that <span class="math inline">\(\check{\mathbf a}={\mathbf a}/({\mathbf a}^\top \mathbf S_{\mathbf x\mathbf x} {\mathbf a})^{1/2}\)</span> and <span class="math inline">\(\check{\mathbf b}= {\mathbf b}/({\mathbf b}^\top \mathbf S_{\mathbf y\mathbf y} {\mathbf b})^{1/2}\)</span> also achieve the optima.
+<p><span id="unlabeled-div-1" class="proof"><em>Proof</em>. </span>Suppose <span class="math inline">\({\mathbf a}\)</span> and <span class="math inline">\({\mathbf b}\)</span> are solutions to optimization problem <a href="1.1-cca1.html#eq:opt26">(1.2)</a>. Then invariance with respect to rescaling implies that <span class="math inline">\(\check{\mathbf a}={\mathbf a}/({\mathbf a}^\top \mathbf S_{\mathbf x\mathbf x} {\mathbf a})^{1/2}\)</span> and <span class="math inline">\(\check{\mathbf b}= {\mathbf b}/({\mathbf b}^\top \mathbf S_{\mathbf y\mathbf y} {\mathbf b})^{1/2}\)</span> also achieve the optima.
 But <span class="math inline">\(\check{\mathbf a}\)</span> and <span class="math inline">\(\check{\mathbf b}\)</span> satisfy the constraints <span class="math inline">\(\mathbf a^\top \mathbf S_{\mathbf x\mathbf x}\mathbf a=\mathbf b^\top \mathbf S_{\mathbf y\mathbf y}\mathbf b=1\)</span>
 because
 <span class="math display">\[
@@ -281,7 +253,7 @@ because
 =\frac{{\mathbf a}^\top \mathbf S_{\mathbf x\mathbf x}{\mathbf a}}{{\mathbf a}^\top \mathbf S_{\mathbf x\mathbf x}{\mathbf a}}=1
 \]</span>
 and similarly for <span class="math inline">\(\check{\mathbf b}\)</span>.
-So <span class="math inline">\(\check{\mathbf a}\)</span> and <span class="math inline">\(\check{\mathbf b}\)</span> maximises <a href="1.1-cca1.html#eq:opt27a">(1.4)</a> subject to the constraints.
+So <span class="math inline">\(\check{\mathbf a}\)</span> and <span class="math inline">\(\check{\mathbf b}\)</span> maximises <a href="1.1-cca1.html#eq:opt27a">(1.4)</a> subject to the constraints.</p>
 </div>
 </div>
 <div id="the-first-canonical-components" class="section level3" number="1.1.1">
@@ -295,9 +267,8 @@ So <span class="math inline">\(\check{\mathbf a}\)</span> and <span class="math 
 \]</span>
 with the maximum obtained at <span class="math inline">\(\mathbf a=\mathbf u_1\)</span> and <span class="math inline">\(\mathbf b=\mathbf v_1\)</span>, the first left and right singular vectors of <span class="math inline">\(\mathbf Q\)</span>.
 </div>
-
 <div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> We’ll use the method of Lagrange multipliers to prove this result. Consider the objective
+<p><span id="unlabeled-div-2" class="proof"><em>Proof</em>. </span>We’ll use the method of Lagrange multipliers to prove this result. Consider the objective
 <span class="math display">\[\mathcal{L} = \mathbf a^\top \mathbf Q\mathbf b+\frac{\lambda_1}{2}(1-\mathbf a^\top\mathbf a)+\frac{\lambda_2}{2} (1-\mathbf b^\top \mathbf b).\]</span>
 The factor of 1/2 is there to simplify the maths once we differentiate.
 Differentiating with respect to <span class="math inline">\(\mathbf a\)</span> and <span class="math inline">\(\mathbf b\)</span> and setting the derivative equal to zero gives
@@ -312,13 +283,13 @@ Left multiplying the first equation by <span class="math inline">\(\mathbf a^\to
 and so we can see that <span class="math inline">\(\mathbf b\)</span> is an eigenvector of <span class="math inline">\(\mathbf Q^\top \mathbf Q\)</span>, and thus we must have <span class="math inline">\(\mathbf b= \mathbf v_i\)</span> for some <span class="math inline">\(i\)</span>, i.e., <span class="math inline">\(\mathbf b\)</span> is one of the right singular vectors of <span class="math inline">\(\mathbf Q\)</span>. Similarly, substituting <span class="math inline">\(\mathbf b= \mathbf Q^\top \mathbf a/\lambda\)</span> into <a href="1.1-cca1.html#eq:ccaevp1">(1.5)</a> gives
 <span class="math display">\[\mathbf Q\mathbf Q^\top \mathbf a= \lambda^2\mathbf a.\]</span>
 So <span class="math inline">\(\mathbf a=\mathbf u_j\)</span> for some <span class="math inline">\(j\)</span>, i.e., <span class="math inline">\(\mathbf a\)</span> is one of the left singular vectors of <span class="math inline">\(\mathbf Q\)</span>.</p>
-Finally, consider the original objective with <span class="math inline">\(\mathbf a=\mathbf u_j\)</span> and <span class="math inline">\(\mathbf b=\mathbf v_i\)</span>:
+<p>Finally, consider the original objective with <span class="math inline">\(\mathbf a=\mathbf u_j\)</span> and <span class="math inline">\(\mathbf b=\mathbf v_i\)</span>:
 <span class="math display">\[\mathbf u_j^\top\mathbf Q\mathbf v_i = \sigma_i\mathbf u_j^\top \mathbf u_i = \begin{cases} \sigma_i &amp;\mbox{ if } i = j\\
 0 &amp;\mbox{ otherwise.}
 \end{cases}
 \]</span>
 Hence we minimize the objective by taking <span class="math inline">\(\mathbf a=\mathbf u_1\)</span> and <span class="math inline">\(\mathbf b=\mathbf v_1\)</span>, and then we find
-<span class="math display">\[\max_{\mathbf a, \mathbf b:\, \vert \vert \mathbf a\vert \vert=\vert \vert \mathbf b\vert \vert =1} \mathbf a^\top \mathbf Q\mathbf b=\sigma_1.\]</span>
+<span class="math display">\[\max_{\mathbf a, \mathbf b:\, \vert \vert \mathbf a\vert \vert=\vert \vert \mathbf b\vert \vert =1} \mathbf a^\top \mathbf Q\mathbf b=\sigma_1.\]</span></p>
 </div>
 <p><br></br></p>
 <div id="main-result" class="section level4 unnumbered">
@@ -326,7 +297,7 @@ Hence we minimize the objective by taking <span class="math inline">\(\mathbf a=
 <p>We’re now in a position to describe the main result giving the first pair of canonical variables</p>
 
 <div class="proposition">
-<p><span id="prp:unnamed-chunk-4" class="proposition"><strong>Proposition 1.3  </strong></span>
+<p><span id="prp:unnamed-chunk-2" class="proposition"><strong>Proposition 1.3  </strong></span>
 Assume that <span class="math inline">\(\mathbf S_{\mathbf x\mathbf x}\)</span> and <span class="math inline">\(\mathbf S_{\mathbf y\mathbf y}\)</span> are both non-singular, and consider the singular value decomposition of the matrix <span class="math inline">\(\mathbf Q:=\mathbf S_{\mathbf x\mathbf x}^{-1/2} \mathbf S_{\mathbf x\mathbf y}\mathbf S_{\mathbf y\mathbf y}^{-1/2}\)</span>
 <span class="math display" id="eq:svdcca">\[\begin{equation}
 \mathbf Q= {\mathbf U}{\pmb \Sigma} {\mathbf V}^\top = \sum_{j=1}^t \sigma_j {\mathbf u}_j {\mathbf v}_j^\top,
@@ -337,9 +308,8 @@ where <span class="math inline">\(t=\operatorname{rank}(\mathbf Q)\)</span> and 
 <p>The maximum value of the correlation coefficient is given by the largest singular value <span class="math inline">\(\sigma_1\)</span>:
 <span class="math display">\[\max_{\mathbf a, \mathbf b} {\mathbb{C}\operatorname{or}}(\mathbf a^\top\mathbf x, \mathbf b^\top\mathbf b)=\sigma_1.\]</span></p>
 </div>
-
 <div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> If we let
+<p><span id="unlabeled-div-3" class="proof"><em>Proof</em>. </span>If we let
 <span class="math display">\[
 \tilde{\mathbf a}=\mathbf S_{\mathbf x\mathbf x}^{1/2} \mathbf a\qquad \text{and} \qquad \tilde{\mathbf b}=\mathbf S_{\mathbf y\mathbf y}^{1/2}\mathbf b,
 \]</span>
@@ -362,9 +332,9 @@ subject to
 <span class="math display">\[
 \vert \vert \tilde{\mathbf a} \vert \vert =1 \qquad \text{and} \qquad \vert \vert \tilde{\mathbf b}\vert \vert=1.
 \]</span></p>
-Then by Proposition <a href="1.1-cca1.html#prp:svdmax2">1.2</a> we can see that
+<p>Then by Proposition <a href="1.1-cca1.html#prp:svdmax2">1.2</a> we can see that
 <span class="math display">\[\tilde{\mathbf a} = \mathbf u_1 \quad \mbox{and}\quad\tilde{\mathbf b} = \mathbf v_1\]</span>
-and the result follows.
+and the result follows.</p>
 </div>
 <p><br></br></p>
 <p>We will label the solution found as
@@ -377,9 +347,10 @@ to stress that <span class="math inline">\(\mathbf a_1\)</span> and <span class=
 <p>Lets again return to the Premier League from the previous chapter.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="1.1-cca1.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="1.1-cca1.html#cb1-2" aria-hidden="true" tabindex="-1"></a>prem1920 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;data/2019_2020EPL.csv&#39;</span>) </span>
-<span id="cb1-3"><a href="1.1-cca1.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the data can be downloaded from https://www.rotowire.com/soccer/league-table.php</span></span>
-<span id="cb1-4"><a href="1.1-cca1.html#cb1-4" aria-hidden="true" tabindex="-1"></a>table <span class="ot">&lt;-</span> prem1920 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(Team, W, D, L, G, GA, GD) </span>
-<span id="cb1-5"><a href="1.1-cca1.html#cb1-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(table,<span class="dv">5</span>), <span class="at">booktabs =</span> <span class="cn">TRUE</span>, <span class="at">escape=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<span id="cb1-3"><a href="1.1-cca1.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the data can be downloaded from </span></span>
+<span id="cb1-4"><a href="1.1-cca1.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www.rotowire.com/soccer/league-table.php</span></span>
+<span id="cb1-5"><a href="1.1-cca1.html#cb1-5" aria-hidden="true" tabindex="-1"></a>table <span class="ot">&lt;-</span> prem1920 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(Team, W, D, L, G, GA, GD) </span>
+<span id="cb1-6"><a href="1.1-cca1.html#cb1-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(table,<span class="dv">5</span>), <span class="at">booktabs =</span> <span class="cn">TRUE</span>, <span class="at">escape=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -453,12 +424,14 @@ to stress that <span class="math inline">\(\mathbf a_1\)</span> and <span class=
 <span id="cb2-4"><a href="1.1-cca1.html#cb2-4" aria-hidden="true" tabindex="-1"></a>S_yy <span class="ot">&lt;-</span> <span class="fu">cov</span>(Y)</span>
 <span id="cb2-5"><a href="1.1-cca1.html#cb2-5" aria-hidden="true" tabindex="-1"></a>S_xy <span class="ot">&lt;-</span> <span class="fu">cov</span>(X,Y)</span></code></pre></div>
 <p>giving</p>
-<p><span class="math display">\[\mathbf S_{xx} =\begin{pmatrix}40.4&amp;-9.66 \\-9.66&amp;10.7 \\\end{pmatrix}, \quad \mathbf S_{yy} =\begin{pmatrix}354&amp;-155 \\-155&amp;141 \\\end{pmatrix}, \quad \mathbf S_{xy}=\mathbf S_{yx}^\top =\begin{pmatrix}108&amp;-60 \\-28.9&amp;-2.36 \\\end{pmatrix}.\]</span></p>
+<p><span class="math display">\[\mathbf S_{xx} =\begin{pmatrix}40.4&amp;-9.66 \\-9.66&amp;10.7 \\\end{pmatrix}, \quad \mathbf S_{yy} =\begin{pmatrix}354&amp;-155 \\-155&amp;141 \\\end{pmatrix}, \\
+\quad \mathbf S_{xy}=\mathbf S_{yx}^\top =\begin{pmatrix}108&amp;-60 \\-28.9&amp;-2.36 \\\end{pmatrix}.\]</span></p>
 <p>We now want to calculate the matrix <span class="math inline">\(\mathbf Q\)</span> in <a href="1.1-cca1.html#eq:svdcca">(1.7)</a> and then find its singular valued decomposition. We first need to find <span class="math inline">\(\mathbf S_{\mathbf x\mathbf x}^{-1/2}\)</span> and <span class="math inline">\(\mathbf S_{\mathbf y\mathbf y}^{-1/2}\)</span>. Using R to do the computations we obtain the spectral decompositions</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="1.1-cca1.html#cb3-1" aria-hidden="true" tabindex="-1"></a>eigen_xx <span class="ot">&lt;-</span> <span class="fu">eigen</span>(S_xx)</span>
 <span id="cb3-2"><a href="1.1-cca1.html#cb3-2" aria-hidden="true" tabindex="-1"></a>Vx <span class="ot">&lt;-</span> eigen_xx<span class="sc">$</span>vectors</span>
 <span id="cb3-3"><a href="1.1-cca1.html#cb3-3" aria-hidden="true" tabindex="-1"></a>S_xx_invsqrt <span class="ot">&lt;-</span> Vx <span class="sc">%*%</span> <span class="fu">diag</span>(<span class="dv">1</span><span class="sc">/</span><span class="fu">sqrt</span>(eigen_xx<span class="sc">$</span>values)) <span class="sc">%*%</span> <span class="fu">t</span>(Vx)</span>
-<span id="cb3-4"><a href="1.1-cca1.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check S_xx %*% S_xx_invsqrt %*% S_xx_invsqrt is the identity matrix</span></span></code></pre></div>
+<span id="cb3-4"><a href="1.1-cca1.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check S_xx %*% S_xx_invsqrt %*% S_xx_invsqrt </span></span>
+<span id="cb3-5"><a href="1.1-cca1.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># is the identity matrix</span></span></code></pre></div>
 <p><span class="math display">\[\mathbf S_{xx} =\mathbf Q\boldsymbol \Lambda\mathbf Q^\top=\begin{pmatrix}-0.959&amp;-0.285 \\0.285&amp;-0.959 \\\end{pmatrix} \begin{pmatrix}43.2&amp;0 \\0&amp;7.82 \\\end{pmatrix} \begin{pmatrix}-0.959&amp;0.285 \\-0.285&amp;-0.959 \\\end{pmatrix}\]</span></p>
 <p>and so</p>
 <p><span class="math display">\[\begin{align*}
@@ -579,7 +552,7 @@ and
 <span id="cb7-2"><a href="1.1-cca1.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb7-3"><a href="1.1-cca1.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cca.out, <span class="fu">aes</span>(<span class="at">x=</span> eta, <span class="at">y=</span> psi, <span class="at">label=</span>Team))<span class="sc">+</span>   <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb7-4"><a href="1.1-cca1.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Team),<span class="at">hjust=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">4</span>)</span></code></pre></div>
-<p><img src="05-cca_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="05-cca_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <!--WHAT HAPPENS IF WE INCLUDE L? THen S_XX is not invertible.-->
 <p>We can also do this with the <code>CCA</code> package in R. The command <code>matcor(X,Y)</code> gives the correlation matrices, and the command <code>cc</code> performs CCA. See if you can find the outputs computed above in the output of the <code>cc</code> command.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="1.1-cca1.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CCA)</span>

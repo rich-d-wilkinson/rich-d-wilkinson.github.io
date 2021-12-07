@@ -401,7 +401,7 @@ Taking <span class="math inline">\(\alpha=0\)</span> gives us ridge regression, 
 <p>From this, we can see that very small values of <span class="math inline">\(\lambda\)</span> work best here, i.e., the OLS estimator is optimal. This is not a surprise as there are only three covariates in this problem. It is in larger problems that we expect shrinkage methods to be most useful.</p>
 <p>The value of lambda that minimizes the prediction error can be found by</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="8.3-shrinkage-methods.html#cb208-1" aria-hidden="true" tabindex="-1"></a>cv_fit<span class="sc">$</span>lambda.min </span></code></pre></div>
-<pre><code>## [1] 0.0003981072</code></pre>
+<pre><code>## [1] 0.0007943282</code></pre>
 <p>and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="8.3-shrinkage-methods.html#cb210-1" aria-hidden="true" tabindex="-1"></a>cv_fit<span class="sc">$</span>lambda<span class="fl">.1</span>se</span></code></pre></div>
 <pre><code>## [1] 0.02511886</code></pre>

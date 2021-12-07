@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.5 Computer Tasks | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.24.4 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.5 Computer Tasks | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.5 Computer Tasks | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1.4-exercises-1.html"/>
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="0.1-computer-tasks.html"><a href="0.1-computer-tasks.html"><i class="fa fa-check"></i><b>0.1</b> Computer tasks</a></li>
+<li class="chapter" data-level="0.2" data-path="0.2-exercises.html"><a href="0.2-exercises.html"><i class="fa fa-check"></i><b>0.2</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="1-mds.html"><a href="1-mds.html"><i class="fa fa-check"></i><b>1</b> Multidimensional Scaling (MDS)</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-classical-mds.html"><a href="1.1-classical-mds.html"><i class="fa fa-check"></i><b>1.1</b> Classical MDS</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="1.1-classical-mds.html"><a href="1.1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>1.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1.1-classical-mds.html"><a href="1.1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Principal Coordinate Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1.2-similarity.html"><a href="1.2-similarity.html"><i class="fa fa-check"></i><b>1.2</b> Similarity measures</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1.2-similarity.html"><a href="1.2-similarity.html#binary-attributes"><i class="fa fa-check"></i><b>1.2.1</b> Binary attributes</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1.2-similarity.html"><a href="1.2-similarity.html#example-classical-mds-with-the-mnist-data"><i class="fa fa-check"></i><b>1.2.2</b> Example: Classical MDS with the MNIST data</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1.3-non-metric-mds.html"><a href="1.3-non-metric-mds.html"><i class="fa fa-check"></i><b>1.3</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="1.4" data-path="1.4-exercises-1.html"><a href="1.4-exercises-1.html"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
+<li class="chapter" data-level="1.5" data-path="1.5-computer-tasks-1.html"><a href="1.5-computer-tasks-1.html"><i class="fa fa-check"></i><b>1.5</b> Computer Tasks</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="computer-tasks-1" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Computer Tasks</h2>
+<!--1. Look at this computational trick https://www.robots.ox.ac.uk/~albanie/notes/Euclidean_distance_trick.pdf
+for computing the distance matrix.
+-->
+<div id="task-1-1" class="section level5 unnumbered">
+<h5>Task 1</h5>
+<p>The <code>eurodist</code> dataset in R gives the road distances between 21 European cities. Note that this is stored as a <code>dist</code> type of object, as outputted by the <code>dist</code> command, i.e. as a lower tri-diagonal matrix. <code>cmdscale</code> will take this directly as input.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="1.5-computer-tasks-1.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(eurodist)</span>
+<span id="cb41-2"><a href="1.5-computer-tasks-1.html#cb41-2" aria-hidden="true" tabindex="-1"></a>eurodist</span>
+<span id="cb41-3"><a href="1.5-computer-tasks-1.html#cb41-3" aria-hidden="true" tabindex="-1"></a>?eurodist</span></code></pre></div>
+<ol style="list-style-type: lower-roman">
+<li><p>Perform multidimensional scaling on this data, and find a two-dimensional set of points which has interpoint distances approximately equal to the data.</p></li>
+<li><p>Plot these coordinates and label them with the city names. Does your plot look like the map of Europe?</p></li>
+<li><p>Is the distance matrix <code>eurodist</code> a Euclidean data matrix and how do you know? If it is not Euclidean, why do you think that might be?</p></li>
+<li><p>Create the Euclidean distance matrix from your set of 2-dimensional points. What is the Frobenius norm between this matrix and the original distance matrix? Use <code>cmdscale</code> to create a set of points in 3 dimensional space and recompute the distance matrix.</p></li>
+</ol>
+<!--1. Download the  UK map?
+
+
+
+```r
+mds <- cmdscale(distances)
+plot(mds[,2], mds[,1])
+text(mds[,2], mds[,1], labels=city$Name, pos=3)
+```
+
+
+```r
+cmdscale
+```
+-->
+</div>
+<div id="task-2-1" class="section level5 unnumbered">
+<h5>Task 2</h5>
+<p>Consider the synthetic data of 9 binary attributes on 11 cases.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="1.5-computer-tasks-1.html#cb42-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span><span class="fu">structure</span>(<span class="fu">list</span>(<span class="at">a =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">b =</span> <span class="fu">c</span>(<span class="dv">0</span>, </span>
+<span id="cb42-2"><a href="1.5-computer-tasks-1.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">c =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, </span>
+<span id="cb42-3"><a href="1.5-computer-tasks-1.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">d =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>), <span class="at">e =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb42-4"><a href="1.5-computer-tasks-1.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">f =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb42-5"><a href="1.5-computer-tasks-1.html#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>, <span class="dv">1</span>), <span class="at">g =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">h =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, </span>
+<span id="cb42-6"><a href="1.5-computer-tasks-1.html#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">i =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, </span>
+<span id="cb42-7"><a href="1.5-computer-tasks-1.html#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>)), <span class="at">class =</span> <span class="st">&quot;data.frame&quot;</span>, <span class="at">row.names =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="sc">-</span>11L), <span class="at">.Names =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, </span>
+<span id="cb42-8"><a href="1.5-computer-tasks-1.html#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;g&quot;</span>, <span class="st">&quot;h&quot;</span>, <span class="st">&quot;i&quot;</span>))</span>
+<span id="cb42-9"><a href="1.5-computer-tasks-1.html#cb42-9" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##    a b c d e f g h i
+## 1  0 0 0 1 0 0 0 1 0
+## 2  0 0 0 0 0 0 1 0 0
+## 3  0 0 0 0 1 1 1 0 0
+## 4  0 0 0 0 0 0 1 0 0
+## 5  1 0 1 0 0 0 0 0 0
+## 6  0 0 0 0 0 0 0 0 1
+## 7  0 1 0 1 0 0 0 0 0
+## 8  1 0 1 0 0 0 0 1 0
+## 9  0 1 0 0 0 0 0 1 1
+## 10 0 0 1 1 0 0 0 0 1
+## 11 0 1 0 0 1 1 0 0 0</code></pre>
+<ol style="list-style-type: lower-roman">
+<li><p>Compute the Jaccard index and SMC similarity matrices for these data.</p></li>
+<li><p>Perform classical MDS for both similarity matrices, producing a plot of the coordinates (in 2d). Are the results similar?</p></li>
+</ol>
+<!--https://stackoverflow.com/questions/48788876/mds-plots-of-binary-data-counterintuitive-clustering-->
+</div>
+<div id="task-3-1" class="section level5 unnumbered">
+<h5>Task 3</h5>
+<!--http://www.sthda.com/english/articles/31-principal-component-methods-in-r-practical-guide/122-multidimensional-scaling-essentials-algorithms-and-r-code/
+Visualizing a correlation matrix using Multidimensional Scaling-->
+<p>In this question we will look at data from 1888 on the fertility and socio-economic status of 47 French speaking provinces in Switzerland.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="1.5-computer-tasks-1.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(swiss)</span>
+<span id="cb44-2"><a href="1.5-computer-tasks-1.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(swiss)</span></code></pre></div>
+<pre><code>##              Fertility Agriculture Examination Education Catholic
+## Courtelary        80.2        17.0          15        12     9.96
+## Delemont          83.1        45.1           6         9    84.84
+## Franches-Mnt      92.5        39.7           5         5    93.40
+## Moutier           85.8        36.5          12         7    33.77
+## Neuveville        76.9        43.5          17        15     5.16
+## Porrentruy        76.1        35.3           9         7    90.57
+##              Infant.Mortality
+## Courtelary               22.2
+## Delemont                 22.2
+## Franches-Mnt             20.2
+## Moutier                  20.3
+## Neuveville               20.6
+## Porrentruy               26.6</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="1.5-computer-tasks-1.html#cb46-1" aria-hidden="true" tabindex="-1"></a>?swiss</span></code></pre></div>
+<p>We will use MDS to find which provinces are similar to each other.</p>
+<ol style="list-style-type: lower-roman">
+<li><p>Compute the Euclidean distance matrix for these data.</p></li>
+<li><p>Use MDS to create a 2-dimensional representation of the data and plot these points, labelling them with the province name.</p></li>
+<li><p>Use MDS to create a 3-dimensional representation of the data. You can plot this using the <code>plot3d</code> command from the <code>rgl</code> package. See, for example, <a href="https://rpubs.com/aagarwal29/179912">here</a>.</p></li>
+</ol>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="1.5-computer-tasks-1.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgl)</span>
+<span id="cb47-2"><a href="1.5-computer-tasks-1.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot3d</span>(mds3)</span></code></pre></div>
+<ol start="3" style="list-style-type: lower-roman">
+<li>MDS can be also used to reveal a hidden pattern in a correlation matrix. Find the correlation matrix, <span class="math inline">\(\mathbf R\)</span>, of the swiss data. Perform MDS using <span class="math inline">\(1-\mathbf R\)</span> as the distance matrix and plot the results. Positively correlated covariates are close together on the same side of the plot.</li>
+</ol>
+</div>
+<div id="task-4-if-you-have-time" class="section level5 unnumbered">
+<h5>Task 4 (if you have time…)</h5>
+<p>Try MDS on the MNIST data but looking for a 3d representation. Colour the points by their digit label, and create some interactive 3d plots. Does this find useful structure in the data? And is it more informative than the 2d plots we created in the notes.</p>
+<p>Read the description of more advance methods <a href="https://colah.github.io/posts/2014-10-Visualizing-MNIST/">here</a>. Pick one and find an R package that implements it and try it on the MNIST data.</p>
+<p><strong>Warning:</strong> The MNIST dataset is large, and so computations can take a long time if you use the full dataset. Thus I usually work with a selection of just 1000 images, which is enough to find interesting patterns in most cases.</p>
+
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1.4-exercises-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

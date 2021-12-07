@@ -153,8 +153,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.1" data-path="1.3-properties.html"><a href="1.3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>1.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
 <li class="chapter" data-level="1.3.2" data-path="1.3-properties.html"><a href="1.3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>1.3.2</b> Invariance/equivariance properties of CCA</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="1.4-computer-tasks.html"><a href="1.4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
-<li class="chapter" data-level="1.5" data-path="1.5-exercises.html"><a href="1.5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-lm.html"><a href="2-lm.html"><i class="fa fa-check"></i><b>2</b> Linear Models</a>
 <ul>
@@ -232,10 +230,10 @@ as <span class="math inline">\(\mathbf Z\boldsymbol \alpha= \mathbf X\mathbf V_k
 <div id="pcr-in-r" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> PCR in R</h3>
 <p>PCR is easy to implement yourself in R. For example, using the iris regression problem from the previous section, we can do PCR using just the first 2 principal components as follows:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="2.2-principal-component-regression-pcr.html#cb27-1" aria-hidden="true" tabindex="-1"></a>iris.pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(iris[,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>],<span class="at">scale=</span><span class="cn">TRUE</span>)</span>
-<span id="cb27-2"><a href="2.2-principal-component-regression-pcr.html#cb27-2" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">=</span> iris.pca<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="co"># select the first two PCs</span></span>
-<span id="cb27-3"><a href="2.2-principal-component-regression-pcr.html#cb27-3" aria-hidden="true" tabindex="-1"></a>iris.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(iris<span class="sc">$</span>Sepal.Length<span class="sc">~</span>Z)</span>
-<span id="cb27-4"><a href="2.2-principal-component-regression-pcr.html#cb27-4" aria-hidden="true" tabindex="-1"></a>iris.lm</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="2.2-principal-component-regression-pcr.html#cb22-1" aria-hidden="true" tabindex="-1"></a>iris.pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(iris[,<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>],<span class="at">scale=</span><span class="cn">TRUE</span>)</span>
+<span id="cb22-2"><a href="2.2-principal-component-regression-pcr.html#cb22-2" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">=</span> iris.pca<span class="sc">$</span>x[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="co"># select the first two PCs</span></span>
+<span id="cb22-3"><a href="2.2-principal-component-regression-pcr.html#cb22-3" aria-hidden="true" tabindex="-1"></a>iris.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(iris<span class="sc">$</span>Sepal.Length<span class="sc">~</span>Z)</span>
+<span id="cb22-4"><a href="2.2-principal-component-regression-pcr.html#cb22-4" aria-hidden="true" tabindex="-1"></a>iris.lm</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = iris$Sepal.Length ~ Z)
@@ -245,16 +243,16 @@ as <span class="math inline">\(\mathbf Z\boldsymbol \alpha= \mathbf X\mathbf V_k
 ##      5.8433       0.4230      -0.4348</code></pre>
 <p>Note that we didn’t centre the data here, and so we have estimate a non-zero intercept as well as the coefficients of <span class="math inline">\(\mathbf x\)</span>.</p>
 <p>To convert from PCR coefficients to coefficients of <span class="math inline">\(\mathbf x\)</span> we can multiply by <span class="math inline">\(\mathbf V_k\)</span></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="2.2-principal-component-regression-pcr.html#cb29-1" aria-hidden="true" tabindex="-1"></a>iris.pca<span class="sc">$</span>rotation[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="sc">%*%</span> <span class="fu">coef</span>(iris.lm)[<span class="sc">-</span><span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="2.2-principal-component-regression-pcr.html#cb24-1" aria-hidden="true" tabindex="-1"></a>iris.pca<span class="sc">$</span>rotation[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="sc">%*%</span> <span class="fu">coef</span>(iris.lm)[<span class="sc">-</span><span class="dv">1</span>]</span></code></pre></div>
 <pre><code>##                   [,1]
 ## Sepal.Width  0.2173767
 ## Petal.Length 0.3853085
 ## Petal.Width  0.4150270</code></pre>
 <p>In practice we do not need to do PCR ourselves in this way, as it has been implemented in the <code>pls</code> R package.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="2.2-principal-component-regression-pcr.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pls)</span>
-<span id="cb31-2"><a href="2.2-principal-component-regression-pcr.html#cb31-2" aria-hidden="true" tabindex="-1"></a>iris.pcr <span class="ot">&lt;-</span> <span class="fu">pcr</span>(Sepal.Length<span class="sc">~</span> Sepal.Width<span class="sc">+</span>Petal.Length<span class="sc">+</span>Petal.Width, <span class="dv">2</span>, <span class="co"># number of components,</span></span>
-<span id="cb31-3"><a href="2.2-principal-component-regression-pcr.html#cb31-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">scale=</span><span class="cn">TRUE</span>, <span class="at">data=</span>iris)</span>
-<span id="cb31-4"><a href="2.2-principal-component-regression-pcr.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(iris.pcr)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="2.2-principal-component-regression-pcr.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pls)</span>
+<span id="cb26-2"><a href="2.2-principal-component-regression-pcr.html#cb26-2" aria-hidden="true" tabindex="-1"></a>iris.pcr <span class="ot">&lt;-</span> <span class="fu">pcr</span>(Sepal.Length<span class="sc">~</span> Sepal.Width<span class="sc">+</span>Petal.Length<span class="sc">+</span>Petal.Width, <span class="dv">2</span>, <span class="co"># number of components,</span></span>
+<span id="cb26-3"><a href="2.2-principal-component-regression-pcr.html#cb26-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">scale=</span><span class="cn">TRUE</span>, <span class="at">data=</span>iris)</span>
+<span id="cb26-4"><a href="2.2-principal-component-regression-pcr.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(iris.pcr)</span></code></pre></div>
 <pre><code>## , , 2 comps
 ## 
 ##              Sepal.Length
@@ -263,9 +261,9 @@ as <span class="math inline">\(\mathbf Z\boldsymbol \alpha= \mathbf X\mathbf V_k
 ## Petal.Width     0.4150270</code></pre>
 <p>Note that the coefficients found match those we computed ourselves.</p>
 <p>To choose the number of components to retain, we can use cross-validation. This is a generalization of the idea of splitting the data into training and test sets. The <code>pls</code> package reports the estimate root means square error on the test set (RMSEP) for each possible value of <span class="math inline">\(k\)</span>, up to the maximum specified by the user (taken to be the rank of <span class="math inline">\(\mathbf X\)</span> if we leave it unspecified).</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="2.2-principal-component-regression-pcr.html#cb33-1" aria-hidden="true" tabindex="-1"></a>iris.pcr2 <span class="ot">&lt;-</span> <span class="fu">pcr</span>(Sepal.Length<span class="sc">~</span> Sepal.Width<span class="sc">+</span>Petal.Length<span class="sc">+</span>Petal.Width, <span class="dv">3</span>, <span class="co"># number of components,</span></span>
-<span id="cb33-2"><a href="2.2-principal-component-regression-pcr.html#cb33-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">scale=</span><span class="cn">TRUE</span>, <span class="at">data=</span>iris, <span class="at">validation=</span><span class="st">&#39;CV&#39;</span>)</span>
-<span id="cb33-3"><a href="2.2-principal-component-regression-pcr.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(iris.pcr2)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="2.2-principal-component-regression-pcr.html#cb28-1" aria-hidden="true" tabindex="-1"></a>iris.pcr2 <span class="ot">&lt;-</span> <span class="fu">pcr</span>(Sepal.Length<span class="sc">~</span> Sepal.Width<span class="sc">+</span>Petal.Length<span class="sc">+</span>Petal.Width, <span class="dv">3</span>, <span class="co"># number of components,</span></span>
+<span id="cb28-2"><a href="2.2-principal-component-regression-pcr.html#cb28-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">scale=</span><span class="cn">TRUE</span>, <span class="at">data=</span>iris, <span class="at">validation=</span><span class="st">&#39;CV&#39;</span>)</span>
+<span id="cb28-3"><a href="2.2-principal-component-regression-pcr.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(iris.pcr2)</span></code></pre></div>
 <pre><code>## Data:    X dimension: 150 3 
 ##  Y dimension: 150 1
 ## Fit method: svdpc
@@ -274,8 +272,8 @@ as <span class="math inline">\(\mathbf Z\boldsymbol \alpha= \mathbf X\mathbf V_k
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5432   0.3943   0.3185
-## adjCV       0.8308   0.5428   0.3937   0.3181
+## CV          0.8308   0.5444   0.3891   0.3185
+## adjCV       0.8308   0.5439   0.3887   0.3180
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps

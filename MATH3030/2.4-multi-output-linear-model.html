@@ -153,8 +153,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.1" data-path="1.3-properties.html"><a href="1.3-properties.html#connection-with-linear-regression-when-q1"><i class="fa fa-check"></i><b>1.3.1</b> Connection with linear regression when <span class="math inline">\(q=1\)</span></a></li>
 <li class="chapter" data-level="1.3.2" data-path="1.3-properties.html"><a href="1.3-properties.html#invarianceequivariance-properties-of-cca"><i class="fa fa-check"></i><b>1.3.2</b> Invariance/equivariance properties of CCA</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="1.4-computer-tasks.html"><a href="1.4-computer-tasks.html"><i class="fa fa-check"></i><b>1.4</b> Computer tasks</a></li>
-<li class="chapter" data-level="1.5" data-path="1.5-exercises.html"><a href="1.5-exercises.html"><i class="fa fa-check"></i><b>1.5</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="2-lm.html"><a href="2-lm.html"><i class="fa fa-check"></i><b>2</b> Linear Models</a>
 <ul>
@@ -234,7 +232,7 @@ where <span class="math display">\[\mathbf Y=
 <p>You will see how to fit multivariate linear models in R in the computer tasks.</p>
 
 <div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> <strong>NON-EXAMINABLE</strong>
+<p>\iffalse{} <span class="proof"><em>Proof. </em></span> <strong>NON-EXAMINABLE</strong>
 The usual proof of this involves differentiating with respect to a matrix, and is horribly messy. However, there is a geometric proof as in the univariate case.</p>
 <p>The space of matrices <span class="math inline">\(M_{n,q} = \{\mathbf Y\in \mathbb{R}^{n \times q} \}\)</span> is a vector space, and we can equip it with an inner product
 <span class="math display">\[\langle \mathbf X, \mathbf Y\rangle_F = \operatorname{tr}(\mathbf X^\top \mathbf Y)\]</span>
@@ -280,7 +278,7 @@ then we can also seek the maximum likelihood estimator of <span class="math inli
 </div>
 
 <div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> <strong>NON-EXAMINABLE</strong></p>
+<p>\iffalse{} <span class="proof"><em>Proof. </em></span> <strong>NON-EXAMINABLE</strong></p>
 <p>Assume <span class="math inline">\(\boldsymbol{\Sigma}\)</span> is positive definite. Then
 the log-likelihood of <span class="math inline">\(\mathbf B\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}\)</span> is
 <span class="math display" id="eq:MVNlik">\[\begin{align}
@@ -387,7 +385,7 @@ where <span class="math inline">\(\mathbf V_r\)</span> has as columns the first 
 </div>
 
 <div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> If <span class="math inline">\(\mathbf B\)</span> is at most rank <span class="math inline">\(r\)</span> we can write it as <span class="math inline">\(\mathbf B=\mathbf A\mathbf C\)</span>, and then
+<p>\iffalse{} <span class="proof"><em>Proof. </em></span> If <span class="math inline">\(\mathbf B\)</span> is at most rank <span class="math inline">\(r\)</span> we can write it as <span class="math inline">\(\mathbf B=\mathbf A\mathbf C\)</span>, and then
 <span class="math display">\[\begin{align}
 \arg \min_{\mathbf A, \mathbf C} ||\mathbf Y-\mathbf X\mathbf A\mathbf C||_F^2
 &amp;= \arg \min_{\mathbf A, \mathbf C} ||\mathbf Y-\hat{\mathbf Y}||_F^2 + ||\hat{\mathbf Y}-\mathbf X\mathbf A\mathbf C||_F^2\\
@@ -408,7 +406,7 @@ is the best rank <span class="math inline">\(r\)</span> approximation to <span c
 <span class="math display">\[\mathbf X\hat{\mathbf B}^{ols}\mathbf V_r\mathbf V^\top_r = \hat{\mathbf Y}\mathbf V_r\mathbf V^\top_r  = \hat{\mathbf Y}_r.\]</span></p>
 Thus proving the result.
 </div>
-<p>So what are <span class="math inline">\(\mathbf A\)</span> and <span class="math inline">\(\mathbf C\)</span>?</p>
+<p>In the notation from above, we have that <span class="math inline">\(\mathbf A=\hat{\mathbf B}^{ols}\mathbf V_r\)</span> and <span class="math inline">\(\mathbf C=\mathbf V^r\)</span>?</p>
 <div id="brillingers-theorem" class="section level4" number="2.4.2.1">
 <h4><span class="header-section-number">2.4.2.1</span> Brillinger’s theorem</h4>
 <p>Brillinger’s theorem is a generalization of this result.</p>
@@ -434,7 +432,7 @@ If we substitute empirical estimates for covariance matrices (i.e. replace <spa
 </ul>
 
 <div class="proof">
-<p> <span class="proof"><em>Proof. </em></span> Essentially the same as before.
+<p>\iffalse{} <span class="proof"><em>Proof. </em></span> Essentially the same as before.
 <span class="math display">\[  ||(\mathbf Y-\mathbf X\mathbf A\mathbf C)\boldsymbol \Gamma^{1/2}||_F^2 = ||(\mathbf Y-\hat{\mathbf Y})\boldsymbol \Gamma^{1/2}||_F^2+||(\hat{\mathbf Y}-\mathbf X\mathbf A\mathbf C)\boldsymbol \Gamma^{1/2}||_F^2\]</span>
 and so we only need minimize <span class="math display">\[||(\hat{\mathbf Y}-\mathbf X\mathbf A\mathbf C)\boldsymbol \Gamma^{1/2}||_F^2.\]</span></p>
 The best rank <span class="math inline">\(k\)</span> approximation to <span class="math inline">\(\hat{\mathbf Y}\boldsymbol \Gamma^{1/2} = \mathbf U\boldsymbol{\Sigma}\mathbf V^\top\)</span> is

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,10 @@
   
   
 
-<link rel="next" href="0-1-computer-tasks.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="next" href="0.1-computer-tasks.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,29 +50,34 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +86,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -114,6 +121,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -130,28 +138,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Applied multivariate statistics</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
-<li class="chapter" data-level="0.1" data-path="0-1-computer-tasks.html"><a href="0-1-computer-tasks.html"><i class="fa fa-check"></i><b>0.1</b> Computer tasks</a></li>
-<li class="chapter" data-level="0.2" data-path="0-2-exercises.html"><a href="0-2-exercises.html"><i class="fa fa-check"></i><b>0.2</b> Exercises</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="0.1-computer-tasks.html"><a href="0.1-computer-tasks.html"><i class="fa fa-check"></i><b>0.1</b> Computer tasks</a></li>
+<li class="chapter" data-level="0.2" data-path="0.2-exercises.html"><a href="0.2-exercises.html"><i class="fa fa-check"></i><b>0.2</b> Exercises</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="1-lm.html"><a href="1-lm.html"><i class="fa fa-check"></i><b>1</b> Linear Models</a><ul>
-<li class="chapter" data-level="" data-path="1-lm.html"><a href="1-lm.html#notation"><i class="fa fa-check"></i>Notation</a></li>
-<li class="chapter" data-level="1.1" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html"><i class="fa fa-check"></i><b>1.1</b> Ordinary least squares (OLS)</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#geometry"><i class="fa fa-check"></i><b>1.1.1</b> Geometry</a></li>
-<li class="chapter" data-level="1.1.2" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#normal-linear-model"><i class="fa fa-check"></i><b>1.1.2</b> Normal linear model</a></li>
-<li class="chapter" data-level="1.1.3" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#linear-models-in-r"><i class="fa fa-check"></i><b>1.1.3</b> Linear models in R</a></li>
-<li class="chapter" data-level="1.1.4" data-path="1-1-ordinary-least-squares-ols.html"><a href="1-1-ordinary-least-squares-ols.html#problems-with-ols"><i class="fa fa-check"></i><b>1.1.4</b> Problems with OLS</a></li>
+<li class="chapter" data-level="1" data-path="1-mds.html"><a href="1-mds.html"><i class="fa fa-check"></i><b>1</b> Multidimensional Scaling (MDS)</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-classical-mds.html"><a href="1.1-classical-mds.html"><i class="fa fa-check"></i><b>1.1</b> Classical MDS</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="1.1-classical-mds.html"><a href="1.1-classical-mds.html#non-euclidean-distance-matrices"><i class="fa fa-check"></i><b>1.1.1</b> Non-Euclidean distance matrices</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1.1-classical-mds.html"><a href="1.1-classical-mds.html#principal-coordinate-analysis"><i class="fa fa-check"></i><b>1.1.2</b> Principal Coordinate Analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-2-principal-component-regression-pcr.html"><a href="1-2-principal-component-regression-pcr.html"><i class="fa fa-check"></i><b>1.2</b> Principal component regression (PCR)</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="1-2-principal-component-regression-pcr.html"><a href="1-2-principal-component-regression-pcr.html#pcr-in-r"><i class="fa fa-check"></i><b>1.2.1</b> PCR in R</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-similarity.html"><a href="1.2-similarity.html"><i class="fa fa-check"></i><b>1.2</b> Similarity measures</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1.2-similarity.html"><a href="1.2-similarity.html#binary-attributes"><i class="fa fa-check"></i><b>1.2.1</b> Binary attributes</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1.2-similarity.html"><a href="1.2-similarity.html#example-classical-mds-with-the-mnist-data"><i class="fa fa-check"></i><b>1.2.2</b> Example: Classical MDS with the MNIST data</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="1-3-shrinkage-methods.html"><a href="1-3-shrinkage-methods.html"><i class="fa fa-check"></i><b>1.3</b> Shrinkage methods</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="1-3-shrinkage-methods.html"><a href="1-3-shrinkage-methods.html#ridge-regression-in-r"><i class="fa fa-check"></i><b>1.3.1</b> Ridge regression in R</a></li>
-</ul></li>
-<li class="chapter" data-level="1.4" data-path="1-4-multi-output-linear-model.html"><a href="1-4-multi-output-linear-model.html"><i class="fa fa-check"></i><b>1.4</b> Multi-output Linear Model</a><ul>
-<li class="chapter" data-level="1.4.1" data-path="1-4-multi-output-linear-model.html"><a href="1-4-multi-output-linear-model.html#normal-linear-model-1"><i class="fa fa-check"></i><b>1.4.1</b> Normal linear model</a></li>
-<li class="chapter" data-level="1.4.2" data-path="1-4-multi-output-linear-model.html"><a href="1-4-multi-output-linear-model.html#reduced-rank-regression"><i class="fa fa-check"></i><b>1.4.2</b> Reduced rank regression</a></li>
-</ul></li>
+<li class="chapter" data-level="1.3" data-path="1.3-non-metric-mds.html"><a href="1.3-non-metric-mds.html"><i class="fa fa-check"></i><b>1.3</b> Non-metric MDS</a></li>
+<li class="chapter" data-level="1.4" data-path="1.4-exercises-1.html"><a href="1.4-exercises-1.html"><i class="fa fa-check"></i><b>1.4</b> Exercises</a></li>
+<li class="chapter" data-level="1.5" data-path="1.5-computer-tasks-1.html"><a href="1.5-computer-tasks-1.html"><i class="fa fa-check"></i><b>1.5</b> Computer Tasks</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -181,27 +187,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introduction" class="section level1 unnumbered">
 <h1>Introduction</h1>
 <!--\newcommand{\test}{\mathrm{TEST}}-->
-
-
-
-
-
-
-
 <!-- NEED TO OPEN PROJECT TO MAKE IT WORK PROPERLY! -->
-<p>These lecture notes are now <strong>complete</strong>. I’ll continue to correct typos but will not be adding additional material.</p>
 <p>This module is concerned with the analysis of multivariate data, in which the response is a vector of random variables rather than a single random variable.</p>
 <p>Part I of the module describes some basic concepts in Multivariate Analysis and then recaps and introduces some key ideas needed from linear algebra.
 Chapter <a href="#stat-prelim"><strong>??</strong></a> defines notation, introduces some datasets, and discusses exploratory data analysis. Chapter <a href="#linalg-prelim"><strong>??</strong></a> provides a recap on some matrix algebra. Much of this will be familiar to you, but if not, we take the time to introduce the key mathematical concepts that will be relied upon during the module. Chapter <a href="#linalg-decomp"><strong>??</strong></a> introduces matrix decompositions. We start with the spectral decomposition of square symmetric matrices (which you will have studied previously), and then introduce the singular value decomposition (SVD). The SVD is one of the most important concepts in this module, and is the key linear algebra technique behind many of the methods we will study.</p>
 <!--FIX CHAPTER REFERENCES AND TEXT FROM HERE.-->
 <p>A theme running through the module is that of dimension reduction. In Part II we consider three types of dimension reduction: Principal Components Analysis (in Chapter <a href="#pca"><strong>??</strong></a>),
-whose purpose is to identify the main modes of variation in a multivariate dataset; Canonical Correlation Analysis (Chapter <a href="#cca"><strong>??</strong></a>), whose purpose is to describe the association between two sets of variables; and Multidimensional Scaling (Chapter <a href="#mds"><strong>??</strong></a>), in which the starting point is a set of pairwise distances, suitably defined, between the objects under study.</p>
+whose purpose is to identify the main modes of variation in a multivariate dataset; Canonical Correlation Analysis (Chapter <a href="#cca"><strong>??</strong></a>), whose purpose is to describe the association between two sets of variables; and Multidimensional Scaling (Chapter <a href="1-mds.html#mds">1</a>), in which the starting point is a set of pairwise distances, suitably defined, between the objects under study.</p>
 <p>In Part III, we focus on methods of inference for multivariate data whose distribution is multivariate normal.</p>
 <!--First, in Chapter 7, we develop relevant distribution theory for the multivariate normal distribution.  This includes a study of the Wishart distribution, which is a matrix generalisation of the chi-squared distribution, and Hotelling's $T^2$, which can be thought of as a multivariate generalisation of the Student $t$ distribution.  Then in Chapter 8 we focus on inference in  multivariate one-sample and two-sample problems in which the underlying distribution is multivariate normal, making use of the distribution theory developed in Chapter 6.  In Chapter 9, we focus on the multivariate linear model in which the dependent variable (or $y$ variable) is a vector and the error distribution is multivariate normal.
 -->
 <p>Finally, in Part IV, we focus on different methods of classification, i.e. allocating the observations in a sample to different subsets (or groups).</p>
 <!--In Chapter 910, we focus on an approach called discriminant analysis, in which we have a training sample available, and we use this training sample to set up a suitable classification rule.   In Chapter 11, we consider an alternative approach, known as cluster analysis, in which we allocate the observations into clusters (or similar subsets) when a training sample is not available.-->
-<p>If you find any typos or mistakes, please email me at <code>r.d.wilkinson@nottingham.ac.uk</code> The notes have been significantly rewritten this year in order to adapt them for remote learning, and I am keen to fix as many of the mistakes as I can!</p>
+<p>If you find any typos or mistakes, please email me at</p>
+<p><code>r.d.wilkinson@nottingham.ac.uk</code></p>
+<p>The notes were significantly rewritten last year in order to adapt them for remote learning, and I am keen to fix as many of the mistakes as I can!</p>
 <!-- unbiased, ellipses, lines. Is this useful and where should it go?-->
 <!--chapter:end:index.Rmd-->
 </div>
@@ -211,11 +211,10 @@ whose purpose is to identify the main modes of variation in a multivariate datas
         </div>
       </div>
 
-<a href="0-1-computer-tasks.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="0.1-computer-tasks.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -234,6 +233,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -254,6 +254,10 @@ gitbook.start({
 "text": null
 },
 "download": ["MultivariateStatistics.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 },

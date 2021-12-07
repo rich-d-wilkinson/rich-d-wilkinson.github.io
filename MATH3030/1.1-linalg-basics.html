@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.1 Basics | Multivariate Statistics</title>
+  <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  <meta name="generator" content="bookdown 0.24.4 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.1 Basics | Multivariate Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.1 Basics | Multivariate Statistics" />
+  
+  <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
+  
+
+<meta name="author" content="Prof. Richard Wilkinson" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="1-linalg-prelim.html"/>
+<link rel="next" href="1.2-linalg-vecspaces.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied multivariate statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="1-linalg-prelim.html"><a href="1-linalg-prelim.html"><i class="fa fa-check"></i><b>1</b> Review of linear algebra</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-linalg-basics.html"><a href="1.1-linalg-basics.html"><i class="fa fa-check"></i><b>1.1</b> Basics</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="1.1-linalg-basics.html"><a href="1.1-linalg-basics.html#notation"><i class="fa fa-check"></i><b>1.1.1</b> Notation</a></li>
+<li class="chapter" data-level="1.1.2" data-path="1.1-linalg-basics.html"><a href="1.1-linalg-basics.html#elementary-matrix-operations"><i class="fa fa-check"></i><b>1.1.2</b> Elementary matrix operations</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1.1-linalg-basics.html"><a href="1.1-linalg-basics.html#special-matrices"><i class="fa fa-check"></i><b>1.1.3</b> Special matrices</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1.1-linalg-basics.html"><a href="1.1-linalg-basics.html#vectordiff"><i class="fa fa-check"></i><b>1.1.4</b> Vector Differentiation</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="1.2-linalg-vecspaces.html"><a href="1.2-linalg-vecspaces.html"><i class="fa fa-check"></i><b>1.2</b> Vector spaces</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1.2-linalg-vecspaces.html"><a href="1.2-linalg-vecspaces.html#linear-independence"><i class="fa fa-check"></i><b>1.2.1</b> Linear independence</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1.2-linalg-vecspaces.html"><a href="1.2-linalg-vecspaces.html#colsspace"><i class="fa fa-check"></i><b>1.2.2</b> Row and column spaces</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1.2-linalg-vecspaces.html"><a href="1.2-linalg-vecspaces.html#linear-transformations"><i class="fa fa-check"></i><b>1.2.3</b> Linear transformations</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1.3-linalg-innerprod.html"><a href="1.3-linalg-innerprod.html"><i class="fa fa-check"></i><b>1.3</b> Inner product spaces</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="1.3-linalg-innerprod.html"><a href="1.3-linalg-innerprod.html#normed"><i class="fa fa-check"></i><b>1.3.1</b> Distances, and angles</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1.3-linalg-innerprod.html"><a href="1.3-linalg-innerprod.html#orthogonal-matrices"><i class="fa fa-check"></i><b>1.3.2</b> Orthogonal matrices</a></li>
+<li class="chapter" data-level="1.3.3" data-path="1.3-linalg-innerprod.html"><a href="1.3-linalg-innerprod.html#projection-matrix"><i class="fa fa-check"></i><b>1.3.3</b> Projections</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="1.4-centering-matrix.html"><a href="1.4-centering-matrix.html"><i class="fa fa-check"></i><b>1.4</b> The Centering Matrix</a></li>
+<li class="chapter" data-level="1.5" data-path="1.5-tasks-ch2.html"><a href="1.5-tasks-ch2.html"><i class="fa fa-check"></i><b>1.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.6" data-path="1.6-exercises-ch2.html"><a href="1.6-exercises-ch2.html"><i class="fa fa-check"></i><b>1.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html"><i class="fa fa-check"></i>PART II: Dimension reduction methods</a>
+<ul>
+<li class="chapter" data-level="" data-path="part-ii-dimension-reduction-methods.html"><a href="part-ii-dimension-reduction-methods.html#a-warning"><i class="fa fa-check"></i>A warning</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-pca.html"><a href="2-pca.html"><i class="fa fa-check"></i><b>2</b> Principal Component Analysis (PCA)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2.1-pca-an-informal-introduction.html"><a href="2.1-pca-an-informal-introduction.html"><i class="fa fa-check"></i><b>2.1</b> PCA: an informal introduction</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2.1-pca-an-informal-introduction.html"><a href="2.1-pca-an-informal-introduction.html#notation-recap"><i class="fa fa-check"></i><b>2.1.1</b> Notation recap</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2.1-pca-an-informal-introduction.html"><a href="2.1-pca-an-informal-introduction.html#first-principal-component"><i class="fa fa-check"></i><b>2.1.2</b> First principal component</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2.1-pca-an-informal-introduction.html"><a href="2.1-pca-an-informal-introduction.html#second-principal-component"><i class="fa fa-check"></i><b>2.1.3</b> Second principal component</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2.1-pca-an-informal-introduction.html"><a href="2.1-pca-an-informal-introduction.html#geometric-interpretation-1"><i class="fa fa-check"></i><b>2.1.4</b> Geometric interpretation</a></li>
+<li class="chapter" data-level="2.1.5" data-path="2.1-pca-an-informal-introduction.html"><a href="2.1-pca-an-informal-introduction.html#example"><i class="fa fa-check"></i><b>2.1.5</b> Example</a></li>
+<li class="chapter" data-level="2.1.6" data-path="2.1-pca-an-informal-introduction.html"><a href="2.1-pca-an-informal-introduction.html#example-iris"><i class="fa fa-check"></i><b>2.1.6</b> Example: Iris</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2.2-pca-a-formal-description-with-proofs.html"><a href="2.2-pca-a-formal-description-with-proofs.html"><i class="fa fa-check"></i><b>2.2</b> PCA: a formal description with proofs</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2.2-pca-a-formal-description-with-proofs.html"><a href="2.2-pca-a-formal-description-with-proofs.html#properties-of-principal-components"><i class="fa fa-check"></i><b>2.2.1</b> Properties of principal components</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2.2-pca-a-formal-description-with-proofs.html"><a href="2.2-pca-a-formal-description-with-proofs.html#pca:football"><i class="fa fa-check"></i><b>2.2.2</b> Example: Football</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2.2-pca-a-formal-description-with-proofs.html"><a href="2.2-pca-a-formal-description-with-proofs.html#pcawithR"><i class="fa fa-check"></i><b>2.2.3</b> PCA based on <span class="math inline">\(\mathbf R\)</span> versus PCA based on <span class="math inline">\(\mathbf S\)</span></a></li>
+<li class="chapter" data-level="2.2.4" data-path="2.2-pca-a-formal-description-with-proofs.html"><a href="2.2-pca-a-formal-description-with-proofs.html#population-pca"><i class="fa fa-check"></i><b>2.2.4</b> Population PCA</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2.2-pca-a-formal-description-with-proofs.html"><a href="2.2-pca-a-formal-description-with-proofs.html#pca-under-transformations-of-variables"><i class="fa fa-check"></i><b>2.2.5</b> PCA under transformations of variables</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2.3-an-alternative-view-of-pca.html"><a href="2.3-an-alternative-view-of-pca.html"><i class="fa fa-check"></i><b>2.3</b> An alternative view of PCA</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="2.3-an-alternative-view-of-pca.html"><a href="2.3-an-alternative-view-of-pca.html#pca-mnist"><i class="fa fa-check"></i><b>2.3.1</b> Example: MNIST handwritten digits</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2.4-pca-comptask.html"><a href="2.4-pca-comptask.html"><i class="fa fa-check"></i><b>2.4</b> Computer tasks</a></li>
+<li class="chapter" data-level="2.5" data-path="2.5-exercises.html"><a href="2.5-exercises.html"><i class="fa fa-check"></i><b>2.5</b> Exercises</a></li>
+</ul></li>
+<li class="divider"></li>
+<li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Multivariate Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linalg-basics" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Basics</h2>
+<p>In this section, we recap some basic definitions and notation. Hopefully this material will largely be familiar to you.</p>
+<div id="notation" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Notation</h3>
+<p>The matrix <span class="math inline">\({\mathbf A}\)</span> will be referred to in the following equivalent ways:
+<span class="math display">\[\begin{eqnarray*}
+{\mathbf A}=\stackrel{n\times p}{\mathbf A} &amp;=&amp; \left(\begin{array}{cccc}
+a_{11}&amp;a_{12}&amp;\dots&amp;a_{1p}\\
+a_{21}&amp;a_{22}&amp;\dots&amp;a_{2p}\\
+\vdots&amp;\vdots&amp;&amp;\vdots\\
+a_{n1}&amp;a_{n2}&amp;\dots&amp;a_{np}
+\end{array} \right) \\
+&amp;=&amp;[a_{ij}: i=1, \ldots , n; j=1, \ldots , p]\\
+&amp;=&amp;(a_{ij})\\
+&amp;=&amp; \left( \begin{array}{c}\mathbf a_1^\top\\
+\vdots\\
+\mathbf a_n^\top\end{array}\right)
+\end{eqnarray*}\]</span>
+where the <span class="math inline">\(a_{ij}\)</span> are the individual entries, and <span class="math inline">\(\mathbf a_i^\top=(a_{i1}, a_{i2}, \ldots, a_{ip})\)</span> is the <span class="math inline">\(i^{th}\)</span> row.</p>
+<p>A matrix of order <span class="math inline">\(1\times 1\)</span> is called a <em>scalar</em>.</p>
+<p>A matrix of order <span class="math inline">\(n\times 1\)</span> is called a <em>(column) vector</em>.</p>
+<p>A matrix of order <span class="math inline">\(1\times p\)</span> is called a <em>(row) vector</em>.</p>
+<p>e.g. <span class="math inline">\(\stackrel{n\times 1}{\mathbf a}=\left( \begin{array}{c} a_1\\\vdots\\a_n \end{array} \right)\)</span>is a column vector.</p>
+<p>The <span class="math inline">\(n\times n\)</span> <em>identity matrix</em> <span class="math inline">\({\mathbf I}_n\)</span> has diagonal elements equal to 1
+and off-diagonal elements equal to zero.</p>
+<p>A <em>diagonal</em> matrix is an <span class="math inline">\(n \times n\)</span> matrix whose
+off-diagonal elements are zero. Sometimes we denote a diagonal
+matrix by <span class="math inline">\(\text{diag}\{a_1,\ldots, a_n\}\)</span>.</p>
+<p><span class="math display">\[\mathbf I_3 = \left(\begin{array}{ccc} 1&amp;0&amp;0\\ 0&amp;1&amp;0\\ 0&amp;0&amp;1\end{array}\right),\quad \text{diag}\{1,2,3\}=\left(\begin{array}{ccc} 1&amp;0&amp;0\\ 0&amp;2&amp;0\\ 0&amp;0&amp;3\end{array}\right)\quad\]</span></p>
+</div>
+<div id="elementary-matrix-operations" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Elementary matrix operations</h3>
+<ol style="list-style-type: decimal">
+<li><p><em>Addition/Subtraction</em>. If <span class="math inline">\(\stackrel{n\times p}{\mathbf A}=[a_{ij}]\)</span> and <span class="math inline">\(\stackrel{n\times p}{\mathbf B}=[b_{ij}]\)</span> are
+given matrices then
+<span class="math display">\[ {\mathbf A}+{\mathbf B}=[a_{ij}+b_{ij}] \qquad \text{and} \qquad {\mathbf A}-{\mathbf B}=[a_{ij}-b_{ij}].\]</span></p></li>
+<li><p><em>Scalar Multiplication</em>. If <span class="math inline">\(\lambda\)</span> is a scalar and <span class="math inline">\({\mathbf A}=[a_{ij}]\)</span> then
+<span class="math display">\[\lambda {\mathbf A}=[\lambda a_{ij}].\]</span></p></li>
+<li><p><em>Matrix Multiplication</em>. If <span class="math inline">\(\stackrel{n\times p}{\mathbf A}\)</span> and <span class="math inline">\(\stackrel{p\times q}{\mathbf B}\)</span> are
+matrices then <span class="math inline">\(\mathbf A\mathbf B=\stackrel{n\times q}{\mathbf C}=[c_{ij}]\)</span> where
+<span class="math display">\[c_{ij}=\sum _{k=1}^p a_{ik}b_{kj}, \qquad i=1,\dots,n, \qquad j=1,\dots ,q.\]</span></p></li>
+<li><p><em>Matrix Transpose</em>. If <span class="math inline">\(\stackrel{m \times n}{\mathbf A}=[a_{ij}: i=1, \ldots , m; j=1, \ldots , n]\)</span>, then the transpose of <span class="math inline">\(\mathbf A\)</span>, written
+<span class="math inline">\(\mathbf A^\top\)</span>, is given by the <span class="math inline">\(n \times m\)</span> matrix
+<span class="math display">\[
+\mathbf A^\top =[a_{ji}: j=1, \ldots , n; i=1, \ldots, m].
+\]</span>
+Note from the definitions that <span class="math inline">\((\mathbf A\mathbf B)^\top={\mathbf B}^\top {\mathbf A}^\top\)</span>.</p></li>
+<li><p><em>Matrix Inverse</em>. The inverse of a matrix <span class="math inline">\(\stackrel{n\times n}{\mathbf A}\)</span> (if it exists) is a
+matrix <span class="math inline">\(\stackrel{n\times n}{\mathbf B}\)</span> such that <span class="math inline">\({\mathbf A}\mathbf B=\mathbf B\mathbf A={\mathbf I}_n.\)</span> We denote
+the inverse by <span class="math inline">\({\mathbf A}^{-1}\)</span>. Note that if <span class="math inline">\({\mathbf A}_1\)</span> and <span class="math inline">\({\mathbf A}_2\)</span> are both invertible,
+then <span class="math inline">\(({\mathbf A}_1 {\mathbf A}_2)^{-1}={\mathbf A}_2^{-1}{\mathbf A}_1^{-1}\)</span>.</p></li>
+<li><p><em>Trace</em>. The trace of a matrix <span class="math inline">\(\stackrel{n\times n}{\mathbf A}\)</span> is given by
+<span class="math display">\[ \text{tr}({\mathbf A})=\sum _{i=1}^n a_{ii}.\]</span></p></li>
+</ol>
+
+<div class="lemma">
+<span id="lem:trace" class="lemma"><strong>Lemma 1.1  </strong></span>For any matrices <span class="math inline">\(\mathbf A\)</span> (<span class="math inline">\(n \times m\)</span>) and <span class="math inline">\(\mathbf B\)</span> (<span class="math inline">\(m \times n\)</span>),
+<span class="math display">\[
+\text{tr}(\mathbf A\mathbf B) = \text{tr}(\mathbf B\mathbf A).
+\]</span>
+</div>
+<ol start="7" style="list-style-type: decimal">
+<li>The <em>determinant</em> of a square matrix <span class="math inline">\(\stackrel{n\times n}{\mathbf A}\)</span> is
+defined as
+<span class="math display">\[ \text{det}({\mathbf A})=\sum (-1)^{|\tau |} a_{1\tau(1)}\dots a_{n\tau (n)} \]</span>
+where the summation is taken over all permutations <span class="math inline">\(\tau\)</span> of <span class="math inline">\(\{1,2,\dots ,n\}\)</span>,
+and we define <span class="math inline">\(|\tau |=0\)</span> or <span class="math inline">\(1\)</span> depending on whether <span class="math inline">\(\tau\)</span> can be written as an even or
+odd number of transpositions.</li>
+</ol>
+<p>E.g. If <span class="math inline">\({\mathbf A}=\left[ \begin{array}{cc} a_{11}&amp;a_{12}\\ a_{21}&amp;a_{22} \end{array} \right]\)</span>,
+then <span class="math inline">\(\text{det}({\mathbf A})=a_{11}a_{22}-a_{12}a_{21}\)</span>.</p>
+
+<div class="proposition">
+<span id="prp:det1" class="proposition"><strong>Proposition 1.1  </strong></span>Matrix <span class="math inline">\(\stackrel{n\times n}{\mathbf A}\)</span> is invertible if and only if <span class="math inline">\(\det(\mathbf A)\not = 0\)</span>. If <span class="math inline">\(\mathbf A^{-1}\)</span> exists then
+<span class="math display">\[\det(\mathbf A)=\frac{1}{\det(\mathbf A^{-1})}\]</span>
+</div>
+
+<div class="proposition">
+<span id="prp:det3" class="proposition"><strong>Proposition 1.2  </strong></span>For any matrices <span class="math inline">\(\stackrel{n\times n}{\mathbf A}\)</span>,
+<span class="math inline">\(\stackrel{n\times n}{\mathbf B}\)</span>, <span class="math inline">\(\stackrel{n\times n}{\mathbf C}\)</span> such that <span class="math inline">\({\mathbf C}={\mathbf{AB}}\)</span>,
+<span class="math display">\[ \text{det}({\mathbf C})=\text{det}({\mathbf A}) \cdot \text{det}({\mathbf B}).\]</span>
+</div>
+</div>
+<div id="special-matrices" class="section level3" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Special matrices</h3>
+
+<div class="definition">
+<p><span id="def:posdef" class="definition"><strong>Definition 1.1  </strong></span>An <span class="math inline">\(n\times n\)</span> matrix <span class="math inline">\(\mathbf A\)</span> is symmetric if
+<span class="math display">\[\mathbf A= \mathbf A^\top.\]</span>
+An <span class="math inline">\(n\times n\)</span> symmetric matrix <span class="math inline">\(\mathbf A\)</span> is <strong>positive-definite</strong> if
+<span class="math display">\[\mathbf x^\top \mathbf A\mathbf x&gt;0 \mbox{ for all } \mathbf x\in \mathbb{R}^n, \mathbf x\not = \boldsymbol 0\]</span>
+and is <strong>positive semi-definite</strong> if
+<span class="math display">\[\mathbf x^\top \mathbf A\mathbf x\geq 0 \mbox{ for all } \mathbf x\in \mathbb{R}^n.\]</span></p>
+<span class="math inline">\(\mathbf A\)</span> is <strong>idempotent</strong> if <span class="math inline">\(\mathbf A^2=\mathbf A\)</span>.
+</div>
+</div>
+<div id="vectordiff" class="section level3" number="1.1.4">
+<h3><span class="header-section-number">1.1.4</span> Vector Differentiation</h3>
+<p>Consider a real-valued function <span class="math inline">\(f: \mathbb{R}^p \rightarrow \mathbb{R}\)</span> of a vector variable <span class="math inline">\(\mathbf x=(x_1, \ldots , x_p)^\top\)</span>. Sometimes we will want to differentiate <span class="math inline">\(f\)</span>. We define the partial derivative of <span class="math inline">\(f(\mathbf x)\)</span> with respect to <span class="math inline">\(\mathbf x\)</span> to be
+the vector of partial derivatives, i.e.
+<span class="math display" id="eq:derivx">\[\begin{equation}
+\frac{\partial f}{\partial \mathbf x}(\mathbf x)=\left [ \begin{array}{c} \frac{\partial f}{\partial x_1}(\mathbf x)\\
+ ..\\
+ ..\\
+ ..\\
+ \frac{\partial f}{\partial x_p}(\mathbf x)
+\end{array} \right ]
+\tag{1.1}
+\end{equation}\]</span>
+The following examples can be worked out directly from the definition <a href="1.1-linalg-basics.html#eq:derivx">(1.1)</a>, using the chain rule in some cases.</p>
+
+<div class="example">
+<span id="exm:calc1" class="example"><strong>Example 1.1  </strong></span>If <span class="math inline">\(f(\mathbf x)=\mathbf a^\top \mathbf x\)</span> where <span class="math inline">\(\mathbf a\in \mathbb{R}^p\)</span> is a constant vector, then
+<span class="math display">\[
+\frac{\partial f}{\partial \mathbf x}(\mathbf x)=\mathbf a.
+\]</span>
+</div>
+
+<div class="example">
+<span id="exm:calc2" class="example"><strong>Example 1.2  </strong></span>If <span class="math inline">\(f(\mathbf x)=(\mathbf x-\mathbf a)^\top \mathbf A(\mathbf x-\mathbf a)\)</span> for a fixed vector <span class="math inline">\(\mathbf a\in \mathbb{R}^p\)</span>
+and <span class="math inline">\(\mathbf A\)</span> is a symmetric constant <span class="math inline">\(p \times p\)</span> matrix, then
+<span class="math display">\[
+\frac{\partial f}{\partial \mathbf x}(\mathbf x)=2\mathbf A(\mathbf x-\mathbf a).
+\]</span>
+</div>
+
+<div class="example">
+<span id="exm:calc3" class="example"><strong>Example 1.3  </strong></span>Suppose that <span class="math inline">\(g: \, \mathbb{R} \rightarrow \mathbb{R}\)</span> is a differentiable function with derivative <span class="math inline">\(g^\prime\)</span>. Then, using the chain rule for partial derivatives,
+<span class="math display">\[
+\frac{\partial g(\mathbf a^\top \mathbf x)}{\partial \mathbf x}=g^{\prime}(\mathbf a^\top\mathbf x)\frac{\partial}{\partial \mathbf x}\left \{\mathbf a^\top \mathbf x\right \}=g^{\prime}(\mathbf a^\top\mathbf x) \mathbf a.
+\]</span>
+</div>
+
+<div class="example">
+<span id="exm:calc4" class="example"><strong>Example 1.4  </strong></span>If <span class="math inline">\(f\)</span> is defined as in Example <a href="1.1-linalg-basics.html#exm:calc2">1.2</a> and <span class="math inline">\(g\)</span> is as in Example <a href="1.1-linalg-basics.html#exm:calc3">1.3</a> then, using the chain rule again,
+<span class="math display">\[
+\frac{\partial }{\partial \mathbf x} g\{f(\mathbf x)\}=g^{\prime} \{f(\mathbf x)\}\frac{\partial f}{\partial \mathbf x}(\mathbf x)
+=2 g^{\prime}\{(\mathbf x- \mathbf a)^\top \mathbf A(\mathbf x- \mathbf a)\}\mathbf A(\mathbf x-\mathbf a).
+\]</span>
+</div>
+If we wish to find a maximum or minimum of <span class="math inline">\(f(\mathbf x)\)</span> we should search for stationary points of <span class="math inline">\(f\)</span>, i.e.
+solutions to the system of equations
+<span class="math display">\[
+\frac{\partial f}{\partial \mathbf x}(\mathbf x)\equiv \left [ \begin{array}{c} \frac{\partial f}{\partial x_1}(\mathbf x)\\
+ ..\\
+ ..\\
+ ..\\
+ \frac{\partial f}{\partial x_p}(\mathbf x)
+\end{array} \right ]={\mathbf 0}_p.
+\]</span>
+
+<div class="definition">
+<span id="def:hessian" class="definition"><strong>Definition 1.2  </strong></span>The <strong>Hessian</strong> matrix of <span class="math inline">\(f\)</span> is the <span class="math inline">\(p \times p\)</span> matrix of second derivatives.
+<span class="math display">\[
+\frac{\partial^2f}{\partial \mathbf x\partial \mathbf x^\top}(\mathbf x) =\left \{ \frac{\partial^2 f(\mathbf x)}{\partial x_j \partial x_k}\right \}_{j,k=1}^p.
+\]</span>
+</div>
+<p>The nature of a stationary point is determined by the Hessian</p>
+<p>If the Hessian is positive (negative) definite at a stationary point <span class="math inline">\(\mathbf x\)</span>, then the stationary point is a minimum (maximum).</p>
+<p>If the Hessian has both positive and negative eigenvalues at <span class="math inline">\(\mathbf x\)</span> then the stationary point will be a <em>saddle point</em>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1-linalg-prelim.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1.2-linalg-vecspaces.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MultivariateStatistics.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+},
+"pandoc_args": "--top-level-division=[chapter|part]"
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

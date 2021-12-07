@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Cluster Analysis | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Cluster Analysis | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -31,8 +31,10 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="1-1-k-means-clustering.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="next" href="1.1-k-means-clustering.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,31 +50,34 @@
 
 
 
-
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -81,9 +86,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -116,6 +121,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -133,26 +139,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="1" data-path="1-cluster.html"><a href="1-cluster.html"><i class="fa fa-check"></i><b>1</b> Cluster Analysis</a><ul>
-<li class="chapter" data-level="1.1" data-path="1-1-k-means-clustering.html"><a href="1-1-k-means-clustering.html"><i class="fa fa-check"></i><b>1.1</b> K-means clustering</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="1-1-k-means-clustering.html"><a href="1-1-k-means-clustering.html#estimating-boldsymbol-delta"><i class="fa fa-check"></i><b>1.1.1</b> Estimating <span class="math inline">\(\boldsymbol \delta\)</span></a></li>
-<li class="chapter" data-level="1.1.2" data-path="1-1-k-means-clustering.html"><a href="1-1-k-means-clustering.html#k-means"><i class="fa fa-check"></i><b>1.1.2</b> K-means</a></li>
-<li class="chapter" data-level="1.1.3" data-path="1-1-k-means-clustering.html"><a href="1-1-k-means-clustering.html#example-iris-data"><i class="fa fa-check"></i><b>1.1.3</b> Example: Iris data</a></li>
-<li class="chapter" data-level="1.1.4" data-path="1-1-k-means-clustering.html"><a href="1-1-k-means-clustering.html#choosing-k"><i class="fa fa-check"></i><b>1.1.4</b> Choosing <span class="math inline">\(K\)</span></a></li>
+<li class="chapter" data-level="1" data-path="1-cluster.html"><a href="1-cluster.html"><i class="fa fa-check"></i><b>1</b> Cluster Analysis</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1.1-k-means-clustering.html"><a href="1.1-k-means-clustering.html"><i class="fa fa-check"></i><b>1.1</b> K-means clustering</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="1.1-k-means-clustering.html"><a href="1.1-k-means-clustering.html#estimating-boldsymbol-delta"><i class="fa fa-check"></i><b>1.1.1</b> Estimating <span class="math inline">\(\boldsymbol \delta\)</span></a></li>
+<li class="chapter" data-level="1.1.2" data-path="1.1-k-means-clustering.html"><a href="1.1-k-means-clustering.html#k-means"><i class="fa fa-check"></i><b>1.1.2</b> K-means</a></li>
+<li class="chapter" data-level="1.1.3" data-path="1.1-k-means-clustering.html"><a href="1.1-k-means-clustering.html#example-iris-data"><i class="fa fa-check"></i><b>1.1.3</b> Example: Iris data</a></li>
+<li class="chapter" data-level="1.1.4" data-path="1.1-k-means-clustering.html"><a href="1.1-k-means-clustering.html#choosing-k"><i class="fa fa-check"></i><b>1.1.4</b> Choosing <span class="math inline">\(K\)</span></a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="1-2-model-based-clustering.html"><a href="1-2-model-based-clustering.html"><i class="fa fa-check"></i><b>1.2</b> Model-based clustering</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="1-2-model-based-clustering.html"><a href="1-2-model-based-clustering.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>1.2.1</b> Maximum-likelihood estimation</a></li>
-<li class="chapter" data-level="1.2.2" data-path="1-2-model-based-clustering.html"><a href="1-2-model-based-clustering.html#multivariate-gaussian-clusters"><i class="fa fa-check"></i><b>1.2.2</b> Multivariate Gaussian clusters</a></li>
-<li class="chapter" data-level="1.2.3" data-path="1-2-model-based-clustering.html"><a href="1-2-model-based-clustering.html#example-iris"><i class="fa fa-check"></i><b>1.2.3</b> Example: Iris</a></li>
+<li class="chapter" data-level="1.2" data-path="1.2-model-based-clustering.html"><a href="1.2-model-based-clustering.html"><i class="fa fa-check"></i><b>1.2</b> Model-based clustering</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1.2-model-based-clustering.html"><a href="1.2-model-based-clustering.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>1.2.1</b> Maximum-likelihood estimation</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1.2-model-based-clustering.html"><a href="1.2-model-based-clustering.html#multivariate-gaussian-clusters"><i class="fa fa-check"></i><b>1.2.2</b> Multivariate Gaussian clusters</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1.2-model-based-clustering.html"><a href="1.2-model-based-clustering.html#example-iris"><i class="fa fa-check"></i><b>1.2.3</b> Example: Iris</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="1-3-hierarchical-clustering-methods.html"><a href="1-3-hierarchical-clustering-methods.html"><i class="fa fa-check"></i><b>1.3</b> Hierarchical clustering methods</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="1-3-hierarchical-clustering-methods.html"><a href="1-3-hierarchical-clustering-methods.html#distance-measures"><i class="fa fa-check"></i><b>1.3.1</b> Distance measures</a></li>
-<li class="chapter" data-level="1.3.2" data-path="1-3-hierarchical-clustering-methods.html"><a href="1-3-hierarchical-clustering-methods.html#toy-example"><i class="fa fa-check"></i><b>1.3.2</b> Toy Example</a></li>
-<li class="chapter" data-level="1.3.3" data-path="1-3-hierarchical-clustering-methods.html"><a href="1-3-hierarchical-clustering-methods.html#comparison-of-methods"><i class="fa fa-check"></i><b>1.3.3</b> Comparison of methods</a></li>
+<li class="chapter" data-level="1.3" data-path="1.3-hierarchical-clustering-methods.html"><a href="1.3-hierarchical-clustering-methods.html"><i class="fa fa-check"></i><b>1.3</b> Hierarchical clustering methods</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="1.3-hierarchical-clustering-methods.html"><a href="1.3-hierarchical-clustering-methods.html#distance-measures"><i class="fa fa-check"></i><b>1.3.1</b> Distance measures</a></li>
+<li class="chapter" data-level="1.3.2" data-path="1.3-hierarchical-clustering-methods.html"><a href="1.3-hierarchical-clustering-methods.html#toy-example"><i class="fa fa-check"></i><b>1.3.2</b> Toy Example</a></li>
+<li class="chapter" data-level="1.3.3" data-path="1.3-hierarchical-clustering-methods.html"><a href="1.3-hierarchical-clustering-methods.html#comparison-of-methods"><i class="fa fa-check"></i><b>1.3.3</b> Comparison of methods</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="1-4-summary.html"><a href="1-4-summary.html"><i class="fa fa-check"></i><b>1.4</b> Summary</a></li>
-<li class="chapter" data-level="1.5" data-path="1-5-computer-tasks.html"><a href="1-5-computer-tasks.html"><i class="fa fa-check"></i><b>1.5</b> Computer tasks</a></li>
-<li class="chapter" data-level="1.6" data-path="1-6-exercises.html"><a href="1-6-exercises.html"><i class="fa fa-check"></i><b>1.6</b> Exercises</a></li>
+<li class="chapter" data-level="1.4" data-path="1.4-summary.html"><a href="1.4-summary.html"><i class="fa fa-check"></i><b>1.4</b> Summary</a></li>
+<li class="chapter" data-level="1.5" data-path="1.5-computer-tasks.html"><a href="1.5-computer-tasks.html"><i class="fa fa-check"></i><b>1.5</b> Computer tasks</a></li>
+<li class="chapter" data-level="1.6" data-path="1.6-exercises.html"><a href="1.6-exercises.html"><i class="fa fa-check"></i><b>1.6</b> Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li> <a href="https://rich-d-wilkinson.github.io/teaching.html" target="blank">University of Nottingham</a></li>
@@ -174,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="cluster" class="section level1">
+<div id="cluster" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Cluster Analysis</h1>
 <p>Discriminant analysis, covered in Chapter <a href="#lda"><strong>??</strong></a>, is a <strong>supervised</strong> learning method: in order to train the classifier we had access to both the input <span class="math inline">\(\mathbf x\)</span> and the label <span class="math inline">\(y\)</span> for that case (what group it belonged to).
 This chapter focusses on cluster analysis, which is an <strong>unsupervised</strong> learning method: we have to train the model without knowledge of the true cluster labels. In many problems there may not be anything we could describe as a ‘true’ cluster label - in which case we are using cluster analysis as a way finding descriptive statistics about the data.</p>
@@ -201,11 +211,10 @@ This chapter focusses on cluster analysis, which is an <strong>unsupervised</str
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="1-1-k-means-clustering.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="1.1-k-means-clustering.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -224,6 +233,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -244,6 +254,10 @@ gitbook.start({
 "text": null
 },
 "download": ["MultivariateStatistics.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 },
