@@ -109,9 +109,9 @@ Solution
 <div class="callout-body-container callout-body">
 <table class="table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 41%">
-<col style="width: 35%">
+<col style="width: 25%">
+<col style="width: 40%">
+<col style="width: 34%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -185,10 +185,10 @@ Solution
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(\mathbf{A}\)</span> is positive definite (semidefinite) if and only its two eigenvalues <span class="math inline">\(\lambda_1, \lambda_2\)</span> are positive (nonnegative).</p>
-<p><span class="math display">\[\begin{align*}
+<span class="math display">\[\begin{align*}
 \lambda_1, \lambda_2 &gt; 0 &amp;\mbox{ ifF } \lambda_1 +\lambda_2 &gt;0 \mbox{ and } \lambda_1\lambda_2 &gt;0\\
-&amp;\mbox{ ifF } \operatorname{Tr}(\mathbf{A})&gt;0 \mbox{ and } \det(\mathbf{A})&gt;0.
-\end{align*}\]</span></p>
+&amp;\mbox{ ifF } \operatorname{Tr}(\mathbf{A})&gt;0 \mbox{ and } \det(\bA)&gt;0.
+\end{align*}\]</span>
 </div>
 </div>
 </div>
@@ -262,7 +262,7 @@ Solution
 <p>Below I’ve written the converse of each of the second-order conditions, and given a counter example.</p>
 <ul>
 <li><p><span class="math inline">\(\nabla^2 f(\mathbf{x}^*)\succeq 0 \Rightarrow \mathbf{x}^*\)</span> a local minima</p>
-<p>Counter example: <span class="math inline">\(f(x)=3^4\)</span>. Then <span class="math inline">\(f''(0)=0\)</span> but <span class="math inline">\(0\)</span> is not a local minima.</p></li>
+<p>Counter example: <span class="math inline">\(f(x)=x^3\)</span>. Then <span class="math inline">\(f''(0)=0\)</span> but <span class="math inline">\(0\)</span> is not a local minima.</p></li>
 <li><p><span class="math inline">\(\mathbf{x}^*\)</span> a strict local min <span class="math inline">\(\Rightarrow \nabla^2 f(\mathbf{x}^*)\succ 0\)</span></p>
 <p>Counter example: <span class="math inline">\(f(x)=x^4\)</span>. Then <span class="math inline">\(x=0\)</span> is a strict local minima but <span class="math inline">\(f''(0)=0\)</span>.</p></li>
 <li><p><span class="math inline">\(\mathbf{x}^*\)</span> a global min <span class="math inline">\(\Rightarrow \nabla^2 f(\mathbf{x})\succeq 0 \;\forall \;\mathbf{x}\)</span></p>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.649">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Prof.&nbsp;Richard Wilkinson">
+<title>Lab 1 - solutions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="Lab2_sols_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Lab2_sols_files/libs/quarto-html/quarto.js"></script>
+<script src="Lab2_sols_files/libs/quarto-html/popper.min.js"></script>
+<script src="Lab2_sols_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Lab2_sols_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Lab2_sols_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Lab2_sols_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Lab2_sols_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Lab2_sols_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Lab2_sols_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet"><style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+</head>
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full"><div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Lab 1 - solutions</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Prof.&nbsp;Richard Wilkinson </p>
+            </div>
+    </div>
+      
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc"><h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+<li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  </ul></nav>
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content"><div class="hidden">
+
+</div>
+<section id="question-1" class="level2"><h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<p>Consider the Branin function. <span class="math display">\[f(\mathbf{x}) =  a (x_2 - b x_1^2 + cx_1 - r)^2+ s(1-t)\cos(x_1)+s \mbox{ for } x_1\in [-5,10], x_2 \in [0, 15]
+    \]</span> The parameters <span class="math inline">\(a, b, c, r, s, t\)</span> are fixed constants, which have default values <span class="math inline">\(a = 1, b = \frac{5.1}{4\pi^2}, c = \frac{5}{\pi}, r = 6, s = 10\)</span> and <span class="math inline">\(t = \frac{1} {8\pi}\)</span>.</p>
+<ul>
+<li>Write a function that takes <span class="math inline">\(x\)</span> and the parameters (<span class="math inline">\(a, b\)</span> etc) as an input, and returns the value of <span class="math inline">\(f(\mathbf{x})\)</span>. Write the function so that the parameter values are by default set to the values above, but so that they can be changed by the user, i.e., should use the default values above, but should use <span class="math inline">\(a=2\)</span>, with the other parameters set to their defaults. Make sure the function returns an error if <span class="math inline">\(\mathbf{x}\)</span> is outside of the domain of <span class="math inline">\(f\)</span>.</li>
+</ul>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">branin</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">a</span><span class="op">=</span><span class="fl">1</span>,<span class="va">b</span><span class="op">=</span><span class="fl">5.1</span><span class="op">/</span><span class="op">(</span><span class="fl">4</span><span class="op">*</span><span class="va">pi</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>, <span class="va">c</span><span class="op">=</span><span class="fl">5</span><span class="op">/</span><span class="va">pi</span>, <span class="va">r</span><span class="op">=</span><span class="fl">6</span>, <span class="va">s</span><span class="op">=</span><span class="fl">10</span>, <span class="va">t</span><span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="op">(</span><span class="fl">8</span><span class="op">*</span><span class="va">pi</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">&lt;=</span><span class="fl">10</span>, <span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">&gt;=</span><span class="op">-</span><span class="fl">5</span>, <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&lt;=</span><span class="fl">15</span>, <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;=</span><span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="va">out</span> <span class="op">&lt;-</span> <span class="va">a</span> <span class="op">*</span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="va">b</span><span class="op">*</span> <span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="va">c</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">-</span> <span class="va">r</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">+</span> <span class="va">s</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">t</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">+</span><span class="va">s</span> </span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>Plot the function over its domain.</li>
+</ul>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You can do this with a double loop:</p>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>,<span class="fl">10</span>,length.out<span class="op">=</span><span class="fl">40</span><span class="op">)</span></span>
+<span><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">15</span>,length.out<span class="op">=</span><span class="fl">40</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, nr<span class="op">=</span><span class="fl">40</span>, nc<span class="op">=</span><span class="fl">40</span><span class="op">)</span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="kw">for</span><span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">)</span><span class="op">{</span></span>
+<span>    <span class="va">out</span><span class="op">[</span><span class="va">i</span>,<span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">branin</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">x1</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="va">x2</span><span class="op">[</span><span class="va">j</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/persp.html">persp</a></span><span class="op">(</span><span class="va">x1</span>,<span class="va">x2</span>,<span class="va">out</span>, zlab<span class="op">=</span><span class="st">'f(x)'</span>, theta<span class="op">=</span><span class="fl">30</span>, phi<span class="op">=</span><span class="fl">30</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lab2_sols_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/contour.html">contour</a></span><span class="op">(</span><span class="va">x1</span>,<span class="va">x2</span>,<span class="va">out</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lab2_sols_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>A cleaner way of doing this is using the <code>apply</code> function in R, but it is non-intuitive when you first see it.</p>
+<div class="cell">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">pracma</span><span class="op">)</span></span>
+<span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pracma/man/meshgrid.html">meshgrid</a></span><span class="op">(</span><span class="va">x1</span>,<span class="va">x2</span><span class="op">)</span></span>
+<span><span class="va">z.plt</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">$</span><span class="va">X</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span>, <span class="fl">1</span>, <span class="va">branin</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/persp.html">persp</a></span><span class="op">(</span><span class="va">x1</span>,<span class="va">x2</span>,<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">z.plt</span>, nrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">$</span><span class="va">X</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>, zlab<span class="op">=</span><span class="st">'f(x)'</span>, theta<span class="op">=</span><span class="fl">30</span>, phi<span class="op">=</span><span class="fl">30</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lab2_sols_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/contour.html">contour</a></span><span class="op">(</span><span class="va">x1</span>,<span class="va">x2</span>,<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">z.plt</span>, nrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">$</span><span class="va">X</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lab2_sols_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>These are just basic plots. But it is easy now to create a range of interactive plots in R that you can rotate and zoom in on. For example, see <a href="https://rviews.rstudio.com/2020/12/14/plotting-surfaces-with-r/">here</a>.</p>
+</div>
+</div>
+</div>
+<ul>
+<li>Calculate (mathematically) the gradient of the function (with respect to <span class="math inline">\(\mathbf{x}\)</span>), and the Hessian matrix.</li>
+</ul>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<span class="math display">\[\nabla f(\mathbf{x}) = \begin{pmatrix}2a(-2bx_1+c)(x_2-bx_1^2+cx_1-r)-s(1-t)\sin(x_1)\\
+2a(x_2-bx_1^2+cx_1-r)\end{pmatrix}
+\]</span> $$^2 f() =
+<span class="math display">\[\begin{pmatrix}-4ab(x_2-bx_1^2+cx_1-r)+2a(-2bx_1+c)^2-s(1-t)\cos(x_1) &amp; 2a(-2bx_1+c)\\
+
+
+2a(-2bx_1+c) &amp; 2a\end{pmatrix}\]</span>
+<p>$$</p>
+</div>
+</div>
+</div>
+<ul>
+<li>
+<p>We will now use a finite difference approximation to compute the gradients, which can be a useful way to check your calculation above. To approximate the first derivative of a function <span class="math inline">\(g(x)\)</span> we can use <span class="math display">\[g'(x) \approx \frac{g(x+h)-g(x-h)}{2h}\]</span> for small <span class="math inline">\(h\)</span>. Use this approximation to approximate the gradient of <span class="math inline">\(f\)</span>at <span class="math inline">\(\mathbf{x}=(1,1)^\top\)</span>. What happens as <span class="math inline">\(h\)</span> gets smaller? Plot the error in this approximation vs <span class="math inline">\(h\)</span>, using a log-scale for both axes. What happens if <span class="math inline">\(h\)</span> becomes too small? Why does this happen?</p>
+<p>Demonstrate why we prefer this central difference method to the forward difference approximation <span class="math display">\[g'(x) \approx \frac{g(x+h)-g(x)}{h}\]</span> Note that if <span class="math inline">\(\dim (\mathbf{x})&gt;1\)</span> we need to perturb one input variable at a time, e.g.,</p>
+</li>
+</ul>
+<p><span class="math display">\[\frac{\partial g}{\partial x_i}(\mathbf{x}) \approx \frac{g(\mathbf{x}+h\mathbf{e}_i)-g(\mathbf{x}-h\mathbf{e}_i)}{2h}.\]</span></p>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Let’s first define the derivative we just computed</p>
+<div class="cell">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">grad_f</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">a</span><span class="op">=</span><span class="fl">1</span>,<span class="va">b</span><span class="op">=</span><span class="fl">5.1</span><span class="op">/</span><span class="op">(</span><span class="fl">4</span><span class="op">*</span><span class="va">pi</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>, <span class="va">c</span><span class="op">=</span><span class="fl">5</span><span class="op">/</span><span class="va">pi</span>, <span class="va">r</span><span class="op">=</span><span class="fl">6</span>, <span class="va">s</span><span class="op">=</span><span class="fl">10</span>, <span class="va">t</span><span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="op">(</span><span class="fl">8</span><span class="op">*</span><span class="va">pi</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">&lt;=</span><span class="fl">10</span>, <span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">&gt;=</span><span class="op">-</span><span class="fl">5</span>, <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&lt;=</span><span class="fl">15</span>, <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;=</span><span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="va">out1</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">*</span><span class="va">a</span><span class="op">*</span><span class="op">(</span><span class="op">-</span><span class="fl">2</span><span class="op">*</span><span class="va">b</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">+</span><span class="va">c</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">-</span><span class="va">b</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span><span class="op">+</span><span class="va">c</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">-</span><span class="va">r</span><span class="op">)</span><span class="op">-</span><span class="va">s</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">t</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="va">out2</span> <span class="op">&lt;-</span>  <span class="fl">2</span><span class="op">*</span><span class="va">a</span><span class="op">*</span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">-</span><span class="va">b</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span><span class="op">+</span><span class="va">c</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">-</span><span class="va">r</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">out1</span>,<span class="va">out2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span> </span>
+<span><span class="fu">grad_f</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -17.51251  -7.07527</code></pre>
+</div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">Hessian</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">a</span><span class="op">=</span><span class="fl">1</span>,<span class="va">b</span><span class="op">=</span><span class="fl">5.1</span><span class="op">/</span><span class="op">(</span><span class="fl">4</span><span class="op">*</span><span class="va">pi</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>, <span class="va">c</span><span class="op">=</span><span class="fl">5</span><span class="op">/</span><span class="va">pi</span>, <span class="va">r</span><span class="op">=</span><span class="fl">6</span>, <span class="va">s</span><span class="op">=</span><span class="fl">10</span>, <span class="va">t</span><span class="op">=</span><span class="fl">1</span><span class="op">/</span><span class="op">(</span><span class="fl">8</span><span class="op">*</span><span class="va">pi</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">&lt;=</span><span class="fl">10</span>, <span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">&gt;=</span><span class="op">-</span><span class="fl">5</span>, <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&lt;=</span><span class="fl">15</span>, <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">&gt;=</span><span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="va">d11</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">4</span><span class="op">*</span><span class="va">a</span><span class="op">*</span><span class="va">b</span><span class="op">*</span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">-</span><span class="va">b</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">^</span><span class="fl">2</span><span class="op">+</span><span class="va">c</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">-</span><span class="va">r</span><span class="op">)</span><span class="op">+</span><span class="fl">2</span><span class="op">*</span><span class="va">a</span><span class="op">*</span><span class="op">(</span><span class="op">-</span><span class="fl">2</span><span class="op">*</span><span class="va">b</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">+</span><span class="va">c</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">-</span><span class="va">s</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="va">t</span><span class="op">)</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span>  <span class="va">d12</span> <span class="op">&lt;-</span> <span class="fl">2</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">*</span><span class="op">(</span><span class="op">-</span><span class="fl">2</span><span class="op">*</span><span class="va">b</span><span class="op">*</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">+</span><span class="va">c</span><span class="op">)</span></span>
+<span>  <span class="va">d22</span><span class="op">&lt;-</span><span class="fl">2</span><span class="op">*</span><span class="va">a</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">d11</span>,<span class="va">d12</span>,<span class="va">d12</span>,<span class="va">d22</span><span class="op">)</span>, nr<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">eps</span><span class="op">&lt;-</span><span class="fl">10</span><span class="op">^</span><span class="op">-</span><span class="fl">5</span></span>
+<span></span>
+<span><span class="va">central_diff</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">eps</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">d1</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu">branin</span><span class="op">(</span><span class="va">x</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">eps</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">-</span><span class="fu">branin</span><span class="op">(</span><span class="va">x</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="va">eps</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">eps</span><span class="op">)</span></span>
+<span>  <span class="va">d2</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu">branin</span><span class="op">(</span><span class="va">x</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="va">eps</span><span class="op">)</span><span class="op">)</span><span class="op">-</span><span class="fu">branin</span><span class="op">(</span><span class="va">x</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="op">-</span><span class="va">eps</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">eps</span><span class="op">)</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">d1</span>,<span class="va">d2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">central_diff</span><span class="op">(</span><span class="va">x</span>,<span class="va">eps</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -17.51251  -7.07527</code></pre>
+</div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">grad_f</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -17.51251  -7.07527</code></pre>
+</div>
+</div>
+<p>As eps gets smaller we get a more accurate approximation, but if we let eps be too small numerical underflow can occur.</p>
+<div class="cell">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">central_error</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">eps</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="fu">central_diff</span><span class="op">(</span><span class="va">x</span>,<span class="va">eps</span><span class="op">)</span><span class="op">-</span><span class="fu">grad_f</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu">central_error</span><span class="op">(</span><span class="va">x</span>, <span class="fl">10</span><span class="op">^</span><span class="op">-</span><span class="fl">15</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.027639</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">eps.vals</span> <span class="op">&lt;-</span> <span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">12</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">errors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">eps.vals</span>, <span class="kw">function</span><span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="fu">central_error</span><span class="op">(</span><span class="va">x</span>,<span class="va">e</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">eps.vals</span>, <span class="va">errors</span>, log<span class="op">=</span><span class="st">'xy'</span>, xlab<span class="op">=</span><span class="st">'h'</span>, ylab<span class="op">=</span><span class="st">'Error'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lab2_sols_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>If we compare with the forward difference method, we can see we get a better error rate with the central difference method.</p>
+<div class="cell">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fwd_diff</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">eps</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">d1</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu">branin</span><span class="op">(</span><span class="va">x</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">eps</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">-</span><span class="fu">branin</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="va">eps</span></span>
+<span>  <span class="va">d2</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu">branin</span><span class="op">(</span><span class="va">x</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="va">eps</span><span class="op">)</span><span class="op">)</span><span class="op">-</span><span class="fu">branin</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">/</span><span class="va">eps</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">d1</span>,<span class="va">d2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="va">fwd_error</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">eps</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">(</span><span class="fu">fwd_diff</span><span class="op">(</span><span class="va">x</span>,<span class="va">eps</span><span class="op">)</span><span class="op">-</span><span class="fu">grad_f</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span></span>
+<span><span class="va">eps.vals</span> <span class="op">&lt;-</span> <span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">cent.errors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">eps.vals</span>, <span class="kw">function</span><span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="fu">central_error</span><span class="op">(</span><span class="va">x</span>,<span class="va">e</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">fwd.errors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">eps.vals</span>, <span class="kw">function</span><span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="fu">fwd_error</span><span class="op">(</span><span class="va">x</span>,<span class="va">e</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">eps.vals</span>, <span class="va">cent.errors</span>, log<span class="op">=</span><span class="st">'xy'</span>, xlab<span class="op">=</span><span class="st">'h'</span>, ylab<span class="op">=</span><span class="st">'Error'</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">eps.vals</span>, <span class="va">cent.errors</span>, col<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">eps.vals</span>, <span class="va">fwd.errors</span>, col<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">eps.vals</span>, <span class="va">fwd.errors</span>, col<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lab2_sols_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>The numDeriv package in R has functions to compute numerical estimates of second derivatives. Install this package and use it to check your calculations.</li>
+</ul>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://optimizer.r-forge.r-project.org/">numDeriv</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'numDeriv'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:pracma':
+
+    grad, hessian, jacobian</code></pre>
+</div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">numDeriv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/numDeriv/man/grad.html">grad</a></span><span class="op">(</span><span class="va">branin</span>,<span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -17.51251  -7.07527</code></pre>
+</div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">grad_f</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -17.51251  -7.07527</code></pre>
+</div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">numDeriv</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/numDeriv/man/hessian.html">hessian</a></span><span class="op">(</span><span class="va">branin</span>,<span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         [,1]     [,2]
+[1,] 0.194727 2.666361
+[2,] 2.666361 2.000000</code></pre>
+</div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">Hessian</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         [,1]     [,2]
+[1,] 0.194727 2.666361
+[2,] 2.666361 2.000000</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>Use one of the default optimization methods in your language of choice to find the minima of <span class="math inline">\(f\)</span>. In R, you can use the command <code>optim</code>.</li>
+</ul>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/optim.html">optim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>,<span class="fl">3</span><span class="op">)</span>, <span class="va">branin</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$par
+[1] 3.141662 2.274280
+
+$value
+[1] 0.3978878
+
+$counts
+function gradient 
+      65       NA 
+
+$convergence
+[1] 0
+
+$message
+NULL</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="question-2" class="level2"><h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<p>Find the global minimum and maximum points of the function <span class="math inline">\(f(x_1,x_2)=2x_1-3x_2\)</span> over the set <span class="math inline">\(S=\{(x_1,x_2):2x_1^2+5x_2^2\leq 1\}\)</span>. Write a function (in your chosen programming language) to evaluate <span class="math inline">\(f\)</span>, and create a plot of <span class="math inline">\(f\)</span> and <span class="math inline">\(S\)</span>. If you are unsure of what the set looks like, try entering it into .</p>
+<pre><code>Can you use one of the optimizers (such as \texttt{optim}) to optimize this function?</code></pre>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This is similar to an example from the notes. But because the constraint is no longer spherical, we first need to change variables to turn it into a spherical problem.</p>
+<p>Make the change of variables <span class="math display">\[u_1=\sqrt{2}x_1\,,\quad\text{and}\quad u_2=\sqrt{5}x_2\,,\]</span> which leads to the equivalent problem <span class="math display">\[\max_\mathbf{u}\frac{2}{\sqrt{2}}u_1-\frac{3}{\sqrt{5}}u_2\]</span> over <span class="math inline">\(\tilde{S}=\{(u_1,u_2): u_1^2+u_2^2\leq 1\}\)</span>. Again, one needs to use the Cauchy-Schwartz inequality to find an upper bound, and find an element in <span class="math inline">\(\tilde{S}\)</span> that achieves this value.</p>
+<p><span class="math display">\[|f(\mathbf{u})| = |\langle \begin{pmatrix}2/\sqrt{2}\\-3/\sqrt{5}\end{pmatrix}, \mathbf{u}\rangle| \leq ||\begin{pmatrix}2/\sqrt{2}\\-3/\sqrt{5}\end{pmatrix}||.||\mathbf{u}||\leq \frac{19}{5}\]</span> For a function <span class="math inline">\(f(u_1,u_2)=au_1+bu_2\)</span> over <span class="math inline">\(\tilde{S}\)</span>, this is always achieved at <span class="math inline">\((u_1,u_2)=\frac{1}{\sqrt{a^2+b^2}}(a,b)\)</span>. Similarly for the <span class="math inline">\(\min\)</span>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x1</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, <span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, <span class="fl">0.001</span><span class="op">)</span></span>
+<span><span class="va">x2</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">5</span><span class="op">*</span><span class="op">(</span><span class="fl">1</span><span class="op">-</span><span class="fl">2</span><span class="op">*</span><span class="va">x1</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">x1.plt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.8</span>, <span class="fl">0.8</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">100</span><span class="op">)</span></span>
+<span><span class="va">x2.plt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.7</span>, <span class="fl">0.7</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">100</span><span class="op">)</span></span>
+<span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/outer.html">outer</a></span><span class="op">(</span><span class="fl">2</span><span class="op">*</span><span class="va">x1.plt</span>, <span class="op">-</span><span class="fl">3</span><span class="op">*</span><span class="va">x2.plt</span>, FUN<span class="op">=</span><span class="st">"+"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/contour.html">contour</a></span><span class="op">(</span><span class="va">x1.plt</span>, <span class="va">x2.plt</span>, <span class="va">f</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">x1</span>, <span class="va">x2</span>, type<span class="op">=</span><span class="st">'l'</span>, xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.7</span>,<span class="fl">0.7</span><span class="op">)</span>, ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.5</span>,<span class="fl">0.5</span><span class="op">)</span>, col<span class="op">=</span><span class="fl">1</span>, lwd<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">x1</span>,<span class="op">-</span><span class="va">x2</span>, col<span class="op">=</span><span class="fl">1</span>, lwd<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">a</span><span class="op">=</span><span class="fl">2</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">b</span><span class="op">=</span><span class="op">-</span><span class="fl">3</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">max.u</span><span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">a</span>,<span class="va">b</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">a</span><span class="op">^</span><span class="fl">2</span><span class="op">+</span><span class="va">b</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">min.u</span> <span class="op">=</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">a</span>,<span class="va">b</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">a</span><span class="op">^</span><span class="fl">2</span><span class="op">+</span><span class="va">b</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">max.x</span> <span class="op">&lt;-</span> <span class="va">max.u</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, <span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">max.x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">max.x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, col<span class="op">=</span><span class="fl">2</span>, lwd<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span>
+<span><span class="va">min.x</span> <span class="op">&lt;-</span> <span class="va">min.u</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, <span class="fl">1</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">min.x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">min.x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, col<span class="op">=</span><span class="fl">2</span>, lwd<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lab2_sols_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="question-3" class="level2"><h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<p>For each of the following matrices determine whether they are positive/negative semidefinite/definite or indefinite:</p>
+<p><span class="math display">\[\mathbf{A}_1=\left(\begin{array}{cccc}2&amp;2&amp;0&amp;0\\2&amp;2&amp;0&amp;0\\0&amp;0&amp;3&amp;1\\0&amp;0&amp;1&amp;3\end{array}\right)\]</span> <span class="math display">\[\mathbf{A}_2=\left(\begin{array}{ccc}2&amp;1&amp;3\\1&amp;2&amp;1\\3&amp;1&amp;2\end{array}\right)\]</span> <span class="math display">\[\mathbf{A}_3=\left(\begin{array}{ccc}-5&amp;1&amp;1\\1&amp;-7&amp;1\\1&amp;1&amp;-5\end{array}\right)\]</span></p>
+<p>There is a very simple way to do all this in R (or Python etc). Find it and compare your results.</p>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>There is a very easy way to do this in R. We just need to enter the matrix and check its eigenvalues are positive. So for example, for <span class="math inline">\(\mathbf{A}_1\)</span></p>
+<div class="cell">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">0</span>,<span class="fl">0</span>,</span>
+<span>               <span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">0</span>,<span class="fl">0</span>,</span>
+<span>               <span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">3</span>,<span class="fl">1</span>,</span>
+<span>               <span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span>, nr<span class="op">=</span><span class="fl">4</span>, byrow<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,</span>
+<span>         <span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span>, nr<span class="op">=</span><span class="fl">2</span>, byrow<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    2
+[2,]    3    4</code></pre>
+</div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">A1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>eigen() decomposition
+$values
+[1] 4.000000e+00 4.000000e+00 2.000000e+00 2.220446e-15
+
+$vectors
+          [,1]      [,2]       [,3]       [,4]
+[1,] 0.0000000 0.7071068  0.0000000  0.7071068
+[2,] 0.0000000 0.7071068  0.0000000 -0.7071068
+[3,] 0.7071068 0.0000000  0.7071068  0.0000000
+[4,] 0.7071068 0.0000000 -0.7071068  0.0000000</code></pre>
+</div>
+</div>
+<p>So we can see this has three positive eigevalues, and one eigenvalue that is 0 (although due to numerical rounding errors it is given as just a very small number). So <span class="math inline">\(\mathbf{A}_1\)</span> is positive semi-definite.</p>
+<p>Note that if we spotted <span class="math inline">\(\mathbf{A}_1\)</span> is diagonally dominant (but not strictly), then we could have concluded that <span class="math inline">\(\mathbf{A}_1\)</span> is PSD.</p>
+<p>For <span class="math inline">\(\mathbf{A}_2\)</span>, <span class="math inline">\(det(\mathbf{A}_2)=-8\)</span> and so the matrix is not PSD. Also, its diagonal elements are positive, so it is not negative semi definite, thus it must be indefinite.</p>
+<p>For <span class="math inline">\(\mathbf{A}_3\)</span>, note that <span class="math inline">\(-\mathbf{A}_3\)</span> is strictly diagonally dominant, thus it is positive definite. Thus <span class="math inline">\(\mathbf{A}_3\)</span> is negative definite.</p>
+<div class="cell">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A2</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">3</span>, </span>
+<span>             <span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">1</span>,</span>
+<span>             <span class="fl">3</span>,<span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span>, nr<span class="op">=</span><span class="fl">3</span>, byrow<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">A2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>eigen() decomposition
+$values
+[1]  5.561553  1.438447 -1.000000
+
+$vectors
+           [,1]       [,2]          [,3]
+[1,] -0.6571923  0.2609565  7.071068e-01
+[2,] -0.3690482 -0.9294103 -8.881784e-16
+[3,] -0.6571923  0.2609565 -7.071068e-01</code></pre>
+</div>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">5</span>,<span class="fl">1</span>,<span class="fl">1</span>,</span>
+<span>               <span class="fl">1</span>,<span class="op">-</span><span class="fl">7</span>,<span class="fl">1</span>,</span>
+<span>               <span class="fl">1</span>,<span class="fl">1</span>,<span class="op">-</span><span class="fl">5</span><span class="op">)</span>, nr<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">A3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>eigen() decomposition
+$values
+[1] -3.438447 -6.000000 -7.561553
+
+$vectors
+           [,1]          [,2]       [,3]
+[1,] -0.6571923  7.071068e-01  0.2609565
+[2,] -0.3690482  9.436896e-16 -0.9294103
+[3,] -0.6571923 -7.071068e-01  0.2609565</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="question-4" class="level2"><h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<p>Find all the stationary points of <span class="math display">\[\begin{align}
+    f(x_1,x_2)&amp;=x_1^4+2x_1^2x_2+x_2^2-4x_1^2-8x_1-8x_2\,,\\
+    f(x_1,x_2)&amp;=x_1^2+4x_1x_2+x_2^2+x_1-x_2\,
+    \end{align}\]</span> and classify them (saddle points, strict/non-strict local/global max/min). Help your intuition by visualizing the function in R.</p>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>First plot the function.</p>
+<div class="cell">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">f1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">x_1</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span>  <span class="va">x_2</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
+<span>  <span class="va">x_1</span><span class="op">^</span><span class="fl">4</span><span class="op">+</span><span class="fl">2</span><span class="op">*</span><span class="va">x_1</span><span class="op">^</span><span class="fl">2</span><span class="op">*</span><span class="va">x_2</span><span class="op">+</span><span class="va">x_2</span><span class="op">^</span><span class="fl">2</span><span class="op">-</span><span class="fl">4</span><span class="op">*</span><span class="va">x_1</span><span class="op">^</span><span class="fl">2</span><span class="op">-</span><span class="fl">8</span><span class="op">*</span><span class="va">x_1</span><span class="op">-</span><span class="fl">8</span><span class="op">*</span><span class="va">x_2</span></span>
+<span><span class="op">}</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">pracma</span><span class="op">)</span></span>
+<span><span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pracma/man/meshgrid.html">meshgrid</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">0.01</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">out</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">grid</span><span class="op">$</span><span class="va">X</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">grid</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span>,<span class="fl">1</span>,<span class="va">f1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/contour.html">contour</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">0.01</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">0.01</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">out</span>, byrow<span class="op">=</span><span class="cn">T</span>,nr<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">0.01</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lab2_sols_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/optim.html">optim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>, <span class="va">f1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$par
+[1] 1 3
+
+$value
+[1] -20
+
+$counts
+function gradient 
+     137       NA 
+
+$convergence
+[1] 0
+
+$message
+NULL</code></pre>
+</div>
+</div>
+We have $$f() =
+<span class="math display">\[\begin{pmatrix}
+4x_1^3+4x_1x_2-8x_1-8\\
+2x_1^2+2x_2-8
+\end{pmatrix}\]</span>
+<p>$$</p>
+<p>setting this equal to zero and solving gives <span class="math inline">\(\mathbf{x}=(1,3)^\top\)</span> as the only stationary point. The Hessian at this point is <span class="math display">\[\nabla^2 f((1,3)^\top) = \begin{pmatrix} 16&amp;4\\4&amp;2\end{pmatrix}\]</span> which is positive definite. So this is a strict local minima. <span class="math inline">\(f\)</span> is coercive and continuous, and thus we can conclude that this is also a strict global minima.</p>
+<p>For <span class="math display">\[f(x_1,x_2)=x_1^2+4x_1x_2+x_2^2+x_1-x_2\,,\]</span> note that this is a quadratic function with <span class="math display">\[\begin{align*}
+    \mathbf{A}&amp;=\left[\begin{array}{cc}1 &amp; 2\\2 &amp; 1\end{array}\right]\,,\quad \mathbf{b}=\frac12\left[\begin{array}{c}1\\-1\end{array}\right]\,,
+\end{align*}\]</span> with <span class="math inline">\(eig(\mathbf{A})=\{-1,3\}\)</span>. In this case <span class="math inline">\(\mathbf{A}\)</span> is indefinite, and the unique stationary point <span class="math inline">\(\mathbf{x}^*=-\mathbf{A}^{-1}\mathbf{b}\)</span> is a saddle point.</p>
+<div class="cell">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">f1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">x_1</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span>  <span class="va">x_2</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
+<span>  <span class="va">x_1</span><span class="op">^</span><span class="fl">2</span><span class="op">+</span><span class="fl">4</span><span class="op">*</span><span class="va">x_1</span><span class="op">*</span><span class="va">x_2</span><span class="op">+</span><span class="va">x_2</span><span class="op">^</span><span class="fl">2</span><span class="op">+</span><span class="va">x_1</span><span class="op">-</span><span class="va">x_2</span></span>
+<span><span class="op">}</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">pracma</span><span class="op">)</span></span>
+<span><span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/pracma/man/meshgrid.html">meshgrid</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">0.01</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">out</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">grid</span><span class="op">$</span><span class="va">X</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">grid</span><span class="op">$</span><span class="va">Y</span><span class="op">)</span><span class="op">)</span>,<span class="fl">1</span>,<span class="va">f1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/contour.html">contour</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">0.01</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">0.01</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">out</span>, byrow<span class="op">=</span><span class="cn">T</span>,nr<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">0.01</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Lab2_sols_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Note that <span class="math inline">\(\mathbf{x}^*\)</span> can be solved in R using the <code>solve</code> command</p>
+<div class="cell">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span>, nr<span class="op">=</span><span class="fl">2</span><span class="op">)</span> </span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/solve.html">solve</a></span><span class="op">(</span><span class="va">A</span>, <span class="op">-</span><span class="va">b</span><span class="op">)</span>  <span class="co"># Solves Ax=-b</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  0.5 -0.5</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="question-5" class="level2"><h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
+<p>Find the global minimum of <span class="math display">\[f(x,y,z)=4x^2+ 3y^2+4z^2+4xy+6xz+4yz+2x+3y-z.\]</span> Check your answer using the `optim’ command in R (or any other optimizer).</p>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We can write <span class="math inline">\(f\)</span> as a quadratic form: <span class="math display">\[f(\mathbf{x}) = \mathbf{x}^\top \begin{pmatrix}4&amp;2&amp;3\\2&amp;3&amp;2\\3&amp;2&amp;4\end{pmatrix} \mathbf{x}+ 2\begin{pmatrix} 1\\3/2\\-1/2\end{pmatrix}^\top \mathbf{x}= \mathbf{x}^\top \mathbf{A}\mathbf{x}+ 2\mathbf{b}^\top\mathbf{x}\]</span> where <span class="math inline">\(\mathbf{A}\)</span> is a PD matrix (check its eigenvalues). The stationary points are at <span class="math display">\[\mathbf{A}\mathbf{x}=-\mathbf{b}\]</span> and because the Hessian matrix is PD, we know this is the global minima.</p>
+<div class="cell">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">2</span>,<span class="fl">3</span>, </span>
+<span>              <span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">2</span>,</span>
+<span>              <span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span><span class="op">)</span>, nr<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/eigen.html">eigen</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>eigen() decomposition
+$values
+[1] 8.464102 1.535898 1.000000
+
+$vectors
+           [,1]       [,2]          [,3]
+[1,] -0.6279630  0.3250576  7.071068e-01
+[2,] -0.4597008 -0.8880738 -1.332268e-15
+[3,] -0.6279630  0.3250576 -7.071068e-01</code></pre>
+</div>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">/</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">xopt</span><span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/solve.html">solve</a></span><span class="op">(</span><span class="va">A</span>,<span class="op">-</span><span class="va">b</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">xopt</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.5769231 -0.7307692  0.9230769</code></pre>
+</div>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">## Check with optim</span></span>
+<span></span>
+<span><span class="va">f2</span><span class="op">&lt;-</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span><span class="va">A</span><span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span><span class="va">x</span><span class="op">+</span><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span><span class="va">x</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/optim.html">optim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span>,<span class="va">f2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$par
+[1] -0.5775026 -0.7309178  0.9235450
+
+$value
+[1] -2.134615
+
+$counts
+function gradient 
+     140       NA 
+
+$convergence
+[1] 0
+
+$message
+NULL</code></pre>
+</div>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">f2</span><span class="op">(</span><span class="va">xopt</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          [,1]
+[1,] -2.134615</code></pre>
+</div>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#f&lt;- function(x){</span></span>
+<span><span class="co">#  4*x[1]^2+ 3*x[2]^2+4*x[3]^2+4*x[1]*x[2]+6*x[1]*x[3]+4*x[2]*x[3]+2*x[1]+3*x[2]-x[3]</span></span>
+<span><span class="co">#}</span></span>
+<span><span class="co">#optim(c(1,1,1),f)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section></main><!-- /main column --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="Lab2_sols_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
