@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -254,19 +254,21 @@ Solution
 <section id="question-7" class="level2">
 <h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
 <p>Some topological questions:</p>
-<span class="math display">\[\begin{aligned}
+<p><span class="math display">\[
+\begin{aligned}
 \operatorname{int}\left(\mathbb{R}_{+}^{n}\right) &amp;=?\\%\mathbb{R}_{++}^{n} \\
-\operatorname{int}(B[\bc, r]) &amp;= ?\\%B(\bc, r) \quad\left(\bc \in \mathbb{R}^{n}, r \in \mathbb{R}_{++}\right) \\
-\operatorname{int}([\bx, \by]) &amp;=?\\
+\operatorname{int}(B[\mathbf{c}, r]) &amp;= ?\\%B(\bc, r) \quad\left(\bc \in \mathbb{R}^{n}, r \in \mathbb{R}_{++}\right) \\
+\operatorname{int}([\mathbf{x}, {\mathbf{y}}]) &amp;=?\\
 \left(\mathbf{c} \in \mathbb{R}^{n}, r \in \mathbb{R}_{++}\right), \operatorname{bd}(B(\mathbf{c}, r)) &amp;=\\
 \left(\mathbf{c} \in \mathbb{R}^{n}, r \in \mathbb{R}_{++}\right), \operatorname{bd}(B[\mathbf{c}, r]) &amp;=\\
 \operatorname{bd}\left(\mathbb{R}_{++}^{n}\right) &amp;=\\
 \operatorname{bd}\left(\mathbb{R}_{+}^{n}\right) &amp;=\\
 \operatorname{bd}\left(\mathbb{R}^{n}\right) &amp;=\\
 \operatorname{bd}\left(\Delta_{n}\right) &amp;=\\
-\operatorname{cl}\left(\R_{++}^{n}\right) &amp;=\\
-(\bx \neq \by), \operatorname{cl}((\bx, \by)) &amp;=
-\end{aligned}\]</span>
+\operatorname{cl}\left(\mathbb{R}_{++}^{n}\right) &amp;=\\
+(\mathbf{x}\neq {\mathbf{y}}), \operatorname{cl}((\mathbf{x}, {\mathbf{y}})) &amp;=
+\end{aligned}
+\]</span></p>
 <div class="callout-note callout callout-style-simple no-icon callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -279,19 +281,21 @@ Solution
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<span class="math display">\[\begin{aligned}
+<p><span class="math display">\[
+\begin{aligned}
 \operatorname{int}\left(\mathbb{R}_{+}^{n}\right) &amp;=\mathbb{R}_{++}^{n} \\
-\operatorname{int}(B[\bc, r]) &amp;= B(\bc, r)\\% \quad\left(\bc \in \mathbb{R}^{n}, r \in \mathbb{R}_{++}\right) \\
-\operatorname{int}([\bx, \by]) &amp;=\emptyset\\
-\left(\mathbf{c} \in \mathbb{R}^{n}, r \in \mathbb{R}_{++}\right), \operatorname{bd}(B(\mathbf{c}, r)) &amp;=\{\bx :\|\bx-\bc\|=r\}\\
-\left(\mathbf{c} \in \mathbb{R}^{n}, r \in \mathbb{R}_{++}\right), \operatorname{bd}(B[\mathbf{c}, r]) &amp;=\{\bx :\|\bx-\bc\|=r\}\\
-\operatorname{bd}\left(\mathbb{R}_{++}^{n}\right) &amp;=\{\bx\in \R^n: x_i =0\mbox{ for some } i\}\\
-\operatorname{bd}\left(\mathbb{R}_{+}^{n}\right) &amp;=\{\bx\in \R^n: x_i =0\mbox{ for some } i\}\\
+\operatorname{int}(B[\mathbf{c}, r]) &amp;= B(\mathbf{c}, r)\\% \quad\left(\bc \in \mathbb{R}^{n}, r \in \mathbb{R}_{++}\right) \\
+\operatorname{int}([\mathbf{x}, {\mathbf{y}}]) &amp;=\emptyset\\
+\left(\mathbf{c} \in \mathbb{R}^{n}, r \in \mathbb{R}_{++}\right), \operatorname{bd}(B(\mathbf{c}, r)) &amp;=\{\mathbf{x}:\|\mathbf{x}-\mathbf{c}\|=r\}\\
+\left(\mathbf{c} \in \mathbb{R}^{n}, r \in \mathbb{R}_{++}\right), \operatorname{bd}(B[\mathbf{c}, r]) &amp;=\{\mathbf{x}:\|\mathbf{x}-\mathbf{c}\|=r\}\\
+\operatorname{bd}\left(\mathbb{R}_{++}^{n}\right) &amp;=\{\mathbf{x}\in \mathbb{R}^n: x_i =0\mbox{ for some } i\}\\
+\operatorname{bd}\left(\mathbb{R}_{+}^{n}\right) &amp;=\{\mathbf{x}\in \mathbb{R}^n: x_i =0\mbox{ for some } i\}\\
 \operatorname{bd}\left(\mathbb{R}^{n}\right) &amp;=\emptyset\\
 \operatorname{bd}\left(\Delta_{n}\right) &amp;=\Delta_{n}\\
-\operatorname{cl}\left(\R_{++}^{n}\right) &amp;=\R_{+}^{n}\\
-(\bx \neq \by), \operatorname{cl}((\bx, \by)) &amp;=[\bx, \by]
-\end{aligned}\]</span>
+\operatorname{cl}\left(\mathbb{R}_{++}^{n}\right) &amp;=\mathbb{R}_{+}^{n}\\
+(\mathbf{x}\neq {\mathbf{y}}), \operatorname{cl}((\mathbf{x}, {\mathbf{y}})) &amp;=[\mathbf{x}, {\mathbf{y}}]
+\end{aligned}
+\]</span></p>
 </div>
 </div>
 </div>

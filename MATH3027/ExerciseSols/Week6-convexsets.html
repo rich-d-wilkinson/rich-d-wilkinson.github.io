@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Prof.&nbsp;Richard Wilkinson">
+
+<title>Week 6 - convex sets and functions: exercise solutions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Week6-convexsets_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Week6-convexsets_files/libs/quarto-html/quarto.js"></script>
+<script src="Week6-convexsets_files/libs/quarto-html/popper.min.js"></script>
+<script src="Week6-convexsets_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Week6-convexsets_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Week6-convexsets_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Week6-convexsets_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Week6-convexsets_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Week6-convexsets_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Week6-convexsets_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Week 6 - convex sets and functions: exercise solutions</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Prof.&nbsp;Richard Wilkinson </p>
+            </div>
+    </div>
+      
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1">Question 1</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a></li>
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a></li>
+  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11">Question 11</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<div class="hidden">
+
+</div>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<p><strong>Intersection of convex sets is convex:</strong> Prove that if <span class="math inline">\(C_{i} \subseteq \mathbb{R}^{n}\)</span> are convex sets for any <span class="math inline">\(i =1, \ldots, I\)</span>, then the set <span class="math inline">\(\bigcap_{i \in I} C_{i}\)</span> is also convex.</p>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>These proofs all work in pretty much the same way:</p>
+<p>Suppose <span class="math inline">\(x,y \in \bigcap_{i \in I} C_{i}\)</span> and let <span class="math inline">\(\lambda \in [0,1]\)</span>. We need to show <span class="math inline">\(\lambda x+(1-\lambda)y \in \bigcap_{i \in I} C_{i}\)</span>.</p>
+<p>Note that because <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are in the intersection, we also have <span class="math inline">\(x, y\in C_i\)</span> for all <span class="math inline">\(i\)</span>. The <span class="math inline">\(C_i\)</span> are convex, and so <span class="math display">\[\lambda x+(1-\lambda)y \in C_i \mbox{ for all }i.\]</span></p>
+<p>Thus <span class="math inline">\(\lambda x+(1-\lambda)y \in\bigcap_{i \in I} C_{i}\)</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<p> Let <span class="math inline">\(M \subseteq \mathbb{R}^{n}\)</span> be a convex set and let <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span>. Prove that <span class="math display">\[\begin{align*}
+    \mathbf{A}(M)=\{\mathbf{A} \mathbf{x}: \mathbf{x} \in M\}
+\end{align*}\]</span> is convex.</p>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Suppose <span class="math inline">\(z, z' \in \mathbf{A}(M)\)</span> and that <span class="math inline">\(\lambda\in[0,1]\)</span>. Then we must have <span class="math inline">\(z=\mathbf{A}x\)</span> and <span class="math inline">\(z'=\mathbf{A}y\)</span> for some <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. We have to show <span class="math inline">\(\lambda z + (1-\lambda)z\in \mathbf{A}(M)\)</span>.</p>
+<p>We can see that <span class="math display">\[\lambda z + (1-\lambda)z' = \lambda \mathbf{A}x+(1-\lambda)\mathbf{A}y =\mathbf{A}(\lambda x+(1-\lambda)y)\]</span> But as <span class="math inline">\(M\)</span> is convex we have that <span class="math inline">\(\lambda x+(1-\lambda)y\in M\)</span>, and thus <span class="math inline">\(\lambda z + (1-\lambda)z'\in\mathbf{A}(M)\)</span> by definition of <span class="math inline">\(\mathbf{A}(M)\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<p>Consider the four vectors <span class="math display">\[\begin{align*}
+    \mathbf{x}_{1}=\left(\begin{array}{l}
+        1 \\
+        1
+    \end{array}\right), \mathbf{x}_{2}=\left(\begin{array}{l}
+        1 \\
+        2
+    \end{array}\right), \mathbf{x}_{3}=\left(\begin{array}{l}
+        2 \\
+        1
+    \end{array}\right), \mathbf{x}_{4}=\left(\begin{array}{l}
+        2 \\
+        2
+    \end{array}\right)
+\end{align*}\]</span> and let <span class="math inline">\(\mathbf{x} \in \operatorname{conv}\left(\left\{\mathbf{x}_{1}, \mathbf{x}_{2}, \mathbf{x}_{3}, \mathbf{x}_{4}\right\}\right)\)</span> be given by <span class="math display">\[\begin{align*}
+    \mathbf{x}=\frac{1}{8} \mathbf{x}_{1}+\frac{1}{4} \mathbf{x}_{2}+\frac{1}{2} \mathbf{x}_{3}+\frac{1}{8} \mathbf{x}_{4}=\left(\begin{array}{c}
+        \frac{13}{8} \\
+        \frac{11}{8}
+    \end{array}\right)
+\end{align*}\]</span> Is it possible to represent <span class="math inline">\(\mathbf{x}\)</span> as a convex combination of no more than 3 vectors?</p>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>By the Carath'eodory representation theorem for convex hulls states that the convex hull of a set <span class="math inline">\(S\subset \mathbb{R}^n\)</span> can be expressed as the convex hull of no more than <span class="math inline">\(n+1\)</span> vectors from <span class="math inline">\(S\)</span>. So in this case, <span class="math inline">\(n=2\)</span>, so we know we must be able to write <span class="math inline">\(\mathbf{x}\)</span> as the sum of 3 vectors.</p>
+<p>A bit of thought will show that <span class="math display">\[\mathbf{x}= \frac{3}{8}\mathbf{x}_1+\frac{1}{4}\mathbf{x}_2+\frac{1}{2}\mathbf{x}_3\]</span> as <span class="math inline">\(\mathbf{x}_4 = 2\mathbf{x}_1\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="question-4" class="level2">
+<h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<p>Find all the basic feasible solutions of the linear system: <span class="math display">\[\begin{align*}
+    \begin{aligned}
+        x_{1}+x_{2}+x_{3} &amp;=6 \\
+        x_{2}+x_{4} &amp;=3 \\
+        x_{1}, x_{2}, x_{3}, x_{4} &amp; \geq 0.
+    \end{aligned}
+\end{align*}\]</span></p>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We can write this system as <span class="math display">\[\begin{pmatrix}1&amp;1&amp;1&amp;0\\
+0&amp;1&amp;0&amp;1\end{pmatrix}\mathbf{x}= \begin{pmatrix} 6\\3\end{pmatrix} \mbox{ with }\mathbf{x}\geq \mathbf{0}.\]</span></p>
+<p>From the definition of a BFS, we can see that we can have at most 2 elements of <span class="math inline">\(\mathbf{x}\)</span> being positive.</p>
+<ul>
+<li><p>If <span class="math inline">\(x_1, x_2&gt;0\)</span> this implies we must have <span class="math inline">\(x_3=x_4=0\)</span> and so <span class="math inline">\(\mathbf{x}= \begin{pmatrix}3\\3\\0\\0\end{pmatrix}\)</span>.</p></li>
+<li><p>If <span class="math inline">\(x_1, x_3&gt;0\)</span> this implies <span class="math inline">\(x_2=x_4=0\)</span>. Then there is no <span class="math inline">\(\mathbf{x}\)</span> satisfying the constraints.</p></li>
+<li><p>If <span class="math inline">\(x_1, x_4&gt;0\)</span> this implies we must have <span class="math inline">\(x_2=x_3=0\)</span> and so <span class="math inline">\(\mathbf{x}= \begin{pmatrix}6\\0\\0\\3\end{pmatrix}\)</span>.</p></li>
+<li><p>If <span class="math inline">\(x_2, x_3&gt;0\)</span> this implies we must have <span class="math inline">\(x_1=x_4=0\)</span> and so <span class="math inline">\(\mathbf{x}= \begin{pmatrix}0\\3\\3\\0\end{pmatrix}\)</span>.</p></li>
+<li><p>If <span class="math inline">\(x_2, x_4&gt;0\)</span> this implies we must have <span class="math inline">\(x_1=x_3=0\)</span> and so <span class="math inline">\(x_2 =6\)</span> and <span class="math inline">\(x_4=-3&lt;0\)</span>. But this doesn’t satisfy the positivity constraint and so is not a feasible solution.</p></li>
+<li><p>If <span class="math inline">\(x_3, x_4&gt;0\)</span> this implies we must have <span class="math inline">\(x_1=x_2=0\)</span> and so <span class="math inline">\(\mathbf{x}= \begin{pmatrix}0\\0\\6\\3\end{pmatrix}\)</span>.</p></li>
+</ul>
+<p>So in total there are 4 basic feasible solutions to this system.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="question-5" class="level2">
+<h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
+<p>Consider the linear system <span class="math inline">\(\mathbf{A}\mathbf{x}={\mathbf{y}}\)</span> where <span class="math inline">\(\mathbf{x}\geq \mathbf{0}\)</span>. If <span class="math inline">\(\mathbf{A}\)</span> is <span class="math inline">\(m \times n\)</span>, then how many basic feasible solutions may there be to this system?</p>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\mathbf{x}\)</span> is a BFS of <span class="math inline">\(\mathbf{A}\mathbf{x}={\mathbf{y}}\)</span> if the columns of <span class="math inline">\(\mathbf{A}\)</span> corresponding to the positive entries in <span class="math inline">\(\mathbf{x}\)</span> are linearly independent. Each column of <span class="math inline">\(\mathbf{A}\)</span> is a vector in <span class="math inline">\(\mathbb{R}^m\)</span> (as <span class="math inline">\(\mathbf{A}\)</span> is <span class="math inline">\(m\times n\)</span>), and we cannot have more than <span class="math inline">\(m\)</span> linearly independent vectors in <span class="math inline">\(\mathbb{R}^m\)</span>. The number of ways of picking <span class="math inline">\(m\)</span> columns from <span class="math inline">\(\mathbf{A}\)</span> is <span class="math inline">\(n\choose m\)</span>, buts possible for BFS to have only <span class="math inline">\(m-1\)</span> (or <span class="math inline">\(m-2\)</span> etc) positive entries. Thus the total number of BFS cannot be larger than</p>
+<p><span class="math display">\[\sum_{i=1}^m {n \choose i}\]</span></p>
+<p>Even for small values of <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> this can still be a very large number. In this module, we don’t study algorithms for solving linear programmes - we just enumerate the BFS and look for the best. But this approach is only sensible in small problems.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="question-6" class="level2">
+<h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
+<p>Find the extreme points of the system <span class="math display">\[\begin{align*}
+    \begin{aligned}
+        x_{1}+x_{2}+x_{3} &amp;=6 \\
+        x_{2}+x_{4} &amp;=3 \\
+        x_{1}, x_{2}, x_{3}, x_{4} &amp; \geq 0.
+    \end{aligned}
+\end{align*}\]</span></p>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>This is the same system as in Q4. We know extreme points are just the basic feasible solutions, i.e., <span class="math display">\[\begin{pmatrix}3\\3\\0\\0\end{pmatrix},
+\begin{pmatrix}6\\0\\0\\3\end{pmatrix},
+\begin{pmatrix}0\\3\\3\\0\end{pmatrix},
+\begin{pmatrix}0\\0\\6\\3\end{pmatrix}. \]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="question-7" class="level2">
+<h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
+<p>Show that the quad-over-lin function <span class="math display">\[\begin{align*}
+    f\left(x_{1}, x_{2}\right)=\frac{x_{1}^{2}}{x_{2}}
+\end{align*}\]</span> defined over <span class="math inline">\(\mathbb{R} \times \mathbb{R}_{++}=\left\{\left(x_{1}, x_{2}\right): x_{2}&gt;0\right\}\)</span> is convex.</p>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\nabla f = \begin{pmatrix} \frac{2x_1}{x_2}\\ -\frac{x_1^2}{x_2^2}\end{pmatrix}\quad \mbox{ and }\quad\nabla^2 f = 2\begin{pmatrix} \frac{1}{x_2} &amp; -\frac{x_1}{x_2^2}\\
+-\frac{x_1}{x_2^2} &amp; \frac{x_1^2}{x_2^3}\end{pmatrix}\]</span></p>
+<p>By the second-order characterization, <span class="math inline">\(f\)</span> is convex if and only if <span class="math inline">\(\nabla^2 f(\mathbf{x}) \succeq 0\)</span> for all <span class="math inline">\(\mathbf{x}\)</span>. In this case, we can see that <span class="math display">\[\operatorname{Tr}(\nabla^2 f(x)) = \frac{2}{x_2}+\frac{2x_1^2}{x_2^3}  &gt;0\]</span> and <span class="math display">\[\det (\nabla^2 f(x)) = 4\frac{x_1^2}{x_2^2}-4\frac{x_1^2}{x_2^4}=0\]</span> And so we can see that <span class="math inline">\(\nabla^2 f(\mathbf{x})\)</span> is positive semi-definite for all <span class="math inline">\(\mathbf{x}\)</span>, and hence <span class="math inline">\(f\)</span> is convex.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="question-8" class="level2">
+<h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
+<p>Prove that the following functions are convex:</p>
+<ul>
+<li><p>The generalized quad-over-lin function <span class="math display">\[\begin{align*}
+      g(\mathbf{x})=\frac{\|\mathbf{A} \mathbf{x}+\mathbf{b}\|^{2}}{\mathbf{c}^{\top} \mathbf{x}+d} \quad\left(\mathbf{A} \in \mathbb{R}^{m \times n}, \mathbf{b} \in \mathbb{R}^{m}, \mathbf{c} \in \mathbb{R}^{n}, d \in \mathbb{R}\right)
+  \end{align*}\]</span> over the domain <span class="math inline">\(D=\left\{\mathbf{x} \in \mathbb{R}^{n}: \mathbf{c}^{\top} \mathbf{x}+d&gt;0\right\}\)</span>.</p></li>
+<li><p><span class="math inline">\(h(\mathbf{x})=e^{\|\mathbf{x}\|^{2}}\)</span>.</p></li>
+</ul>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>To prove <span class="math inline">\(g(\mathbf{x})=\frac{\|\mathbf{A} \mathbf{x}+\mathbf{b}\|^{2}}{\mathbf{c}^{\top} \mathbf{x}+d}\)</span> is convex, we will first prove <span class="math display">\[h({\mathbf{y}},t)=\frac{\|{\mathbf{y}}\|^2}{t}\]</span> is convex. Note that <span class="math inline">\(h({\mathbf{y}},t) = \sum h_i({\mathbf{y}}, t)\)</span> where <span class="math inline">\(h_i({\mathbf{y}}, t)=y_i^2/t\)</span>. By question 7 we know each <span class="math inline">\(h_i\)</span> is convex, and thus the sum <span class="math inline">\(h\)</span> is convex by the algebra of convex functions rules.</p>
+<p>Finally, note that <span class="math inline">\(g\)</span> is obtained from <span class="math inline">\(h\)</span> by an affine transformation of variables <span class="math display">\[g(\mathbf{x}) = h(\mathbf{A}\mathbf{x}+\mathbf{b}, \mathbf{c}^\top\mathbf{x}+d)\]</span> and so <span class="math inline">\(g\)</span> is convex.</p></li>
+<li><p><span class="math inline">\(h(\mathbf{x})=e^{\|\mathbf{x}\|^{2}}\)</span>. We can write this as <span class="math display">\[h(\mathbf{x}) = g(f(\mathbf{x}))\]</span> where <span class="math inline">\(f(\mathbf{x})=\|\mathbf{x}\|^2\)</span>, which is a convex function, and <span class="math inline">\(g(x) = e^x\)</span>, which is convex, and non-decreasing. Thus <span class="math inline">\(h\)</span> is convex by the algebraic rules from lectures.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="question-9" class="level2">
+<h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
+<p>Let <span class="math inline">\(f_{1}, f_{2}, \ldots, f_{p}\)</span> be convex functions over a convex set <span class="math inline">\(C \subseteq \mathbb{R}^{n}\)</span>. Prove that the sum function <span class="math inline">\(f_{1}+f_{2}+\ldots+f_{p}\)</span> is also convex over <span class="math inline">\(C\)</span>.</p>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Much like with convex sets, these proofs all work in a similar way:</p>
+<p>Suppose <span class="math inline">\(\mathbf{x}, {\mathbf{y}}\in C\)</span> and <span class="math inline">\(\lambda \in [0,1]\)</span>. Consider <span class="math display">\[\begin{align*}
+(f_1+\ldots+f_p)(\lambda \mathbf{x}+(1-\lambda){\mathbf{y}}) &amp;=
+f_1(\lambda \mathbf{x}+(1-\lambda){\mathbf{y}})+\ldots + f_p(\lambda \mathbf{x}+(1-\lambda){\mathbf{y}})\\
+&amp;\leq \lambda f_1(\mathbf{x})+(1-\lambda)f_1({\mathbf{y}})+\ldots + \lambda f_p(\mathbf{x})+(1-\lambda)f_p({\mathbf{y}})\\
+&amp;= \lambda (f_1+\ldots +f_p)(\mathbf{x})+(1-\lambda) (f_1+\ldots +f_p)({\mathbf{y}})
+\end{align*}\]</span> where the second line follows because all the <span class="math inline">\(f_i\)</span> are convex.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="question-10" class="level2">
+<h2 class="anchored" data-anchor-id="question-10">Question 10</h2>
+<p><strong>Point-Wise Maximum of Convex Functions</strong> Let <span class="math inline">\(f_{1}, f_{2}, \ldots, f_{p}: C \rightarrow \mathbb{R}\)</span> be <span class="math inline">\(p\)</span> convex functions over the convex set <span class="math inline">\(C \subseteq \mathbb{R}^{n}\)</span>. Prove that the maximum function <span class="math display">\[\begin{align*}
+    f(\mathbf{x}) \equiv \max _{i=1,2, \ldots, p}\left\{f_{i}(\mathbf{x})\right\}
+\end{align*}\]</span> is convex over <span class="math inline">\(C\)</span>.</p>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(\mathbf{x}, {\mathbf{y}}\in C\)</span> and <span class="math inline">\(\lambda \in [0,1]\)</span>. Then</p>
+<p><span class="math display">\[\begin{align*}
+f(\lambda\mathbf{x}+(1-\lambda){\mathbf{y}}) &amp;= \max f_i(\lambda\mathbf{x}+(1-\lambda){\mathbf{y}})\\
+&amp;\leq\max\left(\lambda f_i(\mathbf{x})+(1-\lambda)f_i({\mathbf{y}})\right)\\
+&amp;= \lambda \max f_i(\mathbf{x})+(1-\lambda)\max f_i({\mathbf{y}})\\
+&amp;= \lambda f(\mathbf{x})+(1-\lambda)f({\mathbf{y}})
+\end{align*}\]</span></p>
+<p>So <span class="math inline">\(f\)</span> is convex.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="question-11" class="level2">
+<h2 class="anchored" data-anchor-id="question-11">Question 11</h2>
+<p>Proving the following functions are convex</p>
+<ul>
+<li><span class="math inline">\(f(\mathbf{x})=\max \left\{x_{1}, x_{2}, \ldots, x_{n}\right\}\)</span>.</li>
+<li>For a given vector <span class="math inline">\(\mathbf{x}=\left(x_{1}, x_{2}, \ldots, x_{n}\right)^{\top} \in \mathbb{R}^{n},\)</span> let <span class="math inline">\(x_{[i]}\)</span> denote the <span class="math inline">\(i\)</span> -th largest value in <span class="math inline">\(\mathbf{x}\)</span>. For any <span class="math inline">\(k \in\{1,2, \ldots, n\}\)</span> let <span class="math display">\[\begin{align*}
+  h_{k}(\mathbf{x})=x_{[1]}+x_{[2]}+\ldots+x_{[k]}.
+\end{align*}\]</span></li>
+</ul>
+<div class="callout-note callout callout-style-simple no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><span class="math inline">\(f\)</span> is clearly convex by the result from Q1.</p></li>
+<li><p><span class="math display">\[\begin{align*}
+h_{k}(\mathbf{x})&amp;=x_{[1]}+x_{[2]}+\ldots+x_{[k]}\\
+&amp;=\max \{ x_{i_1}+x_{i_2}+\ldots+x_{i_k}: i_1, \ldots, i_k \in \{1, \ldots, n\} \mbox{  all different} \}
+\end{align*}\]</span> Thus <span class="math inline">\(h_k\)</span> is the maximum of linear functions (which are convex), and thus is convex.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+<script src="Week6-convexsets_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
