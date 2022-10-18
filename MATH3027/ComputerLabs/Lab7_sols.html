@@ -12,7 +12,7 @@
 <meta name="author" content="Richard Wilkinson" />
 
 
-<title>Computer lab 8: Solutions</title>
+<title>Computer lab 6: Solutions</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1629,7 +1629,7 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">Computer lab 8: Solutions</h1>
+<h1 class="title toc-ignore">Computer lab 6: Solutions</h1>
 <h4 class="author">Richard Wilkinson</h4>
 
 </div>
@@ -1638,18 +1638,47 @@ pre code {
 <style>
 div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
 </style>
-<div id="projected-gradient-descent" class="section level2">
-<h2>Projected gradient descent</h2>
-<p>Consider the minimization problem <span class="math display">\[\begin{align*}
-    \min_{\mathbf{x}}\; &amp;2 x_{1}^{2}+3 x_{2}^{2}+4 x_{3}^{2}+2 x_{1}
-x_{2}-2 x_{1} x_{3}-8 x_{1}-4 x_{2}-2 x_{3}\\
-    \text {subject to} \quad&amp; x_{1}, x_{2}, x_{3} \geq 0\,.
-\end{align*}\]</span></p>
+<div id="cvxr-questions" class="section level2">
+<h2>CVXR questions</h2>
 <ol style="list-style-type: decimal">
-<li>Show that the vector <span class="math inline">\(\left(\frac{17}{7},
-0, \frac{6}{7}\right)^{T}\)</span> is an optimal solution.</li>
+<li><span class="math display">\[\begin{align*}
+\min_{\mathbf{x}}\; &amp;2 x_{1}^{2}+3 x_{2}^{2}+4 x_{3}^{2}+2 x_{1}
+x_{2}-2 x_{1} x_{3}-8 x_{1}-4 x_{2}-2 x_{3}\\
+\text {subject to} \quad&amp; x_{1}, x_{2}, x_{3} \geq 0\,.
+\end{align*}\]</span></li>
 </ol>
-<p>This is a convex optimization problem as it can be written as</p>
+<p>Firstly note that the solution to the unconstrained version of this
+problem is at a point that is feasible for the constrained optimization
+problem:</p>
+<pre class="r"><code>(A &lt;- matrix(c(2 , 1, -1, 1, 3, 0,-1,0,4), nr=3))</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    2    1   -1
+## [2,]    1    3    0
+## [3,]   -1    0    4</code></pre>
+<pre class="r"><code>b=c(-4,-2,-1)
+solve(A, -b)</code></pre>
+<pre><code>## [1]  2.5294118 -0.1764706  0.8823529</code></pre>
+<p>Now lets try to solve the problem using CVXR. Note that if we write
+the objective directly CVXR cannot recognize this as a convex
+optimization problem:</p>
+<pre class="r"><code>library(CVXR)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;CVXR&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     power</code></pre>
+<pre class="r"><code>x &lt;- Variable(3)
+objective &lt;- Minimize(2*x[1]^{2}+3*x[2]^{2}+4*x[3]^{2}+2* x[1] *x[2]-
+                        2* x[1]* x[3]-8* x[1]-4* x[2]-2 *x[3])
+constraints &lt;- list(x &gt;= 0)
+prob &lt;- Problem(objective, constraints)
+soln &lt;- solve(prob)</code></pre>
+<pre><code>## Error in construct_intermediate_chain(object, candidate_solvers, gp = gp): Problem does not follow DCP rules.</code></pre>
+<p>Instead, we have to write the objective function by building it in a
+way that allows CVXR to recognise the problem as convex. That means
+writing it in terms of the functions defined in CVXR (see <a href="https://cvxr.rbind.io/cvxr_functions/">this page</a>) and
+convexity preserving operations on those functions. In this case, we can
+use the <code>quad_form</code> command. We can write</p>
 <p><span class="math display">\[2 x_{1}^{2}+3 x_{2}^{2}+4 x_{3}^{2}+2
 x_{1} x_{2}-2 x_{1} x_{3}-8 x_{1}-4 x_{2}-2 x_{3} = \mathbf{x}^\top
 \begin{pmatrix}2&amp; 1 &amp; -1\\
@@ -1657,492 +1686,312 @@ x_{1} x_{2}-2 x_{1} x_{3}-8 x_{1}-4 x_{2}-2 x_{3} = \mathbf{x}^\top
 -1&amp;0&amp;4
 \end{pmatrix}\mathbf{x}+ \begin{pmatrix} -8&amp;
 -4&amp;-2\end{pmatrix}\mathbf{x}
-\]</span> where <span class="math inline">\(A=\begin{pmatrix}2&amp; 1
-&amp; -1\\ 1&amp; 3&amp; 0\\ -1&amp;0&amp;4 \end{pmatrix}\)</span> is
-positive definite (diagonally dominant with positive diagonal
-elements).</p>
-<p>Recall from the lecture notes that when the feasible set is <span class="math inline">\(\mathbb{R}_{+}^n\)</span>, the explicit
-stationarity conditions are that <span class="math display">\[
-\frac{\partial f}{\partial
-x_{i}}\left(\mathbf{x}^{*}\right)\left\{\begin{array}{cc}
-        =0 &amp; x_{i}^{*}&gt;0 \\
-        \geq 0 &amp; x_{i}^{*}=0
-    \end{array}\right.  \]</span></p>
-<p>Checking for <span class="math inline">\(\mathbf{x}^* =
-\left(\frac{17}{7}, 0, \frac{6}{7}\right)^\top\)</span>, we find</p>
-<p><span class="math display">\[\nabla f(\mathbf{x}) =
-2A\mathbf{x}+\mathbf{b}\mbox{ with } \nabla f(\mathbf{x}^*) =
-\begin{pmatrix}0\\\frac{6}{7}\\0\end{pmatrix}\]</span> and so we can see
-that <span class="math inline">\(\mathbf{x}^*\)</span> is a stationary
-point. We know that the stationarity conditions are necessary and
-sufficient conditions for convex optimization problems (when the
-feasible set is closed and convex, which is the case here), and so <span class="math inline">\(\mathbf{x}^*\)</span> is a minimum point. In
-addition, we can conclude it is a strict global minimum point as the
-objective is strictly concave.</p>
-<pre class="r"><code>xstar &lt;- c(17/7,0,6/7)
-A &lt;- matrix(c(2 , 1, -1, 1, 3, 0,-1,0,4), nr=3)
-b=c(-8,-4,-2)
-2*A%*%xstar+b</code></pre>
-<pre><code>##               [,1]
-## [1,] -8.881784e-16
-## [2,]  8.571429e-01
-## [3,]  0.000000e+00</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Construct a the gradient projection method with constant stepsize
-<span class="math inline">\(\frac{1}{L}(L\)</span> being the Lipschitz
-constant of the gradient of the objective function). Show the function
-values of the first 100 iterations and the produced solution. Try
-different initial guesses.</li>
-</ol>
-<p>Firstly, recall that the projection operator <span class="math display">\[P_C: \mathbb{R}^n \rightarrow
-\mathbb{R}_+^n\]</span> is <span class="math display">\[P_{\mathbb{R}_{+}^{n}}(\mathbf{x})=[\mathbf{x}]_{+}\]</span></p>
-<p>We can code this in R in multiple ways, but the easiest way is just
-to google the name of the built-in operator:</p>
-<pre class="r"><code>proj&lt;-function(x){
-  pmax(x,0)
-}</code></pre>
-<p>Now we need to write a projected-gradient descent algorithm. We can
-just adapt the algorithms we had before.</p>
-<pre class="r"><code>proj_graddesc_const_step &lt;- function(f,g,proj, x0,tbar,epsilon, Print=FALSE, maxiter=10^4){
-  # Gradient method with constant stepsize. The method
-  # terminates when ||g(x)|| &lt;epsilon
-  # INPUT
-  # f - the objective function
-  # g - gradient of the objective function
-  # projection operator
-  # x0 - initial point
-  # t  -  constant stepsize
-  # epsilon ... tolerance parameter
-  # Print =T/F - whether to print the output each step.
-  # maxiter - the maximum number of iterations
-  
-  
-  ####
-  # OUTPUT
-  # x.opt = optimal solution (up to a tolerance) of min f(x)
-  # f.opt = optimal function value
-  ####
-  
-  stopifnot(min(x0)&gt;=0) # check the initial point is feasible.
-  
-  x=x0
-  iter=1
-  trajectory &lt;- matrix(0, nr=maxiter, nc=length(x0))
-  trajectory[1,]&lt;-x
-  error &lt;- 100
-  while (error &gt; epsilon &amp;&amp; iter&lt;maxiter){
-    iter=iter+1
-    grad=g(x)
-    xnew=proj(x-tbar*grad)
-    trajectory[iter,]&lt;-xnew 
-    error = sqrt(sum((x-xnew)^2))
-    if(Print){
-      fun_val=f(x)  # we don&#39;t need this unless we are printing it out
-      print(paste(&#39;-------------- Iteration &#39;, iter, &#39; -------------&#39;))
-      print(c(&#39;f(x)=&#39;, f(x), &#39; error=&#39;, error))
-    }
-    x=xnew
-  }
-  return(list(x.opt=x, trajectory=trajectory[1:iter,], iter=iter-1))
-}</code></pre>
-<p>Let’s code <span class="math inline">\(f\)</span> and <span class="math inline">\(\nabla f\)</span>.</p>
-<pre class="r"><code>A &lt;- matrix(c(2 , 1, -1, 1, 3, 0,-1,0,4), nr=3)
-b=c(-4,-2,-1)
-
-f&lt;-function(x){
-  t(x)%*%A%*%x+2*t(b)%*%x
-  #2*x[1]^{2}+3*x[2]^{2}+4*x[3]^{2}+2* x[1] *x[2]-2* x[1]* x[3]-8* x[1]-4* x[2]-2 *x[3]
-}
-
-g &lt;- function(x){
-  2*A%*%x+2*b
-}
-
-g(c(1.23, 2.34, 4.56))</code></pre>
-<pre><code>##       [,1]
-## [1,] -7.52
-## [2,] 12.50
-## [3,] 32.02</code></pre>
-<pre class="r"><code>numDeriv::grad(f, c(1.23, 2.34, 4.56))</code></pre>
-<pre><code>## [1] -7.52 12.50 32.02</code></pre>
-<p>Recall that for a quadratic form, the smallest Lipschitz constant is
-<span class="math inline">\(2||A||_2\)</span>, which in this case is 2
-times the largest eigenvalue of <span class="math inline">\(A\)</span></p>
-<pre class="r"><code>Matrix::norm(2*A, type=&#39;2&#39;)</code></pre>
-<pre><code>## [1] 9.064178</code></pre>
-<pre class="r"><code>(L=eigen(A)$values[1]*2)</code></pre>
-<pre><code>## [1] 9.064178</code></pre>
-<p>We can now run the projected gradient descent algorithm:</p>
-<pre class="r"><code>out1 &lt;- proj_graddesc_const_step(f,g,proj, x0=rep(10,3),tbar=1/L,epsilon=10^{-4}, Print=FALSE, maxiter=1000)
-out1$x.opt</code></pre>
-<pre><code>##          [,1]
-## [1,] 2.428700
-## [2,] 0.000000
-## [3,] 0.857196</code></pre>
-<pre class="r"><code>out1$iter</code></pre>
-<pre><code>## [1] 25</code></pre>
-<!--html 3. Compare your results with a projected gradient descent with backtracking and the parameters $s=1$, $\alpha=\beta=0.5$.
-
-Let's again adapt the code we used for the unconstrained gradient descent algorithm.
--->
-</div>
-<div id="constrained-least-squares" class="section level2">
-<h2>Constrained least squares</h2>
-<p>Consider the minimization problem <span class="math display">\[\begin{align*}
-    \min_{\mathbf{x}}\; &amp;\|\mathbf{A}\mathbf{x}-\mathbf{b}\|_2^2\\
-    \text {subject to} \quad&amp; \|\mathbf{x}\|_2^2 \leq \alpha\,,
-\end{align*}\]</span> where <span class="math inline">\(\mathbf{A}\in\mathbb{R}^{m\times n}\)</span> is
-assumed to be of full column rank, <span class="math inline">\(\mathbf{b}\in\mathbb{R}^m\)</span>, and <span class="math inline">\(\alpha&gt;0\)</span>. We call this a (CLS)
-problem.</p>
-<ul>
-<li>Derive the Lagrangian associated with this problem and the KKT
-conditions.</li>
-</ul>
-<p>In week 4 we studied regularized least squares (RLS) of the form
-<span class="math inline">\(\{\|\mathbf{A}\mathbf{x}-\mathbf{b}\|^2
-+\mu\|\mathbf{x}\|^2\}\)</span>. The two problems are related in the
-sense that they both regularize the least squares solution by a
-quadratic regularization term. In the RLS problem, the regularization is
-done by a penalty function, while in the CLS problem the regularization
-is performed by incorporating it as a constraint.</p>
-<p>To solve the problem, we begin by forming the Lagrangian: <span class="math display">\[\begin{align*}
-    L(\mathbf{x},
-\lambda)=\|\mathbf{Ax}-\mathbf{b}\|^{2}+\lambda\left(\|\mathbf{x}\|^{2}-\alpha\right)
-\quad(\lambda \geq 0)
-\end{align*}\]</span> The KKT conditions are <span class="math display">\[\begin{align*}
-    \begin{aligned}
-        \nabla_{\mathbf{x}} L=2
-\mathbf{~A}^{T}(\mathbf{Ax}-\mathbf{b})+2 \lambda \mathbf{x} &amp;=0 \\
-        \lambda\left(\|\mathbf{x}\|^{2}-\alpha\right) &amp;=0 \\
-        \|\mathbf{x}\|^{2} &amp; \leq \alpha \\
-        \lambda &amp; \geq 0
-    \end{aligned}
-\end{align*}\]</span></p>
-<ul>
-<li>Are the KKT conditions necessary and sufficient here?</li>
-</ul>
-<p>Problem (CLS) is a convex problem. Moreover, these exist at least one
-point (take for instance <span class="math inline">\(\hat{\mathbf{x}}=0\)</span>) that strictly
-satisfies the constraint of the problem (Slater’s condition). Thus in
-this case we can conclude that the KKT conditions are both necessary and
-sufficient conditions.</p>
-<ul>
-<li>Find a solution to the KKT system. It will help to first consider
-the case <span class="math inline">\(\lambda=0\)</span>, and to think
-about when the resulting <span class="math inline">\(\mathbf{x}\)</span>
-satisfies the inequality constraints. In the case where <span class="math inline">\(\lambda\not=0\)</span> we must have <span class="math inline">\(||\mathbf{x}||_2^2=\alpha\)</span> by the
-complimentary slackness constraint. Explain why there must exist a <span class="math inline">\(\lambda\)</span> for which this is true.</li>
-</ul>
-<p>There are two options. In the first, <span class="math inline">\(\lambda=0,\)</span> and then by the first equation
-we have that <span class="math display">\[\begin{align*}
-    \mathbf{x}=\mathbf{x}_{\mathbf{LS}} \equiv\left(\mathbf{A}^{T}
-\mathbf{~A}\right)^{-1} \mathbf{~A}^{T} \mathbf{b}
-\end{align*}\]</span> This is a KKT point and hence the optimal solution
-if and only if <span class="math inline">\(\mathbf{x}_{\mathbf{LS}}\)</span> is feasible,
-that is, if || <span class="math inline">\(\mathbf{x}_{\mathbf{LS}}
-\|^{2} \leq \alpha .\)</span> This is not a surprising result since it
-is clear that when the unconstrained minimizer <span class="math inline">\(\mathbf{x}_{\mathbf{LS}}\)</span> satisfies the
-constraint, it is also the optimal solution of the constrained
-problem.</p>
-<p>On the other hand, if <span class="math inline">\(\left\|\mathbf{x}_{\mathbf{LS}}\right\|^{2}&gt;\alpha,\)</span>
-then <span class="math inline">\(\lambda&gt;0 .\)</span> By the
-complementary slackness condition we have that <span class="math inline">\(\|\mathbf{x}\|^{2}=\alpha,\)</span> and the first
-equation implies that <span class="math display">\[\begin{align*}
-    \mathbf{x}=\mathbf{x}_{\lambda} \equiv\left(\mathbf{A}^{T}
-\mathbf{A}+\lambda \mathbf{I}\right)^{-1} \mathbf{A}^{T} \mathbf{b}
-\end{align*}\]</span> The multiplier <span class="math inline">\(\lambda&gt;0\)</span> should be thus chosen to
-satisfy <span class="math inline">\(\left\|\mathbf{x}_{\lambda}\right\|^{2}=\alpha
-;\)</span> that is, <span class="math inline">\(\lambda\)</span> is the
-solution of <span class="math display">\[\begin{align*}
-    f(\lambda) \equiv\left\|\left(\mathbf{A}^{T} \mathbf{~A}+\lambda
-\mathbf{I}\right)^{-1} \mathbf{~A}^{T} \mathbf{b}\right\|^{2}-\alpha=0
-\end{align*}\]</span> We have <span class="math inline">\(f(0)=\left\|\left(\mathbf{~A}^{T}
-\mathbf{~A}\right)^{-1} \mathbf{~A}^{T}
-\mathbf{b}\right\|^{2}-\alpha=\left\|\mathbf{x}_{\mathbf{LS}}\right\|^{2}-\alpha&gt;0,\)</span>
-and it is not difficult to show that <span class="math inline">\(f\)</span> is a strictly decreasing function
-satisfying <span class="math inline">\(f(\lambda)
-\rightarrow-\alpha\)</span> as <span class="math inline">\(\lambda
-\rightarrow \infty .\)</span> Thus, there exists a unique <span class="math inline">\(\lambda\)</span> for which <span class="math inline">\(f(\lambda)=0,\)</span> and this <span class="math inline">\(\lambda\)</span> can be found for example by a
-simple bisection procedure. To conclude, the optimal solution of the CLS
-problem is given by <span class="math display">\[\begin{align*}
-    \mathbf{x}=\left\{\begin{array}{ll}
-        \mathbf{x}_{\mathbf{LS}}, &amp;
-\left\|\mathbf{x}_{\mathbf{LS}}\right\|^{2} \leq \alpha \\
-        \left(\mathbf{A}^{T} \mathbf{~A}+\lambda \mathbf{I}\right)^{-1}
-\mathbf{~A}^{T} \mathbf{b} &amp;
-\left\|\mathbf{x}_{\mathbf{LS}}\right\|^{2}&gt;\alpha
-    \end{array}\right.
-\end{align*}\]</span> where <span class="math inline">\(\lambda\)</span>
-is the unique root of <span class="math inline">\(f\)</span> over <span class="math inline">\([0, \infty) .\)</span></p>
-<ul>
-<li>Write code that inputs <span class="math inline">\(\mathbf{A}\)</span>, <span class="math inline">\(\mathbf{b}\)</span>, and <span class="math inline">\(\alpha\)</span>, and outputs the solution of the
-constrained least squares problem.</li>
-</ul>
-<p>There are various ways of solving <span class="math inline">\(f(\lambda)=0\)</span>. We will do so using a
-bisection algorithm. This works by starting with an interval <span class="math inline">\([l_0,u_0]\)</span> with either <span class="math inline">\(f(l_0)&lt;0\)</span> and <span class="math inline">\(f(u_0)&gt;0\)</span> or vice versa, i.e., we
-require as a starting point lower and upper bounds with <span class="math inline">\(f(l_0)f(u_0)&lt;0\)</span>. Then for <span class="math inline">\(k=0,1,2, \ldots\)</span> we execute the following
-steps:</p>
-<ol style="list-style-type: decimal">
-<li>Take <span class="math inline">\(\lambda_{k}=\frac{u_{k}+l_{k}}{2}\)</span></li>
-<li>If <span class="math inline">\(f\left(l_{k}\right) \cdot
-f\left(\lambda_{k}\right)&gt;0,\)</span> set <span class="math inline">\(l_{k+1}=\lambda_{k}, u_{k+1}=u_{k} .\)</span>
-Otherwise, set <span class="math inline">\(l_{k+1}=l_{k}\)</span>, and
-<span class="math inline">\(u_{k+1}=\lambda_{k}\)</span></li>
-<li>If <span class="math inline">\(u_{k+1}-l_{k+1} \leq
-\varepsilon,\)</span> then <span class="math inline">\(\mathbf{STOP},\)</span> and output <span class="math inline">\(\lambda_{k}\)</span>.</li>
-</ol>
-<p>where <span class="math inline">\(\varepsilon\)</span> is a tolerance
-parameter that defines our stopping rule. We can think of this as a
-shrinking sequence of intervals <span class="math inline">\([l_k,
-u_k]\)</span>. We stop when the width of the interval is less than <span class="math inline">\(\varepsilon\)</span>.</p>
-<p>R code implementing the bisection method is given below.</p>
-<pre class="r"><code>bisection &lt;- function(f,lb,ub,eps){
-    # ================ INPUTS ==================
-    # f ................... a scalar function
-    # lb .................. the initial lower bound
-    # ub .................. the initial upper bound
-    # eps ................. tolerance parameter
-  # ================ OUTPUTS ==================
-    # z .................. a root of the equation f(x)=0
-  
-    stopifnot(f(lb)*f(ub)&lt;0, lb&lt;ub)
-  
-    iter=0
-    while (ub-lb&gt;eps){
-    z=(lb+ub)/2
-      iter=iter+1
-      if(f(lb)*f(z)&gt;0){
-        lb=z
-      }else{
-        ub=z
-      }
-    }
-  return(z)
-}</code></pre>
-<p>As an example, suppose we wish to find the square root of 2 with an
-accuracy of <span class="math inline">\(10^{-4}\)</span>. To do so we
-can solve the equation <span class="math inline">\(x^{2}-2=0\)</span>
-using this functions.</p>
-<pre class="r"><code>f &lt;- function(x){x^2-2}
-bisection(f,1,2,1e-4)   </code></pre>
-<pre><code>## [1] 1.414246</code></pre>
-<p>For the CLS problem, note that <span class="math inline">\(f(0)&gt;0\)</span>. Therefore, we just need to
-find a point <span class="math inline">\(u&gt;0\)</span> satisfying
-<span class="math inline">\(f(u)&lt;0\)</span>. We can do this using a
-simple search: start by guessing <span class="math inline">\(u=1\)</span>, and then make the update <span class="math inline">\(u \leftarrow 2 u\)</span> until <span class="math inline">\(f(u)&lt;0\)</span>.</p>
-<pre class="r"><code>cls &lt;-function(A,b,alpha){
-  # ================ INPUTS ==================
-  # A ................... an mxn matrix
-  # b ................... an m-length vector
-  # alpha ............... positive scalar
-  # ================ OUTPUT ==================
-  # x_cls ............ an optimal solution of
-  #   min{||A*x-b||:||x||^2&lt;=alpha}
-    
-  d=dim(A)[2]
-  n=dim(A)[1]
-  stopifnot(n==length(b))
-  
-  x_ls=solve(t(A)%*%A, t(A)%*%b)
-  
-  if (sum(x_ls^2)&lt;=alpha){
-    x_cls=x_ls
-  } else{
-    f&lt;- function(lambda){
-      x_lambda &lt;- solve(t(A)%*%A+lambda*diag(d), t(A)%*%b)
-      return(sum(x_lambda^2)-alpha)
-      }
-    u=1
-    while (f(u)&gt;0){
-      u=2*u;
-    }
-    lambda=bisection(f,0,u,1e-7);
-    x_cls=solve(t(A)%*%A+lambda*diag(d), t(A)%*%b)
-  }
-  return(x_cls)
-}</code></pre>
-<ul>
-<li>Let <span class="math display">\[A=\begin{pmatrix}1&amp;2\\
-3&amp;1\\2&amp;3
-\end{pmatrix} \quad\mbox{and}\quad \mathbf{b}=\begin{pmatrix}2
-\\3\\4\end{pmatrix}\]</span> and compare your results against the linear
-least squares problem.</li>
-</ul>
-<p>The least squares solution and its squared norm can be easily
-found:</p>
-<pre class="r"><code>A&lt;-matrix(c(1,2,3,1,2,3), nc=2, byrow=T)
-b&lt;-c(2, 3, 4)   
-(x_ls &lt;- solve(t(A)%*%A, t(A)%*%b))</code></pre>
-<pre><code>##      [,1]
-## [1,] 0.76
-## [2,] 0.76</code></pre>
-<pre class="r"><code>sum(x_ls^2)</code></pre>
-<pre><code>## [1] 1.1552</code></pre>
-<pre class="r"><code># Or  lm(b~A-1) </code></pre>
-<p>If we use the <code>cls</code> function with an <span class="math inline">\(\alpha\)</span> which is greater than 1.1552 ,
-then we will obviously get back the least squares solution:</p>
-<pre class="r"><code>cls(A,b,1.5)</code></pre>
-<pre><code>##      [,1]
-## [1,] 0.76
-## [2,] 0.76</code></pre>
-<p>On the other hand, taking an <span class="math inline">\(\alpha\)</span> with a smaller value than <span class="math inline">\(1.552,\)</span> will result in a different
-solution:</p>
-<pre class="r"><code>(x_cls&lt;-cls(A,b,0.25))</code></pre>
-<pre><code>##           [,1]
-## [1,] 0.3535534
-## [2,] 0.3535534</code></pre>
-<pre class="r"><code>sum(x_cls^2)</code></pre>
-<pre><code>## [1] 0.25</code></pre>
-<ul>
-<li>Compare constrained least squares to regularized least squares?</li>
-</ul>
-<p>As we showed above, constrained least squares and regularized least
-squares are two different ways of thinking about the same problem. For
-each value of <span class="math inline">\(\alpha\)</span> in a
-constrained least squares problem <span class="math display">\[\begin{align*}
-    \min_{\mathbf{x}}\; &amp;\|\mathbf{A}\mathbf{x}-\mathbf{b}\|_2^2\\
-    \text {subject to} \quad&amp; \|\mathbf{x}\|_2^2 \leq \alpha\,,
-\end{align*}\]</span> there is a value of <span class="math inline">\(\lambda\)</span> for which regularized least
-squares <span class="math display">\[  \min_{\mathbf{x}}\;
-\|\mathbf{A}\mathbf{x}-\mathbf{b}\|_2^2+\lambda
-\|\mathbf{x}\|_2^2\]</span> gives the same estimator of <span class="math inline">\(\mathbf{x}\)</span>.</p>
-<ul>
-<li>Use CVXR to check your answer.</li>
-</ul>
+\]</span></p>
 <pre class="r"><code>library(CVXR)
-x&lt;-Variable(2)
-alpha=0.25
-objective &lt;- Minimize(cvxr_norm(A%*%x- b,2)^2)
-constraints &lt;- list(cvxr_norm(x,2)^2&lt;=alpha)
+x &lt;- Variable(3)
+(A &lt;- matrix(c(2 , 1, -1, 1, 3, 0,-1,0,4), nr=3))</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    2    1   -1
+## [2,]    1    3    0
+## [3,]   -1    0    4</code></pre>
+<pre class="r"><code>b=c(-8,-4,-2)
+objective &lt;- Minimize(quad_form(x, A)+sum(x*b))
+constraints &lt;- list(x&gt;=0)
 prob &lt;- Problem(objective, constraints)
 soln &lt;- solve(prob)
-soln$getValue(x)</code></pre>
-<pre><code>##           [,1]
-## [1,] 0.3535534
-## [2,] 0.3535534</code></pre>
-<div id="exercises-from-the-notes" class="section level3">
-<h3>Exercises from the notes</h3>
-<p>Solve the problem <span class="math display">\[\begin{align*}
-    \begin{array}{ll}
-        \min &amp; \frac{1}{2}\left(x_{1}^{2}+x_{2}^{2}+x_{3}^{2}\right)
-\\
-        \text { s.t. } &amp; x_{1}+x_{2}+x_{3}=3 \,.
-    \end{array}
-\end{align*}\]</span></p>
-<pre class="r"><code>x&lt;-Variable(3)
-objective &lt;- Minimize(0.5*(sum(x^2)))
-constraints &lt;- list(sum(x)==3)
-prob &lt;- Problem(objective, constraints)
-soln &lt;- solve(prob)
-soln$getValue(x)</code></pre>
-<pre><code>##      [,1]
-## [1,]    1
-## [2,]    1
-## [3,]    1</code></pre>
-<pre class="r"><code>soln$value</code></pre>
-<pre><code>## [1] 1.5</code></pre>
-<p>Solve <span class="math display">\[\begin{align*}
-\min \quad &amp;x_1+x_2\\
-        \text { subject to} \quad &amp;x_1^2+x_2^2  =1.
-\end{align*}\]</span></p>
-<pre class="r"><code>x&lt;-Variable(2)
-objective &lt;- Minimize((sum(x)))
-constraints &lt;- list(sum(x^2)==1)
-prob &lt;- Problem(objective, constraints)
-soln &lt;- solve(prob)</code></pre>
-<pre><code>## Error in construct_intermediate_chain(object, candidate_solvers, gp = gp): Problem does not follow DCP rules.</code></pre>
+soln$value</code></pre>
+<pre><code>## [1] -10.57143</code></pre>
+<pre class="r"><code>soln$status</code></pre>
+<pre><code>## [1] &quot;optimal&quot;</code></pre>
 <pre class="r"><code>soln$getValue(x)</code></pre>
-<pre><code>## NULL</code></pre>
-<pre class="r"><code>soln$value</code></pre>
-<pre><code>## [1] 1.5</code></pre>
-<p>This problem is not convex and so can’t be solved in CVXR. You could
-solve it by developing a projected gradient descent method.</p>
-<hr />
-<p>Solve <span class="math display">\[\begin{align*}
-\min \quad &amp;x_1+x_2\\
-        \text { subject to} \quad &amp;x_1^2+x_2^2  \leq 1.
-\end{align*}\]</span> Note that this is the problem we solved in week 1
-using an ad hoc method.</p>
-<pre class="r"><code>x&lt;-Variable(2)
-objective &lt;- Minimize((sum(x)))
-constraints &lt;- list(sum(x^2)&lt;=1)
-prob &lt;- Problem(objective, constraints)
-soln &lt;- solve(prob)
-soln$getValue(x)</code></pre>
-<pre><code>##            [,1]
-## [1,] -0.7071068
-## [2,] -0.7071068</code></pre>
-<pre class="r"><code>soln$value</code></pre>
-<pre><code>## [1] -1.414214</code></pre>
-<div id="problem-e10" class="section level4">
-<h4>Problem E10</h4>
-<p>Consider the problem <span class="math display">\[\begin{align*}
-\min &amp;-x_1x_2x_3\\
-\mbox{subject to } &amp; x_1+3x_2+6x_3 \leq 48\\
-&amp; x_1, x_2, x_3 \geq     0.
-\end{align*}\]</span></p>
-<p>It is hard to determine whether this is a convex optimization problem
-or not, but we don’t need convexity to solve this using the KKT
-conditions, as the KKT conditions are always necessary conditions.
-Instead, we can simply find all the KKT points and then find which gives
-the minimal value of <span class="math inline">\(x_1x_2x_3\)</span>.</p>
-<p>The Lagrangian for this problem is <span class="math display">\[L =
--x_1x_2x_3 +\lambda_0 (x_1+3x_2+6x_3 - 48)-\lambda_1 x_1  -\lambda_2 x_2
--\lambda_3x_3\]</span> where <span class="math inline">\(\lambda_i \geq
-0\)</span>. The KKT conditions are then <span class="math display">\[\begin{align*}
--x_2x_3 +\lambda_0 -\lambda_1&amp;=0\\
--x_1x_3 +3\lambda_0 -\lambda_2&amp;=0\\
--x_1x_2 +6\lambda_0 -\lambda_3&amp;=0
-\end{align*}\]</span> along with the primal feasibility constraints
-<span class="math display">\[\begin{align*}
-x_1+3x_2+6x_3 &amp;\leq 48\\
-x_1, x_2, x_3 &amp;\geq     0
-\end{align*}\]</span> the dual feasibility constraints <span class="math display">\[\lambda_i \geq 0\]</span> and the complimentary
-slackness conditions <span class="math display">\[\begin{align*}
-\lambda_0 (x_1+3x_2+6x_3 -48)&amp;=0\\
-\lambda_ix_i&amp;=0 \quad \mbox{for }\quad i=1,2,3.
-\end{align*}\]</span></p>
-<p>Firstly, note that there may be KKT points with <span class="math inline">\(x_i=0\)</span> for some <span class="math inline">\(i\)</span>, but in this case the value of the
-objective (<span class="math inline">\(x_1x_2x_3\)</span>) will be 0,
-which is the maximum possible value the objective could take.</p>
-<p>So we only need consider the case where all the <span class="math inline">\(x_i&gt;0\)</span>. By complimentary slackness this
-implies <span class="math inline">\(\lambda_1=\lambda_2=\lambda_3=0\)</span>. The
-first set of KKT conditions then imply that <span class="math inline">\(\lambda_0=x_2x_3 &gt;0\)</span>. Thus by CS we
-must have <span class="math inline">\(x_1+3x_2+6 x_3=48\)</span>. This
-gives a system of 4 equations in 4 unknowns:</p>
-<p><span class="math display">\[\begin{align*}
-x_1+3x_2+6 x_3&amp;=48\\
-x_2x_3&amp;=\lambda_0\\
-x_1x_3&amp;=3\lambda_0\\
-x_1x_2&amp;=6\lambda_0.
-\end{align*}\]</span></p>
-<p>From these we see that <span class="math display">\[\begin{align*}
-2x_3&amp;=x_2\\
-6x_3&amp;=x_1
-\end{align*}\]</span> and substituting in we get <span class="math inline">\(16x_3=48\)</span>. This then gives the
-solution</p>
-<p><span class="math display">\[x_1 = 16, x_2=16/3, x_3=8/3,
-\lambda_0=128/9.\]</span></p>
-<p>This is the only KKT point that has <span class="math inline">\(x_i&gt;0 \forall i\)</span>, and so it must be
-optimal.</p>
-<p>To solve the problem in CVXR, we can use the geometric mean, <span class="math display">\[\prod x_i^{1/n}\]</span> which is known to be
-concave, and so the negative of it is convex. Minimizing <span class="math inline">\(-\prod x_i\)</span> is the same as minimizing
-<span class="math inline">\(-(\prod x_i)^{1/n}\)</span>, so this will
-give us the same answer, and will allow the problem to be written in a
-way that allows CVXR to recognize the problem as convex.</p>
-<pre class="r"><code>x&lt;-Variable(3)
-objective &lt;- Minimize(-geo_mean(x))
-constraints &lt;- list(x[1]+3*x[2]+6*x[3]&lt;=48, x&gt;=0)
-prob &lt;- Problem(objective, constraints)
-soln &lt;- solve(prob)
-soln$getValue(x)</code></pre>
-<pre><code>##           [,1]
-## [1,] 16.000114
-## [2,]  5.333267
-## [3,]  2.666681</code></pre>
-<pre class="r"><code>soln$value^3 # cubed because we&#39;ve minimized the geometric mean instead of the product.</code></pre>
-<pre><code>## [1] -227.5556</code></pre>
+<pre><code>##               [,1]
+## [1,]  2.428571e+00
+## [2,] -7.534105e-23
+## [3,]  8.571429e-01</code></pre>
+<p>Note that small numerical errors mean the solution found is negative,
+but is essentially zero.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><span class="math display">\[\begin{align*}
+\min_{\mathbf{x}}\; &amp;2 x_{1}^{2}+3 x_{2}^{2}+4 x_{3}^{2}+2 x_{1}
+x_{2}-2 x_{1} x_{3}-8 x_{1}-4 x_{2}-2 x_{3}\\
+\text {subject to} \quad&amp; x_1+x_2+x_3\leq 1\\
+\quad&amp; x_{1}, x_{2}, x_{3} \geq 0\,.
+\end{align*}\]</span></li>
+</ol>
+<p>This is the same as the previous problem, but with an extra
+constraint</p>
+<pre class="r"><code>constraints2 &lt;- list(x&gt;=0, sum(x)&lt;=1)
+prob2 &lt;- Problem(objective, constraints2)
+soln2 &lt;- solve(prob2)
+soln2$value</code></pre>
+<pre><code>## [1] -6</code></pre>
+<pre class="r"><code>soln2$status</code></pre>
+<pre><code>## [1] &quot;optimal&quot;</code></pre>
+<pre class="r"><code>soln2$getValue(x)</code></pre>
+<pre><code>##               [,1]
+## [1,]  1.000000e+00
+## [2,] -1.534203e-24
+## [3,]  2.600470e-17</code></pre>
+<p>Note the tiny numerical error on <span class="math inline">\(x_2\)</span> has resulted in a negative value.
+This should be interpretted as 0.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><span class="math display">\[\begin{align*}
+\min_{\mathbf{x}}\; 2 x_{1}^{2}+3 x_{2}^{2}+4 x_{3}^{2}+2 x_{1}
+x_{2}-&amp;2 x_{1} x_{3}-8 x_{1}-4 x_{2}-2 x_{3}\\
+\text {subject to} \qquad x_1+x_2+x_3&amp;\leq 1\\
+  x_2 &amp;\geq 0.2\\
+  x_{1}, x_{2}, x_{3} &amp;\geq 0\,.
+\end{align*}\]</span></li>
+</ol>
+<pre class="r"><code>constraints3 &lt;- list(x&gt;=0, sum(x)&lt;=1, x[2]&gt;=0.2)
+prob3 &lt;- Problem(objective, constraints3)
+soln3 &lt;- solve(prob3)
+soln3$value</code></pre>
+<pre><code>## [1] -5.48</code></pre>
+<pre class="r"><code>soln3$status</code></pre>
+<pre><code>## [1] &quot;optimal&quot;</code></pre>
+<pre class="r"><code>soln3$getValue(x)</code></pre>
+<pre><code>##               [,1]
+## [1,]  8.000000e-01
+## [2,]  2.000000e-01
+## [3,] -1.523731e-23</code></pre>
 </div>
+<div id="disguised-optimization-problems" class="section level2">
+<h2>Disguised optimization problems</h2>
+<p>Consider the following optimization problem</p>
+<p><span class="math display">\[\min_\mathbf{x}||A\mathbf{x}-
+\mathbf{b}||_p.\]</span> where <span class="math display">\[A =
+\begin{pmatrix}1&amp;2\\2&amp;1\\
+1&amp;1\end{pmatrix} \qquad \mathbf{b}=\begin{pmatrix}1\\2\\3
+\end{pmatrix}.\]</span></p>
+<p><span class="math display">\[||\mathbf{x}||_\infty = \max
+|x_i|\]</span></p>
+<p><span class="math display">\[||\mathbf{x}||_1 = \sum_i
+|x_i|\]</span></p>
+<p><span class="math display">\[||\mathbf{x}||_2 = \sqrt{\sum_i
+x_i^2}\]</span></p>
+<p>Use CVXR to solve this problem for <span class="math inline">\(p=1,
+2, \infty\)</span>.</p>
+<pre class="r"><code>x &lt;- Variable(2)
+(A &lt;- matrix(c(1 , 2, 2, 1, 1, 1), nr=3, byrow=TRUE))</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    1    2
+## [2,]    2    1
+## [3,]    1    1</code></pre>
+<pre class="r"><code>b=c(1,2,3)
+
+p=1
+objective &lt;- Minimize(p_norm(A%*%x-b,p))
+prob &lt;- Problem(objective)
+soln &lt;- solve(prob)
+print(&#39;--------------&#39;)</code></pre>
+<pre><code>## [1] &quot;--------------&quot;</code></pre>
+<pre class="r"><code>print(paste0(&#39;p=&#39;,p))</code></pre>
+<pre><code>## [1] &quot;p=1&quot;</code></pre>
+<pre class="r"><code>print(paste0(&#39;optimal value=&#39;, soln$value))</code></pre>
+<pre><code>## [1] &quot;optimal value=2&quot;</code></pre>
+<pre class="r"><code>print(&#39;Acheived at x&#39;) </code></pre>
+<pre><code>## [1] &quot;Acheived at x&quot;</code></pre>
+<pre class="r"><code>print(soln$getValue(x))</code></pre>
+<pre><code>##               [,1]
+## [1,]  1.000000e+00
+## [2,] -1.046633e-22</code></pre>
+<pre class="r"><code>print(&#39;optimizer status &#39;) </code></pre>
+<pre><code>## [1] &quot;optimizer status &quot;</code></pre>
+<pre class="r"><code>print(soln$status)</code></pre>
+<pre><code>## [1] &quot;optimal&quot;</code></pre>
+<pre class="r"><code>p=2
+objective &lt;- Minimize(p_norm(A%*%x-b,p))
+prob &lt;- Problem(objective)
+soln &lt;- solve(prob)
+print(&#39;--------------&#39;)</code></pre>
+<pre><code>## [1] &quot;--------------&quot;</code></pre>
+<pre class="r"><code>print(paste0(&#39;p=&#39;,p))</code></pre>
+<pre><code>## [1] &quot;p=2&quot;</code></pre>
+<pre class="r"><code>print(paste0(&#39;optimal value=&#39;, soln$value))</code></pre>
+<pre><code>## [1] &quot;optimal value=1.80906806718949&quot;</code></pre>
+<pre class="r"><code>print(&#39;Acheived at x&#39;) </code></pre>
+<pre><code>## [1] &quot;Acheived at x&quot;</code></pre>
+<pre class="r"><code>print(soln$getValue(x))</code></pre>
+<pre><code>##           [,1]
+## [1,] 1.1818182
+## [2,] 0.1818182</code></pre>
+<pre class="r"><code>print(&#39;optimizer status &#39;) </code></pre>
+<pre><code>## [1] &quot;optimizer status &quot;</code></pre>
+<pre class="r"><code>print(soln$status)</code></pre>
+<pre><code>## [1] &quot;optimal&quot;</code></pre>
+<pre class="r"><code>p=&#39;inf&#39;
+objective &lt;- Minimize(p_norm(A%*%x-b,p))
+prob &lt;- Problem(objective)
+soln &lt;- solve(prob)
+print(&#39;--------------&#39;)</code></pre>
+<pre><code>## [1] &quot;--------------&quot;</code></pre>
+<pre class="r"><code>print(paste0(&#39;p=&#39;,p))</code></pre>
+<pre><code>## [1] &quot;p=inf&quot;</code></pre>
+<pre class="r"><code>print(paste0(&#39;optimal value=&#39;, soln$value))</code></pre>
+<pre><code>## [1] &quot;optimal value=1.2&quot;</code></pre>
+<pre class="r"><code>print(&#39;Acheived at x&#39;) </code></pre>
+<pre><code>## [1] &quot;Acheived at x&quot;</code></pre>
+<pre class="r"><code>print(soln$getValue(x))</code></pre>
+<pre><code>##      [,1]
+## [1,]  1.4
+## [2,]  0.4</code></pre>
+<pre class="r"><code>print(&#39;optimizer status &#39;) </code></pre>
+<pre><code>## [1] &quot;optimizer status &quot;</code></pre>
+<pre class="r"><code>print(soln$status)</code></pre>
+<pre><code>## [1] &quot;optimal&quot;</code></pre>
+<p>We can see that the choice of norm has a big effect on the solution.
+Using the <span class="math inline">\(||\cdot||_1\)</span> is known to
+induce sparsity (i.e. lots of zeros) in the solution. The idea of using
+different norms to solve statistical problems is still an active area of
+research in statistics, machine learning, remote sensing etc.</p>
+<div id="show-that-for-pinfty-this-can-be-written-as-a-linear-programme." class="section level5">
+<h5>Show that for <span class="math inline">\(p=\infty\)</span> this can
+be written as a linear programme.</h5>
+<p>For the <span class="math inline">\(||\cdot ||_\infty\)</span> norm
+we can see that</p>
+<p><span class="math display">\[\min ||\mathbf{x}||_\infty\]</span> is
+equivalent to <span class="math display">\[\begin{align*}
+    \min_{t, \mathbf{x}}\; &amp;t\\
+    \text {subject to} \quad&amp; ||\mathbf{x}||_\infty\leq t\,.
+\end{align*}\]</span> which we can rewrite as</p>
+<p><span class="math display">\[\begin{align*}
+    \min_{t, \mathbf{x}}\; &amp;t\\
+    \text {subject to} \quad&amp; max|x_i|\leq t\,.
+\end{align*}\]</span></p>
+<p>or <span class="math display">\[\begin{align*}
+    \min_{t, \mathbf{x}}\; &amp;t\\
+    \text {subject to} \quad&amp; |x_1|\leq t\,.\\
+    \vdots\\
+    &amp; |x_n|\leq t
+\end{align*}\]</span></p>
+<p>or <span class="math display">\[\begin{align*}
+    \min_{t, \mathbf{x}}\; &amp;t\\
+    \text {subject to} \quad&amp; -t \leq x_1\leq t\,.\\
+    &amp;\vdots\\
+    &amp; -t \leq x_n\leq t\,.\\
+\end{align*}\]</span> or equivalently</p>
+<p><span class="math display">\[\begin{align*}
+    \min_{t, \mathbf{x}}\; \qquad\qquad&amp;t\\
+    \text {subject to} \quad  x_1&amp;\leq t\,.\\
+     -x_1 &amp;\leq t\\
+    &amp;\vdots\\
+      x_n&amp;\leq t\,.\\
+     -x_n &amp;\leq t
+\end{align*}\]</span></p>
+<p>Thus we can now rewrite the problem</p>
+<p><span class="math display">\[\min_\mathbf{x}||A\mathbf{x}-
+\mathbf{b}||_\infty\]</span> as a linear programme.</p>
+<p><span class="math display">\[\begin{align*}
+    \min_{t, \mathbf{x}}\;\qquad\qquad\qquad\qquad\qquad &amp;t\\
+    \text {subject to} \quad  -t \leq x_1+2x_2-1 &amp;\leq t\,.\\
+    -t \leq 2x_1+x_2-2 &amp;\leq t\,.\\
+    -t \leq x_1+x_2-3&amp;\leq t\,.\\
+\end{align*}\]</span></p>
+<p>We can then solve the problem using the <code>lpSolve</code> package
+that we used last week. To do so we need to write the problem in
+standard form</p>
+<p><span class="math display">\[\begin{align*}
+    \min_{\tilde{\mathbf{x}}}\; &amp;\mathbf{c}^\top
+\tilde{\mathbf{x}}\\
+    \text {subject to} \quad&amp; \tilde{\mathbf{A}}\tilde{\mathbf{x}}
+\leq \tilde{\mathbf{b}}\\
+    &amp;\tilde{\mathbf{x}}\geq 0
+\end{align*}\]</span> for some variable <span class="math inline">\(\tilde{\mathbf{x}}\)</span>. Note that standard
+form assumes the variables are all positive. We don’t have positivity
+constraints on the variables <span class="math inline">\(x_1\)</span>
+and <span class="math inline">\(x_2\)</span>, but we can rewrite them as
+<span class="math display">\[x_i = x_i^+-x_i^-\]</span> where both <span class="math inline">\(x_i^+\)</span> and <span class="math inline">\(x_i^-\)</span> are constrained to be positive with
+<span class="math inline">\(x_i = x_i^+\)</span> if <span class="math inline">\(x_i&gt;0\)</span> and <span class="math inline">\(x_i = -x_i^-\)</span> if <span class="math inline">\(x_i &lt;0\)</span>.</p>
+<p>then our linear programme can be written as</p>
+<p><span class="math display">\[\begin{align*}
+    \min_{ \tilde{\mathbf{x}}}\;\qquad\qquad\qquad\qquad\qquad &amp;t\\
+    \text {subject to} \quad  -t \leq x_1^+ -x_1^- +2x_2^+ -2x_2^- -1
+&amp;\leq t\,.\\
+    -t \leq 2x_1^+ -2x_1^- +x_2^+ -x_2^--2 &amp;\leq t\,.\\
+    -t \leq x_1^+ -x_1^- +x_2^+ -x_2^- -23&amp;\leq t\,.\\
+\end{align*}\]</span></p>
+<p>We can then write this in standard form <span class="math display">\[\begin{align*}
+    \min_{\tilde{\mathbf{x}}}\; &amp;\mathbf{c}^\top
+\tilde{\mathbf{x}}\\
+    \text {subject to} \quad&amp; \tilde{\mathbf{A}}\tilde{\mathbf{x}}
+\leq \tilde{\mathbf{b}}\\
+    &amp;\tilde{\mathbf{x}}\geq 0
+\end{align*}\]</span> if we use the augmented variable <span class="math display">\[\tilde{\mathbf{x}} = \begin{pmatrix}x_1^+\\
+x_1^-\\
+x_2^+\\
+x_2^-\\
+t\end{pmatrix}\]</span> and set <span class="math display">\[\mathbf{c}=
+\begin{pmatrix}0\\0\\0\\0\\1\end{pmatrix}, \quad
+\mathbf{A}=\begin{pmatrix}1 &amp; -1&amp; 2&amp;-2 &amp;-1\\
+-1 &amp; 1&amp; -2&amp;2 &amp;-1\\
+2 &amp; -2 &amp;1&amp;-1 &amp;-1\\
+-2 &amp; 2&amp; -1&amp;1 &amp;-1\\
+1 &amp; -1 &amp;1&amp;-1 &amp;-1\\
+-1 &amp; 1&amp; -1&amp;1 &amp;-1\end{pmatrix}, \quad
+\mathbf{b}=\begin{pmatrix}1\\-1\\2\\-2\\3\\-3\end{pmatrix}\]</span></p>
+<pre class="r"><code>library(lpSolve)
+Atilde&lt;-matrix(c(1,-1,2,-2, -1,
+            -1,1,-2,2,-1,
+            2,-2, 1,-1,-1,
+            -2,2, -1,1, -1,
+            1,-1, 1,-1, -1,
+            -1,1,-1,1,-1), nc=5, byrow=TRUE)
+btilde&lt;- c(1,-1,2,-2,3,-3)
+objective&lt;-c(0,0,0,0,1)
+lp.out &lt;- lp(&#39;min&#39;, objective, const.mat=Atilde, const.dir = &#39;&lt;=&#39;,
+   const.rhs = btilde)
+lp.out$objval</code></pre>
+<pre><code>## [1] 1.2</code></pre>
+<pre class="r"><code>lp.out$solution</code></pre>
+<pre><code>## [1] 1.4 0.0 0.4 0.0 1.2</code></pre>
+<p>which agrees with the solution we found previously.</p>
+</div>
+<div id="show-that-for-p1-this-can-be-written-as-a-linear-programme." class="section level5">
+<h5>Show that for <span class="math inline">\(p=1\)</span> this can be
+written as a linear programme.</h5>
+<p>We can use the same trick as before. For the <span class="math inline">\(||\cdot ||_1\)</span> norm we can see that</p>
+<p><span class="math display">\[\min ||\mathbf{x}||_1\]</span> is
+equivalent to <span class="math display">\[\begin{align*}
+    \min_{t, \mathbf{x}}\; &amp;t\\
+    \text {subject to} \quad&amp; ||\mathbf{x}||_1\leq t\,.
+\end{align*}\]</span></p>
+<p>If <span class="math inline">\(\mathbf{x}\in \mathbb{R}^2\)</span>,
+we can rewrite this as <span class="math display">\[\begin{align*}
+    \min_{t, \mathbf{x}}\; &amp;t\\
+    \text {subject to} \quad&amp; |x_1|+|x_2|\leq t\,.\\
+\end{align*}\]</span> or equivalently <span class="math display">\[\begin{align*}
+    \min_{t, \mathbf{x}}\; \qquad\qquad&amp;t\\
+    \text {subject to} \quad  x_1+x_2&amp;\leq t\,\\
+    x_1-x_2&amp;\leq t\,.\\
+    -x_1+x_2&amp;\leq t\,.\\
+    -x_1-x_2&amp;\leq t\,.\\
+\end{align*}\]</span></p>
+<p>For <span class="math inline">\(\min
+||\mathbf{A}\mathbf{x}-\mathbf{b}||_1\)</span> the constraint is <span class="math display">\[|x_1+2x_2-1|+|2x_1+x_2-2| + |x_1+x_2-3|\leq
+t\]</span></p>
+<p>We can then (labouriously) follow the steps as before, and see that
+the minimization problem can be solved in <code>lpSolve</code> as
+follows:</p>
+<pre class="r"><code>library(lpSolve)
+Atilde&lt;-matrix(c(4,-4, 4,-4, -1,
+                2,-2, 2,-2,-1,
+                0,0, 2,-2,-1,
+                -2,2, 0,0, -1,
+                2,-2, 0, 0,-1,
+                0,0, -2,2, -1,
+                -2,2,-2,2, -1,
+                -4,4, -4,4,-1
+), nc=5, byrow=TRUE)
+btilde&lt;- c(6,0,2,-4,4,-2,0,-6)
+objective&lt;-c(0,0,0,0,1)
+lp.out &lt;- lp(&#39;min&#39;, objective, const.mat=Atilde, const.dir = &#39;&lt;=&#39;,
+   const.rhs = btilde)
+lp.out$objval</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>lp.out$solution</code></pre>
+<pre><code>## [1] 1 0 0 0 2</code></pre>
+<p>which agrees with the solution from CVXR.</p>
 </div>
 </div>
 
