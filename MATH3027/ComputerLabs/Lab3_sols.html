@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -149,7 +149,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
 <p>We will replicate the linear regression and regularized linear least squares examples from this week, with a different model. First, we will generate a noisy dataset of 200 samples coming from <span class="math display">\[
 v_i=u_i^2+\mathcal{N}(0,0.04)\,,\quad i=1,\ldots,200\,,
-\]</span> where the <span class="math inline">\(u_i\)</span>’s are uniformly sampled in <span class="math inline">\([-1,1]\)</span>, and <span class="math inline">\(\mathcal{N}(0,0.04)\)</span> means adding Gaussian noise of mean 0 and variance <span class="math inline">\(0.04\)</span> for each sample.</p>
+\]</span> where the <span class="math inline">\(u_i\)</span>’s are spaced uniformly in <span class="math inline">\([-1,1]\)</span>, and <span class="math inline">\(\mathcal{N}(0,0.04)\)</span> means adding Gaussian noise of mean 0 and variance <span class="math inline">\(0.04\)</span> for each sample.</p>
 <ul>
 <li>Generate the pairs <span class="math inline">\((u_i,v_i)\)</span> using suitable random generators. Make a plot illustrating <span class="math inline">\((u_i,v_i)\)</span>. What is the model you can identify to express <span class="math inline">\(v\)</span> as a function of <span class="math inline">\(u\)</span>?</li>
 </ul>
@@ -166,10 +166,9 @@ Solution
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span><span class="sc">/</span><span class="dv">200</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#sort(runif(200, -1,1)) # ordered so that the regularization makes sense</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> u<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">201</span>,<span class="dv">0</span>, <span class="at">sd=</span><span class="fu">sqrt</span>(<span class="fl">0.04</span>))</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(u,v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="at">length.out=</span><span class="dv">200</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> u<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">200</span>,<span class="dv">0</span>, <span class="at">sd=</span><span class="fu">sqrt</span>(<span class="fl">0.04</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(u,v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Lab3_sols_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -217,29 +216,25 @@ Solution
 <div class="callout-body-container callout-body">
 <p>We can form the normal equations <span class="math display">\[\mathbf{A}^\top \mathbf{A}\beta = \mathbf{A}^\top \mathbf{v}\]</span> which we can solve as follows</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">200</span>), u, u<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in cbind(rep(1, 200), u, u^2): number of rows of result is not a
-multiple of vector length (arg 1)</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(betahat <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(A)<span class="sc">%*%</span>A, <span class="fu">t</span>(A)<span class="sc">%*%</span>v))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">200</span>), u, u<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(betahat <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(A)<span class="sc">%*%</span>A, <span class="fu">t</span>(A)<span class="sc">%*%</span>v))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         [,1]
-  -0.01685933
-u -0.03154732
-   0.98951580</code></pre>
+  -0.01151814
+u -0.03367549
+   1.07221759</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>totalss <span class="ot">&lt;-</span> <span class="fu">t</span>(v<span class="sc">-</span>A<span class="sc">%*%</span>betahat)<span class="sc">%*%</span>(v<span class="sc">-</span>A<span class="sc">%*%</span>betahat)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(u,v)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>u.plt<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(u.plt, <span class="fu">cbind</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">length</span>(u.plt)), u.plt, u.plt<span class="sc">^</span><span class="dv">2</span>)<span class="sc">%*%</span>betahat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>totalss <span class="ot">&lt;-</span> <span class="fu">t</span>(v<span class="sc">-</span>A<span class="sc">%*%</span>betahat)<span class="sc">%*%</span>(v<span class="sc">-</span>A<span class="sc">%*%</span>betahat)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(u,v)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>u.plt<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="fl">0.01</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(u.plt, <span class="fu">cbind</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">length</span>(u.plt)), u.plt, u.plt<span class="sc">^</span><span class="dv">2</span>)<span class="sc">%*%</span>betahat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Lab3_sols_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>R has (of course), built in functions for solving least squares problems:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(fit<span class="ot">&lt;-</span><span class="fu">lm</span>(v<span class="sc">~</span><span class="dv">1</span><span class="sc">+</span>u<span class="sc">+</span><span class="fu">I</span>(u<span class="sc">^</span><span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(fit<span class="ot">&lt;-</span><span class="fu">lm</span>(v<span class="sc">~</span><span class="dv">1</span><span class="sc">+</span>u<span class="sc">+</span><span class="fu">I</span>(u<span class="sc">^</span><span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -247,7 +242,7 @@ lm(formula = v ~ 1 + u + I(u^2))
 
 Coefficients:
 (Intercept)            u       I(u^2)  
-   -0.01686     -0.03155      0.98952  </code></pre>
+   -0.01152     -0.03368      1.07222  </code></pre>
 </div>
 </div>
 </div>
@@ -268,23 +263,25 @@ Solution
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p>Here, we assume we are given noisy data <span class="math inline">\(\mathbf{v}\)</span> on unknown signal <span class="math inline">\(\mathbf{x}\)</span>. To reconstruct <span class="math inline">\(\mathbf{x}\)</span>, we solve the regularized least squares problem <span class="math display">\[\min_x \|\mathbf{x}-\mathbf{v}\|_2^2 + \lambda \|L\mathbf{x}\|\]</span> as described in lectures.</p>
 <p>We assemble the regularization matrix <span class="math inline">\(\mathbf{L}\)</span> from the notes</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nr=</span><span class="dv">201-1</span>,<span class="at">nc=</span><span class="dv">201</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>){</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  L[i,i]<span class="ot">=</span><span class="dv">1</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  L[i,i<span class="sc">+</span><span class="dv">1</span>]<span class="ot">=</span><span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nr=</span><span class="dv">199</span>,<span class="at">nc=</span><span class="dv">200</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">199</span>){</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  L[i,i]<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  L[i,i<span class="sc">+</span><span class="dv">1</span>]<span class="ot">=</span><span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We set the regularization parameter <span class="math inline">\(\lambda=100\)</span> ( try different values to see the effect of different regularization values) and solve the regularized least squares solution</p>
+<p>We set the regularization parameter <span class="math inline">\(\lambda=100\)</span> ( try different values to see the effect of different regularization values) and find the regularized least squares solution, which we gave in lectures as the solution to</p>
+<p><span class="math display">\[(\mathbf{I}+\lambda L^\top L)\mathbf{x}=  \mathbf{v}\]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lambda<span class="ot">=</span><span class="dv">100</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>vrecon<span class="ot">&lt;-</span><span class="fu">solve</span>(<span class="fu">diag</span>(<span class="dv">201</span>)<span class="sc">+</span>lambda <span class="sc">*</span> <span class="fu">t</span>(L)<span class="sc">%*%</span>L, v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>lambda<span class="ot">=</span><span class="dv">100</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>vrecon<span class="ot">&lt;-</span><span class="fu">solve</span>(<span class="fu">diag</span>(<span class="dv">200</span>)<span class="sc">+</span>lambda <span class="sc">*</span> <span class="fu">t</span>(L)<span class="sc">%*%</span>L, v)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>and we plot the regularized signal against the noisy measurements</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(u,v)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(u,vrecon, <span class="at">type=</span><span class="st">'l'</span>, <span class="at">col=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(u,v)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(u,vrecon, <span class="at">type=</span><span class="st">'l'</span>, <span class="at">col=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="Lab3_sols_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -319,16 +316,16 @@ Solution
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>, <span class="fl">1.001</span>), <span class="at">nr=</span><span class="dv">2</span>, <span class="at">byrow=</span>T)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(A, <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>, <span class="fl">1.001</span>), <span class="at">nr=</span><span class="dv">2</span>, <span class="at">byrow=</span>T)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(A, <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2 0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(A, <span class="fu">c</span>(<span class="dv">2</span>, <span class="fl">2.001</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(A, <span class="fu">c</span>(<span class="dv">2</span>, <span class="fl">2.001</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(A, <span class="fu">c</span>(<span class="dv">2</span>, <span class="fl">2.002</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">solve</span>(A, <span class="fu">c</span>(<span class="dv">2</span>, <span class="fl">2.002</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0 2</code></pre>
 </div>
@@ -414,12 +411,12 @@ Solution
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>eigs <span class="ot">&lt;-</span> <span class="fu">eigen</span>(A)<span class="sc">$</span>values</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>eigs[<span class="dv">1</span>]<span class="sc">/</span>eigs[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>eigs <span class="ot">&lt;-</span> <span class="fu">eigen</span>(A)<span class="sc">$</span>values</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>eigs[<span class="dv">1</span>]<span class="sc">/</span>eigs[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4002.001</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kappa</span>(A, <span class="at">exact=</span>T) <span class="co"># built in function in R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kappa</span>(A, <span class="at">exact=</span>T) <span class="co"># built in function in R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4002.001</code></pre>
 </div>
