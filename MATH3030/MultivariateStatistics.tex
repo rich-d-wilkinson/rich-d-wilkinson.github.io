@@ -4,10 +4,6 @@
 %
 \documentclass[
 ]{book}
-\title{Multivariate Statistics}
-\author{Prof.~Richard Wilkinson}
-\date{Spring 2022}
-
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -37,14 +33,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Multivariate Statistics},
-  pdfauthor={Prof.~Richard Wilkinson},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -137,6 +125,18 @@
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Multivariate Statistics},
+  pdfauthor={Dr Katie Severn},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Multivariate Statistics}
+\author{Dr Katie Severn}
+\date{Spring 2023}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -263,7 +263,7 @@ Finally, in Part IV, we focus on different methods of classification, i.e.~alloc
 
 If you find any typos or mistakes, please email me at
 
-\texttt{r.d.wilkinson@nottingham.ac.uk}
+\texttt{katie.severn@nottingham.ac.uk}
 
 The notes were significantly rewritten last year in order to adapt them for remote learning, and I am keen to fix as many of the mistakes as I can!
 
@@ -2146,10 +2146,10 @@ Thus you'll see that it usually isn't worth computing the centering matrix when 
   \begin{itemize}
   \tightlist
   \item
-    What is projection of the vector \[\mathbf v=\left(\begin{array}{c} 1\\1\\0\end{array}\right)\]
-    onto \(U\)? Show that this vector does minimize \(||\mathbf v-\mathbf u||\) for \(\mathbf u\in U\).
+    Write down the orthogonal projection matrix for the projection \(W\) onto \(U\) and check it is a projection matrix.
   \item
-    Write down the orthogonal projection matrix for the projection \(W\) onto \(U\) and check it is a projection matrix. Check your answer to the previous part of the question.
+    What is the projection of the vector \[\mathbf v=\left(\begin{array}{c} 1\\1\\0\end{array}\right)\]
+    onto \(U\)? Show that this vector does minimize \(||\mathbf v-\mathbf u||\) for \(\mathbf u\in U\).
   \end{itemize}
 \item
   The centering matrix will be play an important role in this module, as we will use it to remove the column means from a matrix (so that each column has mean zero), \emph{centering} the matrix.
@@ -2549,13 +2549,13 @@ or as the sum of rank-1 matrices:
    3\left(\begin{array}{c}\frac{1}{\sqrt{2}}\\
                \frac{-1}{\sqrt{2}}\end{array}\right) \left(\begin{array}{ccc}\frac{1}{3\sqrt{2}}& \frac{-1}{3 \sqrt{2}} &\frac{4}{3\sqrt{2}}\end{array}\right)\]
 
-This is the compact form of the SVD. To find the non-compact form we need \(\mathbf V\) to be a \(3 \times 3\) matrix, which requires us to find a 3rd column that is orthogonal to the first two columns (thus completing an orthonormal basis for \(\mathbb{R}^3\)). We can do that with the vector \(\mathbf v_3 = \frac{1}{\sqrt{17}}(2\; -2\; -1)\) giving the non-compact SVD for \(\mathbf A\).
+This is the compact form of the SVD. To find the non-compact form we need \(\mathbf V\) to be a \(3 \times 3\) matrix, which requires us to find a 3rd column that is orthogonal to the first two columns (thus completing an orthonormal basis for \(\mathbb{R}^3\)). We can do that with the vector \(\mathbf v_3 = \frac{1}{3}(2\; -2\; -1)\) giving the non-compact SVD for \(\mathbf A\).
 
 \[\mathbf A= \left(\begin{array}{cc}\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}}\\
                \frac{1}{\sqrt{2}}&\frac{-1}{\sqrt{2}}\end{array}\right) \left(\begin{array}{ccc}5&0&0\\
-               0&3&0\end{array}\right)\left(\begin{array}{ccc}\frac{1}{\sqrt{2}}& \frac{1}{3\sqrt{2}}&\frac{2}{\sqrt{17}} \\
-                                             \frac{1}{\sqrt{2}}& \frac{-1}{3 \sqrt{2}} &\frac{-2}{\sqrt{17}}\\
-                                             0&\frac{4}{3\sqrt{2}}&\frac{-1}{\sqrt{17}}\end{array}\right)^\top\]
+               0&3&0\end{array}\right)\left(\begin{array}{ccc}\frac{1}{\sqrt{2}}& \frac{1}{3\sqrt{2}}&\frac{2}{3} \\
+                                             \frac{1}{\sqrt{2}}& \frac{-1}{3 \sqrt{2}} &\frac{-2}{3}\\
+                                             0&\frac{4}{3\sqrt{2}}&\frac{-1}{3}\end{array}\right)^\top\]
 
 Let's check our answer in R.
 \end{example}
@@ -7259,7 +7259,8 @@ Thus, sample covariance matrices have a scaled Wishart distribution.
 This result will be key in the next section, as it will allow us to compute the sampling distribution of a test statistic that we will then use in hypothesis test.
 
 We will now prove Cochran's theorem.
-::: \{.proof\}
+
+\begin{proof}
 \textbf{Non-examinable}
 
 We first prove the result for the case \(\boldsymbol{\Sigma}= {\mathbf I}_p\).
@@ -7328,8 +7329,7 @@ Finally
 \end{align*}
 
 Thus \({\mathbb{C}\operatorname{ov}}(\mathbf y_j, \mathbf y_{j'}) = \boldsymbol 0_{p\times p}\) for \(j\not = j'\) and \({\mathbb{V}\operatorname{ar}}(\mathbf y_j) = \mathbf I_p\). Thus we have proved the claim once we recall that uncorrelated implies independence for multivariate normal random variables.
-
-:::
+\end{proof}
 
 \hypertarget{hotellings-t2-distribution}{%
 \section{\texorpdfstring{Hotelling's \(T^2\) distribution}{Hotelling's T\^{}2 distribution}}\label{hotellings-t2-distribution}}
@@ -10293,8 +10293,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5465   0.3939   0.3231
-## adjCV       0.8308   0.5462   0.3933   0.3225
+## CV          0.8308   0.5467   0.3919   0.3210
+## adjCV       0.8308   0.5462   0.3914   0.3204
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10419,7 +10419,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.001
+## [1] 0.0007943282
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
@@ -10431,7 +10431,7 @@ and the largest value of lambda that gives a prediction error within one standar
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.03162278
+## [1] 0.02511886
 \end{verbatim}
 
 \hypertarget{multi-output-linear-model}{%
@@ -10564,7 +10564,7 @@ and the result follows.
 \subsubsection*{Non-examinable extension}\label{non-examinable-extension}}
 \addcontentsline{toc}{subsubsection}{Non-examinable extension}
 
-To prove this using calculus is tricky, or at least it is, if we use the standard approach. However, there is another approach for proving this using the \emph{Fr'\{e\}chet derivative}. Recall that the usual definition of a derivative of a function \(f: \mathbb{R}\rightarrow \mathbb{R}\) satisfies
+To prove this using calculus is tricky, or at least it is, if we use the standard approach. However, there is another approach for proving this using the \emph{Fr\textquotesingle\{e\}chet derivative}. Recall that the usual definition of a derivative of a function \(f: \mathbb{R}\rightarrow \mathbb{R}\) satisfies
 \[f(x+h)=f(x)+f'(x)h +o(h)\]
 as \(h \rightarrow 0\), where \(o(h)\) indicates a term that goes to zero faster than \(h\), i.e.,
 \[f'(x) = \lim_{h\rightarrow 0} \frac{f(x+h)-f(x)}{h}.\]
