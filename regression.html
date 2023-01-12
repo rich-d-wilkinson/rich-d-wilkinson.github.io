@@ -425,7 +425,7 @@
 <li><span class="math inline">\(y=\)</span> winning time in a Scottish hill race</li>
 <li><span class="math inline">\(x=(\)</span>distance, climb<span class="math inline">\()\)</span> - a vector containing the race distance and the vertical height climbed in the race.</li>
 </ul>
-<p>Linear models can be used to predict the winning time from the <code>distance</code> and <code>climb</code> variables</p>
+<p>Linear models can be used to predict the winning <code>time</code> from the <code>distance</code> and <code>climb</code> variables</p>
 <div class="fragment">
 <div class="columns">
 <div class="column" style="width:42%;">
@@ -571,7 +571,7 @@ Coefficients:
 </div>
 </div>
 <div class="fragment">
-<p>This is <strong>ordinary least squares</strong> regression.</p>
+<p>This is often called <strong>ordinary least squares</strong> regression.</p>
 </div>
 </section>
 <section id="fitted-model" class="slide level2">
@@ -695,8 +695,9 @@ F-statistic: 60.86 on 1 and 33 DF,  p-value: 5.452e-09</code></pre>
 <li class="fragment"><p>Model 1 has <span class="math inline">\(R^2=85\%\)</span>, model 3 has <span class="math inline">\(R^2=65\%\)</span>. <!--- So model 1 explains more of the variance in the data.--></p></li>
 <li class="fragment"><p>Caution is needed when interpreting <span class="math inline">\(R^2\)</span></p>
 <ul>
-<li class="fragment">It doesn’t account for complexity</li>
+<li class="fragment">It doesn’t account for model complexity</li>
 <li class="fragment">It records data fit, not predictive skill</li>
+<li class="fragment">More complex models will always <em>fit</em> better than simpler models.</li>
 </ul></li>
 </ul>
 </div>
@@ -765,11 +766,16 @@ model1 <- lm(time ~ dist+I(climb>1000), data=hills)???
 <section id="prediction" class="slide level2">
 <h2>Prediction</h2>
 <p>A new race is proposed, which will be 10 miles long, and have a height gain of 2500 feet. What do we think the winning time will be?</p>
+<div class="fragment">
+<p><span class="math display">\[time = -8.99 +     6.21796 \times 10  +    0.01105\times 2500 = 80.8\]</span><br>
+. . .</p>
+<p>It is better to use R’s in-built predict command:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">predict</span>(model4, <span class="fu">list</span>(<span class="at">dist=</span><span class="dv">10</span>, <span class="at">climb=</span><span class="dv">2500</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       1 
 80.80729 </code></pre>
+</div>
 </div>
 </div>
 <div class="fragment">
@@ -792,6 +798,7 @@ model1 <- lm(time ~ dist+I(climb>1000), data=hills)???
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>model5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(time<span class="sc">~</span>dist<span class="sc">*</span>climb, <span class="at">data=</span>hills)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><strong>Exercise:</strong> Is this a better model than the previous models?</p>
 </section>
 <section id="more-complex-models-1" class="slide level2">
 <h2>More complex models</h2>
@@ -818,13 +825,15 @@ Coefficients:
 <div class="fragment">
 <p>We need to select a score, which measures performance, such as</p>
 <ul>
-<li>mean square error</li>
+<li>mean square error (MSE)</li>
 <li>probability of misclassification (for logistic models)</li>
 </ul>
 </div>
 <div class="fragment">
+<p>To compute the mean square error (MSE), we first find the errors, square them, then average them.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">mean</span>((<span class="fu">predict</span>(model5) <span class="sc">-</span> hills<span class="sc">$</span>time)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>error5 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model5) <span class="sc">-</span> hills<span class="sc">$</span>time</span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">mean</span>(error5<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 147.9547</code></pre>
 </div>
@@ -852,11 +861,12 @@ Coefficients:
 <pre><code>[1] 0.9391766</code></pre>
 </div>
 </div>
+<p>These are measures of model fit as the model has been trained with the data we are testing with.</p>
 </div>
 </section>
 <section id="evaluating-predictive-skill" class="slide level2">
 <h2>Evaluating predictive skill</h2>
-<p>To evaluate predictive skill, we can do the same thing by splitting the data into test and training sets:</p>
+<p>To evaluate <strong>predictive skill</strong>, we can do the same thing by splitting the data into test and training sets:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35" data-code-line-numbers="|2|3,4|5|6|7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb35-2"><a href="#cb35-2"></a>test.ind <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">35</span>, <span class="dv">10</span>) <span class="co"># 10 test points</span></span>
@@ -866,11 +876,11 @@ Coefficients:
 <span id="cb35-6"><a href="#cb35-6"></a>model3.pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(model3.train, <span class="at">newdata=</span>hills.test <span class="sc">|&gt;</span> <span class="fu">select</span>(climb, dist))</span>
 <span id="cb35-7"><a href="#cb35-7"></a><span class="fu">sum</span>((model3.pred<span class="sc">-</span><span class="fu">select</span>(hills.test, time))<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 102.0398</code></pre>
+<pre><code>[1] 117.4305</code></pre>
 </div>
 </div>
 <div class="fragment">
-<p>Exercise: compute the predictive MSE for a different model.</p>
+<p><strong>Exercise:</strong> compute the predictive MSE for a different model.</p>
 <p>Repeat the process for different random splits into test and training data.</p>
 </div>
 </section>
@@ -917,8 +927,8 @@ F-statistic: 159.6 on 3 and 31 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>For example, consider the races up hills that contain the word ‘Ben’ in their name. Perhaps these are different to the other races?</p>
 <div class="fragment">
 <p>We could consider a model of the form</p>
-<p><span class="math display">\[\mathtt{time} = \begin{cases} a+b\times\mathtt{dist}+c\times\mathtt{climb}+e\\
-(a+d)+b\times\mathtt{dist}+c\times\mathtt{climb}+e
+<p><span class="math display">\[\mathtt{time} = \begin{cases} (a+d)+b\times\mathtt{dist}+c\times\mathtt{climb}+e &amp; \mbox{if name contains 'Ben'} \\
+a+b\times\mathtt{dist}+c\times\mathtt{climb}+e&amp;\mbox{otherwise}
 \end{cases}
 \]</span></p>
 <p><span class="math inline">\(d\)</span> here represents an additional intercept for the Ben races</p>
@@ -1067,7 +1077,7 @@ F-statistic:   NaN on 35 and 0 DF,  p-value: NA</code></pre>
 </div>
 
 <img src="damsl_logo_drop_black.png" class="slide-logo r-stretch"><div class="footer footer-default">
-<p>Simon Preston &amp; Richard Wilkinson 9/12/2022</p>
+<p>Simon Preston &amp; Richard Wilkinson 13/1/2023</p>
 </div>
 </section>
     </div>

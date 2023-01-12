@@ -429,12 +429,9 @@
 <img data-src="poisson_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
 <section id="poisson-regression" class="slide level2">
 <h2>Poisson regression</h2>
-<p>In Poisson regression, we model the mean, <span class="math inline">\(\lambda\)</span>, using a linear combination of our variables.</p>
+<p>In Poisson regression, we model the mean, <span class="math inline">\(\lambda\)</span>, using a linear combination of our covariates.</p>
 <div class="fragment">
 <p><strong>Example</strong>: Let <span class="math inline">\(Y_1, \ldots, Y_{365}\)</span> be the number of fire incidents in Scotland on each day in the year 2022.</p>
-</div>
-<div class="fragment">
-<p>A Poisson regression model would assume that <span class="math display">\[Y_i \sim Poisson(\lambda_i)\]</span></p>
 <div class="cell">
 
 </div>
@@ -455,6 +452,9 @@
 10  10 Wednesday    185</code></pre>
 </div>
 </div>
+</div>
+<div class="fragment">
+<p>A Poisson regression model would assume that <span class="math display">\[Y_i \sim Poisson(\lambda_i)\]</span></p>
 </div>
 <div class="fragment">
 <p>The challenge is in specifying a suitable model for the means, <span class="math inline">\(\lambda_1, \ldots, \lambda_{365}\)</span>.</p>
@@ -525,8 +525,7 @@ Residual Deviance: 395.7    AIC: 2982</code></pre>
 <p>This gives us the parameter estimates <span class="math inline">\(a_1, \ldots, a_7\)</span>.</p>
 </div>
 <div class="fragment">
-<p><strong>Exercise:</strong> What happens if you instead use</p>
-<p><span class="math display">\[\mathtt{events}\sim \mathtt{weekday}\]</span> as the model formula?</p>
+<p><strong>Exercise:</strong> What happens if you instead use <span class="math inline">\(\mathtt{events}\sim \mathtt{weekday}\)</span> as the model formula?</p>
 </div>
 </section>
 <section id="section-1" class="slide level2">
@@ -566,7 +565,7 @@ Residual Deviance: 395.7    AIC: 2982</code></pre>
 <section id="exercise" class="slide level2">
 <h2>Exercise</h2>
 <p>Consider a model that just distinguishes between weekdays and the weekend:<br>
-<span class="math display">\[\log \lambda_i = \begin{cases} a &amp;\mbox{ if day i is a weekday}\\
+<span class="math display">\[\log \lambda_i = \begin{cases} a &amp;\mbox{ if day i is a week day}\\
 b &amp;\mbox{ if day i is a weekend day}\end{cases}
 \]</span></p>
 <ul>
@@ -625,13 +624,14 @@ Residual Deviance: 2066     AIC: 4643</code></pre>
 <span id="cb17-10"><a href="#cb17-10"></a><span class="co">#MSE</span></span>
 <span id="cb17-11"><a href="#cb17-11"></a><span class="fu">sum</span>((fire.test <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(events) <span class="sc">-</span> pred1)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 199.5115</code></pre>
+<pre><code>[1] 202.8611</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">sum</span>((fire.test <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(events) <span class="sc">-</span> pred2)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1158.233</code></pre>
+<pre><code>[1] 1351.368</code></pre>
 </div>
 </div>
+<p>So the model that assumes a different mean for each day of the week has a much smaller MSE than the model that only distinguishes weekend from week days.</p>
 </section>
 <section id="next-session" class="slide level2">
 <h2>Next session</h2>
@@ -645,7 +645,7 @@ Residual Deviance: 2066     AIC: 4643</code></pre>
 </ul>
 
 <img src="damsl_logo_drop_black.png" class="slide-logo r-stretch"><div class="footer footer-default">
-<p>Simon Preston &amp; Richard Wilkinson 9/12/2022</p>
+<p>Simon Preston &amp; Richard Wilkinson 13/1/2023</p>
 </div>
 </section>
     </div>
