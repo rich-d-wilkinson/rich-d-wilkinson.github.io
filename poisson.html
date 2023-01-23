@@ -426,7 +426,7 @@
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">hist</span>(Y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="poisson_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<img data-src="poisson_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
 <section id="poisson-regression" class="slide level2">
 <h2>Poisson regression</h2>
 <p>In Poisson regression, we model the mean, <span class="math inline">\(\lambda\)</span>, using a linear combination of our covariates.</p>
@@ -624,11 +624,11 @@ Residual Deviance: 2066     AIC: 4643</code></pre>
 <span id="cb17-10"><a href="#cb17-10"></a><span class="co">#MSE</span></span>
 <span id="cb17-11"><a href="#cb17-11"></a><span class="fu">sum</span>((fire.test <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(events) <span class="sc">-</span> pred1)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 202.8611</code></pre>
+<pre><code>[1] 209.9048</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">sum</span>((fire.test <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(events) <span class="sc">-</span> pred2)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1351.368</code></pre>
+<pre><code>[1] 1440.284</code></pre>
 </div>
 </div>
 <p>So the model that assumes a different mean for each day of the week has a much smaller MSE than the model that only distinguishes weekend from week days.</p>
