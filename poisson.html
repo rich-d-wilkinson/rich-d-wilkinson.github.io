@@ -9,7 +9,7 @@
 <link href="poisson_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.1.251">
 
-  <title>Workshop 1 - poisson regression</title>
+  <title>Workshop 2 - Poisson regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -383,15 +383,30 @@
       margin-right: 0; 
     }
   </style>
+  <script src="poisson_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="poisson_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="poisson_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" data-background-image="damsl_logo_drop_black.png" data-background-opacity="0.5" data-background-position="50% 15%" data-background-size="40%" class="center">
-  <h1 class="title">Workshop 1 - poisson regression</h1>
+  <h1 class="title">Workshop 2 - Poisson regression</h1>
 </section>
 
+<section class="slide level2">
+
+<!--
+## Outline of day
+
+1. Recap from last time, and discussion of exercises. 30mins
+2. Finish linear regression (factors and significance?) 30mins
+3. Poisson regression (+visreg) 60mins
+4. Plotting + Rmarkdown + running CRIM (30mins)
+5. Walk through CRIM script (just the demo script)? (whatever is left)
+-->
+</section>
 <section id="generalized-linear-models" class="slide level2">
 <h2>Generalized linear models</h2>
 <p>Linear models are useful when the response (e.g.&nbsp;time) is a continuous quantity, eg, 3.1415, -2.71 etc.</p>
@@ -611,6 +626,12 @@ Residual Deviance: 2066     AIC: 4643</code></pre>
 </section>
 <section id="comparing-models" class="slide level2">
 <h2>Comparing models</h2>
+<p>We can compare the models by splitting into test and training sets.</p>
+<ul>
+<li>fit the model to the training data</li>
+<li>predict the test data</li>
+<li>compute the mean square prediction error</li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>test.ind <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">364</span>, <span class="dv">100</span>) <span class="co"># 100 test points</span></span>
 <span id="cb17-2"><a href="#cb17-2"></a>fire.test <span class="ot">=</span> fire2 <span class="sc">|&gt;</span> <span class="fu">slice</span>(test.ind)</span>
@@ -624,28 +645,374 @@ Residual Deviance: 2066     AIC: 4643</code></pre>
 <span id="cb17-10"><a href="#cb17-10"></a><span class="co">#MSE</span></span>
 <span id="cb17-11"><a href="#cb17-11"></a><span class="fu">sum</span>((fire.test <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(events) <span class="sc">-</span> pred1)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 209.9048</code></pre>
+<pre><code>[1] 239.4272</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">sum</span>((fire.test <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(events) <span class="sc">-</span> pred2)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1440.284</code></pre>
+<pre><code>[1] 1367.975</code></pre>
 </div>
 </div>
 <p>So the model that assumes a different mean for each day of the week has a much smaller MSE than the model that only distinguishes weekend from week days.</p>
 </section>
-<section id="next-session" class="slide level2">
-<h2>Next session</h2>
-<p>There are additional complexities to consider when using Poisson regression, such as the exposure. We will cover this in the next session.</p>
-<p>We will also look at</p>
-<ul>
-<li>Data wrangling with dplyr</li>
-<li>Running the CRIM</li>
-<li>Evaluating statistical models</li>
-<li>Expanding the CRIM to include other variables</li>
-</ul>
+<section id="visualizing-fitted-models" class="slide level2">
+<h2>Visualizing fitted models</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">library</span>(visreg)</span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">visreg</span>(pois.model, <span class="at">xvar=</span><span class="st">'weekday'</span>, <span class="at">scale=</span><span class="st">'response'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img src="damsl_logo_drop_black.png" class="slide-logo r-stretch"><div class="footer footer-default">
-<p>Simon Preston &amp; Richard Wilkinson 13/1/2023</p>
+</div>
+<img data-src="poisson_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+<section id="visualizing-fitted-models-1" class="slide level2">
+<h2>Visualizing fitted models</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">library</span>(visreg)</span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="fu">visreg</span>(pois.model, <span class="at">xvar=</span><span class="st">'weekday'</span>, <span class="at">scale=</span><span class="st">'linear'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="poisson_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
+<section id="exposure" class="slide level2">
+<h2>Exposure</h2>
+<p>Often in Poisson models we have to consider the <strong>exposure</strong> level for each event.</p>
+<div class="fragment">
+<p>Suppose we have data on the number of fire incidents in a number of different Scottish towns.</p>
+<ul>
+<li><span class="math inline">\(y_1 =\)</span> number of incidents in town A in the year 2020. Town A contains 1,000 properties.</li>
+<li><span class="math inline">\(y_2 =\)</span> number of incidents in town B in the years 2020 and 2021. Town B contains 1,000 properties.</li>
+<li><span class="math inline">\(y_3 =\)</span> number of incidents in town C in the year 2000. Town C contains 10,000 properties.</li>
+</ul>
+</div>
+<div class="fragment">
+<p>Everything else being equal, we would expect <span class="math display">\[y_1 &lt; y_2 &lt; y_3\]</span></p>
+</div>
+<div class="fragment">
+<p>We model the varying opportunity for incidents using an <strong>exposure</strong> variable.</p>
+</div>
+</section>
+<section id="fundamental-unit" class="slide level2">
+<h2>Fundamental unit</h2>
+<p>We model the <strong>rate</strong> of incidents per some fundamental unit</p>
+<ul>
+<li>incidents per property per year</li>
+<li>incidents per 1,000 properties per day</li>
+<li>etc.</li>
+</ul>
+<div class="fragment">
+<p>The choice of unit doesn’t change the fundamental model, we just need to be consistent.</p>
+</div>
+<div class="fragment">
+<p>If we make the fundamental unit incidents per property per year, then the exposure is the number of years times the number of properties in the twon <span class="math display">\[Exposure = \#years \times \#properties \]</span></p>
+</div>
+<div class="fragment">
+<p>Our model for the expected number of events per unit, <span class="math inline">\(y\)</span>, corresponding to covariate information <span class="math inline">\(x\)</span> is</p>
+<p><span class="math display">\[E(y|x) =  \mbox{Exposure} \times {\rm e}^{a+bx_1+cx_2+\ldots}\]</span></p>
+</div>
+</section>
+<section id="poisson-regression-equations" class="slide level2">
+<h2>Poisson regression equations</h2>
+<p>If we take the logarithm of both sides the model becomes</p>
+<p><span class="math display">\[\log E(y|x) = \log(Exposure) + a+bx_1+cx_2+\ldots  \]</span></p>
+<div class="fragment">
+<div>
+<ul>
+<li class="fragment">The <span class="math inline">\(\log(Exposure)\)</span> term is called the <strong>offset</strong>
+<ul>
+<li class="fragment">we need to specify this as an <strong>offset</strong>, not a covariate, in R</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">glm</span>(y<span class="sc">~</span><span class="fu">offset</span>(<span class="fu">log</span>(exposure))<span class="sc">+</span>x1<span class="sc">+</span>x2<span class="st">`</span><span class="at">, family='poisson(link=log)')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li class="fragment">the linear part of the equation is as before <span class="math display">\[a+bx_1+cx_2+\ldots\]</span></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<div class="cell">
+
+</div>
+<p>Let’s download a new dataset which has data on the number of fire events in Paisley, St Andrews, and Stirling.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>fire2 <span class="ot">&lt;-</span>  <span class="fu">read.csv</span>(<span class="st">"https://rich-d-wilkinson.github.io/docs/fire2.csv"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2"></a>fire2<span class="sc">$</span>weekday <span class="ot">&lt;-</span> <span class="fu">factor</span>(fire2<span class="sc">$</span>weekday, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">'Monday'</span>, <span class="st">'Tuesday'</span>, <span class="st">'Wednesday'</span>, <span class="st">'Thursday'</span>, <span class="st">'Friday'</span>, <span class="st">'Saturday'</span>, <span class="st">'Sunday'</span>))</span>
+<span id="cb24-3"><a href="#cb24-3"></a>fire2<span class="sc">$</span>town <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(fire2<span class="sc">$</span>town)</span>
+<span id="cb24-4"><a href="#cb24-4"></a></span>
+<span id="cb24-5"><a href="#cb24-5"></a><span class="co"># This orders the days of the week in the usual way.</span></span>
+<span id="cb24-6"><a href="#cb24-6"></a><span class="fu">head</span>(fire2, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    X day   weekday events    town nppty
+1   1   1    Monday     10 Paisley 25231
+2   2   2   Tuesday      6 Paisley 25231
+3   3   3 Wednesday      8 Paisley 25231
+4   4   4  Thursday     13 Paisley 25231
+5   5   5    Friday     10 Paisley 25231
+6   6   6  Saturday     14 Paisley 25231
+7   7   7    Sunday     15 Paisley 25231
+8   8   8    Monday      9 Paisley 25231
+9   9   9   Tuesday      7 Paisley 25231
+10 10  10 Wednesday     13 Paisley 25231</code></pre>
+</div>
+</div>
+<p><strong>Exercise:</strong> What could you plot here to understand the data?</p>
+</section>
+<section id="eda" class="slide level2">
+<h2>EDA</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">ggplot</span>(fire2, <span class="fu">aes</span>(<span class="at">x=</span>weekday, <span class="at">y=</span>events)) <span class="sc">+</span> </span>
+<span id="cb26-3"><a href="#cb26-3"></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="poisson_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
+<section id="eda-1" class="slide level2">
+<h2>EDA</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">ggplot</span>(fire2, <span class="fu">aes</span>(<span class="at">x=</span>weekday, <span class="at">y=</span>events, <span class="at">fill=</span>town)) <span class="sc">+</span> </span>
+<span id="cb27-3"><a href="#cb27-3"></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="poisson_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
+<section id="numerical-summaries" class="slide level2">
+<h2>Numerical summaries</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>fire2 <span class="sc">|&gt;</span> <span class="fu">group_by</span>(town, weekday) <span class="sc">|&gt;</span><span class="fu">summarise</span>(<span class="fu">mean</span>(events)) <span class="sc">|&gt;</span><span class="fu">print</span>(<span class="at">n=</span><span class="dv">21</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 21 × 3
+# Groups:   town [3]
+   town       weekday   `mean(events)`
+   &lt;fct&gt;      &lt;fct&gt;              &lt;dbl&gt;
+ 1 Paisley    Monday             10.4 
+ 2 Paisley    Tuesday            11.6 
+ 3 Paisley    Wednesday          11.6 
+ 4 Paisley    Thursday           11.2 
+ 5 Paisley    Friday             13.8 
+ 6 Paisley    Saturday           20.9 
+ 7 Paisley    Sunday             13.9 
+ 8 St Andrews Monday              5.42
+ 9 St Andrews Tuesday             5.71
+10 St Andrews Wednesday           5.81
+11 St Andrews Thursday            6.02
+12 St Andrews Friday              6.67
+13 St Andrews Saturday           10.3 
+14 St Andrews Sunday              6.67
+15 Stirling   Monday              7.96
+16 Stirling   Tuesday             8.85
+17 Stirling   Wednesday           8.71
+18 Stirling   Thursday            9.06
+19 Stirling   Friday             10.7 
+20 Stirling   Saturday           16.5 
+21 Stirling   Sunday             10.8 </code></pre>
+</div>
+</div>
+</section>
+<section id="model-fitting" class="slide level2">
+<h2>Model fitting</h2>
+<p>We can see from the plots that the number of incidents varies by day and town.</p>
+<p>The simplest sensible model would assume the town variation can be explained by the differing exposure (number of properties).</p>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>fit1<span class="ot">&lt;-</span><span class="fu">glm</span>(events<span class="sc">~</span><span class="fu">offset</span>(<span class="fu">log</span>(nppty))<span class="sc">+</span>weekday<span class="dv">-1</span>,  <span class="at">family=</span><span class="fu">poisson</span>(<span class="at">link=</span>log), <span class="at">data=</span>fire2)</span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">print</span>(fit1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:  glm(formula = events ~ offset(log(nppty)) + weekday - 1, family = poisson(link = log), 
+    data = fire2)
+
+Coefficients:
+   weekdayMonday    weekdayTuesday  weekdayWednesday   weekdayThursday  
+          -7.534            -7.442            -7.443            -7.435  
+   weekdayFriday   weekdaySaturday     weekdaySunday  
+          -7.265            -6.842            -7.259  
+
+Degrees of Freedom: 1092 Total (i.e. Null);  1085 Residual
+Null Deviance:      32280000 
+Residual Deviance: 1987     AIC: 6419</code></pre>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>To make predictions, we need to specify the exposure (<code>nnpty</code>);</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">predict</span>(fit1, <span class="at">newdata=</span><span class="fu">list</span>(<span class="at">weekday=</span><span class="st">'Saturday'</span>, <span class="at">nppty=</span><span class="dv">25231</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1 
+3.294191 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">predict</span>(fit1, <span class="at">newdata=</span><span class="fu">list</span>(<span class="at">weekday=</span><span class="st">'Monday'</span>, <span class="at">nppty=</span><span class="dv">25231</span>), <span class="at">type=</span><span class="st">'response'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1 
+13.48324 </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="model-fitting-1" class="slide level2">
+<h2>Model fitting</h2>
+<p>A more complex model would be to assume the three towns have different rates even after accounting for exposure:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>fit2<span class="ot">&lt;-</span><span class="fu">glm</span>(events<span class="sc">~</span><span class="fu">offset</span>(<span class="fu">log</span>(nppty))<span class="sc">+</span>weekday<span class="sc">*</span>town, <span class="at">family=</span><span class="fu">poisson</span>(<span class="at">link=</span>log), <span class="at">data=</span>fire2)</span>
+<span id="cb36-2"><a href="#cb36-2"></a>fit2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:  glm(formula = events ~ offset(log(nppty)) + weekday * town, family = poisson(link = log), 
+    data = fire2)
+
+Coefficients:
+                    (Intercept)                   weekdayTuesday  
+                      -7.789963                         0.103148  
+               weekdayWednesday                  weekdayThursday  
+                       0.103148                         0.074503  
+                  weekdayFriday                  weekdaySaturday  
+                       0.279360                         0.692226  
+                  weekdaySunday                   townSt Andrews  
+                       0.287682                         0.768195  
+                   townStirling    weekdayTuesday:townSt Andrews  
+                       0.370722                        -0.051323  
+weekdayWednesday:townSt Andrews   weekdayThursday:townSt Andrews  
+                      -0.034628                         0.029794  
+   weekdayFriday:townSt Andrews   weekdaySaturday:townSt Andrews  
+                      -0.071943                        -0.051866  
+   weekdaySunday:townSt Andrews      weekdayTuesday:townStirling  
+                      -0.080264                         0.002212  
+  weekdayWednesday:townStirling     weekdayThursday:townStirling  
+                      -0.013122                         0.054490  
+     weekdayFriday:townStirling     weekdaySaturday:townStirling  
+                       0.017339                         0.035346  
+     weekdaySunday:townStirling  
+                       0.014389  
+
+Degrees of Freedom: 1091 Total (i.e. Null);  1071 Residual
+Null Deviance:      2598 
+Residual Deviance: 1110     AIC: 5570</code></pre>
+</div>
+</div>
+<div class="fragment">
+<p>This model includes interaction terms, i.e., each combination of town and day is given a different mean.</p>
+</div>
+</section>
+<section id="visualizing-model-fit" class="slide level2">
+<h2>Visualizing model fit</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">library</span>(visreg)</span>
+<span id="cb38-2"><a href="#cb38-2"></a><span class="fu">visreg</span>(fit2, <span class="at">by=</span><span class="st">'town'</span>, <span class="at">xvar=</span><span class="st">'weekday'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<!--
+
+::: {.cell}
+
+```{.r .cell-code}
+predict(fit2, newdata=list(weekday='Monday', town='Paisley', nppty=25231), type='response')
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+       1 
+10.44231 
+```
+:::
+:::
+
+-->
+<img data-src="poisson_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
+<section id="exercise-1" class="slide level2">
+<h2>Exercise</h2>
+<p>Which model is best?</p>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>test.ind <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1092</span>, <span class="dv">300</span>) <span class="co"># 300 test points</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a>fire.test <span class="ot">=</span> fire2 <span class="sc">|&gt;</span> <span class="fu">slice</span>(test.ind)</span>
+<span id="cb39-3"><a href="#cb39-3"></a>fire.train <span class="ot">=</span> fire2 <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="sc">-</span>test.ind)</span>
+<span id="cb39-4"><a href="#cb39-4"></a>model1.train <span class="ot">&lt;-</span> <span class="fu">glm</span>(events<span class="sc">~</span><span class="fu">offset</span>(<span class="fu">log</span>(nppty))<span class="sc">+</span>weekday, <span class="at">family=</span><span class="fu">poisson</span>(<span class="at">link=</span>log), <span class="at">data=</span>fire.train)</span>
+<span id="cb39-5"><a href="#cb39-5"></a>model2.train <span class="ot">&lt;-</span> <span class="fu">glm</span>(events<span class="sc">~</span><span class="fu">offset</span>(<span class="fu">log</span>(nppty))<span class="sc">+</span>weekday<span class="sc">*</span>town, <span class="at">family=</span><span class="fu">poisson</span>(<span class="at">link=</span>log), <span class="at">data=</span>fire.train)</span>
+<span id="cb39-6"><a href="#cb39-6"></a></span>
+<span id="cb39-7"><a href="#cb39-7"></a>pred1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model1.train, <span class="at">newdata=</span>fire.test, <span class="at">type=</span><span class="st">'response'</span>)</span>
+<span id="cb39-8"><a href="#cb39-8"></a>pred2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2.train, <span class="at">newdata=</span>fire.test, <span class="at">type=</span><span class="st">'response'</span>)</span>
+<span id="cb39-9"><a href="#cb39-9"></a></span>
+<span id="cb39-10"><a href="#cb39-10"></a><span class="co">#MSE</span></span>
+<span id="cb39-11"><a href="#cb39-11"></a><span class="fu">sum</span>((fire.test <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(events) <span class="sc">-</span> pred1)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 58.06019</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">sum</span>((fire.test <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(events) <span class="sc">-</span> pred2)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 34.24894</code></pre>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>So model 2 (with interactions) has a much smaller MSE than model 1.</p>
+</div>
+</section>
+<section id="poisson-regression-in-the-crim" class="slide level2">
+<h2>Poisson regression in the CRIM</h2>
+<p>In the CRIM, we model the number of incidents per day per property.</p>
+<ul>
+<li>the exposure is the number of days we count for times the number of properties in the data zone:</li>
+</ul>
+<p><span class="math display">\[Exposure = \#days \times \#properties \]</span></p>
+<div class="fragment">
+<ul>
+<li><p>Let <span class="math inline">\(y_{ijk}\)</span> be the number of incidents recorded of risk level <span class="math inline">\(k\)</span> in data zone <span class="math inline">\(i\)</span> and ACORN category <span class="math inline">\(j\)</span></p></li>
+<li><p>Let <span class="math inline">\(x_i\)</span> be the standardised SIMD rank of datazone <span class="math inline">\(i\)</span>.</p></li>
+</ul>
+</div>
+<div class="fragment">
+<p>We considered models of the type</p>
+<p><span class="math display">\[\log E(y_{ijk}|x_{i}) = \log(Exposure) + \mu + \alpha_j + \beta_k + \gamma_{jk} + \delta_{jk} x_i\]</span></p>
+<p>which we can fit using commands such as</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="fu">glm</span>(<span class="at">formula =</span> n_incidents <span class="sc">~</span> <span class="fu">offset</span>(<span class="fu">log</span>(n_properties <span class="sc">*</span> n_dates)) <span class="sc">+</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a>ACORN_CAT <span class="sc">*</span> Risk_Level <span class="sc">*</span> SIMD_Rank_standardised, <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> log),<span class="at">data =</span> dat_Pois2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="expanding-the-model" class="slide level2">
+<h2>Expanding the model</h2>
+<div>
+<ul>
+<li class="fragment"><p>Do we need all the interactions?</p></li>
+<li class="fragment"><p>Do we need an effect per datazone? <span class="math display">\[\log E(y_{ijk}|x_{i}) = \log(Exposure) + \mu +a_i+ \alpha_j + \beta_k + \gamma_{jk} + \delta_{jk} x_i\]</span> This requires random effects models.</p></li>
+<li class="fragment"><p>Is there value in adding new covariates</p></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">glm</span>(<span class="at">formula =</span> n_incidents <span class="sc">~</span> <span class="fu">offset</span>(<span class="fu">log</span>(n_properties <span class="sc">*</span> n_dates)) <span class="sc">+</span>NEW_COVARIATE <span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>ACORN_CAT <span class="sc">*</span> Risk_Level <span class="sc">+</span> SIMD_Rank_standardised, <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> log),<span class="at">data =</span> dat_Pois2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<p>With all model development, important to remember the modelling pipeline</p>
+<ol type="1">
+<li>Propose model</li>
+<li>Fit model to data</li>
+<li>Test model predictions + visualize model</li>
+</ol>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid" data-tooltip-selector="#mermaid-tooltip-1">flowchart LR
+  A[Plot data] --&gt; C{Propose model}
+  C --&gt; D[Fit model to data]
+  D --&gt; E[Test + visualise model ]
+  E --&gt; C
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p><img src="damsl_logo_drop_black.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>Simon Preston &amp; Richard Wilkinson 31/1/2023</p>
+</div>
 </div>
 </section>
     </div>
