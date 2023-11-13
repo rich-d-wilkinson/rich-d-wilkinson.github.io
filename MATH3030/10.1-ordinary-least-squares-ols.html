@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10.1 Ordinary least squares (OLS) | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10.1 Ordinary least squares (OLS) | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   
 
-<meta name="author" content="Dr Katie Severn" />
+<meta name="author" content="Prof. Richard Wilkinson" />
 
 
 
@@ -120,6 +120,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -499,7 +503,7 @@ COMPARED WITGH PCA?
 <div id="linear-models-in-r" class="section level3 hasAnchor" number="10.1.3">
 <h3><span class="header-section-number">10.1.3</span> Linear models in R<a href="10.1-ordinary-least-squares-ols.html#linear-models-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Linear models are easy to fit in R. For example, using the iris data, we can train a model to predict the sepal length from the other measurements as follows:</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="10.1-ordinary-least-squares-ols.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(Sepal.Length<span class="sc">~</span> Sepal.Width<span class="sc">+</span>Petal.Length<span class="sc">+</span>Petal.Width,<span class="at">data=</span>iris)</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="10.1-ordinary-least-squares-ols.html#cb285-1" tabindex="-1"></a><span class="fu">lm</span>(Sepal.Length<span class="sc">~</span> Sepal.Width<span class="sc">+</span>Petal.Length<span class="sc">+</span>Petal.Width,<span class="at">data=</span>iris)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Sepal.Length ~ Sepal.Width + Petal.Length + Petal.Width, 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>PART II: Dimension reduction methods | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="PART II: Dimension reduction methods | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   
 
-<meta name="author" content="Dr Katie Severn" />
+<meta name="author" content="Prof. Richard Wilkinson" />
 
 
 
@@ -120,6 +120,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -403,24 +407,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="a-warning" class="section level3 unnumbered hasAnchor">
 <h3>A warning<a href="part-ii-dimension-reduction-methods.html#a-warning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Beware that high-dimensional data can behave qualitatively differently to low-dimensional data. As an example, lets consider 1000 points uniformly distributed in <span class="math inline">\([0,1]^d\)</span>, and think about how close together or spread out the points are. A simple way to do this is to consider the ratio of the maximum and minimum distance between any two points in our sample.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="part-ii-dimension-reduction-methods.html#cb73-1" aria-hidden="true" tabindex="-1"></a>N<span class="ot">&lt;-</span><span class="dv">1000</span></span>
-<span id="cb73-2"><a href="part-ii-dimension-reduction-methods.html#cb73-2" aria-hidden="true" tabindex="-1"></a>averatio <span class="ot">&lt;-</span><span class="fu">c</span>()</span>
-<span id="cb73-3"><a href="part-ii-dimension-reduction-methods.html#cb73-3" aria-hidden="true" tabindex="-1"></a>ii<span class="ot">&lt;-</span><span class="dv">1</span></span>
-<span id="cb73-4"><a href="part-ii-dimension-reduction-methods.html#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(d <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">350</span>, <span class="dv">500</span>, <span class="dv">750</span>, <span class="dv">1000</span>)){</span>
-<span id="cb73-5"><a href="part-ii-dimension-reduction-methods.html#cb73-5" aria-hidden="true" tabindex="-1"></a>  averatio[ii] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">replicate</span>(<span class="dv">10</span>, {</span>
-<span id="cb73-6"><a href="part-ii-dimension-reduction-methods.html#cb73-6" aria-hidden="true" tabindex="-1"></a>  X<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">runif</span>(N<span class="sc">*</span>d), <span class="at">nc=</span>d)</span>
-<span id="cb73-7"><a href="part-ii-dimension-reduction-methods.html#cb73-7" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">dist</span>(X)) </span>
-<span id="cb73-8"><a href="part-ii-dimension-reduction-methods.html#cb73-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># this gives a N x N matrix of the Euclidean distances between the data points.</span></span>
-<span id="cb73-9"><a href="part-ii-dimension-reduction-methods.html#cb73-9" aria-hidden="true" tabindex="-1"></a>  maxdist <span class="ot">&lt;-</span> <span class="fu">max</span>(d) </span>
-<span id="cb73-10"><a href="part-ii-dimension-reduction-methods.html#cb73-10" aria-hidden="true" tabindex="-1"></a>  mindist <span class="ot">&lt;-</span> <span class="fu">min</span>(d<span class="sc">+</span><span class="fu">diag</span>(<span class="dv">10</span><span class="sc">^</span><span class="dv">5</span>, <span class="at">nrow=</span>N)) </span>
-<span id="cb73-11"><a href="part-ii-dimension-reduction-methods.html#cb73-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># The diagonal elements of the distance matrix are zero,</span></span>
-<span id="cb73-12"><a href="part-ii-dimension-reduction-methods.html#cb73-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># so I&#39;ve added a big number to the diagonal </span></span>
-<span id="cb73-13"><a href="part-ii-dimension-reduction-methods.html#cb73-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># so that we get the minimum distance between different points</span></span>
-<span id="cb73-14"><a href="part-ii-dimension-reduction-methods.html#cb73-14" aria-hidden="true" tabindex="-1"></a>  maxdist<span class="sc">/</span>mindist}))</span>
-<span id="cb73-15"><a href="part-ii-dimension-reduction-methods.html#cb73-15" aria-hidden="true" tabindex="-1"></a>  ii <span class="ot">&lt;-</span> ii<span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb73-16"><a href="part-ii-dimension-reduction-methods.html#cb73-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb73-17"><a href="part-ii-dimension-reduction-methods.html#cb73-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">350</span>, <span class="dv">500</span>, <span class="dv">750</span>, <span class="dv">1000</span>), </span>
-<span id="cb73-18"><a href="part-ii-dimension-reduction-methods.html#cb73-18" aria-hidden="true" tabindex="-1"></a>     averatio, <span class="at">ylab=</span><span class="st">&#39;Max. dist. / min. dist.&#39;</span>, <span class="at">xlab=</span><span class="st">&#39;Dimension d&#39;</span>, <span class="at">log=</span><span class="st">&#39;xy&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="part-ii-dimension-reduction-methods.html#cb73-1" tabindex="-1"></a>N<span class="ot">&lt;-</span><span class="dv">1000</span></span>
+<span id="cb73-2"><a href="part-ii-dimension-reduction-methods.html#cb73-2" tabindex="-1"></a>averatio <span class="ot">&lt;-</span><span class="fu">c</span>()</span>
+<span id="cb73-3"><a href="part-ii-dimension-reduction-methods.html#cb73-3" tabindex="-1"></a>ii<span class="ot">&lt;-</span><span class="dv">1</span></span>
+<span id="cb73-4"><a href="part-ii-dimension-reduction-methods.html#cb73-4" tabindex="-1"></a><span class="cf">for</span>(d <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">350</span>, <span class="dv">500</span>, <span class="dv">750</span>, <span class="dv">1000</span>)){</span>
+<span id="cb73-5"><a href="part-ii-dimension-reduction-methods.html#cb73-5" tabindex="-1"></a>  averatio[ii] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">replicate</span>(<span class="dv">10</span>, {</span>
+<span id="cb73-6"><a href="part-ii-dimension-reduction-methods.html#cb73-6" tabindex="-1"></a>  X<span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">runif</span>(N<span class="sc">*</span>d), <span class="at">nc=</span>d)</span>
+<span id="cb73-7"><a href="part-ii-dimension-reduction-methods.html#cb73-7" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">dist</span>(X)) </span>
+<span id="cb73-8"><a href="part-ii-dimension-reduction-methods.html#cb73-8" tabindex="-1"></a>  <span class="co"># this gives a N x N matrix of the Euclidean distances between the data points.</span></span>
+<span id="cb73-9"><a href="part-ii-dimension-reduction-methods.html#cb73-9" tabindex="-1"></a>  maxdist <span class="ot">&lt;-</span> <span class="fu">max</span>(d) </span>
+<span id="cb73-10"><a href="part-ii-dimension-reduction-methods.html#cb73-10" tabindex="-1"></a>  mindist <span class="ot">&lt;-</span> <span class="fu">min</span>(d<span class="sc">+</span><span class="fu">diag</span>(<span class="dv">10</span><span class="sc">^</span><span class="dv">5</span>, <span class="at">nrow=</span>N)) </span>
+<span id="cb73-11"><a href="part-ii-dimension-reduction-methods.html#cb73-11" tabindex="-1"></a>  <span class="co"># The diagonal elements of the distance matrix are zero,</span></span>
+<span id="cb73-12"><a href="part-ii-dimension-reduction-methods.html#cb73-12" tabindex="-1"></a>  <span class="co"># so I&#39;ve added a big number to the diagonal </span></span>
+<span id="cb73-13"><a href="part-ii-dimension-reduction-methods.html#cb73-13" tabindex="-1"></a>  <span class="co"># so that we get the minimum distance between different points</span></span>
+<span id="cb73-14"><a href="part-ii-dimension-reduction-methods.html#cb73-14" tabindex="-1"></a>  maxdist<span class="sc">/</span>mindist}))</span>
+<span id="cb73-15"><a href="part-ii-dimension-reduction-methods.html#cb73-15" tabindex="-1"></a>  ii <span class="ot">&lt;-</span> ii<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb73-16"><a href="part-ii-dimension-reduction-methods.html#cb73-16" tabindex="-1"></a>}</span>
+<span id="cb73-17"><a href="part-ii-dimension-reduction-methods.html#cb73-17" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">80</span>,<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">350</span>, <span class="dv">500</span>, <span class="dv">750</span>, <span class="dv">1000</span>), </span>
+<span id="cb73-18"><a href="part-ii-dimension-reduction-methods.html#cb73-18" tabindex="-1"></a>     averatio, <span class="at">ylab=</span><span class="st">&#39;Max. dist. / min. dist.&#39;</span>, <span class="at">xlab=</span><span class="st">&#39;Dimension d&#39;</span>, <span class="at">log=</span><span class="st">&#39;xy&#39;</span>)</span></code></pre></div>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>So we can see that as the dimension increases, the ratio of the maximum and minimum distance between any two random points in our sample tends to 1. In other words, all points are the same distance apart!</p>
 <!--### Why reduce dimension? {-}-->

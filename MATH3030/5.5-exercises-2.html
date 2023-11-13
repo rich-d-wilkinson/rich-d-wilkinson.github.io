@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.5 Exercises | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.5 Exercises | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   
 
-<meta name="author" content="Dr Katie Severn" />
+<meta name="author" content="Prof. Richard Wilkinson" />
 
 
 
@@ -120,6 +120,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -392,18 +396,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exercises-2" class="section level2 hasAnchor" number="5.5">
 <h2><span class="header-section-number">5.5</span> Exercises<a href="5.5-exercises-2.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li><p>Attempt exam question 1 part (b) from the 2017-18 exam paper. You will find the past exam papers on Moodle.</p></li>
-<li><p>Suppose that <span class="math inline">\(\mathbf z= (\mathbf x^\top \mathbf y^\top)^\top\)</span> is a random vector, where both <span class="math inline">\(\mathbf x\)</span> and <span class="math inline">\(\mathbf y\)</span> are sub-vectors of dimension <span class="math inline">\(p\)</span>, so that <span class="math inline">\(\mathbf z\)</span> is <span class="math inline">\((2p)\times 1\)</span>. Define
-<span class="math display">\[{\mathbb{V}\operatorname{ar}}(\mathbf z)=\boldsymbol{\Sigma}_{\mathbf z\mathbf z}=\begin{pmatrix} \boldsymbol{\Sigma}_{\mathbf x\mathbf x} &amp; \boldsymbol{\Sigma}_{\mathbf x\mathbf y}\\\boldsymbol{\Sigma}_{\mathbf y\mathbf x} &amp; \boldsymbol{\Sigma}_{\mathbf y\mathbf y}  \end{pmatrix}.\]</span></p>
+<li>Attempt exam question 1 part (b) from the 2017-18 exam paper.</li>
+</ol>
+<p><img src="figs/CCA_2017_18_Q1.png" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Suppose that <span class="math inline">\(\mathbf z= (\mathbf x^\top \mathbf y^\top)^\top\)</span> is a random vector, where both <span class="math inline">\(\mathbf x\)</span> and <span class="math inline">\(\mathbf y\)</span> are sub-vectors of dimension <span class="math inline">\(p\)</span>, so that <span class="math inline">\(\mathbf z\)</span> is <span class="math inline">\((2p)\times 1\)</span>. Define
+<span class="math display">\[{\mathbb{V}\operatorname{ar}}(\mathbf z)=\boldsymbol{\Sigma}_{\mathbf z\mathbf z}=\begin{pmatrix} \boldsymbol{\Sigma}_{\mathbf x\mathbf x} &amp; \boldsymbol{\Sigma}_{\mathbf x\mathbf y}\\\boldsymbol{\Sigma}_{\mathbf y\mathbf x} &amp; \boldsymbol{\Sigma}_{\mathbf y\mathbf y}  \end{pmatrix}.\]</span>
 <ol style="list-style-type: lower-roman">
 <li>Suppose that <span class="math inline">\(\mathbf y= \mathbf T\mathbf x\)</span> where <span class="math inline">\(\mathbf T\)</span> is a fixed matrix. Find <span class="math inline">\(\boldsymbol{\Sigma}_{\mathbf x\mathbf y}\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}_{\mathbf y\mathbf y}\)</span> in terms of <span class="math inline">\(\boldsymbol{\Sigma}_{\mathbf x\mathbf x}\)</span> and <span class="math inline">\(\mathbf T\)</span>.</li>
 <li>Assuming now that <span class="math inline">\(\mathbf T\)</span> is an orthogonal matrix and <span class="math inline">\(\boldsymbol{\Sigma}_{\mathbf x\mathbf x}\)</span> is of full rank, determine the singular values of the matrix <span class="math inline">\(\mathbf Q=\boldsymbol{\Sigma}_{\mathbf x\mathbf x}^{-1/2}\boldsymbol{\Sigma}_ {\mathbf x\mathbf y}\boldsymbol{\Sigma}_{\mathbf y\mathbf y}^{-1/2}\)</span>, and hence write down the canonical correlation coefficients.</li>
 <li>Suppose now that <span class="math inline">\(\mathbf T\)</span> is non-singular but not orthogonal. Comment on whether the answer to part (b) changes.</li>
 </ol></li>
-<li><p>We will now prove Proposition <a href="5.2-the-full-set-of-canonical-correlations.html#prp:svdopt3">5.3</a> by induction.
+<li>We will now prove Proposition <a href="5.2-the-full-set-of-canonical-correlations.html#prp:svdopt3">5.3</a> by induction.
 The case for <span class="math inline">\(k=1\)</span> was proved in Section <a href="5.1-cca1.html#cca1">5.1</a> in Proposition <a href="3.4-svdopt.html#prp:svdmax2">3.9</a>. Assume the result is true for <span class="math inline">\(k\)</span>. Consider the objective
 <span class="math display">\[\mathcal{L} = \mathbf a^\top \mathbf Q\mathbf b+ \sum_{i=1}^k \gamma_i\mathbf a^\top \mathbf a_i + \sum_{i=1}^k \mu_i\mathbf b^\top \mathbf b_i + \frac{\lambda_1}{2}(1-\mathbf a^\top\mathbf a)+ \frac{\lambda_2}{2}(1-\mathbf b^\top\mathbf b)\]</span>
-where <span class="math inline">\(\lambda_i, \mu_i, \gamma_i\)</span> are Lagrangian multipliers.</p>
+where <span class="math inline">\(\lambda_i, \mu_i, \gamma_i\)</span> are Lagrangian multipliers.
 <ol style="list-style-type: lower-roman">
 <li><p>By differentiating with respect to <span class="math inline">\(\mathbf a\)</span> and <span class="math inline">\(\mathbf b\)</span> and setting the derivative to zero show that
 <span class="math display" id="eq:ex3b" id="eq:ex3a">\[\begin{align}
@@ -415,7 +422,7 @@ where <span class="math inline">\(\lambda_i, \mu_i, \gamma_i\)</span> are Lagran
 <li><p>By left multiplying <a href="5.5-exercises-2.html#eq:ex3a">(5.14)</a> by <span class="math inline">\(\mathbf a_i^\top\)</span> show that <span class="math inline">\(\gamma_i=0\)</span> for <span class="math inline">\(i=1, \ldots, k\)</span>. Show similarly that <span class="math inline">\(\mu_i =0\)</span> for <span class="math inline">\(i=1, \ldots, k\)</span>.</p></li>
 <li><p>Finally, by copying the proof of Proposition <a href="3.4-svdopt.html#prp:svdmax2">3.9</a>, prove Proposition <a href="5.2-the-full-set-of-canonical-correlations.html#prp:svdopt3">5.3</a>.</p></li>
 </ol></li>
-<li><p>Show the mean of the cc variables <span class="math inline">\(\eta_k\)</span> and <span class="math inline">\(\psi_k\)</span> is zero. Prove Proposition <a href="5.3-properties.html#prp:ccavar">5.4</a> giving the variance of covariance the cc variables.</p></li>
+<li>Show the mean of the cc variables <span class="math inline">\(\eta_k\)</span> and <span class="math inline">\(\psi_k\)</span> is zero. Prove Proposition <a href="5.3-properties.html#prp:ccavar">5.4</a> giving the variance of covariance the cc variables.</li>
 </ol>
 
 </div>

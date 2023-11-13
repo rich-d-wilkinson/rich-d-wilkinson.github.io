@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.5 Computer tasks | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.5 Computer tasks | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   
 
-<meta name="author" content="Dr Katie Severn" />
+<meta name="author" content="Prof. Richard Wilkinson" />
 
 
 
@@ -120,6 +120,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -419,10 +423,10 @@ would appear to be better if the purpose is to form three distinct clusters.
 <div id="q2" class="section level5 unnumbered hasAnchor">
 <h5>Q2<a href="9.5-computer-tasks-5.html#q2" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Download the Indian Premier League data from Moodle and load it into R. We will filter the data to only look at players who played at least 10 innings, and the select just the information on the number of runs they scored, their high score (HS), their batting average (Avg), their best figures (BF), their strike rate (SR), and the number of 4s and 6s they hit.</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="9.5-computer-tasks-5.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb282-2"><a href="9.5-computer-tasks-5.html#cb282-2" aria-hidden="true" tabindex="-1"></a>IPL<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&#39;IPL.csv&#39;</span>)</span>
-<span id="cb282-3"><a href="9.5-computer-tasks-5.html#cb282-3" aria-hidden="true" tabindex="-1"></a>IPL10<span class="ot">&lt;-</span>IPL <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Mat.x<span class="sc">&gt;=</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb282-4"><a href="9.5-computer-tasks-5.html#cb282-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(PLAYER,Runs.x, HS, Avg.x, BF, SR.x, X4s, X6s)</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="9.5-computer-tasks-5.html#cb284-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb284-2"><a href="9.5-computer-tasks-5.html#cb284-2" tabindex="-1"></a>IPL<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&#39;IPL.csv&#39;</span>)</span>
+<span id="cb284-3"><a href="9.5-computer-tasks-5.html#cb284-3" tabindex="-1"></a>IPL10<span class="ot">&lt;-</span>IPL <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Mat.x<span class="sc">&gt;=</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb284-4"><a href="9.5-computer-tasks-5.html#cb284-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(PLAYER,Runs.x, HS, Avg.x, BF, SR.x, X4s, X6s)</span></code></pre></div>
 <p>Apply agglomerative hierarchical clustering to these data. You will need to first compute a distance matrix for the data, which can be done with the <code>dist</code> command.</p>
 <ol style="list-style-type: lower-roman">
 <li><p>Using the Euclidean distance, do single linkage, complete linkage, and average linkage give similar dendrograms?</p></li>

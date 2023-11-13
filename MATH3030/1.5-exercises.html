@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.5 Exercises | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.5 Exercises | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   
 
-<meta name="author" content="Dr Katie Severn" />
+<meta name="author" content="Prof. Richard Wilkinson" />
 
 
 
@@ -120,6 +120,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -399,8 +403,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <ul>
 <li><p><span class="math inline">\(\bar{\mathbf y} = \mathbf A\bar{\mathbf x} + \mathbf c\)</span>,</p></li>
-<li><p><span class="math inline">\(\mathbf T= \mathbf A\mathbf S\mathbf A^\top\)</span>.</p>
-<p>Assuming now that <span class="math inline">\(\mathbf x\)</span> is a random vector with <span class="math inline">\({\mathbb{E}}(\mathbf x)={\boldsymbol{\mu}}\)</span>, <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\mathbf x)=\boldsymbol{\Sigma}\)</span>, <span class="math inline">\(\mathbf y=\mathbf A\mathbf x+\mathbf c\)</span> with <span class="math inline">\(\mathbf A\)</span> and <span class="math inline">\(\mathbf c\)</span> as before, <span class="math inline">\({\mathbb{E}}(\mathbf y)={\pmb \phi}\)</span> and <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\mathbf y)={\pmb \Omega}\)</span>, what are the population analogues of the results above?</p></li>
+<li><p><span class="math inline">\(\mathbf T= \mathbf A\mathbf S\mathbf A^\top\)</span>.</p></li>
+<li><p>Assuming now that <span class="math inline">\(\mathbf x\)</span> is a random vector with <span class="math inline">\({\mathbb{E}}(\mathbf x)={\boldsymbol{\mu}}\)</span>, <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\mathbf x)=\boldsymbol{\Sigma}\)</span>, <span class="math inline">\(\mathbf y=\mathbf A\mathbf x+\mathbf c\)</span> with <span class="math inline">\(\mathbf A\)</span> and <span class="math inline">\(\mathbf c\)</span> as before. Let <span class="math inline">\({\mathbb{E}}(\mathbf y)={\pmb \phi}\)</span> and <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\mathbf y)={\pmb \Omega}\)</span> denote the population mean and variance of <span class="math inline">\(\mathbf y\)</span>. What are the analogous population level versions of the sample-based results above (i.e. express <span class="math inline">\({\pmb \phi}\)</span> and <span class="math inline">\({\pmb \Omega}\)</span> in terms of <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, <span class="math inline">\(\mathbf A\)</span> and <span class="math inline">\(\mathbf c\)</span>)?</p></li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
 <li><p>A sample of size <span class="math inline">\(n=144\)</span> produced the following summary statistics
@@ -409,6 +413,9 @@ Calculate the sample mean, the sample covariance matrix and the sample correlati
 <li><p>Let <span class="math inline">\(\mathbf x\)</span> and <span class="math inline">\(\mathbf y\)</span> be independent random <span class="math inline">\(p\)</span>-dimensional vectors. Assuming that all relevant moments exist, show that for any real scalars <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>,
 <span class="math display">\[{\mathbb{V}\operatorname{ar}}(\alpha \mathbf x+ \beta \mathbf y) = \alpha^2 {\mathbb{V}\operatorname{ar}}(\mathbf x) + \beta^2 {\mathbb{V}\operatorname{ar}}(\mathbf y).\]</span></p>
 <p>What is the corresponding formula when <span class="math inline">\(\mathbf x\)</span> and <span class="math inline">\(\mathbf y\)</span> are not independent? Express your answer in terms of <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\mathbf x)\)</span>, <span class="math inline">\({\mathbb{V}\operatorname{ar}}(\mathbf y)\)</span> and <span class="math inline">\({\mathbb{C}\operatorname{ov}}(\mathbf x, \mathbf y)\)</span>.</p></li>
+<li><p>You are given the following data points
+<span class="math display">\[\mathbf x_1 = \begin{pmatrix} 1\\ 2\end{pmatrix}, \mathbf x_2 = \begin{pmatrix} 2 \\ 2\end{pmatrix}, \mathbf x_3 = \begin{pmatrix} 3\\ 1\end{pmatrix}, \mathbf x_4 = \begin{pmatrix} 0 \\3\end{pmatrix}\]</span>
+Write down the data matrix <span class="math inline">\(\mathbf X\)</span>, the mean vector, and the covariance matrix.</p></li>
 </ol>
 <!--
 1. Prove the following properties of the variance and covariance operators.

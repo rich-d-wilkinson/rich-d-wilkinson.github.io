@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.2 The full set of canonical correlations | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.2 The full set of canonical correlations | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   
 
-<meta name="author" content="Dr Katie Severn" />
+<meta name="author" content="Prof. Richard Wilkinson" />
 
 
 
@@ -120,6 +120,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -509,12 +513,12 @@ and
 \]</span>
 Note that, to a good approximation, <span class="math inline">\(\eta_2\)</span> is measuring something similar to the number of draws and, approximately, <span class="math inline">\(\psi_2\)</span> is something related to the negative of total number of goals in a team’s games. So large <span class="math inline">\(\psi_2\)</span> means relatively few goals in a team’s games, and small (i.e. large negative) <span class="math inline">\(\psi_2\)</span> means a relatively large number of goals in a team’s games.</p>
 <p>Interpretation of the 2nd CC: teams that have a lot of draws tend to be in low-scoring games and/or teams that have few draws tend to be in high-scoring games.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="5.2-the-full-set-of-canonical-correlations.html#cb148-1" aria-hidden="true" tabindex="-1"></a>eta2 <span class="ot">=</span> prem.cca<span class="sc">$</span>scores<span class="sc">$</span>xscores[,<span class="dv">1</span>] </span>
-<span id="cb148-2"><a href="5.2-the-full-set-of-canonical-correlations.html#cb148-2" aria-hidden="true" tabindex="-1"></a>psi2<span class="ot">=</span> prem.cca<span class="sc">$</span>scores<span class="sc">$</span>yscores[,<span class="dv">2</span>] </span>
-<span id="cb148-3"><a href="5.2-the-full-set-of-canonical-correlations.html#cb148-3" aria-hidden="true" tabindex="-1"></a>cca.out <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Team=</span>table<span class="sc">$</span>Team, <span class="at">eta2=</span>eta2, <span class="at">psi2=</span>psi2)</span>
-<span id="cb148-4"><a href="5.2-the-full-set-of-canonical-correlations.html#cb148-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb148-5"><a href="5.2-the-full-set-of-canonical-correlations.html#cb148-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cca.out, <span class="fu">aes</span>(<span class="at">x=</span> eta2, <span class="at">y=</span> psi2, <span class="at">label=</span>Team))<span class="sc">+</span>   <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb148-6"><a href="5.2-the-full-set-of-canonical-correlations.html#cb148-6" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Team),<span class="at">hjust=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="5.2-the-full-set-of-canonical-correlations.html#cb149-1" tabindex="-1"></a>eta2 <span class="ot">=</span> prem.cca<span class="sc">$</span>scores<span class="sc">$</span>xscores[,<span class="dv">1</span>] </span>
+<span id="cb149-2"><a href="5.2-the-full-set-of-canonical-correlations.html#cb149-2" tabindex="-1"></a>psi2<span class="ot">=</span> prem.cca<span class="sc">$</span>scores<span class="sc">$</span>yscores[,<span class="dv">2</span>] </span>
+<span id="cb149-3"><a href="5.2-the-full-set-of-canonical-correlations.html#cb149-3" tabindex="-1"></a>cca.out <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Team=</span>table<span class="sc">$</span>Team, <span class="at">eta2=</span>eta2, <span class="at">psi2=</span>psi2)</span>
+<span id="cb149-4"><a href="5.2-the-full-set-of-canonical-correlations.html#cb149-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb149-5"><a href="5.2-the-full-set-of-canonical-correlations.html#cb149-5" tabindex="-1"></a><span class="fu">ggplot</span>(cca.out, <span class="fu">aes</span>(<span class="at">x=</span> eta2, <span class="at">y=</span> psi2, <span class="at">label=</span>Team))<span class="sc">+</span>   <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb149-6"><a href="5.2-the-full-set-of-canonical-correlations.html#cb149-6" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Team),<span class="at">hjust=</span><span class="dv">0</span>, <span class="at">vjust=</span><span class="dv">0</span>, <span class="at">size=</span><span class="dv">4</span>)</span></code></pre></div>
 <p><img src="05-cca_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <!--## Population CCA
 

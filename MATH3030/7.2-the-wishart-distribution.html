@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.2 The Wishart distribution | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.2 The Wishart distribution | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   
 
-<meta name="author" content="Dr Katie Severn" />
+<meta name="author" content="Prof. Richard Wilkinson" />
 
 
 
@@ -120,6 +120,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -412,7 +416,7 @@ when <span class="math inline">\(p=1\)</span>, <span class="math inline">\(W_1(1
 <span class="math display">\[\mathbf M= \mathbf X^\top \mathbf X.\]</span></p></li>
 </ul>
 <p>We can sample from the Wishart distribution in R using the <code>rWishart</code> command. For example, setting <span class="math inline">\(\boldsymbol{\Sigma}=\mathbf I_2\)</span> and using 2 degrees of freedom, we can generate 4 random samples <span class="math inline">\(\mathbf M_1, \ldots, \mathbf M_4 \sim W_2(\mathbf I_2, 2)\)</span> as follows:</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="7.2-the-wishart-distribution.html#cb196-1" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">rWishart</span>(<span class="at">n=</span><span class="dv">4</span>, <span class="at">df=</span><span class="dv">2</span>, <span class="at">Sigma=</span><span class="fu">diag</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="7.2-the-wishart-distribution.html#cb197-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">rWishart</span>(<span class="at">n=</span><span class="dv">4</span>, <span class="at">df=</span><span class="dv">2</span>, <span class="at">Sigma=</span><span class="fu">diag</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
 <p>Visualizing these by plotting the ellipses with <span class="math inline">\(\mathbf x^\top \mathbf M_i \mathbf x=c\)</span> for some constant <span class="math inline">\(c\)</span>, we can see the variability in these random matrices:</p>
 <p><img src="07-mvn_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <div class="proposition">

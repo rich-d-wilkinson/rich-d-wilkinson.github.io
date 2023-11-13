@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.1 K-means clustering | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.1 K-means clustering | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   
 
-<meta name="author" content="Dr Katie Severn" />
+<meta name="author" content="Prof. Richard Wilkinson" />
 
 
 
@@ -120,6 +120,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -540,10 +544,10 @@ Petal.Width
 </table>
 <p>Our goal is to find clusters within the data. These are groups of irises that are more similar to each other than to those in other groups (clusters). These clusters may correspond to the Species label (which we aren’t given), or they may not. The goal of cluster analysis is not to predict the species, but simply to group the data into similar clusters.</p>
 <p>Let’s look at finding 3 clusters. We can do this using the <code>kmeans</code> command in R.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="9.1-k-means-clustering.html#cb253-1" aria-hidden="true" tabindex="-1"></a>iris2 <span class="ot">&lt;-</span> iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
-<span id="cb253-2"><a href="9.1-k-means-clustering.html#cb253-2" aria-hidden="true" tabindex="-1"></a><span class="co"># nstart gives the number of random initialisations to try </span></span>
-<span id="cb253-3"><a href="9.1-k-means-clustering.html#cb253-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb253-4"><a href="9.1-k-means-clustering.html#cb253-4" aria-hidden="true" tabindex="-1"></a>(iris.k <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(iris2, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart=</span><span class="dv">25</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="9.1-k-means-clustering.html#cb255-1" tabindex="-1"></a>iris2 <span class="ot">&lt;-</span> iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb255-2"><a href="9.1-k-means-clustering.html#cb255-2" tabindex="-1"></a><span class="co"># nstart gives the number of random initialisations to try </span></span>
+<span id="cb255-3"><a href="9.1-k-means-clustering.html#cb255-3" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb255-4"><a href="9.1-k-means-clustering.html#cb255-4" tabindex="-1"></a>(iris.k <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(iris2, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart=</span><span class="dv">25</span>)) </span></code></pre></div>
 <pre><code>## K-means clustering with 3 clusters of sizes 50, 62, 38
 ## 
 ## Cluster means:
@@ -569,12 +573,12 @@ Petal.Width
 ## [6] &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;         &quot;ifault&quot;</code></pre>
 <p>From this output we can read off the final cluster means, and the encoder <span class="math inline">\(\boldsymbol \delta\)</span>. Also given is the final within-cluster sum of squares for each cluster.</p>
 <p>We can visualise the output of <span class="math inline">\(K\)</span>-means using the <code>fviz_cluster</code> command from the <code>factoextra</code> package. This first projects the points into two dimensions using PCA, and then shows the classification in 2d, and so some caution is needed in interpreting these plots.</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="9.1-k-means-clustering.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
-<span id="cb255-2"><a href="9.1-k-means-clustering.html#cb255-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_cluster</span>(iris.k, <span class="at">data =</span> iris2,</span>
-<span id="cb255-3"><a href="9.1-k-means-clustering.html#cb255-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="9.1-k-means-clustering.html#cb257-1" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb257-2"><a href="9.1-k-means-clustering.html#cb257-2" tabindex="-1"></a><span class="fu">fviz_cluster</span>(iris.k, <span class="at">data =</span> iris2,</span>
+<span id="cb257-3"><a href="9.1-k-means-clustering.html#cb257-3" tabindex="-1"></a>             <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>)</span></code></pre></div>
 <p><img src="10-clustering_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Finally, in this case we know that there really are three clusters in the data (the three species). We can compare the clusters found using K-means with the species label to see if they are similar. The easiest way to do this is with the <code>table</code> command.</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="9.1-k-means-clustering.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(iris<span class="sc">$</span>Species, iris.k<span class="sc">$</span>cluster)</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="9.1-k-means-clustering.html#cb258-1" tabindex="-1"></a><span class="fu">table</span>(iris<span class="sc">$</span>Species, iris.k<span class="sc">$</span>cluster)</span></code></pre></div>
 <pre><code>##             
 ##               1  2  3
 ##   setosa     50  0  0
@@ -590,7 +594,7 @@ In general, if we choose <span class="math inline">\(K\)</span> too large, then 
 <p>The best approach for choosing <span class="math inline">\(K\)</span> is to use domain knowledge when it is available. In the case where there is no prior knowledge of how many clusters we expect to find, we can use a data-driven approach for choosing <span class="math inline">\(K\)</span>.
 A common approach data-driven approach is known as the <strong>elbow method</strong>. This approach looks at the within-cluster sum of squares <span class="math inline">\(W(\delta)\)</span> as the number of clusters changes, i.e., we compute <span class="math inline">\(W_1, W_2, \ldots, W_{K_{max}}\)</span>. <span class="math inline">\(W\)</span> will decrease as the number of clusters increases, but we can look for the point where the decrease slows down. The intuition is that if we’ve used <span class="math inline">\(K\)</span> clusters when really the data consist of <span class="math inline">\(K+1\)</span> clusters, <span class="math inline">\(W_K-W_{K+1}\)</span> will be large. In constrast, if there are really <span class="math inline">\(K\)</span> clusters, and we use <span class="math inline">\(K^*&gt;K\)</span> then at least one of the estimated clusters must partition one of the natural groups, and so the change in <span class="math inline">\(W\)</span> will be less. As you can see, this is not an exact science!</p>
 <p>For the iris data, we can create an elbow plot using the <code>fviz_nbclust</code> command from the <code>factoextra</code> package.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="9.1-k-means-clustering.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(iris2, kmeans, <span class="at">method =</span> <span class="st">&quot;wss&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="9.1-k-means-clustering.html#cb260-1" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(iris2, kmeans, <span class="at">method =</span> <span class="st">&quot;wss&quot;</span>)</span></code></pre></div>
 <p><img src="10-clustering_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>In this case, I would probably decide there most likely three natural clusters in the data, as there is a reasonable decrease in <span class="math inline">\(W\)</span> when moving from 2 to 3 clusters, but moving to 3 clusters only yields a minor improvement. Note here the slight increase in W in moving from 9 to 10 clusters. This is due to only using a greed search, rather than an exhaustive one (we know the best 10-group cluster must be better than the betst 9-group cluster, we just have found it).</p>
 </div>

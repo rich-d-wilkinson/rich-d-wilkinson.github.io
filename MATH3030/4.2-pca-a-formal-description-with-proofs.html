@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.2 PCA: a formal description with proofs | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.2 PCA: a formal description with proofs | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   
 
-<meta name="author" content="Dr Katie Severn" />
+<meta name="author" content="Prof. Richard Wilkinson" />
 
 
 
@@ -120,6 +120,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -764,7 +768,7 @@ Burnley
 <p>The eigenvalues of <span class="math inline">\(\mathbf S\)</span> are
 <span class="math display">\[\boldsymbol \Lambda= \text{diag}\begin{pmatrix}1300&amp;71.9&amp;8.05&amp;4.62&amp;-2.65e-14&amp;-3.73e-14 \\\end{pmatrix}\]</span></p>
 <p>Note that we have two zero eigenvalues (which won’t be computed as exactly zero because of numerical rounding errors) because two of our variables are a linear combinations of the other variables, <span class="math inline">\(W+D+L = 38\)</span> and <span class="math inline">\(GD=G-GA\)</span>. The corresponding eigenvectors are
-<span class="math display">\[\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] =\begin{pmatrix}-0.166&amp;0.0262&amp;-0.707&amp;0.373&amp;0.222&amp;-0.533 \\0.0282&amp;-0.275&amp;0.661&amp;0.391&amp;0.222&amp;-0.533 \\0.138&amp;0.249&amp;0.0455&amp;-0.764&amp;0.222&amp;-0.533 \\-0.502&amp;0.6&amp;0.202&amp;0.117&amp;0.533&amp;0.222 \\0.285&amp;0.701&amp;0.11&amp;0.286&amp;-0.533&amp;-0.222 \\-0.787&amp;-0.101&amp;0.0915&amp;-0.169&amp;-0.533&amp;-0.222 \\\end{pmatrix}\]</span></p>
+<span class="math display">\[\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] =\begin{pmatrix}-0.166&amp;0.0262&amp;-0.707&amp;-0.373&amp;-0.188&amp;-0.546 \\0.0282&amp;-0.275&amp;0.661&amp;-0.391&amp;-0.188&amp;-0.546 \\0.138&amp;0.249&amp;0.0455&amp;0.764&amp;-0.188&amp;-0.546 \\-0.502&amp;0.6&amp;0.202&amp;-0.117&amp;-0.546&amp;0.188 \\0.285&amp;0.701&amp;0.11&amp;-0.286&amp;0.546&amp;-0.188 \\-0.787&amp;-0.101&amp;0.0915&amp;0.169&amp;0.546&amp;-0.188 \\\end{pmatrix}\]</span></p>
 <p>The proportion of variability explained by each of the PCs is:
 <span class="math display">\[
 \begin{pmatrix}0.939&amp;0.052&amp;0.00583&amp;0.00334&amp;-1.92e-17&amp;-2.7e-17 \\\end{pmatrix}

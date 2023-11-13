@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.2 Exploratory data analysis (EDA) | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.2 Exploratory data analysis (EDA) | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   
 
-<meta name="author" content="Dr Katie Severn" />
+<meta name="author" content="Prof. Richard Wilkinson" />
 
 
 
@@ -120,6 +120,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -415,16 +419,16 @@ Figure 1.2: Scatter plots of goals for (F), goals against (A) and points (PT) fo
 </div>
 <p>We can instantly see that points and goals scored are positively correlated, and that points and goals conceded (A) are negatively correlated (this is not a surprise of course).</p>
 <p>R has a good basic plotting functionality. However, we will sometimes use packages that provide additional functionality. The first time you use a package you may need to install it. We can use <code>ggplot2</code> and <code>GGally</code> (which adds functionality to ggplot2) to add colour and detail to pairs plots. For example</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="1.2-exploratory-data-analysis-eda.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
-<span id="cb1-2"><a href="1.2-exploratory-data-analysis-eda.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="1.2-exploratory-data-analysis-eda.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
-<span id="cb1-4"><a href="1.2-exploratory-data-analysis-eda.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pairs(iris) # - try the pairs command for comparison</span></span>
-<span id="cb1-5"><a href="1.2-exploratory-data-analysis-eda.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(iris, <span class="at">columns=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,  <span class="at">mapping=</span>ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">colour =</span> Species),</span>
-<span id="cb1-6"><a href="1.2-exploratory-data-analysis-eda.html#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">upper =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;cor&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>)))  </span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="1.2-exploratory-data-analysis-eda.html#cb1-1" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb1-2"><a href="1.2-exploratory-data-analysis-eda.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="1.2-exploratory-data-analysis-eda.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb1-4"><a href="1.2-exploratory-data-analysis-eda.html#cb1-4" tabindex="-1"></a><span class="co"># pairs(iris) # - try the pairs command for comparison</span></span>
+<span id="cb1-5"><a href="1.2-exploratory-data-analysis-eda.html#cb1-5" tabindex="-1"></a><span class="fu">ggpairs</span>(iris, <span class="at">columns=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,  <span class="at">mapping=</span>ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">colour =</span> Species),</span>
+<span id="cb1-6"><a href="1.2-exploratory-data-analysis-eda.html#cb1-6" tabindex="-1"></a>        <span class="at">upper =</span> <span class="fu">list</span>(<span class="at">continuous =</span> <span class="fu">wrap</span>(<span class="st">&quot;cor&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>)))  </span></code></pre></div>
 <p><img src="01-statistical-prelim_files/figure-html/unnamed-chunk-7-1.png" width="100%" /></p>
 <p>This plot allows us to instantly see that there are clear differences between the three species of iris, at least when we look at the pairs plots. The benefit of adding colour in this case is that we can see the differences between the different species. Note how the sepal length and width are (weakly) negatively correlated across the entire dataset, but are positively correlated when we look at a single species at a time. We would have missed this information if we only used the <code>pairs</code> command (try it!).</p>
 <p>Note that it is possible to miss key relationships when looking at <em>marginals</em> plots such as these, as they only show two variables at a time. More complex relationships between three or more variables will not be visible. It is difficult visualize data in three or more dimensions. Many different types of plot have been proposed (e.g. Google Chernoff faces). One approach is to use a <em>parallel line</em> plot</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="1.2-exploratory-data-analysis-eda.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggparcoord</span>(iris, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">groupColumn=</span><span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="1.2-exploratory-data-analysis-eda.html#cb2-1" tabindex="-1"></a><span class="fu">ggparcoord</span>(iris, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">groupColumn=</span><span class="dv">5</span>)</span></code></pre></div>
 <p><img src="01-statistical-prelim_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Each case is represented by a single line, and here we have the information shown for the four continuous variables. The fifth variable <code>Species</code> is a discrete factor, and is shown by colouring the lines.</p>
 <p>If you not familiar with <code>ggplot2</code>, a nice introduction can be found <a href="https://ggplot2.tidyverse.org/">here</a>. Details about `GGally can be found <a href="https://ggobi.github.io/ggally/">here</a>. A good way to see the variety of plots that are possible, and to find code to create them, is to browse plot galleries such as those available

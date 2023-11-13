@@ -5,16 +5,19 @@
 \documentclass[
 ]{book}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -44,13 +47,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -58,7 +61,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -67,7 +70,7 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -127,16 +130,16 @@
 \bibliographystyle{apalike}
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
+\urlstyle{same}
 \hypersetup{
   pdftitle={Multivariate Statistics},
-  pdfauthor={Dr Katie Severn},
+  pdfauthor={Prof.~Richard Wilkinson},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
 \title{Multivariate Statistics}
-\author{Dr Katie Severn}
-\date{Spring 2023}
+\author{Prof.~Richard Wilkinson}
+\date{Spring 2024}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -1064,8 +1067,8 @@ I've created a function to help you plot these images.
   \(\bar{\mathbf y} = \mathbf A\bar{\mathbf x} + \mathbf c\),
 \item
   \(\mathbf T= \mathbf A\mathbf S\mathbf A^\top\).
-
-  Assuming now that \(\mathbf x\) is a random vector with \({\mathbb{E}}(\mathbf x)={\boldsymbol{\mu}}\), \({\mathbb{V}\operatorname{ar}}(\mathbf x)=\boldsymbol{\Sigma}\), \(\mathbf y=\mathbf A\mathbf x+\mathbf c\) with \(\mathbf A\) and \(\mathbf c\) as before, \({\mathbb{E}}(\mathbf y)={\pmb \phi}\) and \({\mathbb{V}\operatorname{ar}}(\mathbf y)={\pmb \Omega}\), what are the population analogues of the results above?
+\item
+  Assuming now that \(\mathbf x\) is a random vector with \({\mathbb{E}}(\mathbf x)={\boldsymbol{\mu}}\), \({\mathbb{V}\operatorname{ar}}(\mathbf x)=\boldsymbol{\Sigma}\), \(\mathbf y=\mathbf A\mathbf x+\mathbf c\) with \(\mathbf A\) and \(\mathbf c\) as before. Let \({\mathbb{E}}(\mathbf y)={\pmb \phi}\) and \({\mathbb{V}\operatorname{ar}}(\mathbf y)={\pmb \Omega}\) denote the population mean and variance of \(\mathbf y\). What are the analogous population level versions of the sample-based results above (i.e.~express \({\pmb \phi}\) and \({\pmb \Omega}\) in terms of \(\boldsymbol{\Sigma}\), \(\mathbf A\) and \(\mathbf c\))?
 \end{itemize}
 
 \begin{enumerate}
@@ -1080,6 +1083,10 @@ I've created a function to help you plot these images.
   \[{\mathbb{V}\operatorname{ar}}(\alpha \mathbf x+ \beta \mathbf y) = \alpha^2 {\mathbb{V}\operatorname{ar}}(\mathbf x) + \beta^2 {\mathbb{V}\operatorname{ar}}(\mathbf y).\]
 
   What is the corresponding formula when \(\mathbf x\) and \(\mathbf y\) are not independent? Express your answer in terms of \({\mathbb{V}\operatorname{ar}}(\mathbf x)\), \({\mathbb{V}\operatorname{ar}}(\mathbf y)\) and \({\mathbb{C}\operatorname{ov}}(\mathbf x, \mathbf y)\).
+\item
+  You are given the following data points
+  \[\mathbf x_1 = \begin{pmatrix} 1\\ 2\end{pmatrix}, \mathbf x_2 = \begin{pmatrix} 2 \\ 2\end{pmatrix}, \mathbf x_3 = \begin{pmatrix} 3\\ 1\end{pmatrix}, \mathbf x_4 = \begin{pmatrix} 0 \\3\end{pmatrix}\]
+  Write down the data matrix \(\mathbf X\), the mean vector, and the covariance matrix.
 \end{enumerate}
 
 \hypertarget{linalg-prelim}{%
@@ -2611,8 +2618,8 @@ For example, suppose \(\mathbf x\in\mathbb{R}^n\) is a random variable with \({\
 To make the question interesting we need to constrain the length of \(\mathbf a\) so lets assume that \(||\mathbf a||_2 = \sqrt{\mathbf a^\top \mathbf a}=1\), otherwise we could just take \(\mathbf a=\boldsymbol 0\) to obtain a projection with variance zero. So we want to solve the optimization problems involving the quadratic form \(\mathbf a^\top \boldsymbol{\Sigma}\mathbf a\):
 
 \begin{equation}
-\max_{\mathbf a: \;\mathbf a^\top \mathbf a=1}\mathbf A^\top \boldsymbol{\Sigma}\mathbf A, \quad \mbox{and}\quad
-\min_{\mathbf a: \;\mathbf a^\top \mathbf a=1}\mathbf A^\top \boldsymbol{\Sigma}\mathbf A.
+\max_{\mathbf a: \;\mathbf a^\top \mathbf a=1}\mathbf a^\top \boldsymbol{\Sigma}\mathbf a, \quad \mbox{and}\quad
+\min_{\mathbf a: \;\mathbf a^\top \mathbf a=1}\mathbf a^\top \boldsymbol{\Sigma}\mathbf a.
 \label{eq:eigenopt}
 \end{equation}
 
@@ -3596,6 +3603,13 @@ We can find the transformed variables by computing either \(\mathbf X\mathbf V\)
 
 If we plot the PC scores we can see that the variation is now in line with the new coordinate axes:
 
+\begin{verbatim}
+## Warning: `qplot()` was deprecated in ggplot2 3.4.0.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+\end{verbatim}
+
 \includegraphics{04-pca_files/figure-latex/unnamed-chunk-10-1.pdf}
 
 R also has a built-in function for doing PCA.
@@ -3647,7 +3661,7 @@ Note that the new variables have sample mean \(\bar{\mathbf y}=\boldsymbol 0\). 
 
 \begin{verbatim}
 ##           PC1           PC2 
-##  2.842171e-15 -9.769963e-16
+##  2.797762e-15 -7.993606e-16
 \end{verbatim}
 
 \begin{Shaded}
@@ -3657,9 +3671,9 @@ Note that the new variables have sample mean \(\bar{\mathbf y}=\boldsymbol 0\). 
 \end{Shaded}
 
 \begin{verbatim}
-##              PC1          PC2
-## PC1 3.042437e+02 1.974167e-14
-## PC2 1.974167e-14 3.315628e+01
+##               PC1           PC2
+## PC1  3.042437e+02 -7.498429e-14
+## PC2 -7.498429e-14  3.315628e+01
 \end{verbatim}
 
 Finally, note that we did the singular value decomposition for \(\mathbf X\) above not \(\frac{1}{\sqrt{10}}\mathbf X\), and so we'd need to square and scale the singular values to find the eigenvalues. Let's check:
@@ -3984,7 +3998,7 @@ The eigenvalues of \(\mathbf S\) are
 \[\boldsymbol \Lambda= \text{diag}\begin{pmatrix}1300&71.9&8.05&4.62&-2.65e-14&-3.73e-14 \\\end{pmatrix}\]
 
 Note that we have two zero eigenvalues (which won't be computed as exactly zero because of numerical rounding errors) because two of our variables are a linear combinations of the other variables, \(W+D+L = 38\) and \(GD=G-GA\). The corresponding eigenvectors are
-\[\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] =\begin{pmatrix}-0.166&0.0262&-0.707&0.373&0.222&-0.533 \\0.0282&-0.275&0.661&0.391&0.222&-0.533 \\0.138&0.249&0.0455&-0.764&0.222&-0.533 \\-0.502&0.6&0.202&0.117&0.533&0.222 \\0.285&0.701&0.11&0.286&-0.533&-0.222 \\-0.787&-0.101&0.0915&-0.169&-0.533&-0.222 \\\end{pmatrix}\]
+\[\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] =\begin{pmatrix}-0.166&0.0262&-0.707&-0.373&-0.188&-0.546 \\0.0282&-0.275&0.661&-0.391&-0.188&-0.546 \\0.138&0.249&0.0455&0.764&-0.188&-0.546 \\-0.502&0.6&0.202&-0.117&-0.546&0.188 \\0.285&0.701&0.11&-0.286&0.546&-0.188 \\-0.787&-0.101&0.0915&0.169&0.546&-0.188 \\\end{pmatrix}\]
 
 The proportion of variability explained by each of the PCs is:
 \[
@@ -4698,8 +4712,10 @@ Download the final Premier League table for the 2018-19 season from
   principal component scores for
   each of these observations.
 \item
-  Do exam question 1 part (a) from the 2017-18 exam paper. You will find the past exam papers on Moodle.
+  Try exam question 1 part (a) from the 2017-18 exam paper.
 \end{enumerate}
+
+\includegraphics{figs/PCA_2017_18_Q1.png}
 
 \hypertarget{cca}{%
 \chapter{Canonical Correlation Analysis (CCA)}\label{cca}}
@@ -5631,8 +5647,17 @@ Conduct CCA on these data. Provide an interpretation of your results.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
-  Attempt exam question 1 part (b) from the 2017-18 exam paper. You will find the past exam papers on Moodle.
+  Attempt exam question 1 part (b) from the 2017-18 exam paper.
+\end{enumerate}
+
+\includegraphics{figs/CCA_2017_18_Q1.png}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
 \item
   Suppose that \(\mathbf z= (\mathbf x^\top \mathbf y^\top)^\top\) is a random vector, where both \(\mathbf x\) and \(\mathbf y\) are sub-vectors of dimension \(p\), so that \(\mathbf z\) is \((2p)\times 1\). Define
   \[{\mathbb{V}\operatorname{ar}}(\mathbf z)=\boldsymbol{\Sigma}_{\mathbf z\mathbf z}=\begin{pmatrix} \boldsymbol{\Sigma}_{\mathbf x\mathbf x} & \boldsymbol{\Sigma}_{\mathbf x\mathbf y}\\\boldsymbol{\Sigma}_{\mathbf y\mathbf x} & \boldsymbol{\Sigma}_{\mathbf y\mathbf y}  \end{pmatrix}.\]
@@ -6703,6 +6728,8 @@ More generally still, there has been a lot of work on non-linear dimension reduc
 \item
   Answer Q4 part (c) from the 2018-19 exam paper.
 \end{enumerate}
+
+\includegraphics{figs/MDS_2018_19_Q4.png}
 
 \hypertarget{computer-tasks-2}{%
 \section{Computer Tasks}\label{computer-tasks-2}}
@@ -8577,10 +8604,10 @@ Let's now use all 150 observations (with three populations: setosa, virginica, v
 ## 
 ## Coefficients of linear discriminants:
 ##                     LD1         LD2
-## Sepal.Length  0.8293776  0.02410215
-## Sepal.Width   1.5344731  2.16452123
-## Petal.Length -2.2012117 -0.93192121
-## Petal.Width  -2.8104603  2.83918785
+## Sepal.Length  0.8293776 -0.02410215
+## Sepal.Width   1.5344731 -2.16452123
+## Petal.Length -2.2012117  0.93192121
+## Petal.Width  -2.8104603 -2.83918785
 ## 
 ## Proportion of trace:
 ##    LD1    LD2 
@@ -8878,7 +8905,7 @@ Let's continue the iris example we had before, using the full dataset of 150 obs
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.732214e+01 4.195248e-01 1.426781e-14 6.229462e-16
+## [1]  4.732214e+01  4.195248e-01  7.749285e-15 -4.752967e-15
 \end{verbatim}
 
 We can see that \(\mathbf W^{-1}\mathbf B\) only has two positive eigenvalues, and so is rank 2. We expected this, as we said the rank of \(\mathbf W^{-1}\mathbf B\) must be less than \(\min(g-1,p)= \min(2,4)=2\). We can plot these projections and look at the separation achieved.
@@ -8891,6 +8918,13 @@ We can see that \(\mathbf W^{-1}\mathbf B\) only has two positive eigenvalues, a
                \AttributeTok{ylab=}\StringTok{\textquotesingle{}LD2\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## Warning: `qplot()` was deprecated in ggplot2 3.4.0.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+\end{verbatim}
 
 \begin{figure}
 \centering
@@ -10014,8 +10048,17 @@ Apply a selection of clustering methods to these data and discuss how many clust
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{1}
+\tightlist
 \item
   Attempt question 4b from the 2017-18 exam paper.
+\end{enumerate}
+
+\includegraphics{figs/Clustering_2017_18.png}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
 \item
   Prove Equation \eqref{eq:Wscatterk}.
 \end{enumerate}
@@ -10338,8 +10381,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5441   0.3938   0.3165
-## adjCV       0.8308   0.5439   0.3932   0.3161
+## CV          0.8308   0.5512   0.3939   0.3213
+## adjCV       0.8308   0.5505   0.3934   0.3208
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10464,7 +10507,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0006309573
+## [1] 1e-04
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
@@ -10476,7 +10519,7 @@ and the largest value of lambda that gives a prediction error within one standar
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.01995262
+## [1] 0.01258925
 \end{verbatim}
 
 \hypertarget{multi-output-linear-model}{%

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.2 Similarity measures | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.2 Similarity measures | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
   
 
-<meta name="author" content="Dr Katie Severn" />
+<meta name="author" content="Prof. Richard Wilkinson" />
 
 
 
@@ -120,6 +120,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -540,28 +544,28 @@ Human&amp;1/2&amp;1/6&amp;1/3&amp;1/3&amp;1
 \]</span>
 It is easily checked from the definition that <span class="math inline">\({\mathbf F}=(f_{ij})_{i,j=1}^5\)</span> is a similarity matrix.</p>
 <p>Let’s see how we would do this in R.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="6.2-similarity.html#cb178-1" aria-hidden="true" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
-<span id="cb178-2"><a href="6.2-similarity.html#cb178-2" aria-hidden="true" tabindex="-1"></a>                   <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>), </span>
-<span id="cb178-3"><a href="6.2-similarity.html#cb178-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">nr=</span><span class="dv">5</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
-<span id="cb178-4"><a href="6.2-similarity.html#cb178-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(animal) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Lion&quot;</span>, <span class="st">&quot;Giraffe&quot;</span>, <span class="st">&quot;Cow&quot;</span>, <span class="st">&quot;Sheep&quot;</span>, <span class="st">&quot;Human&quot;</span>)</span>
-<span id="cb178-5"><a href="6.2-similarity.html#cb178-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(animal)<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">&quot;A&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb178-6"><a href="6.2-similarity.html#cb178-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb178-7"><a href="6.2-similarity.html#cb178-7" aria-hidden="true" tabindex="-1"></a>SMC <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y){</span>
-<span id="cb178-8"><a href="6.2-similarity.html#cb178-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(x<span class="sc">==</span>y)<span class="sc">/</span><span class="fu">length</span>(x)</span>
-<span id="cb178-9"><a href="6.2-similarity.html#cb178-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb178-10"><a href="6.2-similarity.html#cb178-10" aria-hidden="true" tabindex="-1"></a><span class="co"># SMC(animal[1,], animal[2,]) # check this gives what you expect</span></span>
-<span id="cb178-11"><a href="6.2-similarity.html#cb178-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb178-12"><a href="6.2-similarity.html#cb178-12" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">dim</span>(animal)[<span class="dv">1</span>]</span>
-<span id="cb178-13"><a href="6.2-similarity.html#cb178-13" aria-hidden="true" tabindex="-1"></a>F_SMC <span class="ot">=</span> <span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span>n,<span class="dv">1</span><span class="sc">:</span>n,</span>
-<span id="cb178-14"><a href="6.2-similarity.html#cb178-14" aria-hidden="true" tabindex="-1"></a>              <span class="fu">Vectorize</span>(<span class="cf">function</span>(i,j){</span>
-<span id="cb178-15"><a href="6.2-similarity.html#cb178-15" aria-hidden="true" tabindex="-1"></a>                <span class="fu">SMC</span>(animal[i,], animal[j,])</span>
-<span id="cb178-16"><a href="6.2-similarity.html#cb178-16" aria-hidden="true" tabindex="-1"></a>                }</span>
-<span id="cb178-17"><a href="6.2-similarity.html#cb178-17" aria-hidden="true" tabindex="-1"></a>                ))</span>
-<span id="cb178-18"><a href="6.2-similarity.html#cb178-18" aria-hidden="true" tabindex="-1"></a><span class="co"># we could do this as a double loop, but I&#39;ve used the outer function</span></span>
-<span id="cb178-19"><a href="6.2-similarity.html#cb178-19" aria-hidden="true" tabindex="-1"></a><span class="co"># here.</span></span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="6.2-similarity.html#cb179-1" tabindex="-1"></a>animal <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb179-2"><a href="6.2-similarity.html#cb179-2" tabindex="-1"></a>                   <span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>), </span>
+<span id="cb179-3"><a href="6.2-similarity.html#cb179-3" tabindex="-1"></a>                 <span class="at">nr=</span><span class="dv">5</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
+<span id="cb179-4"><a href="6.2-similarity.html#cb179-4" tabindex="-1"></a><span class="fu">rownames</span>(animal) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Lion&quot;</span>, <span class="st">&quot;Giraffe&quot;</span>, <span class="st">&quot;Cow&quot;</span>, <span class="st">&quot;Sheep&quot;</span>, <span class="st">&quot;Human&quot;</span>)</span>
+<span id="cb179-5"><a href="6.2-similarity.html#cb179-5" tabindex="-1"></a><span class="fu">colnames</span>(animal)<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="st">&quot;A&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb179-6"><a href="6.2-similarity.html#cb179-6" tabindex="-1"></a></span>
+<span id="cb179-7"><a href="6.2-similarity.html#cb179-7" tabindex="-1"></a>SMC <span class="ot">&lt;-</span> <span class="cf">function</span>(x,y){</span>
+<span id="cb179-8"><a href="6.2-similarity.html#cb179-8" tabindex="-1"></a>  <span class="fu">sum</span>(x<span class="sc">==</span>y)<span class="sc">/</span><span class="fu">length</span>(x)</span>
+<span id="cb179-9"><a href="6.2-similarity.html#cb179-9" tabindex="-1"></a>}</span>
+<span id="cb179-10"><a href="6.2-similarity.html#cb179-10" tabindex="-1"></a><span class="co"># SMC(animal[1,], animal[2,]) # check this gives what you expect</span></span>
+<span id="cb179-11"><a href="6.2-similarity.html#cb179-11" tabindex="-1"></a></span>
+<span id="cb179-12"><a href="6.2-similarity.html#cb179-12" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">dim</span>(animal)[<span class="dv">1</span>]</span>
+<span id="cb179-13"><a href="6.2-similarity.html#cb179-13" tabindex="-1"></a>F_SMC <span class="ot">=</span> <span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span>n,<span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb179-14"><a href="6.2-similarity.html#cb179-14" tabindex="-1"></a>              <span class="fu">Vectorize</span>(<span class="cf">function</span>(i,j){</span>
+<span id="cb179-15"><a href="6.2-similarity.html#cb179-15" tabindex="-1"></a>                <span class="fu">SMC</span>(animal[i,], animal[j,])</span>
+<span id="cb179-16"><a href="6.2-similarity.html#cb179-16" tabindex="-1"></a>                }</span>
+<span id="cb179-17"><a href="6.2-similarity.html#cb179-17" tabindex="-1"></a>                ))</span>
+<span id="cb179-18"><a href="6.2-similarity.html#cb179-18" tabindex="-1"></a><span class="co"># we could do this as a double loop, but I&#39;ve used the outer function</span></span>
+<span id="cb179-19"><a href="6.2-similarity.html#cb179-19" tabindex="-1"></a><span class="co"># here.</span></span></code></pre></div>
 <p>We can use the <code>dist</code> function in R to compute this more easily. The <code>dist</code> function requires us to specify which metric to use. Here, we use the <span class="math inline">\(L_1\)</span> distance, which is also known as the <a href="https://en.wikipedia.org/wiki/Taxicab_geometry">Manhattan distance</a>. We have to subtract this from the largest possible distance, which is 6 in this case, to get the similarity, and then divide by 6 to get the SMC.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="6.2-similarity.html#cb179-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">6</span><span class="sc">-</span><span class="fu">as.matrix</span>(<span class="fu">dist</span>(animal, <span class="at">method=</span><span class="st">&quot;manhattan&quot;</span>, <span class="at">diag =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb179-2"><a href="6.2-similarity.html#cb179-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">upper =</span> <span class="cn">TRUE</span>)))<span class="sc">/</span><span class="dv">6</span></span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="6.2-similarity.html#cb180-1" tabindex="-1"></a>(<span class="dv">6</span><span class="sc">-</span><span class="fu">as.matrix</span>(<span class="fu">dist</span>(animal, <span class="at">method=</span><span class="st">&quot;manhattan&quot;</span>, <span class="at">diag =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb180-2"><a href="6.2-similarity.html#cb180-2" tabindex="-1"></a>                  <span class="at">upper =</span> <span class="cn">TRUE</span>)))<span class="sc">/</span><span class="dv">6</span></span></code></pre></div>
 <pre><code>##              Lion   Giraffe       Cow     Sheep     Human
 ## Lion    1.0000000 0.6666667 0.5000000 0.3333333 0.5000000
 ## Giraffe 0.6666667 1.0000000 0.5000000 0.3333333 0.1666667
@@ -569,19 +573,19 @@ It is easily checked from the definition that <span class="math inline">\({\math
 ## Sheep   0.3333333 0.3333333 0.8333333 1.0000000 0.5000000
 ## Human   0.5000000 0.1666667 0.3333333 0.5000000 1.0000000</code></pre>
 <p>The Jaccard index can be computed as follows:</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="6.2-similarity.html#cb181-1" aria-hidden="true" tabindex="-1"></a>jaccard <span class="ot">=</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb181-2"><a href="6.2-similarity.html#cb181-2" aria-hidden="true" tabindex="-1"></a>  bt <span class="ot">=</span> <span class="fu">table</span>(y, x)</span>
-<span id="cb181-3"><a href="6.2-similarity.html#cb181-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>((bt[<span class="dv">2</span>, <span class="dv">2</span>])<span class="sc">/</span>(bt[<span class="dv">1</span>, <span class="dv">2</span>] <span class="sc">+</span> bt[<span class="dv">2</span>, <span class="dv">1</span>] <span class="sc">+</span> bt[<span class="dv">2</span>, <span class="dv">2</span>]))</span>
-<span id="cb181-4"><a href="6.2-similarity.html#cb181-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb181-5"><a href="6.2-similarity.html#cb181-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb181-6"><a href="6.2-similarity.html#cb181-6" aria-hidden="true" tabindex="-1"></a><span class="co"># jaccard(animal[1,], animal[2,]) </span></span>
-<span id="cb181-7"><a href="6.2-similarity.html#cb181-7" aria-hidden="true" tabindex="-1"></a><span class="co"># check this gives what you expect</span></span>
-<span id="cb181-8"><a href="6.2-similarity.html#cb181-8" aria-hidden="true" tabindex="-1"></a>F_jaccard <span class="ot">=</span> <span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span>n,<span class="dv">1</span><span class="sc">:</span>n, <span class="fu">Vectorize</span>(<span class="cf">function</span>(i,j){</span>
-<span id="cb181-9"><a href="6.2-similarity.html#cb181-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">jaccard</span>(animal[i,], animal[j,])</span>
-<span id="cb181-10"><a href="6.2-similarity.html#cb181-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb181-11"><a href="6.2-similarity.html#cb181-11" aria-hidden="true" tabindex="-1"></a>  ))</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="6.2-similarity.html#cb182-1" tabindex="-1"></a>jaccard <span class="ot">=</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb182-2"><a href="6.2-similarity.html#cb182-2" tabindex="-1"></a>  bt <span class="ot">=</span> <span class="fu">table</span>(y, x)</span>
+<span id="cb182-3"><a href="6.2-similarity.html#cb182-3" tabindex="-1"></a>  <span class="fu">return</span>((bt[<span class="dv">2</span>, <span class="dv">2</span>])<span class="sc">/</span>(bt[<span class="dv">1</span>, <span class="dv">2</span>] <span class="sc">+</span> bt[<span class="dv">2</span>, <span class="dv">1</span>] <span class="sc">+</span> bt[<span class="dv">2</span>, <span class="dv">2</span>]))</span>
+<span id="cb182-4"><a href="6.2-similarity.html#cb182-4" tabindex="-1"></a>}</span>
+<span id="cb182-5"><a href="6.2-similarity.html#cb182-5" tabindex="-1"></a></span>
+<span id="cb182-6"><a href="6.2-similarity.html#cb182-6" tabindex="-1"></a><span class="co"># jaccard(animal[1,], animal[2,]) </span></span>
+<span id="cb182-7"><a href="6.2-similarity.html#cb182-7" tabindex="-1"></a><span class="co"># check this gives what you expect</span></span>
+<span id="cb182-8"><a href="6.2-similarity.html#cb182-8" tabindex="-1"></a>F_jaccard <span class="ot">=</span> <span class="fu">outer</span>(<span class="dv">1</span><span class="sc">:</span>n,<span class="dv">1</span><span class="sc">:</span>n, <span class="fu">Vectorize</span>(<span class="cf">function</span>(i,j){</span>
+<span id="cb182-9"><a href="6.2-similarity.html#cb182-9" tabindex="-1"></a>  <span class="fu">jaccard</span>(animal[i,], animal[j,])</span>
+<span id="cb182-10"><a href="6.2-similarity.html#cb182-10" tabindex="-1"></a>  }</span>
+<span id="cb182-11"><a href="6.2-similarity.html#cb182-11" tabindex="-1"></a>  ))</span></code></pre></div>
 <p>Again, we can compute this using <code>dist</code>, but this time using the binary distance metric. See the help page <code>?dist</code> to understand why.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="6.2-similarity.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">as.matrix</span>(<span class="fu">dist</span>(animal, <span class="at">method=</span><span class="st">&quot;binary&quot;</span>, <span class="at">diag=</span><span class="cn">TRUE</span>, <span class="at">upper=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="6.2-similarity.html#cb183-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">as.matrix</span>(<span class="fu">dist</span>(animal, <span class="at">method=</span><span class="st">&quot;binary&quot;</span>, <span class="at">diag=</span><span class="cn">TRUE</span>, <span class="at">upper=</span><span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>##         Lion Giraffe       Cow     Sheep Human
 ## Lion    1.00     0.6 0.4000000 0.2000000  0.25
 ## Giraffe 0.60     1.0 0.4000000 0.2000000  0.00
@@ -589,19 +593,19 @@ It is easily checked from the definition that <span class="math inline">\({\math
 ## Sheep   0.20     0.2 0.6666667 1.0000000  0.00
 ## Human   0.25     0.0 0.0000000 0.0000000  1.00</code></pre>
 <p>To do MDS on these data, we need to first convert from a similarity matrix <span class="math inline">\(F\)</span> to a distance matrix <span class="math inline">\(D\)</span>. We can use the following function to do this:</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="6.2-similarity.html#cb184-1" aria-hidden="true" tabindex="-1"></a>FtoD <span class="ot">&lt;-</span> <span class="cf">function</span>(FF){</span>
-<span id="cb184-2"><a href="6.2-similarity.html#cb184-2" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> <span class="fu">dim</span>(FF)[<span class="dv">1</span>]</span>
-<span id="cb184-3"><a href="6.2-similarity.html#cb184-3" aria-hidden="true" tabindex="-1"></a>  D <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nr=</span>n,<span class="at">nc=</span>n)</span>
-<span id="cb184-4"><a href="6.2-similarity.html#cb184-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(ii <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
-<span id="cb184-5"><a href="6.2-similarity.html#cb184-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(jj <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
-<span id="cb184-6"><a href="6.2-similarity.html#cb184-6" aria-hidden="true" tabindex="-1"></a>      D[ii,jj] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(FF[ii,ii]<span class="sc">+</span>FF[jj,jj]<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>FF[ii,jj])</span>
-<span id="cb184-7"><a href="6.2-similarity.html#cb184-7" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb184-8"><a href="6.2-similarity.html#cb184-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb184-9"><a href="6.2-similarity.html#cb184-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(D)</span>
-<span id="cb184-10"><a href="6.2-similarity.html#cb184-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="6.2-similarity.html#cb185-1" tabindex="-1"></a>FtoD <span class="ot">&lt;-</span> <span class="cf">function</span>(FF){</span>
+<span id="cb185-2"><a href="6.2-similarity.html#cb185-2" tabindex="-1"></a>  n <span class="ot">=</span> <span class="fu">dim</span>(FF)[<span class="dv">1</span>]</span>
+<span id="cb185-3"><a href="6.2-similarity.html#cb185-3" tabindex="-1"></a>  D <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nr=</span>n,<span class="at">nc=</span>n)</span>
+<span id="cb185-4"><a href="6.2-similarity.html#cb185-4" tabindex="-1"></a>  <span class="cf">for</span>(ii <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
+<span id="cb185-5"><a href="6.2-similarity.html#cb185-5" tabindex="-1"></a>    <span class="cf">for</span>(jj <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
+<span id="cb185-6"><a href="6.2-similarity.html#cb185-6" tabindex="-1"></a>      D[ii,jj] <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(FF[ii,ii]<span class="sc">+</span>FF[jj,jj]<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>FF[ii,jj])</span>
+<span id="cb185-7"><a href="6.2-similarity.html#cb185-7" tabindex="-1"></a>    }</span>
+<span id="cb185-8"><a href="6.2-similarity.html#cb185-8" tabindex="-1"></a>  }</span>
+<span id="cb185-9"><a href="6.2-similarity.html#cb185-9" tabindex="-1"></a>  <span class="fu">return</span>(D)</span>
+<span id="cb185-10"><a href="6.2-similarity.html#cb185-10" tabindex="-1"></a>}</span></code></pre></div>
 <p>Let’s now do MDS, and compare the results from using the SMC and Jaccard index. We could do this by computing <span class="math inline">\(\mathbf B= \mathbf H\mathbf F\mathbf H\)</span> and finding its spectral decomposition, but we will let R do the work for us, and use the <code>cmdscale</code> command which takes a distance matrix as input. So let’s write a function to convert from a similarity matrix to a distance matrix.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="6.2-similarity.html#cb185-1" aria-hidden="true" tabindex="-1"></a>mds1<span class="ot">&lt;-</span><span class="fu">cmdscale</span>(<span class="fu">FtoD</span>(F_SMC))</span>
-<span id="cb185-2"><a href="6.2-similarity.html#cb185-2" aria-hidden="true" tabindex="-1"></a>mds2<span class="ot">&lt;-</span><span class="fu">cmdscale</span>(<span class="fu">FtoD</span>(F_jaccard))</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="6.2-similarity.html#cb186-1" tabindex="-1"></a>mds1<span class="ot">&lt;-</span><span class="fu">cmdscale</span>(<span class="fu">FtoD</span>(F_SMC))</span>
+<span id="cb186-2"><a href="6.2-similarity.html#cb186-2" tabindex="-1"></a>mds2<span class="ot">&lt;-</span><span class="fu">cmdscale</span>(<span class="fu">FtoD</span>(F_jaccard))</span></code></pre></div>
 <p><img src="06-mds_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p>So we can see the choice of index has made a difference to the results.</p>
 </div>
@@ -610,30 +614,30 @@ It is easily checked from the definition that <span class="math inline">\({\math
 <h3><span class="header-section-number">6.2.2</span> Example: Classical MDS with the MNIST data<a href="6.2-similarity.html#example-classical-mds-with-the-mnist-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In section <a href="4.3-an-alternative-view-of-pca.html#pca-mnist">4.3.1</a> we saw the results of doing PCA on the MNIST handwritten digits. In the final part of that section, we did PCA on a selection of all the digits, and plotted the two leading PC scores, coloured by which digit they represented.</p>
 <p>Let’s now do MDS on the same data. We know that if we use the Euclidean distance between the image vectors, then we will be doing the same thing as PCA. So let’s instead first convert each pixel in the image to binary, with a value of 0 if the intensity is less than 0.3, and 1 otherwise. We can then compute a similarity matrix using the SMC and Jaccard indices.</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="6.2-similarity.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;mnist.rda&#39;</span>)</span>
-<span id="cb186-2"><a href="6.2-similarity.html#cb186-2" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span> mnist<span class="sc">$</span>train<span class="sc">$</span>x[<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,]</span>
-<span id="cb186-3"><a href="6.2-similarity.html#cb186-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb186-4"><a href="6.2-similarity.html#cb186-4" aria-hidden="true" tabindex="-1"></a>Y<span class="ot">&lt;-</span> (X<span class="sc">&gt;</span><span class="fl">0.3</span>)<span class="sc">*</span><span class="fl">1.</span>  <span class="co"># multiply by 1 to convert from T/F to a 1/0</span></span>
-<span id="cb186-5"><a href="6.2-similarity.html#cb186-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb186-6"><a href="6.2-similarity.html#cb186-6" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">dim</span>(Y)[<span class="dv">1</span>]</span>
-<span id="cb186-7"><a href="6.2-similarity.html#cb186-7" aria-hidden="true" tabindex="-1"></a>p<span class="ot">=</span><span class="fu">dim</span>(Y)[<span class="dv">2</span>]</span>
-<span id="cb186-8"><a href="6.2-similarity.html#cb186-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb186-9"><a href="6.2-similarity.html#cb186-9" aria-hidden="true" tabindex="-1"></a>F_SMC<span class="ot">=</span>(p<span class="sc">-</span><span class="fu">as.matrix</span>(<span class="fu">dist</span>(Y, <span class="at">method=</span><span class="st">&quot;manhattan&quot;</span>, <span class="at">diag =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb186-10"><a href="6.2-similarity.html#cb186-10" aria-hidden="true" tabindex="-1"></a>                        <span class="at">upper =</span> <span class="cn">TRUE</span>)))<span class="sc">/</span>p</span>
-<span id="cb186-11"><a href="6.2-similarity.html#cb186-11" aria-hidden="true" tabindex="-1"></a>F_Jaccard <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span><span class="fu">as.matrix</span>(<span class="fu">dist</span>(Y, <span class="at">method=</span><span class="st">&quot;binary&quot;</span>, <span class="at">diag=</span><span class="cn">TRUE</span>, </span>
-<span id="cb186-12"><a href="6.2-similarity.html#cb186-12" aria-hidden="true" tabindex="-1"></a>                             <span class="at">upper=</span><span class="cn">TRUE</span>))</span>
-<span id="cb186-13"><a href="6.2-similarity.html#cb186-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb186-14"><a href="6.2-similarity.html#cb186-14" aria-hidden="true" tabindex="-1"></a>mds1<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cmdscale</span>(<span class="fu">FtoD</span>(F_SMC)))</span>
-<span id="cb186-15"><a href="6.2-similarity.html#cb186-15" aria-hidden="true" tabindex="-1"></a>mds2<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cmdscale</span>(<span class="fu">FtoD</span>(F_Jaccard)))</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="6.2-similarity.html#cb187-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;mnist.rda&#39;</span>)</span>
+<span id="cb187-2"><a href="6.2-similarity.html#cb187-2" tabindex="-1"></a>X<span class="ot">&lt;-</span> mnist<span class="sc">$</span>train<span class="sc">$</span>x[<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,]</span>
+<span id="cb187-3"><a href="6.2-similarity.html#cb187-3" tabindex="-1"></a></span>
+<span id="cb187-4"><a href="6.2-similarity.html#cb187-4" tabindex="-1"></a>Y<span class="ot">&lt;-</span> (X<span class="sc">&gt;</span><span class="fl">0.3</span>)<span class="sc">*</span><span class="fl">1.</span>  <span class="co"># multiply by 1 to convert from T/F to a 1/0</span></span>
+<span id="cb187-5"><a href="6.2-similarity.html#cb187-5" tabindex="-1"></a></span>
+<span id="cb187-6"><a href="6.2-similarity.html#cb187-6" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">dim</span>(Y)[<span class="dv">1</span>]</span>
+<span id="cb187-7"><a href="6.2-similarity.html#cb187-7" tabindex="-1"></a>p<span class="ot">=</span><span class="fu">dim</span>(Y)[<span class="dv">2</span>]</span>
+<span id="cb187-8"><a href="6.2-similarity.html#cb187-8" tabindex="-1"></a></span>
+<span id="cb187-9"><a href="6.2-similarity.html#cb187-9" tabindex="-1"></a>F_SMC<span class="ot">=</span>(p<span class="sc">-</span><span class="fu">as.matrix</span>(<span class="fu">dist</span>(Y, <span class="at">method=</span><span class="st">&quot;manhattan&quot;</span>, <span class="at">diag =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb187-10"><a href="6.2-similarity.html#cb187-10" tabindex="-1"></a>                        <span class="at">upper =</span> <span class="cn">TRUE</span>)))<span class="sc">/</span>p</span>
+<span id="cb187-11"><a href="6.2-similarity.html#cb187-11" tabindex="-1"></a>F_Jaccard <span class="ot">=</span> <span class="dv">1</span><span class="sc">-</span><span class="fu">as.matrix</span>(<span class="fu">dist</span>(Y, <span class="at">method=</span><span class="st">&quot;binary&quot;</span>, <span class="at">diag=</span><span class="cn">TRUE</span>, </span>
+<span id="cb187-12"><a href="6.2-similarity.html#cb187-12" tabindex="-1"></a>                             <span class="at">upper=</span><span class="cn">TRUE</span>))</span>
+<span id="cb187-13"><a href="6.2-similarity.html#cb187-13" tabindex="-1"></a></span>
+<span id="cb187-14"><a href="6.2-similarity.html#cb187-14" tabindex="-1"></a>mds1<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cmdscale</span>(<span class="fu">FtoD</span>(F_SMC)))</span>
+<span id="cb187-15"><a href="6.2-similarity.html#cb187-15" tabindex="-1"></a>mds2<span class="ot">=</span><span class="fu">data.frame</span>(<span class="fu">cmdscale</span>(<span class="fu">FtoD</span>(F_Jaccard)))</span></code></pre></div>
 <p>We will do as we did before, and plot the coordinates coloured by the digit each point is supposed to represent. Note that we have not used these digit labels at any point.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="6.2-similarity.html#cb187-1" aria-hidden="true" tabindex="-1"></a>Digit <span class="ot">=</span> <span class="fu">as.factor</span>(mnist<span class="sc">$</span>train<span class="sc">$</span>y[<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>])</span>
-<span id="cb187-2"><a href="6.2-similarity.html#cb187-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb187-3"><a href="6.2-similarity.html#cb187-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mds1, <span class="fu">aes</span>(<span class="at">x=</span>X1, <span class="at">y=</span>X2, <span class="at">colour=</span>Digit, <span class="at">label=</span>Digit))<span class="sc">+</span></span>
-<span id="cb187-4"><a href="6.2-similarity.html#cb187-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Digit))<span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;MDS for MNIST using the SMC&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="6.2-similarity.html#cb188-1" tabindex="-1"></a>Digit <span class="ot">=</span> <span class="fu">as.factor</span>(mnist<span class="sc">$</span>train<span class="sc">$</span>y[<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>])</span>
+<span id="cb188-2"><a href="6.2-similarity.html#cb188-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb188-3"><a href="6.2-similarity.html#cb188-3" tabindex="-1"></a><span class="fu">ggplot</span>(mds1, <span class="fu">aes</span>(<span class="at">x=</span>X1, <span class="at">y=</span>X2, <span class="at">colour=</span>Digit, <span class="at">label=</span>Digit))<span class="sc">+</span></span>
+<span id="cb188-4"><a href="6.2-similarity.html#cb188-4" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Digit))<span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">&quot;MDS for MNIST using the SMC&quot;</span>) </span></code></pre></div>
 <p><img src="06-mds_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="6.2-similarity.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mds2, <span class="fu">aes</span>(<span class="at">x=</span>X1, <span class="at">y=</span>X2, <span class="at">colour=</span>Digit, <span class="at">label=</span>Digit))<span class="sc">+</span></span>
-<span id="cb188-2"><a href="6.2-similarity.html#cb188-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Digit))<span class="sc">+</span> </span>
-<span id="cb188-3"><a href="6.2-similarity.html#cb188-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;MDS for MNIST using the Jaccard index&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="6.2-similarity.html#cb189-1" tabindex="-1"></a><span class="fu">ggplot</span>(mds2, <span class="fu">aes</span>(<span class="at">x=</span>X1, <span class="at">y=</span>X2, <span class="at">colour=</span>Digit, <span class="at">label=</span>Digit))<span class="sc">+</span></span>
+<span id="cb189-2"><a href="6.2-similarity.html#cb189-2" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Digit))<span class="sc">+</span> </span>
+<span id="cb189-3"><a href="6.2-similarity.html#cb189-3" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;MDS for MNIST using the Jaccard index&quot;</span>) </span></code></pre></div>
 <p><img src="06-mds_files/figure-html/unnamed-chunk-29-2.png" width="672" /></p>
 <p>You can see that we get two different representations of the data that differ from each other, and from the PCA representation we computed in Chapter <a href="4-pca.html#pca">4</a>.</p>
 </div>
