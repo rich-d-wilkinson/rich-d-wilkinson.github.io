@@ -417,7 +417,7 @@ http://simbad-fp7.eu/images/tutorial/02-ECCV2012Tutorial.pdf
 In other words, we are trying to create a spatial representation of the data, <span class="math inline">\(\mathbf y_1, \ldots, \mathbf y_n\)</span>, from a distance matrix <span class="math inline">\(\mathbf D\)</span>. The vectors <span class="math inline">\(\mathbf y_i\)</span> have no meaning by themselves, but by visualising their spatial pattern we can hope to learn something about the dataset represented by <span class="math inline">\(\mathbf D\)</span>.</p>
 <p>If we define the errors in terms of a square distance, then we can write the goal of MDS as the following optimization problem:
 <span class="math display" id="eq:mdsopt">\[\begin{align}
-\mbox{Find} \quad&amp; \mathbf y_1, \ldots, \mathbf y_k \in \mathbb{R}^r\\
+\mbox{Find} \quad&amp; \mathbf y_1, \ldots, \mathbf y_n \in \mathbb{R}^r\\
 \mbox{to minimize} \quad &amp;\sum_{i=1}^n \sum_{j=1}^n (d_{ij} - d(\mathbf y_i, \mathbf y_j))^2.\tag{6.1}
 \end{align}\]</span></p>
 <p>As an illustrative example, consider the location of some of England’s cities.</p>

@@ -397,7 +397,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.4</span> SVD optimization results<a href="3.4-svdopt.html#svdopt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Why are eigenvalues and singular values useful in statistics? It is because they appear as the result of some important optimization problems. We’ll see more about this in later chapters, but we’ll prove a few preliminary results here.</p>
 <p>For example, suppose <span class="math inline">\(\mathbf x\in\mathbb{R}^n\)</span> is a random variable with <span class="math inline">\({\mathbb{C}\operatorname{ov}}(\mathbf x)=\boldsymbol{\Sigma}\)</span> (an <span class="math inline">\(n \times n\)</span> matrix), then can we find a projection of <span class="math inline">\(\mathbf x\)</span> that has either maximum or minimum variance? I.e., can we find <span class="math inline">\(\mathbf a\)</span> such that <span class="math display">\[{\mathbb{V}\operatorname{ar}}(\mathbf a^\top\mathbf x)=\mathbf a^\top \boldsymbol{\Sigma}\mathbf a\]</span> is maximized or minimized?
-To make the question interesting we need to constrain the length of <span class="math inline">\(\mathbf a\)</span> so lets assume that <span class="math inline">\(||\mathbf a||_2 = \sqrt{\mathbf a^\top \mathbf a}=1\)</span>, otherwise we could just take <span class="math inline">\(\mathbf a=\boldsymbol 0\)</span> to obtain a projection with variance zero. So we want to solve the optimization problems involving the quadratic form <span class="math inline">\(\mathbf a^\top \boldsymbol{\Sigma}\mathbf a\)</span>:</p>
+To make the question interesting we need to constrain the length of <span class="math inline">\(\mathbf a\)</span> so lets assume that <span class="math inline">\(||\mathbf a||_2 = \sqrt{\mathbf a^\top \mathbf a}=1\)</span>, otherwise we could just take <span class="math inline">\(\mathbf a={\boldsymbol 0}\)</span> to obtain a projection with variance zero. So we want to solve the optimization problems involving the quadratic form <span class="math inline">\(\mathbf a^\top \boldsymbol{\Sigma}\mathbf a\)</span>:</p>
 <p><span class="math display" id="eq:eigenopt">\[\begin{equation}
 \max_{\mathbf a: \;\mathbf a^\top \mathbf a=1}\mathbf a^\top \boldsymbol{\Sigma}\mathbf a, \quad \mbox{and}\quad
 \min_{\mathbf a: \;\mathbf a^\top \mathbf a=1}\mathbf a^\top \boldsymbol{\Sigma}\mathbf a.
@@ -433,11 +433,11 @@ and so another way to write the maximization problems <a href="3.4-svdopt.html#e
 the first singular value of <span class="math inline">\(\mathbf A\)</span>, with the maximum achieved at <span class="math inline">\(\mathbf x=\mathbf v_1\)</span> (the first right singular vector).</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-9" class="proof"><em>Proof</em>. </span>This is follows from <a href="3.4-svdopt.html#prp:two8">3.7</a> as
+<p><span id="unlabeled-div-9" class="proof"><em>Proof</em>. </span>This follows from <a href="3.4-svdopt.html#prp:two8">3.7</a> as
 <span class="math display">\[||\mathbf A\mathbf x||_2^2=\mathbf x^\top \mathbf A^\top\mathbf A\mathbf x.\]</span></p>
 </div>
 <p><br>
-Here, <span class="math inline">\(||\mathbf x|_2\)</span> denotes the Euclidean norm for vectors:
+Here, <span class="math inline">\(||\mathbf x||_2\)</span> denotes the Euclidean norm for vectors:
 <span class="math display">\[||\mathbf x||_2 = (\mathbf x^\top \mathbf x)^{\frac{1}{2}}.\]</span></p>
 <p>Finally, we will need the following result when we study canonical correlation analysis:</p>
 <div class="proposition">

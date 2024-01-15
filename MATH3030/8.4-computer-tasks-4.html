@@ -398,9 +398,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="task-1-3" class="section level5 unnumbered hasAnchor">
 <h5>Task 1<a href="8.4-computer-tasks-4.html#task-1-3" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Let’s look again at the crabs dataset.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="8.4-computer-tasks-4.html#cb248-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb248-2"><a href="8.4-computer-tasks-4.html#cb248-2" tabindex="-1"></a><span class="fu">data</span>(crabs)</span>
-<span id="cb248-3"><a href="8.4-computer-tasks-4.html#cb248-3" tabindex="-1"></a><span class="fu">head</span>(crabs)</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="8.4-computer-tasks-4.html#cb246-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb246-2"><a href="8.4-computer-tasks-4.html#cb246-2" tabindex="-1"></a><span class="fu">data</span>(crabs)</span>
+<span id="cb246-3"><a href="8.4-computer-tasks-4.html#cb246-3" tabindex="-1"></a><span class="fu">head</span>(crabs)</span></code></pre></div>
 <ol style="list-style-type: lower-roman">
 <li><p>Use the <code>lda</code> command to build a classifier to predict the <code>sex</code> of the crabs from the
 five numerical measurements (don’t use the index!).</p></li>
@@ -410,7 +410,7 @@ five numerical measurements (don’t use the index!).</p></li>
 <li><p>Create a new variable that indicates the species and the sex of the crab. With levels
 BM, BF, OM, OF. This can be done as follows:</p></li>
 </ol>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="8.4-computer-tasks-4.html#cb249-1" tabindex="-1"></a>crabs<span class="sc">$</span>spsex <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">paste</span>(crabs<span class="sc">$</span>sp, crabs<span class="sc">$</span>sex, <span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="8.4-computer-tasks-4.html#cb247-1" tabindex="-1"></a>crabs<span class="sc">$</span>spsex <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">paste</span>(crabs<span class="sc">$</span>sp, crabs<span class="sc">$</span>sex, <span class="at">sep=</span><span class="st">&quot;&quot;</span>))</span></code></pre></div>
 <p>Build a classifier to predict the species and sex of the crabs. Test its predictive accuracy, and provide some plots showing its effectiveness etc.</p>
 </div>
 <div id="task-2-3" class="section level5 unnumbered hasAnchor">
@@ -419,21 +419,21 @@ BM, BF, OM, OF. This can be done as follows:</p></li>
 <ol style="list-style-type: lower-roman">
 <li>Generate 4 populations in 2d using the MVN distribution as follows:</li>
 </ol>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="8.4-computer-tasks-4.html#cb250-1" tabindex="-1"></a>mu1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb250-2"><a href="8.4-computer-tasks-4.html#cb250-2" tabindex="-1"></a>mu2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
-<span id="cb250-3"><a href="8.4-computer-tasks-4.html#cb250-3" tabindex="-1"></a>mu3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb250-4"><a href="8.4-computer-tasks-4.html#cb250-4" tabindex="-1"></a>mu4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb250-5"><a href="8.4-computer-tasks-4.html#cb250-5" tabindex="-1"></a>Sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.4</span>,<span class="fl">0.4</span>,<span class="fl">0.5</span>), <span class="at">nr=</span><span class="dv">2</span>)</span>
-<span id="cb250-6"><a href="8.4-computer-tasks-4.html#cb250-6" tabindex="-1"></a><span class="fu">library</span>(mvtnorm)</span>
-<span id="cb250-7"><a href="8.4-computer-tasks-4.html#cb250-7" tabindex="-1"></a>S1 <span class="ot">&lt;-</span> <span class="fu">rmvnorm</span>(<span class="dv">100</span>, mu1, Sigma)</span>
-<span id="cb250-8"><a href="8.4-computer-tasks-4.html#cb250-8" tabindex="-1"></a>S2 <span class="ot">&lt;-</span> <span class="fu">rmvnorm</span>(<span class="dv">100</span>, mu2, Sigma)</span>
-<span id="cb250-9"><a href="8.4-computer-tasks-4.html#cb250-9" tabindex="-1"></a>S3 <span class="ot">&lt;-</span> <span class="fu">rmvnorm</span>(<span class="dv">100</span>, mu3, Sigma)</span>
-<span id="cb250-10"><a href="8.4-computer-tasks-4.html#cb250-10" tabindex="-1"></a>S4 <span class="ot">&lt;-</span> <span class="fu">rmvnorm</span>(<span class="dv">100</span>, mu4, Sigma)</span>
-<span id="cb250-11"><a href="8.4-computer-tasks-4.html#cb250-11" tabindex="-1"></a>X<span class="ot">=</span><span class="fu">rbind</span>(S1,S2,S3,S4)</span>
-<span id="cb250-12"><a href="8.4-computer-tasks-4.html#cb250-12" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">popn=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;1&quot;</span>,<span class="dv">100</span>),<span class="fu">rep</span>(<span class="st">&quot;2&quot;</span>,<span class="dv">100</span>),<span class="fu">rep</span>(<span class="st">&quot;3&quot;</span>,<span class="dv">100</span>),</span>
-<span id="cb250-13"><a href="8.4-computer-tasks-4.html#cb250-13" tabindex="-1"></a>                         <span class="fu">rep</span>(<span class="st">&quot;4&quot;</span>,<span class="dv">100</span>)), <span class="at">X1=</span>X[,<span class="dv">1</span>], <span class="at">X2=</span>X[,<span class="dv">2</span>])</span>
-<span id="cb250-14"><a href="8.4-computer-tasks-4.html#cb250-14" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb250-15"><a href="8.4-computer-tasks-4.html#cb250-15" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>X1,<span class="at">y=</span>X2, <span class="at">colour=</span>popn, <span class="at">data=</span>dat)</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="8.4-computer-tasks-4.html#cb248-1" tabindex="-1"></a>mu1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb248-2"><a href="8.4-computer-tasks-4.html#cb248-2" tabindex="-1"></a>mu2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)</span>
+<span id="cb248-3"><a href="8.4-computer-tasks-4.html#cb248-3" tabindex="-1"></a>mu3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb248-4"><a href="8.4-computer-tasks-4.html#cb248-4" tabindex="-1"></a>mu4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb248-5"><a href="8.4-computer-tasks-4.html#cb248-5" tabindex="-1"></a>Sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">0.5</span>,<span class="fl">0.4</span>,<span class="fl">0.4</span>,<span class="fl">0.5</span>), <span class="at">nr=</span><span class="dv">2</span>)</span>
+<span id="cb248-6"><a href="8.4-computer-tasks-4.html#cb248-6" tabindex="-1"></a><span class="fu">library</span>(mvtnorm)</span>
+<span id="cb248-7"><a href="8.4-computer-tasks-4.html#cb248-7" tabindex="-1"></a>S1 <span class="ot">&lt;-</span> <span class="fu">rmvnorm</span>(<span class="dv">100</span>, mu1, Sigma)</span>
+<span id="cb248-8"><a href="8.4-computer-tasks-4.html#cb248-8" tabindex="-1"></a>S2 <span class="ot">&lt;-</span> <span class="fu">rmvnorm</span>(<span class="dv">100</span>, mu2, Sigma)</span>
+<span id="cb248-9"><a href="8.4-computer-tasks-4.html#cb248-9" tabindex="-1"></a>S3 <span class="ot">&lt;-</span> <span class="fu">rmvnorm</span>(<span class="dv">100</span>, mu3, Sigma)</span>
+<span id="cb248-10"><a href="8.4-computer-tasks-4.html#cb248-10" tabindex="-1"></a>S4 <span class="ot">&lt;-</span> <span class="fu">rmvnorm</span>(<span class="dv">100</span>, mu4, Sigma)</span>
+<span id="cb248-11"><a href="8.4-computer-tasks-4.html#cb248-11" tabindex="-1"></a>X<span class="ot">=</span><span class="fu">rbind</span>(S1,S2,S3,S4)</span>
+<span id="cb248-12"><a href="8.4-computer-tasks-4.html#cb248-12" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">popn=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;1&quot;</span>,<span class="dv">100</span>),<span class="fu">rep</span>(<span class="st">&quot;2&quot;</span>,<span class="dv">100</span>),<span class="fu">rep</span>(<span class="st">&quot;3&quot;</span>,<span class="dv">100</span>),</span>
+<span id="cb248-13"><a href="8.4-computer-tasks-4.html#cb248-13" tabindex="-1"></a>                         <span class="fu">rep</span>(<span class="st">&quot;4&quot;</span>,<span class="dv">100</span>)), <span class="at">X1=</span>X[,<span class="dv">1</span>], <span class="at">X2=</span>X[,<span class="dv">2</span>])</span>
+<span id="cb248-14"><a href="8.4-computer-tasks-4.html#cb248-14" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb248-15"><a href="8.4-computer-tasks-4.html#cb248-15" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x=</span>X1,<span class="at">y=</span>X2, <span class="at">colour=</span>popn, <span class="at">data=</span>dat)</span></code></pre></div>
 <p><img src="09-lda-ex_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <ol start="2" style="list-style-type: lower-roman">
 <li><p>Use LDA to train a classifier. Plot the 2d projection found, and use the <code>partimat</code> command from the <code>klaR</code> package to visualise the discriminant regions.</p></li>
@@ -446,19 +446,19 @@ BM, BF, OM, OF. This can be done as follows:</p></li>
 <ol style="list-style-type: lower-roman">
 <li>Create a training set of 1000 images, and try using the <code>lda</code> command to fit a linear classifier. Did it work?</li>
 </ol>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="8.4-computer-tasks-4.html#cb251-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;mnist.rda&#39;</span>)</span>
-<span id="cb251-2"><a href="8.4-computer-tasks-4.html#cb251-2" tabindex="-1"></a>X<span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(mnist<span class="sc">$</span>train<span class="sc">$</span>x[<span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>,])</span>
-<span id="cb251-3"><a href="8.4-computer-tasks-4.html#cb251-3" tabindex="-1"></a>y<span class="ot">&lt;-</span>mnist<span class="sc">$</span>train<span class="sc">$</span>y[<span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>]</span>
-<span id="cb251-4"><a href="8.4-computer-tasks-4.html#cb251-4" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb251-5"><a href="8.4-computer-tasks-4.html#cb251-5" tabindex="-1"></a><span class="fu">lda</span>(X,y)</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="8.4-computer-tasks-4.html#cb249-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;mnist.rda&#39;</span>)</span>
+<span id="cb249-2"><a href="8.4-computer-tasks-4.html#cb249-2" tabindex="-1"></a>X<span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(mnist<span class="sc">$</span>train<span class="sc">$</span>x[<span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>,])</span>
+<span id="cb249-3"><a href="8.4-computer-tasks-4.html#cb249-3" tabindex="-1"></a>y<span class="ot">&lt;-</span>mnist<span class="sc">$</span>train<span class="sc">$</span>y[<span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>]</span>
+<span id="cb249-4"><a href="8.4-computer-tasks-4.html#cb249-4" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb249-5"><a href="8.4-computer-tasks-4.html#cb249-5" tabindex="-1"></a><span class="fu">lda</span>(X,y)</span></code></pre></div>
 <ol start="2" style="list-style-type: lower-roman">
 <li><p>One way to fix problems such as colinearity, or in this case, zero variance, is to first use PCA on the data to rotate to a set of variables with maximal variance. Do PCA on your training data using just the <span class="math inline">\(X\)</span>s (the pixel intensities) and select the <span class="math inline">\(p=100\)</span> most variable PC scores. This should leave you with a <span class="math inline">\(1000 \times 100\)</span> matrix.</p></li>
 <li><p>Do linear discriminant on the 100 PC variables you derived in the previous part. Plot the LDA projections of the data: Try plotting both the first 2 projected variables (coloured by the digit they represent), and the first 3 projected variables.
 Does using 3 dimensions help in separating the different populations?</p></li>
 <li><p>Find the predictive accuracy of your classifier using the MNIST test data. Note that you will first need to project this data onto the <span class="math inline">\(p\)</span> leading principal components. Find the confusion matrix and comment upon it.</p></li>
 </ol>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="8.4-computer-tasks-4.html#cb252-1" tabindex="-1"></a>Xtest <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(mnist<span class="sc">$</span>test<span class="sc">$</span>x)</span>
-<span id="cb252-2"><a href="8.4-computer-tasks-4.html#cb252-2" tabindex="-1"></a>Ytest <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(mnist<span class="sc">$</span>test<span class="sc">$</span>y)</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="8.4-computer-tasks-4.html#cb250-1" tabindex="-1"></a>Xtest <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(mnist<span class="sc">$</span>test<span class="sc">$</span>x)</span>
+<span id="cb250-2"><a href="8.4-computer-tasks-4.html#cb250-2" tabindex="-1"></a>Ytest <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(mnist<span class="sc">$</span>test<span class="sc">$</span>y)</span></code></pre></div>
 <ol start="22" style="list-style-type: lower-alpha">
 <li>Does the predictive accuracy change if instead of using the first <span class="math inline">\(p=100\)</span> principal component scores you use fewer or more? You can also try using larger training sets. The MNIST training data consists of <span class="math inline">\(60,000\)</span> images - depending upon your computer you may be able to repeat the analysis with all <span class="math inline">\(60,000\)</span> images. If so, how does this affect the prediction accuracy?</li>
 </ol>

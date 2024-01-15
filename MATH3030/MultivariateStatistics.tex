@@ -226,7 +226,7 @@
 \newcommand{\by}{\mathbf y}
 \newcommand{\bz}{\mathbf z}
 
-\newcommand{\bzero}{\boldsymbol 0}
+\newcommand{\bzero}{{\boldsymbol 0}}
 
 \newcommand{\cR}{\mathcal R}
 
@@ -468,7 +468,7 @@ Before trying any form of statistical analysis, it is always a good idea to do s
 \hypertarget{data-visualization}{%
 \subsection{Data visualization}\label{data-visualization}}
 
-Visualising datasets before fitting any models can be extremely useful. It allows us to see obvious patterns and relationships,and may suggest a sensible form of analysis.
+Visualising datasets before fitting any models can be extremely useful. It allows us to see obvious patterns and relationships, and may suggest a sensible form of analysis.
 With multivariate data, finding the right kind of plot is not always simple, and many different approaches have been proposed.
 
 When \(p=1\) or \(p=2\) we can simply draw histograms and scatter plots (respectively) to view the distribution. For \(p \geq 3\) the task is harder. One solution is a matrix of pair-wise scatter plots using the \texttt{pairs} command in R. The graph below shows the relationship between goals scored (F), goals against (A) and points (PT) for 20 teams during a recent Premiership season.
@@ -481,7 +481,7 @@ When \(p=1\) or \(p=2\) we can simply draw histograms and scatter plots (respect
 
 We can instantly see that points and goals scored are positively correlated, and that points and goals conceded (A) are negatively correlated (this is not a surprise of course).
 
-R has a good basic plotting functionality. However, we will sometimes use packages that provide additional functionality. The first time you use a package you may need to install it. We can use \texttt{ggplot2} and \texttt{GGally} (which adds functionality to ggplot2) to add colour and detail to pairs plots. For example
+R has a good basic plotting functionality. However, we will sometimes use packages that provide additional functionality. The first time you use a package you may need to install it. We can use \texttt{ggplot2} and \texttt{GGally} (which adds functionality to \texttt{ggplot2}) to add colour and detail to pairs plots. For example
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -714,7 +714,7 @@ A nice aspect of dplyr is that you can chain commmands together. So for example,
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{iris }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Species}\SpecialCharTok{==}\StringTok{\textquotesingle{}versicolor\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(Petal.Width}\SpecialCharTok{\textless{}}\FloatTok{1.5}\NormalTok{)}
+\NormalTok{iris }\SpecialCharTok{|\textgreater{}} \FunctionTok{filter}\NormalTok{(Species}\SpecialCharTok{==}\StringTok{\textquotesingle{}versicolor\textquotesingle{}}\NormalTok{) }\SpecialCharTok{|\textgreater{}} \FunctionTok{filter}\NormalTok{(Petal.Width}\SpecialCharTok{\textless{}}\FloatTok{1.5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -823,7 +823,7 @@ E & 59 & 85\\
   \AttributeTok{S =} \FunctionTok{c}\NormalTok{(}\DecValTok{63}\NormalTok{,}\DecValTok{82}\NormalTok{,}\DecValTok{38}\NormalTok{,}\DecValTok{57}\NormalTok{,}\DecValTok{85}\NormalTok{)}
 \NormalTok{  )}
 
-\NormalTok{Ex1 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select\_if}\NormalTok{(is.numeric) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ colMeans}
+\NormalTok{Ex1 }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(is.numeric) }\SpecialCharTok{|\textgreater{}} \FunctionTok{colMeans}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -834,7 +834,7 @@ E & 59 & 85\\
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{Ex1 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select\_if}\NormalTok{(is.numeric) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ cov}
+\NormalTok{Ex1 }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(is.numeric) }\SpecialCharTok{|\textgreater{}} \FunctionTok{cov}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -846,7 +846,7 @@ E & 59 & 85\\
 
 Note that by default R uses \(n-1\) in the denominator for the variance and covariance commands, whereas we used \(n\) in our definition.
 
-We will be using the \texttt{dplyr} R package to perform basic data manipulation in R. If you are unfamiliar with \texttt{dplyr}, you can read about it at \url{https://dplyr.tidyverse.org/}. The pipe command \texttt{\%\textgreater{}\%} is particularly useful for chaining together multiple commands.
+We will be using the \texttt{dplyr} R package to perform basic data manipulation in R. If you are unfamiliar with \texttt{dplyr}, you can read about it at \url{https://dplyr.tidyverse.org/}. The pipe command \texttt{\textbar{}\textgreater{}} is particularly useful for chaining together multiple commands.
 
 You could compute the same quantities using more familiar commands by selecting the numerical columns:
 
@@ -899,9 +899,7 @@ You could compute the same quantities using more familiar commands by selecting 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-Work with the `mtcars2` dataframe when you use `ggplot2`.
-\end{verbatim}
+Work with the \texttt{mtcars2} dataframe when you use \texttt{ggplot2}.
 
 \begin{itemize}
 \tightlist
@@ -1230,7 +1228,7 @@ then \(\text{det}({\mathbf A})=a_{11}a_{22}-a_{12}a_{21}\).
 \protect\hypertarget{def:posdef}{}\label{def:posdef}An \(n\times n\) matrix \(\mathbf A\) is symmetric if
 \[\mathbf A= \mathbf A^\top.\]
 An \(n\times n\) symmetric matrix \(\mathbf A\) is \textbf{positive-definite} if
-\[\mathbf x^\top \mathbf A\mathbf x>0 \mbox{ for all } \mathbf x\in \mathbb{R}^n, \mathbf x\not = \boldsymbol 0\]
+\[\mathbf x^\top \mathbf A\mathbf x>0 \mbox{ for all } \mathbf x\in \mathbb{R}^n, \mathbf x\not = {\boldsymbol 0}\]
 and is \textbf{positive semi-definite} if
 \[\mathbf x^\top \mathbf A\mathbf x\geq 0 \mbox{ for all } \mathbf x\in \mathbb{R}^n.\]
 
@@ -1367,11 +1365,11 @@ Otherwise, these vectors are said to be \textbf{linearly independent}.
 \hypertarget{colsspace}{%
 \subsection{Row and column spaces}\label{colsspace}}
 
-We can think about the matrix-vector multiplication \(\mathbf A\mathbf x\) in two ways. The usual way is as the inner product between the rows of \(A\) and \(x\).
+We can think about the matrix-vector multiplication \(\mathbf A\mathbf x\) in two ways. The usual way is as the inner product between the rows of \(\mathbf A\) and \(\mathbf x\).
 
 \[ \left( \begin{array}{cc} 1 & 2\\ 3&4\\5&6\end{array}\right) \left(\begin{array}{c}x_1\\ x_2\end{array}\right) = \left(\begin{array}{c} x_1+2x_2\\3x_1+4x_2\\5x_1+6x_2\end{array}\right)\]
 
-But a better way to think of \(\mathbf A\mathbf x\) is as a linear combination of the columns of \(A\).
+But a better way to think of \(\mathbf A\mathbf x\) is as a linear combination of the columns of \(\mathbf A\).
 
 \[ \left( \begin{array}{cc} 1 & 2\\ 3&4\\5&6\end{array}\right) \left(\begin{array}{c}x_1\\ x_2\end{array}\right) = x_1\left(\begin{array}{c}1\\3\\5 \end{array}\right)+x_2\left(\begin{array}{c}2\\4\\6 \end{array}\right)\]
 
@@ -1380,7 +1378,7 @@ But a better way to think of \(\mathbf A\mathbf x\) is as a linear combination o
 \[\mathcal{C}(\mathbf A) = \{\mathbf A\mathbf x:  \mathbf x\in \mathbb{R}^p\}\subset \mathbb{R}^n\]
 \end{definition}
 
-For \[A=\left( \begin{array}{cc} 1 & 2\\ 3&4\\5&6\end{array}\right) \] we can see that the column space is a 2-dimensional plane in \(\mathbb{R}^3\). The matrix \(\mathbf B\) has the same column space as \(\mathbf A\)
+For \[\mathbf A=\left( \begin{array}{cc} 1 & 2\\ 3&4\\5&6\end{array}\right) \] we can see that the column space is a 2-dimensional plane in \(\mathbb{R}^3\). The matrix \(\mathbf B\) has the same column space as \(\mathbf A\)
 \[\mathbf B=\left( \begin{array}{cccc} 1 & 2&3 &4\\ 3&4 &7&10\\5&6&11&16\end{array}\right) \]
 
 The number of linearly independent columns of \(\mathbf A\) is called the \textbf{column rank} of \(\mathbf A\), and is equal to the dimension of the column space of \(\mathcal{C}(\mathbf A)\). The \textbf{column rank} of \(\mathbf A\) and \(\mathbf B\) is 2.
@@ -1394,7 +1392,7 @@ The \textbf{row space} of \(\mathbf A\) is defined to be the column space of \(\
 Thus we can simply refer to the \textbf{rank} of the matrix.
 
 \begin{proof}
-The proof of this theorem is very simple. Let \(\mathbf C\) be an \(n \times r\) matrix (where \(r=\operatorname{rank}(\mathbf A)\)) with columns chosen to be a set of \(r\) linearly independent columns from \(A\). Then we know each column of \(\mathbf A\) can be written as a linear combination of the columns of \(\mathbf C\), i.e.
+The proof of this theorem is very simple. Let \(\mathbf C\) be an \(n \times r\) matrix (where \(r=\operatorname{rank}(\mathbf A)\)) with columns chosen to be a set of \(r\) linearly independent columns from \(\mathbf A\). Then we know each column of \(\mathbf A\) can be written as a linear combination of the columns of \(\mathbf C\), i.e.
 \[\mathbf A= \mathbf C\mathbf R.\]
 The dimension of \(\mathbf R\) must be \(r \times p\). But now we can see that the rows of \(\mathbf A\) are formed by a linear combination of the rows of \(\mathbf R\). Thus the row rank of \(\mathbf A\) is at most \(r\) (=the column rank of \(\mathbf A\)). This holds for any matrix, so is true for \(\mathbf A^\top\): namely \(\operatorname{row-rank}(A^\top)\leq \operatorname{column-rank}(A^\top)\). But the row space of \(\mathbf A^\top\) equals \(\mathcal{C}(\mathbf A)\), thus proving the theorem!
 \end{proof}
@@ -1404,14 +1402,15 @@ The dimension of \(\mathbf R\) must be \(r \times p\). But now we can see that t
 \end{corollary}
 
 \begin{example}
-\protect\hypertarget{exm:matrix1}{}\label{exm:matrix1}\[B = \left( \begin{array}{cccc} 1 & 2\\ 3&4 \\5&6\end{array}\right)\left(\begin{array}{cccc}1&0&1&2\\0&1&1&1\end{array}\right)
+\protect\hypertarget{exm:matrix1}{}\label{exm:matrix1}\[\mathbf B= \left( \begin{array}{cccc} 1 & 2\\ 3&4 \\5&6\end{array}\right)\left(\begin{array}{cccc}1&0&1&2\\0&1&1&1\end{array}\right)
 \]
+So we can see that the rank of \(\mathbf B\) is 2.
 \end{example}
 
 \begin{example}
-\protect\hypertarget{exm:matrix2}{}\label{exm:matrix2}\[ D=\left( \begin{array}{ccc} 1 & 2&3\\ 2&4&6 \end{array}\right)= \left( \begin{array}{c} 1 \\ 2 \end{array}\right)\left(\begin{array}{ccc}1&2&3\end{array}\right)
+\protect\hypertarget{exm:matrix2}{}\label{exm:matrix2}\[ \mathbf D=\left( \begin{array}{ccc} 1 & 2&3\\ 2&4&6 \end{array}\right)= \left( \begin{array}{c} 1 \\ 2 \end{array}\right)\left(\begin{array}{ccc}1&2&3\end{array}\right)
 \]
-So the rank of \(D\) is \(1\).
+So the rank of \(\mathbf D\) is \(1\).
 \end{example}
 
 \hypertarget{linear-transformations}{%
@@ -1427,7 +1426,7 @@ The \textbf{image} of \(\mathbf A\) is precisely the column space of \(\mathbf A
 \[\operatorname{Im}(\mathbf A) = \{\mathbf A\mathbf x: \mathbf x\in \mathbb{R}^p\}=\mathcal{C}(\mathbf A) \subset \mathbb{R}^n\]
 
 The \textbf{kernel} of \(A\) is the set of vectors mapped to zero:
-\[\operatorname{Ker}(\mathbf A)=\{\mathbf x: \mathbf A\mathbf x=\boldsymbol 0\}\subset \mathbb{R}^p\]
+\[\operatorname{Ker}(\mathbf A)=\{\mathbf x: \mathbf A\mathbf x={\boldsymbol 0}\}\subset \mathbb{R}^p\]
 and is sometimes called the \textbf{null-space} of \(\mathbf A\) and denoted \(\mathcal{N}(\mathbf A)\).
 
 \begin{theorem}
@@ -1438,29 +1437,29 @@ and is sometimes called the \textbf{null-space} of \(\mathbf A\) and denoted \(\
 If we're thinking about matrices, then \(\dim \mathcal{C}(\mathbf A)+\dim \mathcal{N}(\mathbf A)=p\), or equivalently that\\
 \(\operatorname{rank}(\mathbf A)+\dim \mathcal{N}(\mathbf A)=p\).
 
-We've already said that the row space of \(\mathbf A\) is \(\mathcal{C}(\mathbf A^\top)\). The left-null space is \(\{\mathbf x\in \mathbb{R}^n: \mathbf x^\top \mathbf A=0\}\) or equivalently \(\{x \in \mathbb{R}^n: \mathbf A^\top \mathbf x=0\}=\mathcal{N}(\mathbf A^\top)\). And so by the rank-nullity theorem we must have
+We've already said that the row space of \(\mathbf A\) is \(\mathcal{C}(\mathbf A^\top)\). The left-null space is \(\{\mathbf x\in \mathbb{R}^n: \mathbf x^\top \mathbf A={\boldsymbol 0}\}\) or equivalently \(\{x \in \mathbb{R}^n: \mathbf A^\top \mathbf x=0\}=\mathcal{N}(\mathbf A^\top)\). And so by the rank-nullity theorem we must have
 \[n=\dim \mathcal{C}(\mathbf A^\top) + \dim \mathcal{N}(\mathbf A^\top)=
 \operatorname{rank}(\mathbf A)+\dim \operatorname{Ker}(\mathbf A^\top).\]
 
 \begin{example}
-\protect\hypertarget{exm:ranknullityeg}{}\label{exm:ranknullityeg}Consider again the matrix \(D: \mathbb{R}^3\rightarrow \mathbb{R}^2\)
-\[ D=\left( \begin{array}{ccc} 1 & 2&3\\ 2&4&6 \end{array}\right)= \left( \begin{array}{c} 1 \\ 2 \end{array}\right)\left(\begin{array}{ccc}1&2&3\end{array}\right)
+\protect\hypertarget{exm:ranknullityeg}{}\label{exm:ranknullityeg}Consider again the matrix \(\mathbf D: \mathbb{R}^3\rightarrow \mathbb{R}^2\)
+\[ \mathbf D=\left( \begin{array}{ccc} 1 & 2&3\\ 2&4&6 \end{array}\right)= \left( \begin{array}{c} 1 \\ 2 \end{array}\right)\left(\begin{array}{ccc}1&2&3\end{array}\right)
 \]
 We have already seen that
-\[\mathcal{C}(D)=\operatorname{span}\left\{\left(\begin{array}{c}1\\2\end{array}\right)\right\}\]
-and so \(\dim \mathcal{C}(D)=\operatorname{rank}(D)=1\).
-The kernel, or null-space, of \(\mathbf D\) is the set of vectors for which \(\mathbf D\mathbf x=\boldsymbol 0\), i.e.,
+\[\mathcal{C}(\mathbf D)=\operatorname{span}\left\{\left(\begin{array}{c}1\\2\end{array}\right)\right\}\]
+and so \(\dim \mathcal{C}(\mathbf D)=\operatorname{rank}(\mathbf D)=1\).
+The kernel, or null-space, of \(\mathbf D\) is the set of vectors for which \(\mathbf D\mathbf x={\boldsymbol 0}\), i.e.,
 \[x_1+2x_2+3x_3=0\]
 This is a single equation with three unknowns, and so there must be a plane of solutions. We need two linearly independent vectors in this plane to describe it. Convince yourself that
-\[\mathcal{N}(D) = \operatorname{span}\left\{\left(\begin{array}{c}0\\3\\-2\end{array}\right), \left(\begin{array}{c}2\\-1\\0\end{array}\right)\right\}\]
+\[\mathcal{N}(\mathbf D) = \operatorname{span}\left\{\left(\begin{array}{c}0\\3\\-2\end{array}\right), \left(\begin{array}{c}2\\-1\\0\end{array}\right)\right\}\]
 So we have
-\[\dim \mathcal{C}(D)+\dim \mathcal{N}(D)=1+2=3\]
+\[\dim \mathcal{C}(\mathbf D)+\dim \mathcal{N}(\mathbf D)=1+2=3\]
 as required by the rank-nullity theorem.
 
-If we consider \(D^\top\), we already know \(\dim \mathcal{C}(D^\top)=1\) (as row-rank=column rank), and the rank-nullity theorem tells us that the dimension of the null space of \(D^\top\) must be \(2-1=1\). This is easy to confirm as \(D^\top x=0\) implies
+If we consider \(\mathbf D^\top\), we already know \(\dim \mathcal{C}(\mathbf D^\top)=1\) (as row-rank=column rank), and the rank-nullity theorem tells us that the dimension of the null space of \(\mathbf D^\top\) must be \(2-1=1\). This is easy to confirm as \(\mathbf D^\top x=0\) implies
 \[x_1+2x_2=0\]
 which is a line in \(\mathbb{R}^2\)
-\[\mathcal{N}(D^\top) = \operatorname{span}\left\{ \left(\begin{array}{c}-2\\1\end{array}\right)\right\}\]
+\[\mathcal{N}(\mathbf D^\top) = \operatorname{span}\left\{ \left(\begin{array}{c}-2\\1\end{array}\right)\right\}\]
 \end{example}
 
 \textbf{Question:} When does a square matrix \(\mathbf A\) have an inverse?
@@ -1489,7 +1488,7 @@ have a solution?
 \item
   Suppose \(\mathbf x\) and \(\mathbf x'\) are both solutions with \(\mathbf x\not =\mathbf x'\). We can write \(\mathbf x'=\mathbf x+\mathbf u\) for some vector \(\mathbf u\) and note that
   \[\mathbf y=\mathbf A\mathbf x' = \mathbf A\mathbf x+\mathbf A\mathbf u= \mathbf y+\mathbf A\mathbf u\]
-  and so \(\mathbf A\mathbf u=\boldsymbol 0\), i.e., \(\mathbf u\in \mathcal{N}(A)\). So there are multiple solutions when the null-space of \(\mathbf A\) contains more than the zero vector. If the dimension of \(\mathcal{N}(A)\) is one, there is a line of solutions. If the dimension is two, there is a plane of solutions, etc.
+  and so \(\mathbf A\mathbf u={\boldsymbol 0}\), i.e., \(\mathbf u\in \mathcal{N}(\mathbf A)\). So there are multiple solutions when the null-space of \(\mathbf A\) contains more than the zero vector. If the dimension of \(\mathcal{N}(A)\) is one, there is a line of solutions. If the dimension is two, there is a plane of solutions, etc.
 \end{itemize}
 
 \hypertarget{linalg-innerprod}{%
@@ -1604,8 +1603,8 @@ and so we have that \(\mathbf Q^{-1}=\mathbf Q^\top\).
 
 Now suppose \(\mathbf Q\) is \(n \times p\) with \(n\not = p\). Then as
 \(\mathbf Q^\top \mathbf Q=\mathbf I_{p\times p}\), we must have \(\operatorname{tr}(\mathbf Q^\top \mathbf Q)=p\). This implies that
-\[\operatorname{tr}(\mathbf Q\mathbf Q^\top)=\operatorname{tr}(\mathbf Q^\top \mathbf Q)=m\] and so
-we cannot have \(\mathbf Q\mathbf Q^\top=\mathbf I_{n}\) as \(\operatorname{tr}{\mathbf I_{n}}=n\).
+\[\operatorname{tr}(\mathbf Q\mathbf Q^\top)=\operatorname{tr}(\mathbf Q^\top \mathbf Q)=p\] and so
+we cannot have \(\mathbf Q\mathbf Q^\top=\mathbf I_{n}\) as \(\operatorname{tr}{(\mathbf I_{n})}=n\).
 \end{proof}
 
 \begin{corollary}
@@ -1658,7 +1657,7 @@ View \(\mathbf P\) as a map from a vector space \(W\) to itself. Let \(U=\operat
 Let \(\mathbf w\in W\). Then
 \[\mathbf w= \mathbf I_n \mathbf w=(\mathbf I-\mathbf P)\mathbf w+ \mathbf P\mathbf w\]
 Now \(\mathbf P\mathbf w\in \operatorname{Im}(\mathbf P)\) and \((\mathbf I-\mathbf P)\mathbf w\in \operatorname{Ker}(\mathbf P)\) as
-\[\mathbf P(\mathbf I-\mathbf P)\mathbf w= (\mathbf P-\mathbf P^2)\mathbf w=\boldsymbol 0.\]
+\[\mathbf P(\mathbf I-\mathbf P)\mathbf w= (\mathbf P-\mathbf P^2)\mathbf w={\boldsymbol 0}.\]
 \end{proof}
 
 \begin{proposition}
@@ -1705,7 +1704,7 @@ We need to find \(\mathbf u= \sum \lambda_i \mathbf u_i = \mathbf A\boldsymbol \
 \end{align*}
 
 Differentiating with respect to \(\boldsymbol \lambda\) and setting equal to zero gives
-\[\boldsymbol 0=-2 \mathbf A^\top \mathbf w+2 \mathbf A^\top \mathbf A\boldsymbol \lambda\]
+\[{\boldsymbol 0}=-2 \mathbf A^\top \mathbf w+2 \mathbf A^\top \mathbf A\boldsymbol \lambda\]
 and hence
 \[ \boldsymbol \lambda= (\mathbf A^\top \mathbf A)^{-1}\mathbf A^\top \mathbf w.\]
 The orthogonal projection of \(\mathbf w\) is hence
@@ -1762,18 +1761,12 @@ which is the usual least-squares estimator.
 The \textbf{centering matrix} will be play an important role in this module, as we will use it to remove the column means from a matrix (so that each column has mean zero), \emph{centering} the matrix.
 
 \begin{definition}
-\protect\hypertarget{def:centeringmatrix}{}\label{def:centeringmatrix}\leavevmode
-
-\begin{verbatim}
-The **centering matrix** is 
-\end{verbatim}
-
+\protect\hypertarget{def:centeringmatrix}{}\label{def:centeringmatrix}The \textbf{centering matrix} is
 \begin{equation}
 \mathbf H=\mathbf I_n - \frac{1}{n} {\mathbf 1}_n {\mathbf 1}_n^\top.
 \label{eq:Hcentre}
 \end{equation}
 where \(\mathbf I_n\) is the \(n \times n\) identity matrix, and \({\mathbf 1}_n\) is an \(n \times 1\) column vector of ones.
-
 \end{definition}
 
 You will be asked to prove the following results about \(\mathbf H\) in the exercises:
@@ -2220,7 +2213,7 @@ Thus you'll see that it usually isn't worth computing the centering matrix when 
 \hypertarget{linalg-decomp}{%
 \chapter{Matrix decompositions}\label{linalg-decomp}}
 
-This chapter focusses on two ways to decompose a matrix into smaller parts. We can then think about which are the most important parts of the matrix, and that will be useful when we think about dimension reduction. The highlight of the chapter is the singular value decomposition (SVD), which is one of the most useful mathematical concepts from the past century, and is relied upon throughout statistics and machine learning. The SVD extends the idea of the eigen (or spectral) decomposition of symmetric square matrices to any matrix.
+This chapter focuses on two ways to decompose a matrix into smaller parts. We can then think about which are the most important parts of the matrix, and that will be useful when we think about dimension reduction. The highlight of the chapter is the singular value decomposition (SVD), which is one of the most useful mathematical concepts from the past century, and is relied upon throughout statistics and machine learning. The SVD extends the idea of the eigen (or spectral) decomposition of symmetric square matrices to any matrix.
 
 \begin{itemize}
 \tightlist
@@ -2315,7 +2308,7 @@ We say that
 vector \(\mathbf x\in \mathbb{R}^n\) is an \textbf{eigenvector} corresponding to \textbf{eigenvalue} \(\lambda\) of \(\mathbf A\) if
 \[\mathbf A\mathbf x= \lambda \mathbf x.\]
 
-To find the eigenvalues of a matrix, we note that if \(\lambda\) is an eigenvalue, then \((\mathbf A-\lambda \mathbf I_n)\mathbf x=\boldsymbol 0\), i.e., the kernel of \(\mathbf A-\lambda \mathbf I_n\) has dimension at least 1, so \(\mathbf A-\lambda \mathbf I_n\) is not invertible, and so we must have \(\text{det}(\mathbf A-\lambda \mathbf I_n)=0\).
+To find the eigenvalues of a matrix, we note that if \(\lambda\) is an eigenvalue, then \((\mathbf A-\lambda \mathbf I_n)\mathbf x={\boldsymbol 0}\), i.e., the kernel of \(\mathbf A-\lambda \mathbf I_n\) has dimension at least 1, so \(\mathbf A-\lambda \mathbf I_n\) is not invertible, and so we must have \(\text{det}(\mathbf A-\lambda \mathbf I_n)=0\).
 
 Let \(R(\lambda )=\text{det}(\mathbf A-\lambda \mathbf I_n)\), which is an \(n^{\text{th}}\) order polynomial in \(\lambda\). To find the eigenvalues of \(\mathbf A\) we find the \(n\) roots \(\lambda _1, \dots , \lambda _n\) of \(R(\lambda )\). We will always consider ordered eigenvalues so that \(\lambda _1\geq \dots \geq \lambda _n\)
 
@@ -2373,7 +2366,7 @@ if and only if \(\lambda _n >0\). It is positive semi-definite if and only if \(
 If \(\mathbf A\) is positive definite, and if \(\mathbf x\) is a unit-eigenvector of \(\mathbf A\) corresponding to \(\lambda_n\), then
 \[0<\mathbf x^\top \mathbf A\mathbf x= \lambda_n \mathbf x^\top \mathbf x= \lambda_n.\]
 
-Conversely, suppose \(\mathbf A\) has positive eigenvalues. Because \(\mathbf A\) is real and symmetric, we can write it as \(\mathbf A=\mathbf Q\boldsymbol \Lambda\mathbf Q^\top\). Now if \(\mathbf x\) is a non-zero vector, then \(\mathbf y= \mathbf Q^\top \mathbf x\not= \boldsymbol 0\), (as \(\mathbf Q^\top\) has inverse \(\mathbf Q\) and hence \(\dim \operatorname{Ker}(\mathbf Q)=0\)). Thus
+Conversely, suppose \(\mathbf A\) has positive eigenvalues. Because \(\mathbf A\) is real and symmetric, we can write it as \(\mathbf A=\mathbf Q\boldsymbol \Lambda\mathbf Q^\top\). Now if \(\mathbf x\) is a non-zero vector, then \(\mathbf y= \mathbf Q^\top \mathbf x\not= {\boldsymbol 0}\), (as \(\mathbf Q^\top\) has inverse \(\mathbf Q\) and hence \(\dim \operatorname{Ker}(\mathbf Q)=0\)). Thus
 \[\mathbf x^\top \mathbf A\mathbf x= \mathbf y^\top \boldsymbol \Lambda\mathbf y= \sum_{i=1}^n \lambda_i y_i^2 >0\] and thus \(\mathbf A\) is positive definite.
 \end{proof}
 
@@ -2429,7 +2422,7 @@ If matrix \(\mathbf A\) is not a square matrix, then it cannot have eigenvectors
 Suppose \(\bf\) is a \(n\times p\) matrix. Then we say \(\sigma\) is a
 \textbf{singular value} with corresponding \textbf{left} and \textbf{right} singular vectors \(\mathbf u\) and \(\mathbf v\) (respectively) if
 \[\mathbf A\mathbf v= \sigma \mathbf u\quad \mbox{ and }\quad \mathbf A^\top \mathbf u= \sigma \mathbf v\]
-If \(\mathbf A\) if a symmetric matrix then \(\mathbf u=\mathbf v\) is a eigenvector and \(\sigma\) is an eigenvalue.
+If \(\mathbf A\) is a symmetric matrix then \(\mathbf u=\mathbf v\) is a eigenvector and \(\sigma\) is an eigenvalue.
 
 The singular value decomposition (SVD) \textbf{diagonalizes} \(\mathbf A\) into a product of a matrix of left singular vectors \(\mathbf U\), a diagonal matrix of singular values \(\boldsymbol{\Sigma}\), and a matrix of right singular vectors \(\mathbf V\).
 
@@ -2485,7 +2478,7 @@ In addition
 and so \(\mathbf u_i\) and \(\mathbf v_i\) are left and right singular vectors.
 
 Let \(\mathbf U=[\mathbf u_1 \; \mathbf u_2 \; \ldots \; \mathbf u_r\; \ldots \; \mathbf u_n]\), where \(\mathbf u_{r+1}, \ldots, \mathbf u_n\) are chosen to complete the orthonormal basis for \(\mathbb{R}^n\) given \(\mathbf u_1, \ldots, \mathbf u_r\), and
-let \(\Sigma\) be the \(n\times p\) diagonal matrix in Equation \eqref{eq:sigmasvd}.
+let \(\boldsymbol{\Sigma}\) be the \(n\times p\) diagonal matrix in Equation \eqref{eq:sigmasvd}.
 
 Then we have shown that
 \[\mathbf U= \mathbf A\mathbf V\boldsymbol{\Sigma}^{-1}\]
@@ -2615,7 +2608,7 @@ The eigenvectors are only defined upto multiplication by \(-1\) and so we can mu
 Why are eigenvalues and singular values useful in statistics? It is because they appear as the result of some important optimization problems. We'll see more about this in later chapters, but we'll prove a few preliminary results here.
 
 For example, suppose \(\mathbf x\in\mathbb{R}^n\) is a random variable with \({\mathbb{C}\operatorname{ov}}(\mathbf x)=\boldsymbol{\Sigma}\) (an \(n \times n\) matrix), then can we find a projection of \(\mathbf x\) that has either maximum or minimum variance? I.e., can we find \(\mathbf a\) such that \[{\mathbb{V}\operatorname{ar}}(\mathbf a^\top\mathbf x)=\mathbf a^\top \boldsymbol{\Sigma}\mathbf a\] is maximized or minimized?
-To make the question interesting we need to constrain the length of \(\mathbf a\) so lets assume that \(||\mathbf a||_2 = \sqrt{\mathbf a^\top \mathbf a}=1\), otherwise we could just take \(\mathbf a=\boldsymbol 0\) to obtain a projection with variance zero. So we want to solve the optimization problems involving the quadratic form \(\mathbf a^\top \boldsymbol{\Sigma}\mathbf a\):
+To make the question interesting we need to constrain the length of \(\mathbf a\) so lets assume that \(||\mathbf a||_2 = \sqrt{\mathbf a^\top \mathbf a}=1\), otherwise we could just take \(\mathbf a={\boldsymbol 0}\) to obtain a projection with variance zero. So we want to solve the optimization problems involving the quadratic form \(\mathbf a^\top \boldsymbol{\Sigma}\mathbf a\):
 
 \begin{equation}
 \max_{\mathbf a: \;\mathbf a^\top \mathbf a=1}\mathbf a^\top \boldsymbol{\Sigma}\mathbf a, \quad \mbox{and}\quad
@@ -2660,11 +2653,11 @@ the first singular value of \(\mathbf A\), with the maximum achieved at \(\mathb
 \end{proposition}
 
 \begin{proof}
-This is follows from \ref{prp:two8} as
+This follows from \ref{prp:two8} as
 \[||\mathbf A\mathbf x||_2^2=\mathbf x^\top \mathbf A^\top\mathbf A\mathbf x.\]
 \end{proof}
 
-Here, \(||\mathbf x|_2\) denotes the Euclidean norm for vectors:
+Here, \(||\mathbf x||_2\) denotes the Euclidean norm for vectors:
 \[||\mathbf x||_2 = (\mathbf x^\top \mathbf x)^{\frac{1}{2}}.\]
 
 Finally, we will need the following result when we study canonical correlation analysis:
@@ -2746,7 +2739,7 @@ We'll now consider a family of approximations of the form
 \mathbf A_k = \sum_{i=1}^k \sigma_i \mathbf u_i \mathbf v_i^\top
 \label{eq:svdreduced}
 \end{equation}
-where \(k<=r=\operatorname{rank}(\mathbf A)\). This is a rank-k matrix, and as we'll now show, it is the best possible rank-k approximation to \(\mathbf A\).
+where \(k\leq r=\operatorname{rank}(\mathbf A)\). This is a rank-k matrix, and as we'll now show, it is the best possible rank-k approximation to \(\mathbf A\).
 
 \begin{theorem}
 \protect\hypertarget{thm:Eckart-Young}{}\label{thm:Eckart-Young}\textbf{(Eckart-Young-Mirsky)} For either the 2-norm \(||\cdot||_2\) or the Frobenious norm \(||\cdot||_F\)
@@ -3315,7 +3308,7 @@ As before, let \(\mathbf x_1,\ldots,\mathbf x_n\) be \(p \times 1\) vectors of m
 \]
 
 \textbf{IMPORTANT NOTE:}
-In this section we will assume that \(\mathbf X\) has been column centered so that the mean of each column is \(0\) (i.e., the sample mean of \(\mathbf x_1,\ldots,\mathbf x_n\) is the zero vector \(\boldsymbol 0\in \mathbb{R}^p\)). If \(\mathbf X\) has not been column centered, replace \(\mathbf X\) by
+In this section we will assume that \(\mathbf X\) has been column centered so that the mean of each column is \(0\) (i.e., the sample mean of \(\mathbf x_1,\ldots,\mathbf x_n\) is the zero vector \({\boldsymbol 0}\in \mathbb{R}^p\)). If \(\mathbf X\) has not been column centered, replace \(\mathbf X\) by
 \[\mathbf H\mathbf X\] where \(\mathbf H\) is the centering matrix (see \ref{centering-matrix}), or equivalently, replace \(\mathbf x_i\) by \(\mathbf x_i - \bar{\mathbf x}\). It is possible to write out the details of PCA replacing \(\mathbf X\) by \(\mathbf H\mathbf X\) throughout, but this gets messy and obscures the important detail. Most software implementations (and in particular \texttt{prcomp} in R), automatically centre your data for you, and so in practice you don't need to worry about doing this when using a software package.
 
 The sample covariance matrix for \(\mathbf X\) (assuming it has been column centered) is
@@ -3329,7 +3322,7 @@ have
 \item
   \textbf{mean \(0\)}:
   \[\bar{y}= \frac{1}{n}\sum_{i=1}^n y_i = \frac{1}{n}\sum_{i=1}^n \mathbf u^\top \mathbf x_i =\frac{1}{n} \mathbf u^\top \sum_{i=1}^n  \mathbf x_i = 0\]
-  as the mean of the \(\mathbf x_i\) is \(\boldsymbol 0\).
+  as the mean of the \(\mathbf x_i\) is \({\boldsymbol 0}\).
 \item
   \textbf{sample covariance matrix} \[\mathbf u^\top \mathbf S\mathbf u\]
   as
@@ -3343,7 +3336,7 @@ have
 We would like to find the \(\mathbf u\) which maximises the sample variance, \(\mathbf u^\top \mathbf S\mathbf u\) over unit vectors \(\mathbf u\), i.e., vectors with \(||\mathbf u||=1\). Why do we focus on unit vectors? If we don't, we could make the variance as large as we like, e.g., if we replace \(\mathbf u\) by \(10\mathbf u\) it would increase the variance by a factor of 100. Thus, we constrain the problem and only consider unit vectors for \(\mathbf u\).
 
 We know from Proposition \ref{prp:two8} in Section \ref{svdopt} that \(\mathbf v_1\), the first eigenvector of \(\mathbf S\) (also the first right singular vector of \(\mathbf X\)), maximizes \(\mathbf u^\top \mathbf S\mathbf u\) with
-\[  \max_{\mathbf u: ||\mathbf u||=1} \mathbf u^\top \mathbf S\mathbf u= \mathbf v_1 \mathbf S\mathbf v_1 =\lambda_1\]
+\[  \max_{\mathbf u: ||\mathbf u||=1} \mathbf u^\top \mathbf S\mathbf u= \mathbf v_1^\top \mathbf S\mathbf v_1 =\lambda_1\]
 where \(\lambda_1\) is the largest eigenvalue of \(\mathbf S\).
 
 So the first principal component of \(\mathbf X\) is \(\mathbf v_1\), and the first transformed variable (sometimes called a principal component score) is \(y_1 = \mathbf v_1 ^\top \mathbf x\).
@@ -3647,7 +3640,7 @@ R also has a built-in function for doing PCA.
 ## [10,]  12.627880 -1.5286074
 \end{verbatim}
 
-Note that the new variables have sample mean \(\bar{\mathbf y}=\boldsymbol 0\). The sample covariance matrix is a diagonal with entries given by the eigenvalues (see part 4. of Proposition \ref{prp:pca2}). Note that there is always some numerical error (so quantities are never 0, and instead are just very small numnbers).
+Note that the new variables have sample mean \(\bar{\mathbf y}={\boldsymbol 0}\). The sample covariance matrix is a diagonal with entries given by the eigenvalues (see part 4. of Proposition \ref{prp:pca2}). Note that there is always some numerical error (so quantities are never 0, and instead are just very small numbers).
 
 \[
 \boldsymbol \Lambda= \text{diag}(\lambda_1,\lambda_2) =  \begin{pmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{pmatrix}.
@@ -3833,7 +3826,7 @@ Let \(\mathbf x_1, \ldots , \mathbf x_n\) denote a sample of vectors in \(\mathb
 \mathbf S=\mathbf V\boldsymbol \Lambda\mathbf V^\top = \sum_{j=1}^p  \lambda_j \mathbf v_j \mathbf v_j^\top,
 \label{eq:pcaspect}
 \end{equation}
-where the eigenvalues are \(\lambda_1 \geq \lambda_2 \geq \lambda_p \geq 0\) with \(\boldsymbol \Lambda=\text{diag}\{\lambda_1, \ldots, \lambda_p\}\), and \(\mathbf V\) contains the eigenvectors of \(\mathbf S\). If \(\mathbf S\) is of full rank, then \(\lambda_p>0\). If \(\mathbf S\) is rank \(r\), with \(r<p\), then \(\lambda_{r+1}=\ldots, \lambda_p=0\) and we can truncate \(\mathbf V\) to consider just the first \(r\) columns.
+where the eigenvalues are \(\lambda_1 \geq \lambda_2 \geq \lambda_p \geq 0\) with \(\boldsymbol \Lambda=\text{diag}\{\lambda_1, \ldots, \lambda_p\}\), and \(\mathbf V\) contains the eigenvectors of \(\mathbf S\). If \(\mathbf S\) is of full rank, then \(\lambda_p>0\). If \(\mathbf S\) is rank \(r\), with \(r<p\), then \(\lambda_{r+1}=\ldots \lambda_p=0\) and we can truncate \(\mathbf V\) to consider just the first \(r\) columns.
 
 The principal components of \(\mathbf X\) are defined sequentially. If the \(\mathbf v_k\) is value of \(\mathbf u\) that maximizes the objective for the \(k^{th}\) problem (for \(k<j\)), then the \(j^{th}\) principal component is the solution to the following optimization problem:
 \begin{equation}
@@ -3860,17 +3853,17 @@ Differentiating (see \ref{vectordiff}) with respect to \(\mathbf u\) and setting
 Rearranging we see that \(\mathbf u\) must satify
 \[\mathbf S\mathbf u=\lambda \mathbf u\mbox{ with } \mathbf u^\top \mathbf u=1\]
 i.e., \(\mathbf u\) is a unit eigenvector of \(\mathbf S\). Substituting this back in to the objective we see
-\[\mathbf u\mathbf S\mathbf u= \lambda\]
+\[\mathbf u^\top \mathbf S\mathbf u= \lambda\]
 and so we must choose \(\mathbf u=\mathbf v_1\), the eigenvector corresponding to the largest eigenvalue of \(\mathbf S\).
 
 We now proceed inductively and assume the result is true for \(k=1, \ldots, j-1\). The Lagrangian for the \(j^{th}\) optimization problem is
 \[\mathcal{L} = \mathbf u^\top  \mathbf S\mathbf u+\lambda(1-\mathbf u^\top \mathbf u) +\sum_{k=1}^{j-1}\mu_k (0-\mathbf u^\top \mathbf v_k)\]
 where we now have \(j\) Lagrange multipliers \(\lambda, \mu_1, \ldots, \mu_{j-1}\) - one for each constraint.
 Differentiating with respect to \(\mathbf u\) and setting equal to zero gives
-\[0 = 2\mathbf S\mathbf u- 2\lambda \mathbf u- \sum_{k=1}^{j-1} \mu_k\mathbf v_k=0 \]
+\[2\mathbf S\mathbf u- 2\lambda \mathbf u- \sum_{k=1}^{j-1} \mu_k\mathbf v_k=0 \]
 If we left multiply by \(\mathbf v_l^\top\) we get
-\[2\mathbf v_l^\top \mathbf S\mathbf u- 2\lambda \mathbf v_l \mathbf u- \sum \mu_k \mathbf v_l^\top \mathbf v_k =0\]
-We know \(\mathbf v_l\) is an eigenvector of \(\mathbf S\) and so \(\mathbf S\mathbf v_l=\lambda_l \mathbf v_l\) and hence \(\mathbf v_k \mathbf S\mathbf u=0\) as \(\mathbf v_l^\top \mathbf u=0\). Also \[\mathbf v_l^\top\mathbf v_k=\begin{cases}1 &\mbox{ if } k=l\\
+\[2\mathbf v_l^\top \mathbf S\mathbf u- 2\lambda \mathbf v_l^\top \mathbf u- \sum \mu_k \mathbf v_l^\top \mathbf v_k =0\]
+We know \(\mathbf v_l\) is an eigenvector of \(\mathbf S\) and so \(\mathbf S\mathbf v_l=\lambda_l \mathbf v_l\) and hence \(\mathbf v_l^\top \mathbf S\mathbf u=0\) as \(\mathbf v_l^\top \mathbf u=0\). Also \[\mathbf v_l^\top\mathbf v_k=\begin{cases}1 &\mbox{ if } k=l\\
 0 &\mbox{ otherwise, }\end{cases}\] and thus we've shown that \(\mu_l=0\) for \(l=1, \ldots, j-1\). So again we have that \[\mathbf S\mathbf u= \lambda \mathbf u\]
 i.e., \(\mathbf u\) must be a unit eigenvector of \(\mathbf S\). It only remains to show \emph{which} eigenvector it is. Because \(\mathbf u\) must be orthogonal to \(\mathbf v_1, \ldots, \mathbf v_{j-1}\),
 and as \(\mathbf v_l^\top \mathbf S\mathbf v_l = \lambda_l\), we must choose \(\mathbf u=\mathbf v_j\), the eigenvector corresponding to the \(j^{th}\) largest eigenvalue.
@@ -3883,7 +3876,7 @@ For \(j=1, \ldots , p\), the scores of the \(j^{th}\) principal component (PC) a
 \[
 y_{ij}=\mathbf v_j^\top(\mathbf x_i - \bar{\mathbf x}), \qquad i=1, \ldots , n.
 \]
-The \(j^{th}\) eigenvector \(\mathbf v_j\) is sometimes referred to as the vector of \textbf{loadings} for the \(j^{th}\) PC. Note that if \(\operatorname{rank}(S)=r<p\), then the \(r+1^{th}, \ldots, p^{th}\) scores are meaningless, as they will all be zero.
+The \(j^{th}\) eigenvector \(\mathbf v_j\) is sometimes referred to as the vector of \textbf{loadings} for the \(j^{th}\) PC. Note that if \(\operatorname{rank}(\mathbf S)=r<p\), then the \(r+1^{th}, \ldots, p^{th}\) scores are meaningless, as they will all be zero.
 
 In vector notation
 \[
@@ -3912,11 +3905,11 @@ The following results hold:
 \item
   The sample covariance matrix of \(\mathbf y_1, \ldots, \mathbf y_n\) is
   \[\Lambda = \operatorname{diag}(\lambda_1, \ldots, \lambda_p)\]
-  i.e., for each fixed \(j\), the sample variance of \(y_{ij}\) is \(\lambda_j\), and \(y_{ij}\) is uncorrelated with with \(y_{ik}\) for \(j\not = k\).
+  i.e., for each fixed \(j\), the sample variance of \(y_{ij}\) is \(\lambda_j\), and \(y_{ij}\) is uncorrelated with \(y_{ik}\) for \(j\not = k\).
 \item
   For \(j\leq k\) the sample variance of \(\{y_{ij}\}_{i=1, \ldots , n}\) is greater than or equal to the sample variance of \(\{y_{ik}\}_{i=1, \ldots , n}\).
   \[\mathbf v_1^\top \mathbf S\mathbf v_1 \geq \mathbf v_2^\top \mathbf S\mathbf v_2 \geq \ldots \geq \mathbf v_p^\top \mathbf S\mathbf v_p\geq 0\]
-  Note that if \(\operatorname{rank}(S)=r<p\), then \(\mathbf v_k^\top \mathbf S\mathbf v_k = 0\) for \(k=r+1, \ldots, p\).
+  Note that if \(\operatorname{rank}(\mathbf S)=r<p\), then \(\mathbf v_k^\top \mathbf S\mathbf v_k = 0\) for \(k=r+1, \ldots, p\).
 \item
   The sum of the sample variances is equal to the trace of \(\mathbf S\)
   \[\sum_{j=1}^p \mathbf v_j^\top \mathbf S\mathbf v_j = \sum_{j=1}^p \lambda_j = \text{tr}(\mathbf S)\]
@@ -3930,7 +3923,7 @@ The following results hold:
 \begin{proof}
 
 For i.
-\[\bar{\mathbf y} = \frac{1}{n}\sum_{i=1}^n \mathbf V^\top(\mathbf x_i-\bar{\mathbf x}) = \frac{1}{n} \mathbf V^\top\sum_{i=1}^n(\mathbf x_i-\bar{\mathbf x}) =\boldsymbol 0.\]
+\[\bar{\mathbf y} = \frac{1}{n}\sum_{i=1}^n \mathbf V^\top(\mathbf x_i-\bar{\mathbf x}) = \frac{1}{n} \mathbf V^\top\sum_{i=1}^n(\mathbf x_i-\bar{\mathbf x}) ={\boldsymbol 0}.\]
 
 For 2. the sample covariance matrix of \(\mathbf y_1, \ldots, \mathbf y_n\) is
 \begin{align*}
@@ -3995,14 +3988,14 @@ Note that the total goals scored must equal the total goals conceded, and that t
 \end{equation}
 
 The eigenvalues of \(\mathbf S\) are
-\[\boldsymbol \Lambda= \text{diag}\begin{pmatrix}1300&71.9&8.05&4.62&-2.65e-14&-3.73e-14 \\\end{pmatrix}\]
+\[\boldsymbol \Lambda= \text{diag}\begin{pmatrix}1230&68.3&7.65&4.39&4.59e-14&-2.04e-14 \\\end{pmatrix}\]
 
 Note that we have two zero eigenvalues (which won't be computed as exactly zero because of numerical rounding errors) because two of our variables are a linear combinations of the other variables, \(W+D+L = 38\) and \(GD=G-GA\). The corresponding eigenvectors are
 \[\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] =\begin{pmatrix}-0.166&0.0262&-0.707&-0.373&-0.188&-0.546 \\0.0282&-0.275&0.661&-0.391&-0.188&-0.546 \\0.138&0.249&0.0455&0.764&-0.188&-0.546 \\-0.502&0.6&0.202&-0.117&-0.546&0.188 \\0.285&0.701&0.11&-0.286&0.546&-0.188 \\-0.787&-0.101&0.0915&0.169&0.546&-0.188 \\\end{pmatrix}\]
 
 The proportion of variability explained by each of the PCs is:
 \[
-\begin{pmatrix}0.939&0.052&0.00583&0.00334&-1.92e-17&-2.7e-17 \\\end{pmatrix}
+\begin{pmatrix}0.939&0.052&0.00583&0.00334&3.5e-17&-1.56e-17 \\\end{pmatrix}
 \]
 
 There is no point computing the scores for PC 5 and 6, because these do not explain any of the variability in the data. Similarly, there is little value in computing the scores for PCs 3 \& 4 because they account for less than 1\% of the variability in the data.
@@ -4086,7 +4079,7 @@ Before doing PCA we must decide whether to do PCA based on \(\mathbf S\) or \(\m
 
 If the original \(p\) variables represent very different types of quantity or show marked differences in variances, then it will usually be better to use \(\mathbf R\) rather than \(\mathbf S\). However, in some circumstances, we may wish to use \(\mathbf S\), such as when the \(p\) variables are measuring similar entities and the sample variances are not too different.
 
-Given that the required numerical calculations are easy to perform in R, we might wish to do it both ways and see if it makes much difference. To use the correlation matrix \(\mathbf R\), we just add the option \texttt{scale=TRUE} when using the \texttt{prcomp} command.
+Given that the required numerical calculations are easy to perform in R, we might wish to do it both ways and see if it makes much difference. To use the correlation matrix \(\mathbf R\), we just add the option \texttt{scale=TRUE} when using the \texttt{prcomp} command. Note that \texttt{prcomp} uses \(n-1\) when computing the covariance matrix, rather than \(n\).
 
 \hypertarget{football-example-continued}{%
 \subsubsection{Football example continued}\label{football-example-continued}}
@@ -4207,7 +4200,7 @@ What is the relationship between the sample PCA based on the sample of observed 
 from the same population?
 
 If the elements of \(\boldsymbol{\Sigma}\) are all finite, then as \(n\) increases, the elements of the sample covariance matrix \(\mathbf S\) will converge to the corresponding elements
-of the population covariance matrix \(\boldsymbol{\Sigma}\). Consequently, we expect the principal components from sample PCA to converge to the population PCA values as \(n\) grows large. Justification of this statement comes from the weak law of large numbers applied to the components of \(\Sigma\), but the details are beyond the scope of this module.
+of the population covariance matrix \(\boldsymbol{\Sigma}\). Consequently, we expect the principal components from sample PCA to converge to the population PCA values as \(n\) grows large. Justification of this statement comes from the weak law of large numbers applied to the components of \(\boldsymbol{\Sigma}\), but the details are beyond the scope of this module.
 
 \hypertarget{pca-under-transformations-of-variables}{%
 \subsection{PCA under transformations of variables}\label{pca-under-transformations-of-variables}}
@@ -4217,7 +4210,7 @@ We'll now consider what happens to PCA when the data are transformed in various 
 \textbf{Addition transformation}
 
 Firstly, consider the transformation of addition where, for example, we add a fixed amount to each variable.
-We can write this transformation as \(\mathbf z_i = \mathbf x_i + \mathbf c\), where \(\mathbf c\) is a fixed vector. Under this transformation the sample mean changes, \(\bar{\mathbf z} = \bar{\mathbf x} + \mathbf c\), but the sample variance remains \(\mathbf S\). Consequently, the eigenvalues and eigenvectors remain the same and, therefore, so do the principal component scores/transformed vasriables,
+We can write this transformation as \(\mathbf z_i = \mathbf x_i + \mathbf c\), where \(\mathbf c\) is a fixed vector. Under this transformation the sample mean changes, \(\bar{\mathbf z} = \bar{\mathbf x} + \mathbf c\), but the sample variance remains \(\mathbf S\). Consequently, the eigenvalues and eigenvectors remain the same and, therefore, so do the principal component scores/transformed variables,
 \[\mathbf y_i = \mathbf V^\top (\mathbf z_i - \bar{\mathbf z}) = \mathbf V^\top(\mathbf x_i + \mathbf c- (\bar{\mathbf x} + \mathbf c)) = \mathbf V^\top (\mathbf x_i - \bar{\mathbf x}).\]
 We say that the principal components are \textbf{invariant} under the addition transformation. An important special case is to choose \(\mathbf c= -\bar{\mathbf x}\) so that the PC scores are simply \(\mathbf y_i = \mathbf V^\top \mathbf z_i\).
 
@@ -4245,7 +4238,7 @@ Thirdly, we consider a transformation by an orthogonal matrix, \(\stackrel{p \ti
 Let \(\mathbf S\) be the sample covariance matrix of the \(\mathbf x_i\) and let \(\mathbf T\) be the sample covariance matrix of the \(\mathbf z_i\). Under this transformation the sample mean changes from \(\bar{\mathbf x}\) to \(\bar{\mathbf z} = \mathbf A\bar{\mathbf x}\), and the sample covariance matrix \(\mathbf S\) changes from \(\mathbf S\) to \(\mathbf T= \mathbf A\mathbf S\mathbf A^\top\).
 
 However, if we write \(\mathbf S\) in terms of its spectral decomposition \(\mathbf S= \mathbf V\boldsymbol \Lambda\mathbf V^\top\), then \(\mathbf T= \mathbf A\mathbf V\boldsymbol \Lambda\mathbf V^\top \mathbf A^\top = \mathbf B\boldsymbol \Lambda\mathbf B^\top\) where \(\mathbf B= \mathbf A\mathbf V\) is also orthogonal. It is therefore apparent that the eigenvalues of \(\mathbf T\) are the same as those of \(\mathbf S\); and the eigenvectors of \(\mathbf T\) are given by \(\mathbf b_j\) where \(\mathbf b_j = \mathbf A\mathbf v_j\), \(j=1,\ldots,p\). The PC scores of the rotated variables are
-\[ \mathbf y_i = \mathbf B^\top (\mathbf z_i - \bar{\mathbf z}) = \mathbf V^\top \mathbf A^\top \mathbf A(\mathbf x_i - \bar{\mathbf x}) = \mathbf V_1^\top (\mathbf x_i - \bar{\mathbf x}),\]
+\[ \mathbf y_i = \mathbf B^\top (\mathbf z_i - \bar{\mathbf z}) = \mathbf V^\top \mathbf A^\top \mathbf A(\mathbf x_i - \bar{\mathbf x}) = \mathbf V^\top (\mathbf x_i - \bar{\mathbf x}),\]
 and so they are identical to the PC scores of the original variables.
 
 Therefore, under an orthogonal transformation the eigenvalues and PC scores are unchanged; the PCs are orthogonal transformations of the original PCs. We say that the principal components are \textbf{equivariant} with respect to orthogonal transformations.
@@ -4876,8 +4869,8 @@ We'll use the method of Lagrange multipliers to prove this result. Consider the 
 The factor of 1/2 is there to simplify the maths once we differentiate.
 Differentiating with respect to \(\mathbf a\) and \(\mathbf b\) and setting the derivative equal to zero gives
 \begin{align}
-\boldsymbol 0&= \mathbf Q\mathbf b-\lambda_1 \mathbf a\label{eq:ccaevp1}\\
-\boldsymbol 0&= \mathbf Q^\top\mathbf a-\lambda_2 \mathbf b\label{eq:ccaevp2}
+{\boldsymbol 0}&= \mathbf Q\mathbf b-\lambda_1 \mathbf a\label{eq:ccaevp1}\\
+{\boldsymbol 0}&= \mathbf Q^\top\mathbf a-\lambda_2 \mathbf b\label{eq:ccaevp2}
 \end{align}
 where for the second equation we've noted that \(\mathbf a^\top \mathbf Q\mathbf b= \mathbf b^\top \mathbf Q^\top \mathbf a\).
 Left multiplying the first equation by \(\mathbf a^\top\) and the second by \(\mathbf b^\top\), and recalling that \(\mathbf a^\top \mathbf a=\mathbf b^\top\mathbf b=1\), shows that the two Lagrange multipliers are the same \(\lambda_1 = \lambda_2 =: \lambda\) say.
@@ -4893,7 +4886,7 @@ Finally, consider the original objective with \(\mathbf a=\mathbf u_j\) and \(\m
 0 &\mbox{ otherwise.}
 \end{cases}
 \]
-Hence we minimize the objective by taking \(\mathbf a=\mathbf u_1\) and \(\mathbf b=\mathbf v_1\), and then we find
+Hence we maximize the objective by taking \(\mathbf a=\mathbf u_1\) and \(\mathbf b=\mathbf v_1\), and then we find
 \[\max_{\mathbf a, \mathbf b:\, \vert \vert \mathbf a\vert \vert=\vert \vert \mathbf b\vert \vert =1} \mathbf a^\top \mathbf Q\mathbf b=\sigma_1.\]
 \end{proof}
 
@@ -4914,7 +4907,7 @@ where \(t=\operatorname{rank}(\mathbf Q)\) and \(\sigma_1 \geq \cdots \geq \sigm
 Then the solution to the constrained optimization problem \eqref{eq:opt27a} is \[\mathbf a=\mathbf S_{\mathbf x\mathbf x}^{-1/2}{\mathbf u}_1\quad \mbox{and}\quad \mathbf b=\mathbf S_{\mathbf y\mathbf y}^{-1/2}{\mathbf v}_1.\]
 
 The maximum value of the correlation coefficient is given by the largest singular value \(\sigma_1\):
-\[\max_{\mathbf a, \mathbf b} {\mathbb{C}\operatorname{or}}(\mathbf a^\top\mathbf x, \mathbf b^\top\mathbf b)=\sigma_1.\]
+\[\max_{\mathbf a, \mathbf b} {\mathbb{C}\operatorname{or}}(\mathbf a^\top\mathbf x, \mathbf b^\top\mathbf y)=\sigma_1.\]
 \end{proposition}
 
 \begin{proof}
@@ -5271,7 +5264,7 @@ are matrices containing the canonical correlation vectors as columns.
 Before we prove this result, we first give an extension of Proposition \ref{prp:svdmax2}.
 
 \begin{proposition}
-\protect\hypertarget{prp:svdopt3}{}\label{prp:svdopt3}Let \(\mathbf Q\) be an arbitrary matrix with SVD \(\mathbf Q= \sum_{k=1}^r \sigma_i \mathbf u_i \mathbf v^\top_i\).
+\protect\hypertarget{prp:svdopt3}{}\label{prp:svdopt3}Let \(\mathbf Q\) be an arbitrary matrix with SVD \(\mathbf Q= \sum_{i=1}^r \sigma_i \mathbf u_i \mathbf v^\top_i\).
 For \(k=1, \ldots, r\) the solution to the optimization problem
 \begin{align}
 \mbox{Maximize}\quad  &\mathbf a^\top \mathbf Q\mathbf b\\
@@ -5733,7 +5726,7 @@ In other words, we are trying to create a spatial representation of the data, \(
 
 If we define the errors in terms of a square distance, then we can write the goal of MDS as the following optimization problem:
 \begin{align}
-\mbox{Find} \quad& \mathbf y_1, \ldots, \mathbf y_k \in \mathbb{R}^r\\
+\mbox{Find} \quad& \mathbf y_1, \ldots, \mathbf y_n \in \mathbb{R}^r\\
 \mbox{to minimize} \quad &\sum_{i=1}^n \sum_{j=1}^n (d_{ij} - d(\mathbf y_i, \mathbf y_j))^2.\label{eq:mdsopt}
 \end{align}
 
@@ -5918,7 +5911,7 @@ These results say that if \(\mathbf D\) is a Euclidean distance matrix (which we
 \subsubsection*{Example 1}\label{example-1}}
 \addcontentsline{toc}{subsubsection}{Example 1}
 
-Consider the five point in \(\mathbb{R}^2\):
+Consider the five points in \(\mathbb{R}^2\):
 \[
 \mathbf x_1=(0,0)^\top,  \mathbf x_2 =(1,0)^\top, \quad \mathbf x_3 =(0,1)^\top
 \]
@@ -6237,7 +6230,7 @@ Theorem \ref{thm:five1} tells us that if the centred inner-product matrix
 
 Classical MDS (sometimes also called Principal Coordinate Analysis (PCoA)) tries to find a set of points that has approximately the same inner-product matrix, i.e., the same similarities, as the original data, but typically with the points in a low dimensional space. So we want to find \(\mathbf z_1, \ldots, \mathbf z_n \in \mathbb{R}^r\) (where typically \(r=2\)) which have inner-product close to \(\mathbf B\).
 
-As we are choosing the points \(\mathbf z_i\), we can choose them so that they have sample mean of \(\boldsymbol 0\). Then the coresponding inner product matrix is
+As we are choosing the points \(\mathbf z_i\), we can choose them so that they have sample mean of \({\boldsymbol 0}\). Then the coresponding inner product matrix is
 \[\mathbf B_\mathbf z= \mathbf Z\mathbf Z^\top \qquad \mbox{ where } \qquad \mathbf Z= 
 \begin{pmatrix} - & \mathbf z_1^\top &-\\
  - & \mathbf z_2^\top& -\\
@@ -7011,19 +7004,19 @@ We can compute \({\mathbb{E}}(\mathbf y)=\mathbf A{\boldsymbol{\mu}}+\mathbf c\)
 This implies that a linear transformation of a MVN random variable is also MVN. We can use this result to prove two important corollaries. The first corollary is useful for simulating data from a general MVN distribution.
 
 \begin{corollary}
-\protect\hypertarget{cor:csix2}{}\label{cor:csix2}If \(\mathbf x\sim N_p(\boldsymbol 0,\mathbf I_p)\) and \(\mathbf y= \boldsymbol{\Sigma}^{1/2} \mathbf x+ {\boldsymbol{\mu}}\) then \[\mathbf y\sim N_p({\boldsymbol{\mu}},\boldsymbol{\Sigma}).\]
+\protect\hypertarget{cor:csix2}{}\label{cor:csix2}If \(\mathbf x\sim N_p({\boldsymbol 0},\mathbf I_p)\) and \(\mathbf y= \boldsymbol{\Sigma}^{1/2} \mathbf x+ {\boldsymbol{\mu}}\) then \[\mathbf y\sim N_p({\boldsymbol{\mu}},\boldsymbol{\Sigma}).\]
 \end{corollary}
 
 \begin{proof}
 Apply \ref{prp:six2} with \(\mathbf A= \boldsymbol{\Sigma}^{1/2}\) and \(\mathbf c= {\boldsymbol{\mu}}\). Therefore
-\[{\mathbb{E}}(\mathbf y) = \boldsymbol{\Sigma}^{1/2} \boldsymbol 0_p + {\boldsymbol{\mu}}= {\boldsymbol{\mu}}\quad \mbox{and}\quad {\mathbb{V}\operatorname{ar}}(\mathbf y) = \boldsymbol{\Sigma}^{1/2} \mathbf I_p \boldsymbol{\Sigma}^{1/2} = \boldsymbol{\Sigma}.\]
+\[{\mathbb{E}}(\mathbf y) = \boldsymbol{\Sigma}^{1/2} {\boldsymbol 0}_p + {\boldsymbol{\mu}}= {\boldsymbol{\mu}}\quad \mbox{and}\quad {\mathbb{V}\operatorname{ar}}(\mathbf y) = \boldsymbol{\Sigma}^{1/2} \mathbf I_p \boldsymbol{\Sigma}^{1/2} = \boldsymbol{\Sigma}.\]
 \end{proof}
 
 The second corollary says that any MVN random variable can be transformed into standard form.
 
 \begin{corollary}
 \protect\hypertarget{cor:csix3}{}\label{cor:csix3}Suppose \(\mathbf x\sim N_p({\boldsymbol{\mu}},\boldsymbol{\Sigma})\), where \(\boldsymbol{\Sigma}\) has full rank. Then\\
-\[\mathbf y= \boldsymbol{\Sigma}^{-1/2}(\mathbf x- {\boldsymbol{\mu}}) \sim N_p(\boldsymbol 0,\mathbf I_p).\]
+\[\mathbf y= \boldsymbol{\Sigma}^{-1/2}(\mathbf x- {\boldsymbol{\mu}}) \sim N_p({\boldsymbol 0},\mathbf I_p).\]
 \end{corollary}
 
 \begin{proof}
@@ -7034,7 +7027,7 @@ Apply Proposition \ref{prp:six2} with \(\mathbf A= \boldsymbol{\Sigma}^{-1/2}\) 
 \subsection{Independence}\label{independence}}
 
 \begin{proposition}
-\protect\hypertarget{prp:six4}{}\label{prp:six4}Two vectors \(\mathbf x\in\mathbb{R}^p\) and \(\mathbf y\in\mathbb{R}^q\) which are jointly multivariate normal are independent if and only if they are uncorrelated, i.e.~\({\mathbb{C}\operatorname{ov}}(\mathbf x,\mathbf y) = \boldsymbol 0_{p,q}\).
+\protect\hypertarget{prp:six4}{}\label{prp:six4}Two vectors \(\mathbf x\in\mathbb{R}^p\) and \(\mathbf y\in\mathbb{R}^q\) which are jointly multivariate normal are independent if and only if they are uncorrelated, i.e.~\({\mathbb{C}\operatorname{ov}}(\mathbf x,\mathbf y) = {\boldsymbol 0}_{p,q}\).
 \end{proposition}
 
 \begin{proof}
@@ -7046,8 +7039,8 @@ Suppose \(\mathbf x\sim N_p({\boldsymbol{\mu}}_\mathbf x, \boldsymbol{\Sigma}_{\
 \[\begin{pmatrix}\mathbf x\\ \mathbf y\end{pmatrix}\sim N_{p+q}\left({\boldsymbol{\mu}}, \boldsymbol{\Sigma}\right)
 \]
 where
-\[{\boldsymbol{\mu}}= \begin{pmatrix}{\boldsymbol{\mu}}_\mathbf x\\ {\boldsymbol{\mu}}_{\mathbf y}\end{pmatrix}\quad \boldsymbol{\Sigma}= \begin{pmatrix} \boldsymbol{\Sigma}_{\mathbf x, \mathbf x} &\boldsymbol 0_{p,q}\\
-\boldsymbol 0_{q,p} & \boldsymbol{\Sigma}_{\mathbf z, \mathbf z}\end{pmatrix}.\]
+\[{\boldsymbol{\mu}}= \begin{pmatrix}{\boldsymbol{\mu}}_\mathbf x\\ {\boldsymbol{\mu}}_{\mathbf y}\end{pmatrix}\quad \boldsymbol{\Sigma}= \begin{pmatrix} \boldsymbol{\Sigma}_{\mathbf x, \mathbf x} &{\boldsymbol 0}_{p,q}\\
+{\boldsymbol 0}_{q,p} & \boldsymbol{\Sigma}_{\mathbf z, \mathbf z}\end{pmatrix}.\]
 
 Now
 \begin{align*}
@@ -7125,7 +7118,7 @@ Define \(\mathbf y= \boldsymbol{\Sigma}^{-1/2} (\mathbf x-{\boldsymbol{\mu}})\) 
 (\mathbf x-{\boldsymbol{\mu}})^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}) &= \left(\boldsymbol{\Sigma}^{-1/2} (\mathbf x-{\boldsymbol{\mu}}) \right)^\top \left(\boldsymbol{\Sigma}^{-1/2} (\mathbf x-{\boldsymbol{\mu}}) \right)\\
 &= \mathbf y^\top \mathbf y= \sum_{i=1}^p y_i^2
 \end{align*}
-By Corollary \ref{cor:csix3}, \(\mathbf y\sim N_p (\boldsymbol 0, \mathbf I_p)\), and so the components of \(\mathbf y\) have independent univariate normal distributions with mean 0 and variance 1. Recall from univariate statistics that if \(z \sim N(0,1)\) then \(z^2 \sim \chi^2_1\) and if \(z_1, \ldots, z_n\) are iid \(N(0,1)\) then \(\sum_{i=1}^n z_i^2 \sim \chi_n^2\). It therefore follows that \[\sum_{i=1}^p y_i^2 \sim \chi^2_p.\]
+By Corollary \ref{cor:csix3}, \(\mathbf y\sim N_p ({\boldsymbol 0}, \mathbf I_p)\), and so the components of \(\mathbf y\) have independent univariate normal distributions with mean 0 and variance 1. Recall from univariate statistics that if \(z \sim N(0,1)\) then \(z^2 \sim \chi^2_1\) and if \(z_1, \ldots, z_n\) are iid \(N(0,1)\) then \(\sum_{i=1}^n z_i^2 \sim \chi_n^2\). It therefore follows that \[\sum_{i=1}^p y_i^2 \sim \chi^2_p.\]
 \end{proof}
 
 Proposition \ref{prp:six5} means we can calculate the probability \[{\mathbb{P}}\left((\mathbf x-{\boldsymbol{\mu}})^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}})<k\right),\] which is the probability of \(\mathbf x\) lying within a particular ellipsoid. We often use this to draw confidence ellipses, which are ellipses that we expect to contain some specified proportion of the random samples (95\% say).
@@ -7177,7 +7170,7 @@ The \textbf{Wishart distribution} is a multivariate generalisation of the univar
 In this section we introduce the Wishart distribution and show that for MVN random variables, the sample covariance matrix \(\mathbf S\) has a Wishart distribution.
 
 \begin{definition}
-\protect\hypertarget{def:wishart}{}\label{def:wishart}Let \(\mathbf x_1, \ldots, \mathbf x_n\) be an IID random sample from \(N_p (\boldsymbol 0, \boldsymbol{\Sigma})\). Then \[\mathbf M= \sum_{i=1}^n \mathbf x_i \mathbf x_i^\top \in \mathbb{R}^{p\times p}\]
+\protect\hypertarget{def:wishart}{}\label{def:wishart}Let \(\mathbf x_1, \ldots, \mathbf x_n\) be an IID random sample from \(N_p ({\boldsymbol 0}, \boldsymbol{\Sigma})\). Then \[\mathbf M= \sum_{i=1}^n \mathbf x_i \mathbf x_i^\top \in \mathbb{R}^{p\times p}\]
 is said to have a Wishart distribution with \(n\) degrees of freedom and scale matrix \(\boldsymbol{\Sigma}\). We write this as
 \[\mathbf M\sim W_p(\boldsymbol{\Sigma}, n)\]
 and refer to \(W_p(\mathbf I_p,n)\) as a standard Wishart distribution.
@@ -7231,12 +7224,12 @@ results.
 \end{proposition}
 
 \begin{proof}
-From the definition, let \(\mathbf M= \sum_{i=1}^n \mathbf x_i \mathbf x_i^\top\), where \(\mathbf x_i \sim N_p(\boldsymbol 0,\boldsymbol{\Sigma})\). Then
+From the definition, let \(\mathbf M= \sum_{i=1}^n \mathbf x_i \mathbf x_i^\top\), where \(\mathbf x_i \sim N_p({\boldsymbol 0},\boldsymbol{\Sigma})\). Then
 \begin{align*}
 \mathbf A\mathbf M\mathbf A^\top &= \mathbf A\left(\sum_{i=1}^n \mathbf x_i \mathbf x_i^\top \right)\mathbf A^\top\\
  &= \sum_{i=1}^n (\mathbf A\mathbf x_i)(\mathbf A\mathbf x_i)^\top = \sum_{i=1}^n \mathbf y_i \mathbf y_i^\top
 \end{align*}
-where \(\mathbf y_i = \mathbf A\mathbf x_i \sim N_q(\boldsymbol 0,\mathbf A\boldsymbol{\Sigma}\mathbf A^\top)\), by Proposition \ref{prp:six2}. Now we apply the definition of the Wishart distribution to \(\mathbf y_1,\ldots,\mathbf y_n\) and, hence, \(\sum_{i=1}^n \mathbf y_i \mathbf y_i^\top \sim W_q\left(\mathbf A\boldsymbol{\Sigma}\mathbf A^\top, n \right)\).
+where \(\mathbf y_i = \mathbf A\mathbf x_i \sim N_q({\boldsymbol 0},\mathbf A\boldsymbol{\Sigma}\mathbf A^\top)\), by Proposition \ref{prp:six2}. Now we apply the definition of the Wishart distribution to \(\mathbf y_1,\ldots,\mathbf y_n\) and, hence, \(\sum_{i=1}^n \mathbf y_i \mathbf y_i^\top \sim W_q\left(\mathbf A\boldsymbol{\Sigma}\mathbf A^\top, n \right)\).
 \end{proof}
 
 \begin{proposition}
@@ -7267,7 +7260,7 @@ then
 \end{proposition}
 
 \begin{proof}
-From the definition, let \(\mathbf M_1 = \sum_{i=1}^{n_1} \mathbf x_i \mathbf x_i^\top\) and let \(\mathbf M_2 = \sum_{i=n_1+1}^{n_1+n_2} \mathbf x_i \mathbf x_i^\top\), where \(\mathbf x_i \sim N_p(\boldsymbol 0,\boldsymbol{\Sigma})\), then \(\mathbf M_1+\mathbf M_2 = \sum_{i=1}^{n_1+n_2} \mathbf x_i \mathbf x_i^\top \sim W_p(\boldsymbol{\Sigma},n_1 + n_2)\) by the definition of the Wishart distribution.
+From the definition, let \(\mathbf M_1 = \sum_{i=1}^{n_1} \mathbf x_i \mathbf x_i^\top\) and let \(\mathbf M_2 = \sum_{i=n_1+1}^{n_1+n_2} \mathbf x_i \mathbf x_i^\top\), where \(\mathbf x_i \sim N_p({\boldsymbol 0},\boldsymbol{\Sigma})\), then \(\mathbf M_1+\mathbf M_2 = \sum_{i=1}^{n_1+n_2} \mathbf x_i \mathbf x_i^\top \sim W_p(\boldsymbol{\Sigma},n_1 + n_2)\) by the definition of the Wishart distribution.
 \end{proof}
 
 \hypertarget{cochrans-theorem}{%
@@ -7347,9 +7340,9 @@ The \(\mathbf y_j\) are iid multivariate normal random variables:
 If the claim is true, then it immediately follows from the
 definition of the Wishart distribution that \eqref{eq:Prep} has a Wishart \(W_p(\mathbf I_p,r)\) distribution and \eqref{eq:I-Prep} has a Wishart \(W_p(\mathbf I_p, n-r)\) distribution. Moreover they are independent becasue the \(\mathbf y_j\) are all independent.
 
-Then to prove the general case with covariance matrix \(\boldsymbol{\Sigma}\), note that if \(\mathbf x_i\sim N_p(\boldsymbol 0, \boldsymbol{\Sigma})\), then we can write
+Then to prove the general case with covariance matrix \(\boldsymbol{\Sigma}\), note that if \(\mathbf x_i\sim N_p({\boldsymbol 0}, \boldsymbol{\Sigma})\), then we can write
 \(\mathbf x_i=\boldsymbol{\Sigma}^{1/2}\mathbf z_i\) where
-\(\mathbf z_i \sim N_p(\boldsymbol 0, \mathbf I_p)\).
+\(\mathbf z_i \sim N_p({\boldsymbol 0}, \mathbf I_p)\).
 
 Thus
 \begin{align*}
@@ -7363,7 +7356,7 @@ where the final line follows by Proposition \ref{prp:six8}. Here,
 To complete the proof it only remains to prove the claim that
 \(\mathbf y_j \sim N_p({\mathbf 0}_p, \mathbf I_p).\)
 
-We can immediately see that the \(\mathbf y_j\) must be MVN of dimension \(p\), and that they have mean vector \(\boldsymbol 0_p\). To see the covariance and independence parts, note that the \(k^{th}\) element of \(\mathbf y_j\) is
+We can immediately see that the \(\mathbf y_j\) must be MVN of dimension \(p\), and that they have mean vector \({\boldsymbol 0}_p\). To see the covariance and independence parts, note that the \(k^{th}\) element of \(\mathbf y_j\) is
 \[y_{jk} = \sum_{i=1}^n  x_{ik}v_{ji}\]
 and so the \(k, l^{th}\) element of the covariance matrix between \(\mathbf y_j\) and \(\mathbf y_{j'}\) is
 
@@ -7385,7 +7378,7 @@ Finally
 \end{cases}
 \end{align*}
 
-Thus \({\mathbb{C}\operatorname{ov}}(\mathbf y_j, \mathbf y_{j'}) = \boldsymbol 0_{p\times p}\) for \(j\not = j'\) and \({\mathbb{V}\operatorname{ar}}(\mathbf y_j) = \mathbf I_p\). Thus we have proved the claim once we recall that uncorrelated implies independence for multivariate normal random variables.
+Thus \({\mathbb{C}\operatorname{ov}}(\mathbf y_j, \mathbf y_{j'}) = {\boldsymbol 0}_{p\times p}\) for \(j\not = j'\) and \({\mathbb{V}\operatorname{ar}}(\mathbf y_j) = \mathbf I_p\). Thus we have proved the claim once we recall that uncorrelated implies independence for multivariate normal random variables.
 \end{proof}
 
 \hypertarget{hotellings-t2-distribution}{%
@@ -7396,7 +7389,7 @@ Recall that in univariate statistics, Student's \(t\)-distribution appears as th
 Hotelling's \(T^2\) distribution is the multivariate analogue of Student's \(t\)-distribution. It plays an important role in multivariate hypothesis testing and confidence region construction, just as the Student \(t\)-distribution does in the univariate setting.
 
 \begin{definition}
-\protect\hypertarget{def:Hotelling}{}\label{def:Hotelling}Suppose \(\mathbf x\sim N_p(\boldsymbol 0,\mathbf I_p)\) and \(\mathbf M\sim W_p(\mathbf I_p,n)\) are independent, then the quantity
+\protect\hypertarget{def:Hotelling}{}\label{def:Hotelling}Suppose \(\mathbf x\sim N_p({\boldsymbol 0},\mathbf I_p)\) and \(\mathbf M\sim W_p(\mathbf I_p,n)\) are independent, then the quantity
 \[\tau ^2 = n \mathbf x^\top \mathbf M^{-1} \mathbf x\]
 is said to have \textbf{Hotelling's \(T^2\) distribution} with parameters \(p\) and \(n\). We write this as \[\tau^2 \sim T^2(p,n).\]
 \end{definition}
@@ -7414,7 +7407,7 @@ We can generalise the definition with the following result.
 \end{proposition}
 
 \begin{proof}
-Define \(\mathbf y= \boldsymbol{\Sigma}^{-1/2}(\mathbf x-{\boldsymbol{\mu}})\). Then, by Corollary \ref{cor:csix3}, \(\mathbf y\sim N_p(\boldsymbol 0,\mathbf I_p)\). Further, let \(\mathbf Z= \boldsymbol{\Sigma}^{-1/2} \mathbf M\boldsymbol{\Sigma}^{-1/2}\) then \(\mathbf Z\sim W_p(\mathbf I_p,n)\) by applying \ref{prp:six8} with \(\mathbf A= \boldsymbol{\Sigma}^{-1/2}\). From the definition, \(n \mathbf y^\top \mathbf Z^{-1} \mathbf y\sim T^2(p,n)\) and
+Define \(\mathbf y= \boldsymbol{\Sigma}^{-1/2}(\mathbf x-{\boldsymbol{\mu}})\). Then, by Corollary \ref{cor:csix3}, \(\mathbf y\sim N_p({\boldsymbol 0},\mathbf I_p)\). Further, let \(\mathbf Z= \boldsymbol{\Sigma}^{-1/2} \mathbf M\boldsymbol{\Sigma}^{-1/2}\) then \(\mathbf Z\sim W_p(\mathbf I_p,n)\) by applying \ref{prp:six8} with \(\mathbf A= \boldsymbol{\Sigma}^{-1/2}\). From the definition, \(n \mathbf y^\top \mathbf Z^{-1} \mathbf y\sim T^2(p,n)\) and
 \begin{eqnarray*}
 n \mathbf y^\top \mathbf Z^{-1} \mathbf y&=& n (\mathbf x-{\boldsymbol{\mu}})^\top \boldsymbol{\Sigma}^{-1/2} \boldsymbol{\Sigma}^{1/2} \mathbf M^{-1} \boldsymbol{\Sigma}^{1/2} \boldsymbol{\Sigma}^{-1/2} (\mathbf x-{\boldsymbol{\mu}}) \\
 &=& n(\mathbf x-{\boldsymbol{\mu}})^\top \mathbf M^{-1}(\mathbf x-{\boldsymbol{\mu}})
@@ -7780,8 +7773,8 @@ and \(\mathbf S_j\) is the sample covariance matrix for group \(j\).
 \begin{proof}
 We know that \(\bar{\mathbf x} \sim N_p \left({\boldsymbol{\mu}}_1,n^{-1}\boldsymbol{\Sigma}_1 \right)\) and \(\bar{\mathbf y} \sim N_p \left({\boldsymbol{\mu}}_2,m^{-1}\boldsymbol{\Sigma}_2 \right)\), and \(\bar{\mathbf x}\) and \(\bar{\mathbf y}\) are independent, so
 \[\bar{\mathbf y} - \bar{\mathbf x} \sim N_p \left({\boldsymbol{\mu}}_2 - {\boldsymbol{\mu}}_1, \frac{1}{n}\boldsymbol{\Sigma}_1 + \frac{1}{m} \boldsymbol{\Sigma}_2 \right).\]
-If \({\boldsymbol{\mu}}_1 = {\boldsymbol{\mu}}_2\) and \(\boldsymbol{\Sigma}_1 = \boldsymbol{\Sigma}_2 = \boldsymbol{\Sigma}\), then \(\bar{\mathbf y} - \bar{\mathbf x} \sim N_p \left(\boldsymbol 0_p, \left(\frac{1}{n} + \frac{1}{m} \right)\boldsymbol{\Sigma}\right)\) and
-\[\mathbf z= \left(\frac{1}{n} + \frac{1}{m} \right)^{-1/2} (\bar{\mathbf y} - \bar{\mathbf x}) \sim N_p(\boldsymbol 0_p,\boldsymbol{\Sigma}).\]
+If \({\boldsymbol{\mu}}_1 = {\boldsymbol{\mu}}_2\) and \(\boldsymbol{\Sigma}_1 = \boldsymbol{\Sigma}_2 = \boldsymbol{\Sigma}\), then \(\bar{\mathbf y} - \bar{\mathbf x} \sim N_p \left({\boldsymbol 0}_p, \left(\frac{1}{n} + \frac{1}{m} \right)\boldsymbol{\Sigma}\right)\) and
+\[\mathbf z= \left(\frac{1}{n} + \frac{1}{m} \right)^{-1/2} (\bar{\mathbf y} - \bar{\mathbf x}) \sim N_p({\boldsymbol 0}_p,\boldsymbol{\Sigma}).\]
 
 From Proposition \ref{prp:six12} we know that \(n\mathbf S_1 \sim W_p(\Sigma_1,n-1)\) and \(m\mathbf S_2 \sim W_p(\Sigma_2,m-1)\). Therefore when \(\boldsymbol{\Sigma}_1 = \boldsymbol{\Sigma}_2 = \boldsymbol{\Sigma}\),
 \begin{eqnarray*}
@@ -7889,7 +7882,7 @@ Therefore \(\delta^2 < F_{p,n+m-p-1}\), so we do not reject the null hypothesis 
   Prove that
   \[ n ( \bar{\mathbf x} - {\boldsymbol{\mu}})^{\rm T} \boldsymbol{\Sigma}^{-1} ( \bar{\mathbf x} - {\boldsymbol{\mu}}) \sim \chi_p^2 . \]
 \item
-  If \(\mathbf x_1, \ldots, \mathbf x_n\) are i.i.d. \(N_p({\boldsymbol{\mu}}, \boldsymbol{\Sigma})\) with sample mean \(\bar{\mathbf x}\) and sample covariance matrix \(\mathbf S\), show that \({\mathbb{C}\operatorname{ov}}(\bar{\mathbf x}, \mathbf x_i - \bar{\mathbf x}) = \boldsymbol 0\). Hence deduce that \(\bar{\mathbf x}\) and \(\mathbf S\) are independent.
+  If \(\mathbf x_1, \ldots, \mathbf x_n\) are i.i.d. \(N_p({\boldsymbol{\mu}}, \boldsymbol{\Sigma})\) with sample mean \(\bar{\mathbf x}\) and sample covariance matrix \(\mathbf S\), show that \({\mathbb{C}\operatorname{ov}}(\bar{\mathbf x}, \mathbf x_i - \bar{\mathbf x}) = {\boldsymbol 0}\). Hence deduce that \(\bar{\mathbf x}\) and \(\mathbf S\) are independent.
 
   \textbf{Hint:} If the random vector \(\mathbf x\) is independent of the random vector \(\mathbf y\), then \(\mathbf x\) is also independent of any function \(f(\mathbf y)\).
 \item
@@ -7972,7 +7965,7 @@ Download the wine dataset from the \href{https://archive.ics.uci.edu/ml/datasets
 \paragraph*{Task 2}\label{task-2-2}}
 \addcontentsline{toc}{paragraph}{Task 2}
 
-The command \texttt{rWishart} can be used to simulate from a Wishart distribution. Alternatively, to sample from \(W_p(\boldsymbol{\Sigma},n)\), you can sample \(\mathbf x_1, \ldots, \mathbf x_n \sim N_p(\boldsymbol 0, \boldsymbol{\Sigma})\) and set \(\mathbf M= \sum \mathbf x_i \mathbf x_i^\top\).
+The command \texttt{rWishart} can be used to simulate from a Wishart distribution. Alternatively, to sample from \(W_p(\boldsymbol{\Sigma},n)\), you can sample \(\mathbf x_1, \ldots, \mathbf x_n \sim N_p({\boldsymbol 0}, \boldsymbol{\Sigma})\) and set \(\mathbf M= \sum \mathbf x_i \mathbf x_i^\top\).
 
 \begin{enumerate}
 \def\labelenumi{\roman{enumi}.}
@@ -7982,7 +7975,7 @@ The command \texttt{rWishart} can be used to simulate from a Wishart distributio
   Set \(\mathbf a= (1\; 1)^\top\). Check empirically that \(\mathbf a^\top \mathbf M\mathbf a\sim 3 \chi^2_{10}\).
   \textbf{Hint} plot the theoretical densities on top of a histogram of the sampled quantities.
 \item
-  Suppose \(\mathbf x_1, \ldots, \mathbf x_{10} \sim N_2(\boldsymbol 0, \operatorname{diag}(2,1))\). Empirically check that Proposition \ref{prp:six12} is true by computing the covariance matrix of a large number of such samples, and comparing this to the mean and variance of the Wishart distribution specified in the proposition.
+  Suppose \(\mathbf x_1, \ldots, \mathbf x_{10} \sim N_2({\boldsymbol 0}, \operatorname{diag}(2,1))\). Empirically check that Proposition \ref{prp:six12} is true by computing the covariance matrix of a large number of such samples, and comparing this to the mean and variance of the Wishart distribution specified in the proposition.
 \item
   Similarly, validate Corollary \ref{cor:csix6} by comparing the distribution of \(\gamma^2\) with a \(F_{p, n-p}\) distribution.
 \end{enumerate}
@@ -8161,7 +8154,7 @@ To see this, consider the cases where there are just two populations (\(g=2\)). 
 If \(\mathbf x\) is on the decision boundary then
 
 \[(\mathbf v_1-\mathbf v_2)^\top \mathbf x+ c_1 -c_2=0.\]
-This can be seen to be the equation of a hyperplane with normal vecor \(\mathbf v_1-\mathbf v_2\). The orthogonal distance of the plane from the origin is
+This can be seen to be the equation of a hyperplane with normal vector \(\mathbf v_1-\mathbf v_2\). The orthogonal distance of the plane from the origin is
 \[\frac{|c_2-c_1|}{||\mathbf v_1-\mathbf v_2||}.\]
 
 \begin{example}
@@ -8332,7 +8325,7 @@ where \(\mathbf a= \boldsymbol{\Sigma}^{-1} ({\boldsymbol{\mu}}_1 - {\boldsymbol
 From Proposition \ref{prp:nine1} we know that we classify to population 1 if and only if
 \[\delta_1(\mathbf x)>\delta_2(\mathbf x),\]
 i.e., if
-\[2{\boldsymbol{\mu}}_1^\top \boldsymbol{\Sigma}^{-1} \mathbf x-{\boldsymbol{\mu}}_1\boldsymbol{\Sigma}^{-1}{\boldsymbol{\mu}}_1> 2{\boldsymbol{\mu}}_2^\top \boldsymbol{\Sigma}^{-1} \mathbf x-{\boldsymbol{\mu}}_2 \boldsymbol{\Sigma}^{-1}{\boldsymbol{\mu}}_2\]
+\[2{\boldsymbol{\mu}}_1^\top \boldsymbol{\Sigma}^{-1} \mathbf x-{\boldsymbol{\mu}}_1^\top\boldsymbol{\Sigma}^{-1}{\boldsymbol{\mu}}_1> 2{\boldsymbol{\mu}}_2^\top \boldsymbol{\Sigma}^{-1} \mathbf x-{\boldsymbol{\mu}}_2^\top \boldsymbol{\Sigma}^{-1}{\boldsymbol{\mu}}_2\]
 Rearranging we see this is true if and only if
 \[({\boldsymbol{\mu}}_1-{\boldsymbol{\mu}}_2)^\top \boldsymbol{\Sigma}^{-1} \mathbf x> \frac{1}{2}({\boldsymbol{\mu}}_1-{\boldsymbol{\mu}}_2)^\top\boldsymbol{\Sigma}^{-1}({\boldsymbol{\mu}}_1+{\boldsymbol{\mu}}_2).\]
 Using the expressions for \(\mathbf a\) and \(\mathbf h\) gives
@@ -8377,7 +8370,7 @@ The ML discriminant rule allocates \(\mathbf x\) to \(\Pi_1\) if \(\mathbf a^\to
 \paragraph*{Example 3}\label{example-3-1}}
 \addcontentsline{toc}{paragraph}{Example 3}
 
-Let's now generalise the previous example, making no assumptions about \(\boldsymbol{\Sigma}\), but still assuming \({\boldsymbol{\mu}}_1=-{\boldsymbol{\mu}}_2\). If we write \(\mathbf a= \begin{pmatrix} a_1 \\ a_2 \end{pmatrix}\) and \(\mathbf h= \frac{1}{2}( {\boldsymbol{\mu}}_1 + {\boldsymbol{\mu}}_2 ) = \boldsymbol 0\). Then the ML discriminant rule allocates \(\mathbf x\) to \(\Pi_1\) if \(\mathbf a^\top \mathbf x> 0\). If we write \(\mathbf x= \begin{pmatrix} x \\ y \end{pmatrix}\) then the boundary separating \(\mathcal R_1\) and \(\mathcal R_2\) is given by \(\mathbf a^\top \mathbf x= \begin{pmatrix} a_1 & a_2 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = a_1 x + a_2 y = 0\), i.e.~\(y = -\frac{a_1}{a_2} x\). This is a straight line through the origin with gradient \(-a_1/a_2\).
+Let's now generalise the previous example, making no assumptions about \(\boldsymbol{\Sigma}\), but still assuming \({\boldsymbol{\mu}}_1=-{\boldsymbol{\mu}}_2\). If we write \(\mathbf a= \begin{pmatrix} a_1 \\ a_2 \end{pmatrix}\) and \(\mathbf h= \frac{1}{2}( {\boldsymbol{\mu}}_1 + {\boldsymbol{\mu}}_2 ) = {\boldsymbol 0}\). Then the ML discriminant rule allocates \(\mathbf x\) to \(\Pi_1\) if \(\mathbf a^\top \mathbf x> 0\). If we write \(\mathbf x= \begin{pmatrix} x \\ y \end{pmatrix}\) then the boundary separating \(\mathcal R_1\) and \(\mathcal R_2\) is given by \(\mathbf a^\top \mathbf x= \begin{pmatrix} a_1 & a_2 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = a_1 x + a_2 y = 0\), i.e.~\(y = -\frac{a_1}{a_2} x\). This is a straight line through the origin with gradient \(-a_1/a_2\).
 
 For \({\boldsymbol{\mu}}_1 =\begin{pmatrix}1 \\1 \\\end{pmatrix}\) and \(\boldsymbol{\Sigma}= \begin{pmatrix}1&-0.9 \\-0.9&1 \\\end{pmatrix}\) we find \(\mathbf a= \begin{pmatrix}20 \\20 \\\end{pmatrix}\), which gives the line \(y = -1 x\).
 
@@ -8642,7 +8635,7 @@ then we get the Bayes discriminant rule
 \[
 d(\mathbf x)=\arg\max_k \left(-\frac{1}{2} \log |\boldsymbol{\Sigma}_k| - \frac{1}{2}(\mathbf x-{\boldsymbol{\mu}}_k)^\top \boldsymbol{\Sigma}_k^{-1} (\mathbf x-{\boldsymbol{\mu}}_k)+\log \pi_k\right). \]
 
-We can no ignore the quadratic term in \(\mathbf x\) as it depends upon the population indicator \(k\). We also have to include the determinant of \(\boldsymbol{\Sigma}_k\). Thus in this case we get a quadratic decision boundary rather than a linear one.
+We can not ignore the quadratic term in \(\mathbf x\) as it depends upon the population indicator \(k\). We also have to include the determinant of \(\boldsymbol{\Sigma}_k\). Thus in this case we get a quadratic decision boundary rather than a linear one.
 
 \hypertarget{iris-example-continued}{%
 \subsubsection{Iris example continued}\label{iris-example-continued}}
@@ -8878,7 +8871,7 @@ is the first eigenvector of \(\mathbf W^{-1}\mathbf B\). As we did with PCA and 
 |& \ldots &| \end{pmatrix}\]
 which has columns equal to the first \(r\) eigenvectors of \(\mathbf W^{-1}\mathbf B\).
 
-Recall that \[\mathbf B= \frac{1}{n}\sum_{j=1}^g n_j (\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x}) (\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x})^\top\] is the variance of the \(g\) population means. The points \(\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x}\) lie in a \(g-1\) dimensional subspace of \(\mathbb{R}^p\) (they must sum to \(\boldsymbol 0\)), and so \(\mathbf B\) and also \(\mathbf W^{-1}\mathbf B\) has rank at most \(\min(g-1,p)\). Thus we can find at most \(\min(g-1,p)\) projections of the data for maximizing the separation between the classes.
+Recall that \[\mathbf B= \frac{1}{n}\sum_{j=1}^g n_j (\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x}) (\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x})^\top\] is the variance of the \(g\) population means. The points \(\hat{{\boldsymbol{\mu}}}_j - \bar{\mathbf x}\) lie in a \(g-1\) dimensional subspace of \(\mathbb{R}^p\) (they must sum to \({\boldsymbol 0}\)), and so \(\mathbf B\) and also \(\mathbf W^{-1}\mathbf B\) has rank at most \(\min(g-1,p)\). Thus we can find at most \(\min(g-1,p)\) projections of the data for maximizing the separation between the classes.
 
 To classify points using \(r\) different projections, we use the vector discriminant function
 
@@ -9275,7 +9268,7 @@ Calculate Fisher's linear discriminant function using just a single LDA variable
 \chapter{Cluster Analysis}\label{cluster}}
 
 Discriminant analysis, covered in Chapter \ref{lda}, is a \textbf{supervised} learning method: in order to train the classifier we had access to both the input \(\mathbf x\) and the label \(y\) for that case (what group it belonged to).
-This chapter focusses on cluster analysis, which is an \textbf{unsupervised} learning method: we have to train the model without knowledge of the true cluster labels. In many problems there may not be anything we could describe as a `true' cluster label - in which case we are using cluster analysis as a way finding descriptive statistics about the data.
+This chapter focusses on cluster analysis, which is an \textbf{unsupervised} learning method: we have to train the model without knowledge of the true cluster labels. In many problems there may not be anything we could describe as a `true' cluster label - in which case we are using cluster analysis as a way of finding descriptive statistics about the data.
 
 The aim is to group cases into `clusters' such that cases within each cluster are more closely related to each other than to cases in other clusters. Some methods do this using the attributes/measurements \(\mathbf x\) for each case. These methods include k-means clustering and model-based clustering. In contrast, other methods such as hierarchical clusteringmethods, use the proximities or distances between cases (as in MDS).
 
@@ -9676,10 +9669,10 @@ For example,
 \def\labelenumi{\arabic{enumi}.}
 \item
   \textbf{single linkage (SL)} agglomerative clustering, sometimes called \textbf{nearest neighbour} clustering, uses the closest (least distant) pair
-  \[d_{SL}(\mathcal{G}, \mathcal{H}) = \min_{\substack{i\in \mathcal{G}\\ i\in \mathcal{H}}} d_{ij}\]
+  \[d_{SL}(\mathcal{G}, \mathcal{H}) = \min_{\substack{i\in \mathcal{G}\\ j\in \mathcal{H}}} d_{ij}\]
 \item
   \textbf{complete linkage (CL)} agglomerative clustering, sometimes called \textbf{furthest neigbour} clustering, uses
-  \[d_{CL}(\mathcal{G}, \mathcal{H}) = \max_{\substack{i\in \mathcal{G}\\ i\in \mathcal{H}}} d_{ij}\]
+  \[d_{CL}(\mathcal{G}, \mathcal{H}) = \max_{\substack{i\in \mathcal{G}\\ j\in \mathcal{H}}} d_{ij}\]
 \item
   \textbf{group average (GA)} clustering uses the average distance between groups:
   \[d_{GA}(\mathcal{G}, \mathcal{H}) = \frac{1}{n_\mathcal{G}n_\mathcal{H}}\sum_{i\in\mathcal{G}}\sum_{j\in\mathcal{H}} d_{ij}\]
@@ -10146,7 +10139,7 @@ If we note that
 \[|| \mathbf y- \mathbf X\boldsymbol \beta||_2^2 = (\mathbf y-\mathbf X\boldsymbol \beta)^\top(\mathbf y-\mathbf X\boldsymbol \beta) \]
 then multiplying out and differentiating with respect to \(\boldsymbol \beta\) gives
 \[\frac{\mathrm d}{\mathrm d\boldsymbol \beta} || \mathbf y- \mathbf X\boldsymbol \beta||_2^2 = 2\mathbf X^\top (\mathbf y- \mathbf X\boldsymbol \beta).\]
-You may need to look again at \ref{vectordiff} to remind yourself about vector differentiation. Setting the derivative equal to \(\boldsymbol 0\) and solving gives the least squares estimator
+You may need to look again at \ref{vectordiff} to remind yourself about vector differentiation. Setting the derivative equal to \({\boldsymbol 0}\) and solving gives the least squares estimator
 
 \begin{equation}
 \hat{\boldsymbol \beta}^{ols}=\left (\mathbf X^\top \mathbf X\right )^{-1}\mathbf X^\top \mathbf y
@@ -10174,7 +10167,7 @@ Any \(\mathbf z\in \mathcal{C}(\mathbf X)\) can be written as \(\mathbf z= \math
 
 Taking \(\boldsymbol \alpha= \mathbf e_i\), the standard basis, for \(i=1, \ldots, p\), gives that
 
-\[\mathbf X^\top(\mathbf y-\mathbf X\hat{\boldsymbol \beta})=\boldsymbol 0\]
+\[\mathbf X^\top(\mathbf y-\mathbf X\hat{\boldsymbol \beta})={\boldsymbol 0}\]
 from which the result follows as before.
 
 So another way to think of linear regression is as projecting \(\mathbf y\) onto the columns of \(\mathbf X\).
@@ -10381,8 +10374,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5512   0.3939   0.3213
-## adjCV       0.8308   0.5505   0.3934   0.3208
+## CV          0.8308   0.5470   0.3886   0.3178
+## adjCV       0.8308   0.5463   0.3883   0.3174
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10397,7 +10390,7 @@ Another approach to fitting linear models is to regularise the parameters. Inste
 
 \[||\mathbf y- \mathbf X\boldsymbol \beta||^2_2+\lambda||\boldsymbol \beta||\]
 where we have added a penalty term \(\lambda||\boldsymbol \beta||\) to constrain the size of the parameter (\(\lambda\geq 0\)). This stops estimated values of \(\boldsymbol \beta\) becoming too large.
-Larger values of \(\lambda\) penalise the size of \(\boldsymbol \beta\) more strongly, and so have a bigger effect. As \(\lambda \rightarrow \infty\) we find the optimal \(\boldsymbol \beta\) tends to \(\boldsymbol 0\).
+Larger values of \(\lambda\) penalise the size of \(\boldsymbol \beta\) more strongly, and so have a bigger effect. As \(\lambda \rightarrow \infty\) we find the optimal \(\boldsymbol \beta\) tends to \({\boldsymbol 0}\).
 
 \textbf{Ridge regression} is the name given to the estimate found when we use the \(||\cdot||_2\) norm.
 \[\hat{\boldsymbol \beta}^{ridge} = \arg \min_{\boldsymbol \beta} \left\{||\mathbf y- \mathbf X\boldsymbol \beta||^2_2+\lambda||\boldsymbol \beta||_2^2 \right\}.\]
@@ -10507,7 +10500,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1e-04
+## [1] 0.0007943282
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
@@ -10519,7 +10512,7 @@ and the largest value of lambda that gives a prediction error within one standar
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.01258925
+## [1] 0.02511886
 \end{verbatim}
 
 \hypertarget{multi-output-linear-model}{%
@@ -10582,7 +10575,7 @@ Writing \(\mathbf Z= \mathbf X\mathbf A\) for some \(\mathbf A\in M_{p,q}\) we c
 \[\operatorname{tr}(\mathbf A^\top \mathbf X^\top(\mathbf Y-\mathbf X\hat{\mathbf B}))=0 \quad \mbox{ for all}\quad \mathbf A\in M_{p,q}.\]
 
 Setting \(\mathbf A=\mathbf e_{ij}\), the standard basis for \(M_{p,q}\) (ie the \(p\times q\) matrix that is all zeros except for the \(ij\) entry which is \(1\)), for \(i=1,\ldots, p\) and \(j=1, \ldots,q\) we get that
-\[\mathbf X^\top(\mathbf Y-\mathbf X\hat{\mathbf B})=\boldsymbol 0_{p,q}.\]
+\[\mathbf X^\top(\mathbf Y-\mathbf X\hat{\mathbf B})={\boldsymbol 0}_{p,q}.\]
 Rearranging this gives the result.
 \end{proof}
 
@@ -10696,7 +10689,7 @@ Check that the parameter estimates you find are the same as if you did two univa
 \setcounter{enumi}{2}
 \item
   For the normal linear model
-  \[\mathbf y= \mathbf X\boldsymbol \beta+ N(\boldsymbol 0, \sigma^2 \mathbf I)\]
+  \[\mathbf y= \mathbf X\boldsymbol \beta+ N({\boldsymbol 0}, \sigma^2 \mathbf I)\]
   show that
   \begin{align}
   {\mathbb{V}\operatorname{ar}}(\hat{\boldsymbol \beta}^{ols}) &= \sigma^2 (\mathbf X^\top \mathbf X)^{-1}\\

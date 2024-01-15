@@ -398,26 +398,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="q1-1" class="section level5 unnumbered hasAnchor">
 <h5>Q1<a href="10.5-computer-tasks-6.html#q1-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>The gasoline dataset in the <code>pls</code> dataset consists of data on 60 different gasoline samples. For each sample, the near-infra-read (NIR) spectrum has been measured, which consists of measurements at 401 different wavelengths.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="10.5-computer-tasks-6.html#cb305-1" tabindex="-1"></a><span class="fu">library</span>(pls)</span>
-<span id="cb305-2"><a href="10.5-computer-tasks-6.html#cb305-2" tabindex="-1"></a><span class="fu">data</span>(gasoline)</span>
-<span id="cb305-3"><a href="10.5-computer-tasks-6.html#cb305-3" tabindex="-1"></a><span class="fu">matplot</span>(<span class="fu">seq</span>(<span class="dv">900</span>,<span class="dv">1700</span>,<span class="dv">2</span>),<span class="fu">t</span>(gasoline<span class="sc">$</span>NIR), <span class="at">type=</span><span class="st">&#39;l&#39;</span>, <span class="at">ylab=</span><span class="st">&#39;log(1/R)&#39;</span>,</span>
-<span id="cb305-4"><a href="10.5-computer-tasks-6.html#cb305-4" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">&#39;wavelength (nm)&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="10.5-computer-tasks-6.html#cb303-1" tabindex="-1"></a><span class="fu">library</span>(pls)</span>
+<span id="cb303-2"><a href="10.5-computer-tasks-6.html#cb303-2" tabindex="-1"></a><span class="fu">data</span>(gasoline)</span>
+<span id="cb303-3"><a href="10.5-computer-tasks-6.html#cb303-3" tabindex="-1"></a><span class="fu">matplot</span>(<span class="fu">seq</span>(<span class="dv">900</span>,<span class="dv">1700</span>,<span class="dv">2</span>),<span class="fu">t</span>(gasoline<span class="sc">$</span>NIR), <span class="at">type=</span><span class="st">&#39;l&#39;</span>, <span class="at">ylab=</span><span class="st">&#39;log(1/R)&#39;</span>,</span>
+<span id="cb303-4"><a href="10.5-computer-tasks-6.html#cb303-4" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">&#39;wavelength (nm)&#39;</span>)</span></code></pre></div>
 <p><img src="08-multivarLM-ex_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>Also recorded is the octane number of each sample. We will use the NIR measurements to predict the octane number of each sample.
 Note that here <span class="math inline">\(n=60\)</span> and <span class="math inline">\(p=401\)</span>, so we have many more covariates than samples.</p>
 <ol style="list-style-type: lower-roman">
 <li>Start by using the <code>lm</code> command to predict the octane number from the NIR spectra.</li>
 </ol>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="10.5-computer-tasks-6.html#cb306-1" tabindex="-1"></a><span class="fu">lm</span>(octane<span class="sc">~</span>NIR, <span class="at">data=</span>gasoline)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="10.5-computer-tasks-6.html#cb304-1" tabindex="-1"></a><span class="fu">lm</span>(octane<span class="sc">~</span>NIR, <span class="at">data=</span>gasoline)</span></code></pre></div>
 <p>What happens? How many of the coefficients are estimated?</p>
 <ol start="2" style="list-style-type: lower-roman">
 <li><p>We’ll now try principal component regression. First, project the NIR values onto the first 10 principal components. Then build a linear model using <code>lm</code>. Split the data into a training set containing 40 observations, and a test set containing 20 observations. What is the predictive accuracy of your model?</p></li>
 <li><p>Now use the <code>pcr</code> command from the <code>pls</code> package. You can use cross-validation to assess the prediction accuracy, and plot the predictive accuracies, for different number of principal components using the code below.
 How many principal components would you retain in your model to ensure the best performance?</p></li>
 </ol>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="10.5-computer-tasks-6.html#cb307-1" tabindex="-1"></a>gasoline.pcr <span class="ot">&lt;-</span> <span class="fu">pcr</span>(octane<span class="sc">~</span>NIR, <span class="at">data=</span>gasoline, <span class="at">validation=</span><span class="st">&#39;CV&#39;</span>)</span>
-<span id="cb307-2"><a href="10.5-computer-tasks-6.html#cb307-2" tabindex="-1"></a><span class="fu">summary</span>(gasoline.pcr)</span>
-<span id="cb307-3"><a href="10.5-computer-tasks-6.html#cb307-3" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">RMSEP</span>(gasoline.pcr), <span class="at">legendpos =</span> <span class="st">&quot;topright&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="10.5-computer-tasks-6.html#cb305-1" tabindex="-1"></a>gasoline.pcr <span class="ot">&lt;-</span> <span class="fu">pcr</span>(octane<span class="sc">~</span>NIR, <span class="at">data=</span>gasoline, <span class="at">validation=</span><span class="st">&#39;CV&#39;</span>)</span>
+<span id="cb305-2"><a href="10.5-computer-tasks-6.html#cb305-2" tabindex="-1"></a><span class="fu">summary</span>(gasoline.pcr)</span>
+<span id="cb305-3"><a href="10.5-computer-tasks-6.html#cb305-3" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">RMSEP</span>(gasoline.pcr), <span class="at">legendpos =</span> <span class="st">&quot;topright&quot;</span>)</span></code></pre></div>
 <ol start="4" style="list-style-type: lower-roman">
 <li>Now try ridge regression. What value would you choose for the ridge penalty term <span class="math inline">\(\lambda\)</span>?</li>
 </ol>
@@ -425,8 +425,8 @@ How many principal components would you retain in your model to ensure the best 
 <div id="q2-1" class="section level5 unnumbered hasAnchor">
 <h5>Q2<a href="10.5-computer-tasks-6.html#q2-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>The <code>lm</code> command in R will automatically work if you pass in a matrix of response variables. To demonstrate this, lets try to predict the sepal width and sepal length from the petal length and widths for the iris data.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="10.5-computer-tasks-6.html#cb308-1" tabindex="-1"></a><span class="fu">lm</span>(<span class="fu">cbind</span>(Sepal.Length, Sepal.Width) <span class="sc">~</span> Petal.Length<span class="sc">+</span>Petal.Width,</span>
-<span id="cb308-2"><a href="10.5-computer-tasks-6.html#cb308-2" tabindex="-1"></a>   <span class="at">data=</span>iris)</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="10.5-computer-tasks-6.html#cb306-1" tabindex="-1"></a><span class="fu">lm</span>(<span class="fu">cbind</span>(Sepal.Length, Sepal.Width) <span class="sc">~</span> Petal.Length<span class="sc">+</span>Petal.Width,</span>
+<span id="cb306-2"><a href="10.5-computer-tasks-6.html#cb306-2" tabindex="-1"></a>   <span class="at">data=</span>iris)</span></code></pre></div>
 <p>Check that the parameter estimates you find are the same as if you did two univariate linear regressions.</p>
 <!--##### Q3 {-}
 

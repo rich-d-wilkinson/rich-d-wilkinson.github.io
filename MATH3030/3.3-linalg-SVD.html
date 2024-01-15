@@ -401,7 +401,7 @@ We now give a generalisation of this result which applies to <em>all</em> matric
 Suppose <span class="math inline">\(\bf\)</span> is a <span class="math inline">\(n\times p\)</span> matrix. Then we say <span class="math inline">\(\sigma\)</span> is a
 <strong>singular value</strong> with corresponding <strong>left</strong> and <strong>right</strong> singular vectors <span class="math inline">\(\mathbf u\)</span> and <span class="math inline">\(\mathbf v\)</span> (respectively) if
 <span class="math display">\[\mathbf A\mathbf v= \sigma \mathbf u\quad \mbox{ and }\quad \mathbf A^\top \mathbf u= \sigma \mathbf v\]</span>
-If <span class="math inline">\(\mathbf A\)</span> if a symmetric matrix then <span class="math inline">\(\mathbf u=\mathbf v\)</span> is a eigenvector and <span class="math inline">\(\sigma\)</span> is an eigenvalue.</p>
+If <span class="math inline">\(\mathbf A\)</span> is a symmetric matrix then <span class="math inline">\(\mathbf u=\mathbf v\)</span> is a eigenvector and <span class="math inline">\(\sigma\)</span> is an eigenvalue.</p>
 <p>The singular value decomposition (SVD) <strong>diagonalizes</strong> <span class="math inline">\(\mathbf A\)</span> into a product of a matrix of left singular vectors <span class="math inline">\(\mathbf U\)</span>, a diagonal matrix of singular values <span class="math inline">\(\boldsymbol{\Sigma}\)</span>, and a matrix of right singular vectors <span class="math inline">\(\mathbf V\)</span>.</p>
 <p><span class="math display">\[\mathbf A= \mathbf U\boldsymbol{\Sigma}\mathbf V^\top.\]</span></p>
 <div class="proposition">
@@ -448,7 +448,7 @@ In addition
 <span class="math display">\[\mathbf A^\top\mathbf u_i = \frac{1}{\sigma_i}\mathbf A^\top\mathbf A\mathbf v_i = \frac{\sigma^2_i}{\sigma_i}\mathbf v_i = \sigma_i\mathbf v_i\]</span>
 and so <span class="math inline">\(\mathbf u_i\)</span> and <span class="math inline">\(\mathbf v_i\)</span> are left and right singular vectors.</p>
 <p>Let <span class="math inline">\(\mathbf U=[\mathbf u_1 \; \mathbf u_2 \; \ldots \; \mathbf u_r\; \ldots \; \mathbf u_n]\)</span>, where <span class="math inline">\(\mathbf u_{r+1}, \ldots, \mathbf u_n\)</span> are chosen to complete the orthonormal basis for <span class="math inline">\(\mathbb{R}^n\)</span> given <span class="math inline">\(\mathbf u_1, \ldots, \mathbf u_r\)</span>, and
-let <span class="math inline">\(\Sigma\)</span> be the <span class="math inline">\(n\times p\)</span> diagonal matrix in Equation <a href="3.3-linalg-SVD.html#eq:sigmasvd">(3.1)</a>.</p>
+let <span class="math inline">\(\boldsymbol{\Sigma}\)</span> be the <span class="math inline">\(n\times p\)</span> diagonal matrix in Equation <a href="3.3-linalg-SVD.html#eq:sigmasvd">(3.1)</a>.</p>
 <p>Then we have shown that
 <span class="math display">\[\mathbf U= \mathbf A\mathbf V\boldsymbol{\Sigma}^{-1}\]</span>
 Thus
@@ -524,8 +524,8 @@ or as the sum of rank-1 matrices:</p>
                                              0&amp;\frac{4}{3\sqrt{2}}&amp;\frac{-1}{3}\end{array}\right)^\top\]</span></p>
 <p>Let’s check our answer in R.</p>
 </div>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="3.3-linalg-SVD.html#cb59-1" tabindex="-1"></a>A<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="sc">-</span><span class="dv">2</span>), <span class="at">nr=</span><span class="dv">2</span>, <span class="at">byrow=</span>T)</span>
-<span id="cb59-2"><a href="3.3-linalg-SVD.html#cb59-2" tabindex="-1"></a><span class="fu">svd</span>(A)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="3.3-linalg-SVD.html#cb57-1" tabindex="-1"></a>A<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="sc">-</span><span class="dv">2</span>), <span class="at">nr=</span><span class="dv">2</span>, <span class="at">byrow=</span>T)</span>
+<span id="cb57-2"><a href="3.3-linalg-SVD.html#cb57-2" tabindex="-1"></a><span class="fu">svd</span>(A)</span></code></pre></div>
 <pre><code>## $d
 ## [1] 5 3
 ## 

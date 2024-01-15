@@ -451,16 +451,16 @@ where <span class="math inline">\(\mathbf a^\top = \mathbf b^\top \mathbf A\)</s
 <p><br></br></p>
 <p>This implies that a linear transformation of a MVN random variable is also MVN. We can use this result to prove two important corollaries. The first corollary is useful for simulating data from a general MVN distribution.</p>
 <div class="corollary">
-<p><span id="cor:csix2" class="corollary"><strong>Corollary 7.1  </strong></span>If <span class="math inline">\(\mathbf x\sim N_p(\boldsymbol 0,\mathbf I_p)\)</span> and <span class="math inline">\(\mathbf y= \boldsymbol{\Sigma}^{1/2} \mathbf x+ {\boldsymbol{\mu}}\)</span> then <span class="math display">\[\mathbf y\sim N_p({\boldsymbol{\mu}},\boldsymbol{\Sigma}).\]</span></p>
+<p><span id="cor:csix2" class="corollary"><strong>Corollary 7.1  </strong></span>If <span class="math inline">\(\mathbf x\sim N_p({\boldsymbol 0},\mathbf I_p)\)</span> and <span class="math inline">\(\mathbf y= \boldsymbol{\Sigma}^{1/2} \mathbf x+ {\boldsymbol{\mu}}\)</span> then <span class="math display">\[\mathbf y\sim N_p({\boldsymbol{\mu}},\boldsymbol{\Sigma}).\]</span></p>
 </div>
 <div class="proof">
 <p><span id="unlabeled-div-25" class="proof"><em>Proof</em>. </span>Apply <a href="7.1-definition-and-properties-of-the-mvn.html#prp:six2">7.1</a> with <span class="math inline">\(\mathbf A= \boldsymbol{\Sigma}^{1/2}\)</span> and <span class="math inline">\(\mathbf c= {\boldsymbol{\mu}}\)</span>. Therefore
-<span class="math display">\[{\mathbb{E}}(\mathbf y) = \boldsymbol{\Sigma}^{1/2} \boldsymbol 0_p + {\boldsymbol{\mu}}= {\boldsymbol{\mu}}\quad \mbox{and}\quad {\mathbb{V}\operatorname{ar}}(\mathbf y) = \boldsymbol{\Sigma}^{1/2} \mathbf I_p \boldsymbol{\Sigma}^{1/2} = \boldsymbol{\Sigma}.\]</span></p>
+<span class="math display">\[{\mathbb{E}}(\mathbf y) = \boldsymbol{\Sigma}^{1/2} {\boldsymbol 0}_p + {\boldsymbol{\mu}}= {\boldsymbol{\mu}}\quad \mbox{and}\quad {\mathbb{V}\operatorname{ar}}(\mathbf y) = \boldsymbol{\Sigma}^{1/2} \mathbf I_p \boldsymbol{\Sigma}^{1/2} = \boldsymbol{\Sigma}.\]</span></p>
 </div>
 <p>The second corollary says that any MVN random variable can be transformed into standard form.</p>
 <div class="corollary">
 <p><span id="cor:csix3" class="corollary"><strong>Corollary 7.2  </strong></span>Suppose <span class="math inline">\(\mathbf x\sim N_p({\boldsymbol{\mu}},\boldsymbol{\Sigma})\)</span>, where <span class="math inline">\(\boldsymbol{\Sigma}\)</span> has full rank. Then<br />
-<span class="math display">\[\mathbf y= \boldsymbol{\Sigma}^{-1/2}(\mathbf x- {\boldsymbol{\mu}}) \sim N_p(\boldsymbol 0,\mathbf I_p).\]</span></p>
+<span class="math display">\[\mathbf y= \boldsymbol{\Sigma}^{-1/2}(\mathbf x- {\boldsymbol{\mu}}) \sim N_p({\boldsymbol 0},\mathbf I_p).\]</span></p>
 </div>
 <div class="proof">
 <p><span id="unlabeled-div-26" class="proof"><em>Proof</em>. </span>Apply Proposition <a href="7.1-definition-and-properties-of-the-mvn.html#prp:six2">7.1</a> with <span class="math inline">\(\mathbf A= \boldsymbol{\Sigma}^{-1/2}\)</span> and <span class="math inline">\(\mathbf c= - \boldsymbol{\Sigma}^{-1/2} {\boldsymbol{\mu}}\)</span>.</p>
@@ -469,7 +469,7 @@ where <span class="math inline">\(\mathbf a^\top = \mathbf b^\top \mathbf A\)</s
 <div id="independence" class="section level3 hasAnchor" number="7.1.3">
 <h3><span class="header-section-number">7.1.3</span> Independence<a href="7.1-definition-and-properties-of-the-mvn.html#independence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="proposition">
-<p><span id="prp:six4" class="proposition"><strong>Proposition 7.2  </strong></span>Two vectors <span class="math inline">\(\mathbf x\in\mathbb{R}^p\)</span> and <span class="math inline">\(\mathbf y\in\mathbb{R}^q\)</span> which are jointly multivariate normal are independent if and only if they are uncorrelated, i.e. <span class="math inline">\({\mathbb{C}\operatorname{ov}}(\mathbf x,\mathbf y) = \boldsymbol 0_{p,q}\)</span>.</p>
+<p><span id="prp:six4" class="proposition"><strong>Proposition 7.2  </strong></span>Two vectors <span class="math inline">\(\mathbf x\in\mathbb{R}^p\)</span> and <span class="math inline">\(\mathbf y\in\mathbb{R}^q\)</span> which are jointly multivariate normal are independent if and only if they are uncorrelated, i.e. <span class="math inline">\({\mathbb{C}\operatorname{ov}}(\mathbf x,\mathbf y) = {\boldsymbol 0}_{p,q}\)</span>.</p>
 </div>
 <div class="proof">
 <p><span id="unlabeled-div-27" class="proof"><em>Proof</em>. </span>The joint distribution of <span class="math inline">\(\mathbf x\)</span> and <span class="math inline">\(\mathbf y\)</span> can always be factorized as
@@ -479,8 +479,8 @@ If the conditional distribution for <span class="math inline">\(\mathbf y\)</spa
 <span class="math display">\[\begin{pmatrix}\mathbf x\\ \mathbf y\end{pmatrix}\sim N_{p+q}\left({\boldsymbol{\mu}}, \boldsymbol{\Sigma}\right)
 \]</span>
 where
-<span class="math display">\[{\boldsymbol{\mu}}= \begin{pmatrix}{\boldsymbol{\mu}}_\mathbf x\\ {\boldsymbol{\mu}}_{\mathbf y}\end{pmatrix}\quad \boldsymbol{\Sigma}= \begin{pmatrix} \boldsymbol{\Sigma}_{\mathbf x, \mathbf x} &amp;\boldsymbol 0_{p,q}\\
-\boldsymbol 0_{q,p} &amp; \boldsymbol{\Sigma}_{\mathbf z, \mathbf z}\end{pmatrix}.\]</span></p>
+<span class="math display">\[{\boldsymbol{\mu}}= \begin{pmatrix}{\boldsymbol{\mu}}_\mathbf x\\ {\boldsymbol{\mu}}_{\mathbf y}\end{pmatrix}\quad \boldsymbol{\Sigma}= \begin{pmatrix} \boldsymbol{\Sigma}_{\mathbf x, \mathbf x} &amp;{\boldsymbol 0}_{p,q}\\
+{\boldsymbol 0}_{q,p} &amp; \boldsymbol{\Sigma}_{\mathbf z, \mathbf z}\end{pmatrix}.\]</span></p>
 <p>Now
 <span class="math display">\[\begin{align*}
 p(\mathbf y|\mathbf x)&amp;=\frac{p(\mathbf x, \mathbf y)}{p(\mathbf x)}\\
@@ -643,7 +643,7 @@ will be important later in the chapter. The following proposition gives its dist
 (\mathbf x-{\boldsymbol{\mu}})^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}}) &amp;= \left(\boldsymbol{\Sigma}^{-1/2} (\mathbf x-{\boldsymbol{\mu}}) \right)^\top \left(\boldsymbol{\Sigma}^{-1/2} (\mathbf x-{\boldsymbol{\mu}}) \right)\\
 &amp;= \mathbf y^\top \mathbf y= \sum_{i=1}^p y_i^2
 \end{align*}\]</span>
-By Corollary <a href="7.1-definition-and-properties-of-the-mvn.html#cor:csix3">7.2</a>, <span class="math inline">\(\mathbf y\sim N_p (\boldsymbol 0, \mathbf I_p)\)</span>, and so the components of <span class="math inline">\(\mathbf y\)</span> have independent univariate normal distributions with mean 0 and variance 1. Recall from univariate statistics that if <span class="math inline">\(z \sim N(0,1)\)</span> then <span class="math inline">\(z^2 \sim \chi^2_1\)</span> and if <span class="math inline">\(z_1, \ldots, z_n\)</span> are iid <span class="math inline">\(N(0,1)\)</span> then <span class="math inline">\(\sum_{i=1}^n z_i^2 \sim \chi_n^2\)</span>. It therefore follows that <span class="math display">\[\sum_{i=1}^p y_i^2 \sim \chi^2_p.\]</span></p>
+By Corollary <a href="7.1-definition-and-properties-of-the-mvn.html#cor:csix3">7.2</a>, <span class="math inline">\(\mathbf y\sim N_p ({\boldsymbol 0}, \mathbf I_p)\)</span>, and so the components of <span class="math inline">\(\mathbf y\)</span> have independent univariate normal distributions with mean 0 and variance 1. Recall from univariate statistics that if <span class="math inline">\(z \sim N(0,1)\)</span> then <span class="math inline">\(z^2 \sim \chi^2_1\)</span> and if <span class="math inline">\(z_1, \ldots, z_n\)</span> are iid <span class="math inline">\(N(0,1)\)</span> then <span class="math inline">\(\sum_{i=1}^n z_i^2 \sim \chi_n^2\)</span>. It therefore follows that <span class="math display">\[\sum_{i=1}^p y_i^2 \sim \chi^2_p.\]</span></p>
 </div>
 <p><br></br>
 <!--We saw earlier  that the MVN distribution in $p$ dimensions has constant density on ellipses or ellipsoids given by $f(\bx) = c$ for some constant $c > 0$, and that we can rearrange this equation to be of the form

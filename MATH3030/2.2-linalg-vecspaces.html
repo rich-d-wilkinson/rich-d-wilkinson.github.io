@@ -445,15 +445,15 @@ Otherwise, these vectors are said to be <strong>linearly independent</strong>.</
 </div>
 <div id="colsspace" class="section level3 hasAnchor" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Row and column spaces<a href="2.2-linalg-vecspaces.html#colsspace" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We can think about the matrix-vector multiplication <span class="math inline">\(\mathbf A\mathbf x\)</span> in two ways. The usual way is as the inner product between the rows of <span class="math inline">\(A\)</span> and <span class="math inline">\(x\)</span>.</p>
+<p>We can think about the matrix-vector multiplication <span class="math inline">\(\mathbf A\mathbf x\)</span> in two ways. The usual way is as the inner product between the rows of <span class="math inline">\(\mathbf A\)</span> and <span class="math inline">\(\mathbf x\)</span>.</p>
 <p><span class="math display">\[ \left( \begin{array}{cc} 1 &amp; 2\\ 3&amp;4\\5&amp;6\end{array}\right) \left(\begin{array}{c}x_1\\ x_2\end{array}\right) = \left(\begin{array}{c} x_1+2x_2\\3x_1+4x_2\\5x_1+6x_2\end{array}\right)\]</span></p>
-<p>But a better way to think of <span class="math inline">\(\mathbf A\mathbf x\)</span> is as a linear combination of the columns of <span class="math inline">\(A\)</span>.</p>
+<p>But a better way to think of <span class="math inline">\(\mathbf A\mathbf x\)</span> is as a linear combination of the columns of <span class="math inline">\(\mathbf A\)</span>.</p>
 <p><span class="math display">\[ \left( \begin{array}{cc} 1 &amp; 2\\ 3&amp;4\\5&amp;6\end{array}\right) \left(\begin{array}{c}x_1\\ x_2\end{array}\right) = x_1\left(\begin{array}{c}1\\3\\5 \end{array}\right)+x_2\left(\begin{array}{c}2\\4\\6 \end{array}\right)\]</span></p>
 <div class="definition">
 <p><span id="def:rank" class="definition"><strong>Definition 2.6  </strong></span>The <strong>column space</strong> of a <span class="math inline">\(n\times p\)</span> matrix <span class="math inline">\(\mathbf A\)</span> is the set of all linear combinations of the columns of <span class="math inline">\(\mathbf A\)</span>:
 <span class="math display">\[\mathcal{C}(\mathbf A) = \{\mathbf A\mathbf x:  \mathbf x\in \mathbb{R}^p\}\subset \mathbb{R}^n\]</span></p>
 </div>
-<p>For <span class="math display">\[A=\left( \begin{array}{cc} 1 &amp; 2\\ 3&amp;4\\5&amp;6\end{array}\right) \]</span> we can see that the column space is a 2-dimensional plane in <span class="math inline">\(\mathbb{R}^3\)</span>. The matrix <span class="math inline">\(\mathbf B\)</span> has the same column space as <span class="math inline">\(\mathbf A\)</span>
+<p>For <span class="math display">\[\mathbf A=\left( \begin{array}{cc} 1 &amp; 2\\ 3&amp;4\\5&amp;6\end{array}\right) \]</span> we can see that the column space is a 2-dimensional plane in <span class="math inline">\(\mathbb{R}^3\)</span>. The matrix <span class="math inline">\(\mathbf B\)</span> has the same column space as <span class="math inline">\(\mathbf A\)</span>
 <span class="math display">\[\mathbf B=\left( \begin{array}{cccc} 1 &amp; 2&amp;3 &amp;4\\ 3&amp;4 &amp;7&amp;10\\5&amp;6&amp;11&amp;16\end{array}\right) \]</span></p>
 <p>The number of linearly independent columns of <span class="math inline">\(\mathbf A\)</span> is called the <strong>column rank</strong> of <span class="math inline">\(\mathbf A\)</span>, and is equal to the dimension of the column space of <span class="math inline">\(\mathcal{C}(\mathbf A)\)</span>. The <strong>column rank</strong> of <span class="math inline">\(\mathbf A\)</span> and <span class="math inline">\(\mathbf B\)</span> is 2.</p>
 <p>The <strong>row space</strong> of <span class="math inline">\(\mathbf A\)</span> is defined to be the column space of <span class="math inline">\(\mathbf A^\top\)</span>, and the <strong>row rank</strong> is the number of linearly independent rows of <span class="math inline">\(\mathbf A\)</span>.</p>
@@ -462,7 +462,7 @@ Otherwise, these vectors are said to be <strong>linearly independent</strong>.</
 </div>
 <p>Thus we can simply refer to the <strong>rank</strong> of the matrix.</p>
 <div class="proof">
-<p><span id="unlabeled-div-1" class="proof"><em>Proof</em>. </span>The proof of this theorem is very simple. Let <span class="math inline">\(\mathbf C\)</span> be an <span class="math inline">\(n \times r\)</span> matrix (where <span class="math inline">\(r=\operatorname{rank}(\mathbf A)\)</span>) with columns chosen to be a set of <span class="math inline">\(r\)</span> linearly independent columns from <span class="math inline">\(A\)</span>. Then we know each column of <span class="math inline">\(\mathbf A\)</span> can be written as a linear combination of the columns of <span class="math inline">\(\mathbf C\)</span>, i.e.
+<p><span id="unlabeled-div-1" class="proof"><em>Proof</em>. </span>The proof of this theorem is very simple. Let <span class="math inline">\(\mathbf C\)</span> be an <span class="math inline">\(n \times r\)</span> matrix (where <span class="math inline">\(r=\operatorname{rank}(\mathbf A)\)</span>) with columns chosen to be a set of <span class="math inline">\(r\)</span> linearly independent columns from <span class="math inline">\(\mathbf A\)</span>. Then we know each column of <span class="math inline">\(\mathbf A\)</span> can be written as a linear combination of the columns of <span class="math inline">\(\mathbf C\)</span>, i.e.
 <span class="math display">\[\mathbf A= \mathbf C\mathbf R.\]</span>
 The dimension of <span class="math inline">\(\mathbf R\)</span> must be <span class="math inline">\(r \times p\)</span>. But now we can see that the rows of <span class="math inline">\(\mathbf A\)</span> are formed by a linear combination of the rows of <span class="math inline">\(\mathbf R\)</span>. Thus the row rank of <span class="math inline">\(\mathbf A\)</span> is at most <span class="math inline">\(r\)</span> (=the column rank of <span class="math inline">\(\mathbf A\)</span>). This holds for any matrix, so is true for <span class="math inline">\(\mathbf A^\top\)</span>: namely <span class="math inline">\(\operatorname{row-rank}(A^\top)\leq \operatorname{column-rank}(A^\top)\)</span>. But the row space of <span class="math inline">\(\mathbf A^\top\)</span> equals <span class="math inline">\(\mathcal{C}(\mathbf A)\)</span>, thus proving the theorem!</p>
 </div>
@@ -470,13 +470,14 @@ The dimension of <span class="math inline">\(\mathbf R\)</span> must be <span cl
 <p><span id="cor:unnamed-chunk-1" class="corollary"><strong>Corollary 2.1  </strong></span>The rank of an <span class="math inline">\(n\times p\)</span> matrix is at most <span class="math inline">\(\min(n,p)\)</span>.</p>
 </div>
 <div class="example">
-<p><span id="exm:matrix1" class="example"><strong>Example 2.8  </strong></span><span class="math display">\[B = \left( \begin{array}{cccc} 1 &amp; 2\\ 3&amp;4 \\5&amp;6\end{array}\right)\left(\begin{array}{cccc}1&amp;0&amp;1&amp;2\\0&amp;1&amp;1&amp;1\end{array}\right)
-\]</span></p>
+<p><span id="exm:matrix1" class="example"><strong>Example 2.8  </strong></span><span class="math display">\[\mathbf B= \left( \begin{array}{cccc} 1 &amp; 2\\ 3&amp;4 \\5&amp;6\end{array}\right)\left(\begin{array}{cccc}1&amp;0&amp;1&amp;2\\0&amp;1&amp;1&amp;1\end{array}\right)
+\]</span>
+So we can see that the rank of <span class="math inline">\(\mathbf B\)</span> is 2.</p>
 </div>
 <div class="example">
-<p><span id="exm:matrix2" class="example"><strong>Example 2.9  </strong></span><span class="math display">\[ D=\left( \begin{array}{ccc} 1 &amp; 2&amp;3\\ 2&amp;4&amp;6 \end{array}\right)= \left( \begin{array}{c} 1 \\ 2 \end{array}\right)\left(\begin{array}{ccc}1&amp;2&amp;3\end{array}\right)
+<p><span id="exm:matrix2" class="example"><strong>Example 2.9  </strong></span><span class="math display">\[ \mathbf D=\left( \begin{array}{ccc} 1 &amp; 2&amp;3\\ 2&amp;4&amp;6 \end{array}\right)= \left( \begin{array}{c} 1 \\ 2 \end{array}\right)\left(\begin{array}{ccc}1&amp;2&amp;3\end{array}\right)
 \]</span>
-So the rank of <span class="math inline">\(D\)</span> is <span class="math inline">\(1\)</span>.</p>
+So the rank of <span class="math inline">\(\mathbf D\)</span> is <span class="math inline">\(1\)</span>.</p>
 </div>
 </div>
 <div id="linear-transformations" class="section level3 hasAnchor" number="2.2.3">
@@ -489,7 +490,7 @@ So the rank of <span class="math inline">\(D\)</span> is <span class="math inlin
 <p>The <strong>image</strong> of <span class="math inline">\(\mathbf A\)</span> is precisely the column space of <span class="math inline">\(\mathbf A\)</span>:
 <span class="math display">\[\operatorname{Im}(\mathbf A) = \{\mathbf A\mathbf x: \mathbf x\in \mathbb{R}^p\}=\mathcal{C}(\mathbf A) \subset \mathbb{R}^n\]</span></p>
 <p>The <strong>kernel</strong> of <span class="math inline">\(A\)</span> is the set of vectors mapped to zero:
-<span class="math display">\[\operatorname{Ker}(\mathbf A)=\{\mathbf x: \mathbf A\mathbf x=\boldsymbol 0\}\subset \mathbb{R}^p\]</span>
+<span class="math display">\[\operatorname{Ker}(\mathbf A)=\{\mathbf x: \mathbf A\mathbf x={\boldsymbol 0}\}\subset \mathbb{R}^p\]</span>
 and is sometimes called the <strong>null-space</strong> of <span class="math inline">\(\mathbf A\)</span> and denoted <span class="math inline">\(\mathcal{N}(\mathbf A)\)</span>.</p>
 <div class="theorem">
 <p><span id="thm:ranknullity" class="theorem"><strong>Theorem 2.2  </strong></span>The <strong>rank-nullity</strong> theorem says if <span class="math inline">\(V\)</span> and <span class="math inline">\(W\)</span> are vector spaces, and <span class="math inline">\(A: V\rightarrow W\)</span> is a linear map, then
@@ -497,27 +498,27 @@ and is sometimes called the <strong>null-space</strong> of <span class="math inl
 </div>
 <p>If we’re thinking about matrices, then <span class="math inline">\(\dim \mathcal{C}(\mathbf A)+\dim \mathcal{N}(\mathbf A)=p\)</span>, or equivalently that<br />
 <span class="math inline">\(\operatorname{rank}(\mathbf A)+\dim \mathcal{N}(\mathbf A)=p\)</span>.</p>
-<p>We’ve already said that the row space of <span class="math inline">\(\mathbf A\)</span> is <span class="math inline">\(\mathcal{C}(\mathbf A^\top)\)</span>. The left-null space is <span class="math inline">\(\{\mathbf x\in \mathbb{R}^n: \mathbf x^\top \mathbf A=0\}\)</span> or equivalently <span class="math inline">\(\{x \in \mathbb{R}^n: \mathbf A^\top \mathbf x=0\}=\mathcal{N}(\mathbf A^\top)\)</span>. And so by the rank-nullity theorem we must have
+<p>We’ve already said that the row space of <span class="math inline">\(\mathbf A\)</span> is <span class="math inline">\(\mathcal{C}(\mathbf A^\top)\)</span>. The left-null space is <span class="math inline">\(\{\mathbf x\in \mathbb{R}^n: \mathbf x^\top \mathbf A={\boldsymbol 0}\}\)</span> or equivalently <span class="math inline">\(\{x \in \mathbb{R}^n: \mathbf A^\top \mathbf x=0\}=\mathcal{N}(\mathbf A^\top)\)</span>. And so by the rank-nullity theorem we must have
 <span class="math display">\[n=\dim \mathcal{C}(\mathbf A^\top) + \dim \mathcal{N}(\mathbf A^\top)=
 \operatorname{rank}(\mathbf A)+\dim \operatorname{Ker}(\mathbf A^\top).\]</span></p>
 <div class="example">
-<p><span id="exm:ranknullityeg" class="example"><strong>Example 2.10  </strong></span>Consider again the matrix <span class="math inline">\(D: \mathbb{R}^3\rightarrow \mathbb{R}^2\)</span>
-<span class="math display">\[ D=\left( \begin{array}{ccc} 1 &amp; 2&amp;3\\ 2&amp;4&amp;6 \end{array}\right)= \left( \begin{array}{c} 1 \\ 2 \end{array}\right)\left(\begin{array}{ccc}1&amp;2&amp;3\end{array}\right)
+<p><span id="exm:ranknullityeg" class="example"><strong>Example 2.10  </strong></span>Consider again the matrix <span class="math inline">\(\mathbf D: \mathbb{R}^3\rightarrow \mathbb{R}^2\)</span>
+<span class="math display">\[ \mathbf D=\left( \begin{array}{ccc} 1 &amp; 2&amp;3\\ 2&amp;4&amp;6 \end{array}\right)= \left( \begin{array}{c} 1 \\ 2 \end{array}\right)\left(\begin{array}{ccc}1&amp;2&amp;3\end{array}\right)
 \]</span>
 We have already seen that
-<span class="math display">\[\mathcal{C}(D)=\operatorname{span}\left\{\left(\begin{array}{c}1\\2\end{array}\right)\right\}\]</span>
-and so <span class="math inline">\(\dim \mathcal{C}(D)=\operatorname{rank}(D)=1\)</span>.
-The kernel, or null-space, of <span class="math inline">\(\mathbf D\)</span> is the set of vectors for which <span class="math inline">\(\mathbf D\mathbf x=\boldsymbol 0\)</span>, i.e.,
+<span class="math display">\[\mathcal{C}(\mathbf D)=\operatorname{span}\left\{\left(\begin{array}{c}1\\2\end{array}\right)\right\}\]</span>
+and so <span class="math inline">\(\dim \mathcal{C}(\mathbf D)=\operatorname{rank}(\mathbf D)=1\)</span>.
+The kernel, or null-space, of <span class="math inline">\(\mathbf D\)</span> is the set of vectors for which <span class="math inline">\(\mathbf D\mathbf x={\boldsymbol 0}\)</span>, i.e.,
 <span class="math display">\[x_1+2x_2+3x_3=0\]</span>
 This is a single equation with three unknowns, and so there must be a plane of solutions. We need two linearly independent vectors in this plane to describe it. Convince yourself that
-<span class="math display">\[\mathcal{N}(D) = \operatorname{span}\left\{\left(\begin{array}{c}0\\3\\-2\end{array}\right), \left(\begin{array}{c}2\\-1\\0\end{array}\right)\right\}\]</span>
+<span class="math display">\[\mathcal{N}(\mathbf D) = \operatorname{span}\left\{\left(\begin{array}{c}0\\3\\-2\end{array}\right), \left(\begin{array}{c}2\\-1\\0\end{array}\right)\right\}\]</span>
 So we have
-<span class="math display">\[\dim \mathcal{C}(D)+\dim \mathcal{N}(D)=1+2=3\]</span>
+<span class="math display">\[\dim \mathcal{C}(\mathbf D)+\dim \mathcal{N}(\mathbf D)=1+2=3\]</span>
 as required by the rank-nullity theorem.</p>
-<p>If we consider <span class="math inline">\(D^\top\)</span>, we already know <span class="math inline">\(\dim \mathcal{C}(D^\top)=1\)</span> (as row-rank=column rank), and the rank-nullity theorem tells us that the dimension of the null space of <span class="math inline">\(D^\top\)</span> must be <span class="math inline">\(2-1=1\)</span>. This is easy to confirm as <span class="math inline">\(D^\top x=0\)</span> implies
+<p>If we consider <span class="math inline">\(\mathbf D^\top\)</span>, we already know <span class="math inline">\(\dim \mathcal{C}(\mathbf D^\top)=1\)</span> (as row-rank=column rank), and the rank-nullity theorem tells us that the dimension of the null space of <span class="math inline">\(\mathbf D^\top\)</span> must be <span class="math inline">\(2-1=1\)</span>. This is easy to confirm as <span class="math inline">\(\mathbf D^\top x=0\)</span> implies
 <span class="math display">\[x_1+2x_2=0\]</span>
 which is a line in <span class="math inline">\(\mathbb{R}^2\)</span>
-<span class="math display">\[\mathcal{N}(D^\top) = \operatorname{span}\left\{ \left(\begin{array}{c}-2\\1\end{array}\right)\right\}\]</span></p>
+<span class="math display">\[\mathcal{N}(\mathbf D^\top) = \operatorname{span}\left\{ \left(\begin{array}{c}-2\\1\end{array}\right)\right\}\]</span></p>
 </div>
 <p><strong>Question:</strong> When does a square matrix <span class="math inline">\(\mathbf A\)</span> have an inverse?</p>
 <ul>
@@ -534,7 +535,7 @@ have a solution?</p>
 <ul>
 <li>Suppose <span class="math inline">\(\mathbf x\)</span> and <span class="math inline">\(\mathbf x&#39;\)</span> are both solutions with <span class="math inline">\(\mathbf x\not =\mathbf x&#39;\)</span>. We can write <span class="math inline">\(\mathbf x&#39;=\mathbf x+\mathbf u\)</span> for some vector <span class="math inline">\(\mathbf u\)</span> and note that
 <span class="math display">\[\mathbf y=\mathbf A\mathbf x&#39; = \mathbf A\mathbf x+\mathbf A\mathbf u= \mathbf y+\mathbf A\mathbf u\]</span>
-and so <span class="math inline">\(\mathbf A\mathbf u=\boldsymbol 0\)</span>, i.e., <span class="math inline">\(\mathbf u\in \mathcal{N}(A)\)</span>. So there are multiple solutions when the null-space of <span class="math inline">\(\mathbf A\)</span> contains more than the zero vector. If the dimension of <span class="math inline">\(\mathcal{N}(A)\)</span> is one, there is a line of solutions. If the dimension is two, there is a plane of solutions, etc.</li>
+and so <span class="math inline">\(\mathbf A\mathbf u={\boldsymbol 0}\)</span>, i.e., <span class="math inline">\(\mathbf u\in \mathcal{N}(\mathbf A)\)</span>. So there are multiple solutions when the null-space of <span class="math inline">\(\mathbf A\)</span> contains more than the zero vector. If the dimension of <span class="math inline">\(\mathcal{N}(A)\)</span> is one, there is a line of solutions. If the dimension is two, there is a plane of solutions, etc.</li>
 </ul>
 </div>
 </div>

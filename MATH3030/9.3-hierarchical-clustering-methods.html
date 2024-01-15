@@ -425,9 +425,9 @@ i.e., it is number of attributes shared by A and B, divided by the number of att
 <p>For example,</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>single linkage (SL)</strong> agglomerative clustering, sometimes called <strong>nearest neighbour</strong> clustering, uses the closest (least distant) pair
-<span class="math display">\[d_{SL}(\mathcal{G}, \mathcal{H}) = \min_{\substack{i\in \mathcal{G}\\ i\in \mathcal{H}}} d_{ij}\]</span></p></li>
+<span class="math display">\[d_{SL}(\mathcal{G}, \mathcal{H}) = \min_{\substack{i\in \mathcal{G}\\ j\in \mathcal{H}}} d_{ij}\]</span></p></li>
 <li><p><strong>complete linkage (CL)</strong> agglomerative clustering, sometimes called <strong>furthest neigbour</strong> clustering, uses
-<span class="math display">\[d_{CL}(\mathcal{G}, \mathcal{H}) = \max_{\substack{i\in \mathcal{G}\\ i\in \mathcal{H}}} d_{ij}\]</span></p></li>
+<span class="math display">\[d_{CL}(\mathcal{G}, \mathcal{H}) = \max_{\substack{i\in \mathcal{G}\\ j\in \mathcal{H}}} d_{ij}\]</span></p></li>
 <li><p><strong>group average (GA)</strong> clustering uses the average distance between groups:
 <span class="math display">\[d_{GA}(\mathcal{G}, \mathcal{H}) = \frac{1}{n_\mathcal{G}n_\mathcal{H}}\sum_{i\in\mathcal{G}}\sum_{j\in\mathcal{H}} d_{ij}\]</span></p></li>
 </ol>
@@ -443,11 +443,11 @@ i.e., it is number of attributes shared by A and B, divided by the number of att
 <div id="toy-example" class="section level3 hasAnchor" number="9.3.2">
 <h3><span class="header-section-number">9.3.2</span> Toy Example<a href="9.3-hierarchical-clustering-methods.html#toy-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Suppose we are given 5 observations with distance matrix</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="9.3-hierarchical-clustering-methods.html#cb264-1" tabindex="-1"></a>(D <span class="ot">&lt;-</span> <span class="fu">as.dist</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
-<span id="cb264-2"><a href="9.3-hierarchical-clustering-methods.html#cb264-2" tabindex="-1"></a>                      <span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
-<span id="cb264-3"><a href="9.3-hierarchical-clustering-methods.html#cb264-3" tabindex="-1"></a>                      <span class="dv">11</span>,<span class="dv">9</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
-<span id="cb264-4"><a href="9.3-hierarchical-clustering-methods.html#cb264-4" tabindex="-1"></a>                      <span class="dv">15</span>,<span class="dv">13</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
-<span id="cb264-5"><a href="9.3-hierarchical-clustering-methods.html#cb264-5" tabindex="-1"></a>                      <span class="dv">7</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">0</span>), <span class="at">nr=</span><span class="dv">5</span>, <span class="at">byrow=</span>T)))</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="9.3-hierarchical-clustering-methods.html#cb262-1" tabindex="-1"></a>(D <span class="ot">&lt;-</span> <span class="fu">as.dist</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb262-2"><a href="9.3-hierarchical-clustering-methods.html#cb262-2" tabindex="-1"></a>                      <span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb262-3"><a href="9.3-hierarchical-clustering-methods.html#cb262-3" tabindex="-1"></a>                      <span class="dv">11</span>,<span class="dv">9</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb262-4"><a href="9.3-hierarchical-clustering-methods.html#cb262-4" tabindex="-1"></a>                      <span class="dv">15</span>,<span class="dv">13</span>,<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb262-5"><a href="9.3-hierarchical-clustering-methods.html#cb262-5" tabindex="-1"></a>                      <span class="dv">7</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">0</span>), <span class="at">nr=</span><span class="dv">5</span>, <span class="at">byrow=</span>T)))</span></code></pre></div>
 <pre><code>##    1  2  3  4
 ## 2  2         
 ## 3 11  9      
@@ -480,16 +480,16 @@ we get the clusters <span class="math inline">\(\{1, 2\},\{3, 5\},\{4\}\)</span>
 <li>at stage 4 we join the final two clusters resulting in the single cluster <span class="math inline">\(\{1, 2, 3, 4, 5\}\)</span>.</li>
 </ul>
 <p>The <code>hclust</code> command does agglomerative clustering: we just have to specify the method to use.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="9.3-hierarchical-clustering-methods.html#cb269-1" tabindex="-1"></a>D.sl <span class="ot">&lt;-</span><span class="fu">hclust</span>(D, <span class="at">method=</span><span class="st">&quot;single&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="9.3-hierarchical-clustering-methods.html#cb267-1" tabindex="-1"></a>D.sl <span class="ot">&lt;-</span><span class="fu">hclust</span>(D, <span class="at">method=</span><span class="st">&quot;single&quot;</span>)</span></code></pre></div>
 <p>We can use the <code>cutree</code> command to specify a given number of clusters. For example, it we want just two clusters, we can use</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="9.3-hierarchical-clustering-methods.html#cb270-1" tabindex="-1"></a><span class="fu">cutree</span>(D.sl,<span class="at">k=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="9.3-hierarchical-clustering-methods.html#cb268-1" tabindex="-1"></a><span class="fu">cutree</span>(D.sl,<span class="at">k=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 1 1 1 2 1</code></pre>
 <p>This tells us that observations 1,2,3 and 5 are all in one cluster, and observation 4 in another cluster.</p>
 <p>A convenient graphical way to present the output from an agglomerative clustering method is as a <strong>dendrogram</strong>. These show the arrangement of the clusters produced at each stage. The height of each node in the plot is proportional to the value of the intergroup distance between its two daughters. The <code>plot</code> command in R automatically produces dendrograms if passed output from the <code>hclust</code>.</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="9.3-hierarchical-clustering-methods.html#cb272-1" tabindex="-1"></a><span class="fu">plot</span>(D.sl)</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="9.3-hierarchical-clustering-methods.html#cb270-1" tabindex="-1"></a><span class="fu">plot</span>(D.sl)</span></code></pre></div>
 <p><img src="10-clustering_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>An alternatively to cutting the tree according to the number of clusters required, is to specify at which height to cut the tree. For example, if we cut the tree at height <span class="math inline">\(T=4.5\)</span> we get</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="9.3-hierarchical-clustering-methods.html#cb273-1" tabindex="-1"></a><span class="fu">cutree</span>(D.sl, <span class="at">h=</span><span class="fl">4.5</span>) <span class="co"># note we specify h= for height</span></span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="9.3-hierarchical-clustering-methods.html#cb271-1" tabindex="-1"></a><span class="fu">cutree</span>(D.sl, <span class="at">h=</span><span class="fl">4.5</span>) <span class="co"># note we specify h= for height</span></span></code></pre></div>
 <pre><code>## [1] 1 1 2 3 2</code></pre>
 <p>showing that we have clusters <span class="math inline">\(\{1,2\}, \{3,5\}, \{4\}\)</span>.</p>
 </div>
@@ -520,19 +520,19 @@ we get the clusters <span class="math inline">\(\{1, 2\},\{3, 5\},\{4\}\)</span>
 <li>at stage 4 there is a single cluster <span class="math inline">\(\{1, 2, 3, 4, 5\}\)</span>.</li>
 </ul>
 <p>The dendrogram for this is shown below. Note that complete linkage produces a different clustering if we require two clusters.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="9.3-hierarchical-clustering-methods.html#cb278-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">hclust</span>(D, <span class="at">method=</span><span class="st">&quot;complete&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="9.3-hierarchical-clustering-methods.html#cb276-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">hclust</span>(D, <span class="at">method=</span><span class="st">&quot;complete&quot;</span>))</span></code></pre></div>
 <p><img src="10-clustering_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 </div>
 <div id="group-average" class="section level5 unnumbered hasAnchor">
 <h5>Group average<a href="9.3-hierarchical-clustering-methods.html#group-average" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Group average clustering produces the same hierarchy of clusters as single linkage, but the nodes (points where clusters join) are at different heights in the dendrogram.</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="9.3-hierarchical-clustering-methods.html#cb279-1" tabindex="-1"></a>D.ga <span class="ot">&lt;-</span> <span class="fu">hclust</span>(D, <span class="at">method=</span><span class="st">&quot;average&quot;</span>)</span>
-<span id="cb279-2"><a href="9.3-hierarchical-clustering-methods.html#cb279-2" tabindex="-1"></a><span class="fu">plot</span>(D.ga)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="9.3-hierarchical-clustering-methods.html#cb277-1" tabindex="-1"></a>D.ga <span class="ot">&lt;-</span> <span class="fu">hclust</span>(D, <span class="at">method=</span><span class="st">&quot;average&quot;</span>)</span>
+<span id="cb277-2"><a href="9.3-hierarchical-clustering-methods.html#cb277-2" tabindex="-1"></a><span class="fu">plot</span>(D.ga)</span></code></pre></div>
 <p><img src="10-clustering_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>If we were to cut the single linkage and group average dendrograms at a height of 6, then we find different clusters. The single linkage dendrogram cut at height 6 gives the clusters <span class="math inline">\(\{1,2,3,5\}, \{4\}\)</span> whereas the group average dendrogram gives the clusters <span class="math inline">\(\{1,2\}, \{3,5\}, \{4\}\)</span>, despite the two trees having the same topology.</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="9.3-hierarchical-clustering-methods.html#cb280-1" tabindex="-1"></a><span class="fu">cutree</span>(D.sl, <span class="at">h=</span><span class="dv">6</span>) <span class="co"># cut the tree at height 6</span></span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="9.3-hierarchical-clustering-methods.html#cb278-1" tabindex="-1"></a><span class="fu">cutree</span>(D.sl, <span class="at">h=</span><span class="dv">6</span>) <span class="co"># cut the tree at height 6</span></span></code></pre></div>
 <pre><code>## [1] 1 1 1 2 1</code></pre>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="9.3-hierarchical-clustering-methods.html#cb282-1" tabindex="-1"></a><span class="fu">cutree</span>(D.ga, <span class="at">h=</span><span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="9.3-hierarchical-clustering-methods.html#cb280-1" tabindex="-1"></a><span class="fu">cutree</span>(D.ga, <span class="at">h=</span><span class="dv">6</span>)</span></code></pre></div>
 <pre><code>## [1] 1 1 2 3 2</code></pre>
 </div>
 </div>

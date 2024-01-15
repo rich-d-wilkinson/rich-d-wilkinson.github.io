@@ -482,8 +482,8 @@ and because <span class="math inline">\(\mathbf Q\)</span> has a left-inverse, w
 and so we have that <span class="math inline">\(\mathbf Q^{-1}=\mathbf Q^\top\)</span>.</p>
 <p>Now suppose <span class="math inline">\(\mathbf Q\)</span> is <span class="math inline">\(n \times p\)</span> with <span class="math inline">\(n\not = p\)</span>. Then as
 <span class="math inline">\(\mathbf Q^\top \mathbf Q=\mathbf I_{p\times p}\)</span>, we must have <span class="math inline">\(\operatorname{tr}(\mathbf Q^\top \mathbf Q)=p\)</span>. This implies that
-<span class="math display">\[\operatorname{tr}(\mathbf Q\mathbf Q^\top)=\operatorname{tr}(\mathbf Q^\top \mathbf Q)=m\]</span> and so
-we cannot have <span class="math inline">\(\mathbf Q\mathbf Q^\top=\mathbf I_{n}\)</span> as <span class="math inline">\(\operatorname{tr}{\mathbf I_{n}}=n\)</span>.</p>
+<span class="math display">\[\operatorname{tr}(\mathbf Q\mathbf Q^\top)=\operatorname{tr}(\mathbf Q^\top \mathbf Q)=p\]</span> and so
+we cannot have <span class="math inline">\(\mathbf Q\mathbf Q^\top=\mathbf I_{n}\)</span> as <span class="math inline">\(\operatorname{tr}{(\mathbf I_{n})}=n\)</span>.</p>
 </div>
 <p><br></p>
 <div class="corollary">
@@ -532,7 +532,7 @@ i.e., if it is idempotent.</p>
 <p><span id="unlabeled-div-4" class="proof"><em>Proof</em>. </span>Let <span class="math inline">\(\mathbf w\in W\)</span>. Then
 <span class="math display">\[\mathbf w= \mathbf I_n \mathbf w=(\mathbf I-\mathbf P)\mathbf w+ \mathbf P\mathbf w\]</span>
 Now <span class="math inline">\(\mathbf P\mathbf w\in \operatorname{Im}(\mathbf P)\)</span> and <span class="math inline">\((\mathbf I-\mathbf P)\mathbf w\in \operatorname{Ker}(\mathbf P)\)</span> as
-<span class="math display">\[\mathbf P(\mathbf I-\mathbf P)\mathbf w= (\mathbf P-\mathbf P^2)\mathbf w=\boldsymbol 0.\]</span></p>
+<span class="math display">\[\mathbf P(\mathbf I-\mathbf P)\mathbf w= (\mathbf P-\mathbf P^2)\mathbf w={\boldsymbol 0}.\]</span></p>
 </div>
 <div class="proposition">
 <p><span id="prp:projIP" class="proposition"><strong>Proposition 2.4  </strong></span>If <span class="math inline">\(\stackrel{n \times n}{\mathbf P}\)</span> is a projection matrix then <span class="math inline">\({\mathbf I}_n - \mathbf P\)</span> is also
@@ -570,7 +570,7 @@ i.e., <span class="math inline">\(W=U \oplus U^\perp\)</span> so that any <span 
 &amp;= \mathbf w^\top \mathbf w-2\boldsymbol \lambda^\top \mathbf A^\top \mathbf w+ \boldsymbol \lambda^\top \mathbf A^\top \mathbf A\boldsymbol \lambda.
 \end{align*}\]</span></p>
 <p>Differentiating with respect to <span class="math inline">\(\boldsymbol \lambda\)</span> and setting equal to zero gives
-<span class="math display">\[\boldsymbol 0=-2 \mathbf A^\top \mathbf w+2 \mathbf A^\top \mathbf A\boldsymbol \lambda\]</span>
+<span class="math display">\[{\boldsymbol 0}=-2 \mathbf A^\top \mathbf w+2 \mathbf A^\top \mathbf A\boldsymbol \lambda\]</span>
 and hence
 <span class="math display">\[ \boldsymbol \lambda= (\mathbf A^\top \mathbf A)^{-1}\mathbf A^\top \mathbf w.\]</span>
 The orthogonal projection of <span class="math inline">\(\mathbf w\)</span> is hence

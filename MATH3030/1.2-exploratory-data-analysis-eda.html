@@ -408,7 +408,7 @@ Figure 1.1: Charles Joseph Minard’s famous map of Napoleons 1812 invasion of R
 <p>Before trying any form of statistical analysis, it is always a good idea to do some form of exploratory data analysis to understand the challenges presented by the data. As a minimum, this usually involves finding out whether each variable is continuous, discrete, or categorical, doing some basic visualization (plots), and perhaps computing a few summary statistics such as the mean and variance.</p>
 <div id="data-visualization" class="section level3 hasAnchor" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> Data visualization<a href="1.2-exploratory-data-analysis-eda.html#data-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Visualising datasets before fitting any models can be extremely useful. It allows us to see obvious patterns and relationships,and may suggest a sensible form of analysis.
+<p>Visualising datasets before fitting any models can be extremely useful. It allows us to see obvious patterns and relationships, and may suggest a sensible form of analysis.
 With multivariate data, finding the right kind of plot is not always simple, and many different approaches have been proposed.</p>
 <p>When <span class="math inline">\(p=1\)</span> or <span class="math inline">\(p=2\)</span> we can simply draw histograms and scatter plots (respectively) to view the distribution. For <span class="math inline">\(p \geq 3\)</span> the task is harder. One solution is a matrix of pair-wise scatter plots using the <code>pairs</code> command in R. The graph below shows the relationship between goals scored (F), goals against (A) and points (PT) for 20 teams during a recent Premiership season.</p>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
@@ -418,7 +418,7 @@ Figure 1.2: Scatter plots of goals for (F), goals against (A) and points (PT) fo
 </p>
 </div>
 <p>We can instantly see that points and goals scored are positively correlated, and that points and goals conceded (A) are negatively correlated (this is not a surprise of course).</p>
-<p>R has a good basic plotting functionality. However, we will sometimes use packages that provide additional functionality. The first time you use a package you may need to install it. We can use <code>ggplot2</code> and <code>GGally</code> (which adds functionality to ggplot2) to add colour and detail to pairs plots. For example</p>
+<p>R has a good basic plotting functionality. However, we will sometimes use packages that provide additional functionality. The first time you use a package you may need to install it. We can use <code>ggplot2</code> and <code>GGally</code> (which adds functionality to <code>ggplot2</code>) to add colour and detail to pairs plots. For example</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="1.2-exploratory-data-analysis-eda.html#cb1-1" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
 <span id="cb1-2"><a href="1.2-exploratory-data-analysis-eda.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-3"><a href="1.2-exploratory-data-analysis-eda.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>

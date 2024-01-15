@@ -399,27 +399,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Finding the eigenvalues and eigenvectors of a matrix is easy in R.</li>
 </ol>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="3.6-tasks-ch3.html#cb63-1" tabindex="-1"></a>A<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">6</span>),<span class="at">nrow=</span><span class="dv">2</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>)    <span class="co"># use a to define a matrix A</span></span>
-<span id="cb63-2"><a href="3.6-tasks-ch3.html#cb63-2" tabindex="-1"></a>Eig<span class="ot">=</span><span class="fu">eigen</span>(A)                     <span class="co"># the eigenvalues and eigenvectors of A</span></span>
-<span id="cb63-3"><a href="3.6-tasks-ch3.html#cb63-3" tabindex="-1"></a>                                   <span class="co"># are stored in the list Eig</span></span>
-<span id="cb63-4"><a href="3.6-tasks-ch3.html#cb63-4" tabindex="-1"></a>lambda<span class="ot">=</span>Eig<span class="sc">$</span>values                <span class="co"># extract the eigenvalues from Eig and</span></span>
-<span id="cb63-5"><a href="3.6-tasks-ch3.html#cb63-5" tabindex="-1"></a>                                   <span class="co"># store in the vector e</span></span>
-<span id="cb63-6"><a href="3.6-tasks-ch3.html#cb63-6" tabindex="-1"></a>lambda                           <span class="co"># you should see the eigenvalues in</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="3.6-tasks-ch3.html#cb61-1" tabindex="-1"></a>A<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">6</span>),<span class="at">nrow=</span><span class="dv">2</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>)    <span class="co"># use a to define a matrix A</span></span>
+<span id="cb61-2"><a href="3.6-tasks-ch3.html#cb61-2" tabindex="-1"></a>Eig<span class="ot">=</span><span class="fu">eigen</span>(A)                     <span class="co"># the eigenvalues and eigenvectors of A</span></span>
+<span id="cb61-3"><a href="3.6-tasks-ch3.html#cb61-3" tabindex="-1"></a>                                   <span class="co"># are stored in the list Eig</span></span>
+<span id="cb61-4"><a href="3.6-tasks-ch3.html#cb61-4" tabindex="-1"></a>lambda<span class="ot">=</span>Eig<span class="sc">$</span>values                <span class="co"># extract the eigenvalues from Eig and</span></span>
+<span id="cb61-5"><a href="3.6-tasks-ch3.html#cb61-5" tabindex="-1"></a>                                   <span class="co"># store in the vector e</span></span>
+<span id="cb61-6"><a href="3.6-tasks-ch3.html#cb61-6" tabindex="-1"></a>lambda                           <span class="co"># you should see the eigenvalues in</span></span></code></pre></div>
 <pre><code>## [1] 6.302776 2.697224</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="3.6-tasks-ch3.html#cb65-1" tabindex="-1"></a>                                   <span class="co"># descending order</span></span>
-<span id="cb65-2"><a href="3.6-tasks-ch3.html#cb65-2" tabindex="-1"></a>Q<span class="ot">=</span>Eig<span class="sc">$</span>vectors                    <span class="co"># extract the eigenvectors from Eig and</span></span>
-<span id="cb65-3"><a href="3.6-tasks-ch3.html#cb65-3" tabindex="-1"></a>                                   <span class="co"># store then in the columns of Q</span></span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="3.6-tasks-ch3.html#cb63-1" tabindex="-1"></a>                                   <span class="co"># descending order</span></span>
+<span id="cb63-2"><a href="3.6-tasks-ch3.html#cb63-2" tabindex="-1"></a>Q<span class="ot">=</span>Eig<span class="sc">$</span>vectors                    <span class="co"># extract the eigenvectors from Eig and</span></span>
+<span id="cb63-3"><a href="3.6-tasks-ch3.html#cb63-3" tabindex="-1"></a>                                   <span class="co"># store then in the columns of Q</span></span></code></pre></div>
 <p>The spectral decomposition of <span class="math inline">\(\mathbf A\)</span> is
 <span class="math display">\[\mathbf A= \mathbf Q\boldsymbol \Lambda\mathbf Q^\top\]</span>
 Let’s check this in R (noting as always that there may be some numerical errors)</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="3.6-tasks-ch3.html#cb66-1" tabindex="-1"></a>Q<span class="sc">%*%</span><span class="fu">diag</span>(lambda)<span class="sc">%*%</span><span class="fu">t</span>(Q)          <span class="co"># reconstruct A,</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="3.6-tasks-ch3.html#cb64-1" tabindex="-1"></a>Q<span class="sc">%*%</span><span class="fu">diag</span>(lambda)<span class="sc">%*%</span><span class="fu">t</span>(Q)          <span class="co"># reconstruct A,</span></span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    3    1
 ## [2,]    1    6</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="3.6-tasks-ch3.html#cb68-1" tabindex="-1"></a>                                   <span class="co"># where t(Q) gives the transpose of Q</span></span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="3.6-tasks-ch3.html#cb66-1" tabindex="-1"></a>                                   <span class="co"># where t(Q) gives the transpose of Q</span></span></code></pre></div>
 <p>Since A is positive definite, we can calculate the symmetric, positive definite square root of A.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="3.6-tasks-ch3.html#cb69-1" tabindex="-1"></a>Asqrt<span class="ot">=</span>Q<span class="sc">%*%</span><span class="fu">diag</span>(lambda<span class="sc">**</span><span class="fl">0.5</span>)<span class="sc">%*%</span><span class="fu">t</span>(Q) <span class="co"># lambda**0.5 contains the square roots</span></span>
-<span id="cb69-2"><a href="3.6-tasks-ch3.html#cb69-2" tabindex="-1"></a>Asqrt<span class="sc">%*%</span>Asqrt                      <span class="co"># it is seen that A is recovered</span></span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="3.6-tasks-ch3.html#cb67-1" tabindex="-1"></a>Asqrt<span class="ot">=</span>Q<span class="sc">%*%</span><span class="fu">diag</span>(lambda<span class="sc">**</span><span class="fl">0.5</span>)<span class="sc">%*%</span><span class="fu">t</span>(Q) <span class="co"># lambda**0.5 contains the square roots</span></span>
+<span id="cb67-2"><a href="3.6-tasks-ch3.html#cb67-2" tabindex="-1"></a>Asqrt<span class="sc">%*%</span>Asqrt                      <span class="co"># it is seen that A is recovered</span></span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    3    1
 ## [2,]    1    6</code></pre>
@@ -431,11 +431,11 @@ Let’s check this in R (noting as always that there may be some numerical error
 <ol start="2" style="list-style-type: decimal">
 <li>The singular value decomposition can be computed in R using the command <code>svd</code>. Let <span class="math inline">\(\mathbf X\)</span> be the four numerical variables in the <code>iris</code> dataset with the column mean removed</li>
 </ol>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="3.6-tasks-ch3.html#cb71-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">150</span></span>
-<span id="cb71-2"><a href="3.6-tasks-ch3.html#cb71-2" tabindex="-1"></a>H<span class="ot">=</span><span class="fu">diag</span>(<span class="fu">rep</span>(<span class="dv">1</span>,n))<span class="sc">-</span><span class="fu">rep</span>(<span class="dv">1</span>,n)<span class="sc">%*%</span><span class="fu">t</span>(<span class="fu">rep</span>(<span class="dv">1</span>,n))<span class="sc">/</span>n   <span class="co"># calculate the centering matrix H</span></span>
-<span id="cb71-3"><a href="3.6-tasks-ch3.html#cb71-3" tabindex="-1"></a>X<span class="ot">=</span>H<span class="sc">%*%</span> <span class="fu">as.matrix</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
-<span id="cb71-4"><a href="3.6-tasks-ch3.html#cb71-4" tabindex="-1"></a><span class="co"># This can also be done using the command</span></span>
-<span id="cb71-5"><a href="3.6-tasks-ch3.html#cb71-5" tabindex="-1"></a><span class="co"># sweep(iris[,1:4], 2, colMeans(iris[,1:4]))  # do you understand why?</span></span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="3.6-tasks-ch3.html#cb69-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">150</span></span>
+<span id="cb69-2"><a href="3.6-tasks-ch3.html#cb69-2" tabindex="-1"></a>H<span class="ot">=</span><span class="fu">diag</span>(<span class="fu">rep</span>(<span class="dv">1</span>,n))<span class="sc">-</span><span class="fu">rep</span>(<span class="dv">1</span>,n)<span class="sc">%*%</span><span class="fu">t</span>(<span class="fu">rep</span>(<span class="dv">1</span>,n))<span class="sc">/</span>n   <span class="co"># calculate the centering matrix H</span></span>
+<span id="cb69-3"><a href="3.6-tasks-ch3.html#cb69-3" tabindex="-1"></a>X<span class="ot">=</span>H<span class="sc">%*%</span> <span class="fu">as.matrix</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
+<span id="cb69-4"><a href="3.6-tasks-ch3.html#cb69-4" tabindex="-1"></a><span class="co"># This can also be done using the command</span></span>
+<span id="cb69-5"><a href="3.6-tasks-ch3.html#cb69-5" tabindex="-1"></a><span class="co"># sweep(iris[,1:4], 2, colMeans(iris[,1:4]))  # do you understand why?</span></span></code></pre></div>
 <ul>
 <li><p>Compute the SVD of <span class="math inline">\(\mathbf X\)</span> in R and report its singular values.</p></li>
 <li><p>Does R report the full or compact SVD?</p></li>
@@ -448,18 +448,18 @@ Let’s check this in R (noting as always that there may be some numerical error
 <li><p>Choose an few images from the <a href="http://sipi.usc.edu/database/">USC-SIPI Image Database</a> and repeat the image compression example from the notes. Which type of images compress well do you think?</p></li>
 <li><p>We won’t discuss how the SVD is computed in practice, but there are a variety of approaches that can be used. Try the following iterative approach for computing the first singular vectors:</p></li>
 </ol>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="3.6-tasks-ch3.html#cb72-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
-<span id="cb72-2"><a href="3.6-tasks-ch3.html#cb72-2" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">dim</span>(X)[<span class="dv">2</span>])</span>
-<span id="cb72-3"><a href="3.6-tasks-ch3.html#cb72-3" tabindex="-1"></a></span>
-<span id="cb72-4"><a href="3.6-tasks-ch3.html#cb72-4" tabindex="-1"></a><span class="cf">for</span> (iter <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>){</span>
-<span id="cb72-5"><a href="3.6-tasks-ch3.html#cb72-5" tabindex="-1"></a>  u <span class="ot">&lt;-</span> X <span class="sc">%*%</span>v</span>
-<span id="cb72-6"><a href="3.6-tasks-ch3.html#cb72-6" tabindex="-1"></a>  u <span class="ot">&lt;-</span> u<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sum</span>(u<span class="sc">^</span><span class="dv">2</span>)) </span>
-<span id="cb72-7"><a href="3.6-tasks-ch3.html#cb72-7" tabindex="-1"></a>  v <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span>u</span>
-<span id="cb72-8"><a href="3.6-tasks-ch3.html#cb72-8" tabindex="-1"></a>  v <span class="ot">&lt;-</span> v<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sum</span>(v<span class="sc">^</span><span class="dv">2</span>)) </span>
-<span id="cb72-9"><a href="3.6-tasks-ch3.html#cb72-9" tabindex="-1"></a>}</span>
-<span id="cb72-10"><a href="3.6-tasks-ch3.html#cb72-10" tabindex="-1"></a>X.svd <span class="ot">&lt;-</span> <span class="fu">svd</span>(X)</span>
-<span id="cb72-11"><a href="3.6-tasks-ch3.html#cb72-11" tabindex="-1"></a>X.svd<span class="sc">$</span>v[,<span class="dv">1</span>]<span class="sc">/</span>v</span>
-<span id="cb72-12"><a href="3.6-tasks-ch3.html#cb72-12" tabindex="-1"></a>X.svd<span class="sc">$</span>u[,<span class="dv">1</span>]<span class="sc">/</span>u</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="3.6-tasks-ch3.html#cb70-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
+<span id="cb70-2"><a href="3.6-tasks-ch3.html#cb70-2" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fu">dim</span>(X)[<span class="dv">2</span>])</span>
+<span id="cb70-3"><a href="3.6-tasks-ch3.html#cb70-3" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="3.6-tasks-ch3.html#cb70-4" tabindex="-1"></a><span class="cf">for</span> (iter <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>){</span>
+<span id="cb70-5"><a href="3.6-tasks-ch3.html#cb70-5" tabindex="-1"></a>  u <span class="ot">&lt;-</span> X <span class="sc">%*%</span>v</span>
+<span id="cb70-6"><a href="3.6-tasks-ch3.html#cb70-6" tabindex="-1"></a>  u <span class="ot">&lt;-</span> u<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sum</span>(u<span class="sc">^</span><span class="dv">2</span>)) </span>
+<span id="cb70-7"><a href="3.6-tasks-ch3.html#cb70-7" tabindex="-1"></a>  v <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span>u</span>
+<span id="cb70-8"><a href="3.6-tasks-ch3.html#cb70-8" tabindex="-1"></a>  v <span class="ot">&lt;-</span> v<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sum</span>(v<span class="sc">^</span><span class="dv">2</span>)) </span>
+<span id="cb70-9"><a href="3.6-tasks-ch3.html#cb70-9" tabindex="-1"></a>}</span>
+<span id="cb70-10"><a href="3.6-tasks-ch3.html#cb70-10" tabindex="-1"></a>X.svd <span class="ot">&lt;-</span> <span class="fu">svd</span>(X)</span>
+<span id="cb70-11"><a href="3.6-tasks-ch3.html#cb70-11" tabindex="-1"></a>X.svd<span class="sc">$</span>v[,<span class="dv">1</span>]<span class="sc">/</span>v</span>
+<span id="cb70-12"><a href="3.6-tasks-ch3.html#cb70-12" tabindex="-1"></a>X.svd<span class="sc">$</span>u[,<span class="dv">1</span>]<span class="sc">/</span>u</span></code></pre></div>
 </div>
             </section>
 
