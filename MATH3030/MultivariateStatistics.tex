@@ -4607,11 +4607,11 @@ Check the effect of each transformation on the principal components (the loading
 \addcontentsline{toc}{paragraph}{Exercise 3}
 
 Download the final Premier League table for the 2018-19 season from
-\url{https://www.rotowire.com/soccer/league-table.php?season=2018}. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.
+\url{https://www.rotowire.com/soccer/league-table.php?season=2022}. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.
 
 \begin{itemize}
 \item
-  Load the data into R using the command \texttt{read.csv}. Note that you may need to manually delete the first row of the csv file before doing this. (\emph{I haven't given you the command here, as learning how to do this yourself is important}).
+  Load the data into R using the command \texttt{read.csv}. Note that you may need to manually delete the first row of the csv file before doing this. This can be done by clicking on the file name in the File tab in Rstudio, or by opening the file in any text editor or spreadsheet.
 \item
   Repeat the analysis from section \ref{pca:football}. Does the meaning of the principal components change? Was the 2018-19 league season notably different to the 2019-20 season (which is the season analysed in the notes)?
 \end{itemize}
@@ -10373,8 +10373,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5427   0.3898   0.3173
-## adjCV       0.8308   0.5424   0.3895   0.3169
+## CV          0.8308   0.5402   0.3932   0.3196
+## adjCV       0.8308   0.5400   0.3927   0.3191
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10499,7 +10499,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.001258925
+## [1] 0.001584893
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
@@ -10511,7 +10511,7 @@ and the largest value of lambda that gives a prediction error within one standar
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.01995262
+## [1] 0.02511886
 \end{verbatim}
 
 \hypertarget{multi-output-linear-model}{%
