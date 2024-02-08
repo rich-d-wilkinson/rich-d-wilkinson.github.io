@@ -1778,7 +1778,7 @@ You will be asked to prove the following results about \(\mathbf H\) in the exer
   Writing \({\mathbf 0}_n\) for the \(n \times 1\) vector of zeros, we have
   \(\mathbf H{\mathbf 1}_n={\mathbf 0}_n\) and \({\mathbf 1}_n^\top \mathbf H={\mathbf 0}_n^\top.\) In words: the sum of each row and each column of \(\mathbf H\) is \(0\).
 \item
-  If \(\mathbf x=(x_1, \ldots , x_n)^\top\), then \(\mathbf H\mathbf x= \mathbf x- \bar{x}{\mathbf 1}_n\) where \(\bar{x}=n^{-1}\sum_{i=1}^n x_i\). I.e., \(H\) subtracts the mean \(\bar{x}\) from \(\mathbf x\).
+  If \(\mathbf x=(x_1, \ldots , x_n)^\top\), then \(\mathbf H\mathbf x= \mathbf x- \bar{x}{\mathbf 1}_n\) where \(\bar{x}=n^{-1}\sum_{i=1}^n x_i\). I.e., \(\mathbf H\) subtracts the mean \(\bar{x}\) from \(\mathbf x\).
 \item
   With \(\mathbf x\) as in 3., we have
   \[
@@ -2713,10 +2713,11 @@ we have \[||\mathbf A||_F=||\mathbf U^\top \mathbf A||_F = ||\mathbf U^\top \mat
 We previously defined the p-norms for vectors in \(\mathbb{R}^p\) to be
 \[||\mathbf x||_p = \left(\sum |x_i|^p\right)^{\frac{1}{p}}.\]
 These vector norms \emph{induce} matrix norms, sometimes also called operator norms:
-::: \{.definition \#matrixnorm\}
-The p-norms for matrices are defined by
+
+\begin{definition}
+\protect\hypertarget{def:matrixnorm}{}\label{def:matrixnorm}The p-norms for matrices are defined by
 \[||\mathbf A||_p = \sup_{\mathbf x\not=0} \frac{||\mathbf A\mathbf x||_p}{||\mathbf x||_p} = \sup_{\mathbf x: ||\mathbf x||_p=1} ||\mathbf A\mathbf x||_p\]
-:::
+\end{definition}
 
 \begin{proposition}
 \protect\hypertarget{prp:L2matrixnorm}{}\label{prp:L2matrixnorm}\[||\mathbf A||_2 = \sigma_1\]
@@ -4657,7 +4658,7 @@ Download the final Premier League table for the 2018-19 season from
   \item
     Show that \(\mathbf a\) is an eigenvector of \(\boldsymbol{\Sigma}\).
   \item
-    Show that if \(\mathbf b\) is any vector such that \(\mathbf a^\top \mathbf b=0\), then \(\mathbf b\) is also an eigenvector of \(\boldsymbol{\Sigma}\).
+    Show that if \(\mathbf b\) is any vector such that \(\mathbf a^\top \mathbf b=0\), then \(\mathbf b\) is also an eigenvector of \(\boldsymbol{\Sigma}\). What is the eigenvalue corresponding to \(\mathbf b\)?
   \item
     Obtain all the eigenvalues of \(\boldsymbol{\Sigma}\).
   \item
@@ -10372,8 +10373,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5424   0.3904   0.3185
-## adjCV       0.8308   0.5421   0.3900   0.3181
+## CV          0.8308   0.5427   0.3898   0.3173
+## adjCV       0.8308   0.5424   0.3895   0.3169
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10498,7 +10499,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.001
+## [1] 0.001258925
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
@@ -10510,7 +10511,7 @@ and the largest value of lambda that gives a prediction error within one standar
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.02511886
+## [1] 0.01995262
 \end{verbatim}
 
 \hypertarget{multi-output-linear-model}{%

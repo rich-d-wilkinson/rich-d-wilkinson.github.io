@@ -424,11 +424,11 @@ we have <span class="math display">\[||\mathbf A||_F=||\mathbf U^\top \mathbf A|
 <p><br></p>
 <p>We previously defined the p-norms for vectors in <span class="math inline">\(\mathbb{R}^p\)</span> to be
 <span class="math display">\[||\mathbf x||_p = \left(\sum |x_i|^p\right)^{\frac{1}{p}}.\]</span>
-These vector norms <em>induce</em> matrix norms, sometimes also called operator norms:
-::: {.definition #matrixnorm}
-The p-norms for matrices are defined by
-<span class="math display">\[||\mathbf A||_p = \sup_{\mathbf x\not=0} \frac{||\mathbf A\mathbf x||_p}{||\mathbf x||_p} = \sup_{\mathbf x: ||\mathbf x||_p=1} ||\mathbf A\mathbf x||_p\]</span>
-:::</p>
+These vector norms <em>induce</em> matrix norms, sometimes also called operator norms:</p>
+<div class="definition">
+<p><span id="def:matrixnorm" class="definition"><strong>Definition 3.2  </strong></span>The p-norms for matrices are defined by
+<span class="math display">\[||\mathbf A||_p = \sup_{\mathbf x\not=0} \frac{||\mathbf A\mathbf x||_p}{||\mathbf x||_p} = \sup_{\mathbf x: ||\mathbf x||_p=1} ||\mathbf A\mathbf x||_p\]</span></p>
+</div>
 <div class="proposition">
 <p><span id="prp:L2matrixnorm" class="proposition"><strong>Proposition 3.11  </strong></span><span class="math display">\[||\mathbf A||_2 = \sigma_1\]</span>
 where <span class="math inline">\(\sigma_1\)</span> is the first singular value of <span class="math inline">\(\mathbf A\)</span>.</p>
