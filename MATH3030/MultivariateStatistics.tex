@@ -4556,7 +4556,7 @@ The sample size is \(200\).
 \begin{itemize}
 \tightlist
 \item
-  Carry out PCA on the data in \(X\) using the covariance matrix, including obtaining a scree plot and plotting the PC scores.
+  Carry out PCA on the data in \(X\) using the correlation matrix, including obtaining a scree plot and plotting the PC scores.
 \end{itemize}
 
 Some questions:
@@ -4568,8 +4568,7 @@ Some questions:
   Are you able to come up with an interpretation for the 2nd PC?
 \item
   Do you think an analysis based on the sample covariance matrix \({\bf S}\) or the
-  correlation matrix \({\bf R}\) is preferable with this dataset? Note that you can use \texttt{scale=TRUE} in \texttt{prcomp}
-  to carry out PCA on \({\bf R}\). Does it make much difference which is used?
+  correlation matrix \({\bf R}\) is preferable with this dataset? Does it make much difference which is used?
 \item
   Without doing any computation, think about what you expect the sample mean and sample covariance matrix to be for the PC scores. Check this numerically.
 \item
@@ -4615,6 +4614,35 @@ Download the final Premier League table for the 2018-19 season from
 \item
   Repeat the analysis from section \ref{pca:football}. Does the meaning of the principal components change? Was the 2018-19 league season notably different to the 2019-20 season (which is the season analysed in the notes)?
 \end{itemize}
+
+\hypertarget{exercise-4}{%
+\paragraph*{Exercise 4}\label{exercise-4}}
+\addcontentsline{toc}{paragraph}{Exercise 4}
+
+The \texttt{decathlon2} data from the \texttt{factoextra} package contains
+data on 27 different decathletes' performances during two different competitions. Let's start by extracting their performance in the 10 different decathlon events at the Olympics.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(}\StringTok{"factoextra"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(decathlon2)}
+\NormalTok{X }\OtherTok{\textless{}{-}}\NormalTok{ decathlon2}\SpecialCharTok{|\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{filter}\NormalTok{(Competition}\SpecialCharTok{==}\StringTok{\textquotesingle{}OlympicG\textquotesingle{}}\NormalTok{) }\SpecialCharTok{|\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{Rank, }\SpecialCharTok{{-}}\NormalTok{Points,}\SpecialCharTok{{-}}\NormalTok{Competition)}
+\end{Highlighting}
+\end{Shaded}
+
+Conduct PCA on these data, thinking about whether it is appropriate to use the correlation or covariance matrix. Give a scree plot, and determine how much information in the data is retained by the first two PCs.
+Interpret the leading PCs.
+
+Plot the first two scores for the different athlete performances, labelling each point. From these plots, comment on particular strengths/weaknesses in some performances.
 
 \hypertarget{exercises-1}{%
 \section{Exercises}\label{exercises-1}}
@@ -5641,6 +5669,155 @@ Conduct CCA on these data. Provide an interpretation of your results.
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
+  A sales company surveyed \(50\) of its employees in order to determine the factors that influence sales performance. Two collections of variables were measured. The first set related to sales performance
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Sales Growth
+\item
+  Sales Profitability
+\item
+  New Account Sales
+\end{itemize}
+
+The second set of variables are test scores measuring intelligence:
+
+\begin{itemize}
+\tightlist
+\item
+  Creativity
+\item
+  Mechanical Reasoning
+\item
+  Abstract Reasoning
+\item
+  Mathematics
+\end{itemize}
+
+You can download the data set \texttt{sales.csv} from Moodle. The following analysis is carried out in R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat}\OtherTok{=}\FunctionTok{read.csv}\NormalTok{(}\AttributeTok{file=}\StringTok{\textquotesingle{}sales2.csv\textquotesingle{}}\NormalTok{, }\AttributeTok{sep=}\StringTok{\textquotesingle{},\textquotesingle{}}\NormalTok{,}\AttributeTok{header=}\ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{X }\OtherTok{=}\NormalTok{ dat }\SpecialCharTok{|\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(}\StringTok{\textquotesingle{}growth\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}profit\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}new\textquotesingle{}}\NormalTok{) }
+\NormalTok{Y }\OtherTok{=}\NormalTok{ dat }\SpecialCharTok{|\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\StringTok{\textquotesingle{}growth\textquotesingle{}}\NormalTok{, }\SpecialCharTok{{-}}\StringTok{\textquotesingle{}profit\textquotesingle{}}\NormalTok{, }\SpecialCharTok{{-}}\StringTok{\textquotesingle{}new\textquotesingle{}}\NormalTok{)}
+
+\FunctionTok{library}\NormalTok{(CCA)}
+\NormalTok{cc.out }\OtherTok{\textless{}{-}} \FunctionTok{cc}\NormalTok{(X,Y)}
+\FunctionTok{print}\NormalTok{(cc.out}\SpecialCharTok{$}\NormalTok{cor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9944827 0.8781065 0.3836057
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(cc.out}\SpecialCharTok{$}\NormalTok{xcoef)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               [,1]       [,2]       [,3]
+## growth -0.06237788 -0.1740703  0.3771529
+## profit -0.02092564  0.2421641 -0.1035150
+## new    -0.07825817 -0.2382940 -0.3834151
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(cc.out}\SpecialCharTok{$}\NormalTok{ycoef)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               [,1]        [,2]        [,3]
+## create -0.06974814 -0.19239132 -0.24655659
+## mech   -0.03073830  0.20157438  0.14189528
+## abs    -0.08956418 -0.49576326  0.28022405
+## math   -0.06282997  0.06831607 -0.01133259
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plt.cc}\NormalTok{(cc.out,}\AttributeTok{var.label =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{type=}\StringTok{\textquotesingle{}v\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{05-cca-ex_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+The following gives the correlation between the original variables and the transformed variables
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(cc.out}\SpecialCharTok{$}\NormalTok{scores}\SpecialCharTok{$}\NormalTok{corr.X.xscores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              [,1]          [,2]         [,3]
+## growth -0.9798776  0.0006477883  0.199598477
+## profit -0.9464085  0.3228847489 -0.007504408
+## new    -0.9518620 -0.1863009724 -0.243414776
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(cc.out}\SpecialCharTok{$}\NormalTok{scores}\SpecialCharTok{$}\NormalTok{corr.Y.yscores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              [,1]       [,2]        [,3]
+## create -0.6383313 -0.2156981 -0.65140953
+## mech   -0.7211626  0.2375644  0.06773775
+## abs    -0.6472493 -0.5013329  0.57422365
+## math   -0.9440859  0.1975329  0.09422619
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(cc.out}\SpecialCharTok{$}\NormalTok{scores}\SpecialCharTok{$}\NormalTok{corr.X.yscores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              [,1]          [,2]         [,3]
+## growth -0.9744713  0.0005688272  0.076567107
+## profit -0.9411869  0.2835272081 -0.002878734
+## new    -0.9466102 -0.1635921013 -0.093375287
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(cc.out}\SpecialCharTok{$}\NormalTok{scores}\SpecialCharTok{$}\NormalTok{corr.Y.xscores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              [,1]       [,2]        [,3]
+## create -0.6348095 -0.1894059 -0.24988439
+## mech   -0.7171837  0.2086069  0.02598458
+## abs    -0.6436782 -0.4402237  0.22027544
+## math   -0.9388771  0.1734549  0.03614570
+\end{verbatim}
+
+\begin{itemize}
+\item
+  Describe the first pair of canonical variables, give their correlation, and provide an interpretation.
+\item
+  Describe the second pair of canonical variables, and provide an interpretation.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
   Attempt exam question 1 part (b) from the 2017-18 exam paper.
 \end{enumerate}
 
@@ -5648,7 +5825,7 @@ Conduct CCA on these data. Provide an interpretation of your results.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
+\setcounter{enumi}{2}
 \tightlist
 \item
   Suppose that \(\mathbf z= (\mathbf x^\top \mathbf y^\top)^\top\) is a random vector, where both \(\mathbf x\) and \(\mathbf y\) are sub-vectors of dimension \(p\), so that \(\mathbf z\) is \((2p)\times 1\). Define
@@ -10373,8 +10550,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5402   0.3932   0.3196
-## adjCV       0.8308   0.5400   0.3927   0.3191
+## CV          0.8308   0.5434   0.3920   0.3184
+## adjCV       0.8308   0.5432   0.3915   0.3180
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10499,7 +10676,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.001584893
+## [1] 0.001258925
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
@@ -10511,7 +10688,7 @@ and the largest value of lambda that gives a prediction error within one standar
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.02511886
+## [1] 0.01584893
 \end{verbatim}
 
 \hypertarget{multi-output-linear-model}{%

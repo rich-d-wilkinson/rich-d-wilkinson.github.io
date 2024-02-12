@@ -431,7 +431,7 @@ We will focus on the 5 continuous variables, all measured in mm:</p>
 <span id="cb126-3"><a href="4.4-pca-comptask.html#cb126-3" tabindex="-1"></a>X<span class="ot">=</span>crabs[,<span class="dv">4</span><span class="sc">:</span><span class="dv">8</span>]     </span>
 <span id="cb126-4"><a href="4.4-pca-comptask.html#cb126-4" tabindex="-1"></a><span class="co"># construct data matrix X with columns FL, RW, CL, CW, BD</span></span></code></pre></div>
 <ul>
-<li>Carry out PCA on the data in <span class="math inline">\(X\)</span> using the covariance matrix, including obtaining a scree plot and plotting the PC scores.</li>
+<li>Carry out PCA on the data in <span class="math inline">\(X\)</span> using the correlation matrix, including obtaining a scree plot and plotting the PC scores.</li>
 </ul>
 <!--
 
@@ -448,8 +448,7 @@ lines(lambda)
 <li><p>Do you have any suggestions for an interpretation for the 1st PC?</p></li>
 <li><p>Are you able to come up with an interpretation for the 2nd PC?</p></li>
 <li><p>Do you think an analysis based on the sample covariance matrix <span class="math inline">\({\bf S}\)</span> or the
-correlation matrix <span class="math inline">\({\bf R}\)</span> is preferable with this dataset? Note that you can use <code>scale=TRUE</code> in <code>prcomp</code>
-to carry out PCA on <span class="math inline">\({\bf R}\)</span>. Does it make much difference which is used?</p></li>
+correlation matrix <span class="math inline">\({\bf R}\)</span> is preferable with this dataset? Does it make much difference which is used?</p></li>
 <li><p>Without doing any computation, think about what you expect the sample mean and sample covariance matrix to be for the PC scores. Check this numerically.</p></li>
 <li><p>Now check other properties of the PC scores listed in proposition <a href="4.2-pca-a-formal-description-with-proofs.html#prp:pca2">4.2</a>.</p></li>
 <li><p>Try the following transformations of the data.</p>
@@ -477,6 +476,18 @@ You can generate a random orthogonal matrix using the following commands</p></li
 <li><p>Load the data into R using the command <code>read.csv</code>. Note that you may need to manually delete the first row of the csv file before doing this. This can be done by clicking on the file name in the File tab in Rstudio, or by opening the file in any text editor or spreadsheet.</p></li>
 <li><p>Repeat the analysis from section <a href="4.2-pca-a-formal-description-with-proofs.html#pca:football">4.2.2</a>. Does the meaning of the principal components change? Was the 2018-19 league season notably different to the 2019-20 season (which is the season analysed in the notes)?</p></li>
 </ul>
+</div>
+<div id="exercise-4" class="section level5 unnumbered hasAnchor">
+<h5>Exercise 4<a href="4.4-pca-comptask.html#exercise-4" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>The <code>decathlon2</code> data from the <code>factoextra</code> package contains
+data on 27 different decathletes’ performances during two different competitions. Let’s start by extracting their performance in the 10 different decathlon events at the Olympics.</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="4.4-pca-comptask.html#cb128-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;factoextra&quot;</span>)</span></code></pre></div>
+<pre><code>## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa</code></pre>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="4.4-pca-comptask.html#cb130-1" tabindex="-1"></a><span class="fu">data</span>(decathlon2)</span>
+<span id="cb130-2"><a href="4.4-pca-comptask.html#cb130-2" tabindex="-1"></a>X <span class="ot">&lt;-</span> decathlon2<span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Competition<span class="sc">==</span><span class="st">&#39;OlympicG&#39;</span>) <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>Rank, <span class="sc">-</span>Points,<span class="sc">-</span>Competition)</span></code></pre></div>
+<p>Conduct PCA on these data, thinking about whether it is appropriate to use the correlation or covariance matrix. Give a scree plot, and determine how much information in the data is retained by the first two PCs.
+Interpret the leading PCs.</p>
+<p>Plot the first two scores for the different athlete performances, labelling each point. From these plots, comment on particular strengths/weaknesses in some performances.</p>
 </div>
 </div>
             </section>

@@ -396,10 +396,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exercises-2" class="section level2 hasAnchor" number="5.5">
 <h2><span class="header-section-number">5.5</span> Exercises<a href="5.5-exercises-2.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
+<li>A sales company surveyed <span class="math inline">\(50\)</span> of its employees in order to determine the factors that influence sales performance. Two collections of variables were measured. The first set related to sales performance</li>
+</ol>
+<ul>
+<li>Sales Growth</li>
+<li>Sales Profitability</li>
+<li>New Account Sales</li>
+</ul>
+<p>The second set of variables are test scores measuring intelligence:</p>
+<ul>
+<li>Creativity</li>
+<li>Mechanical Reasoning</li>
+<li>Abstract Reasoning</li>
+<li>Mathematics</li>
+</ul>
+<p>You can download the data set <code>sales.csv</code> from Moodle. The following analysis is carried out in R.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="5.5-exercises-2.html#cb156-1" tabindex="-1"></a>dat<span class="ot">=</span><span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">&#39;sales2.csv&#39;</span>, <span class="at">sep=</span><span class="st">&#39;,&#39;</span>,<span class="at">header=</span><span class="cn">TRUE</span>)</span>
+<span id="cb156-2"><a href="5.5-exercises-2.html#cb156-2" tabindex="-1"></a>X <span class="ot">=</span> dat <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">&#39;growth&#39;</span>, <span class="st">&#39;profit&#39;</span>, <span class="st">&#39;new&#39;</span>) </span>
+<span id="cb156-3"><a href="5.5-exercises-2.html#cb156-3" tabindex="-1"></a>Y <span class="ot">=</span> dat <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="st">&#39;growth&#39;</span>, <span class="sc">-</span><span class="st">&#39;profit&#39;</span>, <span class="sc">-</span><span class="st">&#39;new&#39;</span>)</span>
+<span id="cb156-4"><a href="5.5-exercises-2.html#cb156-4" tabindex="-1"></a></span>
+<span id="cb156-5"><a href="5.5-exercises-2.html#cb156-5" tabindex="-1"></a><span class="fu">library</span>(CCA)</span>
+<span id="cb156-6"><a href="5.5-exercises-2.html#cb156-6" tabindex="-1"></a>cc.out <span class="ot">&lt;-</span> <span class="fu">cc</span>(X,Y)</span>
+<span id="cb156-7"><a href="5.5-exercises-2.html#cb156-7" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>cor)</span></code></pre></div>
+<pre><code>## [1] 0.9944827 0.8781065 0.3836057</code></pre>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="5.5-exercises-2.html#cb158-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>xcoef)</span></code></pre></div>
+<pre><code>##               [,1]       [,2]       [,3]
+## growth -0.06237788 -0.1740703  0.3771529
+## profit -0.02092564  0.2421641 -0.1035150
+## new    -0.07825817 -0.2382940 -0.3834151</code></pre>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="5.5-exercises-2.html#cb160-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>ycoef)</span></code></pre></div>
+<pre><code>##               [,1]        [,2]        [,3]
+## create -0.06974814 -0.19239132 -0.24655659
+## mech   -0.03073830  0.20157438  0.14189528
+## abs    -0.08956418 -0.49576326  0.28022405
+## math   -0.06282997  0.06831607 -0.01133259</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="5.5-exercises-2.html#cb162-1" tabindex="-1"></a><span class="fu">plt.cc</span>(cc.out,<span class="at">var.label =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb162-2"><a href="5.5-exercises-2.html#cb162-2" tabindex="-1"></a>       <span class="at">type=</span><span class="st">&#39;v&#39;</span>)</span></code></pre></div>
+<p><img src="05-cca-ex_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>The following gives the correlation between the original variables and the transformed variables</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="5.5-exercises-2.html#cb163-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.X.xscores)</span></code></pre></div>
+<pre><code>##              [,1]          [,2]         [,3]
+## growth -0.9798776  0.0006477883  0.199598477
+## profit -0.9464085  0.3228847489 -0.007504408
+## new    -0.9518620 -0.1863009724 -0.243414776</code></pre>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="5.5-exercises-2.html#cb165-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.Y.yscores)</span></code></pre></div>
+<pre><code>##              [,1]       [,2]        [,3]
+## create -0.6383313 -0.2156981 -0.65140953
+## mech   -0.7211626  0.2375644  0.06773775
+## abs    -0.6472493 -0.5013329  0.57422365
+## math   -0.9440859  0.1975329  0.09422619</code></pre>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="5.5-exercises-2.html#cb167-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.X.yscores)</span></code></pre></div>
+<pre><code>##              [,1]          [,2]         [,3]
+## growth -0.9744713  0.0005688272  0.076567107
+## profit -0.9411869  0.2835272081 -0.002878734
+## new    -0.9466102 -0.1635921013 -0.093375287</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="5.5-exercises-2.html#cb169-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.Y.xscores)</span></code></pre></div>
+<pre><code>##              [,1]       [,2]        [,3]
+## create -0.6348095 -0.1894059 -0.24988439
+## mech   -0.7171837  0.2086069  0.02598458
+## abs    -0.6436782 -0.4402237  0.22027544
+## math   -0.9388771  0.1734549  0.03614570</code></pre>
+<ul>
+<li><p>Describe the first pair of canonical variables, give their correlation, and provide an interpretation.</p></li>
+<li><p>Describe the second pair of canonical variables, and provide an interpretation.</p></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
 <li>Attempt exam question 1 part (b) from the 2017-18 exam paper.</li>
 </ol>
 <p><img src="figs/CCA_2017_18_Q1.png" /></p>
-<ol start="2" style="list-style-type: decimal">
+<ol start="3" style="list-style-type: decimal">
 <li>Suppose that <span class="math inline">\(\mathbf z= (\mathbf x^\top \mathbf y^\top)^\top\)</span> is a random vector, where both <span class="math inline">\(\mathbf x\)</span> and <span class="math inline">\(\mathbf y\)</span> are sub-vectors of dimension <span class="math inline">\(p\)</span>, so that <span class="math inline">\(\mathbf z\)</span> is <span class="math inline">\((2p)\times 1\)</span>. Define
 <span class="math display">\[{\mathbb{V}\operatorname{ar}}(\mathbf z)=\boldsymbol{\Sigma}_{\mathbf z\mathbf z}=\begin{pmatrix} \boldsymbol{\Sigma}_{\mathbf x\mathbf x} &amp; \boldsymbol{\Sigma}_{\mathbf x\mathbf y}\\\boldsymbol{\Sigma}_{\mathbf y\mathbf x} &amp; \boldsymbol{\Sigma}_{\mathbf y\mathbf y}  \end{pmatrix}.\]</span>
 <ol style="list-style-type: lower-roman">
