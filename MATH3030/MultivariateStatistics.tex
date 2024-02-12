@@ -4737,6 +4737,16 @@ Plot the first two scores for the different athlete performances, labelling each
 
 \includegraphics{figs/PCA_2017_18_Q1.png}
 
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Try this tricky question from the 2016 exam.
+\end{enumerate}
+
+\includegraphics{PCA_Q4_2015_16.png}
+
 \hypertarget{cca}{%
 \chapter{Canonical Correlation Analysis (CCA)}\label{cca}}
 
@@ -10550,8 +10560,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5434   0.3920   0.3184
-## adjCV       0.8308   0.5432   0.3915   0.3180
+## CV          0.8308   0.5443   0.3940   0.3200
+## adjCV       0.8308   0.5438   0.3935   0.3194
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10676,7 +10686,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.001258925
+## [1] 0.0007943282
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
