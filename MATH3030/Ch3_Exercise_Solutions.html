@@ -3057,7 +3057,7 @@ Solution
 <ul>
 <li>Find the full SVD for <span class="math inline">\(\mathbf B=\mathbf U\boldsymbol{\Sigma}\mathbf V^\top\)</span> (noting that <span class="math inline">\(\mathbf B=\mathbf A^\top\)</span> for <span class="math inline">\(\mathbf A\)</span> from the previous question).</li>
 <li>Compute <span class="math inline">\(\tilde{\mathbf x}=\mathbf B^+\mathbf y\)</span>, check it is a solution to the equation, and explain why <span class="math display">\[\tilde{\mathbf x}= \sum_{i=1}^r \mathbf v_i \frac{\mathbf u_i^\top \mathbf y}{\sigma_i}\]</span> in general, where <span class="math inline">\(r\leq max(n,p)\)</span> is the rank of <span class="math inline">\(\mathbf B\)</span>, and write out <span class="math inline">\(\tilde{\mathbf x}\)</span> explicitly in this form for the given <span class="math inline">\(\mathbf B\)</span>.</li>
-<li>Consider <span class="math inline">\(\mathbf x\)</span> of the form <span class="math display">\[\mathbf x= \tilde{\mathbf x} + \sum_{i=r+1}^n \alpha_i \mathbf v_i\]</span> and explain why any <span class="math inline">\(\mathbf x\)</span> of this form is also a solution to <span class="math inline">\(\mathbf B\mathbf x=\mathbf y\)</span>. Thus write out all possible solutions of the equation.</li>
+<li>Consider <span class="math inline">\(\mathbf x\)</span> of the form <span class="math display">\[\mathbf x= \tilde{\mathbf x} + \sum_{i=r+1}^p \alpha_i \mathbf v_i\]</span> and explain why any <span class="math inline">\(\mathbf x\)</span> of this form is also a solution to <span class="math inline">\(\mathbf B\mathbf x=\mathbf y\)</span>. Thus write out all possible solutions of the equation.</li>
 <li>Prove that <span class="math inline">\(\tilde{\mathbf x}\)</span> is the solution with minimum norm, i.e., <span class="math inline">\(||\tilde{\mathbf x}||_2 \leq ||\mathbf x||_2\)</span>. <strong>Hint</strong> <span class="math inline">\(\mathbf v_1, \ldots, \mathbf v_p\)</span> form a complete orthonormal basis for <span class="math inline">\(\mathbb{R}^p\)</span>.</li>
 </ul>
 <div class="callout-note callout callout-style-simple no-icon callout-captioned">
@@ -3095,9 +3095,9 @@ Solution
 \end{pmatrix}\]</span> This is a solutuion to <span class="math inline">\(\mathbf B\mathbf x=\mathbf y\)</span>.</li>
 </ul>
 <p>In general</p>
-<span class="math display">\[\begin{align*}
-\tilde{\bx} = \bV \bSigma^{-1}\bU^\top \by&amp;= \sum_{i=1}^r \frac{\bv_i\bu_i^\top}{\sigma_i} \by\\
-&amp;=\sum_{i=1}^r\bv_i \frac{\bu_i^\top \by}{\sigma_i} \\
+<p><span class="math display">\[\begin{align*}
+\tilde{\mathbf x} = \mathbf V\boldsymbol{\Sigma}^{-1}\mathbf U^\top \mathbf y&amp;= \sum_{i=1}^r \frac{\mathbf v_i\mathbf u_i^\top}{\sigma_i} \mathbf y\\
+&amp;=\sum_{i=1}^r\mathbf v_i \frac{\mathbf u_i^\top \mathbf y}{\sigma_i} \\
 &amp;= \frac{\sqrt{2}}{\sqrt{3}}
 \begin{pmatrix}
 \frac{2}{\sqrt{6}} \\
@@ -3108,11 +3108,11 @@ Solution
 \frac{1}{\sqrt{2}}\\
 -\frac{1}{\sqrt{2}}
 \end{pmatrix}
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <ul>
 <li>
-<span class="math inline">\(\mathbf B\mathbf v_i=0\)</span> for <span class="math inline">\(i&gt;r\)</span>. Thus <span class="math display">\[\mathbf B(\tilde{\mathbf x}+\sum_{i=r+1}^n \alpha_i \mathbf v_i)
-=\mathbf B\tilde{\mathbf x} +\sum_{i=r+1}^n \alpha_i \mathbf B\mathbf v_i
+<span class="math inline">\(\mathbf B\mathbf v_i=0\)</span> for <span class="math inline">\(i&gt;r\)</span>. Thus <span class="math display">\[\mathbf B(\tilde{\mathbf x}+\sum_{i=r+1}^p \alpha_i \mathbf v_i)
+=\mathbf B\tilde{\mathbf x} +\sum_{i=r+1}^p \alpha_i \mathbf B\mathbf v_i
 =\mathbf B\tilde{\mathbf x}=\mathbf y
 \]</span>
 </li>
@@ -3121,12 +3121,12 @@ Solution
 <p><span class="math display">\[\mathbf x= \frac{1}{3}\begin{pmatrix}2\\1\\1\end{pmatrix}+\alpha \begin{pmatrix}1\\-1\\-1\end{pmatrix}
 \]</span> for any <span class="math inline">\(\alpha \in \mathbb{R}\)</span>.</p>
 <ul>
-<li>Solutions are of the form <span class="math display">\[\mathbf x= \tilde{\mathbf x}+\sum_{i=r+1}^n \alpha_i \mathbf v_i\]</span> and so <span class="math display">\[||\mathbf x||_2^2 = \mathbf x^\top\mathbf x= \tilde{\mathbf x}^\top \tilde{\mathbf x}+\sum \alpha_i^2 = ||\tilde{\mathbf x}||_2^2 +\sum \alpha_i^2  \geq ||\tilde{\mathbf x}||_2^2\]</span> as <span class="math inline">\(\tilde{\mathbf x}^\top \mathbf v_i=0\)</span> for <span class="math inline">\(i&gt;r\)</span>.</li>
+<li>Solutions are of the form <span class="math display">\[\mathbf x= \tilde{\mathbf x}+\sum_{i=r+1}^p \alpha_i \mathbf v_i\]</span> and so <span class="math display">\[||\mathbf x||_2^2 = \mathbf x^\top\mathbf x= \tilde{\mathbf x}^\top \tilde{\mathbf x}+\sum \alpha_i^2 = ||\tilde{\mathbf x}||_2^2 +\sum \alpha_i^2  \geq ||\tilde{\mathbf x}||_2^2\]</span> as <span class="math inline">\(\tilde{\mathbf x}^\top \mathbf v_i=0\)</span> for <span class="math inline">\(i&gt;r\)</span>.</li>
 </ul>
 <p>So in summary, for the system <span class="math inline">\(\mathbf A\mathbf x=\mathbf y\)</span>, if</p>
 <ol type="i">
 <li><p>there is a unique solution, then <span class="math inline">\(\mathbf x=\tilde{\mathbf x} = \mathbf A^+\mathbf y\)</span></p></li>
-<li><p>if there are many solutions, then <span class="math inline">\(\mathbf x=\tilde{\mathbf x}+\sum_{i=r+1}^n \alpha_i \mathbf v_i\)</span></p></li>
+<li><p>if there are many solutions, then <span class="math inline">\(\mathbf x=\tilde{\mathbf x}+\sum_{i=r+1}^p \alpha_i \mathbf v_i\)</span></p></li>
 <li><p>if there are no solutions, then <span class="math inline">\(\tilde{\mathbf x}=\mathbf A^+\mathbf y\)</span> is the least squares solution.</p></li>
 </ol>
 </div>

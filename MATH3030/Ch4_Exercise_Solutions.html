@@ -2933,8 +2933,17 @@ Solution
 \frac{2.92+1.44}{2.92+1.44+0.56+0.07+0.01}&lt;0.9&lt;\frac{2.92+1.44+0.56}{2.92+1.44+0.56+0.07+0.01}
 \]</span> so we should retain 3 PCs to explain at least 90% of the variance.</p>
 <ol start="3" type="i">
-<li><p>PC1 seems to distinguish between the sprint events and long-distance running. Large PC1 scores would indicate slow national records for long-distance running events and/or fast times for sprints. PC2 seems to measure overall quality of running, with more emphasis given to long distance events. Large values of PC2 would indicate poor (slow) national records.</p></li>
-<li><p>Correlation-based PCA is invariant to the choice of scales for the original variables, i.e., it wouldn’t matter if we measured time in seconds or hours etc. It is also invariant to translations, so we could add an arbitrary constant to each variable and it wouldn’t change the results. This is because we center the variables.</p></li>
+<li>The first PC score is obtained by projecting onto PC1. So it is</li>
+</ol>
+<p><span class="math display">\[\begin{align*}y_1 = &amp;-0.5(\mbox{100m record}- \mbox{average 100m record})\\
+&amp;- 0.51(\mbox{200m record}- \mbox{average 200m record})\\
+&amp;-0.3(\mbox{400m record}- \mbox{average 400m record})\\
+&amp;+0.45(\mbox{5k record}- \mbox{average 5k record})\\
+&amp;+0.44(\mbox{10k record}- \mbox{average 10k record})
+\end{align*}\]</span> So a country that had faster than average sprint records, but slower than average distance records (e.g. Jamaica), would have a large positive value for <span class="math inline">\(y_1\)</span>. Conversely, a country that had slower than average sprint records but faster than average distance records (e.g. Ethiopia), would have a large negative value of <span class="math inline">\(y_1\)</span>.</p>
+<p>Working through the same reasoning, PC2 seems to measure overall quality of running, with more emphasis given to long distance events. Large values of <span class="math inline">\(y_2\)</span> would indicate poor (slow) national records, large negative values of <span class="math inline">\(y_2\)</span> would indicate fast national records across all events.</p>
+<ol start="4" type="i">
+<li>Correlation-based PCA is invariant to the choice of scales for the original variables, i.e., it wouldn’t matter if we measured time in seconds or hours etc. It is also invariant to translations, so we could add an arbitrary constant to each variable and it wouldn’t change the results. This is because we center the variables.</li>
 </ol>
 </div>
 </div>
@@ -2977,6 +2986,13 @@ Solution
 <pre><code>[1] 0.701 0.181 0.073 0.035 0.006 0.004</code></pre>
 </div>
 </div>
+<p>and the cumulative proportion of variability explained by the PCs 1 to 6 is</p>
+<div class="cell">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">lambda</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">lambda</span><span class="op">)</span><span class="op">)</span>,<span class="fl">3</span><span class="op">)</span><span class="op">*</span><span class="fl">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  70.1  88.2  95.5  99.0  99.6 100.0</code></pre>
+</div>
+</div>
 <ol start="2" type="i">
 <li>The first PC contains all positive values. Aside from age (which has a small loading), all the variables are measures of size, and so PC1 can be seen as a scalar measure of the size of an individual. Large vallues of PC2 indicate a larger individual.</li>
 </ol>
@@ -2985,7 +3001,7 @@ Solution
 <li>To compute the ith PC score we compute <span class="math display">\[\mathbf q_i^\top (\mathbf x-\bar{\mathbf x})\]</span> giving</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">q1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.52</span>, <span class="fl">0.2</span>, <span class="fl">0.11</span>, <span class="fl">0.41</span>, <span class="fl">0.7</span>, <span class="fl">0.13</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">q1</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.52</span>, <span class="fl">0.2</span>, <span class="fl">0.11</span>, <span class="fl">0.41</span>, <span class="fl">0.7</span>, <span class="fl">0.13</span><span class="op">)</span></span>
 <span><span class="va">xbar</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">108.2</span>, <span class="fl">31.2</span>, <span class="fl">36.1</span>, <span class="fl">171.1</span>, <span class="fl">69.2</span>, <span class="fl">30.2</span><span class="op">)</span></span>
 <span><span class="va">x</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">120</span>, <span class="fl">31</span>, <span class="fl">39</span>, <span class="fl">170</span>,<span class="fl">74</span>, <span class="fl">35</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">q1</span><span class="op">*</span><span class="op">(</span><span class="va">x</span><span class="op">-</span><span class="va">xbar</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2995,7 +3011,7 @@ Solution
 </div>
 <p>for the first PC score and</p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">q2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.05</span>, <span class="op">-</span><span class="fl">0.01</span>, <span class="op">-</span><span class="fl">0.02</span>, <span class="op">-</span><span class="fl">0.2</span>, <span class="op">-</span><span class="fl">0.03</span>, <span class="fl">0.98</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">q2</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.05</span>, <span class="op">-</span><span class="fl">0.01</span>, <span class="op">-</span><span class="fl">0.02</span>, <span class="op">-</span><span class="fl">0.2</span>, <span class="op">-</span><span class="fl">0.03</span>, <span class="fl">0.98</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">q2</span><span class="op">*</span><span class="op">(</span><span class="va">x</span><span class="op">-</span><span class="va">xbar</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.134</code></pre>
