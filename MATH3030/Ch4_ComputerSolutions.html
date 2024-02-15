@@ -3886,6 +3886,7 @@ Orthogonal rotations:
 <span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">prcomp</span>(X4)<span class="sc">$</span>x<span class="sc">/</span>crabs.pca2<span class="sc">$</span>x) <span class="co"># scores are the same</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
+<<<<<<< HEAD
 <pre><code>  PC1 PC2 PC3 PC4 PC5
 1   1   1  -1  -1   1
 2   1   1  -1  -1   1
@@ -3893,6 +3894,15 @@ Orthogonal rotations:
 4   1   1  -1  -1   1
 5   1   1  -1  -1   1
 6   1   1  -1  -1   1</code></pre>
+=======
+<pre><code>       PC1      PC2        PC3        PC4      PC5
+1 5.384189 2.153065  -5.014835 -0.7345494 7.166220
+2 5.385297 3.585106  -6.066071 -4.0724803 5.426243
+3 5.279614 4.225889  -1.951678 -4.8038976 6.253173
+4 5.251347 3.405992  15.091768 -3.8981680 5.059819
+5 5.285002 3.110531 -24.120555 -3.0274966 7.168262
+6 5.207107 3.622139   2.195144 -3.0433798 8.177127</code></pre>
+>>>>>>> 345b2aea9297a388f9a5a9dcbd8551052b84646e
 </div>
 <div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prcomp</span>(X4)<span class="sc">$</span>sdev<span class="sc">/</span>crabs.pca2<span class="sc">$</span>sdev <span class="co"># eigenvalues the same</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -3900,12 +3910,21 @@ Orthogonal rotations:
 </div>
 <div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prcomp</span>(X4)<span class="sc">$</span>rotation<span class="sc">/</span>crabs.pca2<span class="sc">$</span>rotation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
+<<<<<<< HEAD
 <pre><code>            PC1        PC2        PC3        PC4        PC5
 [1,]  0.9165282  1.4397229  0.1077682 -1.1405563  0.7540700
 [2,] -1.3704470  0.9040381  0.5570111 -1.9286754  3.0182579
 [3,] -1.1738629 -0.7524495  3.3702532  0.4216893 -0.4858552
 [4,]  0.8924695 -1.2370851 -0.9231727  3.6002327  0.7166531
 [5,] -0.4016081  0.9515784 -1.1402501 -0.1456882  1.7156909</code></pre>
+=======
+<pre><code>             PC1        PC2        PC3         PC4        PC5
+[1,]  0.31296862  3.8054051 -1.4340699  -0.4748650 -1.3508615
+[2,]  0.01135940  0.8717953 30.2690827   5.6495705 -3.2774785
+[3,] -0.04498772  0.1855904 -1.3554586 446.2223483  0.8042124
+[4,]  2.01350258  0.3585784 -0.3589295  -1.8524023  0.5181221
+[5,]  0.87130043 -1.2326349 -0.5439041  -0.6697947 -3.8475754</code></pre>
+>>>>>>> 345b2aea9297a388f9a5a9dcbd8551052b84646e
 </div>
 <div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  loadings/eigenvectors change.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -3931,11 +3950,19 @@ Solution
 <div class="callout-body-container callout-body">
 <p>To delete the first row, I simply opened the file in Rstudio and manually deleted it.</p>
 <div class="cell">
+<<<<<<< HEAD
 <div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>prem22 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&#39;prem202223.csv&#39;</span>) </span>
 <span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the data can be downloaded from https://www.rotowire.com/soccer/league-table.php</span></span>
 <span id="cb110-4"><a href="#cb110-4" aria-hidden="true" tabindex="-1"></a>table <span class="ot">&lt;-</span> prem22 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(Team, W, D, L, G, GA, GD) </span>
 <span id="cb110-5"><a href="#cb110-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(table,<span class="dv">10</span>), <span class="at">booktabs =</span> <span class="cn">TRUE</span>, <span class="at">escape=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+=======
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="va">prem22</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="st">&#39;~/Documents/Teaching/MATH3030_4068/ComputerTaskSolutions/prem202223.csv&#39;</span><span class="op">)</span> </span>
+<span><span class="co"># the data can be downloaded from https://www.rotowire.com/soccer/league-table.php</span></span>
+<span><span class="va">table</span> <span class="op">&lt;-</span> <span class="va">prem22</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">Team</span>, <span class="va">W</span>, <span class="va">D</span>, <span class="va">L</span>, <span class="va">G</span>, <span class="va">GA</span>, <span class="va">GD</span><span class="op">)</span> </span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">table</span>,<span class="fl">10</span><span class="op">)</span>, booktabs <span class="op">=</span> <span class="cn">TRUE</span>, escape<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+>>>>>>> 345b2aea9297a388f9a5a9dcbd8551052b84646e
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <thead>
