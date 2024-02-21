@@ -2460,7 +2460,7 @@ When \(\mathbf A\) is symmetric, we take \(\mathbf U=\mathbf V\), and the spectr
 
 \begin{proof}
 \(\mathbf A^\top \mathbf A\) is a \(p\times p\) symmetric matrix, and so by the spectral decomposition theorem we can write it as \[\mathbf A^\top \mathbf A= \mathbf V\boldsymbol \Lambda\mathbf V^\top\]
-where \(\mathbf V\) is a \(p \times p\) orthogonal matrix containing the orthonormal eigenvectors of \(\mathbf A^\top \mathbf A\), and \(\boldsymbol \Lambda=\operatorname{diag}(\lambda_1, \ldots, \lambda_r)\) is a diagonal matrix of eigenvalues with \(\lambda_1\geq \ldots \geq\lambda_r>0\) (by Corollary \ref{cor:nonzeroeigen}).
+where \(\mathbf V\) is a \(p \times r\) semi-orthogonal matrix containing the orthonormal eigenvectors of \(\mathbf A^\top \mathbf A\), and \(\boldsymbol \Lambda=\operatorname{diag}(\lambda_1, \ldots, \lambda_r)\) is a diagonal matrix of eigenvalues with \(\lambda_1\geq \ldots \geq\lambda_r>0\) (by Corollary \ref{cor:nonzeroeigen}).
 
 For \(i=1,\dots, r\), let \(\sigma_i =\sqrt{\lambda_i}\) and let \(\mathbf u_i = \frac{1}{\sigma_i} \mathbf A\mathbf v_i\). Then the vectors \(\mathbf u_i\) are orthonormal:
 \begin{align*}
@@ -3083,7 +3083,7 @@ Since A is positive definite, we can calculate the symmetric, positive definite 
     \(\tilde{\mathbf x}=\mathbf B^+\mathbf y\), check it is a solution to the equation, and explain why \[\tilde{\mathbf x}= \sum_{i=1}^r \mathbf v_i \frac{\mathbf u_i^\top \mathbf y}{\sigma_i}\] in general, where \(r\leq max(n,p)\) is the rank of \(\mathbf B\), and write out \(\tilde{\mathbf x}\) explicitly in this form for the given \(\mathbf B\).
   \item
     Consider \(\mathbf x\) of the form
-    \[\mathbf x= \tilde{\mathbf x} + \sum_{i=r+1}^n \alpha_i \mathbf v_i\]
+    \[\mathbf x= \tilde{\mathbf x} + \sum_{i=r+1}^p \alpha_i \mathbf v_i\]
     and explain why any \(\mathbf x\) of this form is also a solution to \(\mathbf B\mathbf x=\mathbf y\). Thus write out all possible solutions of the equation.
   \item
     Prove that \(\tilde{\mathbf x}\) is the solution with minimum norm, i.e., \(||\tilde{\mathbf x}||_2 \leq ||\mathbf x||_2\). \textbf{Hint} \(\mathbf v_1, \ldots, \mathbf v_p\) form a complete orthonormal basis for \(\mathbb{R}^p\).
@@ -4605,7 +4605,7 @@ Check the effect of each transformation on the principal components (the loading
 \paragraph*{Exercise 3}\label{exercise-3}}
 \addcontentsline{toc}{paragraph}{Exercise 3}
 
-Download the final Premier League table for the 2018-19 season from
+Download the final Premier League table for the 2022-23 season from
 \url{https://www.rotowire.com/soccer/league-table.php?season=2022}. There is a button to download the csv (comma separated variable) file in the bottom right hand corner.
 
 \begin{itemize}
@@ -5540,18 +5540,8 @@ other set, the \(\mathbf y\)-set, is given by FL, RW and BD.
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(MASS)}
 \NormalTok{?crabs           }\CommentTok{\# read the help page to find out about the dataset}
-\NormalTok{X}\OtherTok{=}\FunctionTok{as.matrix}\NormalTok{(crabs[}\DecValTok{4}\SpecialCharTok{:}\DecValTok{8}\NormalTok{])    }
-\NormalTok{n}\OtherTok{=}\DecValTok{200}                                      \CommentTok{\# sample size}
-\NormalTok{H}\OtherTok{=}\FunctionTok{diag}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,n))}\SpecialCharTok{{-}}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,n)}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,n))}\SpecialCharTok{/}\NormalTok{n  }
-\CommentTok{\# n times n centering matrix}
-\FunctionTok{library}\NormalTok{(dplyr)}
-\NormalTok{X1 }\OtherTok{=}\NormalTok{ crabs }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(CL, CW)  }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{as.matrix            }
-\CommentTok{\# store CL and CW in X1}
-\NormalTok{Y1 }\OtherTok{=}\NormalTok{ crabs }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(FL, RW, BD) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ as.matrix            }
-\CommentTok{\# store FL, RW and BD in Y1}
-\NormalTok{Sxx}\OtherTok{=}\FunctionTok{t}\NormalTok{(X1)}\SpecialCharTok{\%*\%}\NormalTok{H}\SpecialCharTok{\%*\%}\NormalTok{X1}\SpecialCharTok{/}\NormalTok{n       }\CommentTok{\# find x{-}variable variance matrix}
-\NormalTok{Syy}\OtherTok{=}\FunctionTok{t}\NormalTok{(Y1)}\SpecialCharTok{\%*\%}\NormalTok{H}\SpecialCharTok{\%*\%}\NormalTok{Y1}\SpecialCharTok{/}\NormalTok{n       }\CommentTok{\# find y{-}variable variance matrix}
-\NormalTok{Sxy}\OtherTok{=}\FunctionTok{t}\NormalTok{(X1)}\SpecialCharTok{\%*\%}\NormalTok{H}\SpecialCharTok{\%*\%}\NormalTok{Y1}\SpecialCharTok{/}\NormalTok{n       }\CommentTok{\# find cross{-}covariance matrix}
+\NormalTok{X1 }\OtherTok{=}\NormalTok{ crabs }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(CL, CW)  }\SpecialCharTok{\%\textgreater{}\%}\FunctionTok{as.matrix}\NormalTok{()  }
+\NormalTok{Y1 }\OtherTok{=}\NormalTok{ crabs }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(FL, RW, BD) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{as.matrix}\NormalTok{()            }
 \end{Highlighting}
 \end{Shaded}
 
@@ -5593,9 +5583,9 @@ other set, the \(\mathbf y\)-set, is given by FL, RW and BD.
 \paragraph*{Task 2}\label{task-2}}
 \addcontentsline{toc}{paragraph}{Task 2}
 
-The full Premier League dataset is available at
+The data for previous Premier League seasons is available at:
 
-\href{https://www.rotowire.com/soccer/league-table.php?season=2019}{https://www.rotowire.com/soccer/league-table.php?season=2018}
+{[}\url{https://www.rotowire.com/soccer/league-table.php?season=2022}{]}\url{https://www.rotowire.com/soccer/league-table.php?season=2022})
 
 There is a button to download the csv (comma separated variable) file in the bottom right hand corner. Read the data into R (hint: try the \texttt{read.csv} command).
 
@@ -5611,7 +5601,16 @@ If you are not sure what the name of YOURDIRECTORY is where the file is located,
 \begin{enumerate}
 \def\labelenumi{\roman{enumi}.}
 \item
-  Check that you can reproduce, and agree with, the calculations done in this chapter.
+  Reproduce the analysis from the notes for the 2022-23 premier league season.
+\item
+  Give an interpretation of the CC scores. One of doing this is to think about the correlation between the original variables and the scores (the transformed variables). Note that there are four different correlation matrices we can look at to aid interpretation: correlation between X and \(\eta\), \(X\) and \(\psi\), \(Y\) and \(\eta\), and \(Y\) and \(\psi\).
+\end{enumerate}
+
+Circle plots can also help. Look at the help page for \texttt{plt.cc} and try some circle plots.
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\setcounter{enumi}{2}
 \item
   Consider now doing CCA with \(\mathbf x=(W,D)\) and \(\mathbf y=(G,GA, L)\). Note that if you knew \(W\) and \(D\), you could calculate \(L\). Without doing any computation, what do you expect the first canoncial correlation to be? What will the first pair of CC vectors be (upto a multiplicative constant)?
 \item
@@ -6909,6 +6908,16 @@ More generally still, there has been a lot of work on non-linear dimension reduc
 \end{enumerate}
 
 \includegraphics{figs/MDS_2018_19_Q4.png}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Answer Q4 part (a) from the 2017-18 exam paper. Here, the `similarity matching coefficient' is what we called the \emph{simple matching coefficient} (SMC) in the notes.
+\end{enumerate}
+
+\includegraphics{figs/MDS_2017_18_Q4.png}
 
 \hypertarget{computer-tasks-2}{%
 \section{Computer Tasks}\label{computer-tasks-2}}
@@ -10560,8 +10569,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5443   0.3940   0.3200
-## adjCV       0.8308   0.5438   0.3935   0.3194
+## CV          0.8308   0.5458   0.3881   0.3204
+## adjCV       0.8308   0.5454   0.3879   0.3199
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10686,7 +10695,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0007943282
+## [1] 0.0001258925
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
