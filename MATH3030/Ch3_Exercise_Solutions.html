@@ -3095,9 +3095,9 @@ Solution
 \end{pmatrix}\]</span> This is a solutuion to <span class="math inline">\(\mathbf B\mathbf x=\mathbf y\)</span>.</li>
 </ul>
 <p>In general</p>
-<span class="math display">\[\begin{align*}
-\tilde{\bx} = \bV \bSigma^{-1}\bU^\top \by &amp;= \sum_{i=1}^r \frac{\bv_i\bu_i^\top}{\sigma_i} \by\\
-&amp;=\sum_{i=1}^r\bv_i \frac{\bu_i^\top \by}{\sigma_i} \\
+<p><span class="math display">\[\begin{align*}
+\tilde{\mathbf x} = \mathbf V\boldsymbol{\Sigma}^{-1}\mathbf U^\top \mathbf y&amp;= \sum_{i=1}^r \frac{\mathbf v_i\mathbf u_i^\top}{\sigma_i} \mathbf y\\
+&amp;=\sum_{i=1}^r\mathbf v_i \frac{\mathbf u_i^\top \mathbf y}{\sigma_i} \\
 &amp;= \frac{\sqrt{2}}{\sqrt{3}}
 \begin{pmatrix}
 \frac{2}{\sqrt{6}} \\
@@ -3108,7 +3108,7 @@ Solution
 \frac{1}{\sqrt{2}}\\
 -\frac{1}{\sqrt{2}}
 \end{pmatrix}
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 <ul>
 <li>
 <span class="math inline">\(\mathbf B\mathbf v_i=0\)</span> for <span class="math inline">\(i&gt;r\)</span>. Thus <span class="math display">\[\mathbf B(\tilde{\mathbf x}+\sum_{i=r+1}^p \alpha_i \mathbf v_i)
