@@ -9308,14 +9308,12 @@ In this question we will generate some data ourselves, and then see how successf
 \NormalTok{S3 }\OtherTok{\textless{}{-}} \FunctionTok{rmvnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, mu3, Sigma)}
 \NormalTok{S4 }\OtherTok{\textless{}{-}} \FunctionTok{rmvnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, mu4, Sigma)}
 \NormalTok{X}\OtherTok{=}\FunctionTok{rbind}\NormalTok{(S1,S2,S3,S4)}
-\NormalTok{dat }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{popn=}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"1"}\NormalTok{,}\DecValTok{100}\NormalTok{),}\FunctionTok{rep}\NormalTok{(}\StringTok{"2"}\NormalTok{,}\DecValTok{100}\NormalTok{),}\FunctionTok{rep}\NormalTok{(}\StringTok{"3"}\NormalTok{,}\DecValTok{100}\NormalTok{),}
-                         \FunctionTok{rep}\NormalTok{(}\StringTok{"4"}\NormalTok{,}\DecValTok{100}\NormalTok{)), }\AttributeTok{X1=}\NormalTok{X[,}\DecValTok{1}\NormalTok{], }\AttributeTok{X2=}\NormalTok{X[,}\DecValTok{2}\NormalTok{])}
-\FunctionTok{library}\NormalTok{(ggplot2)}
-\FunctionTok{qplot}\NormalTok{(}\AttributeTok{x=}\NormalTok{X1,}\AttributeTok{y=}\NormalTok{X2, }\AttributeTok{colour=}\NormalTok{popn, }\AttributeTok{data=}\NormalTok{dat)}
+\NormalTok{dat }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{popn=}\FunctionTok{as.factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{"1"}\NormalTok{,}\DecValTok{100}\NormalTok{),}\FunctionTok{rep}\NormalTok{(}\StringTok{"2"}\NormalTok{,}\DecValTok{100}\NormalTok{),}\FunctionTok{rep}\NormalTok{(}\StringTok{"3"}\NormalTok{,}\DecValTok{100}\NormalTok{),}
+                         \FunctionTok{rep}\NormalTok{(}\StringTok{"4"}\NormalTok{,}\DecValTok{100}\NormalTok{))), }\AttributeTok{X1=}\NormalTok{X[,}\DecValTok{1}\NormalTok{], }\AttributeTok{X2=}\NormalTok{X[,}\DecValTok{2}\NormalTok{])}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{09-lda-ex_files/figure-latex/unnamed-chunk-7-1.pdf}
+Plot all four populations on the same plot, using a different colour for each population.
 
 \begin{enumerate}
 \def\labelenumi{\roman{enumi}.}
@@ -9458,6 +9456,16 @@ Calculate Fisher's linear discriminant function using just a single LDA variable
 \item
   What would Fisher's discriminant rule be if you use both LDA variables?
 \end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Try Q2 from the 2020-21 paper
+\end{enumerate}
+
+\includegraphics{figs/LDA_2020_21_Q2.png}
 
 \hypertarget{cluster}{%
 \chapter{Cluster Analysis}\label{cluster}}
@@ -10569,8 +10577,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5458   0.3881   0.3204
-## adjCV       0.8308   0.5454   0.3879   0.3199
+## CV          0.8308   0.5446   0.3904   0.3197
+## adjCV       0.8308   0.5442   0.3901   0.3192
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10695,7 +10703,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0001258925
+## [1] 0.0005011872
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
@@ -10707,7 +10715,7 @@ and the largest value of lambda that gives a prediction error within one standar
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.01584893
+## [1] 0.01995262
 \end{verbatim}
 
 \hypertarget{multi-output-linear-model}{%
