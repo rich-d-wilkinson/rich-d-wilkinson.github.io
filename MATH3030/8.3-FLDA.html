@@ -546,21 +546,17 @@ i.e., we compute the <span class="math inline">\(r\)</span> dimensional projecti
 <div id="iris-example-continued-1" class="section level3 hasAnchor" number="8.3.1">
 <h3><span class="header-section-number">8.3.1</span> Iris example continued<a href="8.3-FLDA.html#iris-example-continued-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s continue the iris example we had before, using the full dataset of 150 observations on 3 species, with 4 measurements on each flower.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="8.3-FLDA.html#cb251-1" tabindex="-1"></a><span class="fu">library</span>(vcvComp)</span>
-<span id="cb251-2"><a href="8.3-FLDA.html#cb251-2" tabindex="-1"></a>B<span class="ot">=</span><span class="fu">cov.B</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], iris[,<span class="dv">5</span>])</span>
-<span id="cb251-3"><a href="8.3-FLDA.html#cb251-3" tabindex="-1"></a>W<span class="ot">=</span><span class="fu">cov.W</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], iris[,<span class="dv">5</span>]) </span>
-<span id="cb251-4"><a href="8.3-FLDA.html#cb251-4" tabindex="-1"></a>iris.eig <span class="ot">&lt;-</span> <span class="fu">eigen</span>(<span class="fu">solve</span>(W)<span class="sc">%*%</span> B)</span>
-<span id="cb251-5"><a href="8.3-FLDA.html#cb251-5" tabindex="-1"></a>iris.eig<span class="sc">$</span>values</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="8.3-FLDA.html#cb250-1" tabindex="-1"></a><span class="fu">library</span>(vcvComp)</span>
+<span id="cb250-2"><a href="8.3-FLDA.html#cb250-2" tabindex="-1"></a>B<span class="ot">=</span><span class="fu">cov.B</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], iris[,<span class="dv">5</span>])</span>
+<span id="cb250-3"><a href="8.3-FLDA.html#cb250-3" tabindex="-1"></a>W<span class="ot">=</span><span class="fu">cov.W</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], iris[,<span class="dv">5</span>]) </span>
+<span id="cb250-4"><a href="8.3-FLDA.html#cb250-4" tabindex="-1"></a>iris.eig <span class="ot">&lt;-</span> <span class="fu">eigen</span>(<span class="fu">solve</span>(W)<span class="sc">%*%</span> B)</span>
+<span id="cb250-5"><a href="8.3-FLDA.html#cb250-5" tabindex="-1"></a>iris.eig<span class="sc">$</span>values</span></code></pre></div>
 <pre><code>## [1]  4.732214e+01  4.195248e-01  7.749285e-15 -4.752967e-15</code></pre>
 <p>We can see that <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> only has two positive eigenvalues, and so is rank 2. We expected this, as we said the rank of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span> must be less than <span class="math inline">\(\min(g-1,p)= \min(2,4)=2\)</span>. We can plot these projections and look at the separation achieved.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="8.3-FLDA.html#cb253-1" tabindex="-1"></a>V <span class="ot">&lt;-</span> iris.eig<span class="sc">$</span>vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
-<span id="cb253-2"><a href="8.3-FLDA.html#cb253-2" tabindex="-1"></a>Z <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])<span class="sc">%*%</span> V</span>
-<span id="cb253-3"><a href="8.3-FLDA.html#cb253-3" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">qplot</span>(Z[,<span class="dv">1</span>], Z[,<span class="dv">2</span>], <span class="at">colour=</span>iris<span class="sc">$</span>Species, <span class="at">xlab=</span><span class="st">&#39;LD1&#39;</span>,</span>
-<span id="cb253-4"><a href="8.3-FLDA.html#cb253-4" tabindex="-1"></a>               <span class="at">ylab=</span><span class="st">&#39;LD2&#39;</span>)</span></code></pre></div>
-<pre><code>## Warning: `qplot()` was deprecated in ggplot2 3.4.0.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="8.3-FLDA.html#cb252-1" tabindex="-1"></a>V <span class="ot">&lt;-</span> iris.eig<span class="sc">$</span>vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb252-2"><a href="8.3-FLDA.html#cb252-2" tabindex="-1"></a>Z <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])<span class="sc">%*%</span> V<span class="sc">|&gt;</span><span class="fu">data.frame</span>()<span class="sc">|&gt;</span> <span class="fu">mutate</span>()</span>
+<span id="cb252-3"><a href="8.3-FLDA.html#cb252-3" tabindex="-1"></a></span>
+<span id="cb252-4"><a href="8.3-FLDA.html#cb252-4" tabindex="-1"></a>Z <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>X1, <span class="at">y=</span>X2, <span class="at">colour=</span>iris<span class="sc">$</span>Species))<span class="sc">+</span><span class="fu">geom_point</span>()<span class="sc">+</span><span class="fu">xlab</span>(<span class="st">&#39;LD1&#39;</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&#39;LD2&#39;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ldairis2d"></span>
 <img src="09-lda_files/figure-html/ldairis2d-1.png" alt="2-dimensional LDA projection of the iris data" width="672" />
 <p class="caption">
@@ -568,12 +564,12 @@ Figure 8.8: 2-dimensional LDA projection of the iris data
 </p>
 </div>
 <p>We can see that the first projected coordinate is doing nearly all of the useful work in separating the three populations. We can see this in the eigenvalues (c.f. the scree plots used in PCA) which can be used to understand the importance of each projected coordinate in separating the populations (this is the <code>Proportion of trace</code> reported in the <code>lda</code> output).</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="8.3-FLDA.html#cb255-1" tabindex="-1"></a>iris.eig<span class="sc">$</span>values[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">/</span><span class="fu">sum</span>(iris.eig<span class="sc">$</span>values)</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="8.3-FLDA.html#cb253-1" tabindex="-1"></a>iris.eig<span class="sc">$</span>values[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">/</span><span class="fu">sum</span>(iris.eig<span class="sc">$</span>values)</span></code></pre></div>
 <pre><code>## [1] 0.991212605 0.008787395</code></pre>
 <p>R will automatically plot this projection for us:</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="8.3-FLDA.html#cb257-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">pty=</span><span class="st">&quot;s&quot;</span>)</span>
-<span id="cb257-2"><a href="8.3-FLDA.html#cb257-2" tabindex="-1"></a>iris.lda <span class="ot">&lt;-</span> <span class="fu">lda</span>(Species <span class="sc">~</span>., iris)</span>
-<span id="cb257-3"><a href="8.3-FLDA.html#cb257-3" tabindex="-1"></a><span class="fu">plot</span>(iris.lda,<span class="at">col=</span><span class="fu">as.integer</span>(iris<span class="sc">$</span>Species)<span class="sc">+</span><span class="dv">1</span>, <span class="at">abbrev=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="8.3-FLDA.html#cb255-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">pty=</span><span class="st">&quot;s&quot;</span>)</span>
+<span id="cb255-2"><a href="8.3-FLDA.html#cb255-2" tabindex="-1"></a>iris.lda <span class="ot">&lt;-</span> <span class="fu">lda</span>(Species <span class="sc">~</span>., iris)</span>
+<span id="cb255-3"><a href="8.3-FLDA.html#cb255-3" tabindex="-1"></a><span class="fu">plot</span>(iris.lda,<span class="at">col=</span><span class="fu">as.integer</span>(iris<span class="sc">$</span>Species)<span class="sc">+</span><span class="dv">1</span>, <span class="at">abbrev=</span><span class="dv">1</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ldairis2db"></span>
 <img src="09-lda_files/figure-html/ldairis2db-1.png" alt="2-dimensional LDA projection of the iris data using the built-in R plotting function" width="672" />
 <p class="caption">
@@ -586,16 +582,16 @@ qplot(Z[,1], -Z[,2], colour=iris$Species, main='LDA for the iris data', ylim=c(0
 ```
 -->
 <p>Using the option <code>dimen = 1</code> will plot histograms of the first LDA projection for each group, which all we need in this example to separate the populations.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="8.3-FLDA.html#cb258-1" tabindex="-1"></a><span class="fu">plot</span>(lda.iris, <span class="at">dimen =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">&quot;b&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="8.3-FLDA.html#cb256-1" tabindex="-1"></a><span class="fu">plot</span>(lda.iris, <span class="at">dimen =</span> <span class="dv">1</span>, <span class="at">type =</span> <span class="st">&quot;b&quot;</span>)</span></code></pre></div>
 <p><img src="09-lda_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <div id="comparison-with-pca" class="section level5 unnumbered hasAnchor">
 <h5>Comparison with PCA<a href="8.3-FLDA.html#comparison-with-pca" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>We can compare the LDA projection to the 2-dimensional projection found by PCA:</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="8.3-FLDA.html#cb259-1" tabindex="-1"></a>iris.pca <span class="ot">=</span> <span class="fu">prcomp</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
-<span id="cb259-2"><a href="8.3-FLDA.html#cb259-2" tabindex="-1"></a></span>
-<span id="cb259-3"><a href="8.3-FLDA.html#cb259-3" tabindex="-1"></a>iris<span class="sc">$</span>PC1<span class="ot">=</span>iris.pca<span class="sc">$</span>x[,<span class="dv">1</span>]</span>
-<span id="cb259-4"><a href="8.3-FLDA.html#cb259-4" tabindex="-1"></a>iris<span class="sc">$</span>PC2<span class="ot">=</span>iris.pca<span class="sc">$</span>x[,<span class="dv">2</span>]</span>
-<span id="cb259-5"><a href="8.3-FLDA.html#cb259-5" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">qplot</span>(PC1, PC2, <span class="at">colour=</span>Species, <span class="at">data=</span>iris)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="8.3-FLDA.html#cb257-1" tabindex="-1"></a>iris.pca <span class="ot">=</span> <span class="fu">prcomp</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
+<span id="cb257-2"><a href="8.3-FLDA.html#cb257-2" tabindex="-1"></a></span>
+<span id="cb257-3"><a href="8.3-FLDA.html#cb257-3" tabindex="-1"></a>iris<span class="sc">$</span>PC1<span class="ot">=</span>iris.pca<span class="sc">$</span>x[,<span class="dv">1</span>]</span>
+<span id="cb257-4"><a href="8.3-FLDA.html#cb257-4" tabindex="-1"></a>iris<span class="sc">$</span>PC2<span class="ot">=</span>iris.pca<span class="sc">$</span>x[,<span class="dv">2</span>]</span>
+<span id="cb257-5"><a href="8.3-FLDA.html#cb257-5" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>PC1, <span class="at">y=</span>PC2, <span class="at">colour=</span>Species), <span class="at">data=</span>iris)<span class="sc">+</span><span class="fu">geom_point</span>()</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ldapcairis"></span>
 <img src="09-lda_files/figure-html/ldapcairis-1.png" alt="2-dimensional PCA projection of the iris data" width="672" />
 <p class="caption">
@@ -733,17 +729,17 @@ y_i = \begin{cases} 1 &amp;\mbox{ if }i \mbox{ is from } \Pi_1\\
 <p>then if we fit the model
 <span class="math display">\[\mathbf y= \mathbf X\boldsymbol \beta+ \mathbf e\]</span>
 we find <span class="math inline">\(\boldsymbol \beta\)</span> is in the same direction as the first eigenvector of <span class="math inline">\(\mathbf W^{-1}\mathbf B\)</span>.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="8.3-FLDA.html#cb260-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb260-2"><a href="8.3-FLDA.html#cb260-2" tabindex="-1"></a>iris3 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Species <span class="sc">!=</span> <span class="st">&quot;versicolor&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb260-3"><a href="8.3-FLDA.html#cb260-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Sepal.Length, Sepal.Width, Species)</span>
-<span id="cb260-4"><a href="8.3-FLDA.html#cb260-4" tabindex="-1"></a>iris3<span class="sc">$</span>pm1 <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(iris3<span class="sc">$</span>Species)<span class="sc">-</span><span class="dv">2</span> </span>
-<span id="cb260-5"><a href="8.3-FLDA.html#cb260-5" tabindex="-1"></a><span class="co"># convert to +1 and -1</span></span>
-<span id="cb260-6"><a href="8.3-FLDA.html#cb260-6" tabindex="-1"></a>iris3.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(pm1<span class="sc">~</span>Sepal.Width<span class="sc">+</span>Sepal.Length, iris3)</span>
-<span id="cb260-7"><a href="8.3-FLDA.html#cb260-7" tabindex="-1"></a><span class="fu">coef</span>(iris3.lm)[<span class="dv">2</span>]<span class="sc">/</span><span class="fu">coef</span>(iris3.lm)[<span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="8.3-FLDA.html#cb258-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb258-2"><a href="8.3-FLDA.html#cb258-2" tabindex="-1"></a>iris3 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Species <span class="sc">!=</span> <span class="st">&quot;versicolor&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb258-3"><a href="8.3-FLDA.html#cb258-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Sepal.Length, Sepal.Width, Species)</span>
+<span id="cb258-4"><a href="8.3-FLDA.html#cb258-4" tabindex="-1"></a>iris3<span class="sc">$</span>pm1 <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(iris3<span class="sc">$</span>Species)<span class="sc">-</span><span class="dv">2</span> </span>
+<span id="cb258-5"><a href="8.3-FLDA.html#cb258-5" tabindex="-1"></a><span class="co"># convert to +1 and -1</span></span>
+<span id="cb258-6"><a href="8.3-FLDA.html#cb258-6" tabindex="-1"></a>iris3.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(pm1<span class="sc">~</span>Sepal.Width<span class="sc">+</span>Sepal.Length, iris3)</span>
+<span id="cb258-7"><a href="8.3-FLDA.html#cb258-7" tabindex="-1"></a><span class="fu">coef</span>(iris3.lm)[<span class="dv">2</span>]<span class="sc">/</span><span class="fu">coef</span>(iris3.lm)[<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## Sepal.Width 
 ##   -1.137257</code></pre>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="8.3-FLDA.html#cb262-1" tabindex="-1"></a>iris.lda <span class="ot">&lt;-</span> <span class="fu">lda</span>(Species<span class="sc">~</span>Sepal.Width<span class="sc">+</span>Sepal.Length, iris3)</span>
-<span id="cb262-2"><a href="8.3-FLDA.html#cb262-2" tabindex="-1"></a><span class="fu">coef</span>(iris.lda)[<span class="dv">1</span>]<span class="sc">/</span><span class="fu">coef</span>(iris.lda)[<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="8.3-FLDA.html#cb260-1" tabindex="-1"></a>iris.lda <span class="ot">&lt;-</span> <span class="fu">lda</span>(Species<span class="sc">~</span>Sepal.Width<span class="sc">+</span>Sepal.Length, iris3)</span>
+<span id="cb260-2"><a href="8.3-FLDA.html#cb260-2" tabindex="-1"></a><span class="fu">coef</span>(iris.lda)[<span class="dv">1</span>]<span class="sc">/</span><span class="fu">coef</span>(iris.lda)[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## [1] -1.137257</code></pre>
 <!-- also a link to CCA 
 https://sites.stat.washington.edu/wxs/Stat592-w2011/Slides/cancorr-notes.pdf

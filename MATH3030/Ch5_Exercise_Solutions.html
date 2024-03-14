@@ -2823,8 +2823,11 @@ Solution
 &amp;=\mathbf U\boldsymbol \Lambda^{-1/2}\mathbf U^\top \mathbf U\boldsymbol \Lambda\mathbf U^\top \mathbf T^\top \mathbf T\mathbf U\boldsymbol \Lambda^{-1/2} \mathbf U^\top \mathbf T^\top\\
 &amp;=\mathbf U\boldsymbol \Lambda^{-1/2}\boldsymbol \Lambda\boldsymbol \Lambda^{-1/2}\mathbf U^\top \mathbf T^\top\\
 &amp;=\mathbf T^\top.
-\end{align*}\]</span> We now use the SVD (see Result 2.13 in Chapter 2) to obtain <span class="math display">\[
-\mathbf Q=\mathbf T^\top= \mathbf I_p \mathbf I_p \mathbf T^\top = \sum_{j=1}^p \mathbf e_j {\mathbf t}_j^\top,
+\end{align*}\]</span> If we rewrite this as <span class="math display">\[
+\mathbf Q=\mathbf T^\top= \mathbf I_p \mathbf I_p \mathbf T^\top,
+\]</span> we can see this is already in SVD form. Here, the <span class="math inline">\(\mathbf I_p\)</span> on the left is the matrix of left singular vectors, the <span class="math inline">\(\mathbf I_p\)</span> in the middle is the diagonal matrix of singular values, and <span class="math inline">\(\mathbf T\)</span> is the matrix of right singular vectors. Or we can rewrite it as</p>
+<p><span class="math display">\[
+\mathbf Q=\mathbf I_p \mathbf I_p \mathbf T^\top = \sum_{j=1}^p \mathbf e_j {\mathbf t}_j^\top,
 \]</span> where <span class="math inline">\(\mathbf e_j\)</span> is the <span class="math inline">\(j\)</span>th column of <span class="math inline">\(\mathbf I_p\)</span> and <span class="math inline">\({\mathbf t}_j\)</span> is the <span class="math inline">\(j\)</span>th column of <span class="math inline">\(\mathbf T\)</span>. So in this case the canonical correlation coefficients are all equal to <span class="math inline">\(1\)</span>, i.e. the set of <span class="math inline">\(x\)</span>-variables and the set of <span class="math inline">\(y\)</span>-variables are, in this sense, perfectly correlated.</p>
 </div>
 </div>
@@ -2956,16 +2959,16 @@ Solution
 0 \mbox{ otherwise.}
 \end{cases}
 \end{align*}\]</span> Similarly for <span class="math inline">\({\mathbb{C}\operatorname{ov}}(\psi_j, \psi_k)\)</span>.</p>
-<span class="math display">\[\begin{align*}
-\cov(\eta_j, \psi_k) &amp;= \cov(\ba_j^\top(\bx-\bar{\bx}), \bb_k^\top(\by-\bar{\by}))\\
-&amp;=\ba_j^\top \bS_{xy}\bb_k\\
-&amp;=\bu_j^\top \bS_{xx}^{-1/2}\bS_{xy}\bS_{yy}^{-1/2}\bv_k\\
-&amp;=\bu_j^\top \bQ\bv_k\\
-&amp;=\bu_j^\top \left(\sum_i \sigma_i \bu_i \bv_i^\top\right)\bv_k\\
+<p><span class="math display">\[\begin{align*}
+{\mathbb{C}\operatorname{ov}}(\eta_j, \psi_k) &amp;= {\mathbb{C}\operatorname{ov}}(\mathbf a_j^\top(\mathbf x-\bar{\mathbf x}), \mathbf b_k^\top(\mathbf y-\bar{\mathbf y}))\\
+&amp;=\mathbf a_j^\top \mathbf S_{xy}\mathbf b_k\\
+&amp;=\mathbf u_j^\top \mathbf S_{xx}^{-1/2}\mathbf S_{xy}\mathbf S_{yy}^{-1/2}\mathbf v_k\\
+&amp;=\mathbf u_j^\top \mathbf Q\mathbf v_k\\
+&amp;=\mathbf u_j^\top \left(\sum_i \sigma_i \mathbf u_i \mathbf v_i^\top\right)\mathbf v_k\\
 &amp;=\begin{cases}\sigma_j\mbox{ if } j=k\\
 0 \mbox{ otherwise.}
 \end{cases}
-\end{align*}\]</span>
+\end{align*}\]</span></p>
 </div>
 </div>
 </div>

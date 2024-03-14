@@ -3595,13 +3595,6 @@ We can find the transformed variables by computing either \(\mathbf X\mathbf V\)
 
 If we plot the PC scores we can see that the variation is now in line with the new coordinate axes:
 
-\begin{verbatim}
-## Warning: `qplot()` was deprecated in ggplot2 3.4.0.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.
-\end{verbatim}
-
 \includegraphics{04-pca_files/figure-latex/unnamed-chunk-10-1.pdf}
 
 R also has a built-in function for doing PCA.
@@ -3798,7 +3791,7 @@ To plot the PC scores, you can either manually create a plot or use the \texttt{
 \begin{Highlighting}[]
 \NormalTok{iris}\SpecialCharTok{$}\NormalTok{PC1}\OtherTok{=}\NormalTok{iris.pca}\SpecialCharTok{$}\NormalTok{x[,}\DecValTok{1}\NormalTok{]}
 \NormalTok{iris}\SpecialCharTok{$}\NormalTok{PC2}\OtherTok{=}\NormalTok{iris.pca}\SpecialCharTok{$}\NormalTok{x[,}\DecValTok{2}\NormalTok{]}
-\FunctionTok{qplot}\NormalTok{(PC1, PC2, }\AttributeTok{colour=}\NormalTok{Species, }\AttributeTok{data=}\NormalTok{iris)}
+\NormalTok{iris }\SpecialCharTok{|\textgreater{}} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{PC1, }\AttributeTok{y=}\NormalTok{PC2, }\AttributeTok{colour=}\NormalTok{Species))}\SpecialCharTok{+}\FunctionTok{geom\_point}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4446,7 +4439,7 @@ We can visualise the range of 3s by looking at a scatter plot of the first two p
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(ggplot2)}
-\FunctionTok{qplot}\NormalTok{(mnist3.pca}\SpecialCharTok{$}\NormalTok{x[,}\DecValTok{1}\NormalTok{], mnist3.pca}\SpecialCharTok{$}\NormalTok{x[,}\DecValTok{2}\NormalTok{])}
+\NormalTok{mnist3.pca}\SpecialCharTok{$}\NormalTok{x}\SpecialCharTok{|\textgreater{}} \FunctionTok{data.frame}\NormalTok{()}\SpecialCharTok{|\textgreater{}} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{PC1, }\AttributeTok{y=}\NormalTok{PC2))}\SpecialCharTok{+}\FunctionTok{geom\_point}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5371,7 +5364,7 @@ Interpretation of the 2nd CC: teams that have a lot of draws tend to be in low-s
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{eta2 }\OtherTok{=}\NormalTok{ prem.cca}\SpecialCharTok{$}\NormalTok{scores}\SpecialCharTok{$}\NormalTok{xscores[,}\DecValTok{1}\NormalTok{] }
+\NormalTok{eta2 }\OtherTok{=}\NormalTok{ prem.cca}\SpecialCharTok{$}\NormalTok{scores}\SpecialCharTok{$}\NormalTok{xscores[,}\DecValTok{2}\NormalTok{] }
 \NormalTok{psi2}\OtherTok{=}\NormalTok{ prem.cca}\SpecialCharTok{$}\NormalTok{scores}\SpecialCharTok{$}\NormalTok{yscores[,}\DecValTok{2}\NormalTok{] }
 \NormalTok{cca.out }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Team=}\NormalTok{table}\SpecialCharTok{$}\NormalTok{Team, }\AttributeTok{eta2=}\NormalTok{eta2, }\AttributeTok{psi2=}\NormalTok{psi2)}
 \FunctionTok{library}\NormalTok{(ggplot2)}
@@ -9101,18 +9094,11 @@ We can see that \(\mathbf W^{-1}\mathbf B\) only has two positive eigenvalues, a
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{V }\OtherTok{\textless{}{-}}\NormalTok{ iris.eig}\SpecialCharTok{$}\NormalTok{vectors[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]}
-\NormalTok{Z }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(iris[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{])}\SpecialCharTok{\%*\%}\NormalTok{ V}
-\NormalTok{ggplot2}\SpecialCharTok{::}\FunctionTok{qplot}\NormalTok{(Z[,}\DecValTok{1}\NormalTok{], Z[,}\DecValTok{2}\NormalTok{], }\AttributeTok{colour=}\NormalTok{iris}\SpecialCharTok{$}\NormalTok{Species, }\AttributeTok{xlab=}\StringTok{\textquotesingle{}LD1\textquotesingle{}}\NormalTok{,}
-               \AttributeTok{ylab=}\StringTok{\textquotesingle{}LD2\textquotesingle{}}\NormalTok{)}
+\NormalTok{Z }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(iris[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{])}\SpecialCharTok{\%*\%}\NormalTok{ V}\SpecialCharTok{|\textgreater{}}\FunctionTok{data.frame}\NormalTok{()}\SpecialCharTok{|\textgreater{}} \FunctionTok{mutate}\NormalTok{()}
+
+\NormalTok{Z }\SpecialCharTok{|\textgreater{}} \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{X1, }\AttributeTok{y=}\NormalTok{X2, }\AttributeTok{colour=}\NormalTok{iris}\SpecialCharTok{$}\NormalTok{Species))}\SpecialCharTok{+}\FunctionTok{geom\_point}\NormalTok{()}\SpecialCharTok{+}\FunctionTok{xlab}\NormalTok{(}\StringTok{\textquotesingle{}LD1\textquotesingle{}}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{ylab}\NormalTok{(}\StringTok{\textquotesingle{}LD2\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Warning: `qplot()` was deprecated in ggplot2 3.4.0.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.
-\end{verbatim}
 
 \begin{figure}
 \centering
@@ -9172,7 +9158,7 @@ We can compare the LDA projection to the 2-dimensional projection found by PCA:
 
 \NormalTok{iris}\SpecialCharTok{$}\NormalTok{PC1}\OtherTok{=}\NormalTok{iris.pca}\SpecialCharTok{$}\NormalTok{x[,}\DecValTok{1}\NormalTok{]}
 \NormalTok{iris}\SpecialCharTok{$}\NormalTok{PC2}\OtherTok{=}\NormalTok{iris.pca}\SpecialCharTok{$}\NormalTok{x[,}\DecValTok{2}\NormalTok{]}
-\NormalTok{ggplot2}\SpecialCharTok{::}\FunctionTok{qplot}\NormalTok{(PC1, PC2, }\AttributeTok{colour=}\NormalTok{Species, }\AttributeTok{data=}\NormalTok{iris)}
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{PC1, }\AttributeTok{y=}\NormalTok{PC2, }\AttributeTok{colour=}\NormalTok{Species), }\AttributeTok{data=}\NormalTok{iris)}\SpecialCharTok{+}\FunctionTok{geom\_point}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -10577,8 +10563,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5446   0.3904   0.3197
-## adjCV       0.8308   0.5442   0.3901   0.3192
+## CV          0.8308   0.5417   0.3913   0.3196
+## adjCV       0.8308   0.5415   0.3908   0.3191
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10703,7 +10689,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0005011872
+## [1] 0.0001258925
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
@@ -10866,6 +10852,9 @@ Check that the parameter estimates you find are the same as if you did two univa
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{-1}
+\item
+  Read this set of \href{https://twitter.com/docmilanfar/status/1763454849864413193}{tweets} and revisit Exercises 4 and 5 from Chapter 3. Do you see the link between the exercises and the consequences for linear models?
 \item
   Show that the ridge regression estimator of \(\boldsymbol \beta\) is
   \[\hat{\boldsymbol \beta}^{ridge} = (\mathbf X^\top \mathbf X+ \lambda\mathbf I_p)^{-1}\mathbf X^\top \mathbf y.\]

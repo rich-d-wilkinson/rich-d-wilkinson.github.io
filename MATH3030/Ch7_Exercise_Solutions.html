@@ -2664,11 +2664,11 @@ Solution
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><span class="math display">\[\begin{eqnarray*}
-\mathbf x\sim N_p({\boldsymbol{\mu}},\boldsymbol{\Sigma}) &amp;\implies&amp; \mathbf x-{\boldsymbol{\mu}}\sim N_p(\boldsymbol 0,\boldsymbol{\Sigma}) \\
-&amp;\implies&amp; \mathbf a^\top(\mathbf x-{\boldsymbol{\mu}}) \sim N_1(0, \mathbf a^\top \boldsymbol{\Sigma}\mathbf a) \\
-&amp;\implies&amp; \frac{ \mathbf a^\top (\mathbf x- {\boldsymbol{\mu}}) }{ \sqrt{\mathbf a^\top \boldsymbol{\Sigma}\mathbf a} } \sim N(0,1)
-\end{eqnarray*}\]</span></p>
+<span class="math display">\[\begin{eqnarray*}
+\bx \sim N_p(\bmu,\bSigma) &amp;\implies&amp; \bx-\bmu \sim N_p(\bzero,\bSigma) \\
+&amp;\implies&amp; \ba^\top(\bx-\bmu) \sim N_1(0, \ba^\top \bSigma \ba) \\
+&amp;\implies&amp; \frac{ \ba^\top (\bx - \bmu) }{ \sqrt{\ba^\top \bSigma \ba} } \sim N(0,1)
+\end{eqnarray*}\]</span>
 </div>
 </div>
 </div>
@@ -2905,7 +2905,11 @@ Solution
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-Let <span class="math inline">\({\boldsymbol{\mu}}_1\)</span> and <span class="math inline">\({\boldsymbol{\mu}}_2\)</span> be the two population means. We want to test <span class="math inline">\(H_0: {\boldsymbol{\mu}}_1 = {\boldsymbol{\mu}}_2\)</span> vs. <span class="math inline">\(H_1: {\boldsymbol{\mu}}_1 \neq {\boldsymbol{\mu}}_2\)</span> at significance level <span class="math inline">\(\alpha=0.05\)</span>. We assume
+<p>Let <span class="math inline">\({\boldsymbol{\mu}}_1\)</span> and <span class="math inline">\({\boldsymbol{\mu}}_2\)</span> be the two population means. We want to test <span class="math inline">\(H_0: {\boldsymbol{\mu}}_1 = {\boldsymbol{\mu}}_2\)</span> vs. <span class="math inline">\(H_1: {\boldsymbol{\mu}}_1 \neq {\boldsymbol{\mu}}_2\)</span> at significance level <span class="math inline">\(\alpha=0.05\)</span>. We assume</p>
+<ol type="i">
+<li>each sample is a random sample from a multivariate normal population;</li>
+<li>the two population covariance matrices are equal.</li>
+</ol>
 <p>We use the two-sample `unpaired’ Hotelling’s <span class="math inline">\(T^2\)</span> test as described in the lecture notes. Let <span class="math inline">\(\boldsymbol{\Sigma}\)</span> be the common population covariance matrix. Estimate <span class="math inline">\(\boldsymbol{\Sigma}\)</span> using the pooled unbiased estimator, <span class="math display">\[\begin{eqnarray*}
 \mathbf S_u &amp;=&amp; \frac{n \mathbf S_1 + m \mathbf S_2}{n+m-2} = \frac{1}{34} \left(18 \begin{pmatrix} 120.58 &amp; 56.25 \\ 56.25 &amp; 44.63 \end{pmatrix} + 18 \begin{pmatrix} 209.94 &amp; 73.42 \\ 73.42 &amp; 47.14 \end{pmatrix} \right)\\
 &amp;=&amp; \frac{18}{34} \begin{pmatrix} 330.52 &amp; 129.67 \\ 129.67 &amp; 91.77 \end{pmatrix} = \begin{pmatrix} 174.981 &amp; 68.649 \\ 68.649 &amp; 48.584 \end{pmatrix}.
