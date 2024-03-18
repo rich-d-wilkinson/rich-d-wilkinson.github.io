@@ -5430,7 +5430,7 @@ SVD is just
 \]
 where
 \[
-\sigma_1=\vert \vert \mathbf Q\vert \vert_F = (\mathbf Q^\top \mathbf Q)^{\frac{1}{2}} \qquad \text{and} \qquad \mathbf u_1=\mathbf Q/\vert \vert \mathbf Q\vert \vert_F.
+\sigma_1=\vert \vert \mathbf Q\vert \vert_F = \operatorname{tr}(\mathbf Q^\top \mathbf Q)^{\frac{1}{2}} \qquad \text{and} \qquad \mathbf u_1=\mathbf Q/\vert \vert \mathbf Q\vert \vert_F.
 \]
 Note that \(\mathbf v=1\) here.
 Consequently, the first canoncial correlation vector for \(\mathbf x\) is
@@ -10193,6 +10193,22 @@ Apply a selection of clustering methods to these data and discuss how many clust
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
+  Consider the data points
+\end{enumerate}
+
+\[\mathbf x_1 =\begin{pmatrix}10\\5\end{pmatrix}, \quad 
+\mathbf x_2 =\begin{pmatrix}7\\3\end{pmatrix}, \quad \mathbf x_3 =\begin{pmatrix}4\\8\end{pmatrix}, \quad
+\mathbf x_4 =\begin{pmatrix}5\\12\end{pmatrix}\]
+
+Starting with the encoder
+\[\boldsymbol \delta= \begin{pmatrix} 1\\2\\1\\2\end{pmatrix}\]
+implement (by hand) the K-means cluster greedy optimization algorithm until convergence.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
   In the table below, information is given on the presence or absence (denoted by \(1\) and \(0\), respectively) of \(6\) unspecified attributes, denoted A1, \ldots, A6, in Lions, Giraffes, Sheep and Humans.
   \[
   \begin{array}{cccccccc}
@@ -10229,7 +10245,7 @@ Apply a selection of clustering methods to these data and discuss how many clust
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
+\setcounter{enumi}{2}
 \tightlist
 \item
   Attempt question 4b from the 2017-18 exam paper.
@@ -10239,7 +10255,7 @@ Apply a selection of clustering methods to these data and discuss how many clust
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
+\setcounter{enumi}{3}
 \tightlist
 \item
   Prove Equation \eqref{eq:Wscatterk}.
@@ -10563,8 +10579,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5417   0.3913   0.3196
-## adjCV       0.8308   0.5415   0.3908   0.3191
+## CV          0.8308   0.5431   0.3877   0.3163
+## adjCV       0.8308   0.5428   0.3875   0.3160
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10689,7 +10705,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0001258925
+## [1] 0.001584893
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
@@ -10701,7 +10717,7 @@ and the largest value of lambda that gives a prediction error within one standar
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.01995262
+## [1] 0.03162278
 \end{verbatim}
 
 \hypertarget{multi-output-linear-model}{%
