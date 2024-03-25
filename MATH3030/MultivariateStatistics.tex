@@ -10579,8 +10579,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5436   0.3903   0.3187
-## adjCV       0.8308   0.5433   0.3899   0.3183
+## CV          0.8308   0.5450   0.3865   0.3166
+## adjCV       0.8308   0.5446   0.3863   0.3163
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10705,7 +10705,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0005011872
+## [1] 0.0006309573
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
@@ -10910,7 +10910,13 @@ Check that the parameter estimates you find are the same as if you did two univa
 
   Thus, show that \[\mathbf A_k = {\mathbb{V}\operatorname{ar}}(\hat{\boldsymbol \beta}^{ols})-{\mathbb{V}\operatorname{ar}}(\hat{\boldsymbol \beta}_k)\] is a positive semi-definite matrix. Consequently, show that any linear combination of \(\hat{\boldsymbol \beta}_k\), e.g., a prediction \(\mathbf x^\top \hat{\boldsymbol \beta}_k\), has a lower variance compared to the same linear combination using the OLS estimator, i.e.,
   \[{\mathbb{V}\operatorname{ar}}(\mathbf x^\top \hat{\boldsymbol \beta}_k)\leq {\mathbb{V}\operatorname{ar}}(\mathbf x^\top \hat{\boldsymbol \beta}^{ols}).\]
+\item
+  Attempt Q3c) from the 2019 paper (nb: it is a hard question).
 \end{enumerate}
+
+\includegraphics{figs/LM_2018_19_Q3c_ii.png}
+
+\includegraphics{figs/LM_2018_19_Q3c_i.png}
 
   \bibliography{book.bib,packages.bib}
 
