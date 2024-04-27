@@ -6651,7 +6651,7 @@ Suppose we decide to use the simple matching coefficient \eqref{eq:smc} to measu
 Lion&1&2/3&1/2&1/2&1/2\\
 Giraffe&2/3&1&1/2&1/2&1/6\\
 Cow&1/2&1/2&1&1&1/3\\
-Sheep&1/2&1/2&1&1&1/3\\
+Sheep&1/3 &1/3 &5/6& 1 &1/2\\
 Human&1/2&1/6&1/3&1/3&1
 \end{array}
 \]
@@ -10579,8 +10579,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5456   0.3904   0.3200
-## adjCV       0.8308   0.5452   0.3900   0.3195
+## CV          0.8308   0.5421   0.3915   0.3171
+## adjCV       0.8308   0.5419   0.3911   0.3168
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10705,7 +10705,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0002511886
+## [1] 1e-04
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
@@ -10717,7 +10717,7 @@ and the largest value of lambda that gives a prediction error within one standar
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.01258925
+## [1] 0.01995262
 \end{verbatim}
 
 \hypertarget{multi-output-linear-model}{%
