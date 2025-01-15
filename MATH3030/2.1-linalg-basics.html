@@ -57,7 +57,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -416,7 +416,11 @@ where the <span class="math inline">\(a_{ij}\)</span> are the individual entries
 <p>A matrix of order <span class="math inline">\(1\times 1\)</span> is called a <em>scalar</em>.</p>
 <p>A matrix of order <span class="math inline">\(n\times 1\)</span> is called a <em>(column) vector</em>.</p>
 <p>A matrix of order <span class="math inline">\(1\times p\)</span> is called a <em>(row) vector</em>.</p>
-<p>e.g. <span class="math inline">\(\stackrel{n\times 1}{\mathbf a}=\left( \begin{array}{c} a_1\\\vdots\\a_n \end{array} \right)\)</span>is a column vector.</p>
+<p>e.g. <span class="math inline">\(\stackrel{n\times 1}{\mathbf a}=\left(
+\begin{array}{c}
+a_1\\\vdots\\a_n
+\end{array}
+\right)\)</span>is a column vector.</p>
 <p>The <span class="math inline">\(n\times n\)</span> <em>identity matrix</em> <span class="math inline">\({\mathbf I}_n\)</span> has diagonal elements equal to 1
 and off-diagonal elements equal to zero.</p>
 <p>A <em>diagonal</em> matrix is an <span class="math inline">\(n \times n\)</span> matrix whose
@@ -462,7 +466,12 @@ where the summation is taken over all permutations <span class="math inline">\(\
 and we define <span class="math inline">\(|\tau |=0\)</span> or <span class="math inline">\(1\)</span> depending on whether <span class="math inline">\(\tau\)</span> can be written as an even or
 odd number of transpositions.</li>
 </ol>
-<p>E.g. If <span class="math inline">\({\mathbf A}=\left[ \begin{array}{cc} a_{11}&amp;a_{12}\\ a_{21}&amp;a_{22} \end{array} \right]\)</span>,
+<p>E.g. If <span class="math inline">\({\mathbf A}=\left[
+\begin{array}{cc}
+a_{11}&amp;a_{12}\\
+a_{21}&amp;a_{22}
+\end{array}
+\right]\)</span>,
 then <span class="math inline">\(\text{det}({\mathbf A})=a_{11}a_{22}-a_{12}a_{21}\)</span>.</p>
 <div class="proposition">
 <p><span id="prp:det1" class="proposition"><strong>Proposition 2.1  </strong></span>Matrix <span class="math inline">\(\stackrel{n\times n}{\mathbf A}\)</span> is invertible if and only if <span class="math inline">\(\det(\mathbf A)\not = 0\)</span>. If <span class="math inline">\(\mathbf A^{-1}\)</span> exists then

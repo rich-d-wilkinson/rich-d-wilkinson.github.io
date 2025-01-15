@@ -57,7 +57,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -511,7 +511,7 @@ are independent.</p>
 But<br />
 <span class="math display">\[\mathbf X^\top \mathbf H\mathbf X=n\mathbf S,\]</span>
 (Property 6. in Section <a href="2.4-centering-matrix.html#centering-matrix">2.4</a>)
-and consequently, <span class="math inline">\(n\mathbf S\sim W_p(\boldsymbol{\Sigma}, n-1)\)</span>, as required.</p>
+and consequently, <span class="math inline">\(n\mathbf S\sim   W_p(\boldsymbol{\Sigma}, n-1)\)</span>, as required.</p>
 </div>
 <p><br></br></p>
 <p>Thus, sample covariance matrices have a scaled Wishart distribution.

@@ -57,7 +57,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -616,7 +616,12 @@ and recall that a standard ellipse has axes of symmetry given by the <span class
 (if <span class="math inline">\(a&gt;b\)</span>, the <span class="math inline">\(x\)</span>-axis is the major axis, and the <span class="math inline">\(y\)</span>-axis the minor axis). For example, <span class="math inline">\(a=10, b=3\)</span> gives the ellipse:</p>
 <p><img src="07-mvn_files/figure-html/unnamed-chunk-7-1.png" width="432" /></p>
 <p>If we define
-<span class="math inline">\({\mathbf A}=\left( \begin{array}{cc} a^2&amp;0\\ 0&amp;b^2 \end{array} \right)\)</span> and write <span class="math inline">\({\mathbf x}=\binom{x}{y}\)</span>,
+<span class="math inline">\({\mathbf A}=\left(
+\begin{array}{cc}
+a^2&amp;0\\
+0&amp;b^2
+\end{array}
+\right)\)</span> and write <span class="math inline">\({\mathbf x}=\binom{x}{y}\)</span>,
 then Equation <a href="7.1-definition-and-properties-of-the-mvn.html#eq:ellipse">(7.2)</a> can be written in the form
 <span class="math display">\[ \mathbf x^\top {\mathbf A}^{-1}\mathbf x=c&#39;. \]</span>
 To shift the centre of the ellipse from the origin to the point <span class="math inline">\({\boldsymbol{\mu}}\)</span> we modify the equation to be

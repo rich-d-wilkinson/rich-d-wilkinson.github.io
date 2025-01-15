@@ -128,7 +128,7 @@
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -139,7 +139,7 @@
 
 \title{Multivariate Statistics}
 \author{Prof.~Richard Wilkinson}
-\date{Spring 2024}
+\date{Spring 2025}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -165,8 +165,7 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\hypertarget{introduction}{%
-\chapter*{Introduction}\label{introduction}}
+\chapter*{Introduction}\label{introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
 \newcommand{\bmu}{{\boldsymbol{\mu}}}
@@ -270,8 +269,7 @@ If you find any typos or mistakes, please email me at
 
 \textbf{Note:} Although it appears like the notes are very long, this is because the R code, R output and plots, as well as the exercises and computer tasks, are embedded in the notes. The theory parts of the notes are less than 100 pages in total.
 
-\hypertarget{part-i-prerequisites}{%
-\chapter*{PART I: Prerequisites}\label{part-i-prerequisites}}
+\chapter*{PART I: Prerequisites}\label{part-i-prerequisites}
 \addcontentsline{toc}{chapter}{PART I: Prerequisites}
 
 Much of modern multivariate statistics (and machine learning) relies upon linear algebra. Consequently, we will spend some time reminding you of the basics of linear algebra (vector spaces, matrices etc), and introducing a few additional concepts that you may not have seen before. It is worth spending time familiarizing yourself with these ideas, as we will rely heavily upon this material in later chapters.
@@ -282,8 +280,7 @@ In Chapter \ref{linalg-prelim} we summarise the definitions, ideas and results f
 
 In Chapter \ref{linalg-decomp} we recap the eigen or spectral decomposition of square symmetric matrices, and introduce the singular value decomposition (SVD) which generalises the concept of eigenvalues for non-square matrices. We will rely upon this material inlater chapters.
 
-\hypertarget{stat-prelim}{%
-\chapter{Statistical Preliminaries}\label{stat-prelim}}
+\chapter{Statistical Preliminaries}\label{stat-prelim}
 
 In this chapter we will define some notation, and recap some basic statistical properties and results.
 
@@ -299,8 +296,7 @@ There are recorded videos for the following topics in this chapter:
   \href{https://mediaspace.nottingham.ac.uk/media/Random+Vectors/1_fpq4r9wh}{Random vectors}
 \end{itemize}
 
-\hypertarget{notation}{%
-\section{Notation}\label{notation}}
+\section{Notation}\label{notation}
 
 We will think of datasets as consisting of measurements of \(p\) different \textbf{variables} for \(n\) different \textbf{cases/subjects}. We organise the data into an \(n \times p\) \textbf{data matrix}.
 
@@ -339,8 +335,7 @@ The vectors \(\mathbf x_1, \ldots , \mathbf x_n \in \mathbb{R}^p\) are the obser
 
 This convention for bold letters will also apply to random quantities. So, in particular, for a random vector we always use (bold) lower case, and for a random matrix we always use bold upper-case, regardless of whether we are referring to (i) the unobserved random quantity or (ii) its observed value. It should always be clear from the context which of these two interpretations (i) or (ii) is appropriate.
 
-\hypertarget{example-datasets}{%
-\subsection{Example datasets}\label{example-datasets}}
+\subsection{Example datasets}\label{example-datasets}
 
 \begin{example}
 \protect\hypertarget{exm:football}{}\label{exm:football}The football league table is an example of multivariate data. Here \(W =\) number of wins, \(D =\) number of draws, \(F =\) number of goals scored and \(A =\) number of goals conceded for four teams.
@@ -419,8 +414,7 @@ So for this dataset, \(n=60,000\) and \(p=784\). As an example of what the data 
 \includegraphics{MNIST3.png}
 \end{example}
 
-\hypertarget{aims-of-multivariate-data-analysis}{%
-\subsection{Aims of multivariate data analysis}\label{aims-of-multivariate-data-analysis}}
+\subsection{Aims of multivariate data analysis}\label{aims-of-multivariate-data-analysis}
 
 The aim of multivariate statistical analysis is to answer questions such as:
 
@@ -450,8 +444,7 @@ We could just apply standard univariate techniques to each variable in turn, but
   In standard linear regression we have a scalar response variable, \(y\) say, and a vector of covariates, \(\mathbf x\), say. The focus of interest is on how knowledge of \(\mathbf x\) influences the distribution of \(y\) (in particular, the mean of \(y\)). In contrast, in MVA the focus is a vector \(\mathbf y\), in which all the components of \(\mathbf y\) are viewed as responses rather than covariates, possibly with additional covariate information \(\mathbf x\). We will discuss this further in Chapter \ref{lm}.
 \end{itemize}
 
-\hypertarget{exploratory-data-analysis-eda}{%
-\section{Exploratory data analysis (EDA)}\label{exploratory-data-analysis-eda}}
+\section{Exploratory data analysis (EDA)}\label{exploratory-data-analysis-eda}
 
 \begin{quote}
 A picture is worth a thousand words
@@ -463,8 +456,7 @@ A picture is worth a thousand words
 
 Before trying any form of statistical analysis, it is always a good idea to do some form of exploratory data analysis to understand the challenges presented by the data. As a minimum, this usually involves finding out whether each variable is continuous, discrete, or categorical, doing some basic visualization (plots), and perhaps computing a few summary statistics such as the mean and variance.
 
-\hypertarget{data-visualization}{%
-\subsection{Data visualization}\label{data-visualization}}
+\subsection{Data visualization}\label{data-visualization}
 
 Visualising datasets before fitting any models can be extremely useful. It allows us to see obvious patterns and relationships, and may suggest a sensible form of analysis.
 With multivariate data, finding the right kind of plot is not always simple, and many different approaches have been proposed.
@@ -512,8 +504,7 @@ If you not familiar with \texttt{ggplot2}, a nice introduction can be found \hre
 \href{https://www.r-graph-gallery.com/ggplot2-package.html}{here}
 and \href{https://www.data-to-viz.com}{here}.
 
-\hypertarget{summary-statistics}{%
-\subsection{Summary statistics}\label{summary-statistics}}
+\subsection{Summary statistics}\label{summary-statistics}
 
 It is often useful to report a small number of numerical summaries of the data.
 In univariate statistics we define the sample mean and sample variance of samples \(x_1, \ldots, x_n\) to be
@@ -578,8 +569,7 @@ Note that if we change the unit of measurement for the \(\mathbf x_i\)'s then \(
 In other words, it is the sum of the univariate variances of each of the \(p\) variables.
 \end{definition}
 
-\hypertarget{randvec}{%
-\section{Random vectors and matrices}\label{randvec}}
+\section{Random vectors and matrices}\label{randvec}
 
 \begin{definition}
 \protect\hypertarget{def:popmean}{}\label{def:popmean}The \textbf{population mean vector} of the random vector \(\mathbf x\) is
@@ -622,8 +612,7 @@ The following properties follow:
 
 Finally, note that if \(\mathbf x\) and \(\mathbf y\) are independent (in which case I will write \(\mathbf x\perp \!\!\! \perp\mathbf y\)) then \({\mathbb{C}\operatorname{ov}}(\mathbf x,\mathbf y) = {\mathbf 0}_{p,q}\), i.e., a \(p\times q\) matrix of zeros.
 
-\hypertarget{estimators}{%
-\subsection{Estimators}\label{estimators}}
+\subsection{Estimators}\label{estimators}
 
 The population mean vector \({\boldsymbol{\mu}}\) and population covariance matrix \(\boldsymbol{\Sigma}\) will usually be unknown. We can use data to \textbf{estimate} these quantities.
 
@@ -637,8 +626,7 @@ The population mean vector \({\boldsymbol{\mu}}\) and population covariance matr
 
 Equation \eqref{eq:samplemean} gives an unbiased estimator of the sample mean. The sample covariance matrix \eqref{eq:samplecov} is a biased estimator of the population covariance matrix. An unbiased estimate is obtained by dividing by \(n-1\) rather than \(n\) in Equation \eqref{eq:samplecov}.
 
-\hypertarget{computer-tasks}{%
-\section{Computer tasks}\label{computer-tasks}}
+\section{Computer tasks}\label{computer-tasks}
 
 If you haven't done so already, please download and install R and Rstudio. R is the programming language, and Rstudio is an integrated development environment that makes using R much more pleasurable. My advice is to always use Rstudio and never run code in R itself.
 
@@ -1046,8 +1034,7 @@ I've created a function to help you plot these images.
   Select all the 5s from the MNIST training set. Plot a selection of these digits.
 \end{itemize}
 
-\hypertarget{exercises}{%
-\section{Exercises}\label{exercises}}
+\section{Exercises}\label{exercises}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1085,8 +1072,7 @@ I've created a function to help you plot these images.
   Write down the data matrix \(\mathbf X\), the mean vector, and the covariance matrix.
 \end{enumerate}
 
-\hypertarget{linalg-prelim}{%
-\chapter{Review of linear algebra}\label{linalg-prelim}}
+\chapter{Review of linear algebra}\label{linalg-prelim}
 
 Modern statistics and machine learning rely heavily upon linear algebra, nowhere more so than in multivariate statistics. In the first part of this chapter (sections \ref{linalg-basics} and \ref{linalg-vecspaces}) we review some concepts from linear algebra that will be needed throughout the module, including vector spaces, row and column spaces, the rank of a matrix, etc. Hopefully most of this will be familiar to you.
 
@@ -1111,13 +1097,11 @@ I have recorded videos on some (but not all) of the topics in these notes:
   \href{https://mediaspace.nottingham.ac.uk/media/Projection/1_soh726fg}{Projection matrices}
 \end{itemize}
 
-\hypertarget{linalg-basics}{%
-\section{Basics}\label{linalg-basics}}
+\section{Basics}\label{linalg-basics}
 
 In this section, we recap some basic definitions and notation. Hopefully this material will largely be familiar to you.
 
-\hypertarget{notation-1}{%
-\subsection{Notation}\label{notation-1}}
+\subsection{Notation}\label{notation-1}
 
 The matrix \({\mathbf A}\) will be referred to in the following equivalent ways:
 \begin{eqnarray*}
@@ -1141,7 +1125,11 @@ A matrix of order \(n\times 1\) is called a \emph{(column) vector}.
 
 A matrix of order \(1\times p\) is called a \emph{(row) vector}.
 
-e.g.~\(\stackrel{n\times 1}{\mathbf a}=\left( \begin{array}{c} a_1\\\vdots\\a_n \end{array} \right)\)\quad is a column vector.
+e.g.~\(\stackrel{n\times 1}{\mathbf a}=\left(
+\begin{array}{c}
+a_1\\\vdots\\a_n
+\end{array}
+\right)\)\quad is a column vector.
 
 The \(n\times n\) \emph{identity matrix} \({\mathbf I}_n\) has diagonal elements equal to 1
 and off-diagonal elements equal to zero.
@@ -1152,8 +1140,7 @@ matrix by \(\text{diag}\{a_1,\ldots, a_n\}\).
 
 \[\mathbf I_3 = \left(\begin{array}{ccc} 1&0&0\\ 0&1&0\\ 0&0&1\end{array}\right),\quad \text{diag}\{1,2,3\}=\left(\begin{array}{ccc} 1&0&0\\ 0&2&0\\ 0&0&3\end{array}\right)\quad\]
 
-\hypertarget{elementary-matrix-operations}{%
-\subsection{Elementary matrix operations}\label{elementary-matrix-operations}}
+\subsection{Elementary matrix operations}\label{elementary-matrix-operations}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1205,7 +1192,12 @@ matrix by \(\text{diag}\{a_1,\ldots, a_n\}\).
   odd number of transpositions.
 \end{enumerate}
 
-E.g. If \({\mathbf A}=\left[ \begin{array}{cc} a_{11}&a_{12}\\ a_{21}&a_{22} \end{array} \right]\),
+E.g. If \({\mathbf A}=\left[
+\begin{array}{cc}
+a_{11}&a_{12}\\
+a_{21}&a_{22}
+\end{array}
+\right]\),
 then \(\text{det}({\mathbf A})=a_{11}a_{22}-a_{12}a_{21}\).
 
 \begin{proposition}
@@ -1219,8 +1211,7 @@ then \(\text{det}({\mathbf A})=a_{11}a_{22}-a_{12}a_{21}\).
 \[ \text{det}({\mathbf C})=\text{det}({\mathbf A}) \cdot \text{det}({\mathbf B}).\]
 \end{proposition}
 
-\hypertarget{special-matrices}{%
-\subsection{Special matrices}\label{special-matrices}}
+\subsection{Special matrices}\label{special-matrices}
 
 \begin{definition}
 \protect\hypertarget{def:posdef}{}\label{def:posdef}An \(n\times n\) matrix \(\mathbf A\) is symmetric if
@@ -1233,8 +1224,7 @@ and is \textbf{positive semi-definite} if
 \(\mathbf A\) is \textbf{idempotent} if \(\mathbf A^2=\mathbf A\).
 \end{definition}
 
-\hypertarget{vectordiff}{%
-\subsection{Vector Differentiation}\label{vectordiff}}
+\subsection{Vector Differentiation}\label{vectordiff}
 
 Consider a real-valued function \(f: \mathbb{R}^p \rightarrow \mathbb{R}\) of a vector variable \(\mathbf x=(x_1, \ldots , x_p)^\top\). Sometimes we will want to differentiate \(f\). We define the partial derivative of \(f(\mathbf x)\) with respect to \(\mathbf x\) to be
 the vector of partial derivatives, i.e.
@@ -1302,8 +1292,7 @@ If the Hessian is positive (negative) definite at a stationary point \(\mathbf x
 
 If the Hessian has both positive and negative eigenvalues at \(\mathbf x\) then the stationary point will be a \emph{saddle point}.
 
-\hypertarget{linalg-vecspaces}{%
-\section{Vector spaces}\label{linalg-vecspaces}}
+\section{Vector spaces}\label{linalg-vecspaces}
 
 It will be useful to talk about \textbf{vector spaces}. These are sets of vectors that can be added together, or multiplied by a scalar. You should be familiar with these from your undergraduate degree. We don't provide a formal definition here, but you can think of a real vector space \(V\) as a set of vectors such that for any \(\mathbf v_1, \mathbf v_2 \in V\) and \(\alpha_1, \alpha_2 \in \mathbb{R}\), we have
 \[\alpha_1 \mathbf v_1 + \alpha_2 \mathbf v_2 \in V\]
@@ -1328,8 +1317,7 @@ A subset \(U \subset V\) of a vector space \(V\) is called a vector \textbf{subs
 are both subspaces of \(V\).
 \end{example}
 
-\hypertarget{linear-independence}{%
-\subsection{Linear independence}\label{linear-independence}}
+\subsection{Linear independence}\label{linear-independence}
 
 \begin{definition}
 \protect\hypertarget{def:linindep}{}\label{def:linindep}Vectors \(\stackrel{n\times 1}{\mathbf x}_1 ,\dots , \stackrel{n\times 1}{\mathbf x}_p\)
@@ -1360,8 +1348,7 @@ Otherwise, these vectors are said to be \textbf{linearly independent}.
 \protect\hypertarget{def:dimension}{}\label{def:dimension}The \textbf{dimension} of a vector space is the number of vectors in its basis.
 \end{definition}
 
-\hypertarget{colsspace}{%
-\subsection{Row and column spaces}\label{colsspace}}
+\subsection{Row and column spaces}\label{colsspace}
 
 We can think about the matrix-vector multiplication \(\mathbf A\mathbf x\) in two ways. The usual way is as the inner product between the rows of \(\mathbf A\) and \(\mathbf x\).
 
@@ -1411,8 +1398,7 @@ So we can see that the rank of \(\mathbf B\) is 2.
 So the rank of \(\mathbf D\) is \(1\).
 \end{example}
 
-\hypertarget{linear-transformations}{%
-\subsection{Linear transformations}\label{linear-transformations}}
+\subsection{Linear transformations}\label{linear-transformations}
 
 We can view an \(n\times p\) matrix \(\mathbf A\) as a linear map between two vector spaces:
 \begin{align*}
@@ -1489,11 +1475,9 @@ have a solution?
   and so \(\mathbf A\mathbf u={\boldsymbol 0}\), i.e., \(\mathbf u\in \mathcal{N}(\mathbf A)\). So there are multiple solutions when the null-space of \(\mathbf A\) contains more than the zero vector. If the dimension of \(\mathcal{N}(A)\) is one, there is a line of solutions. If the dimension is two, there is a plane of solutions, etc.
 \end{itemize}
 
-\hypertarget{linalg-innerprod}{%
-\section{Inner product spaces}\label{linalg-innerprod}}
+\section{Inner product spaces}\label{linalg-innerprod}
 
-\hypertarget{normed}{%
-\subsection{Distances, and angles}\label{normed}}
+\subsection{Distances, and angles}\label{normed}
 
 Vector spaces are not particularly interesting from a statistical point of view until we equip them with a sense of geometry, i.e.~distance and angle.
 
@@ -1559,8 +1543,7 @@ We will write \(\mathbf u\perp \mathbf v\) if \(\mathbf u\) is orthogonal to \(\
 \[|| \mathbf v||_p = \left(\sum_{i=1}^n |v_i|^p\right)^\frac{1}{p}.\]
 \end{definition}
 
-\hypertarget{orthogonal-matrices}{%
-\subsection{Orthogonal matrices}\label{orthogonal-matrices}}
+\subsection{Orthogonal matrices}\label{orthogonal-matrices}
 
 \begin{definition}
 \protect\hypertarget{def:orthogonal}{}\label{def:orthogonal}A \textbf{unit vector} \(\mathbf v\) is a vector satisfying \(||{\mathbf v}||=1\), i.e., it is a vector of length \(1\). Vectors \(\mathbf u\) and \(\mathbf v\) are orthonormal if
@@ -1635,8 +1618,7 @@ Then \(\mathbf Q^\top \mathbf Q=\mathbf I_n\), and \(\mathbf Q\) is \(n\times n\
 as required.
 \end{proof}
 
-\hypertarget{projection-matrix}{%
-\subsection{Projections}\label{projection-matrix}}
+\subsection{Projections}\label{projection-matrix}
 
 \begin{definition}
 \protect\hypertarget{def:projection}{}\label{def:projection}\(\stackrel{n \times n}{\mathbf P}\) is a \emph{projection}
@@ -1669,8 +1651,7 @@ The kernel and image of \(\mathbf I-\mathbf P\) are the image and kernel (respec
 \operatorname{Im}(\mathbf I-\mathbf P) &= V=\operatorname{Ker}(\mathbf P).
 \end{align*}
 
-\hypertarget{orthogproj}{%
-\subsubsection{Orthogonal projection}\label{orthogproj}}
+\subsubsection{Orthogonal projection}\label{orthogproj}
 
 We are mostly interested in \textbf{orthogonal} projections.
 
@@ -1734,8 +1715,7 @@ Alternatively, if we treat \(\mathbf u\) as a basis for \(U\), then the coordina
 To check this, draw a picture!
 \end{example}
 
-\hypertarget{ch2linreg}{%
-\subsubsection{Geometric interpretation of linear regresssion}\label{ch2linreg}}
+\subsubsection{Geometric interpretation of linear regresssion}\label{ch2linreg}
 
 Consider the linear regression model
 \[\mathbf y= \mathbf X\boldsymbol \beta+\mathbf e\]
@@ -1753,8 +1733,7 @@ which equals the usual prediction obtained in linear regression (\(\hat{\mathbf 
 \[\hat{\boldsymbol \beta}=(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y\]
 which is the usual least-squares estimator.
 
-\hypertarget{centering-matrix}{%
-\section{The Centering Matrix}\label{centering-matrix}}
+\section{The Centering Matrix}\label{centering-matrix}
 
 The \textbf{centering matrix} will be play an important role in this module, as we will use it to remove the column means from a matrix (so that each column has mean zero), \emph{centering} the matrix.
 
@@ -1829,8 +1808,7 @@ You will be asked to prove the following results about \(\mathbf H\) in the exer
 Note that Property 3. is a special case of Property 5., and Property 4. is a special case of Property 6.
 However, it is useful to see these results in the simpler scalar case before moving onto the general matrix case.
 
-\hypertarget{tasks-ch2}{%
-\section{Computer tasks}\label{tasks-ch2}}
+\section{Computer tasks}\label{tasks-ch2}
 
 This Chapter's computer tasks are short and sweet, as the focus has primarily been on the mathematics. Tasks for later chapters will be more challenging.
 
@@ -2056,8 +2034,7 @@ Thus you'll see that it usually isn't worth computing the centering matrix when 
   Compute the covariance matrix of \(\mathbf X\) directly (ie, don't use the \texttt{cov} command - but do check your answer with \texttt{cov}).
 \end{itemize}
 
-\hypertarget{exercises-ch2}{%
-\section{Exercises}\label{exercises-ch2}}
+\section{Exercises}\label{exercises-ch2}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2208,8 +2185,7 @@ Thus you'll see that it usually isn't worth computing the centering matrix when 
   \textbf{Comment}: Equation \eqref{eq:SinR} provides a convenient way to calculate the sample covariance matrix directly in R, given the data matrix \(\mathbf X\).
 \end{enumerate}
 
-\hypertarget{linalg-decomp}{%
-\chapter{Matrix decompositions}\label{linalg-decomp}}
+\chapter{Matrix decompositions}\label{linalg-decomp}
 
 This chapter focuses on two ways to decompose a matrix into smaller parts. We can then think about which are the most important parts of the matrix, and that will be useful when we think about dimension reduction. The highlight of the chapter is the singular value decomposition (SVD), which is one of the most useful mathematical concepts from the past century, and is relied upon throughout statistics and machine learning. The SVD extends the idea of the eigen (or spectral) decomposition of symmetric square matrices to any matrix.
 
@@ -2227,8 +2203,7 @@ This chapter focuses on two ways to decompose a matrix into smaller parts. We ca
   \href{https://mediaspace.nottingham.ac.uk/media/Singular+value+decompositionA+low+rank+approximation/1_vwbtjdzo}{Low-rank approximation}
 \end{itemize}
 
-\hypertarget{matrix-matrix}{%
-\section{Matrix-matrix products}\label{matrix-matrix}}
+\section{Matrix-matrix products}\label{matrix-matrix}
 
 Before we can introduce the SVD, we first need to recap some basic material on matrix multiplication and eigenvalues.
 We saw in section \ref{colsspace} that we can think about matrix-vector products in two ways: \(\mathbf A\mathbf x\) is rows of \(\mathbf A\) times \(\mathbf x\); or as a linear combination of the columns of \(\mathbf A\). We can similarly think about matrix-matrix products in two ways.
@@ -2295,11 +2270,9 @@ This chapter is about ways of decomposing matrices into their most important par
 
 Firstly though, we need a recap on eigenvectors.
 
-\hypertarget{spectraleigen-decomposition}{%
-\section{Spectral/eigen decomposition}\label{spectraleigen-decomposition}}
+\section{Spectral/eigen decomposition}\label{spectraleigen-decomposition}
 
-\hypertarget{eigenvalues-and-eigenvectors}{%
-\subsection{Eigenvalues and eigenvectors}\label{eigenvalues-and-eigenvectors}}
+\subsection{Eigenvalues and eigenvectors}\label{eigenvalues-and-eigenvectors}
 
 Consider the \(n\times n\) matrix \(\mathbf A\).
 We say that
@@ -2317,15 +2290,15 @@ eigenvalues and eigenvectors of \(\mathbf A\) are \emph{real} (in \(\mathbb{R}\)
 
 \begin{proposition}
 \protect\hypertarget{prp:deteig}{}\label{prp:deteig}If \(\mathbf A\) is an \(n \times n\) symmetric matrix
-then its determinant is the product of its eigenvalues, i.e.~\(\text{det}(\mathbf A)=\lambda _1 \dots \lambda _n\).
+then its determinant is the product of its eigenvalues, i.e.~\(\text{det}(\mathbf A)=\lambda _1 \dots
+\lambda _n\).
 \end{proposition}
 
 Thus,
 \[\mathbf A\mbox{ is invertible } \iff  \det(\mathbf A)\not=0 \iff 
 \lambda_i\not=0 \forall i \iff \mathbf A\mbox{ is of full rank}\]
 
-\hypertarget{spectral-decomposition}{%
-\subsection{Spectral decomposition}\label{spectral-decomposition}}
+\subsection{Spectral decomposition}\label{spectral-decomposition}
 
 The key to much of dimension reduction is finding matrix decompositions. The first decomposition we will consider is the \textbf{spectral decomposition} (also called an \textbf{eigen-decomposition}).
 
@@ -2356,7 +2329,8 @@ is a vector space of dimension \(r\). Hence the rank of \(\mathbf A\) is \(r\).
 
 \begin{lemma}
 \protect\hypertarget{lem:eigposdef}{}\label{lem:eigposdef}Let \(\mathbf A\) be an \(n \times n\) symmetric matrix
-with (necessarily real) eigenvalues \(\lambda _1 \geq \lambda _2 \geq \dots \geq \lambda _n\). Then \(\mathbf A\) is \emph{positive definite}
+with (necessarily real) eigenvalues \(\lambda _1 \geq \lambda _2 \geq
+\dots \geq \lambda _n\). Then \(\mathbf A\) is \emph{positive definite}
 if and only if \(\lambda _n >0\). It is positive semi-definite if and only if \(\lambda_n \geq 0\).
 \end{lemma}
 
@@ -2379,8 +2353,7 @@ determinant will be positive (so that \(\boldsymbol{\Sigma}\) is \textbf{non-sin
 \protect\hypertarget{prp:eigproj}{}\label{prp:eigproj}The eigenvalues of a projection matrix \(\mathbf P\) are all \(0\) or \(1\).
 \end{proposition}
 
-\hypertarget{matrixroots}{%
-\subsection{Matrix square roots}\label{matrixroots}}
+\subsection{Matrix square roots}\label{matrixroots}
 
 From the spectral decomposition theorem, we can see that if \(\mathbf A\) is a symmetric positive semi-definite matrix, then for any integer \(p\)
 
@@ -2410,8 +2383,7 @@ so that, as defined above, \(\mathbf A^{-1/2}\) is the matrix square root of \(\
 \]
 so that \(\mathbf A^{-1/2}\) is the matrix inverse of \(\mathbf A^{1/2}\).
 
-\hypertarget{linalg-SVD}{%
-\section{Singular Value Decomposition (SVD)}\label{linalg-SVD}}
+\section{Singular Value Decomposition (SVD)}\label{linalg-SVD}
 
 The spectral decomposition theorem (Proposition \ref{prp:spectraldecomp}) gives a decomposition of any symmetric matrix.
 We now give a generalisation of this result which applies to \emph{all} matrices.
@@ -2475,7 +2447,7 @@ In addition
 \[\mathbf A^\top\mathbf u_i = \frac{1}{\sigma_i}\mathbf A^\top\mathbf A\mathbf v_i = \frac{\sigma^2_i}{\sigma_i}\mathbf v_i = \sigma_i\mathbf v_i\]
 and so \(\mathbf u_i\) and \(\mathbf v_i\) are left and right singular vectors.
 
-Let \(\mathbf U=[\mathbf u_1 \; \mathbf u_2 \; \ldots \; \mathbf u_r\; \ldots \; \mathbf u_n]\), where \(\mathbf u_{r+1}, \ldots, \mathbf u_n\) are chosen to complete the orthonormal basis for \(\mathbb{R}^n\) given \(\mathbf u_1, \ldots, \mathbf u_r\), and
+Let \(\mathbf U=[\mathbf u_1 \; \mathbf u_2 \; \ldots \; \mathbf u_r\; \ldots \; \mathbf u_n]\), where \(\mathbf u_{r+1}, \ldots, \mathbf u_n\) are chosen to complete the orthonormal basis for \(\mathbb{R}^n\) given \(\mathbf u_1,   \ldots, \mathbf u_r\), and
 let \(\boldsymbol{\Sigma}\) be the \(n\times p\) diagonal matrix in Equation \eqref{eq:sigmasvd}.
 
 Then we have shown that
@@ -2512,8 +2484,7 @@ Note that by construction we've shown that \(\mathbf A^\top\mathbf A\) has eigen
   The SVD has many uses in mathematics. One is as a generalized inverse of a matrix. If \(\mathbf A\) is \(n \times p\) with \(n\not = p\), or if it is square but not of full rank, then \(\mathbf A\) cannot have an inverse. However, we say \(\mathbf A^+\) is a generalized inverse if \(\mathbf A\mathbf A^+\mathbf A=\mathbf A\). One such generalized inverse can be obtained from the SVD by \(\mathbf A^+ = \mathbf V\boldsymbol{\Sigma}^{-1}\mathbf U^\top\) - this is known as the Moore-Penrose pseudo-inverse.
 \end{enumerate}
 
-\hypertarget{examples}{%
-\subsection{Examples}\label{examples}}
+\subsection{Examples}\label{examples}
 
 In practice, we don't compute SVDs of a matrix by hand: in R you can use the command \texttt{SVD(A)} to compute the SVD of matrix \texttt{A}. However, it is informative to do the calculation yourself a few times to help fix the ideas.
 
@@ -2557,8 +2528,7 @@ This completes the calculation, and we can see that we can express \(\mathbf A\)
 or as the sum of rank-1 matrices:
 
 \[\mathbf A= 5\left(\begin{array}{c}\frac{1}{\sqrt{2}}\\
-               \frac{1}{\sqrt{2}}\end{array}\right) \left(\begin{array}{cc}\frac{1}{\sqrt{2}}&\frac{1}{3\sqrt{2}}
-                                                           \end{array}\right)+
+               \frac{1}{\sqrt{2}}\end{array}\right) \left(\begin{array}{ccc}\frac{1}{\sqrt{2}}&\frac{1}{\sqrt{2}} & 0                      \end{array}\right)+
    3\left(\begin{array}{c}\frac{1}{\sqrt{2}}\\
                \frac{-1}{\sqrt{2}}\end{array}\right) \left(\begin{array}{ccc}\frac{1}{3\sqrt{2}}& \frac{-1}{3 \sqrt{2}} &\frac{4}{3\sqrt{2}}\end{array}\right)\]
 
@@ -2600,8 +2570,7 @@ The eigenvectors are only defined upto multiplication by \(-1\) and so we can mu
 
 \textbf{Note:} In practice this is a terrible way to compute the SVD as it is prone to numerical error. In practice an efficient iterative method is used in most software implementations (including R).
 
-\hypertarget{svdopt}{%
-\section{SVD optimization results}\label{svdopt}}
+\section{SVD optimization results}\label{svdopt}
 
 Why are eigenvalues and singular values useful in statistics? It is because they appear as the result of some important optimization problems. We'll see more about this in later chapters, but we'll prove a few preliminary results here.
 
@@ -2674,13 +2643,11 @@ See Section \ref{cca1}
 
 We'll see much more of this kind of thing in Chapters \ref{pca} and \ref{cca}.
 
-\hypertarget{lowrank}{%
-\section{Low-rank approximation}\label{lowrank}}
+\section{Low-rank approximation}\label{lowrank}
 
 One of the reasons the SVD is so widely used is that it can be used to find the best low rank approximation to a matrix. Before we discuss this, we need to define what it means for some matrix \(\mathbf B\) to be a good approximation to \(\mathbf A\). To do that, we need the concept of a matrix norm.
 
-\hypertarget{matrix-norms}{%
-\subsection{Matrix norms}\label{matrix-norms}}
+\subsection{Matrix norms}\label{matrix-norms}
 
 In Section \ref{normed} we described norms on vectors. Here will extend this idea to include norms on matrices, so that we can discuss the size of a matrix \(||\mathbf A||\), and the distance between two matrices \(||\mathbf A-\mathbf B||\). There are two particular norms we will focus on. The first is called the Frobenious norm (or sometimes the Hilbert-Schmidt norm).
 
@@ -2728,8 +2695,7 @@ where \(\sigma_1\) is the first singular value of \(\mathbf A\).
 By Proposition \ref{prp:svdmax1}.
 \end{proof}
 
-\hypertarget{eckart-young-mirsky-theorem}{%
-\subsection{Eckart-Young-Mirsky Theorem}\label{eckart-young-mirsky-theorem}}
+\subsection{Eckart-Young-Mirsky Theorem}\label{eckart-young-mirsky-theorem}
 
 Now that we have defined a norm (i.e., a distance) on matrices, we can think about approximating a matrix \(\mathbf A\) by a matrix that is easier to work with. We have shown that any matrix can be split into the sum of rank-1 component matrices
 \[\mathbf A= \sum_{i=1}^r \sigma_i \mathbf u_i \mathbf v_i^\top\]
@@ -2779,8 +2745,7 @@ as required
 
 This best-approximation property is what makes the SVD so useful in applications.
 
-\hypertarget{example-image-compression}{%
-\subsection{Example: image compression}\label{example-image-compression}}
+\subsection{Example: image compression}\label{example-image-compression}
 
 As an example, lets consider the image of some peppers from the \href{http://sipi.usc.edu/database/}{USC-SIPI image database}.
 
@@ -2836,8 +2801,7 @@ You can see further demonstrations of image compression with the SVD \href{http:
 
 We will see much more of the SVD in later chapters.
 
-\hypertarget{tasks-ch3}{%
-\section{Computer tasks}\label{tasks-ch3}}
+\section{Computer tasks}\label{tasks-ch3}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2974,8 +2938,7 @@ Since A is positive definite, we can calculate the symmetric, positive definite 
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercises-ch3}{%
-\section{Exercises}\label{exercises-ch3}}
+\section{Exercises}\label{exercises-ch3}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3007,9 +2970,11 @@ Since A is positive definite, we can calculate the symmetric, positive definite 
   \begin{itemize}
   \tightlist
   \item
-    \(\left(\begin{array}{cc}2&0\\0&-1\end{array} \right)\)
+    \(\left(\begin{array}{cc}2&0\\0&-1\end{array}
+    \right)\)
   \item
-    \(\left(\begin{array}{cc}1&0\\0&0\\0&0\end{array} \right)\)
+    \(\left(\begin{array}{cc}1&0\\0&0\\0&0\end{array}
+    \right)\)
   \end{itemize}
 \item
   Let \[\mathbf X=\left(\begin{array}{cc}1&1\\0&1\\1&0\end{array}
@@ -3051,10 +3016,12 @@ Since A is positive definite, we can calculate the symmetric, positive definite 
 
   \begin{itemize}
   \item
-    If \(\mathbf A\) is a square invertible matrix, show that \[\tilde{\mathbf x} = \mathbf V\boldsymbol{\Sigma}^{-1} \mathbf U^\top \mathbf y\] is the unique solution to \(\mathbf A\mathbf x= \mathbf y\), i.e., show that \(\mathbf A^{-1} = \mathbf V\boldsymbol{\Sigma}^{-1} \mathbf U^\top\).
+    If \(\mathbf A\) is a square invertible matrix, show that \[\tilde{\mathbf x} = \mathbf V\boldsymbol{\Sigma}^{-1} \mathbf U^\top \mathbf y\] is the unique solution to \(\mathbf A\mathbf x= \mathbf y\), i.e., show that \(\mathbf A^{-1} =  \mathbf V\boldsymbol{\Sigma}^{-1} \mathbf U^\top\).
   \item
     If \(\mathbf A\) is not a square matrix, then \(\mathbf A^+ = \mathbf V\boldsymbol{\Sigma}^{-1} \mathbf U^\top\) is a generalized inverse (not a true inverse) matrix, and
-    \(\tilde{\mathbf x}=\mathbf A^+\mathbf y\) is still a useful quantity to consider as we shall now see. Let \(\mathbf A=\left(\begin{array}{cc}1&1\\0&1\\1&0\end{array} \right)\) and \(\mathbf y= \left(\begin{array}{c}2\\1\\1\end{array} \right)\). Then \(\mathbf A\mathbf x=\mathbf y\) is an over-determined system in that there are 3 equations in 2 unknowns. Compute \(\tilde{\mathbf x}=\mathbf A^+\mathbf y\). Is this a solution to the equation?
+    \(\tilde{\mathbf x}=\mathbf A^+\mathbf y\) is still a useful quantity to consider as we shall now see. Let \(\mathbf A=\left(\begin{array}{cc}1&1\\0&1\\1&0\end{array}
+    \right)\) and \(\mathbf y= \left(\begin{array}{c}2\\1\\1\end{array}
+    \right)\). Then \(\mathbf A\mathbf x=\mathbf y\) is an over-determined system in that there are 3 equations in 2 unknowns. Compute \(\tilde{\mathbf x}=\mathbf A^+\mathbf y\). Is this a solution to the equation?
   \end{itemize}
 
   \textbf{Note} that you computed the svd for \(\mathbf A\) in Q2.
@@ -3062,7 +3029,8 @@ Since A is positive definite, we can calculate the symmetric, positive definite 
   \begin{itemize}
   \tightlist
   \item
-    Now suppose \(\mathbf y= \left(\begin{array}{c}1\\-1\\1\end{array} \right)\). There is no solution to \(\mathbf A\mathbf x=\mathbf y\) in this case as \(\mathbf y\) is not in the column space of \(\mathbf A\). Prove that \({\tilde{\mathbf x}} = \mathbf A^+\mathbf y\) solves the least squares problem
+    Now suppose \(\mathbf y= \left(\begin{array}{c}1\\-1\\1\end{array}
+    \right)\). There is no solution to \(\mathbf A\mathbf x=\mathbf y\) in this case as \(\mathbf y\) is not in the column space of \(\mathbf A\). Prove that \({\tilde{\mathbf x}} = \mathbf A^+\mathbf y\) solves the least squares problem
     \[\tilde{\mathbf x} = \arg\min_{\mathbf x}||\mathbf y- \mathbf A\mathbf x||_2.\]
   \end{itemize}
 
@@ -3093,8 +3061,7 @@ Since A is positive definite, we can calculate the symmetric, positive definite 
   Show that \({\bf 1}_n\) is an eigenvector of \(\mathbf H\). What is the corresponding eigenvalue? What are the remaining eigenvalues equal to?
 \end{enumerate}
 
-\hypertarget{part-ii-dimension-reduction-methods}{%
-\chapter*{PART II: Dimension reduction methods}\label{part-ii-dimension-reduction-methods}}
+\chapter*{PART II: Dimension reduction methods}\label{part-ii-dimension-reduction-methods}
 \addcontentsline{toc}{chapter}{PART II: Dimension reduction methods}
 
 \href{https://mediaspace.nottingham.ac.uk/media/Part+IIA+Dimension+reduction+introduction/1_0s2cgr1r}{Introductory Video}
@@ -3115,8 +3082,7 @@ When analysing data of moderate or high dimension, it is often desirable to seek
 
 In this part of the module we investigate three different methods for dimension reduction: Principal Component Analysis (PCA) in Chapter \ref{pca}; Canonical Correlation Analysis (CCA) in Chapter \ref{cca}; and Multidimensional Scaling (MDS) in Chapter \ref{mds}. Matrix algebra (Chapters \ref{linalg-prelim} and \ref{linalg-decomp}) plays a key role in all three of these techniques.
 
-\hypertarget{a-warning}{%
-\subsection*{A warning}\label{a-warning}}
+\subsection*{A warning}\label{a-warning}
 \addcontentsline{toc}{subsection}{A warning}
 
 Beware that high-dimensional data can behave qualitatively differently to low-dimensional data. As an example, lets consider 1000 points uniformly distributed in \([0,1]^d\), and think about how close together or spread out the points are. A simple way to do this is to consider the ratio of the maximum and minimum distance between any two points in our sample.
@@ -3148,8 +3114,7 @@ Beware that high-dimensional data can behave qualitatively differently to low-di
 
 So we can see that as the dimension increases, the ratio of the maximum and minimum distance between any two random points in our sample tends to 1. In other words, all points are the same distance apart!
 
-\hypertarget{pca}{%
-\chapter{Principal Component Analysis (PCA)}\label{pca}}
+\chapter{Principal Component Analysis (PCA)}\label{pca}
 
 The videos for this chapter are available at the following links:
 
@@ -3201,8 +3166,7 @@ For the football league table, if \(w\) is the number of wins, \(d\) is the numb
 \({\mathbf r}=(w,d,l)^\top\), we choose \(\mathbf u= \left(3,1,0 \right)^\top\) to get the points score
 \[ y = \mathbf u^\top {\mathbf r}=\begin{pmatrix} 3 & 1 & 0 \end{pmatrix} \begin{pmatrix} w \\ d \\ l \end{pmatrix} = 3w + 1d + 0l=3w+d.\]
 
-\hypertarget{geometric-interpretation}{%
-\subsubsection*{Geometric interpretation}\label{geometric-interpretation}}
+\subsubsection*{Geometric interpretation}\label{geometric-interpretation}
 \addcontentsline{toc}{subsubsection}{Geometric interpretation}
 
 In the two examples above, we used the vector \(\mathbf u\) to convert our original variables, \(\mathbf x\),
@@ -3272,8 +3236,7 @@ The objective \(f_{\mathbf X}(\mathbf U)\) varies between methods: principal com
 
 The contstraint on the search space \(\mathcal{U}\), is usually that \(\mathbf U\) must be (partially) orthogonal, but in other methods other constraints are used
 
-\hypertarget{pca-an-informal-introduction}{%
-\section{PCA: an informal introduction}\label{pca-an-informal-introduction}}
+\section{PCA: an informal introduction}\label{pca-an-informal-introduction}
 
 There are two different ways of motivating
 principal component analysis (PCA), which may in part explain why PCA is so widely used.
@@ -3294,8 +3257,7 @@ and that you're swimming towards a delicious swarm of krill.
 
 What way should you tilt your shark head in order to eat as many krill as possible? The answer is given by the first principal component of the data!
 
-\hypertarget{notation-recap}{%
-\subsection{Notation recap}\label{notation-recap}}
+\subsection{Notation recap}\label{notation-recap}
 
 As before, let \(\mathbf x_1,\ldots,\mathbf x_n\) be \(p \times 1\) vectors of measurements on \(n\) experimental units and write
 \[\mathbf X=\left( \begin{array}{ccc}
@@ -3329,8 +3291,7 @@ have
   \]
 \end{itemize}
 
-\hypertarget{first-principal-component}{%
-\subsection{First principal component}\label{first-principal-component}}
+\subsection{First principal component}\label{first-principal-component}
 
 We would like to find the \(\mathbf u\) which maximises the sample variance, \(\mathbf u^\top \mathbf S\mathbf u\) over unit vectors \(\mathbf u\), i.e., vectors with \(||\mathbf u||=1\). Why do we focus on unit vectors? If we don't, we could make the variance as large as we like, e.g., if we replace \(\mathbf u\) by \(10\mathbf u\) it would increase the variance by a factor of 100. Thus, we constrain the problem and only consider unit vectors for \(\mathbf u\).
 
@@ -3352,8 +3313,7 @@ and in particular
 \[ \sigma_i\left(\frac{1}{\sqrt{n}} \mathbf X\right) = \frac{1}{\sqrt{n}} \sigma_i(\mathbf X)\]
 We will need to remember this scaling if we use the SVD of \(\mathbf X\) to do PCA. Note that scaling \(\mathbf X\) does not change the singular vectors/principal components.
 
-\hypertarget{second-principal-component}{%
-\subsection{Second principal component}\label{second-principal-component}}
+\subsection{Second principal component}\label{second-principal-component}
 
 \(y_1\) is the transformed variable that has maximum variance. What should we choose to be our next transformed variable, i.e., what \(\mathbf u_2\) should we choose for \(y_2 = \mathbf u_2^\top \mathbf x\)? It makes sense to choose \(y_2\) to be uncorrelated with \(y_1\), as otherwise it contains some of the same information given by \(y_1\). The sample covariance between \(y_1\) and \(\mathbf u_2^\top \mathbf x\) is
 \begin{align*}
@@ -3367,8 +3327,7 @@ So to make \(y_2\) uncorrelated with \(y_1\) we have to choose \(\mathbf u_2\) t
 The solution to this problem is to take \(\mathbf u_2 = \mathbf v_2\), i.e., the second eigenvector of \(\mathbf S\) (or second right singular vector of \(\mathbf X\)), and then \[\mathbf v_2^\top \mathbf S\mathbf v_2=\lambda_2.\]
 We'll prove this result in the next section.
 
-\hypertarget{later-principal-components}{%
-\subsubsection*{Later principal components}\label{later-principal-components}}
+\subsubsection*{Later principal components}\label{later-principal-components}
 \addcontentsline{toc}{subsubsection}{Later principal components}
 
 Our first transformed variable is
@@ -3387,8 +3346,7 @@ where \(\mathbf v_j\) is the \(j^{th}\) eigenvector of \(\mathbf S\).
   The eigenvectors/right singular vectors are sometimes refered to as the \textbf{loadings} or simply as the \textbf{principal components}.
 \end{itemize}
 
-\hypertarget{geometric-interpretation-1}{%
-\subsection{Geometric interpretation}\label{geometric-interpretation-1}}
+\subsection{Geometric interpretation}\label{geometric-interpretation-1}
 
 We think of PCA as projecting the data points \(\mathbf x\) onto a subspace \(V\). The basis vectors for this subspace are the eigenvectors of \(\mathbf S\), which are the same as the right singular vectors of \(\mathbf X\) (the loadings):
 \[V=\operatorname{span}\{\mathbf v_1, \ldots, \mathbf v_r\}.\]
@@ -3413,8 +3371,7 @@ Substituting the SVD for \(\mathbf X= \mathbf U\boldsymbol{\Sigma}\mathbf V^\top
 
 \(\mathbf Y\) is a \(n \times r\) matrix, and so if \(r<p\) we have reduced the dimension of \(\mathbf X\), keeping the most important parts of the data
 
-\hypertarget{example}{%
-\subsection{Example}\label{example}}
+\subsection{Example}\label{example}
 
 We consider the marks of \(n=10\) students who studied G11PRB and G11STA.
 
@@ -3543,7 +3500,7 @@ So we can see that the eigenvectors/right singular vectors/loadings are
 
 \[\mathbf v_1=\begin{pmatrix} -0.69 \\ -0.724 \end{pmatrix},\qquad \mathbf v_2=\begin{pmatrix} -0.724 \\ 0.69 \end{pmatrix}\]
 
-Sometimes the new variables have an obvious interpretation. In this case the first PC gives approximately equal weight to PRB and STA and thus represents some form of negative `'average'' mark. Note that the singular vectors are only determined upto multiplication by \(\pm 1\). In this case, R has chosen \(\mathbf v_1\) to have negative entries, but we could multiply \(\mathbf v_1\) by \(-1\) so that the first PC was more like the avearge.
+Sometimes the new variables have an obvious interpretation. In this case the first PC gives approximately equal weight to PRB and STA and thus represents some form of negative `'average'\,' mark. Note that the singular vectors are only determined upto multiplication by \(\pm 1\). In this case, R has chosen \(\mathbf v_1\) to have negative entries, but we could multiply \(\mathbf v_1\) by \(-1\) so that the first PC was more like the avearge.
 As it is, a student that has a high mark on PRB and STA will have a low negative value for \(y_1\). The second PC, meanwhile, represents a contrast between PRB and STA. For example, a large positive value for \(y_2\) implies the student did much better on STA than PRB, and a large negative value implies the opposite.
 
 If we plot the data along with the principal components. The two lines, centred on \(\bar{\mathbf x}\), are in the direction of the principal components/eigenvectors, and their lengths are \(2 \sqrt{\lambda_j}\), \(j=1,2\).
@@ -3700,8 +3657,7 @@ Finally, note that we did the singular value decomposition for \(\mathbf X\) abo
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{example-iris}{%
-\subsection{Example: Iris}\label{example-iris}}
+\subsection{Example: Iris}\label{example-iris}
 
 In general when using R to do PCA, we don't need to compute the SVD and then do the projections, as there is an R command \texttt{prcomp} that will do it all for us. The \texttt{princomp} will also do PCA, but is less stable than \texttt{prcomp}, and it is recommended that you use \texttt{prcomp} in preference.
 
@@ -3808,8 +3764,7 @@ The \texttt{ggfortify} package provides a nice wrapper for some of this function
 
 \includegraphics{04-pca_files/figure-latex/unnamed-chunk-18-1.pdf}
 
-\hypertarget{pca-a-formal-description-with-proofs}{%
-\section{PCA: a formal description with proofs}\label{pca-a-formal-description-with-proofs}}
+\section{PCA: a formal description with proofs}\label{pca-a-formal-description-with-proofs}
 
 Let's now summarize what we've said so far and prove some results about principal component analysis.
 
@@ -3861,8 +3816,7 @@ i.e., \(\mathbf u\) must be a unit eigenvector of \(\mathbf S\). It only remains
 and as \(\mathbf v_l^\top \mathbf S\mathbf v_l = \lambda_l\), we must choose \(\mathbf u=\mathbf v_j\), the eigenvector corresponding to the \(j^{th}\) largest eigenvalue.
 \end{proof}
 
-\hypertarget{properties-of-principal-components}{%
-\subsection{Properties of principal components}\label{properties-of-principal-components}}
+\subsection{Properties of principal components}\label{properties-of-principal-components}
 
 For \(j=1, \ldots , p\), the scores of the \(j^{th}\) principal component (PC) are given by
 \[
@@ -3945,8 +3899,7 @@ of the variability in the sample is `explained' by the \(j^{th}\) PC.
 
 One tool for looking at the contributions of each PC is to look at the \textbf{scree plot} which plots the percentage of variance explained by PC \(j\) against \(j\). We'll see examples of scree plots below.
 
-\hypertarget{pca:football}{%
-\subsection{Example: Football}\label{pca:football}}
+\subsection{Example: Football}\label{pca:football}
 
 We can apply PCA to a football league table where \(W\), \(D\), \(L\) are the number of matches won, drawn and lost and \(G\) and \(GA\) are the goals scored for and against, and \(GD\) is the goal difference (\(G-GA\)). An extract of the table for the 2019-2020 Premier League season is:
 
@@ -4054,8 +4007,7 @@ There are many possible methods for choosing the number of PCs to retain for ana
 
 To retain enough PCs to explain 90\% of the total variance, would require us to keep just a single PCs in this case.
 
-\hypertarget{pcawithR}{%
-\subsection{\texorpdfstring{PCA based on \(\mathbf R\) versus PCA based on \(\mathbf S\)}{PCA based on \textbackslash mathbf R versus PCA based on \textbackslash mathbf S}}\label{pcawithR}}
+\subsection{\texorpdfstring{PCA based on \(\mathbf R\) versus PCA based on \(\mathbf S\)}{PCA based on \textbackslash mathbf R versus PCA based on \textbackslash mathbf S}}\label{pcawithR}
 
 Recall the distinction between the sample covariance matrix \(\mathbf S\) and the sample correlation matrix \(\mathbf R\).
 Note that all correlation matrices are also covariance matrices, but not all covariance matrices are correlation matrices.
@@ -4073,8 +4025,7 @@ If the original \(p\) variables represent very different types of quantity or sh
 
 Given that the required numerical calculations are easy to perform in R, we might wish to do it both ways and see if it makes much difference. To use the correlation matrix \(\mathbf R\), we just add the option \texttt{scale=TRUE} when using the \texttt{prcomp} command. Note that \texttt{prcomp} uses \(n-1\) when computing the covariance matrix, rather than \(n\).
 
-\hypertarget{football-example-continued}{%
-\subsubsection{Football example continued}\label{football-example-continued}}
+\subsubsection{Football example continued}\label{football-example-continued}
 
 If we repeat the analysis of the football data using \(\mathbf R\) instead of \(\mathbf S\), we get find principal components:
 
@@ -4111,8 +4062,7 @@ Overall for these data, doing PCA with \(\mathbf R\) instead of \(\mathbf S\) be
 
 \includegraphics{04-pca_files/figure-latex/unnamed-chunk-30-1.pdf}
 
-\hypertarget{population-pca}{%
-\subsection{Population PCA}\label{population-pca}}
+\subsection{Population PCA}\label{population-pca}
 
 So far we have considered sample PCA based on the sample covariance matrix or sample correlation matrix:
 \[
@@ -4194,8 +4144,7 @@ from the same population?
 If the elements of \(\boldsymbol{\Sigma}\) are all finite, then as \(n\) increases, the elements of the sample covariance matrix \(\mathbf S\) will converge to the corresponding elements
 of the population covariance matrix \(\boldsymbol{\Sigma}\). Consequently, we expect the principal components from sample PCA to converge to the population PCA values as \(n\) grows large. Justification of this statement comes from the weak law of large numbers applied to the components of \(\boldsymbol{\Sigma}\), but the details are beyond the scope of this module.
 
-\hypertarget{pca-under-transformations-of-variables}{%
-\subsection{PCA under transformations of variables}\label{pca-under-transformations-of-variables}}
+\subsection{PCA under transformations of variables}\label{pca-under-transformations-of-variables}
 
 We'll now consider what happens to PCA when the data are transformed in various ways.
 
@@ -4235,10 +4184,9 @@ and so they are identical to the PC scores of the original variables.
 
 Therefore, under an orthogonal transformation the eigenvalues and PC scores are unchanged; the PCs are orthogonal transformations of the original PCs. We say that the principal components are \textbf{equivariant} with respect to orthogonal transformations.
 
-\hypertarget{an-alternative-view-of-pca}{%
-\section{An alternative view of PCA}\label{an-alternative-view-of-pca}}
+\section{An alternative view of PCA}\label{an-alternative-view-of-pca}
 
-In this section, we will again consider the situation in which the sample \(\mathbf x_1, \ldots , \mathbf x_n \in \mathbb{R}^p\) have zero mean (replace \(\mathbf x_i\) by \(\mathbf x_i-\bar{\mathbf x}\) if the mean is not zero).
+In this section, we will again consider the situation in which the sample \(\mathbf x_1, \ldots ,  \mathbf x_n \in \mathbb{R}^p\) have zero mean (replace \(\mathbf x_i\) by \(\mathbf x_i-\bar{\mathbf x}\) if the mean is not zero).
 
 To recap, in PCA to find the \(r\) leading principal components, we solve the optimization problem
 \begin{align*}
@@ -4256,8 +4204,7 @@ We can write this in the form given in the introduction to this chapter (Equatio
  \end{align*}
 as \(\operatorname{tr}(\mathbf U^\top \mathbf S\mathbf U) = \sum_{k=1}^r \mathbf u_k^\top \mathbf S\mathbf u_k\) if \(\mathbf U\) has columns \(\mathbf u_1, \ldots, \mathbf u_r\).
 
-\hypertarget{an-equivalent-problem}{%
-\subsubsection*{An equivalent problem}\label{an-equivalent-problem}}
+\subsubsection*{An equivalent problem}\label{an-equivalent-problem}
 \addcontentsline{toc}{subsubsection}{An equivalent problem}
 
 There is another optimization problem that we sometimes wish to solve, that turns out to be equivalent to the above, thus providing another reason why PCA is so widely used.
@@ -4306,8 +4253,7 @@ So to summarize, the optimization problem
  \end{align*}
 is equivalent to (and has the same as) the PCA optimization problem.
 
-\hypertarget{pca-mnist}{%
-\subsection{Example: MNIST handwritten digits}\label{pca-mnist}}
+\subsection{Example: MNIST handwritten digits}\label{pca-mnist}
 
 Let's consider the MNIST dataset of handwritten digits discussed in Chapter \ref{stat-prelim}. Recall this is a collection of 60,000 digits, each of which has been converted to a \(28\times 28\) pixel greyscale image (so \(p=784\)).
 I've made a clean version of the dataset available on Moodle, so you can try this analysis for yourself. Let's look at just the 3s. I've created a plotting function \texttt{plot.mnist}, which is in the code file on Moodle.
@@ -4479,11 +4425,9 @@ Finally, let's do PCA on a selection of the 60,000 images (not just the 3s). You
 
 We can see from this scatter plot that the first two principal components do a surprisingly good job of separating and clustering the digits.
 
-\hypertarget{pca-comptask}{%
-\section{Computer tasks}\label{pca-comptask}}
+\section{Computer tasks}\label{pca-comptask}
 
-\hypertarget{exercise-1}{%
-\paragraph*{Exercise 1}\label{exercise-1}}
+\paragraph*{Exercise 1}\label{exercise-1}
 \addcontentsline{toc}{paragraph}{Exercise 1}
 
 Using the \texttt{iris} dataset, familiarize yourself with the \texttt{prcomp} command and its output.
@@ -4514,8 +4458,7 @@ Now we will do the same thing again, but using the \texttt{svd} command.
   is the SVD of \(\mathbf H\mathbf X\).
 \end{itemize}
 
-\hypertarget{exercise-2}{%
-\paragraph*{Exercise 2}\label{exercise-2}}
+\paragraph*{Exercise 2}\label{exercise-2}
 \addcontentsline{toc}{paragraph}{Exercise 2}
 
 In this question we will look at the crabs data from the \texttt{MASS} R package.
@@ -4594,8 +4537,7 @@ Some questions:
 
 Check the effect of each transformation on the principal components (the loadings/eigenvectors), the principal component scores, and the variance of the principal components (the eigenvalues).
 
-\hypertarget{exercise-3}{%
-\paragraph*{Exercise 3}\label{exercise-3}}
+\paragraph*{Exercise 3}\label{exercise-3}
 \addcontentsline{toc}{paragraph}{Exercise 3}
 
 Download the final Premier League table for the 2022-23 season from
@@ -4608,8 +4550,7 @@ Download the final Premier League table for the 2022-23 season from
   Repeat the analysis from section \ref{pca:football}. Does the meaning of the principal components change? Was the 2018-19 league season notably different to the 2019-20 season (which is the season analysed in the notes)?
 \end{itemize}
 
-\hypertarget{exercise-4}{%
-\paragraph*{Exercise 4}\label{exercise-4}}
+\paragraph*{Exercise 4}\label{exercise-4}
 \addcontentsline{toc}{paragraph}{Exercise 4}
 
 The \texttt{decathlon2} data from the \texttt{factoextra} package contains
@@ -4637,8 +4578,7 @@ Interpret the leading PCs.
 
 Plot the first two scores for the different athlete performances, labelling each point. From these plots, comment on particular strengths/weaknesses in some performances.
 
-\hypertarget{exercises-1}{%
-\section{Exercises}\label{exercises-1}}
+\section{Exercises}\label{exercises-1}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4740,8 +4680,7 @@ Plot the first two scores for the different athlete performances, labelling each
 
 \includegraphics{PCA_Q4_2015_16.png}
 
-\hypertarget{cca}{%
-\chapter{Canonical Correlation Analysis (CCA)}\label{cca}}
+\chapter{Canonical Correlation Analysis (CCA)}\label{cca}
 
 The videos for this chapter are available at the following links
 
@@ -4781,11 +4720,9 @@ Multivariate data structures can be understood better if we look at low-dimensio
 Canonical correlation analysis (CCA) gives an answer to this question in terms of the best low-dimensional linear projections of the \(\mathbf x\) and \(\mathbf y\) random variables. In a comparable way to PCA, `best' in CCA is defined in terms of maximizing correlations.
 A key role is played by the singular value decomposition (SVD) introduced in Chapter \ref{linalg-decomp}.
 
-\hypertarget{cca1}{%
-\section{The first pair of canonical variables}\label{cca1}}
+\section{The first pair of canonical variables}\label{cca1}
 
-\hypertarget{some-notation}{%
-\subsubsection*{Some notation}\label{some-notation}}
+\subsubsection*{Some notation}\label{some-notation}
 \addcontentsline{toc}{subsubsection}{Some notation}
 
 Assume we are given a random sample of vectors \(\mathbf x_i, \mathbf y_i\), and that we stack these into a vector \(\mathbf z_i\)
@@ -4818,8 +4755,7 @@ First, some notation:
   \]
 \end{itemize}
 
-\hypertarget{defining-the-optimization-objective}{%
-\subsubsection*{Defining the optimization objective}\label{defining-the-optimization-objective}}
+\subsubsection*{Defining the optimization objective}\label{defining-the-optimization-objective}
 \addcontentsline{toc}{subsubsection}{Defining the optimization objective}
 
 We want to find the linear combination of the \(\mathbf x\)-variables and the linear combination of the \(\mathbf y\)-variables which is most highly correlated.
@@ -4880,8 +4816,7 @@ and similarly for \(\check{\mathbf b}\).
 So \(\check{\mathbf a}\) and \(\check{\mathbf b}\) maximises \eqref{eq:opt27a} subject to the constraints.
 \end{proof}
 
-\hypertarget{the-first-canonical-components}{%
-\subsection{The first canonical components}\label{the-first-canonical-components}}
+\subsection{The first canonical components}\label{the-first-canonical-components}
 
 As in the chapter on PCA, the optimal solution for CCA can be computed using the singular value decomposition. Before we describe the result, let's prove the following proposition from Chapter \ref{linalg-decomp}
 
@@ -4920,8 +4855,7 @@ Hence we maximize the objective by taking \(\mathbf a=\mathbf u_1\) and \(\mathb
 \[\max_{\mathbf a, \mathbf b:\, \vert \vert \mathbf a\vert \vert=\vert \vert \mathbf b\vert \vert =1} \mathbf a^\top \mathbf Q\mathbf b=\sigma_1.\]
 \end{proof}
 
-\hypertarget{main-result}{%
-\subsubsection*{Main result}\label{main-result}}
+\subsubsection*{Main result}\label{main-result}
 \addcontentsline{toc}{subsubsection}{Main result}
 
 We're now in a position to describe the main result giving the first pair of canonical variables
@@ -4976,8 +4910,7 @@ We will label the solution found as
 \[\mathbf a_1 := \mathbf S_{xx}^{-\frac{1}{2}}\mathbf u_1\quad \mbox{ and }\quad\mathbf b_1 := \mathbf S_{yy}^{-\frac{1}{2}}\mathbf v_1\]
 to stress that \(\mathbf a_1\) and \(\mathbf b_1\) are the \textbf{first} pair of \textbf{canonical correlation (CC) vectors}. The variables \(\eta_1=\mathbf a_1^\top (\mathbf x-\bar{\mathbf x})\) and \(\psi_1=\mathbf b_1^\top (\mathbf y-\bar{\mathbf y})\) are called the first pair of \textbf{canonical correlation variables}, and \(\sigma_1={\mathbb{C}\operatorname{or}}(\eta_1, \psi_1)\) is the \textbf{first canonical correlation}.
 
-\hypertarget{premcca}{%
-\subsection{Example: Premier league football}\label{premcca}}
+\subsection{Example: Premier league football}\label{premcca}
 
 Lets again return to the Premier League from the previous chapter.
 
@@ -5227,8 +5160,7 @@ We can also do this with the \texttt{CCA} package in R. The command \texttt{matc
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{the-full-set-of-canonical-correlations}{%
-\section{The full set of canonical correlations}\label{the-full-set-of-canonical-correlations}}
+\section{The full set of canonical correlations}\label{the-full-set-of-canonical-correlations}
 
 Let us first recap what we did in the previous section: we found a linear combination of the \(\mathbf x\)-variables and a linear combination of the \(\mathbf y\)-variables which
 maximised the correlation, and expressed the answer in terms of quantities which arise in the SVD of \(\mathbf Q\), where
@@ -5266,8 +5198,7 @@ It will probably not surprise you to find that the solution is
 \[\mathbf a^\top \mathbf S_{xy}\mathbf b= \sigma_2\quad\mbox{ achieved at} \quad \mathbf a=\mathbf a_2 := S_{xx}^{-1/2}\mathbf u_2 \mbox{ and } \mathbf b=\mathbf b_2 := S_{yy}^{-1/2}\mathbf v_2\]
 where \(\sigma_2\) is the second largest singular value of \(\mathbf Q\), and \(\mathbf u_2\) and \(\mathbf v_2\) are the corresponding left and right singular vectors.
 
-\hypertarget{main-results}{%
-\subsubsection*{Main results}\label{main-results}}
+\subsubsection*{Main results}\label{main-results}
 \addcontentsline{toc}{subsubsection}{Main results}
 
 We now state the result in its full generality.
@@ -5339,8 +5270,7 @@ To summarize:
 We define the CC variable/score vectors to be
 \[{\pmb \eta}_k=(\eta_{1k}, \ldots , \eta_{nk})^\top \mbox{ and }{\pmb \psi}_{k}=(\psi_{1k}, \ldots , \psi_{nk})^\top.\]
 
-\hypertarget{example-continued}{%
-\subsection{Example continued}\label{example-continued}}
+\subsection{Example continued}\label{example-continued}
 
 From \eqref{eq:SVDanalysis}, it is seen that the 2nd CC coefficient is given by \(\sigma_2=0.705\). So the correlation between the second pair of CC variables is smaller than the 1st CC coefficient, though still appreciably different from \(0\). We now calculate the 2nd CC weight vectors:
 
@@ -5375,8 +5305,7 @@ Interpretation of the 2nd CC: teams that have a lot of draws tend to be in low-s
 
 \includegraphics{05-cca_files/figure-latex/unnamed-chunk-17-1.pdf}
 
-\hypertarget{properties}{%
-\section{Properties}\label{properties}}
+\section{Properties}\label{properties}
 
 The CC variables have a mean of zero. Their correlation structure is given in the following proposition:
 
@@ -5398,8 +5327,7 @@ and
 You will prove this in the exercises.
 \end{proof}
 
-\hypertarget{connection-with-linear-regression-when-q1}{%
-\subsection{\texorpdfstring{Connection with linear regression when \(q=1\)}{Connection with linear regression when q=1}}\label{connection-with-linear-regression-when-q1}}
+\subsection{\texorpdfstring{Connection with linear regression when \(q=1\)}{Connection with linear regression when q=1}}\label{connection-with-linear-regression-when-q1}
 
 Although CCA is clearly a different technique to linear regression, it turns out that when either \(\dim \mathbf x=p=1\) or \(\dim \mathbf y=q=1\), there is a close connection between the two approaches.
 
@@ -5448,8 +5376,7 @@ Thus, we can see that the first canonical correlation vector \(\mathbf a\) is a 
 \]
 the classical least squares estimator. Therefore the least squares estimator \(\hat{\pmb \beta}\) solves \eqref{eq:opt26}. However, it does not usually solve the constrained optimisation problem \eqref{eq:opt27a} because typically \(\hat{\pmb \beta}^\top \mathbf S_{\mathbf x\mathbf x}\hat{\pmb \beta} \not= 1\), so that the constraint in Equation \eqref{eq:opt27a} will not be satisfied.
 
-\hypertarget{invarianceequivariance-properties-of-cca}{%
-\subsection{Invariance/equivariance properties of CCA}\label{invarianceequivariance-properties-of-cca}}
+\subsection{Invariance/equivariance properties of CCA}\label{invarianceequivariance-properties-of-cca}
 
 Suppose we apply orthogonal transformations and translations to the \(\mathbf x_i\) and the \(\mathbf y_i\) of the form
 \begin{equation}
@@ -5518,11 +5445,9 @@ the optimal vectors \(\mathbf a_{j}\) and \(\mathbf b_{j}\) transform in an equi
 
 If either of \(\mathbf T\) or \(\mathbf R\) in \eqref{eq:transformations} is not an orthogonal matrix then the singular values are not invariant and the CC vectors do not transform in an equivariant manner.
 
-\hypertarget{computer-tasks-1}{%
-\section{Computer tasks}\label{computer-tasks-1}}
+\section{Computer tasks}\label{computer-tasks-1}
 
-\hypertarget{task-1}{%
-\paragraph*{Task 1}\label{task-1}}
+\paragraph*{Task 1}\label{task-1}
 \addcontentsline{toc}{paragraph}{Task 1}
 
 Consider again the crabs dataset you looked at in the exercises in the chapter on PCA (see \ref{pca-comptask}).
@@ -5572,8 +5497,7 @@ other set, the \(\mathbf y\)-set, is given by FL, RW and BD.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{task-2}{%
-\paragraph*{Task 2}\label{task-2}}
+\paragraph*{Task 2}\label{task-2}
 \addcontentsline{toc}{paragraph}{Task 2}
 
 The data for previous Premier League seasons is available at:
@@ -5618,8 +5542,7 @@ Circle plots can also help. Look at the help page for \texttt{plt.cc} and try so
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{task-3}{%
-\paragraph*{Task 3}\label{task-3}}
+\paragraph*{Task 3}\label{task-3}
 \addcontentsline{toc}{paragraph}{Task 3}
 
 We will now look data measured from 600 first year university students. Measurements were made on three psychological variables:
@@ -5664,8 +5587,7 @@ and gender (1=Male, 0 = Female) We are interested in how the set of psychologica
 
 Conduct CCA on these data. Provide an interpretation of your results.
 
-\hypertarget{exercises-2}{%
-\section{Exercises}\label{exercises-2}}
+\section{Exercises}\label{exercises-2}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -5869,8 +5791,7 @@ The following gives the correlation between the original variables and the trans
   Show the mean of the cc variables \(\eta_k\) and \(\psi_k\) is zero. Prove Proposition \ref{prp:ccavar} giving the variance of covariance the cc variables.
 \end{enumerate}
 
-\hypertarget{mds}{%
-\chapter{Multidimensional Scaling (MDS)}\label{mds}}
+\chapter{Multidimensional Scaling (MDS)}\label{mds}
 
 The videos for this chapter are available at:
 
@@ -5947,8 +5868,7 @@ MDS constructs a set of points, \(\mathbf y_1, \ldots, \mathbf y_n\), that have 
 Of course, this illustrative example is not very interesting, as the original data (the city locations) are only two-dimensional, but in problems with high dimensional data, finding a way to
 represent the points in a low-dimensional space will make visualization and statistical analysis easier. We shall see, perhaps unsurprisingly, that there is a close connection between MDS and PCA.
 
-\hypertarget{notation-2}{%
-\subsubsection*{Notation}\label{notation-2}}
+\subsubsection*{Notation}\label{notation-2}
 \addcontentsline{toc}{subsubsection}{Notation}
 
 There are many ways to compute distances between points. For example, you may have studied metrics previously, which are distance functions that satisfy certain axioms. In MDS, we do not need to work with distances that are metrics (although sometimes we do), and instead we only require that distances satisfy a weaker set of conditions:
@@ -5994,8 +5914,7 @@ But for the city data, we could also consider distance by road, i.e., we could m
 
 The choice of which distance is appropriate is problem specific (see section \ref{similarity} for an example). The focus in this chapter is on Euclidean distance, as this leads to an explicit mathematical solution to the optimization problem \eqref{eq:mdsopt}. However, note that MDS techniques have also been developed for non-Euclidean distances.
 
-\hypertarget{classical-mds}{%
-\section{Classical MDS}\label{classical-mds}}
+\section{Classical MDS}\label{classical-mds}
 
 Classical MDS is based upon \textbf{Euclidean distances}:
 \[d(\mathbf x, \mathbf x') = ||\mathbf x-\mathbf x'||_2 = \sqrt{(\mathbf x-\mathbf x')^\top (\mathbf x-\mathbf x')}.\]
@@ -6036,8 +5955,7 @@ where \(\odot\) denotes the \href{https://en.wikipedia.org/wiki/Hadamard_product
 We can think of \(\mathbf B\) as a matrix of similarities for the data.
 The reason for this, and for why we call \(\mathbf B\) the centred inner product matrix will become clear after we state the main result of this chapter.
 
-\hypertarget{main-result-1}{%
-\subsubsection*{Main result}\label{main-result-1}}
+\subsubsection*{Main result}\label{main-result-1}
 \addcontentsline{toc}{subsubsection}{Main result}
 
 We now present the key result for classical MDS. It says that a distance matrix \(\mathbf D\) is a \emph{Euclidean} distance matrix if and only if the corresponding centred inner product matrix \(\mathbf B\) is positive semi-definite. It also tells us how given data \(\mathbf X\) we can compute \(\mathbf B\) directly from \(\mathbf X\). Conversely, and more importantly, it tells us how given \(\mathbf B\) we can compute some data points \(\mathbf X\) that have corresponding Euclidean distance matrix \(\mathbf D\).
@@ -6085,8 +6003,7 @@ You will prove this result in the example sheets.
 
 These results say that if \(\mathbf D\) is a Euclidean distance matrix (which we can check by testing whether \(\mathbf B\) is positive semi-definite), then we can find a set of \(n\) points \(\mathbf x_1, \ldots, \mathbf x_n\in \mathbb{R}^k\) which have interpoint distances \(\mathbf D\). The dimension of the points is given by the rank of \(\mathbf B\).
 
-\hypertarget{example-1}{%
-\subsubsection*{Example 1}\label{example-1}}
+\subsubsection*{Example 1}\label{example-1}
 \addcontentsline{toc}{subsubsection}{Example 1}
 
 Consider the five points in \(\mathbb{R}^2\):
@@ -6296,8 +6213,7 @@ If we plot the original data points \(\mathbf X\), along with the three sets of 
 
 \includegraphics{06-mds_files/figure-latex/unnamed-chunk-13-1.pdf}
 
-\hypertarget{example-2}{%
-\subsubsection*{Example 2}\label{example-2}}
+\subsubsection*{Example 2}\label{example-2}
 \addcontentsline{toc}{subsubsection}{Example 2}
 
 If we apply the \texttt{cmdscale} to the distances between UK cities from the introduction, we get the `coordinates' shown below.
@@ -6306,8 +6222,7 @@ If we apply the \texttt{cmdscale} to the distances between UK cities from the in
 
 This `map' is essentially correct, but it is rotated \(90^\circ\) and the `coordinates' have mean zero.
 
-\hypertarget{non-euclidean-distance-matrices}{%
-\subsection{Non-Euclidean distance matrices}\label{non-euclidean-distance-matrices}}
+\subsection{Non-Euclidean distance matrices}\label{non-euclidean-distance-matrices}
 
 Proposition \ref{thm:five1} may be useful even if \({\mathbf D}\) is not a \emph{Euclidean} distance matrix (in which case \(\mathbf B\) will have some negative eigenvalues). For example, this can occur if the distances between points is measured with errror.
 
@@ -6319,8 +6234,7 @@ In other words, we sum over those \(j\) such that \(\lambda_j\) is positive.
 
 Then \(\mathbf B_{\text{pos}}\) is positive semi-definite and so we can use part 2. of Theorem \ref{thm:five1} to determine a Euclidean configuration of points which has centred inner-product matrix \(\mathbf B_{\text{pos}}\). Then, provided the negative eigenvalues are small in absolute value relative to the positive eigenvalues, the inter-point distances of the new points in Euclidean space should provide a good approximation to the original inter-point distances \((d_{ij})\).
 
-\hypertarget{example-3}{%
-\subsubsection*{Example 3}\label{example-3}}
+\subsubsection*{Example 3}\label{example-3}
 \addcontentsline{toc}{subsubsection}{Example 3}
 
 Let's now look at a case for which \(\mathbf B\) isn't positive definite. We'll create this by modifying the distance matrix we had before:
@@ -6400,8 +6314,7 @@ To do this ourselves (i.e., not using \texttt{cmdscale}) we can use the commands
 
 \includegraphics{06-mds_files/figure-latex/unnamed-chunk-19-1.pdf}
 
-\hypertarget{principal-coordinate-analysis}{%
-\subsection{Principal Coordinate Analysis}\label{principal-coordinate-analysis}}
+\subsection{Principal Coordinate Analysis}\label{principal-coordinate-analysis}
 
 Theorem \ref{thm:five1} tells us that if the centred inner-product matrix
 \(\mathbf B\) is positive semi-definite with rank \(k\), then we can find a set of \(n\) points \(\mathbf x_1,\ldots, \mathbf x_n \in \mathbb{R}^k\) that have distance matrix \(\mathbf D\). However, if \(k\) is large this may not be much use to us. The most common motivation for doing MDS is in order to find a way to visualise a dataset and to understand its structure. Thus, we are usually only interested in finding a set of points in \(\mathbb{R}^2\) or \(\mathbb{R}^3\) that have a distance matrix approximately equal to \(\mathbf D\) so that we can visualize the points and look for patterns.
@@ -6416,7 +6329,7 @@ As we are choosing the points \(\mathbf z_i\), we can choose them so that they h
   - & \mathbf z_n^\top  &-\\
 \end{pmatrix}.\]
 
-We want to choose \(\mathbf Z\) so that \(\mathbf Z\mathbf Z^\top \approx \mathbf B\). One way to judge how close \(\mathbf B\) is to \(\mathbf Z\mathbf Z^\top\) is to looking at the sum of square differences between the elements, which is the matrix Frobenius norm:
+We want to choose \(\mathbf Z\) so that \(\mathbf Z\mathbf Z^\top \approx  \mathbf B\). One way to judge how close \(\mathbf B\) is to \(\mathbf Z\mathbf Z^\top\) is to looking at the sum of square differences between the elements, which is the matrix Frobenius norm:
 
 \[\sum_{i=1}^n\sum_{j=1}^n (B_{ij}-\mathbf z_i^\top \mathbf z_j)^2 = ||\mathbf B- \mathbf Z\mathbf Z^\top||^2_F\]
 
@@ -6432,8 +6345,7 @@ If we let
 \[\mathbf Z= \mathbf U_r \boldsymbol \Lambda_r^{\frac{1}{2}}\]
 then this gives us the set of \(n\) points in \(\mathbb{R}^r\) that give the best approximation to the inner product matrix \(\mathbf B\). These are known as the r leading \textbf{principal coordinates} of the data. We will see an example of this in the next section.
 
-\hypertarget{link-with-pca}{%
-\subsubsection*{Link with PCA}\label{link-with-pca}}
+\subsubsection*{Link with PCA}\label{link-with-pca}
 \addcontentsline{toc}{subsubsection}{Link with PCA}
 
 Although MDS only requires either a distance matrix \(\mathbf D\) or similarity matrix as input, sometimes we will have access to the data matrix \(\mathbf X\) and will want to reduce the dimension and
@@ -6455,8 +6367,7 @@ d_{ij}^2 = (\mathbf x_i -\mathbf x_j)^\top(\mathbf x_i -\mathbf x_j),
 where \(\mathbf x_1^\top, \ldots , \mathbf x_n^\top\) are the rows of \(\mathbf X\). Then the centred PC scores based on the first \(k\) principal components of \(\mathbf X\) are equal to the principal coordinates of the \(n\) points in \(k\) dimensions based on the distance matrix \(\mathbf D\).
 \end{proposition}
 
-\hypertarget{similarity}{%
-\section{Similarity measures}\label{similarity}}
+\section{Similarity measures}\label{similarity}
 
 So far we have presented classical MDS as starting with a distance (or dissimilarity) matrix \(\mathbf D=(d_{ij})_{i,j=1}^n\). In this setting, the larger \(d_{ij}\) is, the more distant, or dissimilar, object \(i\) is from object \(j\).
 We then convert \(\mathbf D\) to a centred inner product matrix \(\mathbf B\), where we think of \(\mathbf B\) as being a similarity matrix. Finally we find a truncated spectral decomposition for \(\mathbf B\):
@@ -6497,8 +6408,7 @@ This is symmetric (so satisfies property 1. for similarities), and the similarit
 
 Note that because the cosine similarity uses the inner product of normalised vectors, it only gives a relative comparison of two vectors, not an absolute one: the cosine similarity between \(\mathbf x\) and \(\mathbf y\) is the same as the similarity between \(\mathbf x\) and \(a\mathbf y\) for any positive constant \(a\). Thus we should only use this measure of similarity when absolute differences are unimportant.
 
-\hypertarget{mds-with-similarity-matrices}{%
-\subsubsection*{MDS with similarity matrices}\label{mds-with-similarity-matrices}}
+\subsubsection*{MDS with similarity matrices}\label{mds-with-similarity-matrices}
 \addcontentsline{toc}{subsubsection}{MDS with similarity matrices}
 
 In this section, we consider MDS using measures of \textbf{similarity} as opposed to measures of distance/dissimilarity. We begin by showing that we can convert a positive semi-definite similarity matrix \(\mathbf F\) into a distance matrix \(\mathbf D\) and then into a centred inner product matrix \(\mathbf B\), allowing us to use the classical MDS approach from the previous section.
@@ -6560,15 +6470,13 @@ This tells us how to do MDS with a similarity matrix \(\mathbf F\). We first app
 \[\mathbf B=\mathbf H\mathbf F\mathbf H\]
 and then we find the spectral decomposition of \(\mathbf B\) just as we did in the previous section.
 
-\hypertarget{binary-attributes}{%
-\subsection{Binary attributes}\label{binary-attributes}}
+\subsection{Binary attributes}\label{binary-attributes}
 
 One important class of problems is when the similarity between any two objects is measured by the number of common attributes. The underlying data on each object is a binary vector of 0s and 1s indicating absence or presence of an attribute. These binary vectors are then converted to similarities by comparing which attributes two objects have in common.
 
 We illustrate this through two examples.
 
-\hypertarget{example-4}{%
-\subsubsection*{Example 4}\label{example-4}}
+\subsubsection*{Example 4}\label{example-4}
 \addcontentsline{toc}{subsubsection}{Example 4}
 
 Suppose there are 4 attributes we wish to consider.
@@ -6629,8 +6537,7 @@ In situations where 0 and 1 carry equivalent information with greater balance ac
 
 There are many other possible ways of measuring similarity. For example, we could consider weighted versions of the above if we wish to weight different attributes differently.
 
-\hypertarget{example-5}{%
-\subsubsection*{Example 5}\label{example-5}}
+\subsubsection*{Example 5}\label{example-5}
 \addcontentsline{toc}{subsubsection}{Example 5}
 
 Let us now consider a similar but more complex example with 6 unspecified attributes (not the same attributes as in Example 1) and 5 types of living creature, with the following data matrix, consisting of zeros and ones.
@@ -6766,8 +6673,7 @@ Let's now do MDS, and compare the results from using the SMC and Jaccard index. 
 
 So we can see the choice of index has made a difference to the results.
 
-\hypertarget{example-classical-mds-with-the-mnist-data}{%
-\subsection{Example: Classical MDS with the MNIST data}\label{example-classical-mds-with-the-mnist-data}}
+\subsection{Example: Classical MDS with the MNIST data}\label{example-classical-mds-with-the-mnist-data}
 
 In section \ref{pca-mnist} we saw the results of doing PCA on the MNIST handwritten digits. In the final part of that section, we did PCA on a selection of all the digits, and plotted the two leading PC scores, coloured by which digit they represented.
 
@@ -6818,8 +6724,7 @@ We will do as we did before, and plot the coordinates coloured by the digit each
 
 You can see that we get two different representations of the data that differ from each other, and from the PCA representation we computed in Chapter \ref{pca}.
 
-\hypertarget{non-metric-mds}{%
-\section{Non-metric MDS}\label{non-metric-mds}}
+\section{Non-metric MDS}\label{non-metric-mds}
 
 In this chapter we have focused on classical MDS, which looks for points that have \textbf{Euclidean} distances close to the desired distances, where we measured close by minimizing the sum of squared errors (cf Equation \eqref{eq:mdsopt}).
 
@@ -6827,8 +6732,7 @@ There is a much wider class of multidimensional scaling methods that do not use 
 
 More generally still, there has been a lot of work on non-linear dimension reduction methods that try to find a low dimensional manifold upon which the data lie. Have a look \href{https://colah.github.io/posts/2014-10-Visualizing-MNIST/}{here} for some amazing visualizations and results using the MNIST dataset. These methods are not always easy to work with, and can require detailed user supervision in order to work well.
 
-\hypertarget{exercises-3}{%
-\section{Exercises}\label{exercises-3}}
+\section{Exercises}\label{exercises-3}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6912,11 +6816,9 @@ More generally still, there has been a lot of work on non-linear dimension reduc
 
 \includegraphics{figs/MDS_2017_18_Q4.png}
 
-\hypertarget{computer-tasks-2}{%
-\section{Computer Tasks}\label{computer-tasks-2}}
+\section{Computer Tasks}\label{computer-tasks-2}
 
-\hypertarget{task-1-1}{%
-\paragraph*{Task 1}\label{task-1-1}}
+\paragraph*{Task 1}\label{task-1-1}
 \addcontentsline{toc}{paragraph}{Task 1}
 
 The \texttt{eurodist} dataset in R gives the road distances between 21 European cities. Note that this is stored as a \texttt{dist} type of object, as outputted by the \texttt{dist} command, i.e.~as a lower tri-diagonal matrix. \texttt{cmdscale} will take this directly as input.
@@ -6941,8 +6843,7 @@ The \texttt{eurodist} dataset in R gives the road distances between 21 European 
   Create the Euclidean distance matrix from your set of 2-dimensional points. What is the Frobenius norm between this matrix and the original distance matrix? Use \texttt{cmdscale} to create a set of points in 3 dimensional space and recompute the distance matrix.
 \end{enumerate}
 
-\hypertarget{task-2-1}{%
-\paragraph*{Task 2}\label{task-2-1}}
+\paragraph*{Task 2}\label{task-2-1}
 \addcontentsline{toc}{paragraph}{Task 2}
 
 Consider the synthetic data of 9 binary attributes on 11 cases.
@@ -6955,7 +6856,7 @@ Consider the synthetic data of 9 binary attributes on 11 cases.
 \DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{f =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }
 \DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{), }\AttributeTok{g =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{), }\AttributeTok{h =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }
 \DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{), }\AttributeTok{i =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }
-\DecValTok{0}\NormalTok{)), }\AttributeTok{class =} \StringTok{"data.frame"}\NormalTok{, }\AttributeTok{row.names =} \FunctionTok{c}\NormalTok{(}\ConstantTok{NA}\NormalTok{, }\SpecialCharTok{{-}}\NormalTok{11L), }\AttributeTok{.Names =} \FunctionTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }
+\DecValTok{0}\NormalTok{)), }\AttributeTok{class =} \StringTok{"data.frame"}\NormalTok{, }\AttributeTok{row.names =} \FunctionTok{c}\NormalTok{(}\ConstantTok{NA}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{11}\DataTypeTok{L}\NormalTok{), }\AttributeTok{.Names =} \FunctionTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }
 \StringTok{"b"}\NormalTok{, }\StringTok{"c"}\NormalTok{, }\StringTok{"d"}\NormalTok{, }\StringTok{"e"}\NormalTok{, }\StringTok{"f"}\NormalTok{, }\StringTok{"g"}\NormalTok{, }\StringTok{"h"}\NormalTok{, }\StringTok{"i"}\NormalTok{))}
 \NormalTok{df}
 \end{Highlighting}
@@ -6984,8 +6885,7 @@ Consider the synthetic data of 9 binary attributes on 11 cases.
   Perform classical MDS for both similarity matrices, producing a plot of the coordinates (in 2d). Are the results similar?
 \end{enumerate}
 
-\hypertarget{task-3-1}{%
-\paragraph*{Task 3}\label{task-3-1}}
+\paragraph*{Task 3}\label{task-3-1}
 \addcontentsline{toc}{paragraph}{Task 3}
 
 In this question we will look at data from 1888 on the fertility and socio-economic status of 47 French speaking provinces in Switzerland.
@@ -7047,8 +6947,7 @@ We will use MDS to find which provinces are similar to each other.
   MDS can be also used to reveal a hidden pattern in a correlation matrix. Find the correlation matrix, \(\mathbf R\), of the swiss data. Perform MDS using \(1-\mathbf R\) as the distance matrix and plot the results. Positively correlated covariates are close together on the same side of the plot.
 \end{enumerate}
 
-\hypertarget{task-4-if-you-have-time}{%
-\paragraph*{Task 4 (if you have time\ldots)}\label{task-4-if-you-have-time}}
+\paragraph*{Task 4 (if you have time\ldots)}\label{task-4-if-you-have-time}
 \addcontentsline{toc}{paragraph}{Task 4 (if you have time\ldots)}
 
 Try MDS on the MNIST data but looking for a 3d representation. Colour the points by their digit label, and create some interactive 3d plots. Does this find useful structure in the data? And is it more informative than the 2d plots we created in the notes.
@@ -7057,8 +6956,7 @@ Read the description of more advance methods \href{https://colah.github.io/posts
 
 \textbf{Warning:} The MNIST dataset is large, and so computations can take a long time if you use the full dataset. Thus I usually work with a selection of just 1000 images, which is enough to find interesting patterns in most cases.
 
-\hypertarget{part-iii-inference-using-the-multivariate-normal-distribution-mvn}{%
-\chapter*{Part III: Inference using the Multivariate Normal Distribution (MVN)}\label{part-iii-inference-using-the-multivariate-normal-distribution-mvn}}
+\chapter*{Part III: Inference using the Multivariate Normal Distribution (MVN)}\label{part-iii-inference-using-the-multivariate-normal-distribution-mvn}
 \addcontentsline{toc}{chapter}{Part III: Inference using the Multivariate Normal Distribution (MVN)}
 
 Part III of this module covers statistical inference based on the multivariate normal (MVN) distribution.
@@ -7068,8 +6966,7 @@ The Wishart and Hotelling \(T^2\) distributions then allow us to conduct hypothe
 
 Chapter \ref{lm} is concerned with the multivariate linear model, in which the responses consist of random vectors rather than single random variables. Errors in this setting take the form of random vectors.
 
-\hypertarget{multinormal}{%
-\chapter{The Multivariate Normal Distribution}\label{multinormal}}
+\chapter{The Multivariate Normal Distribution}\label{multinormal}
 
 The multivariate normal distribution (MVN) generalises the univariate normal distribution from scalar to vector random variables. It is important for a number of reasons:
 
@@ -7119,11 +7016,9 @@ The videos for this chapter, in the order I recommend you watch, are available a
   \href{https://mediaspace.nottingham.ac.uk/media/Multivariate+NormalsA+Hypothesis+testing/1_bhk20k5z}{7.4 Hypothesis tests with Hotelling's \(T^2\) distribution}
 \end{itemize}
 
-\hypertarget{definition-and-properties-of-the-mvn}{%
-\section{Definition and Properties of the MVN}\label{definition-and-properties-of-the-mvn}}
+\section{Definition and Properties of the MVN}\label{definition-and-properties-of-the-mvn}
 
-\hypertarget{basics}{%
-\subsection{Basics}\label{basics}}
+\subsection{Basics}\label{basics}
 
 \begin{definition}
 \protect\hypertarget{def:mvn}{}\label{def:mvn}A random vector \(\mathbf x=(x_1, \ldots , x_p)^\top\) has a \(p\)-dimensional MVN distribution if and only if \(\mathbf a^\top \mathbf x\) is a univariate normal random variable for all constant vectors \(\mathbf a\in \mathbb{R}^p\).
@@ -7172,8 +7067,7 @@ and covariance matrices
 The contours on each plot are obtained by finding values of \(\mathbf x\) for which \(f(\mathbf x)=c\). The constant \(c\) is chosen so that the the shapes (which we'll see below are ellipses)
 enclose 66\% and 95\% of the data.
 
-\hypertarget{transformations}{%
-\subsection{Transformations}\label{transformations}}
+\subsection{Transformations}\label{transformations}
 
 \begin{proposition}
 \protect\hypertarget{prp:six2}{}\label{prp:six2}If \(\mathbf x\sim N_p({\boldsymbol{\mu}},\boldsymbol{\Sigma})\) then if \[\mathbf y= \mathbf A\mathbf x+ \mathbf c, \mbox{ where } \mathbf A\in \mathbb{R}^{q \times p} \mbox{ and }\mathbf c\in \mathbb{R}^q
@@ -7211,8 +7105,7 @@ The second corollary says that any MVN random variable can be transformed into s
 Apply Proposition \ref{prp:six2} with \(\mathbf A= \boldsymbol{\Sigma}^{-1/2}\) and \(\mathbf c= - \boldsymbol{\Sigma}^{-1/2} {\boldsymbol{\mu}}\).
 \end{proof}
 
-\hypertarget{independence}{%
-\subsection{Independence}\label{independence}}
+\subsection{Independence}\label{independence}
 
 \begin{proposition}
 \protect\hypertarget{prp:six4}{}\label{prp:six4}Two vectors \(\mathbf x\in\mathbb{R}^p\) and \(\mathbf y\in\mathbb{R}^q\) which are jointly multivariate normal are independent if and only if they are uncorrelated, i.e.~\({\mathbb{C}\operatorname{ov}}(\mathbf x,\mathbf y) = {\boldsymbol 0}_{p,q}\).
@@ -7254,8 +7147,7 @@ so that \(x\) and \(y\) are uncorrelated.
 
 However, \(x\) and \(y\) are clearly not independent: if you tell me \(x\), then I know \(y=x\) or \(y=-x\).
 
-\hypertarget{confidence-ellipses}{%
-\subsection{Confidence ellipses}\label{confidence-ellipses}}
+\subsection{Confidence ellipses}\label{confidence-ellipses}
 
 The contours in the plots of the bivariate normal samples shown above are ellipses.
 They were defined to lines of consant density, i.e., by \(f(\mathbf x)=c\), which implies
@@ -7274,7 +7166,12 @@ and recall that a standard ellipse has axes of symmetry given by the \(x\)-axis 
 \includegraphics{07-mvn_files/figure-latex/unnamed-chunk-7-1.pdf}
 
 If we define
-\({\mathbf A}=\left( \begin{array}{cc} a^2&0\\ 0&b^2 \end{array} \right)\) and write \({\mathbf x}=\binom{x}{y}\),
+\({\mathbf A}=\left(
+\begin{array}{cc}
+a^2&0\\
+0&b^2
+\end{array}
+\right)\) and write \({\mathbf x}=\binom{x}{y}\),
 then Equation \eqref{eq:ellipse} can be written in the form
 \[ \mathbf x^\top {\mathbf A}^{-1}\mathbf x=c'. \]
 To shift the centre of the ellipse from the origin to the point \({\boldsymbol{\mu}}\) we modify the equation to be
@@ -7311,8 +7208,7 @@ By Corollary \ref{cor:csix3}, \(\mathbf y\sim N_p ({\boldsymbol 0}, \mathbf I_p)
 
 Proposition \ref{prp:six5} means we can calculate the probability \[{\mathbb{P}}\left((\mathbf x-{\boldsymbol{\mu}})^\top \boldsymbol{\Sigma}^{-1} (\mathbf x-{\boldsymbol{\mu}})<k\right),\] which is the probability of \(\mathbf x\) lying within a particular ellipsoid. We often use this to draw confidence ellipses, which are ellipses that we expect to contain some specified proportion of the random samples (95\% say).
 
-\hypertarget{sampling-results-for-the-mvn}{%
-\subsection{Sampling results for the MVN}\label{sampling-results-for-the-mvn}}
+\subsection{Sampling results for the MVN}\label{sampling-results-for-the-mvn}
 
 In this section we present two important results which are natural
 generalisations of what happens in the univariate case.
@@ -7349,8 +7245,7 @@ Recall from above that if \(\mathbf x_1, \ldots, \mathbf x_n\) is a random sampl
 Beyond the scope of this module.
 \end{proof}
 
-\hypertarget{the-wishart-distribution}{%
-\section{The Wishart distribution}\label{the-wishart-distribution}}
+\section{The Wishart distribution}\label{the-wishart-distribution}
 
 In univariate statistics the \(\chi^2\) distribution plays an important role in inference related to the univariate normal, e.g.~in the definition of Student's \(t\)-distribution.\\
 The \textbf{Wishart distribution} is a multivariate generalisation of the univariate \(\chi^2\) distribution, and it plays an analogous role in multivariate statistics.
@@ -7400,8 +7295,7 @@ and if the \(ij^{th}\) element of \(\boldsymbol{\Sigma}\) is \(\sigma_{ij}\), an
 \[{\mathbb{V}\operatorname{ar}}(m_{ij}) =  n \left(\sigma_{ij}^2+\sigma_{ii}\sigma_{jj} \right)\]
 \end{proposition}
 
-\hypertarget{properties-1}{%
-\subsection{Properties}\label{properties-1}}
+\subsection{Properties}\label{properties-1}
 
 We now use the definition of \(W_p(\boldsymbol{\Sigma}, n)\) to prove some important
 results.
@@ -7451,8 +7345,7 @@ then
 From the definition, let \(\mathbf M_1 = \sum_{i=1}^{n_1} \mathbf x_i \mathbf x_i^\top\) and let \(\mathbf M_2 = \sum_{i=n_1+1}^{n_1+n_2} \mathbf x_i \mathbf x_i^\top\), where \(\mathbf x_i \sim N_p({\boldsymbol 0},\boldsymbol{\Sigma})\), then \(\mathbf M_1+\mathbf M_2 = \sum_{i=1}^{n_1+n_2} \mathbf x_i \mathbf x_i^\top \sim W_p(\boldsymbol{\Sigma},n_1 + n_2)\) by the definition of the Wishart distribution.
 \end{proof}
 
-\hypertarget{cochrans-theorem}{%
-\subsection{Cochran's theorem}\label{cochrans-theorem}}
+\subsection{Cochran's theorem}\label{cochrans-theorem}
 
 Our next result is known as Cochran's theorem. We use Cochran's theorem to show that sample covariance matrices have a scaled Wishart distribution.
 
@@ -7490,7 +7383,7 @@ Let \(\mathbf P= {\mathbf H}\equiv \mathbf I_n - n^{-1}{\mathbf 1}_n {\mathbf 1}
 But\\
 \[\mathbf X^\top \mathbf H\mathbf X=n\mathbf S,\]
 (Property 6. in Section \ref{centering-matrix})
-and consequently, \(n\mathbf S\sim W_p(\boldsymbol{\Sigma}, n-1)\), as required.
+and consequently, \(n\mathbf S\sim   W_p(\boldsymbol{\Sigma}, n-1)\), as required.
 \end{proof}
 
 Thus, sample covariance matrices have a scaled Wishart distribution.
@@ -7569,8 +7462,7 @@ Finally
 Thus \({\mathbb{C}\operatorname{ov}}(\mathbf y_j, \mathbf y_{j'}) = {\boldsymbol 0}_{p\times p}\) for \(j\not = j'\) and \({\mathbb{V}\operatorname{ar}}(\mathbf y_j) = \mathbf I_p\). Thus we have proved the claim once we recall that uncorrelated implies independence for multivariate normal random variables.
 \end{proof}
 
-\hypertarget{hotellings-t2-distribution}{%
-\section{\texorpdfstring{Hotelling's \(T^2\) distribution}{Hotelling's T\^{}2 distribution}}\label{hotellings-t2-distribution}}
+\section{\texorpdfstring{Hotelling's \(T^2\) distribution}{Hotelling's T\^{}2 distribution}}\label{hotellings-t2-distribution}
 
 Recall that in univariate statistics, Student's \(t\)-distribution appears as the sampling distribution of \(\frac{\bar{x}-\mu}{s/\sqrt{n}}\), which is used for hypothesis tests and constructing confidence intervals.
 
@@ -7643,8 +7535,7 @@ We can apply this result to the previous corollary.
 
 We'll use this result to do hypothesis tests.
 
-\hypertarget{inference-based-on-the-mvn}{%
-\section{Inference based on the MVN}\label{inference-based-on-the-mvn}}
+\section{Inference based on the MVN}\label{inference-based-on-the-mvn}
 
 In univariate statistical analysis, you will have seen how to do hypothesis testing for the mean of a population.
 
@@ -7663,8 +7554,7 @@ We now develop analogous results in the multivariate case. The role of the Stude
 
 The next three subsections deal with the multivariate equivalent of the three situations listed above. Before we do, lets quickly recap how hypothesis testing works:
 
-\hypertarget{recap-of-hypothesis-testing-framework}{%
-\subsubsection*{Recap of hypothesis testing framework}\label{recap-of-hypothesis-testing-framework}}
+\subsubsection*{Recap of hypothesis testing framework}\label{recap-of-hypothesis-testing-framework}
 \addcontentsline{toc}{subsubsection}{Recap of hypothesis testing framework}
 
 Suppose that we have a null hypothesis \(H_0\) represented by a completely specified model and that we wish to test this hypothesis using data \(x_1, \ldots, x_n\). We proceed as follows
@@ -7689,8 +7579,7 @@ Suppose that we have a null hypothesis \(H_0\) represented by a completely speci
   \end{itemize}
 \end{enumerate}
 
-\hypertarget{onesampleSigma}{%
-\subsection{\texorpdfstring{\(\boldsymbol{\Sigma}\) known}{\textbackslash boldsymbol\{\textbackslash Sigma\} known}}\label{onesampleSigma}}
+\subsection{\texorpdfstring{\(\boldsymbol{\Sigma}\) known}{\textbackslash boldsymbol\{\textbackslash Sigma\} known}}\label{onesampleSigma}
 
 Let \(\mathbf x_1,\ldots,\mathbf x_n\) be a random sample from \(N_p({\boldsymbol{\mu}},\boldsymbol{\Sigma})\) where
 \({\boldsymbol{\mu}}= (\mu_1,\ldots,\mu_p)^\top\). Suppose we wish to conduct the following hypothesis test \[H_0: {\boldsymbol{\mu}}= \mathbf a\mbox{ vs } H_1: {\boldsymbol{\mu}}\neq \mathbf a\] where \(\mathbf a\) is fixed and pre-specified.
@@ -7728,8 +7617,7 @@ Thus to conduct the hypothesis test, we compute \(\zeta^2\) for the observed dat
 The multivariate equivalent of a confidence interval is a \textbf{confidence region} and the \(100(1-\alpha)\)\% confidence region for \({\boldsymbol{\mu}}\) is \(\{ \mathbf a: \zeta^2 \leq \chi^2_{p,\alpha} \}\).
 This confidence region will be the interior of an ellipse or ellipsoid.
 
-\hypertarget{example-6}{%
-\subsubsection*{Example}\label{example-6}}
+\subsubsection*{Example}\label{example-6}
 \addcontentsline{toc}{subsubsection}{Example}
 
 Consider again the exam marks for first year maths students in the two modules PRB and STA. The scatterplot below shows the module marks for \(n=203\) students on probability (PRB, \(x_1\)) and statistics (STA, \(x_2\)), with the sample mean vector \(\begin{pmatrix}62.1 \\62.7 \\\end{pmatrix}\) marked on as a red `+'.
@@ -7795,8 +7683,7 @@ The \(95\)\% confidence region is the interior of an ellipse, centred on \(\bar{
 
 \includegraphics{07-mvn_files/figure-latex/unnamed-chunk-19-1.pdf}
 
-\hypertarget{onesample}{%
-\subsection{\texorpdfstring{\(\boldsymbol{\Sigma}\) unknown: 1 sample}{\textbackslash boldsymbol\{\textbackslash Sigma\} unknown: 1 sample}}\label{onesample}}
+\subsection{\texorpdfstring{\(\boldsymbol{\Sigma}\) unknown: 1 sample}{\textbackslash boldsymbol\{\textbackslash Sigma\} unknown: 1 sample}}\label{onesample}
 
 In the previous section we considered a hypothesis test of
 \[H_0: {\boldsymbol{\mu}}= \mathbf a\mbox{ vs } H_1: {\boldsymbol{\mu}}\neq \mathbf a\] based on an IID sample from \(N_p({\boldsymbol{\mu}},\boldsymbol{\Sigma})\) when \(\boldsymbol{\Sigma}\) was \textbf{known}. In reality, we rarely know \(\boldsymbol{\Sigma}\), so we \textbf{replace it with the sample covariance matrix}, \(\mathbf S\). Corollary \ref{cor:csix6} tells us that the distribution is then \(F_{p,n-p}\) rather than \(\chi^2_p\) as was the case when \(\boldsymbol{\Sigma}\) was known.
@@ -7816,8 +7703,7 @@ As before, depending upon our approach we either
 
 The \(100(1-\alpha)\)\% confidence region for \({\boldsymbol{\mu}}\) is \(\{ \mathbf a: \gamma^2 \leq F_{p,n-p,\alpha} \}\), which will again be the interior of an ellipse or ellipsoid, but the confidence region is now determined by \(\mathbf S\) rather than \(\boldsymbol{\Sigma}\).
 
-\hypertarget{example-continued-1}{%
-\subsubsection*{Example continued}\label{example-continued-1}}
+\subsubsection*{Example continued}\label{example-continued-1}
 \addcontentsline{toc}{subsubsection}{Example continued}
 
 We return to the example with the module marks for \(n=203\) students on probability (PRB, \(x_1\)) and statistics (STA, \(x_2\)), but now we assume that \(\boldsymbol{\Sigma}\) is unknown.
@@ -7923,13 +7809,11 @@ The \(95\)\% confidence region is the interior of an ellipse, centred on \(\bar{
 
 \includegraphics{07-mvn_files/figure-latex/unnamed-chunk-25-1.pdf}
 
-\hypertarget{boldsymbolsigma-unknown-2-samples}{%
-\subsection{\texorpdfstring{\(\boldsymbol{\Sigma}\) unknown: 2 samples}{\textbackslash boldsymbol\{\textbackslash Sigma\} unknown: 2 samples}}\label{boldsymbolsigma-unknown-2-samples}}
+\subsection{\texorpdfstring{\(\boldsymbol{\Sigma}\) unknown: 2 samples}{\textbackslash boldsymbol\{\textbackslash Sigma\} unknown: 2 samples}}\label{boldsymbolsigma-unknown-2-samples}
 
 Suppose now we have data from two populations \(\mathbf x_1, \ldots, \mathbf x_n\) and \(\mathbf y_1,\ldots, \mathbf y_m\), and that we wish to test the difference between the two population means. As with the univariate case, there are two cases to consider:
 
-\hypertarget{paired-case}{%
-\subsubsection*{Paired case}\label{paired-case}}
+\subsubsection*{Paired case}\label{paired-case}
 \addcontentsline{toc}{subsubsection}{Paired case}
 
 If \(m=n\) and there exists some experimental link between \(\mathbf x_i\) and \(\mathbf y_i\) then we can look at the differences \(\mathbf z_i = \mathbf y_i - \mathbf x_i\) for \(i=1,\ldots,n\). For example, \(\mathbf x_i\) and \(\mathbf y_i\) could be vectors of pre-treatment and post-treatment measurements, respectively, of the same variables. The crucial assumption is that the differences \(\mathbf z_i\) are IID \(N_p({\boldsymbol{\mu}}, \boldsymbol{\Sigma})\). To examine the null hypothesis of no difference between the means we would test
@@ -7938,8 +7822,7 @@ If \(m=n\) and there exists some experimental link between \(\mathbf x_i\) and \
 
 We then base our inference on \(\bar{\mathbf z} = \frac{1}{n} \sum_{i=1}^n \mathbf z_i = \bar{\mathbf y} - \bar{\mathbf x}\), and proceed exactly as in the 1 sample case, using the test in Secion \ref{onesampleSigma} if \(\boldsymbol{\Sigma}\) is known, or else the test in Section \ref{onesample} if with \(\mathbf S= \frac{1}{n} \sum_{i=1}^n (\mathbf z_i - \bar{\mathbf z})(\mathbf z_i - \bar{\mathbf z})^\top\).
 
-\hypertarget{unpaired-case}{%
-\subsubsection*{Unpaired case}\label{unpaired-case}}
+\subsubsection*{Unpaired case}\label{unpaired-case}
 \addcontentsline{toc}{subsubsection}{Unpaired case}
 
 The unpaired case is where \(\mathbf x_i\) and \(\mathbf y_i\) are independent and not connected to each other. For example, in a clinical trial we may have two separate groups of patients, where one group receives a placebo and the other group receives an active treatment. Let \(\mathbf x_1,\ldots,\mathbf x_n\) be an IID sample from \(N_p({\boldsymbol{\mu}}_1,\boldsymbol{\Sigma})\) and let \(\mathbf y_1,\ldots,\mathbf y_m\) be an IID sample from \(N_p({\boldsymbol{\mu}}_2,\boldsymbol{\Sigma})\). In this case, we can base our inference on the following result.
@@ -7997,8 +7880,7 @@ As in the one sample case, we can convert Hotelling's two-sample \(T^2\) statist
 Simply apply Proposition \ref{prp:six14} to the statistic in Proposition \ref{prp:seven1} (replace \(n-1\) with \(n+m-2\)).
 \end{proof}
 
-\hypertarget{example-continued-2}{%
-\subsubsection*{Example continued}\label{example-continued-2}}
+\subsubsection*{Example continued}\label{example-continued-2}
 \addcontentsline{toc}{subsubsection}{Example continued}
 
 There are two different maths undergraduate programmes at the University of Nottingham: a 3-year (G100) and a 4-year (G103) programme. For the exam marks example, is there a significant difference between students registered on the two different programmes? Let \(\mathbf x_1,\ldots, \mathbf x_{131}\) be the exam marks of the G100 students and let \(\mathbf y_1,\ldots, \mathbf y_{72}\) be the exam marks of the G103 students. The data is shown below, with the sample means marked as large `+' signs.
@@ -8056,8 +7938,7 @@ The critical value for \(\alpha=0.05\) is
 
 Therefore \(\delta^2 < F_{p,n+m-p-1}\), so we do not reject the null hypothesis at the 5\% level.
 
-\hypertarget{exercises-4}{%
-\section{Exercises}\label{exercises-4}}
+\section{Exercises}\label{exercises-4}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -8111,11 +7992,9 @@ Therefore \(\delta^2 < F_{p,n+m-p-1}\), so we do not reject the null hypothesis 
   Conduct a suitable hypothesis test. State your conclusion in words. What assumptions have you made in constructing the test? Do any of these assumptions seem suspect with these data?
 \end{enumerate}
 
-\hypertarget{computer-tasks-3}{%
-\section{Computer tasks}\label{computer-tasks-3}}
+\section{Computer tasks}\label{computer-tasks-3}
 
-\hypertarget{task-1-2}{%
-\subsubsection*{Task 1}\label{task-1-2}}
+\subsubsection*{Task 1}\label{task-1-2}
 \addcontentsline{toc}{subsubsection}{Task 1}
 
 Download the wine dataset from the \href{https://archive.ics.uci.edu/ml/datasets/wine}{UCI Machine Learning Repository}
@@ -8149,8 +8028,7 @@ Download the wine dataset from the \href{https://archive.ics.uci.edu/ml/datasets
   Test whether the alcohol and malic acid content are significantly different between wines of type 1 and wines of type 2.
 \end{enumerate}
 
-\hypertarget{task-2-2}{%
-\paragraph*{Task 2}\label{task-2-2}}
+\paragraph*{Task 2}\label{task-2-2}
 \addcontentsline{toc}{paragraph}{Task 2}
 
 The command \texttt{rWishart} can be used to simulate from a Wishart distribution. Alternatively, to sample from \(W_p(\boldsymbol{\Sigma},n)\), you can sample \(\mathbf x_1, \ldots, \mathbf x_n \sim N_p({\boldsymbol 0}, \boldsymbol{\Sigma})\) and set \(\mathbf M= \sum \mathbf x_i \mathbf x_i^\top\).
@@ -8168,8 +8046,7 @@ The command \texttt{rWishart} can be used to simulate from a Wishart distributio
   Similarly, validate Corollary \ref{cor:csix6} by comparing the distribution of \(\gamma^2\) with a \(F_{p, n-p}\) distribution.
 \end{enumerate}
 
-\hypertarget{task-3-2}{%
-\paragraph*{Task 3}\label{task-3-2}}
+\paragraph*{Task 3}\label{task-3-2}
 \addcontentsline{toc}{paragraph}{Task 3}
 
 Download the exam data from Moodle.
@@ -8226,8 +8103,7 @@ Explain why this works. \textbf{Note} if your plotting window is not square, you
   by shifting the ellipse to be centered around \({\boldsymbol{\mu}}\). Thus plot the 95\% confidence region for the population mean \({\boldsymbol{\mu}}\) for the exam data. You will need to use Corollary \ref{cor:csix6} to determine the value of \(c\).
 \end{enumerate}
 
-\hypertarget{part-iv-classification-and-clustering}{%
-\chapter*{Part IV: Classification and Clustering}\label{part-iv-classification-and-clustering}}
+\chapter*{Part IV: Classification and Clustering}\label{part-iv-classification-and-clustering}
 \addcontentsline{toc}{chapter}{Part IV: Classification and Clustering}
 
 In Part IV, we focus on different methods of classification,
@@ -8244,8 +8120,7 @@ Here, data labels (\(y\) variables) are not available and the number of clusters
 not typically be known in advance. The idea is to form clusters in such a way that experimental units within clusters are as similar as possible, in a suitable sense,
 and experimental units in different clusters are as dissimilar as possible.
 
-\hypertarget{lda}{%
-\chapter{Discriminant analysis}\label{lda}}
+\chapter{Discriminant analysis}\label{lda}
 
 The videos for this chapter are available at the links below:
 
@@ -8302,8 +8177,7 @@ The way we find a rule \(d\), is by defining discriminant functions, \(\delta_j(
 \[d(\mathbf x) = \arg \max_j \delta_j(\mathbf x),\]
 i.e., \(d\) is a map from \(\mathbb{R}^p\) to \(\{1, \ldots, g\}\)
 
-\hypertarget{linear-discriminant-analysis}{%
-\subsection*{Linear discriminant analysis}\label{linear-discriminant-analysis}}
+\subsection*{Linear discriminant analysis}\label{linear-discriminant-analysis}
 \addcontentsline{toc}{subsection}{Linear discriminant analysis}
 
 We will focus on discriminant functions that are \textbf{affine} functions of the data. That is they are linear projections of the data plus a constant of the form
@@ -8314,8 +8188,7 @@ We will focus on discriminant functions that are \textbf{affine} functions of th
 In later sections we will discuss how to choose the discriminant rules \(\delta_j(\mathbf x)\), i.e., how to choose the \emph{parameters} \(\mathbf v_j\) and \(c_j\). But first we focus on what the
 discriminant regions look like and how to classify points given a discriminant rule.
 
-\hypertarget{geometry-of-lda}{%
-\subsubsection*{Geometry of LDA}\label{geometry-of-lda}}
+\subsubsection*{Geometry of LDA}\label{geometry-of-lda}
 \addcontentsline{toc}{subsubsection}{Geometry of LDA}
 
 \begin{proposition}
@@ -8388,8 +8261,7 @@ In the following sections we consider several different approaches to deciding u
   By looking for linear projections of the data that maximize the spread between the different populations, i.e., that are best for distinguishing between different populations. This leads to \textbf{Fisher's discriminant rule} which we cover in Section \ref{FLDA}, and it does not require us to make assumptions about the distribution of the underlying populations.
 \end{enumerate}
 
-\hypertarget{lda-ML}{%
-\section{Maximum likelihood (ML) discriminant rule}\label{lda-ML}}
+\section{Maximum likelihood (ML) discriminant rule}\label{lda-ML}
 
 A popular way to develop a discriminant rule is to start by assuming (or estimating) a different distribution for \(\mathbf x\in \mathbb R^p\) for each population. For example, suppose that the observations in population \(j\) have a distribution with pdf \(f_j(\mathbf x)\), for \(j=1,\ldots , g\).
 
@@ -8448,8 +8320,7 @@ i.e., if \(x<\frac{3}{2}\). In this case, we do get discriminant regions \(\math
 \caption{\label{fig:lda-onedb}Discriminant rule for the two Gaussians example when sigma\_2=1}
 \end{figure}
 
-\hypertarget{multivariate-normal-populations}{%
-\subsection{Multivariate normal populations}\label{multivariate-normal-populations}}
+\subsection{Multivariate normal populations}\label{multivariate-normal-populations}
 
 Now we consider the case of \(g\) multivariate normal populations. We shall assume that for population \(k\)
 \[\mathbf x\sim N_p({\boldsymbol{\mu}}_k, \boldsymbol{\Sigma})\]
@@ -8481,8 +8352,7 @@ Thus,
 as \(\mathbf x^\top \boldsymbol{\Sigma}\mathbf x\) does not depend on \(k\).
 \end{proof}
 
-\hypertarget{sample-lda}{%
-\subsection{The sample ML discriminant rule}\label{sample-lda}}
+\subsection{The sample ML discriminant rule}\label{sample-lda}
 
 To use the ML discriminant rule, we need to know the model parameters for each group, \({\boldsymbol{\mu}}_k\), as well as the common covariance matrix \(\boldsymbol{\Sigma}\). We will usually not know these parameters, and instead must estimate them from \textbf{training} data. We then substitute these estimates into the discriminant rule. Training data typically consists of samples \(\mathbf x_{1,k}, \ldots, \mathbf x_{n_k,k}\) known to be from population \(\Pi_k\), where \(n_k\) is the number of observations from population \(\Pi_k\).
 
@@ -8500,8 +8370,7 @@ is an unbiased estimate of \(\boldsymbol{\Sigma}\) where \(n = n_1 + n_2 + \ldot
 
 The sample ML discriminant rule is then defined by substituting these estimates into \ref{prp:nine1}.
 
-\hypertarget{two-populations}{%
-\subsection{Two populations}\label{two-populations}}
+\subsection{Two populations}\label{two-populations}
 
 \begin{corollary}
 \protect\hypertarget{cor:nine2c}{}\label{cor:nine2c}When \(g=2\), the rule allocates \(\mathbf x\) to \(\Pi_1\) if and only if
@@ -8544,21 +8413,19 @@ If we have more than \(2\) populations, then for \(\boldsymbol{\Sigma}=\mathbf I
 
 When \(\boldsymbol{\Sigma}\not =\mathbf I\), we think of \(\boldsymbol{\Sigma}\) as distorting space. Instead of measuring distance using the Euclidean distance, we instead adjust distances to account for \(\boldsymbol{\Sigma}\). The decision boundaries are then no longer the perpendicular bisectors of the centroids.
 
-\hypertarget{example-2-1}{%
-\paragraph*{Example 2}\label{example-2-1}}
+\paragraph*{Example 2}\label{example-2-1}
 \addcontentsline{toc}{paragraph}{Example 2}
 
-Consider the bivariate case (\(p=2\)) with \(g=2\) groups, where \(\Pi_1\) is the \(N_2({\boldsymbol{\mu}}_1,\mathbf I_2)\) distribution and \(\Pi_2\) is the \(N_2({\boldsymbol{\mu}}_2,\mathbf I_2)\) distribution. Suppose \({\boldsymbol{\mu}}_1 = \begin{pmatrix} c \\ 0 \end{pmatrix}\) and \({\boldsymbol{\mu}}_2 = \begin{pmatrix} -c \\ 0 \end{pmatrix}\) for some constant \(c>0\). Here, \(\mathbf a= \boldsymbol{\Sigma}^{-1} ({\boldsymbol{\mu}}_1 - {\boldsymbol{\mu}}_2) = \begin{pmatrix} 2c \\ 0 \end{pmatrix}\) and \(\mathbf h= \frac{1}{2}( {\boldsymbol{\mu}}_1 + {\boldsymbol{\mu}}_2 ) = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\).
+Consider the bivariate case (\(p=2\)) with \(g=2\) groups, where \(\Pi_1\) is the \(N_2({\boldsymbol{\mu}}_1,\mathbf I_2)\) distribution and \(\Pi_2\) is the \(N_2({\boldsymbol{\mu}}_2,\mathbf I_2)\) distribution. Suppose \({\boldsymbol{\mu}}_1 = \begin{pmatrix} c \\ 0 \end{pmatrix}\) and \({\boldsymbol{\mu}}_2 =  \begin{pmatrix} -c \\ 0 \end{pmatrix}\) for some constant \(c>0\). Here, \(\mathbf a= \boldsymbol{\Sigma}^{-1} ({\boldsymbol{\mu}}_1 - {\boldsymbol{\mu}}_2) = \begin{pmatrix} 2c \\ 0 \end{pmatrix}\) and \(\mathbf h= \frac{1}{2}( {\boldsymbol{\mu}}_1 + {\boldsymbol{\mu}}_2 ) = \begin{pmatrix} 0 \\ 0 \end{pmatrix}\).
 
 The ML discriminant rule allocates \(\mathbf x\) to \(\Pi_1\) if \(\mathbf a^\top (\mathbf x- \mathbf h) = \mathbf a^\top \mathbf x> 0\). If we write \(\mathbf x= \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}\) then \(\mathbf a^\top \mathbf x= 2cx_1\), which is greater than zero if \(x_1 > 0\). Hence we allocate \(\mathbf x\) to \(\Pi_1\) if \(x_1 > 0\) and allocate \(\mathbf x\) to \(\Pi_2\) if \(x_1 \leq 0\).
 
 \includegraphics{09-lda_files/figure-latex/ldaidentity-1.pdf}
 
-\hypertarget{example-3-1}{%
-\paragraph*{Example 3}\label{example-3-1}}
+\paragraph*{Example 3}\label{example-3-1}
 \addcontentsline{toc}{paragraph}{Example 3}
 
-Let's now generalise the previous example, making no assumptions about \(\boldsymbol{\Sigma}\), but still assuming \({\boldsymbol{\mu}}_1=-{\boldsymbol{\mu}}_2\). If we write \(\mathbf a= \begin{pmatrix} a_1 \\ a_2 \end{pmatrix}\) and \(\mathbf h= \frac{1}{2}( {\boldsymbol{\mu}}_1 + {\boldsymbol{\mu}}_2 ) = {\boldsymbol 0}\). Then the ML discriminant rule allocates \(\mathbf x\) to \(\Pi_1\) if \(\mathbf a^\top \mathbf x> 0\). If we write \(\mathbf x= \begin{pmatrix} x \\ y \end{pmatrix}\) then the boundary separating \(\mathcal R_1\) and \(\mathcal R_2\) is given by \(\mathbf a^\top \mathbf x= \begin{pmatrix} a_1 & a_2 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = a_1 x + a_2 y = 0\), i.e.~\(y = -\frac{a_1}{a_2} x\). This is a straight line through the origin with gradient \(-a_1/a_2\).
+Let's now generalise the previous example, making no assumptions about \(\boldsymbol{\Sigma}\), but still assuming \({\boldsymbol{\mu}}_1=-{\boldsymbol{\mu}}_2\). If we write \(\mathbf a= \begin{pmatrix} a_1 \\ a_2 \end{pmatrix}\) and \(\mathbf h= \frac{1}{2}( {\boldsymbol{\mu}}_1 + {\boldsymbol{\mu}}_2 ) = {\boldsymbol 0}\). Then the ML discriminant rule allocates \(\mathbf x\) to \(\Pi_1\) if \(\mathbf a^\top \mathbf x> 0\). If we write \(\mathbf x= \begin{pmatrix} x \\ y \end{pmatrix}\) then the boundary separating \(\mathcal R_1\) and \(\mathcal R_2\) is given by \(\mathbf a^\top \mathbf x=  \begin{pmatrix} a_1 & a_2 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = a_1 x + a_2 y = 0\), i.e.~\(y = -\frac{a_1}{a_2} x\). This is a straight line through the origin with gradient \(-a_1/a_2\).
 
 For \({\boldsymbol{\mu}}_1 =\begin{pmatrix}1 \\1 \\\end{pmatrix}\) and \(\boldsymbol{\Sigma}= \begin{pmatrix}1&-0.9 \\-0.9&1 \\\end{pmatrix}\) we find \(\mathbf a= \begin{pmatrix}20 \\20 \\\end{pmatrix}\), which gives the line \(y = -1 x\).
 
@@ -8569,13 +8436,11 @@ If the variance of the \(y\) component is very small compared to the variance of
 
 \includegraphics{09-lda_files/figure-latex/unnamed-chunk-4-1.pdf}
 
-\hypertarget{more-than-two-populations}{%
-\subsection{More than two populations}\label{more-than-two-populations}}
+\subsection{More than two populations}\label{more-than-two-populations}
 
 When \(g>2\), the boundaries for the ML rule will be piece-wise linear. In the exercises you will look at an example with 3 populations in two dimensions.
 
-\hypertarget{lda-Bayes}{%
-\section{Bayes discriminant rule}\label{lda-Bayes}}
+\section{Bayes discriminant rule}\label{lda-Bayes}
 
 In the previous section, we implicitly assumed that each subject is equally likely to be from any of the \(g\) populations. This is the simplest case but is an unrealistic assumption in practice.
 
@@ -8627,8 +8492,7 @@ and substitute \(\hat{\pi}_k\) for \(\pi_k\) (as well as substituting \(\hat{{\b
 
 The \texttt{lda} command from the \texttt{MASS} library uses the Bayes discriminant rule, but gives you the option of setting \(\pi_k\) if known, but otherwise estimates the class probabilities.
 
-\hypertarget{example-lda-using-the-iris-data}{%
-\subsection{Example: LDA using the Iris data}\label{example-lda-using-the-iris-data}}
+\subsection{Example: LDA using the Iris data}\label{example-lda-using-the-iris-data}
 
 Let's consider doing LDA with the iris data. To begin with, lets use just the setosa and virginica species so that we only have \(g=2\) populations, \(\Pi_{setosa}\) and \(\Pi_{virginica}\). We will also just use the sepal measurements so that \(p=2\). If we plot the data, we can see that the two populations should be easy to classify using just these two measurements:
 
@@ -8756,8 +8620,7 @@ Note that we are also given estimates of the probability that \(\mathbf x\) lies
 \[\frac{f_k(\mathbf x)\pi_k}{\sum_{j=1}^g f_j(\mathbf x)\pi_j}\]
 with the parameter estimates substituted for the unknown parameters.
 
-\hypertarget{using-the-entire-dataset}{%
-\subsubsection*{Using the entire dataset}\label{using-the-entire-dataset}}
+\subsubsection*{Using the entire dataset}\label{using-the-entire-dataset}
 \addcontentsline{toc}{subsubsection}{Using the entire dataset}
 
 Let's now use all 150 observations (with three populations: setosa, virginica, versicolor), and all four measurements.
@@ -8813,8 +8676,7 @@ We will delay discussion of what the reported coefficients mean, and how to visu
 
 Note that I renamed the \emph{versicolor} species as \emph{color} so that the different species appear more clearly in the plots.
 
-\hypertarget{quadratic-discriminant-analysis-qda}{%
-\subsection{Quadratic Discriminant Analysis (QDA)}\label{quadratic-discriminant-analysis-qda}}
+\subsection{Quadratic Discriminant Analysis (QDA)}\label{quadratic-discriminant-analysis-qda}
 
 We have seen that in the case where the populations all share a common covariance matrix, \(\boldsymbol{\Sigma}\), that the decision boundaries are linear (i.e., hyperplanes). We also saw in example \ref{exm:exnine1} in a one-dimensional example that when the two populations had different variances we have a quadratic decision boundary.
 
@@ -8825,8 +8687,7 @@ d(\mathbf x)=\arg\max_k \left(-\frac{1}{2} \log |\boldsymbol{\Sigma}_k| - \frac{
 
 We can not ignore the quadratic term in \(\mathbf x\) as it depends upon the population indicator \(k\). We also have to include the determinant of \(\boldsymbol{\Sigma}_k\). Thus in this case we get a quadratic decision boundary rather than a linear one.
 
-\hypertarget{iris-example-continued}{%
-\subsubsection{Iris example continued}\label{iris-example-continued}}
+\subsubsection{Iris example continued}\label{iris-example-continued}
 
 The \texttt{qda} function in the \texttt{MASS} package implements quadratic discriminant analysis.
 
@@ -8848,8 +8709,7 @@ We can again use the \texttt{partimat} command to look at the decision boundarie
 
 \includegraphics{09-lda_files/figure-latex/qda-1.pdf}
 
-\hypertarget{prediction-accuracy}{%
-\subsection{Prediction accuracy}\label{prediction-accuracy}}
+\subsection{Prediction accuracy}\label{prediction-accuracy}
 
 To assess the predictive accuracy of our discriminant rules, we often split the data into two parts, a \textbf{training set}, and a \textbf{test set}. Let's do this randomly by chosing 100 of the irises to be in our training set, and use the other 50 irises in the test set. We will then train the classifiers on the training set, and predict the species labels for test dataset. We can then count how many predictions were correct.
 
@@ -8904,15 +8764,13 @@ So in this case one of the virginica irises was predicted incorrectly to be vers
 
 Here we randomly split the data into test and training sets. With small datasets such as this (\(n=150\)), we instead sometimes use \href{https://en.wikipedia.org/wiki/Cross-validation_(statistics)}{cross validation} to assess the accuracy of each method. To do this, we split the data up into test and training sets multiple times randomly, and assess the prediction error on each random split.
 
-\hypertarget{FLDA}{%
-\section{Fisher's linear discriminant rule}\label{FLDA}}
+\section{Fisher's linear discriminant rule}\label{FLDA}
 
 Thus far we have assumed that observations from population \(\Pi_j\) have a \(N_p ( \boldsymbol{\mu}_j, {\mathbf \Sigma})\) distribution, and then used the MVN log-likelihood to derive the discriminant functions \(\delta_j(\mathbf x)\). The famous statistician R. A. Fisher took an alternative approach and looked for a linear discriminant functions without assuming any particular distribution for each population \(\Pi_j\).
 
 This way of thinking leads to a form of dimension reduction. We find a projection of the data into a lower dimensional space that is optimal for classifying the data into the different populations.
 
-\hypertarget{variance-decomposition}{%
-\subsubsection*{Variance decomposition}\label{variance-decomposition}}
+\subsubsection*{Variance decomposition}\label{variance-decomposition}
 \addcontentsline{toc}{subsubsection}{Variance decomposition}
 
 Suppose we have a training sample \(\mathbf x_{1,j}, \ldots, \mathbf x_{n_j,j}\) from \(\Pi_j\) for \(j=1,\ldots,g\).
@@ -8925,7 +8783,8 @@ n\mathbf S=\mathbf X^\top\mathbf H\mathbf X&= \sum_{j=1}^g\sum_{i=1}^{n_j} (\mat
 \sum_{j=1}^g n_j (\hat{{\boldsymbol{\mu}}}_j-\bar{\mathbf x})(\hat{{\boldsymbol{\mu}}}_j-\bar{\mathbf x})^\top\\
 &=n\mathbf W+n\mathbf B
 \end{align*}
-where \(\hat{{\boldsymbol{\mu}}}_j=\frac{1}{n_j} \sum \mathbf x_{i,j} = \bar{\mathbf x}_{+,j}\) is the sample mean of the \(j\)th group, \(\bar{\mathbf x} = \frac{1}{n} \sum_{j=1}^g \sum_{i=1}^{n_j} \mathbf x_{ij}\) is the overall mean, and \(n=\sum_{j=1}^g n_j\).
+where \(\hat{{\boldsymbol{\mu}}}_j=\frac{1}{n_j} \sum \mathbf x_{i,j} = \bar{\mathbf x}_{+,j}\) is the sample mean of the \(j\)th group, \(\bar{\mathbf x} = \frac{1}{n} \sum_{j=1}^g \sum_{i=1}^{n_j}
+\mathbf x_{ij}\) is the overall mean, and \(n=\sum_{j=1}^g n_j\).
 
 This has split the total covariance matrix into a \textbf{within-class} covariance matrix
 \[ \mathbf W= \frac{1}{n}\sum_{j=1}^g \sum_{i=1}^{n_j} (\mathbf x_{ij} - \hat{{\boldsymbol{\mu}}}_j) (\mathbf x_{ij} - \hat{{\boldsymbol{\mu}}}_j)^\top  = \frac{1}{n}\sum_{j=1}^g n_j \mathbf S_j \]
@@ -8952,8 +8811,7 @@ i.e.
   then \(\mathbf B=\frac{1}{n}\mathbf M^\top\mathbf H\mathbf M\) is the covariance matrix of \(\mathbf M\).
 \end{enumerate}
 
-\hypertarget{fishers-criterion}{%
-\subsubsection*{Fisher's criterion}\label{fishers-criterion}}
+\subsubsection*{Fisher's criterion}\label{fishers-criterion}
 \addcontentsline{toc}{subsubsection}{Fisher's criterion}
 
 Fisher's approach was to find a projection of the data \(z_i = \mathbf a^\top \mathbf x_i\) or
@@ -8977,8 +8835,7 @@ Fisher's criterion is to choose a vector, \(\mathbf a\), to maximise the ratio o
 
 The idea is that this choice of \(\mathbf a\) will make the classes most easily separable.
 
-\hypertarget{solving-the-optimization-problem}{%
-\subsubsection*{Solving the optimization problem}\label{solving-the-optimization-problem}}
+\subsubsection*{Solving the optimization problem}\label{solving-the-optimization-problem}
 \addcontentsline{toc}{subsubsection}{Solving the optimization problem}
 
 How do we solve the optimization problem \eqref{eq:ldaFisheropt} and find the optimal choice of \(\mathbf a\)?
@@ -9020,8 +8877,7 @@ Note that this is an eigenvalue of \(\mathbf W^{-1}\mathbf B\)
 Finally, to complete the proof we should check that \(\mathbf W^{-1}\mathbf B\) doesn't have any larger eigenvalues, but we can do this by showing that its eigenvalues are the same as the eigenvalues of \(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\). This is left as an exercise (note we've already done one direction - all you need to do is show that if \(\mathbf W^{-1}\mathbf B\) has eigenvalue \(\lambda\) then so does \(\mathbf W^{-\frac{1}{2}}\mathbf B\mathbf W^{-\frac{1}{2}}\)).
 \end{proof}
 
-\hypertarget{fishers-discriminant-rule}{%
-\subsubsection*{Fisher's discriminant rule}\label{fishers-discriminant-rule}}
+\subsubsection*{Fisher's discriminant rule}\label{fishers-discriminant-rule}
 \addcontentsline{toc}{subsubsection}{Fisher's discriminant rule}
 
 The function \(L(\mathbf x)=\mathbf a^\top \mathbf x\) is called Fisher's linear discriminant function. Once \(L(\mathbf x)\) has been obtained, we allocate \(\mathbf x\) to the population \(\Pi_k\) whose discriminant score \(L(\hat{{\boldsymbol{\mu}}}_k)\) is closest to \(L(\mathbf x)\), that is, we use the discriminant rule \[ d^{Fisher}(\mathbf x) = \arg \min_k |L(\mathbf x) - L({\boldsymbol{\mu}}_k)| = \arg \min_k | \mathbf a^\top \mathbf x- \mathbf a^\top \hat{{\boldsymbol{\mu}}}_k |. \]
@@ -9047,8 +8903,7 @@ In Figure \ref{fig:flda} \(\mathbf a\) is chosen to be Fisher's optimal vector (
 \caption{\label{fig:fldapca}Projection onto the first principal component.}
 \end{figure}
 
-\hypertarget{multiple-projections}{%
-\subsubsection*{Multiple projections}\label{multiple-projections}}
+\subsubsection*{Multiple projections}\label{multiple-projections}
 \addcontentsline{toc}{subsubsection}{Multiple projections}
 
 To summarize what we've found so far, we have seen that the vector \(\mathbf a\) which maximizes
@@ -9070,8 +8925,7 @@ i.e., we compute the \(r\) dimensional projection of the data and then find the 
 
 Note the dimension reduction here. We have gone from an observation \(\mathbf x\in \mathcal{R}^p\) to a projected point \(\mathbf A^\top\mathbf x\in \mathcal{F}^t\). We are free to choose \(r\), which can result in useful ways of visualizing the data.
 
-\hypertarget{iris-example-continued-1}{%
-\subsection{Iris example continued}\label{iris-example-continued-1}}
+\subsection{Iris example continued}\label{iris-example-continued-1}
 
 Let's continue the iris example we had before, using the full dataset of 150 observations on 3 species, with 4 measurements on each flower.
 
@@ -9146,8 +9000,7 @@ Using the option \texttt{dimen\ =\ 1} will plot histograms of the first LDA proj
 
 \includegraphics{09-lda_files/figure-latex/unnamed-chunk-22-1.pdf}
 
-\hypertarget{comparison-with-pca}{%
-\paragraph*{Comparison with PCA}\label{comparison-with-pca}}
+\paragraph*{Comparison with PCA}\label{comparison-with-pca}
 \addcontentsline{toc}{paragraph}{Comparison with PCA}
 
 We can compare the LDA projection to the 2-dimensional projection found by PCA:
@@ -9170,8 +9023,7 @@ We can compare the LDA projection to the 2-dimensional projection found by PCA:
 
 PCA hasn't separated the 3 populations as cleanly as LDA did, but that is not a surprise as that is not its aim (it aim is to maximize the variance). PCA doesn't use the population labels, and so there is no reason why it should separate the populations. But this does illustrate the importance of choosing the right multivariate statistical methods.
 
-\hypertarget{links-between-methods}{%
-\subsection{Links between methods}\label{links-between-methods}}
+\subsection{Links between methods}\label{links-between-methods}
 
 When \(g=2\), Fisher's rule and the sample ML rule with \(\boldsymbol{\Sigma}_1=\boldsymbol{\Sigma}_2=\boldsymbol{\Sigma}\) turn out to be the same. Note that in
 the sample ML rule we assumed that the two groups are from \(N_p({\boldsymbol{\mu}}_i, \boldsymbol{\Sigma})\)
@@ -9227,11 +9079,9 @@ we find \(\boldsymbol \beta\) is in the same direction as the first eigenvector 
 ## [1] -1.137257
 \end{verbatim}
 
-\hypertarget{computer-tasks-4}{%
-\section{Computer tasks}\label{computer-tasks-4}}
+\section{Computer tasks}\label{computer-tasks-4}
 
-\hypertarget{task-1-3}{%
-\paragraph*{Task 1}\label{task-1-3}}
+\paragraph*{Task 1}\label{task-1-3}
 \addcontentsline{toc}{paragraph}{Task 1}
 
 Let's look again at the crabs dataset.
@@ -9268,8 +9118,7 @@ Let's look again at the crabs dataset.
 
 Build a classifier to predict the species and sex of the crabs. Test its predictive accuracy, and provide some plots showing its effectiveness etc.
 
-\hypertarget{task-2-3}{%
-\paragraph*{Task 2}\label{task-2-3}}
+\paragraph*{Task 2}\label{task-2-3}
 \addcontentsline{toc}{paragraph}{Task 2}
 
 In this question we will generate some data ourselves, and then see how successful LDA is at separating the populations.
@@ -9310,8 +9159,7 @@ Plot all four populations on the same plot, using a different colour for each po
   Experiment with different population means, different number of populations, and different covariance functions. What makes populations easy/hard to separate?
 \end{enumerate}
 
-\hypertarget{task-3-3}{%
-\paragraph*{Task 3}\label{task-3-3}}
+\paragraph*{Task 3}\label{task-3-3}
 \addcontentsline{toc}{paragraph}{Task 3}
 
 With a bit of work, it is possible to get a prediction accuracy of over 80\% for the MNIST data using linear discriminant analysis.
@@ -9360,8 +9208,7 @@ With a bit of work, it is possible to get a prediction accuracy of over 80\% for
   Does the predictive accuracy change if instead of using the first \(p=100\) principal component scores you use fewer or more? You can also try using larger training sets. The MNIST training data consists of \(60,000\) images - depending upon your computer you may be able to repeat the analysis with all \(60,000\) images. If so, how does this affect the prediction accuracy?
 \end{enumerate}
 
-\hypertarget{exercises-5}{%
-\section{Exercises}\label{exercises-5}}
+\section{Exercises}\label{exercises-5}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -9453,8 +9300,7 @@ Calculate Fisher's linear discriminant function using just a single LDA variable
 
 \includegraphics{figs/LDA_2020_21_Q2.png}
 
-\hypertarget{cluster}{%
-\chapter{Cluster Analysis}\label{cluster}}
+\chapter{Cluster Analysis}\label{cluster}
 
 Discriminant analysis, covered in Chapter \ref{lda}, is a \textbf{supervised} learning method: in order to train the classifier we had access to both the input \(\mathbf x\) and the label \(y\) for that case (what group it belonged to).
 This chapter focusses on cluster analysis, which is an \textbf{unsupervised} learning method: we have to train the model without knowledge of the true cluster labels. In many problems there may not be anything we could describe as a `true' cluster label - in which case we are using cluster analysis as a way of finding descriptive statistics about the data.
@@ -9481,8 +9327,7 @@ The videos for this chapter are available at the following links:
 
 \includegraphics{10-clustering_files/figure-latex/unnamed-chunk-2-1.pdf}
 
-\hypertarget{k-means-clustering}{%
-\section{K-means clustering}\label{k-means-clustering}}
+\section{K-means clustering}\label{k-means-clustering}
 
 Suppose we have a sample of \(n\) vectors \(\mathbf x_1, \ldots , \mathbf x_n \in \mathbb{R}^p\). Consider the situation where \(\mathbf x_i\) comes from one of \(K\) sub-populations (I used \(g\) previously, but this method is known as `K'-means so we'll use \(K\) instead of \(g\) here). We'll initially assume \(K\) is known, but will discuss how to choose \(K\) later.
 
@@ -9501,10 +9346,9 @@ It will be convenient to introduce an alternative, but equivalent, way to descri
 \delta(i) = j \iff \mathbf x_i \in \mathcal{C}_j. 
 \label{eq:two-way}
 \end{equation}
-We write \(\boldsymbol \delta=(\delta(1),\ldots , \delta(n))^\top\) for the vector of \(n\) different cluster indicators.
+We write \(\boldsymbol \delta=(\delta(1),\ldots ,  \delta(n))^\top\) for the vector of \(n\) different cluster indicators.
 
-\hypertarget{estimating-boldsymbol-delta}{%
-\subsection{\texorpdfstring{Estimating \(\boldsymbol \delta\)}{Estimating \textbackslash boldsymbol \textbackslash delta}}\label{estimating-boldsymbol-delta}}
+\subsection{\texorpdfstring{Estimating \(\boldsymbol \delta\)}{Estimating \textbackslash boldsymbol \textbackslash delta}}\label{estimating-boldsymbol-delta}
 
 We think of the encoder \(\delta(i)\) as a parameter that we need to estimate: \(\boldsymbol \delta\in \mathbb{N}^{n}\). We estimate it by picking a loss function, and then seeking to minimize that loss. A natural choice for the loss function is to use the within-cluster scatter that we saw previously:
 
@@ -9530,8 +9374,7 @@ is impossible in most cases, as the number of possible allocations of cases to c
   At each step, the cluster assignments are changed to reduce the loss function \(W(\boldsymbol \delta)\)
 \end{enumerate}
 
-\hypertarget{k-means}{%
-\subsection{K-means}\label{k-means}}
+\subsection{K-means}\label{k-means}
 
 \textbf{K-means clustering} is the most commonly used iterative descent clustering method. It uses the squared Eucliden distances between points
 \[d(\mathbf x_i, \mathbf x_{i'})=||\mathbf x_i - \mathbf x_{i'}||_2^2.\]
@@ -9564,8 +9407,7 @@ The greedy iterative approach used in K-means clustering is thus as follows:
 
 Note that the result of these steps might be a sub-optimal local minimum. Thus, we usually run \(K\)-means several times with different random initial choices for \(\boldsymbol \delta\), and then choose the best solution.
 
-\hypertarget{example-iris-data}{%
-\subsection{Example: Iris data}\label{example-iris-data}}
+\subsection{Example: Iris data}\label{example-iris-data}
 
 Consider the \emph{iris} data again. Suppose we are given the petal and sepal length and widths, but not told which species each iris belongs to. I.e., suppose we are given the data
 
@@ -9653,8 +9495,7 @@ Finally, in this case we know that there really are three clusters in the data (
 ##   virginica   0 14 36
 \end{verbatim}
 
-\hypertarget{choosing-k}{%
-\subsection{\texorpdfstring{Choosing \(K\)}{Choosing K}}\label{choosing-k}}
+\subsection{\texorpdfstring{Choosing \(K\)}{Choosing K}}\label{choosing-k}
 
 In the iris data, we know there are 3 distinct species. But suppose we didn't know this. What happens if we try other values for \(K\)?
 
@@ -9678,8 +9519,7 @@ For the iris data, we can create an elbow plot using the \texttt{fviz\_nbclust} 
 
 In this case, I would probably decide there most likely three natural clusters in the data, as there is a reasonable decrease in \(W\) when moving from 2 to 3 clusters, but moving to 3 clusters only yields a minor improvement. Note here the slight increase in W in moving from 9 to 10 clusters. This is due to only using a greed search, rather than an exhaustive one (we know the best 10-group cluster must be better than the betst 9-group cluster, we just have found it).
 
-\hypertarget{model-based-clustering}{%
-\section{Model-based clustering}\label{model-based-clustering}}
+\section{Model-based clustering}\label{model-based-clustering}
 
 Model-based clustering is similar to K-means clustering, in that we want to allocate each case to a cluster. The difference is that we will now assume a probability distribution for the observations within each cluster.
 
@@ -9688,8 +9528,7 @@ probability density function \(f(\mathbf x; \boldsymbol \theta_j)\), \(j=1,\ldot
 
 The most common choice for the density \(f\) is to assume it is a multivariate normal distribution. The parameters \(\boldsymbol \theta_j\) would then represent the mean and variance of the MVN density for each cluster.
 
-\hypertarget{maximum-likelihood-estimation}{%
-\subsection{Maximum-likelihood estimation}\label{maximum-likelihood-estimation}}
+\subsection{Maximum-likelihood estimation}\label{maximum-likelihood-estimation}
 
 We want to estimate the optimal allocation of each case to a cluster, i.e., estimate \(\boldsymbol \delta\), as well as the (usually) unknown parameter vectors \(\boldsymbol \theta_1, \ldots , \boldsymbol \theta_K\). We can do this by maximum likelihood estimation.
 
@@ -9743,8 +9582,7 @@ Note the similarity to the sample ML discriminant rule considered in Section \re
 
 The computation for model-based clustering is beyond the scope of the module, but is covered in the Computational Statistics module (the section on the EM algorithm).
 
-\hypertarget{multivariate-gaussian-clusters}{%
-\subsection{Multivariate Gaussian clusters}\label{multivariate-gaussian-clusters}}
+\subsection{Multivariate Gaussian clusters}\label{multivariate-gaussian-clusters}
 
 We now consider the case where the sub-populations are multivariate Gaussian, i.e.~\(f(\mathbf x; \boldsymbol \theta_j)\) is the density of \(N_p({\boldsymbol{\mu}}_j, \boldsymbol{\Sigma}_j)\) for \(j=1, \ldots , K\). Here, \(\boldsymbol \theta_j\) consists of \({\boldsymbol{\mu}}_j\) and \(\boldsymbol{\Sigma}_j\) for each \(j=1, \ldots , K\).
 
@@ -9760,8 +9598,7 @@ In the general case, when the mean vector and covariance matrix are different fo
 
 until convergence.
 
-\hypertarget{link-to-k-means-clustering}{%
-\subsubsection{Link to K-means clustering}\label{link-to-k-means-clustering}}
+\subsubsection{Link to K-means clustering}\label{link-to-k-means-clustering}
 
 The case where \(\boldsymbol{\Sigma}_1=\cdots = \boldsymbol{\Sigma}_K=\sigma^2 \mathbf I_p\), i.e.~the common covariance matrix is a scalar multiple of the \(p \times p\) identity matrix, turns out to be equivalent to K-means clustering. To see this, note that the maximum likelihood allocation \(\hat{\boldsymbol \delta}\) given estimated cluster means \(\hat{{\boldsymbol{\mu}}}_k\), is obtained by the \(\boldsymbol \delta\) which maximizes
 \[
@@ -9773,8 +9610,7 @@ which is equivalent to minimizing
 \]
 which in turn is equivalent to minimizing \(W(\boldsymbol \delta)\).
 
-\hypertarget{example-iris-1}{%
-\subsection{Example: Iris}\label{example-iris-1}}
+\subsection{Example: Iris}\label{example-iris-1}
 
 The \texttt{mclust} library can be used to perform model-based clustering with Gaussian clusters. We just have to specify the number of required clusters.
 
@@ -9805,8 +9641,7 @@ Pairs plots of the classification of each point can easily be obtained, as can t
 
 How to choose \(K\) in model-based clustering is beyond the scope of the module.
 
-\hypertarget{hierarchical-clustering-methods}{%
-\section{Hierarchical clustering methods}\label{hierarchical-clustering-methods}}
+\section{Hierarchical clustering methods}\label{hierarchical-clustering-methods}
 
 \emph{Hierarchical} clustering methods work by creating a hierarchy of clusters, in which clusters at each level of the heirarchy are formed by merging or splitting clusters from a neighbouring level of the hierarchy. A hierarchical clustering method is usually of one of two types:
 
@@ -9820,8 +9655,7 @@ How to choose \(K\) in model-based clustering is beyond the scope of the module.
 
 We will focus on agglomerative methods.
 
-\hypertarget{distance-measures}{%
-\subsection{Distance measures}\label{distance-measures}}
+\subsection{Distance measures}\label{distance-measures}
 
 Agglomerative clustering methods take the \(n \times n\) matrix of inter-point distances \(\mathbf D=(d_{ij})_{i,j=1}^n\) of the type we considered in Chapter \ref{mds}. Sometimes we will have access to the underlying data \(\mathbf x_1, \ldots, \mathbf x_n\) and in that case the distances may be computed using a distance function \(d\), i.e., \(d_{ij}=d(\mathbf x_i, \mathbf x_j)\).
 As we saw previously, we can find that different distance functions \(d\), can produce different results. For example, with continuous data the Euclidean (\(L_2\)) and Manhattan distance (\(L_1\)) will often produce different results, with the Euclidean distance being more sensitive to outliers than the Manhattan distance:
@@ -9847,8 +9681,7 @@ The differences can be even more important for binary attribute data. In Chapter
   i.e., it is number of attributes shared by A and B, divided by the number of attributes possessed by either A or B (or both), all subtracted from 1.
 \end{itemize}
 
-\hypertarget{distances-between-clusters}{%
-\subsubsection{Distances between clusters}\label{distances-between-clusters}}
+\subsubsection{Distances between clusters}\label{distances-between-clusters}
 
 The distances between individual observations are the input to the clustering method. Each method then defines a distance between clusters. For example, suppose we have two clusters \(\mathcal{G}=\{\mathbf x_1, \mathbf x_2\}\) and \(\mathcal{H}=\{\mathbf x_3, \mathbf x_4\}\). Clustering methods are characterized by how they measure the distance between clusters, \(d(\mathcal{G}, \mathcal{H})\), which is a function of the pairwise distances \(d_{ij}\) where one member of the pair \(i\) is from \(\mathcal{G}\) and the other, \(j\), is from \(\mathcal{H}\).
 
@@ -9880,8 +9713,7 @@ Agglomerative clustering methods then work as follows:
   Stop once we are left with just a single cluster.
 \end{itemize}
 
-\hypertarget{toy-example}{%
-\subsection{Toy Example}\label{toy-example}}
+\subsection{Toy Example}\label{toy-example}
 
 Suppose we are given 5 observations with distance matrix
 
@@ -9907,8 +9739,7 @@ i.e., \(d_{1,2}=2, d_{1,3}=11\) etc.
 
 All methods start with the singleton clusters \(\{1\},\{2\},\{3\},\{4\},\{5\}\).
 
-\hypertarget{single-linkage}{%
-\paragraph*{Single linkage}\label{single-linkage}}
+\paragraph*{Single linkage}\label{single-linkage}
 \addcontentsline{toc}{paragraph}{Single linkage}
 
 \begin{itemize}
@@ -10000,8 +9831,7 @@ An alternatively to cutting the tree according to the number of clusters require
 
 showing that we have clusters \(\{1,2\}, \{3,5\}, \{4\}\).
 
-\hypertarget{complete-linkage}{%
-\paragraph*{Complete linkage}\label{complete-linkage}}
+\paragraph*{Complete linkage}\label{complete-linkage}
 \addcontentsline{toc}{paragraph}{Complete linkage}
 
 Let's now consider using complete linkage.
@@ -10061,8 +9891,7 @@ The dendrogram for this is shown below. Note that complete linkage produces a di
 
 \includegraphics{10-clustering_files/figure-latex/unnamed-chunk-23-1.pdf}
 
-\hypertarget{group-average}{%
-\paragraph*{Group average}\label{group-average}}
+\paragraph*{Group average}\label{group-average}
 \addcontentsline{toc}{paragraph}{Group average}
 
 Group average clustering produces the same hierarchy of clusters as single linkage, but the nodes (points where clusters join) are at different heights in the dendrogram.
@@ -10098,8 +9927,7 @@ If we were to cut the single linkage and group average dendrograms at a height o
 ## [1] 1 1 2 3 2
 \end{verbatim}
 
-\hypertarget{comparison-of-methods}{%
-\subsection{Comparison of methods}\label{comparison-of-methods}}
+\subsection{Comparison of methods}\label{comparison-of-methods}
 
 In the case where the distances \(\mathbf D\) clearly split into distinct \emph{compact} clusters (\emph{compact} in the sense that all observations within a cluster are relatively close compared to observations in different clusters), all three methods will produce similar results.
 
@@ -10111,8 +9939,7 @@ In constrast, complete linkage is the other extereme. Two clusters are only cons
 
 Group averaging is a compromise between these two extremes. It aims to find compact clusters that are relatively far apart. However, the method is not invariant to monotone transformations of the distances, unlike single and complete linkage methods.
 
-\hypertarget{summary}{%
-\section{Summary}\label{summary}}
+\section{Summary}\label{summary}
 
 In this chapter we have focused on just two types of clustering methods: partitioning methods (K-means and model-based methods); and hierarchical agglomerative clustering methods.
 
@@ -10122,11 +9949,9 @@ One way to test a clustering algorithm is to apply it on data with a known group
 
 However, despite these cautionary remarks, clustering algorithms are often useful in practice, but it is an area where usually the most one can hope for is to find a good, but sub-optimal, solution.
 
-\hypertarget{computer-tasks-5}{%
-\section{Computer tasks}\label{computer-tasks-5}}
+\section{Computer tasks}\label{computer-tasks-5}
 
-\hypertarget{q1}{%
-\paragraph*{Q1}\label{q1}}
+\paragraph*{Q1}\label{q1}
 \addcontentsline{toc}{paragraph}{Q1}
 
 Perform hierarchical clustering with single, complete and average linkage using the iris data. You could also look
@@ -10151,8 +9976,7 @@ at other method's such as Ward's method (see \texttt{?hclust} for details).
   Compare the hierarchical clustering methods with the results of doing K-means clustering and model-based clustering (assuming multivariate normal distributions for each population).
 \end{itemize}
 
-\hypertarget{q2}{%
-\paragraph*{Q2}\label{q2}}
+\paragraph*{Q2}\label{q2}
 \addcontentsline{toc}{paragraph}{Q2}
 
 Download the Indian Premier League data from Moodle and load it into R. We will filter the data to only look at players who played at least 10 innings, and the select just the information on the number of runs they scored, their high score (HS), their batting average (Avg), their best figures (BF), their strike rate (SR), and the number of 4s and 6s they hit.
@@ -10178,16 +10002,14 @@ Apply agglomerative hierarchical clustering to these data. You will need to firs
   There are several R packages for creating different types of dendrogram plots. Have a look at the link \href{http://www.sthda.com/english/wiki/beautiful-dendrogram-visualizations-in-r-5-must-known-methods-unsupervised-machine-learning}{here} and try creating an alternative type of dendrogram. Consider whether this has helped communicate anything of interest about the data.
 \end{enumerate}
 
-\hypertarget{q3}{%
-\paragraph*{Q3}\label{q3}}
+\paragraph*{Q3}\label{q3}
 \addcontentsline{toc}{paragraph}{Q3}
 
 Look at the data stored in the \texttt{USArrests} data frame in R. You can read about the data by typing \texttt{?USArrests}.
 
 Apply a selection of clustering methods to these data and discuss how many clusters appear to be present.
 
-\hypertarget{exercises-6}{%
-\section{Exercises}\label{exercises-6}}
+\section{Exercises}\label{exercises-6}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -10261,8 +10083,7 @@ implement (by hand) the K-means cluster greedy optimization algorithm until conv
   Prove Equation \eqref{eq:Wscatterk}.
 \end{enumerate}
 
-\hypertarget{lm}{%
-\chapter{Linear Models}\label{lm}}
+\chapter{Linear Models}\label{lm}
 
 In this chapter we consider linear regression methods. Suppose we have a response variable \(y\) that we would like to predict using covariate information \(\mathbf x=(x_1, \ldots, x_p)^\top \in \mathbb{R}^p\).
 
@@ -10286,8 +10107,7 @@ The videos for this chapter are available at the following links:
   \href{https://mediaspace.nottingham.ac.uk/media/Linear+modelsA+multi-output+models/1_f61kjm7u}{Multi-output linear models}
 \end{itemize}
 
-\hypertarget{notation-3}{%
-\subsection*{Notation}\label{notation-3}}
+\subsection*{Notation}\label{notation-3}
 \addcontentsline{toc}{subsection}{Notation}
 
 Suppose we have observations on \(n\) cases, \(\{\mathbf x_1, y_1\}, \ldots, \{\mathbf x_n, y_n\}\). The standard linear model is
@@ -10302,15 +10122,16 @@ where \(\boldsymbol \beta\in \mathbb{R}^p\) is the unknown parameter vector we w
 \mathbf y=\mathbf X\boldsymbol \beta+{\pmb \epsilon},
 \label{eq:slm2}
 \end{equation}
-where \(\stackrel{n \times p}{\mathbf X}= \begin{pmatrix} - & \mathbf x_1^\top &-\\ &\vdots&\\ -&\mathbf x_n^\top&-\end{pmatrix}\) is the matrix of covariates,
+where \(\stackrel{n \times p}{\mathbf X}= \begin{pmatrix} - & \mathbf x_1^\top &-\\
+&\vdots&\\
+-&\mathbf x_n^\top&-\end{pmatrix}\) is the matrix of covariates,
 \(\stackrel{n \times 1}{\mathbf y}\) is the vector of univariate responses and \(\stackrel{n \times 1}{\pmb \epsilon}\) is the vector of univariate error terms.
 
 We will assume throughout this chapter that \(\mathbf y\) and \(\mathbf X\) have been centred so that \(\bar{y}=0\) and the mean of each column of \(\mathbf X\) is zero. We do this to simplify the exposition and to avoid having to include an intercept term in the model (which makes the notation slightly messy). For uncentred data, we can think of the model as
 
 \[y_i - \bar{y} = \beta_1 (x_{i1}-\bar{x}_1)+\ldots+\beta_p (x_{ip}-\bar{x}_p)+\epsilon_i\]
 
-\hypertarget{ordinary-least-squares-ols}{%
-\section{Ordinary least squares (OLS)}\label{ordinary-least-squares-ols}}
+\section{Ordinary least squares (OLS)}\label{ordinary-least-squares-ols}
 
 This section contains a brief review of the ordinary least squares (OLS) approach to fitting the linear model to data. Most of you will have studied this material in other modules.
 
@@ -10353,8 +10174,7 @@ You may need to look again at \ref{vectordiff} to remind yourself about vector d
 when \(\mathbf X^\top \mathbf X\) is invertible (we'll discuss what to do if it is not in the next section).
 The \textbf{fitted-values} are \[\hat{\mathbf y}= \mathbf X\hat{\boldsymbol \beta}^{ols}=\mathbf X(\mathbf X^\top \mathbf X)^{-1}\mathbf X^\top \mathbf y.\]
 
-\hypertarget{geometry}{%
-\subsection{Geometry}\label{geometry}}
+\subsection{Geometry}\label{geometry}
 
 We can derive the same solution without using any calculus.
 As discussed in Chapter \ref{ch2linreg}, we know that \(\mathbf X\boldsymbol \beta\) is a linear combination of the columns of \(\mathbf X\) and is thus in \(\mathcal{C}(\mathbf X),\) the column space of \(\mathbf X\). Thus minimizing \(||\mathbf y- \mathbf X\boldsymbol \beta||_2^2\) with respect to \(\boldsymbol \beta\) is equivalent to the following optimization problem \[\min_{\mathbf y': \mathbf y' \in \mathcal{C}(X)} ||\mathbf y-\mathbf y'||_2.\]
@@ -10394,8 +10214,7 @@ The fitted values are
 \end{align}
 \(\mathbf U^\top \mathbf y\) are the coordinates of \(\mathbf y\) with respect to the orthonormal basis \(\mathbf U\), and \(\mathbf U\mathbf U^\top \mathbf y\) is the projection of \(\mathbf y\) onto that basis. So yet another way to think about OLS is that it projects \(\mathbf y\) onto the left singular vectors \(\mathbf U\). As we said in Chapter \ref{linalg-decomp}, the left singular vectors form an orthonormal basis for the column space of \(\mathbf X\), and so projecting onto \(\mathbf U\) is the same as projecting onto \(\mathcal{C}(\mathbf X)\).
 
-\hypertarget{normal-linear-model}{%
-\subsection{Normal linear model}\label{normal-linear-model}}
+\subsection{Normal linear model}\label{normal-linear-model}
 
 Often, we make an additional (fourth) assumption about the random errors and assume that they are normally distributed:
 
@@ -10415,8 +10234,7 @@ The log-likelihood for models \eqref{eq:slm1} and \eqref{eq:slm2} under the Gaus
 We can see that maximizing the log-likelihood with respect to \(\boldsymbol \beta\) is equivalent to minimizing \(||\mathbf y- \mathbf X\boldsymbol \beta||_2^2=(\mathbf y- \mathbf X\boldsymbol \beta)^\top (\mathbf y- \mathbf X\boldsymbol \beta)\)
 and thus \(\hat{\boldsymbol \beta}^{ols}\) is also the maximum likelihood estimator of \(\boldsymbol \beta\) when the errors have a Gaussian distribution.
 
-\hypertarget{linear-models-in-r}{%
-\subsection{Linear models in R}\label{linear-models-in-r}}
+\subsection{Linear models in R}\label{linear-models-in-r}
 
 Linear models are easy to fit in R. For example, using the iris data, we can train a model to predict the sepal length from the other measurements as follows:
 
@@ -10437,8 +10255,7 @@ Linear models are easy to fit in R. For example, using the iris data, we can tra
 ##       1.8560        0.6508        0.7091       -0.5565
 \end{verbatim}
 
-\hypertarget{problems-with-ols}{%
-\subsection{Problems with OLS}\label{problems-with-ols}}
+\subsection{Problems with OLS}\label{problems-with-ols}
 
 There are several problems encountered when fitting linear models using OLS when working with large datasets, two of which are
 
@@ -10457,8 +10274,7 @@ There are several problems encountered when fitting linear models using OLS when
 
 In the next two sections we will look at some methods that have been proposed to solve these problems.
 
-\hypertarget{principal-component-regression-pcr}{%
-\section{Principal component regression (PCR)}\label{principal-component-regression-pcr}}
+\section{Principal component regression (PCR)}\label{principal-component-regression-pcr}
 
 In \textbf{principal component regression}, instead of regressing \(\mathbf y\) onto \(\mathbf X\) (or equivalently projecting \(\mathbf y\) onto the columns of \(\mathbf X\)), we instead regress \(\mathbf y\) onto the principal component scores of \(\mathbf X\).
 If the singular value decomposition (SVD) of \(\mathbf X\) is \(\mathbf X= \mathbf U\boldsymbol{\Sigma}\mathbf V^\top\) (recall that \(\mathbf X\) is column centred), then we've seen that
@@ -10495,8 +10311,7 @@ We choose the number of principal components to use in the regression \(k\), by 
 
 The are several motivations for using PCR. The first is that it can always be used, regardless of whether \(\mathbf X^\top\mathbf X\) is invertible. The second is that in many problems with large \(p\), it often has superior predictive performance to OLS, as it reduces the variance of the predictions.
 
-\hypertarget{pcr-in-r}{%
-\subsection{PCR in R}\label{pcr-in-r}}
+\subsection{PCR in R}\label{pcr-in-r}
 
 PCR is easy to implement yourself in R. For example, using the iris regression problem from the previous section, we can do PCR using just the first 2 principal components as follows:
 
@@ -10579,8 +10394,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5421   0.3915   0.3171
-## adjCV       0.8308   0.5419   0.3911   0.3168
+## CV          0.8308   0.5455   0.3913   0.3206
+## adjCV       0.8308   0.5451   0.3909   0.3200
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10588,8 +10403,7 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## Sepal.Length    57.97    78.47    85.86
 \end{verbatim}
 
-\hypertarget{shrinkage-methods}{%
-\section{Shrinkage methods}\label{shrinkage-methods}}
+\section{Shrinkage methods}\label{shrinkage-methods}
 
 Another approach to fitting linear models is to regularise the parameters. Instead of minimizing \(||\mathbf y- \mathbf X\boldsymbol \beta||^2_2\), we instead minimize
 
@@ -10634,8 +10448,7 @@ we can see that PCR just works in a lower dimensional space discarding dimension
 
 In ridge regression we used the \(||\cdot||_2\) norm to penalise the parameter size. Other methods use other norms, which can induce interesting effects. Of particular interest is the \textbf{lasso}, which uses the \(L_1\) norm as a penalty \(||\boldsymbol \beta||_1\). This induces sparsity in the solution, but is beyond the scope of the module. If you are interested, take a look at the \href{https://en.wikipedia.org/wiki/Lasso_(statistics)}{wikipedia page}
 
-\hypertarget{ridge-regression-in-r}{%
-\subsection{Ridge regression in R}\label{ridge-regression-in-r}}
+\subsection{Ridge regression in R}\label{ridge-regression-in-r}
 
 We'll use the \texttt{glmnet} package to do ridge regression. The \texttt{glmnet} command solves the optimization problem
 \[\arg \min_{\boldsymbol \beta} \left\{||\mathbf y- \mathbf X\boldsymbol \beta||^2_2+\lambda \left((1-\alpha)||\boldsymbol \beta||_2^2+\alpha ||\boldsymbol \beta||_1^2\right)\right\}\]
@@ -10705,7 +10518,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1e-04
+## [1] 0.001
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
@@ -10717,11 +10530,10 @@ and the largest value of lambda that gives a prediction error within one standar
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.01995262
+## [1] 0.03981072
 \end{verbatim}
 
-\hypertarget{multi-output-linear-model}{%
-\section{Multi-output Linear Model}\label{multi-output-linear-model}}
+\section{Multi-output Linear Model}\label{multi-output-linear-model}
 
 In the standard linear model the responses \(y_i\) are univariate. In the multivariate linear model, the data are \(\{\mathbf x_1, \mathbf y_1\}, \ldots, \{\mathbf x_n, \mathbf y_n\}\) with the responses \(\mathbf y_i \in \mathbb{R}^q\). Here, the linear model takes the form
 \begin{equation}
@@ -10784,11 +10596,9 @@ Setting \(\mathbf A=\mathbf e_{ij}\), the standard basis for \(M_{p,q}\) (ie the
 Rearranging this gives the result.
 \end{proof}
 
-\hypertarget{computer-tasks-6}{%
-\section{Computer tasks}\label{computer-tasks-6}}
+\section{Computer tasks}\label{computer-tasks-6}
 
-\hypertarget{q1-1}{%
-\paragraph*{Q1}\label{q1-1}}
+\paragraph*{Q1}\label{q1-1}
 \addcontentsline{toc}{paragraph}{Q1}
 
 The gasoline dataset in the \texttt{pls} dataset consists of data on 60 different gasoline samples. For each sample, the near-infra-read (NIR) spectrum has been measured, which consists of measurements at 401 different wavelengths.
@@ -10848,8 +10658,7 @@ What happens? How many of the coefficients are estimated?
   Now try ridge regression. What value would you choose for the ridge penalty term \(\lambda\)?
 \end{enumerate}
 
-\hypertarget{q2-1}{%
-\paragraph*{Q2}\label{q2-1}}
+\paragraph*{Q2}\label{q2-1}
 \addcontentsline{toc}{paragraph}{Q2}
 
 The \texttt{lm} command in R will automatically work if you pass in a matrix of response variables. To demonstrate this, lets try to predict the sepal width and sepal length from the petal length and widths for the iris data.
@@ -10863,8 +10672,7 @@ The \texttt{lm} command in R will automatically work if you pass in a matrix of 
 
 Check that the parameter estimates you find are the same as if you did two univariate linear regressions.
 
-\hypertarget{exercises-7}{%
-\section{Exercises}\label{exercises-7}}
+\section{Exercises}\label{exercises-7}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}

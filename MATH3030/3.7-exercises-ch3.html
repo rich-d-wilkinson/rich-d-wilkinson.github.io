@@ -57,7 +57,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -411,8 +411,10 @@ positive semi-definite.</li>
 <ol start="2" style="list-style-type: decimal">
 <li>Compute, by hand (but check your answer in R), the singular value decomposition (full and compact) of the following matrices.
 <ul>
-<li><span class="math inline">\(\left(\begin{array}{cc}2&amp;0\\0&amp;-1\end{array} \right)\)</span></li>
-<li><span class="math inline">\(\left(\begin{array}{cc}1&amp;0\\0&amp;0\\0&amp;0\end{array} \right)\)</span></li>
+<li><span class="math inline">\(\left(\begin{array}{cc}2&amp;0\\0&amp;-1\end{array}
+\right)\)</span></li>
+<li><span class="math inline">\(\left(\begin{array}{cc}1&amp;0\\0&amp;0\\0&amp;0\end{array}
+\right)\)</span></li>
 </ul></li>
 <li>Let <span class="math display">\[\mathbf X=\left(\begin{array}{cc}1&amp;1\\0&amp;1\\1&amp;0\end{array}
 \right)\]</span><br />
@@ -446,13 +448,16 @@ $$U =\left(\begin{array}{ccc}\frac{2}{\sqrt{6}}&0&\frac{1}{\sqrt{3}}\\
 where <span class="math inline">\(\mathbf A\)</span> is a <span class="math inline">\(n\times p\)</span> matrix, with compact SVD
 <span class="math inline">\(\mathbf A= \mathbf U\boldsymbol{\Sigma}\mathbf V^\top\)</span>.</p>
 <ul>
-<li><p>If <span class="math inline">\(\mathbf A\)</span> is a square invertible matrix, show that <span class="math display">\[\tilde{\mathbf x} = \mathbf V\boldsymbol{\Sigma}^{-1} \mathbf U^\top \mathbf y\]</span> is the unique solution to <span class="math inline">\(\mathbf A\mathbf x= \mathbf y\)</span>, i.e., show that <span class="math inline">\(\mathbf A^{-1} = \mathbf V\boldsymbol{\Sigma}^{-1} \mathbf U^\top\)</span>.</p></li>
+<li><p>If <span class="math inline">\(\mathbf A\)</span> is a square invertible matrix, show that <span class="math display">\[\tilde{\mathbf x} = \mathbf V\boldsymbol{\Sigma}^{-1} \mathbf U^\top \mathbf y\]</span> is the unique solution to <span class="math inline">\(\mathbf A\mathbf x= \mathbf y\)</span>, i.e., show that <span class="math inline">\(\mathbf A^{-1} =  \mathbf V\boldsymbol{\Sigma}^{-1} \mathbf U^\top\)</span>.</p></li>
 <li><p>If <span class="math inline">\(\mathbf A\)</span> is not a square matrix, then <span class="math inline">\(\mathbf A^+ = \mathbf V\boldsymbol{\Sigma}^{-1} \mathbf U^\top\)</span> is a generalized inverse (not a true inverse) matrix, and
-<span class="math inline">\(\tilde{\mathbf x}=\mathbf A^+\mathbf y\)</span> is still a useful quantity to consider as we shall now see. Let <span class="math inline">\(\mathbf A=\left(\begin{array}{cc}1&amp;1\\0&amp;1\\1&amp;0\end{array} \right)\)</span> and <span class="math inline">\(\mathbf y= \left(\begin{array}{c}2\\1\\1\end{array} \right)\)</span>. Then <span class="math inline">\(\mathbf A\mathbf x=\mathbf y\)</span> is an over-determined system in that there are 3 equations in 2 unknowns. Compute <span class="math inline">\(\tilde{\mathbf x}=\mathbf A^+\mathbf y\)</span>. Is this a solution to the equation?</p></li>
+<span class="math inline">\(\tilde{\mathbf x}=\mathbf A^+\mathbf y\)</span> is still a useful quantity to consider as we shall now see. Let <span class="math inline">\(\mathbf A=\left(\begin{array}{cc}1&amp;1\\0&amp;1\\1&amp;0\end{array}
+\right)\)</span> and <span class="math inline">\(\mathbf y= \left(\begin{array}{c}2\\1\\1\end{array}
+\right)\)</span>. Then <span class="math inline">\(\mathbf A\mathbf x=\mathbf y\)</span> is an over-determined system in that there are 3 equations in 2 unknowns. Compute <span class="math inline">\(\tilde{\mathbf x}=\mathbf A^+\mathbf y\)</span>. Is this a solution to the equation?</p></li>
 </ul>
 <p><strong>Note</strong> that you computed the svd for <span class="math inline">\(\mathbf A\)</span> in Q2.</p>
 <ul>
-<li>Now suppose <span class="math inline">\(\mathbf y= \left(\begin{array}{c}1\\-1\\1\end{array} \right)\)</span>. There is no solution to <span class="math inline">\(\mathbf A\mathbf x=\mathbf y\)</span> in this case as <span class="math inline">\(\mathbf y\)</span> is not in the column space of <span class="math inline">\(\mathbf A\)</span>. Prove that <span class="math inline">\({\tilde{\mathbf x}} = \mathbf A^+\mathbf y\)</span> solves the least squares problem
+<li>Now suppose <span class="math inline">\(\mathbf y= \left(\begin{array}{c}1\\-1\\1\end{array}
+\right)\)</span>. There is no solution to <span class="math inline">\(\mathbf A\mathbf x=\mathbf y\)</span> in this case as <span class="math inline">\(\mathbf y\)</span> is not in the column space of <span class="math inline">\(\mathbf A\)</span>. Prove that <span class="math inline">\({\tilde{\mathbf x}} = \mathbf A^+\mathbf y\)</span> solves the least squares problem
 <span class="math display">\[\tilde{\mathbf x} = \arg\min_{\mathbf x}||\mathbf y- \mathbf A\mathbf x||_2.\]</span></li>
 </ul>
 <p><strong>Hint</strong>: You can either do this directly for this problem, or you can show that the least squares solution <span class="math inline">\((\mathbf A^\top \mathbf A)^{-1}\mathbf A^\top \mathbf y=\tilde{\mathbf x}\)</span>.</p></li>

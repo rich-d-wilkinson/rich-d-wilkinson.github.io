@@ -57,7 +57,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -670,7 +670,7 @@ This is a distance matrix, but is it a <em>Euclidean</em> distance matrix? I.e.,
 \vdots &amp; \vdots &amp; \vdots\\
   - &amp; \mathbf z_n^\top  &amp;-\\
 \end{pmatrix}.\]</span></p>
-<p>We want to choose <span class="math inline">\(\mathbf Z\)</span> so that <span class="math inline">\(\mathbf Z\mathbf Z^\top \approx \mathbf B\)</span>. One way to judge how close <span class="math inline">\(\mathbf B\)</span> is to <span class="math inline">\(\mathbf Z\mathbf Z^\top\)</span> is to looking at the sum of square differences between the elements, which is the matrix Frobenius norm:</p>
+<p>We want to choose <span class="math inline">\(\mathbf Z\)</span> so that <span class="math inline">\(\mathbf Z\mathbf Z^\top \approx  \mathbf B\)</span>. One way to judge how close <span class="math inline">\(\mathbf B\)</span> is to <span class="math inline">\(\mathbf Z\mathbf Z^\top\)</span> is to looking at the sum of square differences between the elements, which is the matrix Frobenius norm:</p>
 <p><span class="math display">\[\sum_{i=1}^n\sum_{j=1}^n (B_{ij}-\mathbf z_i^\top \mathbf z_j)^2 = ||\mathbf B- \mathbf Z\mathbf Z^\top||^2_F\]</span></p>
 <p>Note that if <span class="math inline">\(\mathbf Z\)</span> is <span class="math inline">\(n \times r\)</span> then <span class="math inline">\(\mathbf Z\mathbf Z^\top\)</span> is a rank <span class="math inline">\(r\)</span> matrix. If <span class="math inline">\(\mathbf B\)</span>, which is a <span class="math inline">\(n\times n\)</span> symmetric matrix, has spectral decomposition
 <span class="math inline">\(\mathbf B= \mathbf U\boldsymbol \Lambda\mathbf U^\top\)</span>, then we know from the Eckart-Young-Mirsky Theorem (<a href="3.5-lowrank.html#thm:Eckart-Young">3.1</a>) that the best rank <span class="math inline">\(r\)</span> approximation to <span class="math inline">\(\mathbf B\)</span> (in terms of the Frobenius norm <span class="math inline">\(||\cdot||_F\)</span>) is

@@ -57,7 +57,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -422,7 +422,9 @@ where <span class="math inline">\(\boldsymbol \beta\in \mathbb{R}^p\)</span> is 
 \mathbf y=\mathbf X\boldsymbol \beta+{\pmb \epsilon},
 \tag{10.2}
 \end{equation}\]</span>
-where <span class="math inline">\(\stackrel{n \times p}{\mathbf X}= \begin{pmatrix} - &amp; \mathbf x_1^\top &amp;-\\ &amp;\vdots&amp;\\ -&amp;\mathbf x_n^\top&amp;-\end{pmatrix}\)</span> is the matrix of covariates,
+where <span class="math inline">\(\stackrel{n \times p}{\mathbf X}= \begin{pmatrix} - &amp; \mathbf x_1^\top &amp;-\\
+&amp;\vdots&amp;\\
+-&amp;\mathbf x_n^\top&amp;-\end{pmatrix}\)</span> is the matrix of covariates,
 <span class="math inline">\(\stackrel{n \times 1}{\mathbf y}\)</span> is the vector of univariate responses and <span class="math inline">\(\stackrel{n \times 1}{\pmb \epsilon}\)</span> is the vector of univariate error terms.</p>
 <p>We will assume throughout this chapter that <span class="math inline">\(\mathbf y\)</span> and <span class="math inline">\(\mathbf X\)</span> have been centred so that <span class="math inline">\(\bar{y}=0\)</span> and the mean of each column of <span class="math inline">\(\mathbf X\)</span> is zero. We do this to simplify the exposition and to avoid having to include an intercept term in the model (which makes the notation slightly messy). For uncentred data, we can think of the model as</p>
 <p><span class="math display">\[y_i - \bar{y} = \beta_1 (x_{i1}-\bar{x}_1)+\ldots+\beta_p (x_{ip}-\bar{x}_p)+\epsilon_i\]</span></p>

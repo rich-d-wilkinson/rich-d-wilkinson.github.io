@@ -57,7 +57,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -409,7 +409,8 @@ eigenvalues and eigenvectors of <span class="math inline">\(\mathbf A\)</span> a
 </div>
 <div class="proposition">
 <p><span id="prp:deteig" class="proposition"><strong>Proposition 3.2  </strong></span>If <span class="math inline">\(\mathbf A\)</span> is an <span class="math inline">\(n \times n\)</span> symmetric matrix
-then its determinant is the product of its eigenvalues, i.e. <span class="math inline">\(\text{det}(\mathbf A)=\lambda _1 \dots \lambda _n\)</span>.</p>
+then its determinant is the product of its eigenvalues, i.e. <span class="math inline">\(\text{det}(\mathbf A)=\lambda _1 \dots
+\lambda _n\)</span>.</p>
 </div>
 <p>Thus,
 <span class="math display">\[\mathbf A\mbox{ is invertible } \iff  \det(\mathbf A)\not=0 \iff
@@ -440,7 +441,8 @@ is a vector space of dimension <span class="math inline">\(r\)</span>. Hence the
 </div>
 <div class="lemma">
 <p><span id="lem:eigposdef" class="lemma"><strong>Lemma 3.1  </strong></span>Let <span class="math inline">\(\mathbf A\)</span> be an <span class="math inline">\(n \times n\)</span> symmetric matrix
-with (necessarily real) eigenvalues <span class="math inline">\(\lambda _1 \geq \lambda _2 \geq \dots \geq \lambda _n\)</span>. Then <span class="math inline">\(\mathbf A\)</span> is <em>positive definite</em>
+with (necessarily real) eigenvalues <span class="math inline">\(\lambda _1 \geq \lambda _2 \geq
+\dots \geq \lambda _n\)</span>. Then <span class="math inline">\(\mathbf A\)</span> is <em>positive definite</em>
 if and only if <span class="math inline">\(\lambda _n &gt;0\)</span>. It is positive semi-definite if and only if <span class="math inline">\(\lambda_n \geq 0\)</span>.</p>
 </div>
 <div class="proof">
