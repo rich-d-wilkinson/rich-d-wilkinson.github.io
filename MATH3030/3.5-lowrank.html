@@ -483,37 +483,37 @@ as required</p>
 <div id="example-image-compression" class="section level3 hasAnchor" number="3.5.3">
 <h3><span class="header-section-number">3.5.3</span> Example: image compression<a href="3.5-lowrank.html#example-image-compression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As an example, lets consider the image of some peppers from the <a href="http://sipi.usc.edu/database/">USC-SIPI image database</a>.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="3.5-lowrank.html#cb59-1" tabindex="-1"></a><span class="fu">library</span>(tiff)</span>
-<span id="cb59-2"><a href="3.5-lowrank.html#cb59-2" tabindex="-1"></a><span class="fu">library</span>(rasterImage)</span>
-<span id="cb59-3"><a href="3.5-lowrank.html#cb59-3" tabindex="-1"></a>peppers<span class="ot">&lt;-</span><span class="fu">readTIFF</span>(<span class="st">&quot;figs/Peppers.tiff&quot;</span>)</span>
-<span id="cb59-4"><a href="3.5-lowrank.html#cb59-4" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">as.raster</span>(peppers))</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="3.5-lowrank.html#cb52-1" tabindex="-1"></a><span class="fu">library</span>(tiff)</span>
+<span id="cb52-2"><a href="3.5-lowrank.html#cb52-2" tabindex="-1"></a><span class="fu">library</span>(rasterImage)</span>
+<span id="cb52-3"><a href="3.5-lowrank.html#cb52-3" tabindex="-1"></a>peppers<span class="ot">&lt;-</span><span class="fu">readTIFF</span>(<span class="st">&quot;figs/Peppers.tiff&quot;</span>)</span>
+<span id="cb52-4"><a href="3.5-lowrank.html#cb52-4" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">as.raster</span>(peppers))</span></code></pre></div>
 <p><img src="03-matrix-decompositions_files/figure-html/unnamed-chunk-4-1.png" width="100%" /></p>
 <p>This is a <span class="math inline">\(512 \times 512\)</span> colour image, meaning that there are three matrices <span class="math inline">\(\mathbf R, \mathbf B,\mathbf G\)</span> of dimension <span class="math inline">\(512\times 512\)</span>) giving the intensity of red, green, and blue for each pixel.
 Naively storing this matrix requires 5.7Mb.</p>
 <p>We can compute the SVD of the three colour intensity matrices, and the view the image that results from using reduced rank versions <span class="math inline">\(\mathbf B_k, \mathbf G_k, \mathbf R_k\)</span> instead (as in Equation <a href="3.5-lowrank.html#eq:svdreduced">(3.3)</a>). The image below is formed using <span class="math inline">\(k=5, 30, 100\)</span>, and <span class="math inline">\(300\)</span> basis vectors.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="3.5-lowrank.html#cb60-1" tabindex="-1"></a>svd_image <span class="ot">&lt;-</span> <span class="cf">function</span>(im,k){</span>
-<span id="cb60-2"><a href="3.5-lowrank.html#cb60-2" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">svd</span>(im)</span>
-<span id="cb60-3"><a href="3.5-lowrank.html#cb60-3" tabindex="-1"></a>  Sigma_k <span class="ot">&lt;-</span> <span class="fu">diag</span>(s<span class="sc">$</span>d[<span class="dv">1</span><span class="sc">:</span>k])</span>
-<span id="cb60-4"><a href="3.5-lowrank.html#cb60-4" tabindex="-1"></a>  U_k <span class="ot">&lt;-</span> s<span class="sc">$</span>u[,<span class="dv">1</span><span class="sc">:</span>k]</span>
-<span id="cb60-5"><a href="3.5-lowrank.html#cb60-5" tabindex="-1"></a>  V_k <span class="ot">&lt;-</span> s<span class="sc">$</span>v[,<span class="dv">1</span><span class="sc">:</span>k]</span>
-<span id="cb60-6"><a href="3.5-lowrank.html#cb60-6" tabindex="-1"></a>  im_k <span class="ot">&lt;-</span> U_k <span class="sc">%*%</span> Sigma_k <span class="sc">%*%</span> <span class="fu">t</span>(V_k)</span>
-<span id="cb60-7"><a href="3.5-lowrank.html#cb60-7" tabindex="-1"></a>   <span class="do">## the reduced rank SVD produces some intensities &lt;0 and &gt;1. </span></span>
-<span id="cb60-8"><a href="3.5-lowrank.html#cb60-8" tabindex="-1"></a>  <span class="co"># Let&#39;s truncate these</span></span>
-<span id="cb60-9"><a href="3.5-lowrank.html#cb60-9" tabindex="-1"></a>  im_k[im_k<span class="sc">&gt;</span><span class="dv">1</span>]<span class="ot">=</span><span class="dv">1</span></span>
-<span id="cb60-10"><a href="3.5-lowrank.html#cb60-10" tabindex="-1"></a>  im_k[im_k<span class="sc">&lt;</span><span class="dv">0</span>]<span class="ot">=</span><span class="dv">0</span></span>
-<span id="cb60-11"><a href="3.5-lowrank.html#cb60-11" tabindex="-1"></a>  <span class="fu">return</span>(im_k)</span>
-<span id="cb60-12"><a href="3.5-lowrank.html#cb60-12" tabindex="-1"></a>}</span>
-<span id="cb60-13"><a href="3.5-lowrank.html#cb60-13" tabindex="-1"></a></span>
-<span id="cb60-14"><a href="3.5-lowrank.html#cb60-14" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb60-15"><a href="3.5-lowrank.html#cb60-15" tabindex="-1"></a></span>
-<span id="cb60-16"><a href="3.5-lowrank.html#cb60-16" tabindex="-1"></a>pepprssvd<span class="ot">&lt;-</span> peppers</span>
-<span id="cb60-17"><a href="3.5-lowrank.html#cb60-17" tabindex="-1"></a><span class="cf">for</span>(k <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">30</span>,<span class="dv">100</span>,<span class="dv">300</span>)){</span>
-<span id="cb60-18"><a href="3.5-lowrank.html#cb60-18" tabindex="-1"></a>  svds<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
-<span id="cb60-19"><a href="3.5-lowrank.html#cb60-19" tabindex="-1"></a>  <span class="cf">for</span>(ii <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
-<span id="cb60-20"><a href="3.5-lowrank.html#cb60-20" tabindex="-1"></a>    pepprssvd[,,ii]<span class="ot">&lt;-</span><span class="fu">svd_image</span>(peppers[,,ii],k)</span>
-<span id="cb60-21"><a href="3.5-lowrank.html#cb60-21" tabindex="-1"></a>  }</span>
-<span id="cb60-22"><a href="3.5-lowrank.html#cb60-22" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="fu">as.raster</span>(pepprssvd))</span>
-<span id="cb60-23"><a href="3.5-lowrank.html#cb60-23" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="3.5-lowrank.html#cb53-1" tabindex="-1"></a>svd_image <span class="ot">&lt;-</span> <span class="cf">function</span>(im,k){</span>
+<span id="cb53-2"><a href="3.5-lowrank.html#cb53-2" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">svd</span>(im)</span>
+<span id="cb53-3"><a href="3.5-lowrank.html#cb53-3" tabindex="-1"></a>  Sigma_k <span class="ot">&lt;-</span> <span class="fu">diag</span>(s<span class="sc">$</span>d[<span class="dv">1</span><span class="sc">:</span>k])</span>
+<span id="cb53-4"><a href="3.5-lowrank.html#cb53-4" tabindex="-1"></a>  U_k <span class="ot">&lt;-</span> s<span class="sc">$</span>u[,<span class="dv">1</span><span class="sc">:</span>k]</span>
+<span id="cb53-5"><a href="3.5-lowrank.html#cb53-5" tabindex="-1"></a>  V_k <span class="ot">&lt;-</span> s<span class="sc">$</span>v[,<span class="dv">1</span><span class="sc">:</span>k]</span>
+<span id="cb53-6"><a href="3.5-lowrank.html#cb53-6" tabindex="-1"></a>  im_k <span class="ot">&lt;-</span> U_k <span class="sc">%*%</span> Sigma_k <span class="sc">%*%</span> <span class="fu">t</span>(V_k)</span>
+<span id="cb53-7"><a href="3.5-lowrank.html#cb53-7" tabindex="-1"></a>   <span class="do">## the reduced rank SVD produces some intensities &lt;0 and &gt;1. </span></span>
+<span id="cb53-8"><a href="3.5-lowrank.html#cb53-8" tabindex="-1"></a>  <span class="co"># Let&#39;s truncate these</span></span>
+<span id="cb53-9"><a href="3.5-lowrank.html#cb53-9" tabindex="-1"></a>  im_k[im_k<span class="sc">&gt;</span><span class="dv">1</span>]<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb53-10"><a href="3.5-lowrank.html#cb53-10" tabindex="-1"></a>  im_k[im_k<span class="sc">&lt;</span><span class="dv">0</span>]<span class="ot">=</span><span class="dv">0</span></span>
+<span id="cb53-11"><a href="3.5-lowrank.html#cb53-11" tabindex="-1"></a>  <span class="fu">return</span>(im_k)</span>
+<span id="cb53-12"><a href="3.5-lowrank.html#cb53-12" tabindex="-1"></a>}</span>
+<span id="cb53-13"><a href="3.5-lowrank.html#cb53-13" tabindex="-1"></a></span>
+<span id="cb53-14"><a href="3.5-lowrank.html#cb53-14" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb53-15"><a href="3.5-lowrank.html#cb53-15" tabindex="-1"></a></span>
+<span id="cb53-16"><a href="3.5-lowrank.html#cb53-16" tabindex="-1"></a>pepprssvd<span class="ot">&lt;-</span> peppers</span>
+<span id="cb53-17"><a href="3.5-lowrank.html#cb53-17" tabindex="-1"></a><span class="cf">for</span>(k <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">30</span>,<span class="dv">100</span>,<span class="dv">300</span>)){</span>
+<span id="cb53-18"><a href="3.5-lowrank.html#cb53-18" tabindex="-1"></a>  svds<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb53-19"><a href="3.5-lowrank.html#cb53-19" tabindex="-1"></a>  <span class="cf">for</span>(ii <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb53-20"><a href="3.5-lowrank.html#cb53-20" tabindex="-1"></a>    pepprssvd[,,ii]<span class="ot">&lt;-</span><span class="fu">svd_image</span>(peppers[,,ii],k)</span>
+<span id="cb53-21"><a href="3.5-lowrank.html#cb53-21" tabindex="-1"></a>  }</span>
+<span id="cb53-22"><a href="3.5-lowrank.html#cb53-22" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="fu">as.raster</span>(pepprssvd))</span>
+<span id="cb53-23"><a href="3.5-lowrank.html#cb53-23" tabindex="-1"></a>}</span></code></pre></div>
 <p><img src="03-matrix-decompositions_files/figure-html/unnamed-chunk-5-1.png" width="100%" /></p>
 <p>You can see that for <span class="math inline">\(k=30\)</span> we have a reasonable approximation, but with some errors. With <span class="math inline">\(k=100\)</span> it is hard to spot the difference with the original. The size of the four compressed images is 45Kb, 345Kb, 1.1Mb and 3.4Mb.</p>
 <p>You can see further demonstrations of image compression with the SVD <a href="http://timbaumann.info/svd-image-compression-demo/">here</a>.</p>

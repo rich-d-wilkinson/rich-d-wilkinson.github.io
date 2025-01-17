@@ -791,73 +791,27 @@ E & 59 & 85\\
 \begin{itemize}
 \tightlist
 \item
-  As an exercise, calculate the sample mean, sample covariance, sample correlation and total variation by hand.
+  As an exercise, calculate the sample mean, sample covariance, and sample correlation by hand.
 \end{itemize}
 
 \begin{itemize}
 \tightlist
 \item
   Now calculate these in R using \texttt{colMeans}, \texttt{cov}, and \texttt{cor}. These commands assume each column is a different variable, and each row a different observation.
+  \textbf{Note that} by default R uses \(n-1\) in the denominator for the variance and covariance commands, whereas we used \(n\) in our definition.
 \end{itemize}
+
+You can load the data into R using the following commands:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(dplyr)}
 \NormalTok{Ex1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
   \AttributeTok{Student=}\NormalTok{LETTERS[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{],}
   \AttributeTok{P =} \FunctionTok{c}\NormalTok{(}\DecValTok{41}\NormalTok{,}\DecValTok{72}\NormalTok{,}\DecValTok{46}\NormalTok{,}\DecValTok{77}\NormalTok{,}\DecValTok{59}\NormalTok{),}
   \AttributeTok{S =} \FunctionTok{c}\NormalTok{(}\DecValTok{63}\NormalTok{,}\DecValTok{82}\NormalTok{,}\DecValTok{38}\NormalTok{,}\DecValTok{57}\NormalTok{,}\DecValTok{85}\NormalTok{)}
 \NormalTok{  )}
-
-\NormalTok{Ex1 }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(is.numeric) }\SpecialCharTok{|\textgreater{}} \FunctionTok{colMeans}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-##  P  S 
-## 59 65
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Ex1 }\SpecialCharTok{|\textgreater{}} \FunctionTok{select\_if}\NormalTok{(is.numeric) }\SpecialCharTok{|\textgreater{}} \FunctionTok{cov}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##       P     S
-## P 246.5 116.0
-## S 116.0 371.5
-\end{verbatim}
-
-Note that by default R uses \(n-1\) in the denominator for the variance and covariance commands, whereas we used \(n\) in our definition.
-
-We will be using the \texttt{dplyr} R package to perform basic data manipulation in R. If you are unfamiliar with \texttt{dplyr}, you can read about it at \url{https://dplyr.tidyverse.org/}. The pipe command \texttt{\textbar{}\textgreater{}} is particularly useful for chaining together multiple commands.
-
-You could compute the same quantities using more familiar commands by selecting the numerical columns:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{colMeans}\NormalTok{(Ex1[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{])}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  P  S 
-## 59 65
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{cov}\NormalTok{(Ex1[,}\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{])}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##       P     S
-## P 246.5 116.0
-## S 116.0 371.5
-\end{verbatim}
 
 \begin{itemize}
 \tightlist
@@ -894,7 +848,9 @@ Work with the \texttt{mtcars2} dataframe when you use \texttt{ggplot2}.
 \item
   Try using the \texttt{pairs} command from base R and the \texttt{ggpairs} command from GGally.
 \item
-  Try colouring the scatter plots accoring to whether the car is automatic or not. - Create another plot using colour to represent the number of gears.
+  Try colouring the scatter plots accoring to whether the car is automatic or not.
+\item
+  Create another plot using colour to represent the number of gears.
 \item
   Find another type of plot from one of the plot galleries and try to create a similar plot with these data.
 \end{itemize}
@@ -10394,8 +10350,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5455   0.3913   0.3206
-## adjCV       0.8308   0.5451   0.3909   0.3200
+## CV          0.8308   0.5418   0.3903   0.3165
+## adjCV       0.8308   0.5415   0.3899   0.3162
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10518,7 +10474,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.001
+## [1] 0.0007943282
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
@@ -10530,7 +10486,7 @@ and the largest value of lambda that gives a prediction error within one standar
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.03981072
+## [1] 0.03162278
 \end{verbatim}
 
 \section{Multi-output Linear Model}\label{multi-output-linear-model}

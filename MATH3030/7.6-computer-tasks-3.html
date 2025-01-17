@@ -398,22 +398,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="task-1-2" class="section level4 unnumbered hasAnchor">
 <h4>Task 1<a href="7.6-computer-tasks-3.html#task-1-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Download the wine dataset from the <a href="https://archive.ics.uci.edu/ml/datasets/wine">UCI Machine Learning Repository</a></p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="7.6-computer-tasks-3.html#cb231-1" tabindex="-1"></a><span class="fu">download.file</span>(</span>
-<span id="cb231-2"><a href="7.6-computer-tasks-3.html#cb231-2" tabindex="-1"></a>  <span class="at">url=</span><span class="st">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data&quot;</span>, </span>
-<span id="cb231-3"><a href="7.6-computer-tasks-3.html#cb231-3" tabindex="-1"></a>              <span class="at">destfile=</span><span class="st">&quot;wine.data&quot;</span>)</span>
-<span id="cb231-4"><a href="7.6-computer-tasks-3.html#cb231-4" tabindex="-1"></a>wine <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;wine.data&quot;</span>, <span class="at">header=</span><span class="cn">FALSE</span>)</span>
-<span id="cb231-5"><a href="7.6-computer-tasks-3.html#cb231-5" tabindex="-1"></a><span class="fu">colnames</span>(wine) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Type&quot;</span>, <span class="st">&quot;Alcohol&quot;</span>, <span class="st">&quot;Malic&quot;</span>,</span>
-<span id="cb231-6"><a href="7.6-computer-tasks-3.html#cb231-6" tabindex="-1"></a><span class="st">&quot;Ash&quot;</span>,</span>
-<span id="cb231-7"><a href="7.6-computer-tasks-3.html#cb231-7" tabindex="-1"></a><span class="st">&quot;Alcalinity&quot;</span>,</span>
-<span id="cb231-8"><a href="7.6-computer-tasks-3.html#cb231-8" tabindex="-1"></a><span class="st">&quot;Magnesium&quot;</span>,</span>
-<span id="cb231-9"><a href="7.6-computer-tasks-3.html#cb231-9" tabindex="-1"></a><span class="st">&quot;Phenols&quot;</span>,</span>
-<span id="cb231-10"><a href="7.6-computer-tasks-3.html#cb231-10" tabindex="-1"></a><span class="st">&quot;Flavanoids&quot;</span>,</span>
-<span id="cb231-11"><a href="7.6-computer-tasks-3.html#cb231-11" tabindex="-1"></a><span class="st">&quot;Nonflavanoids&quot;</span>,</span>
-<span id="cb231-12"><a href="7.6-computer-tasks-3.html#cb231-12" tabindex="-1"></a><span class="st">&quot;Proanthocyanins&quot;</span>,</span>
-<span id="cb231-13"><a href="7.6-computer-tasks-3.html#cb231-13" tabindex="-1"></a><span class="st">&quot;Color&quot;</span>,</span>
-<span id="cb231-14"><a href="7.6-computer-tasks-3.html#cb231-14" tabindex="-1"></a><span class="st">&quot;Hue&quot;</span>,</span>
-<span id="cb231-15"><a href="7.6-computer-tasks-3.html#cb231-15" tabindex="-1"></a><span class="st">&quot;Dilution&quot;</span>,</span>
-<span id="cb231-16"><a href="7.6-computer-tasks-3.html#cb231-16" tabindex="-1"></a><span class="st">&quot;Proline&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="7.6-computer-tasks-3.html#cb224-1" tabindex="-1"></a><span class="fu">download.file</span>(</span>
+<span id="cb224-2"><a href="7.6-computer-tasks-3.html#cb224-2" tabindex="-1"></a>  <span class="at">url=</span><span class="st">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data&quot;</span>, </span>
+<span id="cb224-3"><a href="7.6-computer-tasks-3.html#cb224-3" tabindex="-1"></a>              <span class="at">destfile=</span><span class="st">&quot;wine.data&quot;</span>)</span>
+<span id="cb224-4"><a href="7.6-computer-tasks-3.html#cb224-4" tabindex="-1"></a>wine <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;wine.data&quot;</span>, <span class="at">header=</span><span class="cn">FALSE</span>)</span>
+<span id="cb224-5"><a href="7.6-computer-tasks-3.html#cb224-5" tabindex="-1"></a><span class="fu">colnames</span>(wine) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Type&quot;</span>, <span class="st">&quot;Alcohol&quot;</span>, <span class="st">&quot;Malic&quot;</span>,</span>
+<span id="cb224-6"><a href="7.6-computer-tasks-3.html#cb224-6" tabindex="-1"></a><span class="st">&quot;Ash&quot;</span>,</span>
+<span id="cb224-7"><a href="7.6-computer-tasks-3.html#cb224-7" tabindex="-1"></a><span class="st">&quot;Alcalinity&quot;</span>,</span>
+<span id="cb224-8"><a href="7.6-computer-tasks-3.html#cb224-8" tabindex="-1"></a><span class="st">&quot;Magnesium&quot;</span>,</span>
+<span id="cb224-9"><a href="7.6-computer-tasks-3.html#cb224-9" tabindex="-1"></a><span class="st">&quot;Phenols&quot;</span>,</span>
+<span id="cb224-10"><a href="7.6-computer-tasks-3.html#cb224-10" tabindex="-1"></a><span class="st">&quot;Flavanoids&quot;</span>,</span>
+<span id="cb224-11"><a href="7.6-computer-tasks-3.html#cb224-11" tabindex="-1"></a><span class="st">&quot;Nonflavanoids&quot;</span>,</span>
+<span id="cb224-12"><a href="7.6-computer-tasks-3.html#cb224-12" tabindex="-1"></a><span class="st">&quot;Proanthocyanins&quot;</span>,</span>
+<span id="cb224-13"><a href="7.6-computer-tasks-3.html#cb224-13" tabindex="-1"></a><span class="st">&quot;Color&quot;</span>,</span>
+<span id="cb224-14"><a href="7.6-computer-tasks-3.html#cb224-14" tabindex="-1"></a><span class="st">&quot;Hue&quot;</span>,</span>
+<span id="cb224-15"><a href="7.6-computer-tasks-3.html#cb224-15" tabindex="-1"></a><span class="st">&quot;Dilution&quot;</span>,</span>
+<span id="cb224-16"><a href="7.6-computer-tasks-3.html#cb224-16" tabindex="-1"></a><span class="st">&quot;Proline&quot;</span>)</span></code></pre></div>
 <ol style="list-style-type: lower-roman">
 <li><p>Let’s assume this selection of wines is a random sample from the population of all possible wines. Conduct a multivariate hypothesis test to see whether the average wine has an alcohol content different from 13 and an malic acid content different from 2?</p></li>
 <li><p>Test whether the alcohol and malic acid content are significantly different between wines of type 1 and wines of type 2.</p></li>
@@ -432,9 +432,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="task-3-2" class="section level5 unnumbered hasAnchor">
 <h5>Task 3<a href="7.6-computer-tasks-3.html#task-3-2" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Download the exam data from Moodle.</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="7.6-computer-tasks-3.html#cb232-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb232-2"><a href="7.6-computer-tasks-3.html#cb232-2" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file=</span><span class="st">&#39;exam.rda&#39;</span>)</span>
-<span id="cb232-3"><a href="7.6-computer-tasks-3.html#cb232-3" tabindex="-1"></a>N<span class="ot">&lt;-</span><span class="fu">dim</span>(exam)[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="7.6-computer-tasks-3.html#cb225-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb225-2"><a href="7.6-computer-tasks-3.html#cb225-2" tabindex="-1"></a><span class="fu">load</span>(<span class="at">file=</span><span class="st">&#39;exam.rda&#39;</span>)</span>
+<span id="cb225-3"><a href="7.6-computer-tasks-3.html#cb225-3" tabindex="-1"></a>N<span class="ot">&lt;-</span><span class="fu">dim</span>(exam)[<span class="dv">1</span>]</span></code></pre></div>
 <p>We will now work through how to plot the confidence regions shown in the notes.</p>
 <ol style="list-style-type: lower-roman">
 <li>Firstly, let’s plot a circle with equation
@@ -443,11 +443,11 @@ or in vector form:
 <span class="math display">\[\mathbf x^\top\mathbf x=c^2.\]</span>
 Why must <span class="math inline">\(x\)</span> be in the range <span class="math inline">\((-c,c)\)</span>? Suppose <span class="math inline">\(c=10\)</span>. In this case you can plot a circle using the following commands</li>
 </ol>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="7.6-computer-tasks-3.html#cb233-1" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span>pi, <span class="fl">0.01</span>)</span>
-<span id="cb233-2"><a href="7.6-computer-tasks-3.html#cb233-2" tabindex="-1"></a>x<span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">*</span><span class="fu">cos</span>(theta)</span>
-<span id="cb233-3"><a href="7.6-computer-tasks-3.html#cb233-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">*</span><span class="fu">sin</span>(theta)</span>
-<span id="cb233-4"><a href="7.6-computer-tasks-3.html#cb233-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">pty=</span><span class="st">&quot;s&quot;</span>)  <span class="co"># ensures the plot window is square</span></span>
-<span id="cb233-5"><a href="7.6-computer-tasks-3.html#cb233-5" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="7.6-computer-tasks-3.html#cb226-1" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">2</span><span class="sc">*</span>pi, <span class="fl">0.01</span>)</span>
+<span id="cb226-2"><a href="7.6-computer-tasks-3.html#cb226-2" tabindex="-1"></a>x<span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">*</span><span class="fu">cos</span>(theta)</span>
+<span id="cb226-3"><a href="7.6-computer-tasks-3.html#cb226-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">*</span><span class="fu">sin</span>(theta)</span>
+<span id="cb226-4"><a href="7.6-computer-tasks-3.html#cb226-4" tabindex="-1"></a><span class="fu">par</span>(<span class="at">pty=</span><span class="st">&quot;s&quot;</span>)  <span class="co"># ensures the plot window is square</span></span>
+<span id="cb226-5"><a href="7.6-computer-tasks-3.html#cb226-5" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">&#39;l&#39;</span>)</span></code></pre></div>
 <p>Explain why this works. <strong>Note</strong> if your plotting window is not square, your circle will look like an ellipse!</p>
 <ol start="2" style="list-style-type: lower-roman">
 <li><p>Let’s now plot the ellipse

@@ -525,7 +525,7 @@ E
 </tbody>
 </table>
 <ul>
-<li>As an exercise, calculate the sample mean, sample covariance, sample correlation and total variation by hand.</li>
+<li>As an exercise, calculate the sample mean, sample covariance, and sample correlation by hand.</li>
 </ul>
 <!--The sample mean is $\bar{\bx} = \begin{pmatrix} 59 \\ 65 \end{pmatrix}$.
 
@@ -542,32 +542,15 @@ The sample correlation matrix is
 The total variation is $\ttr(\bS) = 197.2 + 297.2 = 494.4$.
 -->
 <ul>
-<li>Now calculate these in R using <code>colMeans</code>, <code>cov</code>, and <code>cor</code>. These commands assume each column is a different variable, and each row a different observation.</li>
+<li>Now calculate these in R using <code>colMeans</code>, <code>cov</code>, and <code>cor</code>. These commands assume each column is a different variable, and each row a different observation.
+<strong>Note that</strong> by default R uses <span class="math inline">\(n-1\)</span> in the denominator for the variance and covariance commands, whereas we used <span class="math inline">\(n\)</span> in our definition. <!-- hence the multiple of $4/5=(n-1)/n introduced in the covariance calculations above.--></li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="1.4-computer-tasks.html#cb15-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb15-2"><a href="1.4-computer-tasks.html#cb15-2" tabindex="-1"></a>Ex1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb15-3"><a href="1.4-computer-tasks.html#cb15-3" tabindex="-1"></a>  <span class="at">Student=</span>LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
-<span id="cb15-4"><a href="1.4-computer-tasks.html#cb15-4" tabindex="-1"></a>  <span class="at">P =</span> <span class="fu">c</span>(<span class="dv">41</span>,<span class="dv">72</span>,<span class="dv">46</span>,<span class="dv">77</span>,<span class="dv">59</span>),</span>
-<span id="cb15-5"><a href="1.4-computer-tasks.html#cb15-5" tabindex="-1"></a>  <span class="at">S =</span> <span class="fu">c</span>(<span class="dv">63</span>,<span class="dv">82</span>,<span class="dv">38</span>,<span class="dv">57</span>,<span class="dv">85</span>)</span>
-<span id="cb15-6"><a href="1.4-computer-tasks.html#cb15-6" tabindex="-1"></a>  )</span>
-<span id="cb15-7"><a href="1.4-computer-tasks.html#cb15-7" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="1.4-computer-tasks.html#cb15-8" tabindex="-1"></a>Ex1 <span class="sc">|&gt;</span> <span class="fu">select_if</span>(is.numeric) <span class="sc">|&gt;</span> <span class="fu">colMeans</span>()</span></code></pre></div>
-<pre><code>##  P  S 
-## 59 65</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="1.4-computer-tasks.html#cb17-1" tabindex="-1"></a>Ex1 <span class="sc">|&gt;</span> <span class="fu">select_if</span>(is.numeric) <span class="sc">|&gt;</span> <span class="fu">cov</span>()</span></code></pre></div>
-<pre><code>##       P     S
-## P 246.5 116.0
-## S 116.0 371.5</code></pre>
-<p>Note that by default R uses <span class="math inline">\(n-1\)</span> in the denominator for the variance and covariance commands, whereas we used <span class="math inline">\(n\)</span> in our definition. <!-- hence the multiple of $4/5=(n-1)/n introduced in the covariance calculations above.--></p>
-<p>We will be using the <code>dplyr</code> R package to perform basic data manipulation in R. If you are unfamiliar with <code>dplyr</code>, you can read about it at <a href="https://dplyr.tidyverse.org/">https://dplyr.tidyverse.org/</a>. The pipe command <code>|&gt;</code> is particularly useful for chaining together multiple commands.</p>
-<p>You could compute the same quantities using more familiar commands by selecting the numerical columns:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="1.4-computer-tasks.html#cb19-1" tabindex="-1"></a><span class="fu">colMeans</span>(Ex1[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
-<pre><code>##  P  S 
-## 59 65</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="1.4-computer-tasks.html#cb21-1" tabindex="-1"></a><span class="fu">cov</span>(Ex1[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>])</span></code></pre></div>
-<pre><code>##       P     S
-## P 246.5 116.0
-## S 116.0 371.5</code></pre>
+<p>You can load the data into R using the following commands:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="1.4-computer-tasks.html#cb15-1" tabindex="-1"></a>Ex1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-2"><a href="1.4-computer-tasks.html#cb15-2" tabindex="-1"></a>  <span class="at">Student=</span>LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb15-3"><a href="1.4-computer-tasks.html#cb15-3" tabindex="-1"></a>  <span class="at">P =</span> <span class="fu">c</span>(<span class="dv">41</span>,<span class="dv">72</span>,<span class="dv">46</span>,<span class="dv">77</span>,<span class="dv">59</span>),</span>
+<span id="cb15-4"><a href="1.4-computer-tasks.html#cb15-4" tabindex="-1"></a>  <span class="at">S =</span> <span class="fu">c</span>(<span class="dv">63</span>,<span class="dv">82</span>,<span class="dv">38</span>,<span class="dv">57</span>,<span class="dv">85</span>)</span>
+<span id="cb15-5"><a href="1.4-computer-tasks.html#cb15-5" tabindex="-1"></a>  )</span></code></pre></div>
 <ul>
 <li>Can you compute the covariance matrix using the definition in Equation <a href="1.2-exploratory-data-analysis-eda.html#eq:samplecov">(1.2)</a>?</li>
 </ul>
@@ -579,18 +562,19 @@ Ex1 |> select_if(is.numeric) |> cov |> diag |> sum*4/5
 <ol start="3" style="list-style-type: decimal">
 <li>The <code>mtcars</code> dataset is another built-in dataset in R. You can read about it by typing <code>?mtcars</code> in R. Note that some of the variables are factors. You can ensure R treats them as factors by using the following command to create a dataset where they are listed as factors:</li>
 </ol>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="1.4-computer-tasks.html#cb23-1" tabindex="-1"></a>mtcars2 <span class="ot">&lt;-</span> <span class="fu">within</span>(mtcars, {</span>
-<span id="cb23-2"><a href="1.4-computer-tasks.html#cb23-2" tabindex="-1"></a>   vs <span class="ot">&lt;-</span> <span class="fu">factor</span>(vs, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;V&quot;</span>, <span class="st">&quot;S&quot;</span>))</span>
-<span id="cb23-3"><a href="1.4-computer-tasks.html#cb23-3" tabindex="-1"></a>   am <span class="ot">&lt;-</span> <span class="fu">factor</span>(am, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;automatic&quot;</span>, <span class="st">&quot;manual&quot;</span>))</span>
-<span id="cb23-4"><a href="1.4-computer-tasks.html#cb23-4" tabindex="-1"></a>   cyl  <span class="ot">&lt;-</span> <span class="fu">ordered</span>(cyl)</span>
-<span id="cb23-5"><a href="1.4-computer-tasks.html#cb23-5" tabindex="-1"></a>   gear <span class="ot">&lt;-</span> <span class="fu">ordered</span>(gear)</span>
-<span id="cb23-6"><a href="1.4-computer-tasks.html#cb23-6" tabindex="-1"></a>   carb <span class="ot">&lt;-</span> <span class="fu">ordered</span>(carb)</span>
-<span id="cb23-7"><a href="1.4-computer-tasks.html#cb23-7" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="1.4-computer-tasks.html#cb16-1" tabindex="-1"></a>mtcars2 <span class="ot">&lt;-</span> <span class="fu">within</span>(mtcars, {</span>
+<span id="cb16-2"><a href="1.4-computer-tasks.html#cb16-2" tabindex="-1"></a>   vs <span class="ot">&lt;-</span> <span class="fu">factor</span>(vs, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;V&quot;</span>, <span class="st">&quot;S&quot;</span>))</span>
+<span id="cb16-3"><a href="1.4-computer-tasks.html#cb16-3" tabindex="-1"></a>   am <span class="ot">&lt;-</span> <span class="fu">factor</span>(am, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;automatic&quot;</span>, <span class="st">&quot;manual&quot;</span>))</span>
+<span id="cb16-4"><a href="1.4-computer-tasks.html#cb16-4" tabindex="-1"></a>   cyl  <span class="ot">&lt;-</span> <span class="fu">ordered</span>(cyl)</span>
+<span id="cb16-5"><a href="1.4-computer-tasks.html#cb16-5" tabindex="-1"></a>   gear <span class="ot">&lt;-</span> <span class="fu">ordered</span>(gear)</span>
+<span id="cb16-6"><a href="1.4-computer-tasks.html#cb16-6" tabindex="-1"></a>   carb <span class="ot">&lt;-</span> <span class="fu">ordered</span>(carb)</span>
+<span id="cb16-7"><a href="1.4-computer-tasks.html#cb16-7" tabindex="-1"></a>})</span></code></pre></div>
 <p>Work with the <code>mtcars2</code> dataframe when you use <code>ggplot2</code>.</p>
 <ul>
 <li>Create some plots to explore the structure of this dataset using ggplot2.</li>
 <li>Try using the <code>pairs</code> command from base R and the <code>ggpairs</code> command from GGally.</li>
-<li>Try colouring the scatter plots accoring to whether the car is automatic or not. - Create another plot using colour to represent the number of gears.</li>
+<li>Try colouring the scatter plots accoring to whether the car is automatic or not.</li>
+<li>Create another plot using colour to represent the number of gears.</li>
 <li>Find another type of plot from one of the plot galleries and try to create a similar plot with these data.</li>
 </ul>
 <ol start="4" style="list-style-type: decimal">
@@ -600,10 +584,10 @@ and covariance matrix
 <span class="math display">\[\boldsymbol{\Sigma}= \left(\begin{array}{cc}2&amp;1\\1&amp;2\end{array}\right)\]</span>
 as follows (you may need to install the R package <code>mvtnorm</code> first):</li>
 </ol>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="1.4-computer-tasks.html#cb24-1" tabindex="-1"></a><span class="fu">library</span>(mvtnorm)</span>
-<span id="cb24-2"><a href="1.4-computer-tasks.html#cb24-2" tabindex="-1"></a>mu <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb24-3"><a href="1.4-computer-tasks.html#cb24-3" tabindex="-1"></a>Sigma<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">nr=</span><span class="dv">2</span>)</span>
-<span id="cb24-4"><a href="1.4-computer-tasks.html#cb24-4" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rmvnorm</span>(<span class="at">n=</span><span class="dv">100</span>, <span class="at">mean=</span>mu, <span class="at">sigma=</span>Sigma)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="1.4-computer-tasks.html#cb17-1" tabindex="-1"></a><span class="fu">library</span>(mvtnorm)</span>
+<span id="cb17-2"><a href="1.4-computer-tasks.html#cb17-2" tabindex="-1"></a>mu <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb17-3"><a href="1.4-computer-tasks.html#cb17-3" tabindex="-1"></a>Sigma<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">nr=</span><span class="dv">2</span>)</span>
+<span id="cb17-4"><a href="1.4-computer-tasks.html#cb17-4" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rmvnorm</span>(<span class="at">n=</span><span class="dv">100</span>, <span class="at">mean=</span>mu, <span class="at">sigma=</span>Sigma)</span></code></pre></div>
 <ul>
 <li>Compute the sample mean and covariance matrix of these samples.</li>
 <li>Generate a new sample dataset, <span class="math inline">\(X\)</span>, and recompute the sample mean and covariance matrix. What do you notice?</li>
@@ -612,66 +596,66 @@ as follows (you may need to install the R package <code>mvtnorm</code> first):</
 <ol start="5" style="list-style-type: decimal">
 <li><strong>Optional</strong> Download the MNIST data from Moodle and load it into R.</li>
 </ol>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="1.4-computer-tasks.html#cb25-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;mnist.rda&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="1.4-computer-tasks.html#cb18-1" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&#39;mnist.rda&#39;</span>)</span></code></pre></div>
 <p>This loads a list <code>mnist</code> that splits the data into two parts</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="1.4-computer-tasks.html#cb26-1" tabindex="-1"></a>mnist<span class="sc">$</span>train <span class="do">## a training set of 60000 images</span></span>
-<span id="cb26-2"><a href="1.4-computer-tasks.html#cb26-2" tabindex="-1"></a>mnist<span class="sc">$</span>test <span class="do">## a test set of 10000 images</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="1.4-computer-tasks.html#cb19-1" tabindex="-1"></a>mnist<span class="sc">$</span>train <span class="do">## a training set of 60000 images</span></span>
+<span id="cb19-2"><a href="1.4-computer-tasks.html#cb19-2" tabindex="-1"></a>mnist<span class="sc">$</span>test <span class="do">## a test set of 10000 images</span></span></code></pre></div>
 <p>Let’s just look at the training set. This is also a list containing the image intensities and the image labels</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="1.4-computer-tasks.html#cb27-1" tabindex="-1"></a>mnist<span class="sc">$</span>train<span class="sc">$</span>x <span class="co"># image intensities</span></span>
-<span id="cb27-2"><a href="1.4-computer-tasks.html#cb27-2" tabindex="-1"></a>mnist<span class="sc">$</span>train<span class="sc">$</span>y <span class="co"># image labels</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="1.4-computer-tasks.html#cb20-1" tabindex="-1"></a>mnist<span class="sc">$</span>train<span class="sc">$</span>x <span class="co"># image intensities</span></span>
+<span id="cb20-2"><a href="1.4-computer-tasks.html#cb20-2" tabindex="-1"></a>mnist<span class="sc">$</span>train<span class="sc">$</span>y <span class="co"># image labels</span></span></code></pre></div>
 <p>If we select just the first image we can see it is a vector of length 784 containing numbers between 0 and 1.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="1.4-computer-tasks.html#cb28-1" tabindex="-1"></a>mnist<span class="sc">$</span>train<span class="sc">$</span>x[<span class="dv">1</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="1.4-computer-tasks.html#cb21-1" tabindex="-1"></a>mnist<span class="sc">$</span>train<span class="sc">$</span>x[<span class="dv">1</span>,]</span></code></pre></div>
 <p>I’ve created a function to help you plot these images.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="1.4-computer-tasks.html#cb29-1" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
-<span id="cb29-2"><a href="1.4-computer-tasks.html#cb29-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb29-3"><a href="1.4-computer-tasks.html#cb29-3" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="1.4-computer-tasks.html#cb29-4" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="1.4-computer-tasks.html#cb29-5" tabindex="-1"></a>plot.mnist <span class="ot">&lt;-</span> <span class="cf">function</span>(im){</span>
-<span id="cb29-6"><a href="1.4-computer-tasks.html#cb29-6" tabindex="-1"></a>  <span class="co">#im[im&lt;0]&lt;-0 # set any negative intensities to zero</span></span>
-<span id="cb29-7"><a href="1.4-computer-tasks.html#cb29-7" tabindex="-1"></a>  <span class="co">#im[im&gt;1]&lt;-1 # set an intensities bigger than 1 to 1.</span></span>
-<span id="cb29-8"><a href="1.4-computer-tasks.html#cb29-8" tabindex="-1"></a>  </span>
-<span id="cb29-9"><a href="1.4-computer-tasks.html#cb29-9" tabindex="-1"></a>  </span>
-<span id="cb29-10"><a href="1.4-computer-tasks.html#cb29-10" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.vector</span>(im)){ <span class="co"># a single image</span></span>
-<span id="cb29-11"><a href="1.4-computer-tasks.html#cb29-11" tabindex="-1"></a>    </span>
-<span id="cb29-12"><a href="1.4-computer-tasks.html#cb29-12" tabindex="-1"></a>    A<span class="ot">&lt;-</span><span class="fu">matrix</span>(im, <span class="at">nr=</span><span class="dv">28</span>, <span class="at">byrow=</span>F)</span>
-<span id="cb29-13"><a href="1.4-computer-tasks.html#cb29-13" tabindex="-1"></a>    C<span class="ot">&lt;-</span> <span class="fu">melt</span>(A, <span class="at">varnames =</span> <span class="fu">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>), </span>
-<span id="cb29-14"><a href="1.4-computer-tasks.html#cb29-14" tabindex="-1"></a>             <span class="at">value.name =</span> <span class="st">&quot;intensity&quot;</span>)</span>
-<span id="cb29-15"><a href="1.4-computer-tasks.html#cb29-15" tabindex="-1"></a>    p<span class="ot">&lt;-</span><span class="fu">ggplot</span>(C, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> intensity))<span class="sc">+</span></span>
-<span id="cb29-16"><a href="1.4-computer-tasks.html#cb29-16" tabindex="-1"></a>      <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill=</span>intensity))<span class="sc">+</span></span>
-<span id="cb29-17"><a href="1.4-computer-tasks.html#cb29-17" tabindex="-1"></a>      <span class="fu">scale_fill_gradient</span>(<span class="at">low=</span><span class="st">&#39;white&#39;</span>, <span class="at">high=</span><span class="st">&#39;black&#39;</span>)<span class="sc">+</span></span>
-<span id="cb29-18"><a href="1.4-computer-tasks.html#cb29-18" tabindex="-1"></a>      <span class="fu">scale_y_reverse</span>()<span class="sc">+</span><span class="fu">theme</span>(</span>
-<span id="cb29-19"><a href="1.4-computer-tasks.html#cb29-19" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb29-20"><a href="1.4-computer-tasks.html#cb29-20" tabindex="-1"></a>        <span class="at">strip.text.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb29-21"><a href="1.4-computer-tasks.html#cb29-21" tabindex="-1"></a>        <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>),</span>
-<span id="cb29-22"><a href="1.4-computer-tasks.html#cb29-22" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb29-23"><a href="1.4-computer-tasks.html#cb29-23" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb29-24"><a href="1.4-computer-tasks.html#cb29-24" tabindex="-1"></a>      ) </span>
-<span id="cb29-25"><a href="1.4-computer-tasks.html#cb29-25" tabindex="-1"></a>  }</span>
-<span id="cb29-26"><a href="1.4-computer-tasks.html#cb29-26" tabindex="-1"></a>  <span class="cf">else</span>{</span>
-<span id="cb29-27"><a href="1.4-computer-tasks.html#cb29-27" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">dim</span>(im)[<span class="dv">2</span>]<span class="sc">!=</span><span class="dv">784</span>){</span>
-<span id="cb29-28"><a href="1.4-computer-tasks.html#cb29-28" tabindex="-1"></a>      im <span class="ot">=</span> <span class="fu">t</span>(im)</span>
-<span id="cb29-29"><a href="1.4-computer-tasks.html#cb29-29" tabindex="-1"></a>    } </span>
-<span id="cb29-30"><a href="1.4-computer-tasks.html#cb29-30" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">dim</span>(im)[<span class="dv">1</span>]</span>
-<span id="cb29-31"><a href="1.4-computer-tasks.html#cb29-31" tabindex="-1"></a>    As <span class="ot">&lt;-</span> <span class="fu">array</span>(im, <span class="at">dim =</span> <span class="fu">c</span>(n, <span class="dv">28</span>, <span class="dv">28</span>))</span>
-<span id="cb29-32"><a href="1.4-computer-tasks.html#cb29-32" tabindex="-1"></a>    </span>
-<span id="cb29-33"><a href="1.4-computer-tasks.html#cb29-33" tabindex="-1"></a>    Cs<span class="ot">&lt;-</span> <span class="fu">melt</span>(As, <span class="at">varnames =</span> <span class="fu">c</span>(<span class="st">&quot;image&quot;</span>,<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>), </span>
-<span id="cb29-34"><a href="1.4-computer-tasks.html#cb29-34" tabindex="-1"></a>              <span class="at">value.name =</span> <span class="st">&quot;intensity&quot;</span>)</span>
-<span id="cb29-35"><a href="1.4-computer-tasks.html#cb29-35" tabindex="-1"></a>    p<span class="ot">&lt;-</span><span class="fu">ggplot</span>(Cs, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> intensity))<span class="sc">+</span></span>
-<span id="cb29-36"><a href="1.4-computer-tasks.html#cb29-36" tabindex="-1"></a>      <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill=</span>intensity))<span class="sc">+</span></span>
-<span id="cb29-37"><a href="1.4-computer-tasks.html#cb29-37" tabindex="-1"></a>      <span class="fu">scale_fill_gradient</span>(<span class="at">low=</span><span class="st">&#39;white&#39;</span>, <span class="at">high=</span><span class="st">&#39;black&#39;</span>)<span class="sc">+</span></span>
-<span id="cb29-38"><a href="1.4-computer-tasks.html#cb29-38" tabindex="-1"></a>      <span class="fu">facet_wrap</span>(<span class="sc">~</span> image, <span class="at">nrow =</span> <span class="fu">floor</span>(<span class="fu">sqrt</span>(n))<span class="sc">+</span><span class="dv">1</span>, </span>
-<span id="cb29-39"><a href="1.4-computer-tasks.html#cb29-39" tabindex="-1"></a>                 <span class="at">ncol =</span> <span class="fu">floor</span>(<span class="fu">sqrt</span>(n))<span class="sc">+</span><span class="dv">1</span>)<span class="sc">+</span></span>
-<span id="cb29-40"><a href="1.4-computer-tasks.html#cb29-40" tabindex="-1"></a>      <span class="fu">scale_y_reverse</span>()<span class="sc">+</span><span class="fu">theme</span>(</span>
-<span id="cb29-41"><a href="1.4-computer-tasks.html#cb29-41" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb29-42"><a href="1.4-computer-tasks.html#cb29-42" tabindex="-1"></a>        <span class="at">strip.text.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb29-43"><a href="1.4-computer-tasks.html#cb29-43" tabindex="-1"></a>        <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>),</span>
-<span id="cb29-44"><a href="1.4-computer-tasks.html#cb29-44" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb29-45"><a href="1.4-computer-tasks.html#cb29-45" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb29-46"><a href="1.4-computer-tasks.html#cb29-46" tabindex="-1"></a>      ) </span>
-<span id="cb29-47"><a href="1.4-computer-tasks.html#cb29-47" tabindex="-1"></a>    </span>
-<span id="cb29-48"><a href="1.4-computer-tasks.html#cb29-48" tabindex="-1"></a>  }</span>
-<span id="cb29-49"><a href="1.4-computer-tasks.html#cb29-49" tabindex="-1"></a>  <span class="fu">return</span>(p)</span>
-<span id="cb29-50"><a href="1.4-computer-tasks.html#cb29-50" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="1.4-computer-tasks.html#cb22-1" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb22-2"><a href="1.4-computer-tasks.html#cb22-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb22-3"><a href="1.4-computer-tasks.html#cb22-3" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="1.4-computer-tasks.html#cb22-4" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="1.4-computer-tasks.html#cb22-5" tabindex="-1"></a>plot.mnist <span class="ot">&lt;-</span> <span class="cf">function</span>(im){</span>
+<span id="cb22-6"><a href="1.4-computer-tasks.html#cb22-6" tabindex="-1"></a>  <span class="co">#im[im&lt;0]&lt;-0 # set any negative intensities to zero</span></span>
+<span id="cb22-7"><a href="1.4-computer-tasks.html#cb22-7" tabindex="-1"></a>  <span class="co">#im[im&gt;1]&lt;-1 # set an intensities bigger than 1 to 1.</span></span>
+<span id="cb22-8"><a href="1.4-computer-tasks.html#cb22-8" tabindex="-1"></a>  </span>
+<span id="cb22-9"><a href="1.4-computer-tasks.html#cb22-9" tabindex="-1"></a>  </span>
+<span id="cb22-10"><a href="1.4-computer-tasks.html#cb22-10" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.vector</span>(im)){ <span class="co"># a single image</span></span>
+<span id="cb22-11"><a href="1.4-computer-tasks.html#cb22-11" tabindex="-1"></a>    </span>
+<span id="cb22-12"><a href="1.4-computer-tasks.html#cb22-12" tabindex="-1"></a>    A<span class="ot">&lt;-</span><span class="fu">matrix</span>(im, <span class="at">nr=</span><span class="dv">28</span>, <span class="at">byrow=</span>F)</span>
+<span id="cb22-13"><a href="1.4-computer-tasks.html#cb22-13" tabindex="-1"></a>    C<span class="ot">&lt;-</span> <span class="fu">melt</span>(A, <span class="at">varnames =</span> <span class="fu">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>), </span>
+<span id="cb22-14"><a href="1.4-computer-tasks.html#cb22-14" tabindex="-1"></a>             <span class="at">value.name =</span> <span class="st">&quot;intensity&quot;</span>)</span>
+<span id="cb22-15"><a href="1.4-computer-tasks.html#cb22-15" tabindex="-1"></a>    p<span class="ot">&lt;-</span><span class="fu">ggplot</span>(C, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> intensity))<span class="sc">+</span></span>
+<span id="cb22-16"><a href="1.4-computer-tasks.html#cb22-16" tabindex="-1"></a>      <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill=</span>intensity))<span class="sc">+</span></span>
+<span id="cb22-17"><a href="1.4-computer-tasks.html#cb22-17" tabindex="-1"></a>      <span class="fu">scale_fill_gradient</span>(<span class="at">low=</span><span class="st">&#39;white&#39;</span>, <span class="at">high=</span><span class="st">&#39;black&#39;</span>)<span class="sc">+</span></span>
+<span id="cb22-18"><a href="1.4-computer-tasks.html#cb22-18" tabindex="-1"></a>      <span class="fu">scale_y_reverse</span>()<span class="sc">+</span><span class="fu">theme</span>(</span>
+<span id="cb22-19"><a href="1.4-computer-tasks.html#cb22-19" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-20"><a href="1.4-computer-tasks.html#cb22-20" tabindex="-1"></a>        <span class="at">strip.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-21"><a href="1.4-computer-tasks.html#cb22-21" tabindex="-1"></a>        <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>),</span>
+<span id="cb22-22"><a href="1.4-computer-tasks.html#cb22-22" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-23"><a href="1.4-computer-tasks.html#cb22-23" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb22-24"><a href="1.4-computer-tasks.html#cb22-24" tabindex="-1"></a>      ) </span>
+<span id="cb22-25"><a href="1.4-computer-tasks.html#cb22-25" tabindex="-1"></a>  }</span>
+<span id="cb22-26"><a href="1.4-computer-tasks.html#cb22-26" tabindex="-1"></a>  <span class="cf">else</span>{</span>
+<span id="cb22-27"><a href="1.4-computer-tasks.html#cb22-27" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">dim</span>(im)[<span class="dv">2</span>]<span class="sc">!=</span><span class="dv">784</span>){</span>
+<span id="cb22-28"><a href="1.4-computer-tasks.html#cb22-28" tabindex="-1"></a>      im <span class="ot">=</span> <span class="fu">t</span>(im)</span>
+<span id="cb22-29"><a href="1.4-computer-tasks.html#cb22-29" tabindex="-1"></a>    } </span>
+<span id="cb22-30"><a href="1.4-computer-tasks.html#cb22-30" tabindex="-1"></a>    n <span class="ot">&lt;-</span> <span class="fu">dim</span>(im)[<span class="dv">1</span>]</span>
+<span id="cb22-31"><a href="1.4-computer-tasks.html#cb22-31" tabindex="-1"></a>    As <span class="ot">&lt;-</span> <span class="fu">array</span>(im, <span class="at">dim =</span> <span class="fu">c</span>(n, <span class="dv">28</span>, <span class="dv">28</span>))</span>
+<span id="cb22-32"><a href="1.4-computer-tasks.html#cb22-32" tabindex="-1"></a>    </span>
+<span id="cb22-33"><a href="1.4-computer-tasks.html#cb22-33" tabindex="-1"></a>    Cs<span class="ot">&lt;-</span> <span class="fu">melt</span>(As, <span class="at">varnames =</span> <span class="fu">c</span>(<span class="st">&quot;image&quot;</span>,<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>), </span>
+<span id="cb22-34"><a href="1.4-computer-tasks.html#cb22-34" tabindex="-1"></a>              <span class="at">value.name =</span> <span class="st">&quot;intensity&quot;</span>)</span>
+<span id="cb22-35"><a href="1.4-computer-tasks.html#cb22-35" tabindex="-1"></a>    p<span class="ot">&lt;-</span><span class="fu">ggplot</span>(Cs, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">fill =</span> intensity))<span class="sc">+</span></span>
+<span id="cb22-36"><a href="1.4-computer-tasks.html#cb22-36" tabindex="-1"></a>      <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill=</span>intensity))<span class="sc">+</span></span>
+<span id="cb22-37"><a href="1.4-computer-tasks.html#cb22-37" tabindex="-1"></a>      <span class="fu">scale_fill_gradient</span>(<span class="at">low=</span><span class="st">&#39;white&#39;</span>, <span class="at">high=</span><span class="st">&#39;black&#39;</span>)<span class="sc">+</span></span>
+<span id="cb22-38"><a href="1.4-computer-tasks.html#cb22-38" tabindex="-1"></a>      <span class="fu">facet_wrap</span>(<span class="sc">~</span> image, <span class="at">nrow =</span> <span class="fu">floor</span>(<span class="fu">sqrt</span>(n))<span class="sc">+</span><span class="dv">1</span>, </span>
+<span id="cb22-39"><a href="1.4-computer-tasks.html#cb22-39" tabindex="-1"></a>                 <span class="at">ncol =</span> <span class="fu">floor</span>(<span class="fu">sqrt</span>(n))<span class="sc">+</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb22-40"><a href="1.4-computer-tasks.html#cb22-40" tabindex="-1"></a>      <span class="fu">scale_y_reverse</span>()<span class="sc">+</span><span class="fu">theme</span>(</span>
+<span id="cb22-41"><a href="1.4-computer-tasks.html#cb22-41" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-42"><a href="1.4-computer-tasks.html#cb22-42" tabindex="-1"></a>        <span class="at">strip.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-43"><a href="1.4-computer-tasks.html#cb22-43" tabindex="-1"></a>        <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;lines&quot;</span>),</span>
+<span id="cb22-44"><a href="1.4-computer-tasks.html#cb22-44" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-45"><a href="1.4-computer-tasks.html#cb22-45" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb22-46"><a href="1.4-computer-tasks.html#cb22-46" tabindex="-1"></a>      ) </span>
+<span id="cb22-47"><a href="1.4-computer-tasks.html#cb22-47" tabindex="-1"></a>    </span>
+<span id="cb22-48"><a href="1.4-computer-tasks.html#cb22-48" tabindex="-1"></a>  }</span>
+<span id="cb22-49"><a href="1.4-computer-tasks.html#cb22-49" tabindex="-1"></a>  <span class="fu">return</span>(p)</span>
+<span id="cb22-50"><a href="1.4-computer-tasks.html#cb22-50" tabindex="-1"></a>}</span></code></pre></div>
 <ul>
 <li><p>Use this command to plot the first 10 images from the MNIST training set.</p></li>
 <li><p>Select all the 5s from the MNIST training set. Plot a selection of these digits.</p></li>

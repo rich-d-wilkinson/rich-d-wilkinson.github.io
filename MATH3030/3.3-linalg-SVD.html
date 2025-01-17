@@ -523,8 +523,8 @@ or as the sum of rank-1 matrices:</p>
                                              0&amp;\frac{4}{3\sqrt{2}}&amp;\frac{-1}{3}\end{array}\right)^\top\]</span></p>
 <p>Let’s check our answer in R.</p>
 </div>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="3.3-linalg-SVD.html#cb57-1" tabindex="-1"></a>A<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="sc">-</span><span class="dv">2</span>), <span class="at">nr=</span><span class="dv">2</span>, <span class="at">byrow=</span>T)</span>
-<span id="cb57-2"><a href="3.3-linalg-SVD.html#cb57-2" tabindex="-1"></a><span class="fu">svd</span>(A)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="3.3-linalg-SVD.html#cb50-1" tabindex="-1"></a>A<span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="sc">-</span><span class="dv">2</span>), <span class="at">nr=</span><span class="dv">2</span>, <span class="at">byrow=</span>T)</span>
+<span id="cb50-2"><a href="3.3-linalg-SVD.html#cb50-2" tabindex="-1"></a><span class="fu">svd</span>(A)</span></code></pre></div>
 <pre><code>## $d
 ## [1] 5 3
 ## 

@@ -630,13 +630,13 @@ STA
 </tbody>
 </table>
 <p>These data haven’t been column centered, so let’s do that in R. You can do it using the centering matrix as previously, but here is a different approach:</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="4.1-pca-an-informal-introduction.html#cb72-1" tabindex="-1"></a>secondyr <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb72-2"><a href="4.1-pca-an-informal-introduction.html#cb72-2" tabindex="-1"></a>  <span class="at">student =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
-<span id="cb72-3"><a href="4.1-pca-an-informal-introduction.html#cb72-3" tabindex="-1"></a><span class="at">PRB=</span><span class="fu">c</span>(<span class="dv">81</span> , <span class="dv">79</span> , <span class="dv">66</span> , <span class="dv">53</span> , <span class="dv">43</span> , <span class="dv">59</span> , <span class="dv">62</span> , <span class="dv">79</span> , <span class="dv">49</span> , <span class="dv">55</span>),</span>
-<span id="cb72-4"><a href="4.1-pca-an-informal-introduction.html#cb72-4" tabindex="-1"></a><span class="at">STA =</span><span class="fu">c</span>(<span class="dv">75</span> , <span class="dv">73</span> , <span class="dv">79</span> , <span class="dv">55</span> , <span class="dv">53</span> , <span class="dv">49</span> , <span class="dv">72</span> , <span class="dv">92</span> , <span class="dv">58</span> , <span class="dv">56</span>)</span>
-<span id="cb72-5"><a href="4.1-pca-an-informal-introduction.html#cb72-5" tabindex="-1"></a>        )</span>
-<span id="cb72-6"><a href="4.1-pca-an-informal-introduction.html#cb72-6" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(secondyr[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]) <span class="co">#only columns 2 and 3 are data</span></span>
-<span id="cb72-7"><a href="4.1-pca-an-informal-introduction.html#cb72-7" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">sweep</span>(secondyr[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>], <span class="dv">2</span>, xbar) ) </span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="4.1-pca-an-informal-introduction.html#cb65-1" tabindex="-1"></a>secondyr <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb65-2"><a href="4.1-pca-an-informal-introduction.html#cb65-2" tabindex="-1"></a>  <span class="at">student =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb65-3"><a href="4.1-pca-an-informal-introduction.html#cb65-3" tabindex="-1"></a><span class="at">PRB=</span><span class="fu">c</span>(<span class="dv">81</span> , <span class="dv">79</span> , <span class="dv">66</span> , <span class="dv">53</span> , <span class="dv">43</span> , <span class="dv">59</span> , <span class="dv">62</span> , <span class="dv">79</span> , <span class="dv">49</span> , <span class="dv">55</span>),</span>
+<span id="cb65-4"><a href="4.1-pca-an-informal-introduction.html#cb65-4" tabindex="-1"></a><span class="at">STA =</span><span class="fu">c</span>(<span class="dv">75</span> , <span class="dv">73</span> , <span class="dv">79</span> , <span class="dv">55</span> , <span class="dv">53</span> , <span class="dv">49</span> , <span class="dv">72</span> , <span class="dv">92</span> , <span class="dv">58</span> , <span class="dv">56</span>)</span>
+<span id="cb65-5"><a href="4.1-pca-an-informal-introduction.html#cb65-5" tabindex="-1"></a>        )</span>
+<span id="cb65-6"><a href="4.1-pca-an-informal-introduction.html#cb65-6" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(secondyr[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]) <span class="co">#only columns 2 and 3 are data</span></span>
+<span id="cb65-7"><a href="4.1-pca-an-informal-introduction.html#cb65-7" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">sweep</span>(secondyr[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>], <span class="dv">2</span>, xbar) ) </span></code></pre></div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -732,19 +732,19 @@ STA
 </tbody>
 </table>
 <p>The sample covariance matrix can be computed in two ways:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="4.1-pca-an-informal-introduction.html#cb73-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="dv">10</span><span class="sc">*</span> <span class="fu">t</span>(X)<span class="sc">%*%</span>X</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="4.1-pca-an-informal-introduction.html#cb66-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">/</span><span class="dv">10</span><span class="sc">*</span> <span class="fu">t</span>(X)<span class="sc">%*%</span>X</span></code></pre></div>
 <pre><code>##        PRB    STA
 ## PRB 162.04 135.38
 ## STA 135.38 175.36</code></pre>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="4.1-pca-an-informal-introduction.html#cb75-1" tabindex="-1"></a><span class="fu">cov</span>(X)<span class="sc">*</span><span class="dv">9</span><span class="sc">/</span><span class="dv">10</span> </span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="4.1-pca-an-informal-introduction.html#cb68-1" tabindex="-1"></a><span class="fu">cov</span>(X)<span class="sc">*</span><span class="dv">9</span><span class="sc">/</span><span class="dv">10</span> </span></code></pre></div>
 <pre><code>##        PRB    STA
 ## PRB 162.04 135.38
 ## STA 135.38 175.36</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="4.1-pca-an-informal-introduction.html#cb77-1" tabindex="-1"></a><span class="co"># Remember R uses the unbiased factor 1/(n-1), </span></span>
-<span id="cb77-2"><a href="4.1-pca-an-informal-introduction.html#cb77-2" tabindex="-1"></a><span class="co"># so the 9/10=(n-1)/n changes this to 1/n </span></span>
-<span id="cb77-3"><a href="4.1-pca-an-informal-introduction.html#cb77-3" tabindex="-1"></a><span class="co"># to match the notes</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="4.1-pca-an-informal-introduction.html#cb70-1" tabindex="-1"></a><span class="co"># Remember R uses the unbiased factor 1/(n-1), </span></span>
+<span id="cb70-2"><a href="4.1-pca-an-informal-introduction.html#cb70-2" tabindex="-1"></a><span class="co"># so the 9/10=(n-1)/n changes this to 1/n </span></span>
+<span id="cb70-3"><a href="4.1-pca-an-informal-introduction.html#cb70-3" tabindex="-1"></a><span class="co"># to match the notes</span></span></code></pre></div>
 <p>We can find the singular value decomposition of <span class="math inline">\(\mathbf X\)</span> using R</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="4.1-pca-an-informal-introduction.html#cb78-1" tabindex="-1"></a>(<span class="at">X_svd =</span> <span class="fu">svd</span>(X))</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="4.1-pca-an-informal-introduction.html#cb71-1" tabindex="-1"></a>(<span class="at">X_svd =</span> <span class="fu">svd</span>(X))</span></code></pre></div>
 <pre><code>## $d
 ## [1] 55.15829 18.20887
 ## 
@@ -773,7 +773,7 @@ As it is, a student that has a high mark on PRB and STA will have a low negative
 We can see that the first PC is in the direction of greatest variation (shown in red), and that the second PC (shown in green) is orthogonal to the first PC.</p>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-8-1.png" width="576" /></p>
 <p>We can find the transformed variables by computing either <span class="math inline">\(\mathbf X\mathbf V\)</span> or <span class="math inline">\(\mathbf U\boldsymbol{\Sigma}\)</span></p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="4.1-pca-an-informal-introduction.html#cb80-1" tabindex="-1"></a>X <span class="sc">%*%</span> X_svd<span class="sc">$</span>v</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="4.1-pca-an-informal-introduction.html#cb73-1" tabindex="-1"></a>X <span class="sc">%*%</span> X_svd<span class="sc">$</span>v</span></code></pre></div>
 <pre><code>##             [,1]       [,2]
 ##  [1,] -19.060674 -7.2588361
 ##  [2,] -16.233101 -7.1893271
@@ -785,7 +785,7 @@ We can see that the first PC is in the direction of greatest variation (shown in
 ##  [8,] -29.994240  5.9114764
 ##  [9,]  15.316435  4.1960474
 ## [10,]  12.627880 -1.5286074</code></pre>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="4.1-pca-an-informal-introduction.html#cb82-1" tabindex="-1"></a>X_svd<span class="sc">$</span>u <span class="sc">%*%</span> <span class="fu">diag</span>(X_svd<span class="sc">$</span>d)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="4.1-pca-an-informal-introduction.html#cb75-1" tabindex="-1"></a>X_svd<span class="sc">$</span>u <span class="sc">%*%</span> <span class="fu">diag</span>(X_svd<span class="sc">$</span>d)</span></code></pre></div>
 <pre><code>##             [,1]       [,2]
 ##  [1,] -19.060674 -7.2588361
 ##  [2,] -16.233101 -7.1893271
@@ -800,12 +800,12 @@ We can see that the first PC is in the direction of greatest variation (shown in
 <p>If we plot the PC scores we can see that the variation is now in line with the new coordinate axes:</p>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>R also has a built-in function for doing PCA.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="4.1-pca-an-informal-introduction.html#cb84-1" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(secondyr[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]) <span class="co"># prcomp will automatocally remove the column mean</span></span>
-<span id="cb84-2"><a href="4.1-pca-an-informal-introduction.html#cb84-2" tabindex="-1"></a>pca<span class="sc">$</span>rotation <span class="co"># the loadings</span></span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="4.1-pca-an-informal-introduction.html#cb77-1" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(secondyr[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]) <span class="co"># prcomp will automatocally remove the column mean</span></span>
+<span id="cb77-2"><a href="4.1-pca-an-informal-introduction.html#cb77-2" tabindex="-1"></a>pca<span class="sc">$</span>rotation <span class="co"># the loadings</span></span></code></pre></div>
 <pre><code>##            PC1        PC2
 ## PRB -0.6895160 -0.7242705
 ## STA -0.7242705  0.6895160</code></pre>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="4.1-pca-an-informal-introduction.html#cb86-1" tabindex="-1"></a>pca<span class="sc">$</span>x <span class="co"># the scores</span></span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="4.1-pca-an-informal-introduction.html#cb79-1" tabindex="-1"></a>pca<span class="sc">$</span>x <span class="co"># the scores</span></span></code></pre></div>
 <pre><code>##              PC1        PC2
 ##  [1,] -19.060674 -7.2588361
 ##  [2,] -16.233101 -7.1893271
@@ -821,31 +821,31 @@ We can see that the first PC is in the direction of greatest variation (shown in
 <p><span class="math display">\[
 \boldsymbol \Lambda= \text{diag}(\lambda_1,\lambda_2) =  \begin{pmatrix} \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2 \end{pmatrix}.
 \]</span></p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="4.1-pca-an-informal-introduction.html#cb88-1" tabindex="-1"></a><span class="fu">colMeans</span>(pca<span class="sc">$</span>x)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="4.1-pca-an-informal-introduction.html#cb81-1" tabindex="-1"></a><span class="fu">colMeans</span>(pca<span class="sc">$</span>x)</span></code></pre></div>
 <pre><code>##           PC1           PC2 
 ##  2.797762e-15 -7.993606e-16</code></pre>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="4.1-pca-an-informal-introduction.html#cb90-1" tabindex="-1"></a><span class="fu">cov</span>(pca<span class="sc">$</span>x)<span class="sc">*</span><span class="dv">9</span><span class="sc">/</span><span class="dv">10</span> <span class="co"># to convert to using 1/n as the denominator </span></span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="4.1-pca-an-informal-introduction.html#cb83-1" tabindex="-1"></a><span class="fu">cov</span>(pca<span class="sc">$</span>x)<span class="sc">*</span><span class="dv">9</span><span class="sc">/</span><span class="dv">10</span> <span class="co"># to convert to using 1/n as the denominator </span></span></code></pre></div>
 <pre><code>##               PC1           PC2
 ## PC1  3.042437e+02 -7.498429e-14
 ## PC2 -7.498429e-14  3.315628e+01</code></pre>
 <p>Finally, note that we did the singular value decomposition for <span class="math inline">\(\mathbf X\)</span> above not <span class="math inline">\(\frac{1}{\sqrt{10}}\mathbf X\)</span>, and so we’d need to square and scale the singular values to find the eigenvalues. Let’s check:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="4.1-pca-an-informal-introduction.html#cb92-1" tabindex="-1"></a>X_svd<span class="sc">$</span>d<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">10</span> <span class="co"># square and scale the singular values</span></span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="4.1-pca-an-informal-introduction.html#cb85-1" tabindex="-1"></a>X_svd<span class="sc">$</span>d<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">10</span> <span class="co"># square and scale the singular values</span></span></code></pre></div>
 <pre><code>## [1] 304.24372  33.15628</code></pre>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="4.1-pca-an-informal-introduction.html#cb94-1" tabindex="-1"></a><span class="fu">eigen</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X<span class="sc">/</span><span class="dv">10</span>)<span class="sc">$</span>values  </span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="4.1-pca-an-informal-introduction.html#cb87-1" tabindex="-1"></a><span class="fu">eigen</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X<span class="sc">/</span><span class="dv">10</span>)<span class="sc">$</span>values  </span></code></pre></div>
 <pre><code>## [1] 304.24372  33.15628</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="4.1-pca-an-informal-introduction.html#cb96-1" tabindex="-1"></a><span class="co"># compute the eigenvalues of the covariance matrix</span></span>
-<span id="cb96-2"><a href="4.1-pca-an-informal-introduction.html#cb96-2" tabindex="-1"></a><span class="fu">svd</span>(X<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">10</span>))<span class="sc">$</span>d<span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="4.1-pca-an-informal-introduction.html#cb89-1" tabindex="-1"></a><span class="co"># compute the eigenvalues of the covariance matrix</span></span>
+<span id="cb89-2"><a href="4.1-pca-an-informal-introduction.html#cb89-2" tabindex="-1"></a><span class="fu">svd</span>(X<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">10</span>))<span class="sc">$</span>d<span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
 <pre><code>## [1] 304.24372  33.15628</code></pre>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="4.1-pca-an-informal-introduction.html#cb98-1" tabindex="-1"></a><span class="co"># compute the singular values of X/sqrt(10) and square</span></span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="4.1-pca-an-informal-introduction.html#cb91-1" tabindex="-1"></a><span class="co"># compute the singular values of X/sqrt(10) and square</span></span></code></pre></div>
 </div>
 <div id="example-iris" class="section level3 hasAnchor" number="4.1.6">
 <h3><span class="header-section-number">4.1.6</span> Example: Iris<a href="4.1-pca-an-informal-introduction.html#example-iris" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In general when using R to do PCA, we don’t need to compute the SVD and then do the projections, as there is an R command <code>prcomp</code> that will do it all for us. The <code>princomp</code> will also do PCA, but is less stable than <code>prcomp</code>, and it is recommended that you use <code>prcomp</code> in preference.</p>
 <p>Let’s do PCA on the iris dataset discussed in Chapter <a href="1-stat-prelim.html#stat-prelim">1</a>. The <code>prcomp</code> returns the square root of the eigenvalues (the standard devaiation of the PC scores), and the PC scores.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="4.1-pca-an-informal-introduction.html#cb99-1" tabindex="-1"></a>iris.pca <span class="ot">=</span> <span class="fu">prcomp</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
-<span id="cb99-2"><a href="4.1-pca-an-informal-introduction.html#cb99-2" tabindex="-1"></a>iris.pca<span class="sc">$</span>sdev <span class="co"># the square root of the eigenvalues</span></span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="4.1-pca-an-informal-introduction.html#cb92-1" tabindex="-1"></a>iris.pca <span class="ot">=</span> <span class="fu">prcomp</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
+<span id="cb92-2"><a href="4.1-pca-an-informal-introduction.html#cb92-2" tabindex="-1"></a>iris.pca<span class="sc">$</span>sdev <span class="co"># the square root of the eigenvalues</span></span></code></pre></div>
 <pre><code>## [1] 2.0562689 0.4926162 0.2796596 0.1543862</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="4.1-pca-an-informal-introduction.html#cb101-1" tabindex="-1"></a><span class="fu">head</span>(iris.pca<span class="sc">$</span>x)  <span class="co">#the PC scores</span></span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="4.1-pca-an-informal-introduction.html#cb94-1" tabindex="-1"></a><span class="fu">head</span>(iris.pca<span class="sc">$</span>x)  <span class="co">#the PC scores</span></span></code></pre></div>
 <pre><code>##            PC1        PC2         PC3          PC4
 ## [1,] -2.684126 -0.3193972  0.02791483  0.002262437
 ## [2,] -2.714142  0.1770012  0.21046427  0.099026550
@@ -854,32 +854,32 @@ We can see that the first PC is in the direction of greatest variation (shown in
 ## [5,] -2.728717 -0.3267545 -0.09007924 -0.061258593
 ## [6,] -2.280860 -0.7413304 -0.16867766 -0.024200858</code></pre>
 <p>The PC loadings/eigenvectors can also be accessed, as can the sample mean</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="4.1-pca-an-informal-introduction.html#cb103-1" tabindex="-1"></a>iris.pca<span class="sc">$</span>rotation <span class="co">#the eigenvecstors</span></span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="4.1-pca-an-informal-introduction.html#cb96-1" tabindex="-1"></a>iris.pca<span class="sc">$</span>rotation <span class="co">#the eigenvecstors</span></span></code></pre></div>
 <pre><code>##                      PC1         PC2         PC3        PC4
 ## Sepal.Length  0.36138659 -0.65658877  0.58202985  0.3154872
 ## Sepal.Width  -0.08452251 -0.73016143 -0.59791083 -0.3197231
 ## Petal.Length  0.85667061  0.17337266 -0.07623608 -0.4798390
 ## Petal.Width   0.35828920  0.07548102 -0.54583143  0.7536574</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="4.1-pca-an-informal-introduction.html#cb105-1" tabindex="-1"></a>iris.pca<span class="sc">$</span>center <span class="co"># the sample mean of the data</span></span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="4.1-pca-an-informal-introduction.html#cb98-1" tabindex="-1"></a>iris.pca<span class="sc">$</span>center <span class="co"># the sample mean of the data</span></span></code></pre></div>
 <pre><code>## Sepal.Length  Sepal.Width Petal.Length  Petal.Width 
 ##     5.843333     3.057333     3.758000     1.199333</code></pre>
 <p>A scree plot can be obtained simply by using the <code>plot</code> command. The summary command also gives useful information about the importance of each PC.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="4.1-pca-an-informal-introduction.html#cb107-1" tabindex="-1"></a><span class="fu">plot</span>(iris.pca)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="4.1-pca-an-informal-introduction.html#cb100-1" tabindex="-1"></a><span class="fu">plot</span>(iris.pca)</span></code></pre></div>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="4.1-pca-an-informal-introduction.html#cb108-1" tabindex="-1"></a><span class="fu">summary</span>(iris.pca)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="4.1-pca-an-informal-introduction.html#cb101-1" tabindex="-1"></a><span class="fu">summary</span>(iris.pca)</span></code></pre></div>
 <pre><code>## Importance of components:
 ##                           PC1     PC2    PC3     PC4
 ## Standard deviation     2.0563 0.49262 0.2797 0.15439
 ## Proportion of Variance 0.9246 0.05307 0.0171 0.00521
 ## Cumulative Proportion  0.9246 0.97769 0.9948 1.00000</code></pre>
 <p>To plot the PC scores, you can either manually create a plot or use the <code>ggfortify</code> package. For example, here is a plot of the first two PC scores coloured according to the species of iris.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="4.1-pca-an-informal-introduction.html#cb110-1" tabindex="-1"></a>iris<span class="sc">$</span>PC1<span class="ot">=</span>iris.pca<span class="sc">$</span>x[,<span class="dv">1</span>]</span>
-<span id="cb110-2"><a href="4.1-pca-an-informal-introduction.html#cb110-2" tabindex="-1"></a>iris<span class="sc">$</span>PC2<span class="ot">=</span>iris.pca<span class="sc">$</span>x[,<span class="dv">2</span>]</span>
-<span id="cb110-3"><a href="4.1-pca-an-informal-introduction.html#cb110-3" tabindex="-1"></a>iris <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>PC1, <span class="at">y=</span>PC2, <span class="at">colour=</span>Species))<span class="sc">+</span><span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="4.1-pca-an-informal-introduction.html#cb103-1" tabindex="-1"></a>iris<span class="sc">$</span>PC1<span class="ot">=</span>iris.pca<span class="sc">$</span>x[,<span class="dv">1</span>]</span>
+<span id="cb103-2"><a href="4.1-pca-an-informal-introduction.html#cb103-2" tabindex="-1"></a>iris<span class="sc">$</span>PC2<span class="ot">=</span>iris.pca<span class="sc">$</span>x[,<span class="dv">2</span>]</span>
+<span id="cb103-3"><a href="4.1-pca-an-informal-introduction.html#cb103-3" tabindex="-1"></a>iris <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>PC1, <span class="at">y=</span>PC2, <span class="at">colour=</span>Species))<span class="sc">+</span><span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>The <code>ggfortify</code> package provides a nice wrapper for some of this functionality.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="4.1-pca-an-informal-introduction.html#cb111-1" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb111-2"><a href="4.1-pca-an-informal-introduction.html#cb111-2" tabindex="-1"></a><span class="fu">autoplot</span>(iris.pca, <span class="at">data =</span> iris, <span class="at">colour =</span> <span class="st">&#39;Species&#39;</span>, <span class="at">scale=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="4.1-pca-an-informal-introduction.html#cb104-1" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb104-2"><a href="4.1-pca-an-informal-introduction.html#cb104-2" tabindex="-1"></a><span class="fu">autoplot</span>(iris.pca, <span class="at">data =</span> iris, <span class="at">colour =</span> <span class="st">&#39;Species&#39;</span>, <span class="at">scale=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="04-pca_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 </div>
 </div>

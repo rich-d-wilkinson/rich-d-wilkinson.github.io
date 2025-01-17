@@ -426,10 +426,10 @@ We will focus on the 5 continuous variables, all measured in mm:</p>
 <li>BD = body depth.</li>
 </ul>
 <p>The sample size is <span class="math inline">\(200\)</span>.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="4.4-pca-comptask.html#cb125-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb125-2"><a href="4.4-pca-comptask.html#cb125-2" tabindex="-1"></a>?crabs <span class="co"># read the help page to find out about the dataset</span></span>
-<span id="cb125-3"><a href="4.4-pca-comptask.html#cb125-3" tabindex="-1"></a>X<span class="ot">=</span>crabs[,<span class="dv">4</span><span class="sc">:</span><span class="dv">8</span>]     </span>
-<span id="cb125-4"><a href="4.4-pca-comptask.html#cb125-4" tabindex="-1"></a><span class="co"># construct data matrix X with columns FL, RW, CL, CW, BD</span></span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="4.4-pca-comptask.html#cb118-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb118-2"><a href="4.4-pca-comptask.html#cb118-2" tabindex="-1"></a>?crabs <span class="co"># read the help page to find out about the dataset</span></span>
+<span id="cb118-3"><a href="4.4-pca-comptask.html#cb118-3" tabindex="-1"></a>X<span class="ot">=</span>crabs[,<span class="dv">4</span><span class="sc">:</span><span class="dv">8</span>]     </span>
+<span id="cb118-4"><a href="4.4-pca-comptask.html#cb118-4" tabindex="-1"></a><span class="co"># construct data matrix X with columns FL, RW, CL, CW, BD</span></span></code></pre></div>
 <ul>
 <li>Carry out PCA on the data in <span class="math inline">\(X\)</span> using the correlation matrix, including obtaining a scree plot and plotting the PC scores.</li>
 </ul>
@@ -464,8 +464,8 @@ for some <span class="math inline">\(p\times p\)</span> orthogonal matrix <span 
 You can generate a random orthogonal matrix using the following commands</p></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="4.4-pca-comptask.html#cb126-1" tabindex="-1"></a><span class="fu">library</span>(pracma)</span>
-<span id="cb126-2"><a href="4.4-pca-comptask.html#cb126-2" tabindex="-1"></a>U <span class="ot">&lt;-</span> <span class="fu">randortho</span>(<span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="4.4-pca-comptask.html#cb119-1" tabindex="-1"></a><span class="fu">library</span>(pracma)</span>
+<span id="cb119-2"><a href="4.4-pca-comptask.html#cb119-2" tabindex="-1"></a>U <span class="ot">&lt;-</span> <span class="fu">randortho</span>(<span class="dv">5</span>)</span></code></pre></div>
 <p>Check the effect of each transformation on the principal components (the loadings/eigenvectors), the principal component scores, and the variance of the principal components (the eigenvalues).</p>
 </div>
 <div id="exercise-3" class="section level5 unnumbered hasAnchor">
@@ -481,10 +481,10 @@ You can generate a random orthogonal matrix using the following commands</p></li
 <h5>Exercise 4<a href="4.4-pca-comptask.html#exercise-4" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>The <code>decathlon2</code> data from the <code>factoextra</code> package contains
 data on 27 different decathletes’ performances during two different competitions. Let’s start by extracting their performance in the 10 different decathlon events at the Olympics.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="4.4-pca-comptask.html#cb127-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;factoextra&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="4.4-pca-comptask.html#cb120-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;factoextra&quot;</span>)</span></code></pre></div>
 <pre><code>## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa</code></pre>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="4.4-pca-comptask.html#cb129-1" tabindex="-1"></a><span class="fu">data</span>(decathlon2)</span>
-<span id="cb129-2"><a href="4.4-pca-comptask.html#cb129-2" tabindex="-1"></a>X <span class="ot">&lt;-</span> decathlon2<span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Competition<span class="sc">==</span><span class="st">&#39;OlympicG&#39;</span>) <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>Rank, <span class="sc">-</span>Points,<span class="sc">-</span>Competition)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="4.4-pca-comptask.html#cb122-1" tabindex="-1"></a><span class="fu">data</span>(decathlon2)</span>
+<span id="cb122-2"><a href="4.4-pca-comptask.html#cb122-2" tabindex="-1"></a>X <span class="ot">&lt;-</span> decathlon2<span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Competition<span class="sc">==</span><span class="st">&#39;OlympicG&#39;</span>) <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>Rank, <span class="sc">-</span>Points,<span class="sc">-</span>Competition)</span></code></pre></div>
 <p>Conduct PCA on these data, thinking about whether it is appropriate to use the correlation or covariance matrix. Give a scree plot, and determine how much information in the data is retained by the first two PCs.
 Interpret the leading PCs.</p>
 <p>Plot the first two scores for the different athlete performances, labelling each point. From these plots, comment on particular strengths/weaknesses in some performances.</p>
