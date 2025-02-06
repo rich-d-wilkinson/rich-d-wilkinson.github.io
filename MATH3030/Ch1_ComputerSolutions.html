@@ -3917,13 +3917,13 @@ Solution
 <div class="cell">
 <div class="sourceCode" id="cb78"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.1727434 0.1037848</code></pre>
+<pre><code>[1] 1.141306448 0.005278772</code></pre>
 </div>
 <div class="sourceCode" id="cb80"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cov</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         [,1]     [,2]
-[1,] 2.113040 1.031358
-[2,] 1.031358 1.892106</code></pre>
+[1,] 1.805409 0.962640
+[2,] 0.962640 2.494835</code></pre>
 </div>
 </div>
 </div>
@@ -3949,13 +3949,13 @@ Solution
 <div class="sourceCode" id="cb82"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mvtnorm/man/Mvnorm.html">rmvnorm</a></span><span class="op">(</span>n<span class="op">=</span><span class="fl">100</span>, mean<span class="op">=</span><span class="va">mu</span>, sigma<span class="op">=</span><span class="va">Sigma</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">colMeans</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.86167914 0.07225336</code></pre>
+<pre><code>[1] 0.92817249 0.02684646</code></pre>
 </div>
 <div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cov</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          [,1]      [,2]
-[1,] 1.6635028 0.8045901
-[2,] 0.8045901 1.8149547</code></pre>
+[1,] 2.1169347 0.8773716
+[2,] 0.8773716 1.4799267</code></pre>
 </div>
 </div>
 <p>But you can set the random number generator seed - then you will get the same set of ‘random’ numbers each time</p>
