@@ -4519,6 +4519,10 @@ data on 27 different decathletes' performances during two different competitions
 \end{Shaded}
 
 \begin{verbatim}
+## Loading required package: ggplot2
+\end{verbatim}
+
+\begin{verbatim}
 ## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
 \end{verbatim}
 
@@ -4631,10 +4635,22 @@ Plot the first two scores for the different athlete performances, labelling each
 \setcounter{enumi}{5}
 \tightlist
 \item
+  This is an exam question from 2019.
+\end{enumerate}
+
+\includegraphics{PCA_Q4_2018_19a.png}
+
+\includegraphics{PCA_Q4_2018_19b.png}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
   Try this tricky question from the 2016 exam.
 \end{enumerate}
 
-\includegraphics{PCA_Q4_2015_16.png}
+\includegraphics{PCA_Q4_2015_16_short.png}
 
 \chapter{Canonical Correlation Analysis (CCA)}\label{cca}
 
@@ -10350,8 +10366,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5418   0.3903   0.3165
-## adjCV       0.8308   0.5415   0.3899   0.3162
+## CV          0.8308   0.5442   0.3903   0.3246
+## adjCV       0.8308   0.5439   0.3900   0.3239
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10474,7 +10490,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0007943282
+## [1] 0.0001258925
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
@@ -10486,7 +10502,7 @@ and the largest value of lambda that gives a prediction error within one standar
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.03162278
+## [1] 0.01995262
 \end{verbatim}
 
 \section{Multi-output Linear Model}\label{multi-output-linear-model}

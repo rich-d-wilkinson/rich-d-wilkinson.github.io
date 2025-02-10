@@ -423,10 +423,10 @@ would appear to be better if the purpose is to form three distinct clusters.
 <div id="q2" class="section level5 unnumbered hasAnchor">
 <h5>Q2<a href="9.5-computer-tasks-5.html#q2" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Download the Indian Premier League data from Moodle and load it into R. We will filter the data to only look at players who played at least 10 innings, and the select just the information on the number of runs they scored, their high score (HS), their batting average (Avg), their best figures (BF), their strike rate (SR), and the number of 4s and 6s they hit.</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="9.5-computer-tasks-5.html#cb291-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb291-2"><a href="9.5-computer-tasks-5.html#cb291-2" tabindex="-1"></a>IPL<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&#39;IPL.csv&#39;</span>)</span>
-<span id="cb291-3"><a href="9.5-computer-tasks-5.html#cb291-3" tabindex="-1"></a>IPL10<span class="ot">&lt;-</span>IPL <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Mat.x<span class="sc">&gt;=</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb291-4"><a href="9.5-computer-tasks-5.html#cb291-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(PLAYER,Runs.x, HS, Avg.x, BF, SR.x, X4s, X6s)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="9.5-computer-tasks-5.html#cb292-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb292-2"><a href="9.5-computer-tasks-5.html#cb292-2" tabindex="-1"></a>IPL<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&#39;IPL.csv&#39;</span>)</span>
+<span id="cb292-3"><a href="9.5-computer-tasks-5.html#cb292-3" tabindex="-1"></a>IPL10<span class="ot">&lt;-</span>IPL <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Mat.x<span class="sc">&gt;=</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb292-4"><a href="9.5-computer-tasks-5.html#cb292-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(PLAYER,Runs.x, HS, Avg.x, BF, SR.x, X4s, X6s)</span></code></pre></div>
 <p>Apply agglomerative hierarchical clustering to these data. You will need to first compute a distance matrix for the data, which can be done with the <code>dist</code> command.</p>
 <ol style="list-style-type: lower-roman">
 <li><p>Using the Euclidean distance, do single linkage, complete linkage, and average linkage give similar dendrograms?</p></li>

@@ -505,12 +505,12 @@ computational explosion in the number of possible allocations when $n$ is even o
 <div id="example-iris-1" class="section level3 hasAnchor" number="9.2.3">
 <h3><span class="header-section-number">9.2.3</span> Example: Iris<a href="9.2-model-based-clustering.html#example-iris-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>mclust</code> library can be used to perform model-based clustering with Gaussian clusters. We just have to specify the number of required clusters.</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="9.2-model-based-clustering.html#cb268-1" tabindex="-1"></a><span class="fu">library</span>(mclust)</span>
-<span id="cb268-2"><a href="9.2-model-based-clustering.html#cb268-2" tabindex="-1"></a>iris.m <span class="ot">&lt;-</span> <span class="fu">Mclust</span>(iris2,<span class="at">G=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="9.2-model-based-clustering.html#cb269-1" tabindex="-1"></a><span class="fu">library</span>(mclust)</span>
+<span id="cb269-2"><a href="9.2-model-based-clustering.html#cb269-2" tabindex="-1"></a>iris.m <span class="ot">&lt;-</span> <span class="fu">Mclust</span>(iris2,<span class="at">G=</span><span class="dv">3</span>)</span></code></pre></div>
 <p>Pairs plots of the classification of each point can easily be obtained, as can the estimated probability density of each cluster.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="9.2-model-based-clustering.html#cb269-1" tabindex="-1"></a><span class="fu">plot</span>(iris.m, <span class="at">what =</span> <span class="fu">c</span>(<span class="st">&quot;classification&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="9.2-model-based-clustering.html#cb270-1" tabindex="-1"></a><span class="fu">plot</span>(iris.m, <span class="at">what =</span> <span class="fu">c</span>(<span class="st">&quot;classification&quot;</span>))</span></code></pre></div>
 <p><img src="10-clustering_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="9.2-model-based-clustering.html#cb270-1" tabindex="-1"></a><span class="fu">plot</span>(iris.m, <span class="at">what =</span> <span class="fu">c</span>(<span class="st">&quot;density&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="9.2-model-based-clustering.html#cb271-1" tabindex="-1"></a><span class="fu">plot</span>(iris.m, <span class="at">what =</span> <span class="fu">c</span>(<span class="st">&quot;density&quot;</span>))</span></code></pre></div>
 <p><img src="10-clustering_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
 <p>How to choose <span class="math inline">\(K\)</span> in model-based clustering is beyond the scope of the module.</p>
 </div>
