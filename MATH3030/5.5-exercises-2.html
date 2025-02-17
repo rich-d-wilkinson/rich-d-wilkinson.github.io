@@ -465,17 +465,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p><img src="figs/CCA_2017_18_Q1.png" /></p>
 <ol start="3" style="list-style-type: decimal">
-<li>Suppose that <span class="math inline">\(\mathbf z= (\mathbf x^\top \mathbf y^\top)^\top\)</span> is a random vector, where both <span class="math inline">\(\mathbf x\)</span> and <span class="math inline">\(\mathbf y\)</span> are sub-vectors of dimension <span class="math inline">\(p\)</span>, so that <span class="math inline">\(\mathbf z\)</span> is <span class="math inline">\((2p)\times 1\)</span>. Define
-<span class="math display">\[{\mathbb{V}\operatorname{ar}}(\mathbf z)=\boldsymbol{\Sigma}_{\mathbf z\mathbf z}=\begin{pmatrix} \boldsymbol{\Sigma}_{\mathbf x\mathbf x} &amp; \boldsymbol{\Sigma}_{\mathbf x\mathbf y}\\\boldsymbol{\Sigma}_{\mathbf y\mathbf x} &amp; \boldsymbol{\Sigma}_{\mathbf y\mathbf y}  \end{pmatrix}.\]</span>
+<li><p>Suppose that <span class="math inline">\(\mathbf z= (\mathbf x^\top \mathbf y^\top)^\top\)</span> is a random vector, where both <span class="math inline">\(\mathbf x\)</span> and <span class="math inline">\(\mathbf y\)</span> are sub-vectors of dimension <span class="math inline">\(p\)</span>, so that <span class="math inline">\(\mathbf z\)</span> is <span class="math inline">\((2p)\times 1\)</span>. Define
+<span class="math display">\[{\mathbb{V}\operatorname{ar}}(\mathbf z)=\boldsymbol{\Sigma}_{\mathbf z\mathbf z}=\begin{pmatrix} \boldsymbol{\Sigma}_{\mathbf x\mathbf x} &amp; \boldsymbol{\Sigma}_{\mathbf x\mathbf y}\\\boldsymbol{\Sigma}_{\mathbf y\mathbf x} &amp; \boldsymbol{\Sigma}_{\mathbf y\mathbf y}  \end{pmatrix}.\]</span></p>
 <ol style="list-style-type: lower-roman">
 <li>Suppose that <span class="math inline">\(\mathbf y= \mathbf T\mathbf x\)</span> where <span class="math inline">\(\mathbf T\)</span> is a fixed matrix. Find <span class="math inline">\(\boldsymbol{\Sigma}_{\mathbf x\mathbf y}\)</span> and <span class="math inline">\(\boldsymbol{\Sigma}_{\mathbf y\mathbf y}\)</span> in terms of <span class="math inline">\(\boldsymbol{\Sigma}_{\mathbf x\mathbf x}\)</span> and <span class="math inline">\(\mathbf T\)</span>.</li>
 <li>Assuming now that <span class="math inline">\(\mathbf T\)</span> is an orthogonal matrix and <span class="math inline">\(\boldsymbol{\Sigma}_{\mathbf x\mathbf x}\)</span> is of full rank, determine the singular values of the matrix <span class="math inline">\(\mathbf Q=\boldsymbol{\Sigma}_{\mathbf x\mathbf x}^{-1/2}\boldsymbol{\Sigma}_ {\mathbf x\mathbf y}\boldsymbol{\Sigma}_{\mathbf y\mathbf y}^{-1/2}\)</span>, and hence write down the canonical correlation coefficients.</li>
 <li>Suppose now that <span class="math inline">\(\mathbf T\)</span> is non-singular but not orthogonal. Comment on whether the answer to part (b) changes.</li>
 </ol></li>
-<li>We will now prove Proposition <a href="5.2-the-full-set-of-canonical-correlations.html#prp:svdopt3">5.3</a> by induction.
+<li><p>We will now prove Proposition <a href="5.2-the-full-set-of-canonical-correlations.html#prp:svdopt3">5.3</a> by induction.
 The case for <span class="math inline">\(k=1\)</span> was proved in Section <a href="5.1-cca1.html#cca1">5.1</a> in Proposition <a href="3.4-svdopt.html#prp:svdmax2">3.9</a>. Assume the result is true for <span class="math inline">\(k\)</span>. Consider the objective
 <span class="math display">\[\mathcal{L} = \mathbf a^\top \mathbf Q\mathbf b+ \sum_{i=1}^k \gamma_i\mathbf a^\top \mathbf a_i + \sum_{i=1}^k \mu_i\mathbf b^\top \mathbf b_i + \frac{\lambda_1}{2}(1-\mathbf a^\top\mathbf a)+ \frac{\lambda_2}{2}(1-\mathbf b^\top\mathbf b)\]</span>
-where <span class="math inline">\(\lambda_i, \mu_i, \gamma_i\)</span> are Lagrangian multipliers.
+where <span class="math inline">\(\lambda_i, \mu_i, \gamma_i\)</span> are Lagrangian multipliers.</p>
 <ol style="list-style-type: lower-roman">
 <li><p>By differentiating with respect to <span class="math inline">\(\mathbf a\)</span> and <span class="math inline">\(\mathbf b\)</span> and setting the derivative to zero show that
 <span class="math display" id="eq:ex3b" id="eq:ex3a">\[\begin{align}
@@ -487,8 +487,84 @@ where <span class="math inline">\(\lambda_i, \mu_i, \gamma_i\)</span> are Lagran
 <li><p>By left multiplying <a href="5.5-exercises-2.html#eq:ex3a">(5.14)</a> by <span class="math inline">\(\mathbf a_i^\top\)</span> show that <span class="math inline">\(\gamma_i=0\)</span> for <span class="math inline">\(i=1, \ldots, k\)</span>. Show similarly that <span class="math inline">\(\mu_i =0\)</span> for <span class="math inline">\(i=1, \ldots, k\)</span>.</p></li>
 <li><p>Finally, by copying the proof of Proposition <a href="3.4-svdopt.html#prp:svdmax2">3.9</a>, prove Proposition <a href="5.2-the-full-set-of-canonical-correlations.html#prp:svdopt3">5.3</a>.</p></li>
 </ol></li>
-<li>Show the mean of the cc variables <span class="math inline">\(\eta_k\)</span> and <span class="math inline">\(\psi_k\)</span> is zero. Prove Proposition <a href="5.3-properties.html#prp:ccavar">5.4</a> giving the variance of covariance the cc variables.</li>
+<li><p>Show the mean of the cc variables <span class="math inline">\(\eta_k\)</span> and <span class="math inline">\(\psi_k\)</span> is zero. Prove Proposition <a href="5.3-properties.html#prp:ccavar">5.4</a> giving the variance of covariance the cc variables.</p></li>
+<li><p>Attempt exam question 1 part (b) from the 2020-21 exam paper.</p></li>
 </ol>
+<p><img src="figs/CCA_2020_21.png" /></p>
+<ol start="7" style="list-style-type: decimal">
+<li>The <code>mtcars</code> dataset in R contains data on 32 cars from the 1970s.
+We will split the data into two datasets. Let <span class="math inline">\(\mathbf X\)</span> be the matrix that contains variables pertaining to car characteristics:</li>
+</ol>
+<ul>
+<li>cyl Number of cylinders</li>
+<li>disp Displacement (cu.in.)</li>
+<li>hp Gross horsepower</li>
+<li>drat Rear axle ratio</li>
+<li>wt Weight (1000 lbs)</li>
+</ul>
+<p>and let <span class="math inline">\(\mathbf Y\)</span> be the matrix containing variables pertaining to car performance:</p>
+<ul>
+<li>mpg Miles/(US) gallon</li>
+<li>qsec 1/4 mile time</li>
+</ul>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="5.5-exercises-2.html#cb164-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(cyl, disp, hp, drat, wt)</span>
+<span id="cb164-2"><a href="5.5-exercises-2.html#cb164-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(mpg, qsec)</span></code></pre></div>
+<p>We can then do CCA on these two datasets</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="5.5-exercises-2.html#cb165-1" tabindex="-1"></a><span class="fu">library</span>(CCA)</span>
+<span id="cb165-2"><a href="5.5-exercises-2.html#cb165-2" tabindex="-1"></a>cc.out<span class="ot">&lt;-</span><span class="fu">cc</span>(X,Y)</span>
+<span id="cb165-3"><a href="5.5-exercises-2.html#cb165-3" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>cor)</span></code></pre></div>
+<pre><code>## [1] 0.9270377 0.8307044</code></pre>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="5.5-exercises-2.html#cb167-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>xcoef)</span></code></pre></div>
+<pre><code>##              [,1]         [,2]
+## cyl  -0.277988315  0.373120734
+## disp  0.001628855  0.003177998
+## hp   -0.005964078  0.007770195
+## drat  0.015934959  0.791032730
+## wt   -0.388097090 -1.423595709</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="5.5-exercises-2.html#cb169-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>ycoef)</span></code></pre></div>
+<pre><code>##           [,1]       [,2]
+## mpg  0.1451984  0.1109009
+## qsec 0.1346424 -0.6013371</code></pre>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="5.5-exercises-2.html#cb171-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.X.xscores)</span></code></pre></div>
+<pre><code>##            [,1]        [,2]
+## cyl  -0.9578700  0.07914027
+## disp -0.9126296 -0.12094085
+## hp   -0.9164944  0.29160643
+## drat  0.6666822  0.43010103
+## wt   -0.8643963 -0.47212540</code></pre>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="5.5-exercises-2.html#cb173-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.Y.xscores)</span></code></pre></div>
+<pre><code>##           [,1]       [,2]
+## mpg  0.9046387  0.1815048
+## qsec 0.5627028 -0.6601685</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="5.5-exercises-2.html#cb175-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.X.yscores)</span></code></pre></div>
+<pre><code>##            [,1]        [,2]
+## cyl  -0.8879817  0.06574217
+## disp -0.8460421 -0.10046609
+## hp   -0.8496249  0.24223874
+## drat  0.6180395  0.35728682
+## wt   -0.8013280 -0.39219665</code></pre>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="5.5-exercises-2.html#cb177-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.Y.yscores)</span></code></pre></div>
+<pre><code>##           [,1]       [,2]
+## mpg  0.9758380  0.2184951
+## qsec 0.6069902 -0.7947093</code></pre>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="5.5-exercises-2.html#cb179-1" tabindex="-1"></a><span class="fu">plt.cc</span>(cc.out, <span class="at">var.label =</span> T, <span class="at">type=</span><span class="st">&#39;v&#39;</span>)</span></code></pre></div>
+<p><img src="05-cca-ex_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Interpret the output of this canonical correlation analysis.</p>
+<!--
+7. As an additional example of CCA in action, have a look at the [paper](https://www.jstatsoft.org/article/view/v023i12) introducing the CCA package. Note that the paper uses a more advanced form of CCA called regularized-CCA - we will look at what regularization does in the context of linear regression in Chapter 10.
+
+The data consists of measurements from 40 different mice. The mice are classified according to 
+
+- Genotype: mice are either wild type (WT) or  PPAR$\alpha$ deficient (PPAR$\alpha$) 
+- Diet: Mice were either given a reference diet (REF), or a diet that is rich in one of four different oils: coconut oil (COC), sunflower oil (SUN), linseed oil (LIN) or fish oil (FISH).
+
+The gene expression levels of 120 different genes were then measured. Gene expression data is a type of biological data that shows how active different genes are in a cell or tissue at a given time. It tells us which genes are "turned on" or "turned off" under different conditions.
+
+They also measured the concentrations of 21 hepatic fatty acids in the same set of 40 mice.
+
+The aim is to look for canonical correlations between the gene expression data and the fatty acid data to see if 
+
+-->
 
 </div>
 <!-- </div> -->

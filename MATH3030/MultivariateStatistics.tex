@@ -5722,7 +5722,6 @@ The following gives the correlation between the original variables and the trans
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{2}
-\tightlist
 \item
   Suppose that \(\mathbf z= (\mathbf x^\top \mathbf y^\top)^\top\) is a random vector, where both \(\mathbf x\) and \(\mathbf y\) are sub-vectors of dimension \(p\), so that \(\mathbf z\) is \((2p)\times 1\). Define
   \[{\mathbb{V}\operatorname{ar}}(\mathbf z)=\boldsymbol{\Sigma}_{\mathbf z\mathbf z}=\begin{pmatrix} \boldsymbol{\Sigma}_{\mathbf x\mathbf x} & \boldsymbol{\Sigma}_{\mathbf x\mathbf y}\\\boldsymbol{\Sigma}_{\mathbf y\mathbf x} & \boldsymbol{\Sigma}_{\mathbf y\mathbf y}  \end{pmatrix}.\]
@@ -5761,7 +5760,156 @@ The following gives the correlation between the original variables and the trans
   \end{enumerate}
 \item
   Show the mean of the cc variables \(\eta_k\) and \(\psi_k\) is zero. Prove Proposition \ref{prp:ccavar} giving the variance of covariance the cc variables.
+\item
+  Attempt exam question 1 part (b) from the 2020-21 exam paper.
 \end{enumerate}
+
+\includegraphics{figs/CCA_2020_21.png}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  The \texttt{mtcars} dataset in R contains data on 32 cars from the 1970s.
+  We will split the data into two datasets. Let \(\mathbf X\) be the matrix that contains variables pertaining to car characteristics:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  cyl Number of cylinders
+\item
+  disp Displacement (cu.in.)
+\item
+  hp Gross horsepower
+\item
+  drat Rear axle ratio
+\item
+  wt Weight (1000 lbs)
+\end{itemize}
+
+and let \(\mathbf Y\) be the matrix containing variables pertaining to car performance:
+
+\begin{itemize}
+\tightlist
+\item
+  mpg Miles/(US) gallon
+\item
+  qsec 1/4 mile time
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{\textless{}{-}}\NormalTok{ mtcars }\SpecialCharTok{|\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(cyl, disp, hp, drat, wt)}
+\NormalTok{Y }\OtherTok{\textless{}{-}}\NormalTok{ mtcars }\SpecialCharTok{|\textgreater{}}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{select}\NormalTok{(mpg, qsec)}
+\end{Highlighting}
+\end{Shaded}
+
+We can then do CCA on these two datasets
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(CCA)}
+\NormalTok{cc.out}\OtherTok{\textless{}{-}}\FunctionTok{cc}\NormalTok{(X,Y)}
+\FunctionTok{print}\NormalTok{(cc.out}\SpecialCharTok{$}\NormalTok{cor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9270377 0.8307044
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(cc.out}\SpecialCharTok{$}\NormalTok{xcoef)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              [,1]         [,2]
+## cyl  -0.277988315  0.373120734
+## disp  0.001628855  0.003177998
+## hp   -0.005964078  0.007770195
+## drat  0.015934959  0.791032730
+## wt   -0.388097090 -1.423595709
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(cc.out}\SpecialCharTok{$}\NormalTok{ycoef)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]       [,2]
+## mpg  0.1451984  0.1109009
+## qsec 0.1346424 -0.6013371
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(cc.out}\SpecialCharTok{$}\NormalTok{scores}\SpecialCharTok{$}\NormalTok{corr.X.xscores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]        [,2]
+## cyl  -0.9578700  0.07914027
+## disp -0.9126296 -0.12094085
+## hp   -0.9164944  0.29160643
+## drat  0.6666822  0.43010103
+## wt   -0.8643963 -0.47212540
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(cc.out}\SpecialCharTok{$}\NormalTok{scores}\SpecialCharTok{$}\NormalTok{corr.Y.xscores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]       [,2]
+## mpg  0.9046387  0.1815048
+## qsec 0.5627028 -0.6601685
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(cc.out}\SpecialCharTok{$}\NormalTok{scores}\SpecialCharTok{$}\NormalTok{corr.X.yscores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]        [,2]
+## cyl  -0.8879817  0.06574217
+## disp -0.8460421 -0.10046609
+## hp   -0.8496249  0.24223874
+## drat  0.6180395  0.35728682
+## wt   -0.8013280 -0.39219665
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(cc.out}\SpecialCharTok{$}\NormalTok{scores}\SpecialCharTok{$}\NormalTok{corr.Y.yscores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]       [,2]
+## mpg  0.9758380  0.2184951
+## qsec 0.6069902 -0.7947093
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plt.cc}\NormalTok{(cc.out, }\AttributeTok{var.label =}\NormalTok{ T, }\AttributeTok{type=}\StringTok{\textquotesingle{}v\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{05-cca-ex_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+Interpret the output of this canonical correlation analysis.
 
 \chapter{Multidimensional Scaling (MDS)}\label{mds}
 
@@ -10366,8 +10514,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5442   0.3903   0.3246
-## adjCV       0.8308   0.5439   0.3900   0.3239
+## CV          0.8308   0.5417   0.3886   0.3173
+## adjCV       0.8308   0.5415   0.3883   0.3170
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10490,7 +10638,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0001258925
+## [1] 0.0007943282
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:

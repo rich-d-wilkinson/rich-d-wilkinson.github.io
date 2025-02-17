@@ -453,23 +453,23 @@ where the <span class="math inline">\(s\)</span> subscript gives the values for 
 and
 <span class="math display">\[\hat{\mathbf a} = \widehat{\boldsymbol{\Sigma}}^{-1} (\hat{{\boldsymbol{\mu}}}_s - \hat{{\boldsymbol{\mu}}}_v) = \begin{pmatrix}5.18&amp;-4.04 \\-4.04&amp;11.1 \\\end{pmatrix} \begin{pmatrix}-1.58 \\0.454 \\\end{pmatrix} = \begin{pmatrix}-10.031 \\11.407 \\\end{pmatrix}.\]</span></p>
 <p>We can find these values in R as follows:</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="8.2-lda-Bayes.html#cb228-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb228-2"><a href="8.2-lda-Bayes.html#cb228-2" tabindex="-1"></a><span class="co"># select two measurements and two species</span></span>
-<span id="cb228-3"><a href="8.2-lda-Bayes.html#cb228-3" tabindex="-1"></a>iris3 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Species <span class="sc">!=</span> <span class="st">&quot;versicolor&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb228-4"><a href="8.2-lda-Bayes.html#cb228-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Sepal.Length, Sepal.Width, Species)</span>
-<span id="cb228-5"><a href="8.2-lda-Bayes.html#cb228-5" tabindex="-1"></a></span>
-<span id="cb228-6"><a href="8.2-lda-Bayes.html#cb228-6" tabindex="-1"></a>S_vir <span class="ot">=</span> iris3 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Species<span class="sc">==</span><span class="st">&quot;virginica&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb228-7"><a href="8.2-lda-Bayes.html#cb228-7" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Sepal.Length, Sepal.Width) <span class="sc">%&gt;%</span> </span>
-<span id="cb228-8"><a href="8.2-lda-Bayes.html#cb228-8" tabindex="-1"></a>  cov</span>
-<span id="cb228-9"><a href="8.2-lda-Bayes.html#cb228-9" tabindex="-1"></a>S_set <span class="ot">=</span> iris3 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Species<span class="sc">==</span><span class="st">&quot;setosa&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb228-10"><a href="8.2-lda-Bayes.html#cb228-10" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Sepal.Length, Sepal.Width) <span class="sc">%&gt;%</span> </span>
-<span id="cb228-11"><a href="8.2-lda-Bayes.html#cb228-11" tabindex="-1"></a>  cov</span>
-<span id="cb228-12"><a href="8.2-lda-Bayes.html#cb228-12" tabindex="-1"></a>S_u <span class="ot">=</span> (<span class="dv">50</span><span class="sc">*</span>S_vir<span class="sc">+</span><span class="dv">50</span><span class="sc">*</span>S_set)<span class="sc">/</span><span class="dv">98</span></span>
-<span id="cb228-13"><a href="8.2-lda-Bayes.html#cb228-13" tabindex="-1"></a></span>
-<span id="cb228-14"><a href="8.2-lda-Bayes.html#cb228-14" tabindex="-1"></a></span>
-<span id="cb228-15"><a href="8.2-lda-Bayes.html#cb228-15" tabindex="-1"></a><span class="co"># Or more easily using a package</span></span>
-<span id="cb228-16"><a href="8.2-lda-Bayes.html#cb228-16" tabindex="-1"></a><span class="fu">library</span>(vcvComp)</span>
-<span id="cb228-17"><a href="8.2-lda-Bayes.html#cb228-17" tabindex="-1"></a>S_u <span class="ot">=</span> <span class="fu">cov.W</span>(iris3[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], iris3[,<span class="dv">3</span>]) </span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="8.2-lda-Bayes.html#cb244-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb244-2"><a href="8.2-lda-Bayes.html#cb244-2" tabindex="-1"></a><span class="co"># select two measurements and two species</span></span>
+<span id="cb244-3"><a href="8.2-lda-Bayes.html#cb244-3" tabindex="-1"></a>iris3 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Species <span class="sc">!=</span> <span class="st">&quot;versicolor&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb244-4"><a href="8.2-lda-Bayes.html#cb244-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Sepal.Length, Sepal.Width, Species)</span>
+<span id="cb244-5"><a href="8.2-lda-Bayes.html#cb244-5" tabindex="-1"></a></span>
+<span id="cb244-6"><a href="8.2-lda-Bayes.html#cb244-6" tabindex="-1"></a>S_vir <span class="ot">=</span> iris3 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Species<span class="sc">==</span><span class="st">&quot;virginica&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb244-7"><a href="8.2-lda-Bayes.html#cb244-7" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Sepal.Length, Sepal.Width) <span class="sc">%&gt;%</span> </span>
+<span id="cb244-8"><a href="8.2-lda-Bayes.html#cb244-8" tabindex="-1"></a>  cov</span>
+<span id="cb244-9"><a href="8.2-lda-Bayes.html#cb244-9" tabindex="-1"></a>S_set <span class="ot">=</span> iris3 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Species<span class="sc">==</span><span class="st">&quot;setosa&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb244-10"><a href="8.2-lda-Bayes.html#cb244-10" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Sepal.Length, Sepal.Width) <span class="sc">%&gt;%</span> </span>
+<span id="cb244-11"><a href="8.2-lda-Bayes.html#cb244-11" tabindex="-1"></a>  cov</span>
+<span id="cb244-12"><a href="8.2-lda-Bayes.html#cb244-12" tabindex="-1"></a>S_u <span class="ot">=</span> (<span class="dv">50</span><span class="sc">*</span>S_vir<span class="sc">+</span><span class="dv">50</span><span class="sc">*</span>S_set)<span class="sc">/</span><span class="dv">98</span></span>
+<span id="cb244-13"><a href="8.2-lda-Bayes.html#cb244-13" tabindex="-1"></a></span>
+<span id="cb244-14"><a href="8.2-lda-Bayes.html#cb244-14" tabindex="-1"></a></span>
+<span id="cb244-15"><a href="8.2-lda-Bayes.html#cb244-15" tabindex="-1"></a><span class="co"># Or more easily using a package</span></span>
+<span id="cb244-16"><a href="8.2-lda-Bayes.html#cb244-16" tabindex="-1"></a><span class="fu">library</span>(vcvComp)</span>
+<span id="cb244-17"><a href="8.2-lda-Bayes.html#cb244-17" tabindex="-1"></a>S_u <span class="ot">=</span> <span class="fu">cov.W</span>(iris3[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], iris3[,<span class="dv">3</span>]) </span></code></pre></div>
 <p>The sample ML discriminant rule allocates a new observation <span class="math inline">\(\mathbf x= (x_1, x_2)^\top\)</span> to <span class="math inline">\(\Pi_{\mbox{setosa}}\)</span> if and only if
 <span class="math display">\[ \hat{\mathbf a}^\top (\mathbf x- \hat{\mathbf h}) = \begin{pmatrix}-10.031&amp;11.407 \\\end{pmatrix} \begin{pmatrix} x_1 - 5.797 \\ x_2 - 3.201 \end{pmatrix} &gt; 0.\]</span></p>
 <p>If we draw on the line defined by
@@ -482,12 +482,12 @@ we can see this line clearly separates the two species of iris.</p>
 <p><span class="math display">\[ \hat{\mathbf a}^\top (\mathbf x- \hat{\mathbf h}) = \begin{pmatrix}-10.031&amp;11.407 \\\end{pmatrix} \begin{pmatrix} 5.8 - 5.797 \\ 2.5 - 3.201 \end{pmatrix} =-8.0267032 &lt; 0,\]</span>
 and so we would allocate this iris to the virginia population, <span class="math inline">\(\Pi_{virginica}\)</span>.</p>
 <p>As you would expect, there is an R command to do this for us: <code>lda</code> (for Linear Discriminant Analysis). This is in the <code>MASS</code> R package.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="8.2-lda-Bayes.html#cb229-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb229-2"><a href="8.2-lda-Bayes.html#cb229-2" tabindex="-1"></a>iris.lda1 <span class="ot">&lt;-</span> <span class="fu">lda</span>(Species <span class="sc">~</span> ., iris3)</span>
-<span id="cb229-3"><a href="8.2-lda-Bayes.html#cb229-3" tabindex="-1"></a></span>
-<span id="cb229-4"><a href="8.2-lda-Bayes.html#cb229-4" tabindex="-1"></a><span class="co"># lda(Species ~ Sepal.Length+Sepal.Width, iris3) </span></span>
-<span id="cb229-5"><a href="8.2-lda-Bayes.html#cb229-5" tabindex="-1"></a>  <span class="co">#  does the same thing</span></span>
-<span id="cb229-6"><a href="8.2-lda-Bayes.html#cb229-6" tabindex="-1"></a>iris.lda1</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="8.2-lda-Bayes.html#cb245-1" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb245-2"><a href="8.2-lda-Bayes.html#cb245-2" tabindex="-1"></a>iris.lda1 <span class="ot">&lt;-</span> <span class="fu">lda</span>(Species <span class="sc">~</span> ., iris3)</span>
+<span id="cb245-3"><a href="8.2-lda-Bayes.html#cb245-3" tabindex="-1"></a></span>
+<span id="cb245-4"><a href="8.2-lda-Bayes.html#cb245-4" tabindex="-1"></a><span class="co"># lda(Species ~ Sepal.Length+Sepal.Width, iris3) </span></span>
+<span id="cb245-5"><a href="8.2-lda-Bayes.html#cb245-5" tabindex="-1"></a>  <span class="co">#  does the same thing</span></span>
+<span id="cb245-6"><a href="8.2-lda-Bayes.html#cb245-6" tabindex="-1"></a>iris.lda1</span></code></pre></div>
 <pre><code>## Call:
 ## lda(Species ~ ., data = iris3)
 ## 
@@ -509,8 +509,8 @@ and so we would allocate this iris to the virginia population, <span class="math
 <span class="math display">\[\hat{\pi}_s = \frac{1}{2}, \quad \hat{\pi}_v = \frac{1}{2}\]</span>
 as there were 50 irises from each population in the training data.</p>
 <p>We can use the <code>predict</code> command to predict the species for a new observation <span class="math inline">\(\mathbf x\)</span>. Using the example from before of an iris with a sepal length of 5.8 and a sepal width of 2.5 we find the Bayes classifier predicts this is a virginica iris.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="8.2-lda-Bayes.html#cb231-1" tabindex="-1"></a>irisnew <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Sepal.Length=</span><span class="fl">5.8</span>, <span class="at">Sepal.Width=</span><span class="fl">2.5</span>)</span>
-<span id="cb231-2"><a href="8.2-lda-Bayes.html#cb231-2" tabindex="-1"></a><span class="fu">predict</span>(iris.lda1,irisnew)</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="8.2-lda-Bayes.html#cb247-1" tabindex="-1"></a>irisnew <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Sepal.Length=</span><span class="fl">5.8</span>, <span class="at">Sepal.Width=</span><span class="fl">2.5</span>)</span>
+<span id="cb247-2"><a href="8.2-lda-Bayes.html#cb247-2" tabindex="-1"></a><span class="fu">predict</span>(iris.lda1,irisnew)</span></code></pre></div>
 <pre><code>## $class
 ## [1] virginica
 ## Levels: setosa versicolor virginica
@@ -528,8 +528,8 @@ with the parameter estimates substituted for the unknown parameters.</p>
 <div id="using-the-entire-dataset" class="section level4 unnumbered hasAnchor">
 <h4>Using the entire dataset<a href="8.2-lda-Bayes.html#using-the-entire-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Let’s now use all 150 observations (with three populations: setosa, virginica, versicolor), and all four measurements.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="8.2-lda-Bayes.html#cb233-1" tabindex="-1"></a>lda.iris <span class="ot">&lt;-</span> <span class="fu">lda</span>(Species <span class="sc">~</span> .,iris)</span>
-<span id="cb233-2"><a href="8.2-lda-Bayes.html#cb233-2" tabindex="-1"></a>lda.iris </span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="8.2-lda-Bayes.html#cb249-1" tabindex="-1"></a>lda.iris <span class="ot">&lt;-</span> <span class="fu">lda</span>(Species <span class="sc">~</span> .,iris)</span>
+<span id="cb249-2"><a href="8.2-lda-Bayes.html#cb249-2" tabindex="-1"></a>lda.iris </span></code></pre></div>
 <pre><code>## Call:
 ## lda(Species ~ ., data = iris)
 ## 
@@ -554,13 +554,13 @@ with the parameter estimates substituted for the unknown parameters.</p>
 ##    LD1    LD2 
 ## 0.9912 0.0088</code></pre>
 <p>We will delay discussion of what the reported coefficients mean, and how to visualize LDA, until after we have seen Fisher’s linear discriminant analysis in the next section. But we can use the <code>klaR</code> package to visualize a little of what LDA does. The <code>partimat</code> command provides an array of figures that show the discriminant regions based on every combination of two variables (i.e., it does LDA for each pair of variables).</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="8.2-lda-Bayes.html#cb235-1" tabindex="-1"></a><span class="fu">library</span>(klaR)</span>
-<span id="cb235-2"><a href="8.2-lda-Bayes.html#cb235-2" tabindex="-1"></a><span class="fu">library</span>(plyr)</span>
-<span id="cb235-3"><a href="8.2-lda-Bayes.html#cb235-3" tabindex="-1"></a>Species_new<span class="ot">=</span> <span class="fu">revalue</span>(iris<span class="sc">$</span>Species, <span class="fu">c</span>(<span class="st">&quot;versicolor&quot;</span><span class="ot">=</span><span class="st">&quot;color&quot;</span>))</span>
-<span id="cb235-4"><a href="8.2-lda-Bayes.html#cb235-4" tabindex="-1"></a></span>
-<span id="cb235-5"><a href="8.2-lda-Bayes.html#cb235-5" tabindex="-1"></a><span class="fu">partimat</span>(Species_new <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Sepal.Width <span class="sc">+</span> Petal.Length </span>
-<span id="cb235-6"><a href="8.2-lda-Bayes.html#cb235-6" tabindex="-1"></a>         <span class="sc">+</span> Petal.Width,</span>
-<span id="cb235-7"><a href="8.2-lda-Bayes.html#cb235-7" tabindex="-1"></a>         <span class="at">data=</span>iris, <span class="at">method=</span><span class="st">&quot;lda&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="8.2-lda-Bayes.html#cb251-1" tabindex="-1"></a><span class="fu">library</span>(klaR)</span>
+<span id="cb251-2"><a href="8.2-lda-Bayes.html#cb251-2" tabindex="-1"></a><span class="fu">library</span>(plyr)</span>
+<span id="cb251-3"><a href="8.2-lda-Bayes.html#cb251-3" tabindex="-1"></a>Species_new<span class="ot">=</span> <span class="fu">revalue</span>(iris<span class="sc">$</span>Species, <span class="fu">c</span>(<span class="st">&quot;versicolor&quot;</span><span class="ot">=</span><span class="st">&quot;color&quot;</span>))</span>
+<span id="cb251-4"><a href="8.2-lda-Bayes.html#cb251-4" tabindex="-1"></a></span>
+<span id="cb251-5"><a href="8.2-lda-Bayes.html#cb251-5" tabindex="-1"></a><span class="fu">partimat</span>(Species_new <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Sepal.Width <span class="sc">+</span> Petal.Length </span>
+<span id="cb251-6"><a href="8.2-lda-Bayes.html#cb251-6" tabindex="-1"></a>         <span class="sc">+</span> Petal.Width,</span>
+<span id="cb251-7"><a href="8.2-lda-Bayes.html#cb251-7" tabindex="-1"></a>         <span class="at">data=</span>iris, <span class="at">method=</span><span class="st">&quot;lda&quot;</span>)</span></code></pre></div>
 <p><img src="09-lda_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Note that I renamed the <em>versicolor</em> species as <em>color</em> so that the different species appear more clearly in the plots.</p>
 </div>
@@ -576,32 +576,32 @@ d(\mathbf x)=\arg\max_k \left(-\frac{1}{2} \log |\boldsymbol{\Sigma}_k| - \frac{
 <div id="iris-example-continued" class="section level4 hasAnchor" number="8.2.2.1">
 <h4><span class="header-section-number">8.2.2.1</span> Iris example continued<a href="8.2-lda-Bayes.html#iris-example-continued" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>qda</code> function in the <code>MASS</code> package implements quadratic discriminant analysis.</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="8.2-lda-Bayes.html#cb236-1" tabindex="-1"></a>qda.iris <span class="ot">&lt;-</span> <span class="fu">qda</span>(Species_new <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Sepal.Width <span class="sc">+</span> Petal.Length </span>
-<span id="cb236-2"><a href="8.2-lda-Bayes.html#cb236-2" tabindex="-1"></a>                <span class="sc">+</span> Petal.Width, iris)</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="8.2-lda-Bayes.html#cb252-1" tabindex="-1"></a>qda.iris <span class="ot">&lt;-</span> <span class="fu">qda</span>(Species_new <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Sepal.Width <span class="sc">+</span> Petal.Length </span>
+<span id="cb252-2"><a href="8.2-lda-Bayes.html#cb252-2" tabindex="-1"></a>                <span class="sc">+</span> Petal.Width, iris)</span></code></pre></div>
 <p>We can again use the <code>partimat</code> command to look at the decision boundaries if we do QDA for each pair of variables in turn.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="8.2-lda-Bayes.html#cb237-1" tabindex="-1"></a><span class="fu">partimat</span>(Species <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Sepal.Width <span class="sc">+</span> Petal.Length <span class="sc">+</span> </span>
-<span id="cb237-2"><a href="8.2-lda-Bayes.html#cb237-2" tabindex="-1"></a>           Petal.Width,         <span class="at">data=</span>iris, <span class="at">method=</span><span class="st">&quot;qda&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="8.2-lda-Bayes.html#cb253-1" tabindex="-1"></a><span class="fu">partimat</span>(Species <span class="sc">~</span> Sepal.Length <span class="sc">+</span> Sepal.Width <span class="sc">+</span> Petal.Length <span class="sc">+</span> </span>
+<span id="cb253-2"><a href="8.2-lda-Bayes.html#cb253-2" tabindex="-1"></a>           Petal.Width,         <span class="at">data=</span>iris, <span class="at">method=</span><span class="st">&quot;qda&quot;</span>)</span></code></pre></div>
 <p><img src="09-lda_files/figure-html/qda-1.png" width="672" /></p>
 </div>
 </div>
 <div id="prediction-accuracy" class="section level3 hasAnchor" number="8.2.3">
 <h3><span class="header-section-number">8.2.3</span> Prediction accuracy<a href="8.2-lda-Bayes.html#prediction-accuracy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To assess the predictive accuracy of our discriminant rules, we often split the data into two parts, a <strong>training set</strong>, and a <strong>test set</strong>. Let’s do this randomly by chosing 100 of the irises to be in our training set, and use the other 50 irises in the test set. We will then train the classifiers on the training set, and predict the species labels for test dataset. We can then count how many predictions were correct.</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="8.2-lda-Bayes.html#cb238-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
-<span id="cb238-2"><a href="8.2-lda-Bayes.html#cb238-2" tabindex="-1"></a>test.ind <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">150</span>, <span class="at">size=</span><span class="dv">50</span>)</span>
-<span id="cb238-3"><a href="8.2-lda-Bayes.html#cb238-3" tabindex="-1"></a>iris.test <span class="ot">&lt;-</span> iris[test.ind,]</span>
-<span id="cb238-4"><a href="8.2-lda-Bayes.html#cb238-4" tabindex="-1"></a>iris.train <span class="ot">&lt;-</span> iris[<span class="sc">-</span>test.ind,]</span>
-<span id="cb238-5"><a href="8.2-lda-Bayes.html#cb238-5" tabindex="-1"></a></span>
-<span id="cb238-6"><a href="8.2-lda-Bayes.html#cb238-6" tabindex="-1"></a>lda1 <span class="ot">&lt;-</span> <span class="fu">lda</span>(Species<span class="sc">~</span>., iris.train)</span>
-<span id="cb238-7"><a href="8.2-lda-Bayes.html#cb238-7" tabindex="-1"></a>qda1 <span class="ot">&lt;-</span> <span class="fu">qda</span>(Species<span class="sc">~</span>., iris.train)</span>
-<span id="cb238-8"><a href="8.2-lda-Bayes.html#cb238-8" tabindex="-1"></a>test.ldapred <span class="ot">&lt;-</span> <span class="fu">predict</span>(lda1, iris.test)</span>
-<span id="cb238-9"><a href="8.2-lda-Bayes.html#cb238-9" tabindex="-1"></a>test.qdapred <span class="ot">&lt;-</span> <span class="fu">predict</span>(qda1, iris.test)</span>
-<span id="cb238-10"><a href="8.2-lda-Bayes.html#cb238-10" tabindex="-1"></a>(lda.accuracy <span class="ot">&lt;-</span> <span class="fu">sum</span>(test.ldapred<span class="sc">$</span>class<span class="sc">==</span>iris.test<span class="sc">$</span>Species))<span class="sc">/</span><span class="dv">50</span></span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="8.2-lda-Bayes.html#cb254-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb254-2"><a href="8.2-lda-Bayes.html#cb254-2" tabindex="-1"></a>test.ind <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">150</span>, <span class="at">size=</span><span class="dv">50</span>)</span>
+<span id="cb254-3"><a href="8.2-lda-Bayes.html#cb254-3" tabindex="-1"></a>iris.test <span class="ot">&lt;-</span> iris[test.ind,]</span>
+<span id="cb254-4"><a href="8.2-lda-Bayes.html#cb254-4" tabindex="-1"></a>iris.train <span class="ot">&lt;-</span> iris[<span class="sc">-</span>test.ind,]</span>
+<span id="cb254-5"><a href="8.2-lda-Bayes.html#cb254-5" tabindex="-1"></a></span>
+<span id="cb254-6"><a href="8.2-lda-Bayes.html#cb254-6" tabindex="-1"></a>lda1 <span class="ot">&lt;-</span> <span class="fu">lda</span>(Species<span class="sc">~</span>., iris.train)</span>
+<span id="cb254-7"><a href="8.2-lda-Bayes.html#cb254-7" tabindex="-1"></a>qda1 <span class="ot">&lt;-</span> <span class="fu">qda</span>(Species<span class="sc">~</span>., iris.train)</span>
+<span id="cb254-8"><a href="8.2-lda-Bayes.html#cb254-8" tabindex="-1"></a>test.ldapred <span class="ot">&lt;-</span> <span class="fu">predict</span>(lda1, iris.test)</span>
+<span id="cb254-9"><a href="8.2-lda-Bayes.html#cb254-9" tabindex="-1"></a>test.qdapred <span class="ot">&lt;-</span> <span class="fu">predict</span>(qda1, iris.test)</span>
+<span id="cb254-10"><a href="8.2-lda-Bayes.html#cb254-10" tabindex="-1"></a>(lda.accuracy <span class="ot">&lt;-</span> <span class="fu">sum</span>(test.ldapred<span class="sc">$</span>class<span class="sc">==</span>iris.test<span class="sc">$</span>Species))<span class="sc">/</span><span class="dv">50</span></span></code></pre></div>
 <pre><code>## [1] 0.98</code></pre>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="8.2-lda-Bayes.html#cb240-1" tabindex="-1"></a>(qda.accuracy <span class="ot">&lt;-</span> <span class="fu">sum</span>(test.qdapred<span class="sc">$</span>class<span class="sc">==</span>iris.test<span class="sc">$</span>Species))<span class="sc">/</span><span class="dv">50</span></span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="8.2-lda-Bayes.html#cb256-1" tabindex="-1"></a>(qda.accuracy <span class="ot">&lt;-</span> <span class="fu">sum</span>(test.qdapred<span class="sc">$</span>class<span class="sc">==</span>iris.test<span class="sc">$</span>Species))<span class="sc">/</span><span class="dv">50</span></span></code></pre></div>
 <pre><code>## [1] 0.98</code></pre>
 <p>So in this case we find that LDA and QDA both have an accuracy of 4900%, which is the result of a single wrong prediction. We can see more clearly what has gone wrong by using the <code>table</code> command.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="8.2-lda-Bayes.html#cb242-1" tabindex="-1"></a><span class="fu">table</span>(iris.test<span class="sc">$</span>Species, test.ldapred<span class="sc">$</span>class)</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="8.2-lda-Bayes.html#cb258-1" tabindex="-1"></a><span class="fu">table</span>(iris.test<span class="sc">$</span>Species, test.ldapred<span class="sc">$</span>class)</span></code></pre></div>
 <pre><code>##             
 ##              setosa versicolor virginica
 ##   setosa         17          0         0

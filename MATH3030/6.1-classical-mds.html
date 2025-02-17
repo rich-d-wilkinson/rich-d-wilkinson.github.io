@@ -503,16 +503,16 @@ and
 \end{array} \right ].
 \]</span></p>
 <p>In R we can compute these as follows:</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="6.1-classical-mds.html#cb164-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,</span>
-<span id="cb164-2"><a href="6.1-classical-mds.html#cb164-2" tabindex="-1"></a>              <span class="dv">1</span>,<span class="dv">0</span>,</span>
-<span id="cb164-3"><a href="6.1-classical-mds.html#cb164-3" tabindex="-1"></a>              <span class="dv">0</span>,<span class="dv">1</span>,</span>
-<span id="cb164-4"><a href="6.1-classical-mds.html#cb164-4" tabindex="-1"></a>              <span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,</span>
-<span id="cb164-5"><a href="6.1-classical-mds.html#cb164-5" tabindex="-1"></a>              <span class="dv">0</span>,<span class="sc">-</span><span class="dv">1</span>), <span class="at">nc=</span><span class="dv">2</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
-<span id="cb164-6"><a href="6.1-classical-mds.html#cb164-6" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">dist</span>(X, <span class="at">upper=</span>T, <span class="at">diag=</span>T))</span>
-<span id="cb164-7"><a href="6.1-classical-mds.html#cb164-7" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="sc">-</span>D<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span> </span>
-<span id="cb164-8"><a href="6.1-classical-mds.html#cb164-8" tabindex="-1"></a><span class="co"># note D^2 does element wise operations, different to D%*%D</span></span>
-<span id="cb164-9"><a href="6.1-classical-mds.html#cb164-9" tabindex="-1"></a>H <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="dv">5</span>) <span class="sc">-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">5</span> <span class="sc">*</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="at">nc=</span><span class="dv">1</span>)<span class="sc">%*%</span><span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="at">nr=</span><span class="dv">1</span>)</span>
-<span id="cb164-10"><a href="6.1-classical-mds.html#cb164-10" tabindex="-1"></a>B <span class="ot">&lt;-</span> H<span class="sc">%*%</span> A<span class="sc">%*%</span>H <span class="co">#check this matches  (H %*% X) %*% t(H %*% X)</span></span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="6.1-classical-mds.html#cb180-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb180-2"><a href="6.1-classical-mds.html#cb180-2" tabindex="-1"></a>              <span class="dv">1</span>,<span class="dv">0</span>,</span>
+<span id="cb180-3"><a href="6.1-classical-mds.html#cb180-3" tabindex="-1"></a>              <span class="dv">0</span>,<span class="dv">1</span>,</span>
+<span id="cb180-4"><a href="6.1-classical-mds.html#cb180-4" tabindex="-1"></a>              <span class="sc">-</span><span class="dv">1</span>,<span class="dv">0</span>,</span>
+<span id="cb180-5"><a href="6.1-classical-mds.html#cb180-5" tabindex="-1"></a>              <span class="dv">0</span>,<span class="sc">-</span><span class="dv">1</span>), <span class="at">nc=</span><span class="dv">2</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
+<span id="cb180-6"><a href="6.1-classical-mds.html#cb180-6" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">dist</span>(X, <span class="at">upper=</span>T, <span class="at">diag=</span>T))</span>
+<span id="cb180-7"><a href="6.1-classical-mds.html#cb180-7" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="sc">-</span>D<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span> </span>
+<span id="cb180-8"><a href="6.1-classical-mds.html#cb180-8" tabindex="-1"></a><span class="co"># note D^2 does element wise operations, different to D%*%D</span></span>
+<span id="cb180-9"><a href="6.1-classical-mds.html#cb180-9" tabindex="-1"></a>H <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="dv">5</span>) <span class="sc">-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">5</span> <span class="sc">*</span> <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="at">nc=</span><span class="dv">1</span>)<span class="sc">%*%</span><span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">5</span>), <span class="at">nr=</span><span class="dv">1</span>)</span>
+<span id="cb180-10"><a href="6.1-classical-mds.html#cb180-10" tabindex="-1"></a>B <span class="ot">&lt;-</span> H<span class="sc">%*%</span> A<span class="sc">%*%</span>H <span class="co">#check this matches  (H %*% X) %*% t(H %*% X)</span></span></code></pre></div>
 <p>You should check that <span class="math inline">\(\mathbf H\mathbf A\mathbf H\)</span> is the same as <span class="math inline">\((\mathbf H\mathbf X)(\mathbf H\mathbf X)^\top\)</span>, thus verifying part 1. of Theorem <a href="6.1-classical-mds.html#thm:five1">6.1</a>. Note that there will be very small differences (<span class="math inline">\(\sim 10^{-16}\)</span>) due to numerical errors.</p>
 <p>How do we construct, using only the information in <span class="math inline">\(\mathbf B\)</span>, a set of <span class="math inline">\(5\)</span> points that have Euclidean interpoint distances given by <span class="math inline">\(\mathbf D\)</span>?
 Firstly, we need to compute the spectral decomposition of <span class="math inline">\(\mathbf B\)</span>. The eigenvalues of <span class="math inline">\(\mathbf B\)</span> are
@@ -531,19 +531,19 @@ The sparsest choice (i.e. the one with most zero elements) is
 \text{and} \qquad \mathbf u_2 =\begin{pmatrix}0 \\ -\frac{1}{\sqrt{2}} \\ 0 \\ \frac{1}{\sqrt{2}}\\ 0 \end{pmatrix}.
 \]</span></p>
 <p>Note that if we compute these in R, you may well get different eigenvectors, but the subspace described by the pair of vectors will be the same.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="6.1-classical-mds.html#cb165-1" tabindex="-1"></a><span class="fu">eigen</span>(B)<span class="sc">$</span>values <span class="co">#using B = H%*% A%*%H </span></span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="6.1-classical-mds.html#cb181-1" tabindex="-1"></a><span class="fu">eigen</span>(B)<span class="sc">$</span>values <span class="co">#using B = H%*% A%*%H </span></span></code></pre></div>
 <pre><code>## [1]  2.000000e+00  2.000000e+00  1.207037e-15  3.331224e-16 -2.775558e-17</code></pre>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="6.1-classical-mds.html#cb167-1" tabindex="-1"></a><span class="fu">eigen</span>(B)<span class="sc">$</span>vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="6.1-classical-mds.html#cb183-1" tabindex="-1"></a><span class="fu">eigen</span>(B)<span class="sc">$</span>vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
 <pre><code>##            [,1]       [,2]
 ## [1,]  0.0000000  0.0000000
 ## [2,] -0.6916609  0.1469869
 ## [3,] -0.1469869 -0.6916609
 ## [4,]  0.6916609 -0.1469869
 ## [5,]  0.1469869  0.6916609</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="6.1-classical-mds.html#cb169-1" tabindex="-1"></a>B2 <span class="ot">&lt;-</span> (H <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(H <span class="sc">%*%</span> X) <span class="co"># alternative way of computing B</span></span>
-<span id="cb169-2"><a href="6.1-classical-mds.html#cb169-2" tabindex="-1"></a><span class="fu">eigen</span>(B2)<span class="sc">$</span>values</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="6.1-classical-mds.html#cb185-1" tabindex="-1"></a>B2 <span class="ot">&lt;-</span> (H <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(H <span class="sc">%*%</span> X) <span class="co"># alternative way of computing B</span></span>
+<span id="cb185-2"><a href="6.1-classical-mds.html#cb185-2" tabindex="-1"></a><span class="fu">eigen</span>(B2)<span class="sc">$</span>values</span></code></pre></div>
 <pre><code>## [1] 2.000000e+00 2.000000e+00 1.110223e-15 1.110223e-15 0.000000e+00</code></pre>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="6.1-classical-mds.html#cb171-1" tabindex="-1"></a><span class="fu">eigen</span>(B2)<span class="sc">$</span>vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="6.1-classical-mds.html#cb187-1" tabindex="-1"></a><span class="fu">eigen</span>(B2)<span class="sc">$</span>vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
 <pre><code>##            [,1]       [,2]
 ## [1,]  0.0000000  0.0000000
 ## [2,]  0.0000000 -0.7071068
@@ -554,23 +554,23 @@ The sparsest choice (i.e. the one with most zero elements) is
 <span class="math display">\[
 \mathbf U\boldsymbol \Lambda^{1/2}=\sqrt{2}[\mathbf u_1 , \mathbf u_2].\]</span></p>
 <p>Note again that these coordinates are not unique as any rotation or translation of them will have the same distance matrix. In particular, when doing computations in R we may find different answers depending upon how we do the computation. So for example, if we use the eigendecompostion of <span class="math inline">\(\mathbf B= \mathbf H\mathbf A\mathbf H\)</span></p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="6.1-classical-mds.html#cb173-1" tabindex="-1"></a>B.eig <span class="ot">&lt;-</span> <span class="fu">eigen</span>(B)</span>
-<span id="cb173-2"><a href="6.1-classical-mds.html#cb173-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span><span class="fu">sqrt</span>(B.eig<span class="sc">$</span>values[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])<span class="sc">*</span>B.eig<span class="sc">$</span>vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="6.1-classical-mds.html#cb189-1" tabindex="-1"></a>B.eig <span class="ot">&lt;-</span> <span class="fu">eigen</span>(B)</span>
+<span id="cb189-2"><a href="6.1-classical-mds.html#cb189-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span><span class="fu">sqrt</span>(B.eig<span class="sc">$</span>values[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])<span class="sc">*</span>B.eig<span class="sc">$</span>vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
 <p>we find
 <span class="math display">\[\begin{pmatrix}0&amp;0 \\-0.978&amp;0.208 \\-0.208&amp;-0.978 \\0.978&amp;-0.208 \\0.208&amp;0.978 \\\end{pmatrix}.\]</span>
 Whereas if we use the eigen decomposition of <span class="math inline">\((\mathbf H\mathbf X)(\mathbf H\mathbf X)^\top\)</span> we find a different set of points:</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="6.1-classical-mds.html#cb174-1" tabindex="-1"></a>B2.eig <span class="ot">&lt;-</span> <span class="fu">eigen</span>(B2)</span>
-<span id="cb174-2"><a href="6.1-classical-mds.html#cb174-2" tabindex="-1"></a>Y2 <span class="ot">&lt;-</span><span class="fu">sqrt</span>(B2.eig<span class="sc">$</span>values[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])<span class="sc">*</span>B2.eig<span class="sc">$</span>vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="6.1-classical-mds.html#cb190-1" tabindex="-1"></a>B2.eig <span class="ot">&lt;-</span> <span class="fu">eigen</span>(B2)</span>
+<span id="cb190-2"><a href="6.1-classical-mds.html#cb190-2" tabindex="-1"></a>Y2 <span class="ot">&lt;-</span><span class="fu">sqrt</span>(B2.eig<span class="sc">$</span>values[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])<span class="sc">*</span>B2.eig<span class="sc">$</span>vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
 <p><span class="math display">\[\begin{pmatrix}0&amp;0 \\0&amp;-1 \\-1&amp;0 \\0&amp;1 \\1&amp;0 \\\end{pmatrix}.\]</span></p>
 <p>The distance matrices for both sets of points are equal to <span class="math inline">\(\mathbf D\)</span></p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="6.1-classical-mds.html#cb175-1" tabindex="-1"></a><span class="fu">signif</span>(<span class="fu">dist</span>(Y, <span class="at">upper=</span>T, <span class="at">diag=</span>T),<span class="dv">2</span>) <span class="co"># should agree with D.</span></span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="6.1-classical-mds.html#cb191-1" tabindex="-1"></a><span class="fu">signif</span>(<span class="fu">dist</span>(Y, <span class="at">upper=</span>T, <span class="at">diag=</span>T),<span class="dv">2</span>) <span class="co"># should agree with D.</span></span></code></pre></div>
 <pre><code>##     1   2   3   4   5
 ## 1 0.0 1.0 1.0 1.0 1.0
 ## 2 1.0 0.0 1.4 2.0 1.4
 ## 3 1.0 1.4 0.0 1.4 2.0
 ## 4 1.0 2.0 1.4 0.0 1.4
 ## 5 1.0 1.4 2.0 1.4 0.0</code></pre>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="6.1-classical-mds.html#cb177-1" tabindex="-1"></a><span class="fu">signif</span>(<span class="fu">dist</span>(Y2, <span class="at">upper=</span>T, <span class="at">diag=</span>T),<span class="dv">2</span>) <span class="co"># should agree with D.</span></span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="6.1-classical-mds.html#cb193-1" tabindex="-1"></a><span class="fu">signif</span>(<span class="fu">dist</span>(Y2, <span class="at">upper=</span>T, <span class="at">diag=</span>T),<span class="dv">2</span>) <span class="co"># should agree with D.</span></span></code></pre></div>
 <pre><code>##     1   2   3   4   5
 ## 1 0.0 1.0 1.0 1.0 1.0
 ## 2 1.0 0.0 1.4 2.0 1.4
@@ -594,7 +594,7 @@ HX.svd$u%*% diag(HX.svd$d)
 ```
 -->
 <p>Finally, note that as always, there is an R command that will do all of this work for us</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="6.1-classical-mds.html#cb179-1" tabindex="-1"></a>Y.mds <span class="ot">&lt;-</span> <span class="fu">cmdscale</span>(D, <span class="at">eig=</span><span class="cn">TRUE</span>) <span class="co">#Classical MultiDimensional Scaling</span></span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="6.1-classical-mds.html#cb195-1" tabindex="-1"></a>Y.mds <span class="ot">&lt;-</span> <span class="fu">cmdscale</span>(D, <span class="at">eig=</span><span class="cn">TRUE</span>) <span class="co">#Classical MultiDimensional Scaling</span></span></code></pre></div>
 <p>giving the set of points
 <span class="math display">\[\begin{pmatrix}0&amp;0 \\1&amp;0 \\0&amp;-1 \\-1&amp;0 \\0&amp;1 \\\end{pmatrix}.\]</span></p>
 <p>If we plot the original data points <span class="math inline">\(\mathbf X\)</span>, along with the three sets of reconstructed data points <code>Y</code>, <code>Y2</code>, and <code>Y.mds</code> we can see that they are essentially the same, apart from being rotatated or reordered.</p>
@@ -622,16 +622,16 @@ In other words, we sum over those <span class="math inline">\(j\)</span> such th
 <p><span class="math display">\[\mathbf D_2 = \begin{pmatrix}0&amp;0.5&amp;1&amp;1&amp;1 \\0.5&amp;0&amp;1.41&amp;2&amp;1.41 \\1&amp;1.41&amp;0&amp;1.41&amp;2 \\1&amp;2&amp;1.41&amp;0&amp;1.41 \\1&amp;1.41&amp;2&amp;1.41&amp;0 \\\end{pmatrix}.\]</span>
 This is a distance matrix, but is it a <em>Euclidean</em> distance matrix? I.e., is there a set of vectors <span class="math inline">\(\mathbf x_1, \ldots, \mathbf x_5\)</span> which have Euclidean distances between them given by <span class="math inline">\(\mathbf D_2\)</span>?</p>
 <p>If we look at the eigenvalues of the centred inner-product matrix <span class="math inline">\(\mathbf B\)</span> associated with <span class="math inline">\(\mathbf D_2\)</span>, then we find that it has negative eigenvalues, and is thus not positive semi-definite. Thus by Theorem <a href="6.1-classical-mds.html#thm:five1">6.1</a> <span class="math inline">\(\mathbf D_2\)</span> is not a <em>Euclidean</em> distance matrix.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="6.1-classical-mds.html#cb180-1" tabindex="-1"></a>D2 <span class="ot">&lt;-</span> D</span>
-<span id="cb180-2"><a href="6.1-classical-mds.html#cb180-2" tabindex="-1"></a>D2[<span class="dv">2</span>,<span class="dv">1</span>]<span class="ot">&lt;-</span><span class="fl">0.5</span></span>
-<span id="cb180-3"><a href="6.1-classical-mds.html#cb180-3" tabindex="-1"></a>D2[<span class="dv">1</span>,<span class="dv">2</span>]<span class="ot">&lt;-</span>D2[<span class="dv">2</span>,<span class="dv">1</span>]</span>
-<span id="cb180-4"><a href="6.1-classical-mds.html#cb180-4" tabindex="-1"></a>A2 <span class="ot">&lt;-</span> <span class="sc">-</span>D2<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span> </span>
-<span id="cb180-5"><a href="6.1-classical-mds.html#cb180-5" tabindex="-1"></a>B2 <span class="ot">&lt;-</span> H<span class="sc">%*%</span> A2<span class="sc">%*%</span>H </span>
-<span id="cb180-6"><a href="6.1-classical-mds.html#cb180-6" tabindex="-1"></a><span class="fu">eigen</span>(B2)<span class="sc">$</span>values</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="6.1-classical-mds.html#cb196-1" tabindex="-1"></a>D2 <span class="ot">&lt;-</span> D</span>
+<span id="cb196-2"><a href="6.1-classical-mds.html#cb196-2" tabindex="-1"></a>D2[<span class="dv">2</span>,<span class="dv">1</span>]<span class="ot">&lt;-</span><span class="fl">0.5</span></span>
+<span id="cb196-3"><a href="6.1-classical-mds.html#cb196-3" tabindex="-1"></a>D2[<span class="dv">1</span>,<span class="dv">2</span>]<span class="ot">&lt;-</span>D2[<span class="dv">2</span>,<span class="dv">1</span>]</span>
+<span id="cb196-4"><a href="6.1-classical-mds.html#cb196-4" tabindex="-1"></a>A2 <span class="ot">&lt;-</span> <span class="sc">-</span>D2<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">2</span> </span>
+<span id="cb196-5"><a href="6.1-classical-mds.html#cb196-5" tabindex="-1"></a>B2 <span class="ot">&lt;-</span> H<span class="sc">%*%</span> A2<span class="sc">%*%</span>H </span>
+<span id="cb196-6"><a href="6.1-classical-mds.html#cb196-6" tabindex="-1"></a><span class="fu">eigen</span>(B2)<span class="sc">$</span>values</span></code></pre></div>
 <pre><code>## [1]  2.026016e+00  2.000000e+00  1.004310e-01 -7.216450e-16 -2.764470e-01</code></pre>
 <p>We can still use classical multidimensional scaling to find a set of points <span class="math inline">\(\mathbf x_1, \ldots, \mathbf x_5\)</span> that have distances approximately given by <span class="math inline">\(\mathbf D_2\)</span>.
 <code>cmdscale</code> allows us to specify the dimension of the points <span class="math inline">\(\mathbf x_i\)</span>. If we pick <span class="math inline">\(\dim(\mathbf x)=2\)</span> then it gives us the set of points</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="6.1-classical-mds.html#cb182-1" tabindex="-1"></a><span class="fu">cmdscale</span>(D2, <span class="at">k=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="6.1-classical-mds.html#cb198-1" tabindex="-1"></a><span class="fu">cmdscale</span>(D2, <span class="at">k=</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##          [,1]          [,2]
 ## 1 -0.13881300  1.449541e-15
 ## 2 -0.97216111  1.011091e-14
@@ -640,16 +640,16 @@ This is a distance matrix, but is it a <em>Euclidean</em> distance matrix? I.e.,
 ## 5  0.04112656  1.000000e+00</code></pre>
 <p>which have a distance matrix that approximates <span class="math inline">\(\mathbf D_2\)</span>, but does not equal it. By using a different number of dimensions, we may be able to get a set of points that have a distance matrix closer to <span class="math inline">\(\mathbf D_2\)</span>, but we will not be able to find a set of <span class="math inline">\(5\)</span> points that have a distance matrix exactly equal to <span class="math inline">\(\mathbf D_2\)</span>.</p>
 <p>To do this ourselves (i.e., not using <code>cmdscale</code>) we can use the commands</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="6.1-classical-mds.html#cb184-1" tabindex="-1"></a>U <span class="ot">&lt;-</span> <span class="fu">eigen</span>(B2)<span class="sc">$</span>vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
-<span id="cb184-2"><a href="6.1-classical-mds.html#cb184-2" tabindex="-1"></a>Lambda_sqrt <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">sqrt</span>(<span class="fu">eigen</span>(B2)<span class="sc">$</span>values[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]))</span>
-<span id="cb184-3"><a href="6.1-classical-mds.html#cb184-3" tabindex="-1"></a>Y <span class="ot">&lt;-</span> U <span class="sc">%*%</span> Lambda_sqrt</span>
-<span id="cb184-4"><a href="6.1-classical-mds.html#cb184-4" tabindex="-1"></a><span class="fu">dist</span>(Y)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="6.1-classical-mds.html#cb200-1" tabindex="-1"></a>U <span class="ot">&lt;-</span> <span class="fu">eigen</span>(B2)<span class="sc">$</span>vectors[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb200-2"><a href="6.1-classical-mds.html#cb200-2" tabindex="-1"></a>Lambda_sqrt <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">sqrt</span>(<span class="fu">eigen</span>(B2)<span class="sc">$</span>values[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]))</span>
+<span id="cb200-3"><a href="6.1-classical-mds.html#cb200-3" tabindex="-1"></a>Y <span class="ot">&lt;-</span> U <span class="sc">%*%</span> Lambda_sqrt</span>
+<span id="cb200-4"><a href="6.1-classical-mds.html#cb200-4" tabindex="-1"></a><span class="fu">dist</span>(Y)</span></code></pre></div>
 <pre><code>##           1         2         3         4
 ## 2 0.8333481                              
 ## 3 1.0160602 1.4236404                    
 ## 4 1.1675340 2.0008821 1.4054689          
 ## 5 1.0160602 1.4236404 2.0000000 1.4054689</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="6.1-classical-mds.html#cb186-1" tabindex="-1"></a><span class="fu">dist</span>(<span class="fu">cmdscale</span>(D2,<span class="at">k=</span><span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="6.1-classical-mds.html#cb202-1" tabindex="-1"></a><span class="fu">dist</span>(<span class="fu">cmdscale</span>(D2,<span class="at">k=</span><span class="dv">2</span>))</span></code></pre></div>
 <pre><code>##           1         2         3         4
 ## 2 0.8333481                              
 ## 3 1.0160602 1.4236404                    
