@@ -1,10 +1,11 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-%
 \documentclass[
 ]{book}
+\usepackage{xcolor}
 \usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -35,7 +36,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{xcolor}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -88,21 +88,24 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
 \usepackage{booktabs}
 \usepackage{amsthm}
 \DeclareMathOperator*{\argmin}{argmin}
@@ -123,11 +126,6 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
-\usepackage[]{natbib}
-\bibliographystyle{apalike}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
@@ -139,7 +137,7 @@
 
 \title{Multivariate Statistics}
 \author{Prof.~Richard Wilkinson}
-\date{Spring 2025}
+\date{Spring 2026}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -406,12 +404,12 @@ Sepal.Length & Sepal.Width & Petal.Length & Petal.Width & Species\\
 \protect\hypertarget{exm:mnist}{}\label{exm:mnist}The MNIST dataset is a collection of handwritten digits that is widely used in statistics and machine learning to test algorithms.
 It contains 60,000 images of hand-written digits. Here are the first 12 images:
 
-\includegraphics{MNIST2.png}
+\pandocbounded{\includegraphics[keepaspectratio]{MNIST2.png}}
 
 Each digit has been converted to a grid of \(28\times 28\) pixels, with a grayscale intensity level specified for each pixel. When we store these on a computer, we flatten each grid to a vector of length 784.
 So for this dataset, \(n=60,000\) and \(p=784\). As an example of what the data look like, the intensities (times 100) for the first image above are shown in the plot below:
 
-\includegraphics{MNIST3.png}
+\pandocbounded{\includegraphics[keepaspectratio]{MNIST3.png}}
 \end{example}
 
 \subsection{Aims of multivariate data analysis}\label{aims-of-multivariate-data-analysis}
@@ -464,9 +462,7 @@ With multivariate data, finding the right kind of plot is not always simple, and
 When \(p=1\) or \(p=2\) we can simply draw histograms and scatter plots (respectively) to view the distribution. For \(p \geq 3\) the task is harder. One solution is a matrix of pair-wise scatter plots using the \texttt{pairs} command in R. The graph below shows the relationship between goals scored (F), goals against (A) and points (PT) for 20 teams during a recent Premiership season.
 
 \begin{figure}
-\centering
-\includegraphics{figs/pairs.png}
-\caption{\label{fig:unnamed-chunk-6}Scatter plots of goals for (F), goals against (A) and points (PT) for a recent Premier League Season}
+\includegraphics[width=30.56in]{figs/pairs} \caption{Scatter plots of goals for (F), goals against (A) and points (PT) for a recent Premier League Season}\label{fig:unnamed-chunk-6}
 \end{figure}
 
 We can instantly see that points and goals scored are positively correlated, and that points and goals conceded (A) are negatively correlated (this is not a surprise of course).
@@ -496,7 +492,7 @@ Note that it is possible to miss key relationships when looking at \emph{margina
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{01-statistical-prelim_files/figure-latex/unnamed-chunk-8-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{01-statistical-prelim_files/figure-latex/unnamed-chunk-8-1.pdf}}
 
 Each case is represented by a single line, and here we have the information shown for the four continuous variables. The fifth variable \texttt{Species} is a discrete factor, and is shown by colouring the lines.
 
@@ -1927,7 +1923,7 @@ Note that numerical errors will start to appear quite quickly. For example, the 
 \begin{verbatim}
 ##              [,1] [,2]
 ## [1,] 1.000000e+00    0
-## [2,] 5.551115e-17    1
+## [2,] 6.938894e-17    1
 \end{verbatim}
 
 \begin{enumerate}
@@ -2519,7 +2515,7 @@ Let's check our answer in R.
 ##               [,1]       [,2]
 ## [1,] -7.071068e-01 -0.2357023
 ## [2,] -7.071068e-01  0.2357023
-## [3,] -5.551115e-17 -0.9428090
+## [3,]  1.604701e-16 -0.9428090
 \end{verbatim}
 
 The eigenvectors are only defined upto multiplication by \(-1\) and so we can multiply any pair of left and right singular vectors by \(-1\) and it is still a valid SVD.
@@ -3066,7 +3062,7 @@ Beware that high-dimensional data can behave qualitatively differently to low-di
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-1-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-1-1.pdf}}
 
 So we can see that as the dimension increases, the ratio of the maximum and minimum distance between any two random points in our sample tends to 1. In other words, all points are the same distance apart!
 
@@ -3205,11 +3201,11 @@ The name \textbf{principal component analysis} comes from thinking of this as sp
 
 \href{https://twitter.com/allison_horst/status/1288904459490213888?lang=en}{Allison Horst (@allison\_horst)} gave a great illustration of how to think about PCA on Twitter. Imagine you are a whale shark with a wide mouth
 
-\includegraphics{figs/WideMouthShark1.png}
+\pandocbounded{\includegraphics[keepaspectratio]{figs/WideMouthShark1.png}}
 
 and that you're swimming towards a delicious swarm of krill.
 
-\includegraphics{figs/WideMouthShark2.png}
+\pandocbounded{\includegraphics[keepaspectratio]{figs/WideMouthShark2.png}}
 
 What way should you tilt your shark head in order to eat as many krill as possible? The answer is given by the first principal component of the data!
 
@@ -3462,7 +3458,7 @@ As it is, a student that has a high mark on PRB and STA will have a low negative
 If we plot the data along with the principal components. The two lines, centred on \(\bar{\mathbf x}\), are in the direction of the principal components/eigenvectors, and their lengths are \(2 \sqrt{\lambda_j}\), \(j=1,2\).
 We can see that the first PC is in the direction of greatest variation (shown in red), and that the second PC (shown in green) is orthogonal to the first PC.
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-8-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-8-1.pdf}}
 
 We can find the transformed variables by computing either \(\mathbf X\mathbf V\) or \(\mathbf U\boldsymbol{\Sigma}\)
 
@@ -3508,7 +3504,7 @@ We can find the transformed variables by computing either \(\mathbf X\mathbf V\)
 
 If we plot the PC scores we can see that the variation is now in line with the new coordinate axes:
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-10-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-10-1.pdf}}
 
 R also has a built-in function for doing PCA.
 
@@ -3559,7 +3555,7 @@ Note that the new variables have sample mean \(\bar{\mathbf y}={\boldsymbol 0}\)
 
 \begin{verbatim}
 ##           PC1           PC2 
-##  2.797762e-15 -7.993606e-16
+##  3.552714e-15 -8.659740e-16
 \end{verbatim}
 
 \begin{Shaded}
@@ -3570,8 +3566,8 @@ Note that the new variables have sample mean \(\bar{\mathbf y}={\boldsymbol 0}\)
 
 \begin{verbatim}
 ##               PC1           PC2
-## PC1  3.042437e+02 -7.498429e-14
-## PC2 -7.498429e-14  3.315628e+01
+## PC1  3.042437e+02 -7.051952e-14
+## PC2 -7.051952e-14  3.315628e+01
 \end{verbatim}
 
 Finally, note that we did the singular value decomposition for \(\mathbf X\) above not \(\frac{1}{\sqrt{10}}\mathbf X\), and so we'd need to square and scale the singular values to find the eigenvalues. Let's check:
@@ -3681,7 +3677,7 @@ A scree plot can be obtained simply by using the \texttt{plot} command. The summ
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-16-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-16-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3707,7 +3703,7 @@ To plot the PC scores, you can either manually create a plot or use the \texttt{
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-17-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-17-1.pdf}}
 
 The \texttt{ggfortify} package provides a nice wrapper for some of this functionality.
 
@@ -3718,7 +3714,7 @@ The \texttt{ggfortify} package provides a nice wrapper for some of this function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-18-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-18-1.pdf}}
 
 \section{PCA: a formal description with proofs}\label{pca-a-formal-description-with-proofs}
 
@@ -3889,14 +3885,14 @@ Note that the total goals scored must equal the total goals conceded, and that t
 \end{equation}
 
 The eigenvalues of \(\mathbf S\) are
-\[\boldsymbol \Lambda= \text{diag}\begin{pmatrix}1230&68.3&7.65&4.39&4.59e-14&-2.04e-14 \\\end{pmatrix}\]
+\[\boldsymbol \Lambda= \text{diag}\begin{pmatrix}1230&68.3&7.65&4.39&1.13e-13&-1.67e-14 \\\end{pmatrix}\]
 
 Note that we have two zero eigenvalues (which won't be computed as exactly zero because of numerical rounding errors) because two of our variables are a linear combinations of the other variables, \(W+D+L = 38\) and \(GD=G-GA\). The corresponding eigenvectors are
-\[\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] =\begin{pmatrix}-0.166&0.0262&-0.707&-0.373&-0.188&-0.546 \\0.0282&-0.275&0.661&-0.391&-0.188&-0.546 \\0.138&0.249&0.0455&0.764&-0.188&-0.546 \\-0.502&0.6&0.202&-0.117&-0.546&0.188 \\0.285&0.701&0.11&-0.286&0.546&-0.188 \\-0.787&-0.101&0.0915&0.169&0.546&-0.188 \\\end{pmatrix}\]
+\[\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] =\begin{pmatrix}-0.166&0.0262&-0.707&-0.373&-0.252&0.52 \\0.0282&-0.275&0.661&-0.391&-0.252&0.52 \\0.138&0.249&0.0455&0.764&-0.252&0.52 \\-0.502&0.6&0.202&-0.117&-0.52&-0.252 \\0.285&0.701&0.11&-0.286&0.52&0.252 \\-0.787&-0.101&0.0915&0.169&0.52&0.252 \\\end{pmatrix}\]
 
 The proportion of variability explained by each of the PCs is:
 \[
-\begin{pmatrix}0.939&0.052&0.00583&0.00334&3.5e-17&-1.56e-17 \\\end{pmatrix}
+\begin{pmatrix}0.939&0.052&0.00583&0.00334&8.58e-17&-1.27e-17 \\\end{pmatrix}
 \]
 
 There is no point computing the scores for PC 5 and 6, because these do not explain any of the variability in the data. Similarly, there is little value in computing the scores for PCs 3 \& 4 because they account for less than 1\% of the variability in the data.
@@ -3927,7 +3923,7 @@ Leicester City & -32.2 & -1.1\\
 
 Now that we have reduced the dimension to \(p=2\), we can visualise the differences between the teams.
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-24-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-24-1.pdf}}
 
 We might interpret the PCs as follows. The first PC seems to measure the difference in goals scored and conceded between teams. Low values of PC1 indicate good peformance, and high values poor performance. Teams are rewarded with -0.79 for each positive goal difference, and -0.5 for each goal scored, whilst being penalised by 0.28 for every goal they concede. So a team with a large negative PC1 score tends to score lots of goals and concede few. If we rank teams by their PC1 score, and compare this with the rankings using 3 points for a win and 1 point for a draw we get a different ranking of the teams.
 
@@ -3949,7 +3945,7 @@ The above example raises the question of how many PCs should we use in practice.
 
 The scree graph for the football example is:
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-27-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-27-1.pdf}}
 
 There are many possible methods for choosing the number of PCs to retain for analysis, including:
 
@@ -3986,9 +3982,9 @@ Given that the required numerical calculations are easy to perform in R, we migh
 If we repeat the analysis of the football data using \(\mathbf R\) instead of \(\mathbf S\), we get find principal components:
 
 \begin{align*}
-\boldsymbol \Lambda&= \text{diag}\begin{pmatrix}4.51&1.25&0.156&0.0863&3.68e-32&2.48e-33 \\\end{pmatrix}\\
+\boldsymbol \Lambda&= \text{diag}\begin{pmatrix}4.51&1.25&0.156&0.0863&1.13e-32&3.13e-35 \\\end{pmatrix}\\
 \;\\
-\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] &=\begin{pmatrix}-0.456&0.149&-0.342&-0.406&0.466&0.52 \\0.143&-0.844&0.344&-0.143&0.24&0.268 \\0.432&0.321&0.186&0.541&0.413&0.461 \\-0.438&0.214&0.7&-0.0181&0.389&-0.348 \\0.419&0.342&0.386&-0.671&-0.245&0.22 \\-0.466&-0.00136&0.302&0.269&-0.586&0.525 \\\end{pmatrix}
+\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] &=\begin{pmatrix}-0.456&0.149&0.342&0.406&-0.0283&0.698 \\0.143&-0.844&-0.344&0.143&-0.0146&0.359 \\0.432&0.321&-0.186&-0.541&-0.0251&0.619 \\-0.438&0.214&-0.7&0.0181&-0.521&-0.0212 \\0.419&0.342&-0.386&0.671&0.329&0.0134 \\-0.466&-0.00136&-0.302&-0.269&0.786&0.0319 \\\end{pmatrix}
 \end{align*}
 
 The effect of using \(\mathbf R\) is to standardize each of the original variables to have variance 1.
@@ -4016,7 +4012,7 @@ Burnley & 0.18 & -0.10\\
 
 Overall for these data, doing PCA with \(\mathbf R\) instead of \(\mathbf S\) better summarizes the data (although this is just my subjective opinion - you may feel differently).
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-30-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-30-1.pdf}}
 
 \subsection{Population PCA}\label{population-pca}
 
@@ -4223,7 +4219,7 @@ I've made a clean version of the dataset available on Moodle, so you can try thi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-31-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-31-1.pdf}}
 
 We can see there is quite a bit of variation between them.
 Now lets look at \(\bar{\mathbf x}\), the average 3.
@@ -4235,7 +4231,7 @@ Now lets look at \(\bar{\mathbf x}\), the average 3.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-32-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-32-1.pdf}}
 
 We can use the \texttt{prcomp} command to find the principal components. Note that we can't use the \texttt{scale=TRUE} option as some of the columns are all 0, and so R throws an error as it cannot rescale these to have variance 1. Let's plot the first few principal components/eigenvectors/loading vectors.
 
@@ -4246,7 +4242,7 @@ We can use the \texttt{prcomp} command to find the principal components. Note th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-33-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-33-1.pdf}}
 
 These show the main mode of variability in the 3s. Focusing on the first PC, we can see that this is a form of rotation and causes the 3 to slant either forward or backward. If we wanted a rank-2 approximation to the data we would use
 \[f(\mathbf y) = \bar{\mathbf x} + y_1 \mathbf v_1 + y_2 \mathbf v_2\]
@@ -4261,7 +4257,7 @@ Let's try reconstructing the data with \(r=2\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-34-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-34-1.pdf}}
 
 We can see that all of these 3s still look a lot like the average 3, but that they vary in their slant, and the heaviness of the line.
 
@@ -4273,7 +4269,7 @@ The scree plot shows a sharp decrease in the eigenvalues until about the 100th c
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-35-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-35-1.pdf}}
 
 It can also be useful to plot the cumulative sum of the total proportion of variance explained by a given number of principal components. I've drawn on horizontal lines at 90\% and 95\% of variance explained, to help identify when we cross these thresholds.
 We need 80 components to explain 90\% of the variance, and 138 components to explain 95\% of the variance.
@@ -4290,7 +4286,7 @@ We need 80 components to explain 90\% of the variance, and 138 components to exp
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-37-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-37-1.pdf}}
 
 Let's now look at the reconstruction using \(r=10, \;50, \;100\) and \(500\) components to see how the accuracy changes.
 
@@ -4302,7 +4298,7 @@ Let's now look at the reconstruction using \(r=10, \;50, \;100\) and \(500\) com
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-38-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-38-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4312,7 +4308,7 @@ Let's now look at the reconstruction using \(r=10, \;50, \;100\) and \(500\) com
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-39-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-39-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4322,7 +4318,7 @@ Let's now look at the reconstruction using \(r=10, \;50, \;100\) and \(500\) com
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-40-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-40-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4332,7 +4328,7 @@ Let's now look at the reconstruction using \(r=10, \;50, \;100\) and \(500\) com
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-41-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-41-1.pdf}}
 
 We can see that as the number of components increases the reconstructions start to look more like the original 12 images.
 
@@ -4345,7 +4341,7 @@ We can visualise the range of 3s by looking at a scatter plot of the first two p
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-42-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-42-1.pdf}}
 
 We can then finding images that differ according to these two PC scores. The first plot below is the 3 with the smallest PC1 score, and the second has the largest PC1 score. The third plot has the smallest PC2 score, and the fourth plot the largest PC2 score.
 These four different 3s differ in more than just the first two principal components, but you can see the effect of the PC1 score is to slant the image forward or backward, whereas PC2 changes the thickness of the line.
@@ -4360,7 +4356,7 @@ These four different 3s differ in more than just the first two principal compone
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-43-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-43-1.pdf}}
 
 Finally, let's do PCA on a selection of the 60,000 images (not just the 3s). You can compute the SVD (which is what \texttt{prcomp} uses to do PCA) on a \(60,000 \times 784\) matrix, but it takes a long time on most computers, so here I've just computed the first two components on a random selection of 5,000 images using the option \texttt{rank=2} which significantly speeds up the computation time.
 
@@ -4377,7 +4373,7 @@ Finally, let's do PCA on a selection of the 60,000 images (not just the 3s). You
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{04-pca_files/figure-latex/unnamed-chunk-44-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{04-pca_files/figure-latex/unnamed-chunk-44-1.pdf}}
 
 We can see from this scatter plot that the first two principal components do a surprisingly good job of separating and clustering the digits.
 
@@ -4523,6 +4519,10 @@ data on 27 different decathletes' performances during two different competitions
 \end{verbatim}
 
 \begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 4.5.2
+\end{verbatim}
+
+\begin{verbatim}
 ## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
 \end{verbatim}
 
@@ -4628,7 +4628,7 @@ Plot the first two scores for the different athlete performances, labelling each
   Try exam question 1 part (a) from the 2017-18 exam paper.
 \end{enumerate}
 
-\includegraphics{figs/PCA_2017_18_Q1.png}
+\pandocbounded{\includegraphics[keepaspectratio]{figs/PCA_2017_18_Q1.png}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4638,9 +4638,9 @@ Plot the first two scores for the different athlete performances, labelling each
   This is an exam question from 2019.
 \end{enumerate}
 
-\includegraphics{PCA_Q4_2018_19a.png}
+\pandocbounded{\includegraphics[keepaspectratio]{PCA_Q4_2018_19a.png}}
 
-\includegraphics{PCA_Q4_2018_19b.png}
+\pandocbounded{\includegraphics[keepaspectratio]{PCA_Q4_2018_19b.png}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4650,7 +4650,7 @@ Plot the first two scores for the different athlete performances, labelling each
   Try this tricky question from the 2016 exam.
 \end{enumerate}
 
-\includegraphics{PCA_Q4_2015_16_short.png}
+\pandocbounded{\includegraphics[keepaspectratio]{PCA_Q4_2015_16_short.png}}
 
 \chapter{Canonical Correlation Analysis (CCA)}\label{cca}
 
@@ -5048,12 +5048,21 @@ A scatter plot of the two canonical correlation variables shows the strong corre
 \begin{Highlighting}[]
 \NormalTok{cca.out }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Team=}\NormalTok{table}\SpecialCharTok{$}\NormalTok{Team, }\AttributeTok{eta=}\NormalTok{eta, }\AttributeTok{psi=}\NormalTok{psi)}
 \FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 4.5.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \FunctionTok{ggplot}\NormalTok{(cca.out, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ eta, }\AttributeTok{y=}\NormalTok{ psi, }\AttributeTok{label=}\NormalTok{Team))}\SpecialCharTok{+}   \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
 \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{Team),}\AttributeTok{hjust=}\DecValTok{0}\NormalTok{, }\AttributeTok{vjust=}\DecValTok{0}\NormalTok{, }\AttributeTok{size=}\DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{05-cca_files/figure-latex/unnamed-chunk-14-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{05-cca_files/figure-latex/unnamed-chunk-14-1.pdf}}
 
 We can also do this with the \texttt{CCA} package in R. The command \texttt{matcor(X,Y)} gives the correlation matrices, and the command \texttt{cc} performs CCA. See if you can find the outputs computed above in the output of the \texttt{cc} command.
 
@@ -5275,7 +5284,7 @@ Interpretation of the 2nd CC: teams that have a lot of draws tend to be in low-s
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{05-cca_files/figure-latex/unnamed-chunk-17-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{05-cca_files/figure-latex/unnamed-chunk-17-1.pdf}}
 
 \section{Properties}\label{properties}
 
@@ -5644,7 +5653,7 @@ You can download the data set \texttt{sales.csv} from Moodle. The following anal
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{05-cca-ex_files/figure-latex/unnamed-chunk-9-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{05-cca-ex_files/figure-latex/unnamed-chunk-9-1.pdf}}
 
 The following gives the correlation between the original variables and the transformed variables
 
@@ -5717,7 +5726,7 @@ The following gives the correlation between the original variables and the trans
   Attempt exam question 1 part (b) from the 2017-18 exam paper.
 \end{enumerate}
 
-\includegraphics{figs/CCA_2017_18_Q1.png}
+\pandocbounded{\includegraphics[keepaspectratio]{figs/CCA_2017_18_Q1.png}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -5764,7 +5773,7 @@ The following gives the correlation between the original variables and the trans
   Attempt exam question 1 part (b) from the 2020-21 exam paper.
 \end{enumerate}
 
-\includegraphics{figs/CCA_2020_21.png}
+\pandocbounded{\includegraphics[keepaspectratio]{figs/CCA_2020_21.png}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -5907,7 +5916,7 @@ We can then do CCA on these two datasets
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{05-cca-ex_files/figure-latex/unnamed-chunk-12-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{05-cca-ex_files/figure-latex/unnamed-chunk-12-1.pdf}}
 
 Interpret the output of this canonical correlation analysis.
 
@@ -5951,7 +5960,7 @@ If we define the errors in terms of a square distance, then we can write the goa
 
 As an illustrative example, consider the location of some of England's cities.
 
-\includegraphics{06-mds_files/figure-latex/unnamed-chunk-1-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{06-mds_files/figure-latex/unnamed-chunk-1-1.pdf}}
 
 If we are told their latitude and longitude, it is easy to calculate the distances between the cities. I.e., given the latitude and longitude of each city, \(\mathbf x_i\), we can compute the distance matrix between pairs of cities \(\mathbf D\):
 
@@ -6216,7 +6225,7 @@ Note that if we compute these in R, you may well get different eigenvectors, but
 \end{Shaded}
 
 \begin{verbatim}
-## [1]  2.000000e+00  2.000000e+00  1.207037e-15  3.331224e-16 -2.775558e-17
+## [1]  2.000000e+00  2.000000e+00  1.332268e-15  8.881784e-16 -8.493206e-17
 \end{verbatim}
 
 \begin{Shaded}
@@ -6228,10 +6237,10 @@ Note that if we compute these in R, you may well get different eigenvectors, but
 \begin{verbatim}
 ##            [,1]       [,2]
 ## [1,]  0.0000000  0.0000000
-## [2,] -0.6916609  0.1469869
-## [3,] -0.1469869 -0.6916609
-## [4,]  0.6916609 -0.1469869
-## [5,]  0.1469869  0.6916609
+## [2,] -0.4389033 -0.5544041
+## [3,] -0.5544041  0.4389033
+## [4,]  0.4389033  0.5544041
+## [5,]  0.5544041 -0.4389033
 \end{verbatim}
 
 \begin{Shaded}
@@ -6274,7 +6283,7 @@ Note again that these coordinates are not unique as any rotation or translation 
 \end{Shaded}
 
 we find
-\[\begin{pmatrix}0&0 \\-0.978&0.208 \\-0.208&-0.978 \\0.978&-0.208 \\0.208&0.978 \\\end{pmatrix}.\]
+\[\begin{pmatrix}0&0 \\-0.621&-0.784 \\-0.784&0.621 \\0.621&0.784 \\0.784&-0.621 \\\end{pmatrix}.\]
 Whereas if we use the eigen decomposition of \((\mathbf H\mathbf X)(\mathbf H\mathbf X)^\top\) we find a different set of points:
 
 \begin{Shaded}
@@ -6331,14 +6340,14 @@ giving the set of points
 
 If we plot the original data points \(\mathbf X\), along with the three sets of reconstructed data points \texttt{Y}, \texttt{Y2}, and \texttt{Y.mds} we can see that they are essentially the same, apart from being rotatated or reordered.
 
-\includegraphics{06-mds_files/figure-latex/unnamed-chunk-13-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{06-mds_files/figure-latex/unnamed-chunk-13-1.pdf}}
 
 \subsubsection*{Example 2}\label{example-2}
 \addcontentsline{toc}{subsubsection}{Example 2}
 
 If we apply the \texttt{cmdscale} to the distances between UK cities from the introduction, we get the `coordinates' shown below.
 
-\includegraphics{06-mds_files/figure-latex/unnamed-chunk-14-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{06-mds_files/figure-latex/unnamed-chunk-14-1.pdf}}
 
 This `map' is essentially correct, but it is rotated \(90^\circ\) and the `coordinates' have mean zero.
 
@@ -6376,7 +6385,7 @@ If we look at the eigenvalues of the centred inner-product matrix \(\mathbf B\) 
 \end{Shaded}
 
 \begin{verbatim}
-## [1]  2.026016e+00  2.000000e+00  1.004310e-01 -7.216450e-16 -2.764470e-01
+## [1]  2.026016e+00  2.000000e+00  1.004310e-01 -3.330669e-16 -2.764470e-01
 \end{verbatim}
 
 We can still use classical multidimensional scaling to find a set of points \(\mathbf x_1, \ldots, \mathbf x_5\) that have distances approximately given by \(\mathbf D_2\).
@@ -6390,10 +6399,10 @@ We can still use classical multidimensional scaling to find a set of points \(\m
 
 \begin{verbatim}
 ##          [,1]          [,2]
-## 1 -0.13881300  1.449541e-15
-## 2 -0.97216111  1.011091e-14
+## 1 -0.13881300  9.199009e-16
+## 2 -0.97216111  6.367183e-15
 ## 3  0.04112656 -1.000000e+00
-## 4  1.02872100 -1.018790e-14
+## 4  1.02872100 -6.394670e-15
 ## 5  0.04112656  1.000000e+00
 \end{verbatim}
 
@@ -6432,7 +6441,7 @@ To do this ourselves (i.e., not using \texttt{cmdscale}) we can use the commands
 ## 5 1.0160602 1.4236404 2.0000000 1.4054689
 \end{verbatim}
 
-\includegraphics{06-mds_files/figure-latex/unnamed-chunk-19-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{06-mds_files/figure-latex/unnamed-chunk-19-1.pdf}}
 
 \subsection{Principal Coordinate Analysis}\label{principal-coordinate-analysis}
 
@@ -6677,9 +6686,9 @@ Suppose we decide to use the simple matching coefficient \eqref{eq:smc} to measu
 &\text{Lion}&\text{Giraffe}&\text{Cow}&\text{Sheep}&\text{Human}\\
 Lion&1&2/3&1/2&1/2&1/2\\
 Giraffe&2/3&1&1/2&1/2&1/6\\
-Cow&1/2&1/2&1&1&1/3\\
+Cow&1/2&1/2&1&5/6&1/3\\
 Sheep&1/3 &1/3 &5/6& 1 &1/2\\
-Human&1/2&1/6&1/3&1/3&1
+Human&1/2&1/6&1/3&1/2&1
 \end{array}
 \]
 It is easily checked from the definition that \({\mathbf F}=(f_{ij})_{i,j=1}^5\) is a similarity matrix.
@@ -6789,7 +6798,7 @@ Let's now do MDS, and compare the results from using the SMC and Jaccard index. 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{06-mds_files/figure-latex/unnamed-chunk-27-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{06-mds_files/figure-latex/unnamed-chunk-27-1.pdf}}
 
 So we can see the choice of index has made a difference to the results.
 
@@ -6830,7 +6839,7 @@ We will do as we did before, and plot the coordinates coloured by the digit each
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{06-mds_files/figure-latex/unnamed-chunk-29-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{06-mds_files/figure-latex/unnamed-chunk-29-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6840,7 +6849,7 @@ We will do as we did before, and plot the coordinates coloured by the digit each
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{06-mds_files/figure-latex/unnamed-chunk-29-2.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{06-mds_files/figure-latex/unnamed-chunk-29-2.pdf}}
 
 You can see that we get two different representations of the data that differ from each other, and from the PCA representation we computed in Chapter \ref{pca}.
 
@@ -6924,7 +6933,7 @@ More generally still, there has been a lot of work on non-linear dimension reduc
   Answer Q4 part (c) from the 2018-19 exam paper.
 \end{enumerate}
 
-\includegraphics{figs/MDS_2018_19_Q4.png}
+\pandocbounded{\includegraphics[keepaspectratio]{figs/MDS_2018_19_Q4.png}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6934,7 +6943,7 @@ More generally still, there has been a lot of work on non-linear dimension reduc
   Answer Q4 part (a) from the 2017-18 exam paper. Here, the `similarity matching coefficient' is what we called the \emph{simple matching coefficient} (SMC) in the notes.
 \end{enumerate}
 
-\includegraphics{figs/MDS_2017_18_Q4.png}
+\pandocbounded{\includegraphics[keepaspectratio]{figs/MDS_2017_18_Q4.png}}
 
 \section{Computer Tasks}\label{computer-tasks-2}
 
@@ -7177,12 +7186,12 @@ If \(p=2\) we can plot \(f(\mathbf x)\) using contour plots. Below, I've generat
 and covariance matrices
 \[\boldsymbol{\Sigma}_1=\boldsymbol{\Sigma}_2=\begin{pmatrix}1&0 \\0&1 \\\end{pmatrix}, \quad \boldsymbol{\Sigma}_3=\begin{pmatrix}1&0 \\0&0.05 \\\end{pmatrix}, \quad \boldsymbol{\Sigma}_4=\begin{pmatrix}1&0.9 \\0.9&1 \\\end{pmatrix}.\]
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-3-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{07-mvn_files/figure-latex/unnamed-chunk-3-1.pdf}}
 
 \textbf{Note} that the top left and bottom right plots have the \textbf{same marginal distribtions} for components \(x_1\) and \(x_2\), namely
 \[x_1 \sim N(0, 1)\quad x_2 \sim N(0, 1)\]
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-4-1.pdf} \includegraphics{07-mvn_files/figure-latex/unnamed-chunk-4-2.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{07-mvn_files/figure-latex/unnamed-chunk-4-1.pdf}} \pandocbounded{\includegraphics[keepaspectratio]{07-mvn_files/figure-latex/unnamed-chunk-4-2.pdf}}
 
 The contours on each plot are obtained by finding values of \(\mathbf x\) for which \(f(\mathbf x)=c\). The constant \(c\) is chosen so that the the shapes (which we'll see below are ellipses)
 enclose 66\% and 95\% of the data.
@@ -7283,7 +7292,7 @@ To see that this is the equation of an ellipse, note that a standard ellipse in 
 and recall that a standard ellipse has axes of symmetry given by the \(x\)-axis and \(y\)-axis
 (if \(a>b\), the \(x\)-axis is the major axis, and the \(y\)-axis the minor axis). For example, \(a=10, b=3\) gives the ellipse:
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-7-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{07-mvn_files/figure-latex/unnamed-chunk-7-1.pdf}}
 
 If we define
 \({\mathbf A}=\left(
@@ -7406,7 +7415,7 @@ We can sample from the Wishart distribution in R using the \texttt{rWishart} com
 
 Visualizing these by plotting the ellipses with \(\mathbf x^\top \mathbf M_i \mathbf x=c\) for some constant \(c\), we can see the variability in these random matrices:
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-9-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{07-mvn_files/figure-latex/unnamed-chunk-9-1.pdf}}
 
 \begin{proposition}
 \protect\hypertarget{prp:wishartmean}{}\label{prp:wishartmean}Let \(\mathbf M\sim W_p(\boldsymbol{\Sigma}, n)\). Then
@@ -7449,7 +7458,7 @@ Applying Proposition \ref{prp:six8} with \(\mathbf A= \mathbf a^\top\), we see \
 If we let \(z_i \sim N(0,1)\), and \(\sigma = (\mathbf a^\top \boldsymbol{\Sigma}\mathbf a)^\frac{1}{2}\), then \(\sigma z_i \sim N(0, \mathbf a^\top \boldsymbol{\Sigma}\mathbf a)\). Thus
 \begin{align*}
 \sum_{i=1}^n \sigma^2 z_i^2 &\sim W_1(\mathbf a^\top \boldsymbol{\Sigma}\mathbf a, n) \quad \mbox{by the definition of the Wishart distribution}\\
- &= \sigma^2 \sum_{i=1}^n z_i \\
+ &= \sigma^2 \sum_{i=1}^n z_i^2 \\
 &\sim (\mathbf a^\top \boldsymbol{\Sigma}\mathbf a)\chi^2_n \quad \mbox{by the definition of} \chi^2.
 \end{align*}
 
@@ -7742,7 +7751,7 @@ This confidence region will be the interior of an ellipse or ellipsoid.
 
 Consider again the exam marks for first year maths students in the two modules PRB and STA. The scatterplot below shows the module marks for \(n=203\) students on probability (PRB, \(x_1\)) and statistics (STA, \(x_2\)), with the sample mean vector \(\begin{pmatrix}62.1 \\62.7 \\\end{pmatrix}\) marked on as a red `+'.
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-14-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{07-mvn_files/figure-latex/unnamed-chunk-14-1.pdf}}
 
 The target for the module mean for a large population of students should be exactly 60 for both modules. We now conduct a hypothesis test to see if the lecturers have missed the target and made the exam too difficult. We will test the hypotheses \(H_0\) versus \(H_1\) at the 5\% level where
 \[
@@ -7775,7 +7784,7 @@ Under \(H_0\), \(\zeta^2\sim \chi^2_2\). and so the critical value is \(\chi^2_{
 
 The plot below shows the density of a \(\chi^2_2\) random variable. The vertical red line shows the critical value, the vertical black line the observed value, and the shaded region shows the critical region. As \(\zeta^2 < \chi^2_{p,0.05}\) we can see that we do not reject the null hypothesis at the 5\% level.
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-17-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{07-mvn_files/figure-latex/unnamed-chunk-17-1.pdf}}
 
 The \(p\)-value is
 
@@ -7801,7 +7810,7 @@ The critical value would have been \(Z_{0.025} = 1.960\) and both null hypothese
 
 The \(95\)\% confidence region is the interior of an ellipse, centred on \(\bar{\mathbf x}\), with the angle of the major-axis governed by \(\boldsymbol{\Sigma}\) (given by the eigenvectors of \(\boldsymbol{\Sigma}\)). We can see from the plot below that \((60,60)^\top\), marked with a cross, lies just inside the confidence region.
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-19-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{07-mvn_files/figure-latex/unnamed-chunk-19-1.pdf}}
 
 \subsection{\texorpdfstring{\(\boldsymbol{\Sigma}\) unknown: 1 sample}{\textbackslash boldsymbol\{\textbackslash Sigma\} unknown: 1 sample}}\label{onesample}
 
@@ -7927,7 +7936,7 @@ Notice again the difference to the two univariate tests
 
 The \(95\)\% confidence region is the interior of an ellipse, centred on \(\bar{\mathbf x}\), with the angle of the major-axis governed by \(\mathbf S\). The confidence region is very slightly larger than when \(\boldsymbol{\Sigma}\) was known.
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-25-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{07-mvn_files/figure-latex/unnamed-chunk-25-1.pdf}}
 
 \subsection{\texorpdfstring{\(\boldsymbol{\Sigma}\) unknown: 2 samples}{\textbackslash boldsymbol\{\textbackslash Sigma\} unknown: 2 samples}}\label{boldsymbolsigma-unknown-2-samples}
 
@@ -8005,7 +8014,7 @@ Simply apply Proposition \ref{prp:six14} to the statistic in Proposition \ref{pr
 
 There are two different maths undergraduate programmes at the University of Nottingham: a 3-year (G100) and a 4-year (G103) programme. For the exam marks example, is there a significant difference between students registered on the two different programmes? Let \(\mathbf x_1,\ldots, \mathbf x_{131}\) be the exam marks of the G100 students and let \(\mathbf y_1,\ldots, \mathbf y_{72}\) be the exam marks of the G103 students. The data is shown below, with the sample means marked as large `+' signs.
 
-\includegraphics{07-mvn_files/figure-latex/unnamed-chunk-26-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{07-mvn_files/figure-latex/unnamed-chunk-26-1.pdf}}
 
 Let \({\boldsymbol{\mu}}_1\) and \({\boldsymbol{\mu}}_2\) be the population means for G100 and G103 respectively. Our hypotheses are
 \[H_0: {\boldsymbol{\mu}}_1 = {\boldsymbol{\mu}}_2 \qquad \text{vs.} \qquad H_1: {\boldsymbol{\mu}}_1 \neq {\boldsymbol{\mu}}_2.\]
@@ -8367,7 +8376,7 @@ If we plot these, then you can see that this results in the decision regions sho
 
 \begin{figure}
 \centering
-\includegraphics{09-lda_files/figure-latex/ldaeg1-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/ldaeg1-1.pdf}}
 \caption{\label{fig:ldaeg1}Discriminant regions for Example 1.}
 \end{figure}
 
@@ -8422,7 +8431,7 @@ Using the quadratic equation formula we find that \(f_1(x)=f_2(x)\) when
 
 \begin{figure}
 \centering
-\includegraphics{09-lda_files/figure-latex/lda-oned-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/lda-oned-1.pdf}}
 \caption{\label{fig:lda-oned}Discriminant rule for the two Gaussians example.}
 \end{figure}
 
@@ -8436,7 +8445,7 @@ i.e., if \(x<\frac{3}{2}\). In this case, we do get discriminant regions \(\math
 
 \begin{figure}
 \centering
-\includegraphics{09-lda_files/figure-latex/lda-onedb-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/lda-onedb-1.pdf}}
 \caption{\label{fig:lda-onedb}Discriminant rule for the two Gaussians example when sigma\_2=1}
 \end{figure}
 
@@ -8540,7 +8549,7 @@ Consider the bivariate case (\(p=2\)) with \(g=2\) groups, where \(\Pi_1\) is th
 
 The ML discriminant rule allocates \(\mathbf x\) to \(\Pi_1\) if \(\mathbf a^\top (\mathbf x- \mathbf h) = \mathbf a^\top \mathbf x> 0\). If we write \(\mathbf x= \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}\) then \(\mathbf a^\top \mathbf x= 2cx_1\), which is greater than zero if \(x_1 > 0\). Hence we allocate \(\mathbf x\) to \(\Pi_1\) if \(x_1 > 0\) and allocate \(\mathbf x\) to \(\Pi_2\) if \(x_1 \leq 0\).
 
-\includegraphics{09-lda_files/figure-latex/ldaidentity-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/ldaidentity-1.pdf}}
 
 \paragraph*{Example 3}\label{example-3-1}
 \addcontentsline{toc}{paragraph}{Example 3}
@@ -8549,12 +8558,12 @@ Let's now generalise the previous example, making no assumptions about \(\boldsy
 
 For \({\boldsymbol{\mu}}_1 =\begin{pmatrix}1 \\1 \\\end{pmatrix}\) and \(\boldsymbol{\Sigma}= \begin{pmatrix}1&-0.9 \\-0.9&1 \\\end{pmatrix}\) we find \(\mathbf a= \begin{pmatrix}20 \\20 \\\end{pmatrix}\), which gives the line \(y = -1 x\).
 
-\includegraphics{09-lda_files/figure-latex/unnamed-chunk-2-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/unnamed-chunk-2-1.pdf}}
 
 If the variance of the \(y\) component is very small compared to the variance of the \(x\) component, then we begin to classify solely on the basis of \(y\). For example, if
 \({\boldsymbol{\mu}}_1 =\begin{pmatrix}2 \\1 \\\end{pmatrix}\) and \(\boldsymbol{\Sigma}= \begin{pmatrix}1&0.09 \\0.09&0.1 \\\end{pmatrix}\) we find \(\mathbf a= \begin{pmatrix}2.39 \\17.8 \\\end{pmatrix}\), which gives the line \(y = -0.13 x\). I.e., a line that is getting close to being horizontal.
 
-\includegraphics{09-lda_files/figure-latex/unnamed-chunk-4-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/unnamed-chunk-4-1.pdf}}
 
 \subsection{More than two populations}\label{more-than-two-populations}
 
@@ -8602,7 +8611,7 @@ The effect of the prior probabilities on the populations is to shift the decisio
 
 \begin{figure}
 \centering
-\includegraphics{09-lda_files/figure-latex/ldaidentityBayes-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/ldaidentityBayes-1.pdf}}
 \caption{\label{fig:ldaidentityBayes}LDA when the covariance matrix is the identity, with class prior pi1=0.9}
 \end{figure}
 
@@ -8616,7 +8625,7 @@ The \texttt{lda} command from the \texttt{MASS} library uses the Bayes discrimin
 
 Let's consider doing LDA with the iris data. To begin with, lets use just the setosa and virginica species so that we only have \(g=2\) populations, \(\Pi_{setosa}\) and \(\Pi_{virginica}\). We will also just use the sepal measurements so that \(p=2\). If we plot the data, we can see that the two populations should be easy to classify using just these two measurements:
 
-\includegraphics{09-lda_files/figure-latex/unnamed-chunk-5-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/unnamed-chunk-5-1.pdf}}
 
 The sample means and variances for each group are
 
@@ -8668,7 +8677,13 @@ which can be written as
 \[x_2 = \frac{1}{a_2}(\mathbf a^\top\mathbf h-a_1x_1) = -1.8963517 - -0.8793085 x_1\]
 we can see this line clearly separates the two species of iris.
 
-\includegraphics{09-lda_files/figure-latex/unnamed-chunk-8-1.pdf}
+\begin{verbatim}
+## Warning in geom_point(mapping = aes(x = 5.8, y = 2.5), color = "black", : All aesthetics have length 1, but the data has 100 rows.
+## i Please consider using `annotate()` or provide this layer with data containing
+##   a single row.
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/unnamed-chunk-8-1.pdf}}
 
 If a new iris had a sepal length of 5.8 and a sepal width of 2.5 (marked as a black cross on the plot above) then
 
@@ -8792,7 +8807,7 @@ We will delay discussion of what the reported coefficients mean, and how to visu
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{09-lda_files/figure-latex/unnamed-chunk-15-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/unnamed-chunk-15-1.pdf}}
 
 Note that I renamed the \emph{versicolor} species as \emph{color} so that the different species appear more clearly in the plots.
 
@@ -8827,7 +8842,7 @@ We can again use the \texttt{partimat} command to look at the decision boundarie
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{09-lda_files/figure-latex/qda-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/qda-1.pdf}}
 
 \subsection{Prediction accuracy}\label{prediction-accuracy}
 
@@ -9013,13 +9028,13 @@ In Figure \ref{fig:flda} \(\mathbf a\) is chosen to be Fisher's optimal vector (
 
 \begin{figure}
 \centering
-\includegraphics{09-lda_files/figure-latex/flda-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/flda-1.pdf}}
 \caption{\label{fig:flda}Visualization of Fishers discriminant analysis.}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics{09-lda_files/figure-latex/fldapca-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/fldapca-1.pdf}}
 \caption{\label{fig:fldapca}Projection onto the first principal component.}
 \end{figure}
 
@@ -9060,7 +9075,7 @@ Let's continue the iris example we had before, using the full dataset of 150 obs
 \end{Shaded}
 
 \begin{verbatim}
-## [1]  4.732214e+01  4.195248e-01  7.749285e-15 -4.752967e-15
+## [1]  4.732214e+01  4.195248e-01 -4.967926e-15  4.747562e-15
 \end{verbatim}
 
 We can see that \(\mathbf W^{-1}\mathbf B\) only has two positive eigenvalues, and so is rank 2. We expected this, as we said the rank of \(\mathbf W^{-1}\mathbf B\) must be less than \(\min(g-1,p)= \min(2,4)=2\). We can plot these projections and look at the separation achieved.
@@ -9076,7 +9091,7 @@ We can see that \(\mathbf W^{-1}\mathbf B\) only has two positive eigenvalues, a
 
 \begin{figure}
 \centering
-\includegraphics{09-lda_files/figure-latex/ldairis2d-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/ldairis2d-1.pdf}}
 \caption{\label{fig:ldairis2d}2-dimensional LDA projection of the iris data}
 \end{figure}
 
@@ -9104,7 +9119,7 @@ R will automatically plot this projection for us:
 
 \begin{figure}
 \centering
-\includegraphics{09-lda_files/figure-latex/ldairis2db-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/ldairis2db-1.pdf}}
 \caption{\label{fig:ldairis2db}2-dimensional LDA projection of the iris data using the built-in R plotting function}
 \end{figure}
 
@@ -9118,7 +9133,7 @@ Using the option \texttt{dimen\ =\ 1} will plot histograms of the first LDA proj
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{09-lda_files/figure-latex/unnamed-chunk-22-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/unnamed-chunk-22-1.pdf}}
 
 \paragraph*{Comparison with PCA}\label{comparison-with-pca}
 \addcontentsline{toc}{paragraph}{Comparison with PCA}
@@ -9137,7 +9152,7 @@ We can compare the LDA projection to the 2-dimensional projection found by PCA:
 
 \begin{figure}
 \centering
-\includegraphics{09-lda_files/figure-latex/ldapcairis-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{09-lda_files/figure-latex/ldapcairis-1.pdf}}
 \caption{\label{fig:ldapcairis}2-dimensional PCA projection of the iris data}
 \end{figure}
 
@@ -9418,7 +9433,7 @@ Calculate Fisher's linear discriminant function using just a single LDA variable
   Try Q2 from the 2020-21 paper
 \end{enumerate}
 
-\includegraphics{figs/LDA_2020_21_Q2.png}
+\pandocbounded{\includegraphics[keepaspectratio]{figs/LDA_2020_21_Q2.png}}
 
 \chapter{Cluster Analysis}\label{cluster}
 
@@ -9445,7 +9460,7 @@ The videos for this chapter are available at the following links:
   \href{https://mediaspace.nottingham.ac.uk/media/ClusteringA+Hierarchical+example/1_kuzx1iy6}{Hierarchical clustering example}
 \end{itemize}
 
-\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-2-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{10-clustering_files/figure-latex/unnamed-chunk-2-1.pdf}}
 
 \section{K-means clustering}\label{k-means-clustering}
 
@@ -9560,23 +9575,23 @@ Let's look at finding 3 clusters. We can do this using the \texttt{kmeans} comma
 \end{Shaded}
 
 \begin{verbatim}
-## K-means clustering with 3 clusters of sizes 50, 62, 38
+## K-means clustering with 3 clusters of sizes 62, 38, 50
 ## 
 ## Cluster means:
 ##   Sepal.Length Sepal.Width Petal.Length Petal.Width
-## 1     5.006000    3.428000     1.462000    0.246000
-## 2     5.901613    2.748387     4.393548    1.433871
-## 3     6.850000    3.073684     5.742105    2.071053
+## 1     5.901613    2.748387     4.393548    1.433871
+## 2     6.850000    3.073684     5.742105    2.071053
+## 3     5.006000    3.428000     1.462000    0.246000
 ## 
 ## Clustering vector:
-##   [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-##  [38] 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
-##  [75] 2 2 2 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 2 3 3 3 3 2 3 3 3 3
-## [112] 3 3 2 2 3 3 3 3 2 3 2 3 2 3 3 2 2 3 3 3 3 3 2 3 3 3 3 2 3 3 3 2 3 3 3 2 3
-## [149] 3 2
+##   [1] 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##  [38] 3 3 3 3 3 3 3 3 3 3 3 3 3 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+##  [75] 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 2 2 2 2 1 2 2 2 2
+## [112] 2 2 1 1 2 2 2 2 1 2 1 2 1 2 2 1 1 2 2 2 2 2 1 2 2 2 2 1 2 2 2 1 2 2 2 1 2
+## [149] 2 1
 ## 
 ## Within cluster sum of squares by cluster:
-## [1] 15.15100 39.82097 23.87947
+## [1] 39.82097 23.87947 15.15100
 ##  (between_SS / total_SS =  88.4 %)
 ## 
 ## Available components:
@@ -9597,7 +9612,7 @@ We can visualise the output of \(K\)-means using the \texttt{fviz\_cluster} comm
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-5-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{10-clustering_files/figure-latex/unnamed-chunk-5-1.pdf}}
 
 Finally, in this case we know that there really are three clusters in the data (the three species). We can compare the clusters found using K-means with the species label to see if they are similar. The easiest way to do this is with the \texttt{table} command.
 
@@ -9610,16 +9625,16 @@ Finally, in this case we know that there really are three clusters in the data (
 \begin{verbatim}
 ##             
 ##               1  2  3
-##   setosa     50  0  0
-##   versicolor  0 48  2
-##   virginica   0 14 36
+##   setosa      0  0 50
+##   versicolor 48  2  0
+##   virginica  14 36  0
 \end{verbatim}
 
 \subsection{\texorpdfstring{Choosing \(K\)}{Choosing K}}\label{choosing-k}
 
 In the iris data, we know there are 3 distinct species. But suppose we didn't know this. What happens if we try other values for \(K\)?
 
-\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-7-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{10-clustering_files/figure-latex/unnamed-chunk-7-1.pdf}}
 
 How do we choose between these different values of \(K\)?
 In general, if we choose \(K\) too large, then each individual case will begin to represent a cluster. Conversely, if \(K\) is too small then we will find data points are incorrectly clustered together.
@@ -9635,7 +9650,7 @@ For the iris data, we can create an elbow plot using the \texttt{fviz\_nbclust} 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-9-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{10-clustering_files/figure-latex/unnamed-chunk-9-1.pdf}}
 
 In this case, I would probably decide there most likely three natural clusters in the data, as there is a reasonable decrease in \(W\) when moving from 2 to 3 clusters, but moving to 3 clusters only yields a minor improvement. Note here the slight increase in W in moving from 9 to 10 clusters. This is due to only using a greed search, rather than an exhaustive one (we know the best 10-group cluster must be better than the betst 9-group cluster, we just have found it).
 
@@ -9749,7 +9764,7 @@ Pairs plots of the classification of each point can easily be obtained, as can t
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-11-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{10-clustering_files/figure-latex/unnamed-chunk-11-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9757,7 +9772,7 @@ Pairs plots of the classification of each point can easily be obtained, as can t
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-11-2.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{10-clustering_files/figure-latex/unnamed-chunk-11-2.pdf}}
 
 How to choose \(K\) in model-based clustering is beyond the scope of the module.
 
@@ -9935,7 +9950,7 @@ A convenient graphical way to present the output from an agglomerative clusterin
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-18-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{10-clustering_files/figure-latex/unnamed-chunk-18-1.pdf}}
 
 An alternatively to cutting the tree according to the number of clusters required, is to specify at which height to cut the tree. For example, if we cut the tree at height \(T=4.5\) we get
 
@@ -10009,7 +10024,7 @@ The dendrogram for this is shown below. Note that complete linkage produces a di
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-23-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{10-clustering_files/figure-latex/unnamed-chunk-23-1.pdf}}
 
 \paragraph*{Group average}\label{group-average}
 \addcontentsline{toc}{paragraph}{Group average}
@@ -10023,7 +10038,7 @@ Group average clustering produces the same hierarchy of clusters as single linka
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{10-clustering_files/figure-latex/unnamed-chunk-24-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{10-clustering_files/figure-latex/unnamed-chunk-24-1.pdf}}
 
 If we were to cut the single linkage and group average dendrograms at a height of 6, then we find different clusters. The single linkage dendrogram cut at height 6 gives the clusters \(\{1,2,3,5\}, \{4\}\) whereas the group average dendrogram gives the clusters \(\{1,2\}, \{3,5\}, \{4\}\), despite the two trees having the same topology.
 
@@ -10193,7 +10208,7 @@ implement (by hand) the K-means cluster greedy optimization algorithm until conv
   Attempt question 4b from the 2017-18 exam paper.
 \end{enumerate}
 
-\includegraphics{figs/Clustering_2017_18.png}
+\pandocbounded{\includegraphics[keepaspectratio]{figs/Clustering_2017_18.png}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -10514,8 +10529,8 @@ To choose the number of components to retain, we can use cross-validation. This 
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps
-## CV          0.8308   0.5417   0.3886   0.3173
-## adjCV       0.8308   0.5415   0.3883   0.3170
+## CV          0.8308   0.5428   0.3909   0.3179
+## adjCV       0.8308   0.5425   0.3905   0.3175
 ## 
 ## TRAINING: % variance explained
 ##               1 comps  2 comps  3 comps
@@ -10595,7 +10610,7 @@ We can then look at how the parameter estimates change as the size of \(\lambda\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{08-multivarLM_files/figure-latex/unnamed-chunk-7-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{08-multivarLM_files/figure-latex/unnamed-chunk-7-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -10625,7 +10640,7 @@ We usually choose \(\lambda\) by finding which value gives the lower prediction 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{08-multivarLM_files/figure-latex/unnamed-chunk-9-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{08-multivarLM_files/figure-latex/unnamed-chunk-9-1.pdf}}
 
 From this, we can see that very small values of \(\lambda\) work best here, i.e., the OLS estimator is optimal. This is not a surprise as there are only three covariates in this problem. It is in larger problems that we expect shrinkage methods to be most useful.
 
@@ -10638,7 +10653,7 @@ The value of lambda that minimizes the prediction error can be found by
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0007943282
+## [1] 0.0003162278
 \end{verbatim}
 
 and the largest value of lambda that gives a prediction error within one standard deviation of the minimum can be found using:
@@ -10650,7 +10665,7 @@ and the largest value of lambda that gives a prediction error within one standar
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.01995262
+## [1] 0.02511886
 \end{verbatim}
 
 \section{Multi-output Linear Model}\label{multi-output-linear-model}
@@ -10732,7 +10747,7 @@ The gasoline dataset in the \texttt{pls} dataset consists of data on 60 differen
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{08-multivarLM-ex_files/figure-latex/unnamed-chunk-1-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{08-multivarLM-ex_files/figure-latex/unnamed-chunk-1-1.pdf}}
 
 Also recorded is the octane number of each sample. We will use the NIR measurements to predict the octane number of each sample.
 Note that here \(n=60\) and \(p=401\), so we have many more covariates than samples.
@@ -10842,10 +10857,10 @@ Check that the parameter estimates you find are the same as if you did two univa
   Attempt Q3c) from the 2019 paper (nb: it is a hard question).
 \end{enumerate}
 
-\includegraphics{figs/LM_2018_19_Q3c_ii.png}
+\pandocbounded{\includegraphics[keepaspectratio]{figs/LM_2018_19_Q3c_ii.png}}
 
-\includegraphics{figs/LM_2018_19_Q3c_i.png}
+\pandocbounded{\includegraphics[keepaspectratio]{figs/LM_2018_19_Q3c_i.png}}
 
-  \bibliography{book.bib,packages.bib}
+\bibliography{book.bib,packages.bib}
 
 \end{document}

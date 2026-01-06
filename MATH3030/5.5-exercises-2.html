@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.5 Exercises | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.5 Exercises | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -56,8 +56,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +68,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -411,46 +412,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Mathematics</li>
 </ul>
 <p>You can download the data set <code>sales.csv</code> from Moodle. The following analysis is carried out in R.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="5.5-exercises-2.html#cb149-1" tabindex="-1"></a>dat<span class="ot">=</span><span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">&#39;sales2.csv&#39;</span>, <span class="at">sep=</span><span class="st">&#39;,&#39;</span>,<span class="at">header=</span><span class="cn">TRUE</span>)</span>
-<span id="cb149-2"><a href="5.5-exercises-2.html#cb149-2" tabindex="-1"></a>X <span class="ot">=</span> dat <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">&#39;growth&#39;</span>, <span class="st">&#39;profit&#39;</span>, <span class="st">&#39;new&#39;</span>) </span>
-<span id="cb149-3"><a href="5.5-exercises-2.html#cb149-3" tabindex="-1"></a>Y <span class="ot">=</span> dat <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="st">&#39;growth&#39;</span>, <span class="sc">-</span><span class="st">&#39;profit&#39;</span>, <span class="sc">-</span><span class="st">&#39;new&#39;</span>)</span>
-<span id="cb149-4"><a href="5.5-exercises-2.html#cb149-4" tabindex="-1"></a></span>
-<span id="cb149-5"><a href="5.5-exercises-2.html#cb149-5" tabindex="-1"></a><span class="fu">library</span>(CCA)</span>
-<span id="cb149-6"><a href="5.5-exercises-2.html#cb149-6" tabindex="-1"></a>cc.out <span class="ot">&lt;-</span> <span class="fu">cc</span>(X,Y)</span>
-<span id="cb149-7"><a href="5.5-exercises-2.html#cb149-7" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>cor)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="5.5-exercises-2.html#cb152-1" tabindex="-1"></a>dat<span class="ot">=</span><span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">&#39;sales2.csv&#39;</span>, <span class="at">sep=</span><span class="st">&#39;,&#39;</span>,<span class="at">header=</span><span class="cn">TRUE</span>)</span>
+<span id="cb152-2"><a href="5.5-exercises-2.html#cb152-2" tabindex="-1"></a>X <span class="ot">=</span> dat <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">&#39;growth&#39;</span>, <span class="st">&#39;profit&#39;</span>, <span class="st">&#39;new&#39;</span>) </span>
+<span id="cb152-3"><a href="5.5-exercises-2.html#cb152-3" tabindex="-1"></a>Y <span class="ot">=</span> dat <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="st">&#39;growth&#39;</span>, <span class="sc">-</span><span class="st">&#39;profit&#39;</span>, <span class="sc">-</span><span class="st">&#39;new&#39;</span>)</span>
+<span id="cb152-4"><a href="5.5-exercises-2.html#cb152-4" tabindex="-1"></a></span>
+<span id="cb152-5"><a href="5.5-exercises-2.html#cb152-5" tabindex="-1"></a><span class="fu">library</span>(CCA)</span>
+<span id="cb152-6"><a href="5.5-exercises-2.html#cb152-6" tabindex="-1"></a>cc.out <span class="ot">&lt;-</span> <span class="fu">cc</span>(X,Y)</span>
+<span id="cb152-7"><a href="5.5-exercises-2.html#cb152-7" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>cor)</span></code></pre></div>
 <pre><code>## [1] 0.9944827 0.8781065 0.3836057</code></pre>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="5.5-exercises-2.html#cb151-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>xcoef)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="5.5-exercises-2.html#cb154-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>xcoef)</span></code></pre></div>
 <pre><code>##               [,1]       [,2]       [,3]
 ## growth -0.06237788 -0.1740703  0.3771529
 ## profit -0.02092564  0.2421641 -0.1035150
 ## new    -0.07825817 -0.2382940 -0.3834151</code></pre>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="5.5-exercises-2.html#cb153-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>ycoef)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="5.5-exercises-2.html#cb156-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>ycoef)</span></code></pre></div>
 <pre><code>##               [,1]        [,2]        [,3]
 ## create -0.06974814 -0.19239132 -0.24655659
 ## mech   -0.03073830  0.20157438  0.14189528
 ## abs    -0.08956418 -0.49576326  0.28022405
 ## math   -0.06282997  0.06831607 -0.01133259</code></pre>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="5.5-exercises-2.html#cb155-1" tabindex="-1"></a><span class="fu">plt.cc</span>(cc.out,<span class="at">var.label =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb155-2"><a href="5.5-exercises-2.html#cb155-2" tabindex="-1"></a>       <span class="at">type=</span><span class="st">&#39;v&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="5.5-exercises-2.html#cb158-1" tabindex="-1"></a><span class="fu">plt.cc</span>(cc.out,<span class="at">var.label =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb158-2"><a href="5.5-exercises-2.html#cb158-2" tabindex="-1"></a>       <span class="at">type=</span><span class="st">&#39;v&#39;</span>)</span></code></pre></div>
 <p><img src="05-cca-ex_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>The following gives the correlation between the original variables and the transformed variables</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="5.5-exercises-2.html#cb156-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.X.xscores)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="5.5-exercises-2.html#cb159-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.X.xscores)</span></code></pre></div>
 <pre><code>##              [,1]          [,2]         [,3]
 ## growth -0.9798776  0.0006477883  0.199598477
 ## profit -0.9464085  0.3228847489 -0.007504408
 ## new    -0.9518620 -0.1863009724 -0.243414776</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="5.5-exercises-2.html#cb158-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.Y.yscores)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="5.5-exercises-2.html#cb161-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.Y.yscores)</span></code></pre></div>
 <pre><code>##              [,1]       [,2]        [,3]
 ## create -0.6383313 -0.2156981 -0.65140953
 ## mech   -0.7211626  0.2375644  0.06773775
 ## abs    -0.6472493 -0.5013329  0.57422365
 ## math   -0.9440859  0.1975329  0.09422619</code></pre>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="5.5-exercises-2.html#cb160-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.X.yscores)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="5.5-exercises-2.html#cb163-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.X.yscores)</span></code></pre></div>
 <pre><code>##              [,1]          [,2]         [,3]
 ## growth -0.9744713  0.0005688272  0.076567107
 ## profit -0.9411869  0.2835272081 -0.002878734
 ## new    -0.9466102 -0.1635921013 -0.093375287</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="5.5-exercises-2.html#cb162-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.Y.xscores)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="5.5-exercises-2.html#cb165-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.Y.xscores)</span></code></pre></div>
 <pre><code>##              [,1]       [,2]        [,3]
 ## create -0.6348095 -0.1894059 -0.24988439
 ## mech   -0.7171837  0.2086069  0.02598458
@@ -507,47 +508,47 @@ We will split the data into two datasets. Let <span class="math inline">\(\mathb
 <li>mpg Miles/(US) gallon</li>
 <li>qsec 1/4 mile time</li>
 </ul>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="5.5-exercises-2.html#cb164-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(cyl, disp, hp, drat, wt)</span>
-<span id="cb164-2"><a href="5.5-exercises-2.html#cb164-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(mpg, qsec)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="5.5-exercises-2.html#cb167-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(cyl, disp, hp, drat, wt)</span>
+<span id="cb167-2"><a href="5.5-exercises-2.html#cb167-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span> mtcars <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(mpg, qsec)</span></code></pre></div>
 <p>We can then do CCA on these two datasets</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="5.5-exercises-2.html#cb165-1" tabindex="-1"></a><span class="fu">library</span>(CCA)</span>
-<span id="cb165-2"><a href="5.5-exercises-2.html#cb165-2" tabindex="-1"></a>cc.out<span class="ot">&lt;-</span><span class="fu">cc</span>(X,Y)</span>
-<span id="cb165-3"><a href="5.5-exercises-2.html#cb165-3" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>cor)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="5.5-exercises-2.html#cb168-1" tabindex="-1"></a><span class="fu">library</span>(CCA)</span>
+<span id="cb168-2"><a href="5.5-exercises-2.html#cb168-2" tabindex="-1"></a>cc.out<span class="ot">&lt;-</span><span class="fu">cc</span>(X,Y)</span>
+<span id="cb168-3"><a href="5.5-exercises-2.html#cb168-3" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>cor)</span></code></pre></div>
 <pre><code>## [1] 0.9270377 0.8307044</code></pre>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="5.5-exercises-2.html#cb167-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>xcoef)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="5.5-exercises-2.html#cb170-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>xcoef)</span></code></pre></div>
 <pre><code>##              [,1]         [,2]
 ## cyl  -0.277988315  0.373120734
 ## disp  0.001628855  0.003177998
 ## hp   -0.005964078  0.007770195
 ## drat  0.015934959  0.791032730
 ## wt   -0.388097090 -1.423595709</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="5.5-exercises-2.html#cb169-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>ycoef)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="5.5-exercises-2.html#cb172-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>ycoef)</span></code></pre></div>
 <pre><code>##           [,1]       [,2]
 ## mpg  0.1451984  0.1109009
 ## qsec 0.1346424 -0.6013371</code></pre>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="5.5-exercises-2.html#cb171-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.X.xscores)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="5.5-exercises-2.html#cb174-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.X.xscores)</span></code></pre></div>
 <pre><code>##            [,1]        [,2]
 ## cyl  -0.9578700  0.07914027
 ## disp -0.9126296 -0.12094085
 ## hp   -0.9164944  0.29160643
 ## drat  0.6666822  0.43010103
 ## wt   -0.8643963 -0.47212540</code></pre>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="5.5-exercises-2.html#cb173-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.Y.xscores)</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="5.5-exercises-2.html#cb176-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.Y.xscores)</span></code></pre></div>
 <pre><code>##           [,1]       [,2]
 ## mpg  0.9046387  0.1815048
 ## qsec 0.5627028 -0.6601685</code></pre>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="5.5-exercises-2.html#cb175-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.X.yscores)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="5.5-exercises-2.html#cb178-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.X.yscores)</span></code></pre></div>
 <pre><code>##            [,1]        [,2]
 ## cyl  -0.8879817  0.06574217
 ## disp -0.8460421 -0.10046609
 ## hp   -0.8496249  0.24223874
 ## drat  0.6180395  0.35728682
 ## wt   -0.8013280 -0.39219665</code></pre>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="5.5-exercises-2.html#cb177-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.Y.yscores)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="5.5-exercises-2.html#cb180-1" tabindex="-1"></a><span class="fu">print</span>(cc.out<span class="sc">$</span>scores<span class="sc">$</span>corr.Y.yscores)</span></code></pre></div>
 <pre><code>##           [,1]       [,2]
 ## mpg  0.9758380  0.2184951
 ## qsec 0.6069902 -0.7947093</code></pre>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="5.5-exercises-2.html#cb179-1" tabindex="-1"></a><span class="fu">plt.cc</span>(cc.out, <span class="at">var.label =</span> T, <span class="at">type=</span><span class="st">&#39;v&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="5.5-exercises-2.html#cb182-1" tabindex="-1"></a><span class="fu">plt.cc</span>(cc.out, <span class="at">var.label =</span> T, <span class="at">type=</span><span class="st">&#39;v&#39;</span>)</span></code></pre></div>
 <p><img src="05-cca-ex_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Interpret the output of this canonical correlation analysis.</p>
 <!--
@@ -588,48 +589,48 @@ The aim is to look for canonical correlations between the gene expression data a
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection",
-"download": "pdf",
-"toc_float": {
-"collapsed": true,
-"smooth_scroll": false
-}
-},
-"pandoc_args": "--top-level-division=[chapter]"
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["MultivariateStatistics.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection",
+    "download": "pdf",
+    "toc_float": {
+      "collapsed": true,
+      "smooth_scroll": false
+    }
+  },
+  "pandoc_args": "--top-level-division=[chapter]"
 });
 });
 </script>

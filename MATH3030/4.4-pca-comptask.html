@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.4 Computer tasks | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.4 Computer tasks | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -56,8 +56,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +68,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -435,7 +436,7 @@ We will focus on the 5 continuous variables, all measured in mm:</p>
 </ul>
 <!--
 
-```r
+``` r
 pca <- prcomp(X, scale=FALSE)   #carry out PCA on S  
 pca
 lambda <- pca$sdev**2    #eigenvalues of S
@@ -483,9 +484,10 @@ You can generate a random orthogonal matrix using the following commands</p></li
 data on 27 different decathletes’ performances during two different competitions. Let’s start by extracting their performance in the 10 different decathlon events at the Olympics.</p>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="4.4-pca-comptask.html#cb120-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;factoextra&quot;</span>)</span></code></pre></div>
 <pre><code>## Loading required package: ggplot2</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.5.2</code></pre>
 <pre><code>## Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="4.4-pca-comptask.html#cb123-1" tabindex="-1"></a><span class="fu">data</span>(decathlon2)</span>
-<span id="cb123-2"><a href="4.4-pca-comptask.html#cb123-2" tabindex="-1"></a>X <span class="ot">&lt;-</span> decathlon2<span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Competition<span class="sc">==</span><span class="st">&#39;OlympicG&#39;</span>) <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>Rank, <span class="sc">-</span>Points,<span class="sc">-</span>Competition)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="4.4-pca-comptask.html#cb124-1" tabindex="-1"></a><span class="fu">data</span>(decathlon2)</span>
+<span id="cb124-2"><a href="4.4-pca-comptask.html#cb124-2" tabindex="-1"></a>X <span class="ot">&lt;-</span> decathlon2<span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Competition<span class="sc">==</span><span class="st">&#39;OlympicG&#39;</span>) <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>Rank, <span class="sc">-</span>Points,<span class="sc">-</span>Competition)</span></code></pre></div>
 <p>Conduct PCA on these data, thinking about whether it is appropriate to use the correlation or covariance matrix. Give a scree plot, and determine how much information in the data is retained by the first two PCs.
 Interpret the leading PCs.</p>
 <p>Plot the first two scores for the different athlete performances, labelling each point. From these plots, comment on particular strengths/weaknesses in some performances.</p>
@@ -511,48 +513,48 @@ Interpret the leading PCs.</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection",
-"download": "pdf",
-"toc_float": {
-"collapsed": true,
-"smooth_scroll": false
-}
-},
-"pandoc_args": "--top-level-division=[chapter]"
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["MultivariateStatistics.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection",
+    "download": "pdf",
+    "toc_float": {
+      "collapsed": true,
+      "smooth_scroll": false
+    }
+  },
+  "pandoc_args": "--top-level-division=[chapter]"
 });
 });
 </script>

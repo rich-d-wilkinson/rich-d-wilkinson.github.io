@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.5 Computer tasks | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.5 Computer tasks | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -56,8 +56,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +68,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -423,10 +424,10 @@ would appear to be better if the purpose is to form three distinct clusters.
 <div id="q2" class="section level5 unnumbered hasAnchor">
 <h5>Q2<a href="9.5-computer-tasks-5.html#q2" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Download the Indian Premier League data from Moodle and load it into R. We will filter the data to only look at players who played at least 10 innings, and the select just the information on the number of runs they scored, their high score (HS), their batting average (Avg), their best figures (BF), their strike rate (SR), and the number of 4s and 6s they hit.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="9.5-computer-tasks-5.html#cb308-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb308-2"><a href="9.5-computer-tasks-5.html#cb308-2" tabindex="-1"></a>IPL<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&#39;IPL.csv&#39;</span>)</span>
-<span id="cb308-3"><a href="9.5-computer-tasks-5.html#cb308-3" tabindex="-1"></a>IPL10<span class="ot">&lt;-</span>IPL <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Mat.x<span class="sc">&gt;=</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb308-4"><a href="9.5-computer-tasks-5.html#cb308-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(PLAYER,Runs.x, HS, Avg.x, BF, SR.x, X4s, X6s)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="9.5-computer-tasks-5.html#cb312-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb312-2"><a href="9.5-computer-tasks-5.html#cb312-2" tabindex="-1"></a>IPL<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&#39;IPL.csv&#39;</span>)</span>
+<span id="cb312-3"><a href="9.5-computer-tasks-5.html#cb312-3" tabindex="-1"></a>IPL10<span class="ot">&lt;-</span>IPL <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Mat.x<span class="sc">&gt;=</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb312-4"><a href="9.5-computer-tasks-5.html#cb312-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(PLAYER,Runs.x, HS, Avg.x, BF, SR.x, X4s, X6s)</span></code></pre></div>
 <p>Apply agglomerative hierarchical clustering to these data. You will need to first compute a distance matrix for the data, which can be done with the <code>dist</code> command.</p>
 <ol style="list-style-type: lower-roman">
 <li><p>Using the Euclidean distance, do single linkage, complete linkage, and average linkage give similar dendrograms?</p></li>
@@ -479,48 +480,48 @@ for(i in 1:10){
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection",
-"download": "pdf",
-"toc_float": {
-"collapsed": true,
-"smooth_scroll": false
-}
-},
-"pandoc_args": "--top-level-division=[chapter]"
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["MultivariateStatistics.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection",
+    "download": "pdf",
+    "toc_float": {
+      "collapsed": true,
+      "smooth_scroll": false
+    }
+  },
+  "pandoc_args": "--top-level-division=[chapter]"
 });
 });
 </script>

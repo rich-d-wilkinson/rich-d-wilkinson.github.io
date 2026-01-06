@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.2 The Wishart distribution | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.2 The Wishart distribution | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -56,8 +56,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +68,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -416,7 +417,7 @@ when <span class="math inline">\(p=1\)</span>, <span class="math inline">\(W_1(1
 <span class="math display">\[\mathbf M= \mathbf X^\top \mathbf X.\]</span></p></li>
 </ul>
 <p>We can sample from the Wishart distribution in R using the <code>rWishart</code> command. For example, setting <span class="math inline">\(\boldsymbol{\Sigma}=\mathbf I_2\)</span> and using 2 degrees of freedom, we can generate 4 random samples <span class="math inline">\(\mathbf M_1, \ldots, \mathbf M_4 \sim W_2(\mathbf I_2, 2)\)</span> as follows:</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="7.2-the-wishart-distribution.html#cb222-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">rWishart</span>(<span class="at">n=</span><span class="dv">4</span>, <span class="at">df=</span><span class="dv">2</span>, <span class="at">Sigma=</span><span class="fu">diag</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="7.2-the-wishart-distribution.html#cb225-1" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">rWishart</span>(<span class="at">n=</span><span class="dv">4</span>, <span class="at">df=</span><span class="dv">2</span>, <span class="at">Sigma=</span><span class="fu">diag</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span></code></pre></div>
 <p>Visualizing these by plotting the ellipses with <span class="math inline">\(\mathbf x^\top \mathbf M_i \mathbf x=c\)</span> for some constant <span class="math inline">\(c\)</span>, we can see the variability in these random matrices:</p>
 <p><img src="07-mvn_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <div class="proposition">
@@ -452,7 +453,7 @@ where <span class="math inline">\(\mathbf y_i = \mathbf A\mathbf x_i \sim N_q({\
 <p>If we let <span class="math inline">\(z_i \sim N(0,1)\)</span>, and <span class="math inline">\(\sigma = (\mathbf a^\top \boldsymbol{\Sigma}\mathbf a)^\frac{1}{2}\)</span>, then <span class="math inline">\(\sigma z_i \sim N(0, \mathbf a^\top \boldsymbol{\Sigma}\mathbf a)\)</span>. Thus
 <span class="math display">\[\begin{align*}
 \sum_{i=1}^n \sigma^2 z_i^2 &amp;\sim W_1(\mathbf a^\top \boldsymbol{\Sigma}\mathbf a, n) \quad \mbox{by the definition of the Wishart distribution}\\
-&amp;= \sigma^2 \sum_{i=1}^n z_i \\
+&amp;= \sigma^2 \sum_{i=1}^n z_i^2 \\
 &amp;\sim (\mathbf a^\top \boldsymbol{\Sigma}\mathbf a)\chi^2_n \quad \mbox{by the definition of} \chi^2.
 \end{align*}\]</span></p>
 <!--But $W_1(1,n)$ is equal in distribution to $\sum_{i=1}^n z_i^2$ where the , and so has $\chi_n^2$ distribution.  Moreover,  using Proposition \@ref(prp:six8)  with $p=q=1$ and $A=\sigma$, it is seen that $W_1(\sigma^2,n)$ is equal in distribution to $\sigma^2 \chi_n^2$. -->
@@ -642,48 +643,48 @@ $$
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection",
-"download": "pdf",
-"toc_float": {
-"collapsed": true,
-"smooth_scroll": false
-}
-},
-"pandoc_args": "--top-level-division=[chapter]"
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["MultivariateStatistics.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection",
+    "download": "pdf",
+    "toc_float": {
+      "collapsed": true,
+      "smooth_scroll": false
+    }
+  },
+  "pandoc_args": "--top-level-division=[chapter]"
 });
 });
 </script>

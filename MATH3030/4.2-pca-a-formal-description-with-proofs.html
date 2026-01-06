@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.2 PCA: a formal description with proofs | Multivariate Statistics</title>
   <meta name="description" content="The lecture notes for MATH3030/4068: Multivariate Analysis / Applied Multivariate Statistics" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.2 PCA: a formal description with proofs | Multivariate Statistics" />
   <meta property="og:type" content="book" />
@@ -56,8 +56,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +68,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -501,260 +502,106 @@ of the variability in the sample is ‘explained’ by the <span class="math inl
 <p>We can apply PCA to a football league table where <span class="math inline">\(W\)</span>, <span class="math inline">\(D\)</span>, <span class="math inline">\(L\)</span> are the number of matches won, drawn and lost and <span class="math inline">\(G\)</span> and <span class="math inline">\(GA\)</span> are the goals scored for and against, and <span class="math inline">\(GD\)</span> is the goal difference (<span class="math inline">\(G-GA\)</span>). An extract of the table for the 2019-2020 Premier League season is:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-Team
-</th>
-<th style="text-align:right;">
-W
-</th>
-<th style="text-align:right;">
-D
-</th>
-<th style="text-align:right;">
-L
-</th>
-<th style="text-align:right;">
-G
-</th>
-<th style="text-align:right;">
-GA
-</th>
-<th style="text-align:right;">
-GD
-</th>
+<tr class="header">
+<th align="left">Team</th>
+<th align="right">W</th>
+<th align="right">D</th>
+<th align="right">L</th>
+<th align="right">G</th>
+<th align="right">GA</th>
+<th align="right">GD</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Liverpool
-</td>
-<td style="text-align:right;">
-32
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-85
-</td>
-<td style="text-align:right;">
-33
-</td>
-<td style="text-align:right;">
-52
-</td>
+<tr class="odd">
+<td align="left">Liverpool</td>
+<td align="right">32</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">85</td>
+<td align="right">33</td>
+<td align="right">52</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Manchester City
-</td>
-<td style="text-align:right;">
-26
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-102
-</td>
-<td style="text-align:right;">
-35
-</td>
-<td style="text-align:right;">
-67
-</td>
+<tr class="even">
+<td align="left">Manchester City</td>
+<td align="right">26</td>
+<td align="right">3</td>
+<td align="right">9</td>
+<td align="right">102</td>
+<td align="right">35</td>
+<td align="right">67</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Manchester United
-</td>
-<td style="text-align:right;">
-18
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-66
-</td>
-<td style="text-align:right;">
-36
-</td>
-<td style="text-align:right;">
-30
-</td>
+<tr class="odd">
+<td align="left">Manchester United</td>
+<td align="right">18</td>
+<td align="right">12</td>
+<td align="right">8</td>
+<td align="right">66</td>
+<td align="right">36</td>
+<td align="right">30</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Chelsea
-</td>
-<td style="text-align:right;">
-20
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:right;">
-69
-</td>
-<td style="text-align:right;">
-54
-</td>
-<td style="text-align:right;">
-15
-</td>
+<tr class="even">
+<td align="left">Chelsea</td>
+<td align="right">20</td>
+<td align="right">6</td>
+<td align="right">12</td>
+<td align="right">69</td>
+<td align="right">54</td>
+<td align="right">15</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Leicester City
-</td>
-<td style="text-align:right;">
-18
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:right;">
-67
-</td>
-<td style="text-align:right;">
-41
-</td>
-<td style="text-align:right;">
-26
-</td>
+<tr class="odd">
+<td align="left">Leicester City</td>
+<td align="right">18</td>
+<td align="right">8</td>
+<td align="right">12</td>
+<td align="right">67</td>
+<td align="right">41</td>
+<td align="right">26</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Tottenham Hotspur
-</td>
-<td style="text-align:right;">
-16
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-61
-</td>
-<td style="text-align:right;">
-47
-</td>
-<td style="text-align:right;">
-14
-</td>
+<tr class="even">
+<td align="left">Tottenham Hotspur</td>
+<td align="right">16</td>
+<td align="right">11</td>
+<td align="right">11</td>
+<td align="right">61</td>
+<td align="right">47</td>
+<td align="right">14</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Wolverhampton
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-51
-</td>
-<td style="text-align:right;">
-40
-</td>
-<td style="text-align:right;">
-11
-</td>
+<tr class="odd">
+<td align="left">Wolverhampton</td>
+<td align="right">15</td>
+<td align="right">14</td>
+<td align="right">9</td>
+<td align="right">51</td>
+<td align="right">40</td>
+<td align="right">11</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Arsenal
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:right;">
-56
-</td>
-<td style="text-align:right;">
-48
-</td>
-<td style="text-align:right;">
-8
-</td>
+<tr class="even">
+<td align="left">Arsenal</td>
+<td align="right">14</td>
+<td align="right">14</td>
+<td align="right">10</td>
+<td align="right">56</td>
+<td align="right">48</td>
+<td align="right">8</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Sheffield United
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:right;">
-39
-</td>
-<td style="text-align:right;">
-39
-</td>
-<td style="text-align:right;">
-0
-</td>
+<tr class="odd">
+<td align="left">Sheffield United</td>
+<td align="right">14</td>
+<td align="right">12</td>
+<td align="right">12</td>
+<td align="right">39</td>
+<td align="right">39</td>
+<td align="right">0</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Burnley
-</td>
-<td style="text-align:right;">
-15
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-14
-</td>
-<td style="text-align:right;">
-43
-</td>
-<td style="text-align:right;">
-50
-</td>
-<td style="text-align:right;">
--7
-</td>
+<tr class="even">
+<td align="left">Burnley</td>
+<td align="right">15</td>
+<td align="right">9</td>
+<td align="right">14</td>
+<td align="right">43</td>
+<td align="right">50</td>
+<td align="right">-7</td>
 </tr>
 </tbody>
 </table>
@@ -766,12 +613,12 @@ Burnley
 \tag{4.5}
 \end{equation}\]</span></p>
 <p>The eigenvalues of <span class="math inline">\(\mathbf S\)</span> are
-<span class="math display">\[\boldsymbol \Lambda= \text{diag}\begin{pmatrix}1230&amp;68.3&amp;7.65&amp;4.39&amp;4.59e-14&amp;-2.04e-14 \\\end{pmatrix}\]</span></p>
+<span class="math display">\[\boldsymbol \Lambda= \text{diag}\begin{pmatrix}1230&amp;68.3&amp;7.65&amp;4.39&amp;1.13e-13&amp;-1.67e-14 \\\end{pmatrix}\]</span></p>
 <p>Note that we have two zero eigenvalues (which won’t be computed as exactly zero because of numerical rounding errors) because two of our variables are a linear combinations of the other variables, <span class="math inline">\(W+D+L = 38\)</span> and <span class="math inline">\(GD=G-GA\)</span>. The corresponding eigenvectors are
-<span class="math display">\[\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] =\begin{pmatrix}-0.166&amp;0.0262&amp;-0.707&amp;-0.373&amp;-0.188&amp;-0.546 \\0.0282&amp;-0.275&amp;0.661&amp;-0.391&amp;-0.188&amp;-0.546 \\0.138&amp;0.249&amp;0.0455&amp;0.764&amp;-0.188&amp;-0.546 \\-0.502&amp;0.6&amp;0.202&amp;-0.117&amp;-0.546&amp;0.188 \\0.285&amp;0.701&amp;0.11&amp;-0.286&amp;0.546&amp;-0.188 \\-0.787&amp;-0.101&amp;0.0915&amp;0.169&amp;0.546&amp;-0.188 \\\end{pmatrix}\]</span></p>
+<span class="math display">\[\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] =\begin{pmatrix}-0.166&amp;0.0262&amp;-0.707&amp;-0.373&amp;-0.252&amp;0.52 \\0.0282&amp;-0.275&amp;0.661&amp;-0.391&amp;-0.252&amp;0.52 \\0.138&amp;0.249&amp;0.0455&amp;0.764&amp;-0.252&amp;0.52 \\-0.502&amp;0.6&amp;0.202&amp;-0.117&amp;-0.52&amp;-0.252 \\0.285&amp;0.701&amp;0.11&amp;-0.286&amp;0.52&amp;0.252 \\-0.787&amp;-0.101&amp;0.0915&amp;0.169&amp;0.52&amp;0.252 \\\end{pmatrix}\]</span></p>
 <p>The proportion of variability explained by each of the PCs is:
 <span class="math display">\[
-\begin{pmatrix}0.939&amp;0.052&amp;0.00583&amp;0.00334&amp;3.5e-17&amp;-1.56e-17 \\\end{pmatrix}
+\begin{pmatrix}0.939&amp;0.052&amp;0.00583&amp;0.00334&amp;8.58e-17&amp;-1.27e-17 \\\end{pmatrix}
 \]</span></p>
 <p>There is no point computing the scores for PC 5 and 6, because these do not explain any of the variability in the data. Similarly, there is little value in computing the scores for PCs 3 &amp; 4 because they account for less than 1% of the variability in the data.</p>
 <p>We can, therefore, choose to compute only the first two PC scores. We are reducing the dimension of our data set from <span class="math inline">\(p=5\)</span> to <span class="math inline">\(p=2\)</span> while still retaining 99% of the variability. The first PC score/transformed variable is given by:
@@ -858,72 +705,37 @@ Leicester City
 <p>We might interpret the PCs as follows. The first PC seems to measure the difference in goals scored and conceded between teams. Low values of PC1 indicate good peformance, and high values poor performance. Teams are rewarded with -0.79 for each positive goal difference, and -0.5 for each goal scored, whilst being penalised by 0.28 for every goal they concede. So a team with a large negative PC1 score tends to score lots of goals and concede few. If we rank teams by their PC1 score, and compare this with the rankings using 3 points for a win and 1 point for a draw we get a different ranking of the teams.</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-PC1
-</th>
-<th style="text-align:right;">
-PC2
-</th>
+<tr class="header">
+<th align="left"></th>
+<th align="right">PC1</th>
+<th align="right">PC2</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Manchester City
-</td>
-<td style="text-align:right;">
--85.59
-</td>
-<td style="text-align:right;">
-12.35
-</td>
+<tr class="odd">
+<td align="left">Manchester City</td>
+<td align="right">-85.59</td>
+<td align="right">12.35</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Liverpool
-</td>
-<td style="text-align:right;">
--67.64
-</td>
-<td style="text-align:right;">
-0.93
-</td>
+<tr class="even">
+<td align="left">Liverpool</td>
+<td align="right">-67.64</td>
+<td align="right">0.93</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Manchester United
-</td>
-<td style="text-align:right;">
--36.66
-</td>
-<td style="text-align:right;">
--7.73
-</td>
+<tr class="odd">
+<td align="left">Manchester United</td>
+<td align="right">-36.66</td>
+<td align="right">-7.73</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Leicester City
-</td>
-<td style="text-align:right;">
--32.16
-</td>
-<td style="text-align:right;">
--1.13
-</td>
+<tr class="even">
+<td align="left">Leicester City</td>
+<td align="right">-32.16</td>
+<td align="right">-1.13</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Chelsea
-</td>
-<td style="text-align:right;">
--21.19
-</td>
-<td style="text-align:right;">
-10.90
-</td>
+<tr class="odd">
+<td align="left">Chelsea</td>
+<td align="right">-21.19</td>
+<td align="right">10.90</td>
 </tr>
 </tbody>
 </table>
@@ -953,136 +765,71 @@ Before doing PCA we must decide whether to do PCA based on <span class="math inl
 <h4><span class="header-section-number">4.2.3.1</span> Football example continued<a href="4.2-pca-a-formal-description-with-proofs.html#football-example-continued" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>If we repeat the analysis of the football data using <span class="math inline">\(\mathbf R\)</span> instead of <span class="math inline">\(\mathbf S\)</span>, we get find principal components:</p>
 <p><span class="math display">\[\begin{align*}
-\boldsymbol \Lambda&amp;= \text{diag}\begin{pmatrix}4.51&amp;1.25&amp;0.156&amp;0.0863&amp;3.68e-32&amp;2.48e-33 \\\end{pmatrix}\\
+\boldsymbol \Lambda&amp;= \text{diag}\begin{pmatrix}4.51&amp;1.25&amp;0.156&amp;0.0863&amp;1.13e-32&amp;3.13e-35 \\\end{pmatrix}\\
 \;\\
-\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] &amp;=\begin{pmatrix}-0.456&amp;0.149&amp;-0.342&amp;-0.406&amp;0.466&amp;0.52 \\0.143&amp;-0.844&amp;0.344&amp;-0.143&amp;0.24&amp;0.268 \\0.432&amp;0.321&amp;0.186&amp;0.541&amp;0.413&amp;0.461 \\-0.438&amp;0.214&amp;0.7&amp;-0.0181&amp;0.389&amp;-0.348 \\0.419&amp;0.342&amp;0.386&amp;-0.671&amp;-0.245&amp;0.22 \\-0.466&amp;-0.00136&amp;0.302&amp;0.269&amp;-0.586&amp;0.525 \\\end{pmatrix}
+\mathbf V= [\mathbf v_1 \ldots \mathbf v_6] &amp;=\begin{pmatrix}-0.456&amp;0.149&amp;0.342&amp;0.406&amp;-0.0283&amp;0.698 \\0.143&amp;-0.844&amp;-0.344&amp;0.143&amp;-0.0146&amp;0.359 \\0.432&amp;0.321&amp;-0.186&amp;-0.541&amp;-0.0251&amp;0.619 \\-0.438&amp;0.214&amp;-0.7&amp;0.0181&amp;-0.521&amp;-0.0212 \\0.419&amp;0.342&amp;-0.386&amp;0.671&amp;0.329&amp;0.0134 \\-0.466&amp;-0.00136&amp;-0.302&amp;-0.269&amp;0.786&amp;0.0319 \\\end{pmatrix}
 \end{align*}\]</span></p>
 <p>The effect of using <span class="math inline">\(\mathbf R\)</span> is to standardize each of the original variables to have variance 1.
 The first PC now has loadings which are more evenly balanced across the 6 original variables.</p>
 <p>Teams will have a small value of PC1 score if they won lots, lost rarely, scored a lot, and conceded rarely. In other words, PC1 is a complete measure of overall performance. If we look at the league table based on ordering according to PC1 we get a table that looks more like the original table.</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-PC1
-</th>
-<th style="text-align:right;">
-PC2
-</th>
+<tr class="header">
+<th align="left"></th>
+<th align="right">PC1</th>
+<th align="right">PC2</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Liverpool
-</td>
-<td style="text-align:right;">
--4.70
-</td>
-<td style="text-align:right;">
-1.20
-</td>
+<tr class="odd">
+<td align="left">Liverpool</td>
+<td align="right">-4.70</td>
+<td align="right">1.20</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Manchester City
-</td>
-<td style="text-align:right;">
--4.38
-</td>
-<td style="text-align:right;">
-1.65
-</td>
+<tr class="even">
+<td align="left">Manchester City</td>
+<td align="right">-4.38</td>
+<td align="right">1.65</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Manchester United
-</td>
-<td style="text-align:right;">
--2.01
-</td>
-<td style="text-align:right;">
--1.29
-</td>
+<tr class="odd">
+<td align="left">Manchester United</td>
+<td align="right">-2.01</td>
+<td align="right">-1.29</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Chelsea
-</td>
-<td style="text-align:right;">
--1.29
-</td>
-<td style="text-align:right;">
-1.08
-</td>
+<tr class="even">
+<td align="left">Chelsea</td>
+<td align="right">-1.29</td>
+<td align="right">1.08</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Leicester City
-</td>
-<td style="text-align:right;">
--1.66
-</td>
-<td style="text-align:right;">
-0.12
-</td>
+<tr class="odd">
+<td align="left">Leicester City</td>
+<td align="right">-1.66</td>
+<td align="right">0.12</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Tottenham Hotspur
-</td>
-<td style="text-align:right;">
--0.91
-</td>
-<td style="text-align:right;">
--0.65
-</td>
+<tr class="even">
+<td align="left">Tottenham Hotspur</td>
+<td align="right">-0.91</td>
+<td align="right">-0.65</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Wolverhampton
-</td>
-<td style="text-align:right;">
--0.82
-</td>
-<td style="text-align:right;">
--1.88
-</td>
+<tr class="odd">
+<td align="left">Wolverhampton</td>
+<td align="right">-0.82</td>
+<td align="right">-1.88</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Arsenal
-</td>
-<td style="text-align:right;">
--0.46
-</td>
-<td style="text-align:right;">
--1.56
-</td>
+<tr class="even">
+<td align="left">Arsenal</td>
+<td align="right">-0.46</td>
+<td align="right">-1.56</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Sheffield United
-</td>
-<td style="text-align:right;">
--0.18
-</td>
-<td style="text-align:right;">
--1.38
-</td>
+<tr class="odd">
+<td align="left">Sheffield United</td>
+<td align="right">-0.18</td>
+<td align="right">-1.38</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Burnley
-</td>
-<td style="text-align:right;">
-0.18
-</td>
-<td style="text-align:right;">
--0.10
-</td>
+<tr class="even">
+<td align="left">Burnley</td>
+<td align="right">0.18</td>
+<td align="right">-0.10</td>
 </tr>
 </tbody>
 </table>
@@ -1193,48 +940,48 @@ and so they are identical to the PC scores of the original variables.</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["MultivariateStatistics.pdf", "MultivariateStatistics.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection",
-"download": "pdf",
-"toc_float": {
-"collapsed": true,
-"smooth_scroll": false
-}
-},
-"pandoc_args": "--top-level-division=[chapter]"
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["MultivariateStatistics.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection",
+    "download": "pdf",
+    "toc_float": {
+      "collapsed": true,
+      "smooth_scroll": false
+    }
+  },
+  "pandoc_args": "--top-level-division=[chapter]"
 });
 });
 </script>
